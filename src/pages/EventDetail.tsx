@@ -1,396 +1,570 @@
-import { useEffect, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useParams, useNavigate } from "react-router-dom";
-import { CalendarDays, Clock, Globe, Lock, MapPin, UserCheck, Users, Mail } from "lucide-react";
+/**
+ * Circle page (S3). Serves /game/meet/:id and /events/:id (old links keep working).
+ *
+ * The same card shows different actions by role: a guest sees their status, the host sees
+ * "Manage". Only "came" counts: before the circle you see who is going (faces, no number);
+ * after it, who came (faces) and the one line each of them left. No likes, no views.
+ * Spec: docs/specs/circles_v1_spec.md S3, S6, S7. Copy: src/data/circlesCopy.ts.
+ */
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { CalendarDays, Clock, MapPin, Video } from "lucide-react";
+import GameShellV2 from "@/components/game/GameShellV2";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
+import { ToastAction } from "@/components/ui/toast";
 import AddToCalendarButton from "@/components/events/AddToCalendarButton";
-import { useEvent, useEventRsvp } from "@/hooks/useEvents";
-import { supabase } from "@/integrations/supabase/client";
+import WeeklyPanel from "@/components/circles/WeeklyPanel";
+import { KindChip, MoonBadge, PersonFace, PersonName, cardClass, copyCircleLink } from "@/components/circles/CircleBits";
+import { CIRCLE_PAGE, HOST_FORM, WEEKLY } from "@/data/circlesCopy";
+import { useEventRsvp } from "@/hooks/useEvents";
+import { useSessionUserId } from "@/hooks/useSessionUserId";
 import { useToast } from "@/hooks/use-toast";
-import { getOrCreateGameProfileId } from "@/lib/gameProfile";
-import { awardXp } from "@/lib/xpSystem";
-import { awardFirstTimeBonus, getFirstTimeActionLabel } from "@/lib/xpService";
-import BackButton from "@/components/BackButton";
-import { formatDate, formatTime } from "@/i18n/format";
+import {
+  LINE_MAX,
+  canRun,
+  dateBadge,
+  dateRailLabel,
+  endInstant,
+  formatTimeRange,
+  hasEnded,
+  hostOf,
+  isHost,
+  isWeekly,
+  joinState,
+  kindOf,
+  longDateLabel,
+  moonMark,
+  repeatSummary,
+  startInstant,
+  timeToMinutes,
+  upcomingOfSeries,
+  validLine,
+  type RsvpStatus,
+} from "@/lib/circles";
+import {
+  acceptHandoff,
+  askToJoin,
+  circleErrorMessage,
+  deleteLine,
+  fetchCircle,
+  fetchLines,
+  fetchMyRsvp,
+  fetchPeople,
+  fetchPendingHandoff,
+  fetchSeries,
+  joinCircle,
+  leaveCircle,
+  myFirstName,
+  saveLine,
+  type Circle,
+  type CircleLine,
+  type CirclePerson,
+  type Handoff,
+  type MyRsvp,
+} from "@/lib/circlesApi";
+import { threadPath } from "@/lib/playerMessages";
 
-const formatDateTime = (dateStr: string, timeStr: string, timeZone: string) => {
-  const dateTime = new Date(`${dateStr}T${timeStr}`);
-  const date = formatDate(dateTime, {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    timeZone,
-  });
-  const time = formatTime(dateTime, { hour: "numeric", minute: "2-digit", timeZone });
-  return { date, time };
+const mapUrl = (place: string) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place)}`;
+
+const COVER: Record<string, string> = {
+  weekly_circle: "from-[#2c3150] to-[#8460ea]",
+  mastermind: "from-[#8460ea] to-[#a4a3d0]",
+  practice: "from-[#a4a3d0] to-[#d9d4f5]",
+  dinner: "from-[#e8a96b] to-[#f6d9b5]",
+  gathering: "from-[#6bb59a] to-[#c5e6d9]",
 };
 
 const EventDetail = () => {
-  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
-  const { event, attendees, loading, error, refetch } = useEvent(id);
-  const {
-    currentStatus,
-    reminderEmail,
-    wantsReminder,
-    setReminderEmail,
-    setWantsReminder,
-    loading: rsvpLoading,
-    updating,
-    updateRsvp,
-  } = useEventRsvp(id);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [showOriginalTime, setShowOriginalTime] = useState(false);
-  const [sendingReminder, setSendingReminder] = useState(false);
+  const userId = useSessionUserId();
+  const [circle, setCircle] = useState<Circle | null>(null);
+  const [people, setPeople] = useState<CirclePerson[]>([]);
+  const [mine, setMine] = useState<MyRsvp | null>(null);
+  const [lines, setLines] = useState<CircleLine[]>([]);
+  const [series, setSeries] = useState<Circle[]>([]);
+  const [handoff, setHandoff] = useState<Handoff | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [myName, setMyName] = useState("");
+  const [askOpen, setAskOpen] = useState(false);
+  const [askLine, setAskLine] = useState("");
+  const [lineDraft, setLineDraft] = useState("");
+  const [showSeries, setShowSeries] = useState(false);
+
+  // The existing email-reminder fields (event_rsvps.email / wants_reminder) keep working.
+  const reminder = useEventRsvp(id);
+
+  const load = useCallback(async () => {
+    if (!id) return;
+    try {
+      const c = await fetchCircle(id);
+      if (!c) {
+        setError("not-found");
+        return;
+      }
+      setCircle(c);
+      const [p, l, s, h, m] = await Promise.all([
+        fetchPeople(id),
+        fetchLines(id),
+        c.series_id ? fetchSeries(c.series_id) : Promise.resolve([] as Circle[]),
+        userId ? fetchPendingHandoff(id) : Promise.resolve(null),
+        userId ? fetchMyRsvp(id, userId) : Promise.resolve(null),
+      ]);
+      setPeople(p);
+      setLines(l);
+      setSeries(s);
+      setHandoff(h);
+      setMine(m);
+      setError(null);
+    } catch (err) {
+      setError(circleErrorMessage(err, "Failed to load this circle."));
+    } finally {
+      setLoading(false);
+    }
+  }, [id, userId]);
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setIsAuthenticated(!!user);
-    };
-    checkAuth();
-  }, []);
+    if (userId === undefined) return;
+    load();
+  }, [userId, load]);
 
-  const handleRsvp = async () => {
-    if (!isAuthenticated) {
-      toast({
-        title: t('eventDetail.toastSignInRequiredTitle'),
-        description: t('eventDetail.toastSignInRequiredDesc'),
-        variant: "destructive",
-      });
-      return;
-    }
+  useEffect(() => {
+    if (userId) myFirstName(userId).then(setMyName).catch(() => undefined);
+  }, [userId]);
 
+  // After "Host circle": one-line toast with Copy link.
+  useEffect(() => {
+    const state = location.state as { justHosted?: boolean } | null;
+    if (!state?.justHosted || !circle) return;
+    toast({
+      title: HOST_FORM.created,
+      action: (
+        <ToastAction
+          altText="Copy link"
+          onClick={async () => {
+            const ok = await copyCircleLink(circle.id);
+            toast({ title: ok ? "Link copied." : "Copy failed." });
+          }}
+        >
+          Copy link
+        </ToastAction>
+      ),
+    });
+    navigate(location.pathname, { replace: true, state: null });
+  }, [circle, location.pathname, location.state, navigate, toast]);
+
+  const firstName = (myName || "").split(" ")[0];
+  const host = useMemo(() => people.find((p) => p.role === "host") || null, [people]);
+  const cohost = useMemo(() => people.find((p) => p.role === "cohost") || null, [people]);
+  const going = useMemo(() => people.filter((p) => p.role === "guest" && p.status === "going"), [people]);
+  const came = useMemo(() => people.filter((p) => p.came), [people]);
+  const personById = (uid: string) => people.find((p) => p.userId === uid);
+
+  const run = async (fn: () => Promise<unknown>) => {
+    setBusy(true);
     try {
-      const previousStatus = currentStatus;
-      await updateRsvp("going");
-      refetch();
-      toast({
-        title: t('eventDetail.toastRsvpConfirmedTitle'),
-        description: t('eventDetail.toastRsvpConfirmedDesc'),
-      });
-
-      const wasAttending = previousStatus === "going" || previousStatus === "maybe";
-      const isAttending = true;
-      if (isAttending && !wasAttending) {
-        const profileId = await getOrCreateGameProfileId();
-        const xpResult = await awardXp(profileId, 25, "spirit");
-        if (xpResult.success) {
-          toast({
-            title: t('eventDetail.toastXpTitle'),
-            description: t('eventDetail.toastXpDesc'),
-          });
-          const bonusResult = await awardFirstTimeBonus(profileId, "first_event_rsvp", 25, 2, "spirit");
-          if (bonusResult.awarded) {
-            toast({
-              title: t('eventDetail.toastFirstTimeBonusTitle'),
-              description: t('eventDetail.toastFirstTimeBonusDesc', { xp: bonusResult.xp, action: getFirstTimeActionLabel("first_event_rsvp") }),
-            });
-          }
-        }
-      }
+      await fn();
+      await load();
     } catch (err) {
-      toast({
-        title: t('eventDetail.toastErrorTitle'),
-        description: t('eventDetail.toastRsvpFailedDesc'),
-        variant: "destructive",
-      });
-    }
-  };
-
-  const handleSaveReminder = async () => {
-    if (!event || !currentStatus) return;
-
-    if (wantsReminder && !reminderEmail) {
-      toast({
-        title: t('eventDetail.toastEmailRequiredTitle'),
-        description: t('eventDetail.toastEmailRequiredDesc'),
-        variant: "destructive",
-      });
-      return;
-    }
-
-    setSendingReminder(true);
-    try {
-      await updateRsvp(currentStatus, {
-        email: reminderEmail,
-        wantsReminder,
-      });
-
-      if (wantsReminder && reminderEmail) {
-        await supabase.functions.invoke("send-rsvp-confirmation", {
-          body: {
-            email: reminderEmail,
-            event: {
-              title: event.title,
-              description: event.description,
-              date: event.event_date,
-              time: event.event_time,
-              location: event.location,
-              timezone: event.timezone || "UTC",
-            },
-          },
-        });
-      }
-
-      toast({
-        title: t('eventDetail.toastReminderUpdatedTitle'),
-        description: wantsReminder ? t('eventDetail.toastReminderEnabledDesc') : t('eventDetail.toastReminderDisabledDesc'),
-      });
-      refetch();
-    } catch (err) {
-      toast({
-        title: t('eventDetail.toastErrorTitle'),
-        description: t('eventDetail.toastReminderFailedDesc'),
-        variant: "destructive",
-      });
+      toast({ title: circleErrorMessage(err), variant: "destructive" });
     } finally {
-      setSendingReminder(false);
+      setBusy(false);
     }
   };
 
-
-  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — loading/error washes,
-  // hero fallback band, and the main content card now read skin tokens with
-  // the exact original literals as fallbacks (lapis pixel-identical). The
-  // card going dark under dark skins is what makes the cream --foreground
-  // text inside it legible again.
-  // Loading State
-  if (loading) {
+  if (loading || userId === undefined) {
     return (
-      <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
-        <PremiumLoader size="lg" />
-      </div>
-    );
-  }
-
-  // Error State
-  if (error || !event) {
-    return (
-      <div className="min-h-dvh bg-[var(--skin-page-bg,#fff)] flex items-center justify-center">
-        <div className="text-center p-6">
-          <CalendarDays className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-foreground mb-2">{t('eventDetail.notFoundTitle')}</h2>
-          <p className="text-muted-foreground mb-4">{error || t('eventDetail.notFoundDesc')}</p>
-          <BackButton to="/game/events" />
+      <GameShellV2>
+        <div className="min-h-[50vh] flex items-center justify-center">
+          <PremiumLoader size="lg" />
         </div>
-      </div>
+      </GameShellV2>
     );
   }
 
-  const userTimezone = useMemo(() => Intl.DateTimeFormat().resolvedOptions().timeZone, []);
-  const eventTimezone = event.timezone || "UTC";
-  const localDateTime = useMemo(
-    () => formatDateTime(event.event_date, event.event_time, userTimezone),
-    [event.event_date, event.event_time, userTimezone]
-  );
-  const originalDateTime = useMemo(
-    () => formatDateTime(event.event_date, event.event_time, eventTimezone),
-    [event.event_date, event.event_time, eventTimezone]
-  );
+  if (error || !circle) {
+    return (
+      <GameShellV2>
+        <div className="text-center p-8 space-y-3">
+          <CalendarDays className="w-12 h-12 text-muted-foreground mx-auto" />
+          <h2 className="text-xl font-semibold text-foreground">{error === "not-found" || !error ? "This circle is not here." : error}</h2>
+          <Button variant="outline" onClick={() => navigate("/game/meet")}>
+            Back to the Café
+          </Button>
+        </div>
+      </GameShellV2>
+    );
+  }
 
-  const goingAttendees = attendees.filter((a) => a.status === "going");
-  const goingCount = goingAttendees.length;
-  const maxAvatars = 5;
-  const extraCount = Math.max(0, goingCount - maxAvatars);
-  const hasRsvp = currentStatus === "going";
-  const visibility = event.visibility ?? "public";
-  const visibilityConfig = {
-    public: { labelKey: "eventDetail.visibilityPublic", icon: Globe, className: "bg-muted text-foreground" },
-    community: { labelKey: "eventDetail.visibilityCommunity", icon: Users, className: "bg-primary/10 text-primary" },
-    private: { labelKey: "eventDetail.visibilityPrivate", icon: Lock, className: "bg-muted text-foreground" },
-    team: { labelKey: "eventDetail.visibilityTeam", icon: UserCheck, className: "bg-muted/40 text-foreground" },
-  } as const;
-  const visibilityBadge = visibilityConfig[visibility as keyof typeof visibilityConfig];
+  const kind = kindOf(circle.kind);
+  const now = Date.now();
+  const ended = hasEnded(circle, now);
+  const hostRuns = isHost(circle, userId);
+  const runs = canRun(circle, userId);
+  const myStatus = (mine?.status as RsvpStatus | null) ?? null;
+  const state = joinState({ circle, myStatus, goingCount: going.length, now });
+  const badge = dateBadge(circle.event_date);
+  const online = !!circle.online_url;
+  const showOnlineLink = online && (state === "joined" || runs);
+  const nextMeetings = upcomingOfSeries(series, now).filter((m) => m.id !== circle.id);
+  const isMember = runs || myStatus === "going" || !!mine?.came;
+  const myLine = lines.find((l) => l.user_id === userId) || null;
+  const durationMinutes = Math.max(
+    30,
+    Math.round((endInstant(circle) - startInstant(circle)) / 60000) || timeToMinutes(circle.end_time || "00:00"),
+  );
+  const toHostPath = hostOf(circle) ? threadPath(hostOf(circle) as string) : null;
+  const iHaveHandoff = !!handoff && handoff.to_user === userId;
+
+  const submitLine = async () => {
+    const valid = validLine(lineDraft);
+    if (!valid || !userId) return;
+    await run(async () => {
+      await saveLine(circle.id, userId, valid);
+      setLineDraft("");
+    });
+  };
 
   return (
-    <div className="min-h-dvh bg-background">
-      {/* Hero Image */}
-      <div className="h-48 sm:h-64 bg-[var(--skin-card-fill,#fef3c7)] relative">
-        {event.photo_url ? (
-          <img
-            src={event.photo_url}
-            alt={event.title}
-            loading="lazy"
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center">
-            <CalendarDays className="w-16 h-16 text-amber-300" />
+    <GameShellV2>
+      <div className="p-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:p-8 max-w-2xl mx-auto space-y-5">
+        <Link to="/game/meet" className="text-sm text-muted-foreground hover:text-foreground">
+          ← Café
+        </Link>
+
+        {/* Cover */}
+        <div className={`h-44 rounded-xl overflow-hidden bg-gradient-to-br ${COVER[kind]} relative`}>
+          {circle.photo_url && <img src={circle.photo_url} alt="" loading="lazy" className="w-full h-full object-cover" />}
+        </div>
+
+        {/* Host banner and hand-off offer */}
+        {hostRuns && (
+          <div className={`${cardClass} p-4 flex items-center justify-between gap-3`}>
+            <span className="text-sm font-medium text-foreground">{CIRCLE_PAGE.youHost}</span>
+            <Button size="sm" onClick={() => navigate(`/game/meet/${circle.id}/manage`)}>
+              {CIRCLE_PAGE.manage}
+            </Button>
+          </div>
+        )}
+        {!hostRuns && cohost?.userId === userId && (
+          <div className={`${cardClass} p-4 flex items-center justify-between gap-3`}>
+            <span className="text-sm font-medium text-foreground">You co-host this circle.</span>
+            <Button size="sm" onClick={() => navigate(`/game/meet/${circle.id}/manage`)}>
+              {CIRCLE_PAGE.manage}
+            </Button>
+          </div>
+        )}
+        {iHaveHandoff && handoff && (
+          <div className={`${cardClass} p-4 flex items-center justify-between gap-3`}>
+            <span className="text-sm font-medium text-foreground">{CIRCLE_PAGE.offerTitle(personById(handoff.from_user)?.name || host?.name || "The host")}</span>
+            <Button size="sm" disabled={busy} onClick={() => run(() => acceptHandoff(handoff.id))}>
+              {CIRCLE_PAGE.takeCircle}
+            </Button>
           </div>
         )}
 
-        {/* Back Button */}
-        <BackButton
-          to="/game/events"
-          className="absolute top-4 left-4 bg-card/80 hover:bg-[var(--skin-card-fill,#fff)]"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="max-w-2xl mx-auto px-4 -mt-8 relative z-above pb-12">
-        <div className="bg-[var(--skin-card-fill,rgba(255,255,255,0.85))] backdrop-blur-sm rounded-xl shadow-[0_4px_16px_rgba(44,49,80,0.06)] border border-border overflow-hidden">
-          {/* Title & RSVP */}
-          <div className="p-6 border-b border-border/10">"
-            <h1 className="text-2xl font-bold text-foreground mb-4">{event.title}</h1>
-            {visibilityBadge && (
-              <div className="mb-4">
-                <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-medium ${visibilityBadge.className}`}>
-                  <visibilityBadge.icon className="w-4 h-4" />
-                  {t(visibilityBadge.labelKey)}
-                </span>
-              </div>
-            )}
-
-            {/* RSVP Button */}
-            <Button
-              onClick={handleRsvp}
-              disabled={rsvpLoading || updating || !isAuthenticated || currentStatus === "going"}
-              className={currentStatus === "going" ? "bg-emerald-500 hover:bg-emerald-500" : ""}
-            >
-              {currentStatus === "going" ? t('eventDetail.rsvpButtonAttending') : t('eventDetail.rsvpButtonDefault')}
-            </Button>
-            {!isAuthenticated && (
-              <p className="text-xs text-muted-foreground mt-2">{t('eventDetail.signInToRsvp')}</p>
-            )}
+        {/* Title, date, place */}
+        <div className={`${cardClass} p-6 space-y-4`}>
+          <div className="flex items-start gap-4">
+            <div className="shrink-0 w-14 rounded-lg border border-border text-center overflow-hidden">
+              <div className="bg-muted text-[10px] font-semibold tracking-wide py-0.5">{badge.month}</div>
+              <div className="text-xl font-bold py-1 text-foreground">{badge.day}</div>
+            </div>
+            <div className="min-w-0 space-y-1.5">
+              <h1 className="text-2xl font-bold text-foreground">{circle.title}</h1>
+              <KindChip kind={kind} />
+            </div>
           </div>
 
-          {/* Details */}
-          <div className="p-6 space-y-4">
-            {/* Date & Time */}
-            <div className="flex items-start gap-3">
-              <CalendarDays className="w-5 h-5 text-amber-500 mt-0.5" />
-              <div>
-                <p className="font-medium text-foreground">{localDateTime.date}</p>
-                <p className="text-muted-foreground flex items-center gap-1">
-                  <Clock className="w-4 h-4" />
-                  {localDateTime.time}
-                  <span className="text-xs text-muted-foreground">{t('eventDetail.yourTime')}</span>
-                </p>
-                <button
-                  type="button"
-                  className="text-xs text-amber-600 hover:text-amber-700 mt-1"
-                  onClick={() => setShowOriginalTime((prev) => !prev)}
-                >
-                  {showOriginalTime ? t('eventDetail.hideOriginalTime') : t('eventDetail.showOriginalTime')}
-                </button>
-                {showOriginalTime && (
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {originalDateTime.date} · {originalDateTime.time} ({eventTimezone})
-                  </p>
+          <div className="space-y-2 text-sm">
+            <p className="flex items-center gap-2 font-medium text-foreground">
+              <CalendarDays className="w-4 h-4 text-muted-foreground" aria-hidden />
+              {longDateLabel(circle.event_date)}
+              <MoonBadge mark={moonMark(circle.event_date)} />
+            </p>
+            <p className="flex items-center gap-2 text-muted-foreground">
+              <Clock className="w-4 h-4" aria-hidden />
+              {formatTimeRange(circle.event_time, circle.end_time, circle.timezone, circle.event_date)}
+            </p>
+            {online ? (
+              <p className="flex items-center gap-2 text-muted-foreground">
+                <Video className="w-4 h-4" aria-hidden />
+                {showOnlineLink ? (
+                  <a href={circle.online_url as string} target="_blank" rel="noopener noreferrer" className="underline text-foreground">
+                    {circle.online_url}
+                  </a>
+                ) : (
+                  CIRCLE_PAGE.onlineAfterJoin
                 )}
-              </div>
-            </div>
-
-            {/* Location */}
-            {event.location && (
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-amber-500 mt-0.5" />
-                <p className="text-foreground">{event.location}</p>
-              </div>
-            )}
-
-            {/* Attendees */}
-            <div className="flex items-start gap-3">
-              <Users className="w-5 h-5 text-amber-500 mt-0.5" />
-              <p className="text-foreground">
-                {t('eventDetail.attendeesGoing', { count: goingCount })}
               </p>
-            </div>
-
-            {/* RSVP Reminder */}
-            {hasRsvp && (
-              <div className="rounded-lg border border-border bg-muted/40 p-4 space-y-3">
-                <div className="flex items-center gap-2">
-                  <Mail className="w-4 h-4 text-muted-foreground" />
-                  <p className="text-sm font-medium text-foreground">{t('eventDetail.emailReminderHeading')}</p>
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="rsvp-email">{t('eventDetail.emailAddressLabel')}</Label>
-                  <Input
-                    id="rsvp-email"
-                    type="email"
-                    placeholder={t('eventDetail.emailPlaceholder')}
-                    value={reminderEmail}
-                    onChange={(e) => setReminderEmail(e.target.value)}
-                    disabled={sendingReminder}
-                  />
-                </div>
-                <div className="flex items-center gap-2">
-                  <Checkbox
-                    id="rsvp-reminder"
-                    checked={wantsReminder}
-                    onCheckedChange={(checked) => setWantsReminder(Boolean(checked))}
-                    disabled={sendingReminder}
-                  />
-                  <Label htmlFor="rsvp-reminder" className="text-sm text-muted-foreground">
-                    {t('eventDetail.sendMeReminder')}
-                  </Label>
-                </div>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={handleSaveReminder}
-                  disabled={sendingReminder}
-                >
-                  {sendingReminder ? t('eventDetail.savingReminder') : t('eventDetail.saveReminder')}
-                </Button>
-              </div>
-            )}
-
-            {/* Add to Calendar */}
-            {hasRsvp && (
-              <AddToCalendarButton
-                title={event.title}
-                description={event.description || ""}
-                date={event.event_date}
-                time={event.event_time}
-                location={event.location || ""}
-                timezone={event.timezone || "UTC"}
-              />
-            )}
-
-            {/* Description */}
-            {event.description && (
-              <div className="pt-4 border-t border-border">
-                <h3 className="font-medium text-foreground mb-2">{t('eventDetail.aboutThisEvent')}</h3>
-                <p className="text-muted-foreground whitespace-pre-wrap">{event.description}</p>
-              </div>
+            ) : (
+              circle.location && (
+                <p className="flex items-center gap-2 text-muted-foreground">
+                  <MapPin className="w-4 h-4" aria-hidden />
+                  <a href={mapUrl(circle.location)} target="_blank" rel="noopener noreferrer" className="underline text-foreground">
+                    {circle.location}
+                  </a>
+                </p>
+              )
             )}
           </div>
 
-          {/* Attendees List */}
-          {attendees.length > 0 && (
-            <div className="p-6 bg-muted/40 border-t border-border/10">
-              <h3 className="font-medium text-foreground mb-3">{t('eventDetail.whosComing')}</h3>
-              <div className="flex flex-wrap gap-2">
-                {goingAttendees.slice(0, maxAvatars).map((attendee, idx) => (
-                  <div
-                    key={attendee.user_id}
-                    className="w-8 h-8 rounded-full bg-amber-400 flex items-center justify-center text-white text-xs font-medium"
-                    title={t('eventDetail.attendeeTitle', { num: idx + 1 })}
-                  >
-                    {idx + 1}
-                  </div>
-                ))}
-                {extraCount > 0 && (
-                  <span className="text-xs text-muted-foreground self-center">
-                    {t('eventDetail.attendeesExtraMore', { count: extraCount })}
-                  </span>
-                )}
-              </div>
+          {/* Hosted by */}
+          {host && (
+            <div className="flex flex-wrap items-center gap-3 pt-3 border-t border-border">
+              <span className="text-sm text-muted-foreground">{CIRCLE_PAGE.hostedBy}</span>
+              <PersonFace person={host} />
+              <PersonName person={host} />
+              {cohost && <span className="text-sm text-muted-foreground">{CIRCLE_PAGE.with(cohost.name)}</span>}
+              {userId && host.userId !== userId && (
+                <Link to={threadPath(host.userId)} className="ml-auto text-sm font-medium text-foreground hover:underline">
+                  {CIRCLE_PAGE.write}
+                </Link>
+              )}
+            </div>
+          )}
+
+          {circle.description && <p className="text-sm text-foreground whitespace-pre-wrap pt-3 border-t border-border">{circle.description}</p>}
+
+          {/* Repeating */}
+          {circle.series_id && circle.repeat_rule && circle.repeat_rule !== "never" && (
+            <div className="pt-3 border-t border-border text-sm">
+              <button type="button" className="text-muted-foreground hover:text-foreground text-left" onClick={() => setShowSeries((v) => !v)}>
+                {CIRCLE_PAGE.meets(repeatSummary(circle.repeat_rule), nextMeetings[0] ? dateRailLabel(nextMeetings[0].event_date).split(" · ")[0] : null)}
+              </button>
+              {showSeries && (
+                <ul className="mt-2 space-y-1">
+                  {series.filter((m) => !m.cancelled_at).map((m) => (
+                    <li key={m.id}>
+                      <Link to={`/game/meet/${m.id}`} className={`hover:underline ${m.id === circle.id ? "font-semibold text-foreground" : "text-muted-foreground"}`}>
+                        {dateRailLabel(m.event_date)}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           )}
         </div>
+
+        {/* Join card, by state. The host has the banner above instead. */}
+        {!hostRuns && (
+          <div className={`${cardClass} p-5 space-y-3`}>
+            {userId === null && state !== "cancelled" && state !== "ended" ? (
+              <>
+                <p className="text-foreground">{CIRCLE_PAGE.signInToJoin}</p>
+                <Button onClick={() => navigate("/auth")}>Sign in</Button>
+              </>
+            ) : (
+              <>
+                {state === "open" && (
+                  <>
+                    <p className="text-foreground">{CIRCLE_PAGE.joinOpen(firstName || "you")}</p>
+                    <Button disabled={busy} onClick={() => run(() => joinCircle(circle.id))}>
+                      {CIRCLE_PAGE.join}
+                    </Button>
+                  </>
+                )}
+                {state === "ask" && (
+                  <>
+                    <p className="text-foreground">{CIRCLE_PAGE.askTitle}</p>
+                    <Button disabled={busy} onClick={() => setAskOpen(true)}>
+                      {CIRCLE_PAGE.ask}
+                    </Button>
+                  </>
+                )}
+                {state === "full" && (
+                  <>
+                    <p className="text-foreground">{CIRCLE_PAGE.full}</p>
+                    {toHostPath && (
+                      <Button variant="outline" onClick={() => navigate(toHostPath)}>
+                        {CIRCLE_PAGE.writeToHost}
+                      </Button>
+                    )}
+                  </>
+                )}
+                {state === "joined" && (
+                  <>
+                    <p className="text-foreground font-medium">{CIRCLE_PAGE.joined}</p>
+                    <div className="flex flex-wrap items-center gap-3">
+                      <AddToCalendarButton
+                        title={circle.title}
+                        description={circle.description || ""}
+                        date={circle.event_date}
+                        time={circle.event_time}
+                        location={circle.location || circle.online_url || ""}
+                        durationMinutes={durationMinutes}
+                        timezone={circle.timezone || "UTC"}
+                      />
+                      <button
+                        type="button"
+                        disabled={busy}
+                        onClick={() => run(() => leaveCircle(circle.id))}
+                        className="text-sm text-muted-foreground underline hover:text-foreground"
+                      >
+                        {CIRCLE_PAGE.cantMakeIt}
+                      </button>
+                    </div>
+                    <label className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <input
+                        type="checkbox"
+                        checked={reminder.wantsReminder}
+                        onChange={(e) => reminder.setWantsReminder(e.target.checked)}
+                        aria-label="Email me a reminder"
+                      />
+                      Email me a reminder too
+                    </label>
+                    {reminder.wantsReminder && (
+                      <div className="flex gap-2">
+                        <Input
+                          type="email"
+                          placeholder="you@example.com"
+                          value={reminder.reminderEmail}
+                          onChange={(e) => reminder.setReminderEmail(e.target.value)}
+                          aria-label="Email for the reminder"
+                        />
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          disabled={reminder.updating || !reminder.reminderEmail}
+                          onClick={() =>
+                            run(() => reminder.updateRsvp("going", { email: reminder.reminderEmail, wantsReminder: true }))
+                          }
+                        >
+                          Save
+                        </Button>
+                      </div>
+                    )}
+                  </>
+                )}
+                {state === "asked" && (
+                  <>
+                    <p className="text-foreground">{CIRCLE_PAGE.asked}</p>
+                    <Button variant="outline" disabled={busy} onClick={() => run(() => leaveCircle(circle.id))}>
+                      {CIRCLE_PAGE.withdraw}
+                    </Button>
+                  </>
+                )}
+                {state === "declined" && <p className="text-foreground">{CIRCLE_PAGE.declined}</p>}
+                {state === "cancelled" && <p className="text-foreground">{CIRCLE_PAGE.cancelled}</p>}
+                {state === "ended" && <p className="text-foreground">{CIRCLE_PAGE.ended}</p>}
+              </>
+            )}
+          </div>
+        )}
+
+        {/* Going → after the circle: Came. Faces only, no number. */}
+        {ended && came.length > 0 ? (
+          <div className={`${cardClass} p-5 space-y-3`}>
+            <h2 className="font-semibold text-foreground">{CIRCLE_PAGE.came}</h2>
+            <div className="flex flex-wrap gap-2">
+              {came.map((p) => (
+                <PersonFace key={p.userId} person={p} />
+              ))}
+            </div>
+          </div>
+        ) : (
+          !ended &&
+          going.length > 0 && (
+            <div className={`${cardClass} p-5 space-y-3`}>
+              <h2 className="font-semibold text-foreground">{CIRCLE_PAGE.going}</h2>
+              <div className="flex flex-wrap gap-2">
+                {going.map((p) => (
+                  <PersonFace key={p.userId} person={p} />
+                ))}
+              </div>
+            </div>
+          )
+        )}
+
+        {/* S6: one line, for people marked came only; lines show under Came */}
+        {mine?.came && (
+          <div className={`${cardClass} p-5 space-y-3`}>
+            <h2 className="font-semibold text-foreground">{CIRCLE_PAGE.oneLine}</h2>
+            {myLine ? (
+              <div className="space-y-2">
+                <p className="text-sm text-foreground">{myLine.body}</p>
+                <div className="flex gap-3 text-sm">
+                  <button type="button" className="underline text-muted-foreground hover:text-foreground" onClick={() => setLineDraft(myLine.body)}>
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    className="underline text-muted-foreground hover:text-foreground"
+                    onClick={() => userId && run(() => deleteLine(circle.id, userId))}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            ) : null}
+            {(!myLine || lineDraft) && (
+              <div className="space-y-2">
+                <Input
+                  value={lineDraft}
+                  maxLength={LINE_MAX}
+                  onChange={(e) => setLineDraft(e.target.value)}
+                  placeholder={isWeekly(kind) ? WEEKLY.linePlaceholder : CIRCLE_PAGE.linePlaceholder}
+                  aria-label={isWeekly(kind) ? WEEKLY.linePlaceholder : CIRCLE_PAGE.linePlaceholder}
+                />
+                <Button size="sm" disabled={busy || !validLine(lineDraft)} onClick={submitLine}>
+                  {CIRCLE_PAGE.leaveLine}
+                </Button>
+              </div>
+            )}
+          </div>
+        )}
+        {lines.length > 0 && (
+          <ul className="space-y-3">
+            {lines.map((l) => {
+              const author = personById(l.user_id);
+              return (
+                <li key={l.id} className={`${cardClass} p-4 flex gap-3`}>
+                  {author && <PersonFace person={author} size="sm" />}
+                  <div className="min-w-0">
+                    <p className="text-sm text-foreground">{l.body}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{author ? <PersonName person={author} /> : "A villager"}</p>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+
+        {/* S7: the Save Point and the weekly step */}
+        {isWeekly(kind) && (
+          <WeeklyPanel circle={circle} userId={userId} people={people} runsCircle={runs} isMember={isMember} />
+        )}
       </div>
-    </div>
+
+      {/* Ask to join: a line for the host (optional) */}
+      <Dialog open={askOpen} onOpenChange={setAskOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{CIRCLE_PAGE.askModalTitle}</DialogTitle>
+          </DialogHeader>
+          <Textarea rows={3} maxLength={200} value={askLine} onChange={(e) => setAskLine(e.target.value)} autoFocus />
+          <Button
+            disabled={busy}
+            onClick={async () => {
+              await run(() => askToJoin(circle, askLine, myName || "Someone"));
+              setAskOpen(false);
+              setAskLine("");
+            }}
+          >
+            {CIRCLE_PAGE.ask}
+          </Button>
+        </DialogContent>
+      </Dialog>
+    </GameShellV2>
   );
 };
 

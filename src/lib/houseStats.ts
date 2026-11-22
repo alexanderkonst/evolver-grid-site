@@ -15,7 +15,7 @@ import { formatVillageIncome } from "@/lib/villageIncome";
  * player's own rows (RLS enforces it).
  */
 
-export type StatId = "qol" | "uniqueness" | "income";
+export type StatId = "qol" | "uniqueness" | "income" | "circlesCameToYours" | "circlesYouCameTo";
 
 /** One reading of a stat, with the moment it was taken. */
 export type StatReading = { value: number; at: string };
@@ -39,6 +39,12 @@ export type HouseStatsInput = {
   resonance: readonly StatReading[];
   /** The player's own income, already formatted; null when there is none. */
   income: string | null;
+  /**
+   * Circles v1 (§6): people marked came at circles this player hosted, and circles this player
+   * came to. Real acts only, shown only when non-zero (the A5 rule), owner-only like the rest.
+   */
+  circlesCameToYours?: number | null;
+  circlesYouCameTo?: number | null;
 };
 
 const round1 = (n: number) => Math.round(n * 10) / 10;
@@ -52,6 +58,8 @@ export function quarterLabel(iso: string, now: Date = new Date()): string {
 
 const isScore = (n: unknown, min: number, max: number): n is number =>
   typeof n === "number" && Number.isFinite(n) && n >= min && n <= max;
+
+const isCount = (n: unknown): n is number => typeof n === "number" && Number.isInteger(n) && n > 0;
 
 /** The cards the player has earned, in fixed order. An empty list means no stats block at all. */
 export function buildHouseStats(input: HouseStatsInput, now: Date = new Date()): HouseStat[] {
@@ -81,6 +89,9 @@ export function buildHouseStats(input: HouseStatsInput, now: Date = new Date()):
   }
 
   if (input.income) stats.push({ id: "income", value: input.income });
+
+  if (isCount(input.circlesCameToYours)) stats.push({ id: "circlesCameToYours", value: String(input.circlesCameToYours) });
+  if (isCount(input.circlesYouCameTo)) stats.push({ id: "circlesYouCameTo", value: String(input.circlesYouCameTo) });
 
   return stats;
 }
@@ -140,11 +151,48 @@ async function loadOwnIncome(userId: string): Promise<string | null> {
 }
 
 /**
+ * The two circle counts (Circles v1 §6), for the owner's House only. `host_id` / rsvp reads are
+ * RLS-scoped (a host reads the rsvps of their own circles; a player reads their own rows), and
+ * the host is never counted as someone who "came to their own circle". Any error = no card.
+ */
+async function loadCircleCounts(userId: string): Promise<{ cameToYours: number; youCameTo: number }> {
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const db = supabase as any;
+    const [{ data: hosted }, { data: mine }] = await Promise.all([
+      db.from("events").select("id").eq("host_id", userId).limit(500),
+      db.from("event_rsvps").select("event_id").eq("user_id", userId).eq("came", true).limit(1000),
+    ]);
+    const hostedIds = ((hosted || []) as Array<{ id: string }>).map((e) => e.id);
+    let cameToYours = 0;
+    if (hostedIds.length > 0) {
+      const { data: came } = await db
+        .from("event_rsvps")
+        .select("user_id")
+        .in("event_id", hostedIds)
+        .eq("came", true)
+        .neq("user_id", userId)
+        .limit(5000);
+      cameToYours = new Set(((came || []) as Array<{ user_id: string }>).map((r) => r.user_id)).size;
+    }
+    const hostedSet = new Set(hostedIds);
+    const youCameTo = new Set(((mine || []) as Array<{ event_id: string }>).map((r) => r.event_id).filter((id) => !hostedSet.has(id))).size;
+    return { cameToYours, youCameTo };
+  } catch {
+    return { cameToYours: 0, youCameTo: 0 };
+  }
+}
+
+/**
  * The extra reads behind the U and $ cards, for the owner's House only. Nothing is shown until
  * both settle; a failed read counts as «no value», so a card never appears from a guess.
  */
 export function useHouseStatsData(userId: string | null, profileId: string | null) {
-  const [state, setState] = useState<{ resonance: StatReading[]; income: string | null } | null>(null);
+  const [state, setState] = useState<{
+    resonance: StatReading[];
+    income: string | null;
+    circles: { cameToYours: number; youCameTo: number };
+  } | null>(null);
 
   useEffect(() => {
     if (!userId) {
@@ -152,11 +200,13 @@ export function useHouseStatsData(userId: string | null, profileId: string | nul
       return;
     }
     let live = true;
-    Promise.all([profileId ? loadResonance(profileId) : Promise.resolve([]), loadOwnIncome(userId)]).then(
-      ([resonance, income]) => {
-        if (live) setState({ resonance, income });
-      },
-    );
+    Promise.all([
+      profileId ? loadResonance(profileId) : Promise.resolve([]),
+      loadOwnIncome(userId),
+      loadCircleCounts(userId),
+    ]).then(([resonance, income, circles]) => {
+      if (live) setState({ resonance, income, circles });
+    });
     return () => {
       live = false;
     };

@@ -7842,6 +7842,8 @@
       "qol": "QoL",
       "uniqueness": "Uniqueness resonance",
       "income": "Unique business income",
+      "circlesCameToYours": "People who came to your circles",
+      "circlesYouCameTo": "Circles you came to",
       "changeSince": "{{delta}} since {{since}}",
       "same": "Same as in {{since}}"
     },
