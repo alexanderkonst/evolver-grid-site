@@ -162,10 +162,10 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 
 **Goal of the game** (Sasha, 2026-10-26: «прикольно»)**:** a high quality of life, as defined by the Quality of Life Map (8 domains × 10 stages: Wealth, Health, Happiness, Love & Relationships, Impact, Growth, Social Ties, Home; `src/modules/quality-of-life-map/qolConfig.ts`).
 
-- **Level = your bottleneck:** the lowest stage across all 8 domains. To level up, the whole map has to move up at least one stage (Sasha: "a level is at least one transition across the whole map"). Theory of Constraints / Liebig's barrel.
+- **Level = your bottleneck:** the lowest stage across all 8 domains. To level up, the whole map has to move up at least one stage (Sasha: "a level is at least one transition across the whole map"). Theory of Constraints / Liebig's barrel. *(Superseded 2026-11-22: levels only where they open something, and the word "level" is not used; Peak and badges are what cannot be lost, §24 #19.)*
 - **Main quest = suggested from the bottleneck, confirmed by the player.** Life is rarely black and white, so the game proposes the bottleneck domain as the main quest and the player confirms or picks another (Sasha, 2026-10-26: «не всегда будет черно белое… только если игрок подтверждает»).
 - **No artificial XP (Sasha, 2026-10-26: «может просто наша цель — точно показать саму жизнь? А не придумывать искусственные XP? Мы же саму жизнь артикулируем»).** Progress is the player's real movement on the QoL map, read from life, not points. What matters to people is what the platform shows, as far as possible. The five paths (Body, Emotions, Mind, Spirit, Uniqueness) are the skill tree; their practices move the player's real level in each domain.
-- **Leveling down is real** (life goes down too), so two meters: **Current level** (can fall, shown as weather, not punishment) and **Peak** (best level reached, kept). A drop opens a **Comeback quest**; its reward is the real recovery.
+- **Leveling down is real** (life goes down too), so two meters: **Current level** (can fall, shown as weather, not punishment) and **Peak** (best level reached, kept). A drop opens a **Comeback quest**; its reward is the real recovery. *(Superseded 2026-11-22 for the "Current level" meter wording only: the word "level" is not used, §24 #19; Peak stays.)*
 - **Input (confirmed):** a 60-second weekly **Save Point** ritual (each domain: up / same / down + one line) and a full map re-take each season.
 - **Rejected (Sasha, 2026-10-26: «ерунда! Не сработает»):** evidence from quests and peer witness from the party as XP/input.
 - **The crystal shows the level:** clarity and brightness of the player's spectrum grow with level; new facets unlock (Spectrum insights).
@@ -176,8 +176,8 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 3. ✅ **Approved (Sasha, 2026-10-26).** Daily 5-minute quests (practices), gentle streak with freezes.
 4. Party / guild = Mastermind: shared season quest, contribution to others (feeds Impact and Social Ties).
 5. Seasons of ~6 weeks: Masterclass opens a season; a closing ceremony shows the before/after map. *(Superseded 2026-11-21: 6-week seasons rejected, §24.5; rhythm = day / week / month / year, §24 #7.)*
-6. ✅ **Approved.** Real loot: first income from your unique offer is a boss drop.
-7. ✅ **Approved.** Bosses = real-life thresholds (first sale, a move, a hard conversation).
+6. ✅ **Approved.** Real loot: first income from your unique offer is a boss drop. *(Superseded 2026-11-22 for the "boss drop" wording: no villains and battles, §24.5; first income is a significant step, §24.3.)*
+7. ✅ **Approved.** Bosses = real-life thresholds (first sale, a move, a hard conversation). *(Superseded 2026-11-22: no villains and battles, §24.5; real thresholds are marked as significant steps, §24.3.)*
 8. ✅ **Approved.** Compare only with your past self. No QoL leaderboard; if any leaderboard, only for contribution to others.
 9. Variable reward: new Spectrum insights and crystal facets.
 
