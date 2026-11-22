@@ -9632,5 +9632,43 @@
     "promiseBody": "Founders usually spend months of iterations to get here. One session gets you the core of fit; the people you sell to confirm it.",
     "format": "One-on-one, online, about 2 hours.",
     "cta": "Book the session"
+  },
+  "deeds": {
+    "heading": "What happened",
+    "seeYou": "I see you",
+    "seenSent": "Sent: I see you.",
+    "lineAdd": "Add a line",
+    "lineLabel": "A line, if you want one",
+    "linePlaceholder": "What did you see?",
+    "lineSend": "Send",
+    "lineCancel": "Not now",
+    "yourLine": "Your line",
+    "seenBy": "Who saw this",
+    "someone": "Someone",
+    "upToDate": "You're up to date",
+    "event": {
+      "resident": "{{name}} entered the village",
+      "top_talent": "{{name}} found their top talent",
+      "mission": "{{name}} named their mission",
+      "uniqueness": "{{name}} put their uniqueness into one phrase",
+      "stall": "{{name}} opened a stall in the Market",
+      "first_price": "{{name}} named a price for the first time",
+      "first_sale": "{{name}} made a first sale"
+    },
+    "own": {
+      "resident": "You entered the village",
+      "top_talent": "You found your top talent",
+      "mission": "You named your mission",
+      "uniqueness": "You put your uniqueness into one phrase",
+      "stall": "You opened a stall in the Market",
+      "first_price": "You named a price for the first time",
+      "first_sale": "You made a first sale"
+    },
+    "error": {
+      "generic": "It did not go through just now. Try again in a moment.",
+      "too_long": "Please shorten it: 140 characters at most.",
+      "too_short": "Please write at least 3 characters.",
+      "profanity": "Could you put it another way?"
+    }
   }
 }

@@ -40,3 +40,33 @@ a.qb__name:hover, a.qb__name:focus-visible { color: var(--vl-accent); outline: n
 }
 .qb__close:hover, .qb__close:focus-visible { background: var(--vl-accent); color: var(--vl-bg); outline: none; }
 @media (prefers-reduced-motion: reduce) { .qb__close { transition: none; } }
+
+/* A16: «What happened», the feed of real deeds. One finite list; no counts, no ranking. */
+.qb__deed { display: grid; gap: var(--vl-space-1); }
+.qb__deed-line { margin: 0; font-weight: 300; font-size: clamp(18px, 2vw, 22px); line-height: 1.3; color: var(--vl-ink); overflow-wrap: anywhere; }
+.qb__deed-detail { margin: 0; font-size: var(--vl-text-lead); line-height: 1.4; color: var(--vl-ink-2); overflow-wrap: anywhere; }
+.qb__deed-when { margin: 0; font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-3, var(--vl-ink-2)); }
+.qb__deed .qb__close { margin-top: var(--vl-space-1); }
+.qb__deed .qb__close:disabled { opacity: 0.6; cursor: default; }
+.qb__deed-actions, .qb__deed-line-form { display: grid; gap: var(--vl-space-1); }
+.qb__deed-sent, .qb__deed-yourline { margin: 0; font-size: var(--vl-text-body); line-height: 1.4; color: rgba(var(--scene-ink-rgb), 0.8); overflow-wrap: anywhere; }
+.qb__deed-input {
+  min-height: 44px; padding: 0 var(--vl-space-3); font: inherit; font-weight: 300; color: var(--vl-ink);
+  background: transparent; border: 1px solid var(--vl-hair); border-radius: 0;
+}
+.qb__deed-input:focus-visible { outline: none; border-color: var(--vl-accent); }
+.qb__deed-buttons { display: flex; flex-wrap: wrap; gap: var(--vl-space-2); align-items: center; }
+.qb__deed-cancel {
+  justify-self: start; min-height: 44px; padding: 0; cursor: pointer; background: transparent; border: none;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-2);
+}
+.qb__deed-cancel:hover, .qb__deed-cancel:focus-visible { color: var(--vl-accent); outline: none; }
+.qb__seen { list-style: none; margin: var(--vl-space-1) 0 0; padding: 0; display: grid; gap: 2px; }
+.qb__seen-row { display: flex; flex-wrap: wrap; gap: 0 var(--vl-space-2); font-size: var(--vl-text-body); line-height: 1.4; }
+.qb__seen-name { font-weight: 400; color: var(--vl-ink); }
+.qb__seen-text { color: rgba(var(--scene-ink-rgb), 0.8); overflow-wrap: anywhere; }
+.qb__deed-problem { margin: var(--vl-space-2) 0 0; font-size: var(--vl-text-body); color: var(--vl-ink-2); }
+.qb__upToDate {
+  margin: var(--vl-space-4) 0 0; padding-top: var(--vl-space-3); border-top: 1px solid var(--vl-hair); text-align: center;
+  font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.26em; text-transform: uppercase; color: var(--vl-ink-2);
+}
