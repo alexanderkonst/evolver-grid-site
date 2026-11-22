@@ -3,18 +3,24 @@
 .moon-dial {
   --md-moon: 217, 209, 180;
   --md-ochre: 150, 112, 58;
-  display: flex; flex-direction: column; align-items: stretch; gap: 20px;
-  max-width: 880px; margin: 0;
   font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif);
   color: var(--vl-ink, rgba(235, 238, 242, 0.92));
   text-shadow: 0 1px 18px rgba(var(--scene-shadow-rgb, 0, 0, 0), 0.75);
 }
-/* The dial and its readout are the BiologicClock v5 (issue #381): dial left, readout right;
-   on a phone the dial on top (its own media query), readout below. Moon Focus sits under it. */
-.moon-dial .moon-dial__clock { --bc-size: 320px; justify-content: flex-start; }
-@media (max-width: 720px) { .moon-dial .moon-dial__clock { justify-content: center; } }
-.moon-dial__copy { min-width: 0; }
-.moon-dial__copy:empty { display: none; }
+/* On the village map (#385): a compact watch in the top-right corner of the map frame. The overlay
+   spans the frame so a phone card can run full width, but only the dial, its control and the card
+   take taps; the map and its pins stay reachable everywhere else. Dial ~128px, ~96px on a phone. */
+.moon-dial.vl-watch {
+  position: absolute; z-index: 4; top: 66px; right: 14px; left: 14px; /* 66px: below the fixed language pill in the corner */
+  display: flex; justify-content: flex-end; pointer-events: none;
+}
+.moon-dial.vl-watch .bio-clock { pointer-events: none; }
+.moon-dial.vl-watch .bio-clock__watch, .moon-dial.vl-watch .bio-clock__readout { pointer-events: auto; }
+.moon-dial .moon-dial__clock { --bc-size: 128px; }
+@media (max-width: 720px) {
+  .moon-dial.vl-watch { top: 8px; right: 8px; left: 8px; }
+  .moon-dial .moon-dial__clock { --bc-size: 96px; }
+}
 .moon-dial__line { margin: 6px 0 0; font-size: var(--vl-text-small, 15px); line-height: 1.3; color: var(--vl-ink-2, rgba(235, 238, 242, 0.82)); }
 .moon-dial__label {
   display: block; font-family: var(--vl-mono, "IBM Plex Mono", ui-monospace, monospace); font-weight: 300;

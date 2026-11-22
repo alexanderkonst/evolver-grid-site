@@ -2,7 +2,10 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import { getAllCyclesV2, MOON_PHASES, PLANETARY_DAYS } from "@/lib/equilibrium-cycles";
-import { BiologicClockFace, formatTimeLeft, moonMeaning, phaseWord } from "../BiologicClock";
+import {
+  BiologicClockFace, LEGACY_EXPANDED_KEY, VIEW_KEY, formatTimeLeft, loadView, moonMeaning, nextView, phaseWord, saveView,
+  type ClockView,
+} from "../BiologicClock";
 
 // English fallbacks, with the {{vars}} filled like i18next does.
 vi.mock("react-i18next", () => ({
@@ -62,11 +65,12 @@ describe("engine words (spec «Words»)", () => {
 });
 
 describe("BiologicClock v5: two rings from one engine", () => {
-  it("default: Moon and Week only, no Year, no day arc", () => {
+  it("default (view 1): Moon and Week only, no Year, no day arc, no readout", () => {
     const html = render(BIRTHDAY);
     expect(html.match(/data-ring="(year|moon|week|day)"/g)).toEqual(['data-ring="moon"', 'data-ring="week"']);
-    expect(html).toContain('data-expanded="false"');
-    expect(html).not.toContain('data-readout="year"');
+    expect(html).toContain('data-view="1"');
+    expect(html).not.toContain("data-readout=");
+    expect(html).not.toContain("bio-clock__readout");
   });
 
   it("moon: eight moons, earlier lit, later dim, now (Waxing Gibbous = 3) larger", () => {
@@ -116,7 +120,7 @@ describe("BiologicClock v5: two rings from one engine", () => {
   });
 
   it("readout: prev › current › next with the phase name, meaning and time to the next moon phase", () => {
-    const html = render(BIRTHDAY);
+    const html = render(BIRTHDAY, { view: 2 });
     const moon = /data-readout="moon".*?<\/section>/s.exec(html)![0];
     expect(moon).toMatch(/Seeing.*Readying.*Harvesting/s);
     expect(moon).toContain("Waxing Gibbous");
@@ -136,7 +140,7 @@ describe("BiologicClock v5: two rings from one engine", () => {
     const sunday = new Date(2026, 10, 22, 11, 15).getTime();
     const html = renderToStaticMarkup(
       <MemoryRouter>
-        <BiologicClockFace cycles={getAllCyclesV2(sunday, BIRTHDAY)} nowMs={sunday} birthday={BIRTHDAY} />
+        <BiologicClockFace cycles={getAllCyclesV2(sunday, BIRTHDAY)} nowMs={sunday} birthday={BIRTHDAY} view={2} />
       </MemoryRouter>,
     );
     const week = /data-readout="week".*?<\/section>/s.exec(html)![0];
@@ -145,22 +149,131 @@ describe("BiologicClock v5: two rings from one engine", () => {
     expect(texts(html)[1]).toBe("Threshold");
   });
 
-  it("toggle: «+ Year and day» when collapsed", () => {
-    expect(render(BIRTHDAY, { onToggleExpanded: () => {} })).toContain("+ Year and day");
-    expect(render(BIRTHDAY)).not.toContain("Year and day");
+});
+
+describe("three views, one tap cycles them (#385)", () => {
+  it("nextView: 1 → 2 → 3 → 1", () => {
+    const seen: ClockView[] = [];
+    let v: ClockView = 1;
+    for (let i = 0; i < 4; i++) {
+      seen.push(v);
+      v = nextView(v);
+    }
+    expect(seen).toEqual([1, 2, 3, 1]);
+  });
+
+  it("view 1: the dial and its two centre words only, no text readout, no toggle text", () => {
+    const html = render(BIRTHDAY, { view: 1, onCycleView: () => {} });
+    expect(texts(html)).toEqual(["Readying", "Structure"]);
+    expect(html).not.toContain("bio-clock__readout");
+    expect(html).not.toContain("Waxing Gibbous</p>");
+    expect(html).not.toContain("Year and day</button>");
+    // the one round control: «+», aria-label names the next view
+    expect(html).toMatch(/<button[^>]*class="bio-clock__more"[^>]*aria-label="Show the text: meaning, previous and next"[^>]*><span aria-hidden="true">\+<\/span>/);
+  });
+
+  it("view 2: dial + Moon and Week blocks, no Year, no day arc; control still «+» → Year and day", () => {
+    const html = render(BIRTHDAY, { view: 2, onCycleView: () => {} });
+    expect(html.match(/data-readout="(moon|week|year)"/g)).toEqual(['data-readout="moon"', 'data-readout="week"']);
+    expect(html.match(/data-ring="(year|moon|week|day)"/g)).toEqual(['data-ring="moon"', 'data-ring="week"']);
+    expect(html).toContain('aria-label="Show Year and day"');
+    expect(html).toMatch(/<span aria-hidden="true">\+<\/span>/);
+  });
+
+  it("view 3: adds Year ring, gold day arc and their blocks; control is «−» → back to the dial", () => {
+    const html = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
+    expect(html.match(/data-readout="(moon|week|year)"/g)).toEqual(['data-readout="moon"', 'data-readout="week"', 'data-readout="year"']);
+    expect(html.match(/data-ring="(year|moon|week|day)"/g)).toHaveLength(4);
+    expect(html).toContain('aria-label="Back to the dial only"');
+    expect(html).toMatch(/<span aria-hidden="true">−<\/span>/);
+  });
+
+  it("the Moon Focus line (children) shows from view 2, never in view 1", () => {
+    const focus = <p>Moon Focus line</p>;
+    expect(render(BIRTHDAY, { view: 1, children: focus })).not.toContain("Moon Focus line");
+    expect(render(BIRTHDAY, { view: 2, children: focus })).toContain("Moon Focus line");
+    expect(render(BIRTHDAY, { view: 3, children: focus })).toContain("Moon Focus line");
+  });
+
+  it("placement: inline (character sheet) and card (village) are one component", () => {
+    expect(render(BIRTHDAY, { view: 2 })).toContain("bio-clock--inline");
+    expect(render(BIRTHDAY, { view: 2, placement: "card" })).toContain("bio-clock--card");
+  });
+
+  it("no control and no tap target without onCycleView", () => {
+    const html = render(BIRTHDAY, { view: 2 });
+    expect(html).not.toContain("bio-clock__more");
+    expect(html).not.toContain("is-tappable");
   });
 });
 
-describe("«+ Year and day» expanded", () => {
+describe("the remembered view (localStorage)", () => {
+  const memory = (initial: Record<string, string> = {}) => {
+    const data = { ...initial };
+    return {
+      data,
+      getItem: (k: string) => (k in data ? data[k] : null),
+      setItem: (k: string, v: string) => { data[k] = v; },
+      removeItem: (k: string) => { delete data[k]; },
+    };
+  };
+
+  it("nothing stored → view 1 (dial only)", () => {
+    expect(loadView(memory())).toBe(1);
+    expect(loadView(null)).toBe(1);
+  });
+
+  it("saves each step of the cycle and reads it back", () => {
+    const store = memory();
+    let v: ClockView = loadView(store);
+    for (const expected of [2, 3, 1] as ClockView[]) {
+      v = nextView(v);
+      saveView(store, v);
+      expect(v).toBe(expected);
+      expect(loadView(store)).toBe(expected);
+    }
+    expect(store.data[VIEW_KEY]).toBe("1");
+  });
+
+  it("ignores a junk value", () => {
+    expect(loadView(memory({ [VIEW_KEY]: "9" }))).toBe(1);
+  });
+
+  it("migrates the v5 flag: expanded «1» → view 3, «0» → view 2; the old key goes", () => {
+    const open = memory({ [LEGACY_EXPANDED_KEY]: "1" });
+    expect(loadView(open)).toBe(3);
+    expect(open.data[VIEW_KEY]).toBe("3");
+    expect(LEGACY_EXPANDED_KEY in open.data).toBe(false);
+
+    const closed = memory({ [LEGACY_EXPANDED_KEY]: "0" });
+    expect(loadView(closed)).toBe(2);
+    expect(closed.data[VIEW_KEY]).toBe("2");
+  });
+
+  it("the new key wins over a leftover old one", () => {
+    expect(loadView(memory({ [VIEW_KEY]: "2", [LEGACY_EXPANDED_KEY]: "1" }))).toBe(2);
+  });
+
+  it("blocked storage never throws", () => {
+    const blocked = {
+      getItem: () => { throw new Error("blocked"); },
+      setItem: () => { throw new Error("blocked"); },
+      removeItem: () => { throw new Error("blocked"); },
+    };
+    expect(loadView(blocked)).toBe(1);
+    expect(() => saveView(blocked, 3)).not.toThrow();
+  });
+});
+
+describe("view 3: Year and day", () => {
   it("adds the Year ring (four seasons, current = Harvest) and the gold day arc, still no clock time", () => {
-    const html = render(BIRTHDAY, { expanded: true, onToggleExpanded: () => {} });
+    const html = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
     expect(html.match(/data-ring="(year|moon|week|day)"/g)).toEqual([
       'data-ring="year"', 'data-ring="moon"', 'data-ring="week"', 'data-ring="day"',
     ]);
     expect(html.match(/data-season=/g)).toHaveLength(4);
     expect(html).toMatch(/data-season="3" class="bio-clock__year is-now"/);
     expect(html).toContain("bio-clock__day-lit");
-    expect(html).toContain("− Year and day");
     expect(html).not.toMatch(/\d{1,2}:\d{2}/);
     const year = /data-readout="year".*?<\/section>/s.exec(html)![0];
     expect(year).toMatch(/Fruiting.*Harvest.*Seeding/s);
@@ -168,16 +281,16 @@ describe("«+ Year and day» expanded", () => {
   });
 
   it("no birthday: an empty year track and an invitation (guest → Equilibrium, signed in → the prompt)", () => {
-    const guest = render(null, { expanded: true });
+    const guest = render(null, { view: 3 });
     expect(guest).toContain("Add your birthday to see your year");
     expect(guest).toContain('href="/build/equilibrium"');
     expect(guest).not.toContain("data-season=");
-    const signedIn = render(null, { expanded: true, onAskBirthday: () => {} });
+    const signedIn = render(null, { view: 3, onAskBirthday: () => {} });
     expect(signedIn).toContain("<button");
     expect(signedIn).not.toContain('href="/build/equilibrium"');
   });
 
   it("while the birthday is still loading there is no invitation", () => {
-    expect(render(null, { expanded: true, birthdayLoading: true })).not.toContain("Add your birthday");
+    expect(render(null, { view: 3, birthdayLoading: true })).not.toContain("Add your birthday");
   });
 });

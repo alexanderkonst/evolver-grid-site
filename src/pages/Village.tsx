@@ -501,8 +501,6 @@ const Village = () => {
             <p className="vl-mono">{tr(t, "village.eyebrow", "The Game of Being You")}</p>
             <h1>{tr(t, "village.title", "The Digital Village")}</h1>
             <p className="vl-mono vl-moonline">{villageSkyMood(sky.phase, t)}</p>
-            {/* Village-as-dashboard step 2: tonight in Equilibrium, the player's own lines. */}
-            <MoonDial className="vl-dial" />
           </header>
 
           {/* --vl-zx/--vl-zy: the place the map zooms toward when it fades out (WP-15). */}
@@ -588,6 +586,9 @@ const Village = () => {
             </div>
             <div className="vl-vignette" aria-hidden="true" />
             <SkyMoon sky={sky} />
+            {/* The biological clock (#385): a compact watch in the map's top-right corner; its card
+                (views 2–3, with the player's Moon Focus) drops down over the map. */}
+            <MoonDial className="vl-watch" />
           </div>
 
           <div className="vl-foot vl-intro">

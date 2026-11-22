@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useState, type CSSProperties } from "react";
+import { useCallback, useEffect, useId, useState, type CSSProperties, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
@@ -17,11 +17,12 @@ import "./BiologicClock.css";
 
 /**
  * BiologicClock v5 — the player's own clock (docs/specs/equilibrium/biologic_clock_rings_spec.md;
- * issue #381). Two concentric rings, outside in: Moon (8 phases, New Moon at the top) and Week
- * (7 days, Monday at the top), both clockwise. «+ Year and day» adds a Year ring (4 seasons from
- * the birthday) and a thin gold day-part arc. Every phase carries a symbol and a meaning; the
- * readout beside the dial gives previous › current › next for each ring. It shows cycles only:
- * no progress, scores, streaks, actions, clock time or Do now.
+ * issues #381, #385). Two concentric rings, outside in: Moon (8 phases, New Moon at the top) and
+ * Week (7 days, Monday at the top), both clockwise. Three views, one tap cycles them:
+ * 1 dial only (default) → 2 dial + text readout → 3 + Year ring (4 seasons from the birthday) and
+ * a thin gold day-part arc → back to 1. Every phase carries a symbol and a meaning; the readout
+ * gives previous › current › next for each ring. It shows cycles only: no progress, scores,
+ * streaks, actions, clock time or Do now.
  *
  * ONE ENGINE: every value comes from `useCycles` (`getAllCyclesV2`). Words are the engine's:
  * phase word = first word of `MOON_PHASES[i].energy` / `PLANETARY_DAYS[i].energy`, meaning = the
@@ -34,7 +35,7 @@ import "./BiologicClock.css";
 
 const C = 100; // centre of the 200 x 200 viewBox
 
-/** Two-ring (default) and three-ring (Year + day expanded) geometry, in viewBox units. */
+/** Two-ring (views 1–2) and three-ring (view 3: Year + day) geometry, in viewBox units. */
 const LAYOUT = {
   collapsed: { moon: 80, week: 50, year: 0, day: 0, track: 1.4, fontSize: 17 },
   expanded: { moon: 76, week: 48, year: 94, day: 34, track: 1.3, fontSize: 14 },
@@ -53,7 +54,56 @@ const PLANET_URL = (planet: string) => `/assets/equilibrium/planets/${planet.toL
 const WEEK_COLOURS = ["#5b4fc4", "#c9483c", "#3f84d0", "#9a62d6", "#e48a3c", "#e8c447", "#4fb06e"] as const;
 const MOON_GLOW = "#fff4dc"; // warm white
 
-const STORAGE_KEY = "bioclock:expanded";
+/** 1 dial only · 2 dial + text · 3 + Year and day. */
+export type ClockView = 1 | 2 | 3;
+export const VIEW_KEY = "bioclock:view";
+/** v5 (#381) kept one flag: «+ Year and day» open ("1") or closed ("0"). Read once, then dropped. */
+export const LEGACY_EXPANDED_KEY = "bioclock:expanded";
+
+/** One tap: 1 → 2 → 3 → 1. */
+export const nextView = (view: ClockView): ClockView => (view === 3 ? 1 : ((view + 1) as ClockView));
+
+type ViewStorage = Pick<Storage, "getItem" | "setItem" | "removeItem">;
+
+/**
+ * The remembered view; 1 (dial only) when nothing is stored. A v5 visitor keeps what they saw:
+ * expanded "1" → view 3, "0" → view 2 (the text was always open then). The old key is moved to
+ * the new one and removed.
+ */
+export const loadView = (storage: ViewStorage | null): ClockView => {
+  if (!storage) return 1;
+  try {
+    const saved = storage.getItem(VIEW_KEY);
+    if (saved === "1" || saved === "2" || saved === "3") return Number(saved) as ClockView;
+    const legacy = storage.getItem(LEGACY_EXPANDED_KEY);
+    if (legacy === "1" || legacy === "0") {
+      const migrated: ClockView = legacy === "1" ? 3 : 2;
+      storage.setItem(VIEW_KEY, String(migrated));
+      storage.removeItem(LEGACY_EXPANDED_KEY);
+      return migrated;
+    }
+  } catch {
+    /* storage blocked: the default */
+  }
+  return 1;
+};
+
+export const saveView = (storage: ViewStorage | null, view: ClockView): void => {
+  if (!storage) return;
+  try {
+    storage.setItem(VIEW_KEY, String(view));
+  } catch {
+    /* private mode: the choice just lasts this visit */
+  }
+};
+
+const browserStorage = (): ViewStorage | null => {
+  try {
+    return typeof window !== "undefined" ? window.localStorage : null;
+  } catch {
+    return null;
+  }
+};
 
 /** Point on a circle of radius `r`, `turn` = 0..1 from the top, clockwise. */
 const polar = (r: number, turn: number) => {
@@ -161,22 +211,29 @@ export interface BiologicClockFaceProps {
   birthday: string | null;
   /** The birthday is still being read: draw the empty year track without prompting. */
   birthdayLoading?: boolean;
-  /** «+ Year and day» open or closed. Default closed. */
-  expanded?: boolean;
-  onToggleExpanded?: (next: boolean) => void;
+  /** 1 dial only (default) · 2 dial + text · 3 + Year and day. */
+  view?: ClockView;
+  /** One tap on the dial or on the round control under it → the next view. Without it the dial is static. */
+  onCycleView?: () => void;
+  /** `inline`: the readout sits beside / below the dial, pushing content down. `card`: it drops down from the dial over what is behind (the village map). */
+  placement?: "inline" | "card";
+  /** Extra readout lines in views 2–3, after the Moon block (the village's Moon Focus). */
+  children?: ReactNode;
   /** Rendered in place of the empty year track's invitation (the connected clock passes the prompt opener). */
   onAskBirthday?: () => void;
   className?: string;
 }
 
 export const BiologicClockFace = ({
-  cycles, nowMs, birthday, birthdayLoading = false, expanded = false, onToggleExpanded, onAskBirthday, className,
+  cycles, nowMs, birthday, birthdayLoading = false, view = 1, onCycleView, placement = "inline", onAskBirthday, className, children,
 }: BiologicClockFaceProps) => {
   const { t } = useTranslation();
   const fmt = makeFmt(t);
   const uid = useId().replace(/:/g, "");
 
   const { solar, lunar, dayOfWeek } = cycles;
+  const expanded = view === 3; // the Year ring and the day arc
+  const showText = view >= 2;
   const L = expanded ? LAYOUT.expanded : LAYOUT.collapsed;
   const hasBirthday = !!birthday;
 
@@ -211,16 +268,28 @@ export const BiologicClockFace = ({
     ? `${season(seasonNow).name} · ${season(seasonNow).cardinal}`
     : fmt("village.clock.yearEmpty", "Add your birthday to see your year");
 
+  const nextLabel = view === 1
+    ? fmt("village.clock.toText", "Show the text: meaning, previous and next")
+    : view === 2
+      ? fmt("village.clock.toYear", "Show Year and day")
+      : fmt("village.clock.toDial", "Back to the dial only");
+
   return (
-    <div className={`bio-clock${className ? ` ${className}` : ""}`} data-expanded={expanded ? "true" : "false"}>
+    <div
+      className={`bio-clock bio-clock--${placement}${className ? ` ${className}` : ""}`}
+      data-view={view}
+      data-expanded={expanded ? "true" : "false"}
+    >
+      <div className="bio-clock__watch">
       <svg
-        className="bio-clock__dial"
+        className={`bio-clock__dial${onCycleView ? " is-tappable" : ""}`}
         viewBox="0 0 200 200"
         role="group"
-        tabIndex={0}
+        tabIndex={onCycleView ? undefined : 0} // with a tap handler, keyboards use the round control under the dial
         aria-label={summary}
         data-moon={moonNow}
         data-day={weekNow}
+        onClick={onCycleView}
       >
         <defs>
           <radialGradient id={`bc-glow-moon-${uid}`}>
@@ -330,7 +399,14 @@ export const BiologicClockFace = ({
           </text>
         </g>
       </svg>
+      {onCycleView && (
+        <button type="button" className="bio-clock__more" aria-label={nextLabel} data-next-view={nextView(view)} onClick={onCycleView}>
+          <span aria-hidden="true">{view === 3 ? "−" : "+"}</span>
+        </button>
+      )}
+      </div>
 
+      {showText && (
       <div className="bio-clock__readout">
         {/* Moon */}
         <section className="bio-clock__block" data-readout="moon">
@@ -345,6 +421,8 @@ export const BiologicClockFace = ({
           <p className="bio-clock__meaning">{moonMeaning(lunar.phase.energy)}</p>
           <p className="bio-clock__ends">{moonEnds}</p>
         </section>
+
+        {children ? <div className="bio-clock__extra">{children}</div> : null}
 
         {/* Week */}
         <section className="bio-clock__block" data-readout="week">
@@ -386,19 +464,8 @@ export const BiologicClockFace = ({
           </section>
         )}
 
-        {onToggleExpanded && (
-          <button
-            type="button"
-            className="bio-clock__toggle"
-            aria-expanded={expanded}
-            onClick={() => onToggleExpanded(!expanded)}
-          >
-            {expanded
-              ? fmt("village.clock.lessToggle", "− Year and day")
-              : fmt("village.clock.moreToggle", "+ Year and day")}
-          </button>
-        )}
       </div>
+      )}
     </div>
   );
 };
@@ -421,41 +488,37 @@ const useNowTick = (): number => {
   return now;
 };
 
-/** «+ Year and day», remembered across visits (like a basic vs scientific calculator). */
-const useExpanded = (): [boolean, (next: boolean) => void] => {
-  const [expanded, setExpanded] = useState<boolean>(() => {
-    try {
-      return typeof window !== "undefined" && window.localStorage.getItem(STORAGE_KEY) === "1";
-    } catch {
-      return false;
-    }
-  });
-  const set = useCallback((next: boolean) => {
-    setExpanded(next);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, next ? "1" : "0");
-    } catch {
-      /* private mode: the choice just lasts this visit */
-    }
+/** The current view, remembered across visits (like a basic vs scientific calculator). */
+const useClockView = (): [ClockView, () => void] => {
+  const [view, setView] = useState<ClockView>(() => loadView(browserStorage()));
+  const cycle = useCallback(() => {
+    setView((v) => {
+      const next = nextView(v);
+      saveView(browserStorage(), next);
+      return next;
+    });
   }, []);
-  return [expanded, set];
+  return [view, cycle];
 };
 
 /**
  * The connected clock: birthday from the same source Equilibrium uses (`useEquilibriumV2`),
  * cycles from the same hook (`useCycles`). A guest sees the real moon and week and an empty year.
- * With «+ Year and day» open and no birthday, a signed-in player gets Equilibrium's BirthdayPrompt.
+ * In view 3 (Year and day) with no birthday, a signed-in player gets Equilibrium's BirthdayPrompt.
+ * `children` are extra readout lines for views 2–3 (the village's Moon Focus).
  */
-export const BiologicClock = ({ className }: { className?: string }) => {
+export const BiologicClock = ({
+  className, placement, children,
+}: { className?: string; placement?: "inline" | "card"; children?: ReactNode }) => {
   const { birthday, loading, user, refresh } = useEquilibriumV2();
   const { cycles, nowMs: cyclesNowMs } = useCycles(birthday ?? undefined);
   // `useCycles` re-stamps its nowMs only when a cycle changes (hours apart); the day arc and the
   // time left need the 5-minute tick. Never older than the cycles themselves.
   const tick = useNowTick();
-  const [expanded, setExpanded] = useExpanded();
+  const [view, cycleView] = useClockView();
   const [promptDismissed, setPromptDismissed] = useState(false);
 
-  const needsBirthday = expanded && !loading && !birthday && !!user;
+  const needsBirthday = view === 3 && !loading && !birthday && !!user;
   return (
     <>
       <BiologicClockFace
@@ -463,14 +526,17 @@ export const BiologicClock = ({ className }: { className?: string }) => {
         nowMs={Math.max(tick, cyclesNowMs)}
         birthday={birthday}
         birthdayLoading={loading && !birthday}
-        expanded={expanded}
-        onToggleExpanded={(next) => {
-          setExpanded(next);
-          if (next) setPromptDismissed(false);
+        view={view}
+        onCycleView={() => {
+          cycleView();
+          if (view === 2) setPromptDismissed(false); // entering view 3 asks again
         }}
+        placement={placement}
         onAskBirthday={user ? () => setPromptDismissed(false) : undefined}
         className={className}
-      />
+      >
+        {children}
+      </BiologicClockFace>
       {needsBirthday && !promptDismissed && (
         <BirthdayPrompt
           birthday={birthday}
