@@ -145,7 +145,7 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 | Town Hall / Venture Co-op | spec | GoBY J13 | Residents' income and voice. |
 | Gift Path progress line · Share card · Oracle Reading | spec | GoBY §20, §14.12a, §14.5 | Progress line, share, deep reveal. |
 | Lead magnets = free game levels | spec | GoBY §6 · B1-22 | Free parts of the game as entry. |
-| Academy (school for adults) | live | `/game/learn`, `/academy/:slug`; GoBY §13.1 · B1-66 ("school") | Learning place in the village. **The only home of courses** (Sasha 2026-11-22); AI courses are one case. Has levels: Sasha's working names Academy of Human Development → University of the Soul → Mystery School (exact names to confirm with him); the site today shows Founder Academy → Integral Mystery School → Advanced micro-course (both names are Sasha's own since 2024-10: Integral Mystery School Month 1 ran under nas.io/founder-academy). |
+| Academy (school for adults) | live | `/game/learn`, `/academy/:slug`; GoBY §13.1 · B1-66 ("school") | Learning place in the village. **The only home of courses** (Sasha 2026-11-22); AI courses are one case. Section **LEARN**, three levels (Sasha 2026-11-22, confirmed): **Level 1: Human Development Academy → Level 2: Soul University → Level 3: Mystery School**. Which courses sit on which level is not set yet; the site today shows the courses Founder Academy → Integral Mystery School → Advanced micro-course (both names are Sasha's own since 2024-10: Integral Mystery School Month 1 ran under nas.io/founder-academy). |
 
 ### Face 2 · Sasha's own unique business (modular collaboration; formerly branch Z)
 Working folder: [modular_collaboration/](./modular_collaboration/README.md) (plan, connector, our rack).
