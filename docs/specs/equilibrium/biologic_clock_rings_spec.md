@@ -42,7 +42,9 @@ The seven chakra colours make the week a rainbow, so «rainbow» and «planet co
 ## Done when
 A player with a birthday opens the main game screen and, without reading, sees the day, week, moon and year rings for their own date, with today and tonight lit and what is left of each.
 
-## Open (Sasha)
-- Village map, profile, or both; widget or rotating building.
-- Chakra symbols: which set.
-- Changing the main game screen is a core flow: the exact change needs Sasha's yes (mockup first).
+## Decided (Sasha 2026-11-21 18:09 CST, «Да, делай» on mockup v1 and my recommendations)
+- Both places: the village map first, replacing the `MoonDial` SVG (one clock, not two); then the same component on the character profile.
+- A widget, not a rotating building.
+- Week symbols: planet glyphs only (`PLANETARY_DAYS.symbol`), chakra shown by colour; no separate chakra signs.
+- Every ring starts at the top and runs clockwise (birthday, new moon, Monday, midnight), as in mockup v1.
+- Built through an @claude issue; the exact change is mockup v1.
