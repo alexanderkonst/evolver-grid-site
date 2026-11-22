@@ -25,12 +25,7 @@ Drawing (one grammar for both rings):
 - Moon orbs up to the current phase lit, later ones dim. Planets ~75%, today's full.
 - The current orb is larger, with a soft glow (moon: warm white; week: today's chakra colour).
 - Centre: two words, the moon phase word (large serif) over the day word (smaller).
-- Readout beside the dial (below it on phone), one block per ring:
-  - `prev symbol + word › CURRENT symbol + word (bold) › next symbol + word`
-  - small line: phase name («Waxing Gibbous»; «Sunday · Sun»)
-  - meaning line
-  - Moon only: «Full Moon in 1 d 21 h» (next phase name + time left). Week shows no time left.
-- «+ Year and day» toggle under the readout, collapsed by default, choice remembered (localStorage), like a basic vs scientific calculator. Expanded adds, in the same grammar: Year (outer ring, 4 seasons birthday to birthday: `SOLAR_HOLONIC` Seeding, Sprouting, Fruiting, Harvest; no birthday → `BirthdayPrompt`) and the part of the day (a thin gold arc). Still no clock time.
+- Three views, one tap cycles them (Sasha 2026-11-22 14:49): **1 dial only** (default: the two rings + the two centre words, no text) → **2 dial + text** (the readout below, one block per ring: `prev symbol + word › CURRENT (bold) › next`; phase name; meaning line; Moon only: «Full Moon in 1 d 21 h»; Week shows no time left; on the village the Moon Focus line sits here) → **3 + Year and day** (adds Year as the outer ring, 4 seasons birthday to birthday: `SOLAR_HOLONIC` Seeding, Sprouting, Fruiting, Harvest, no birthday → `BirthdayPrompt`; the part of the day as a thin gold arc; their readout blocks in the same grammar) → tap again → back to 1. Tap target: the dial itself, plus one small round control under it (`+` in views 1–2, `−` in view 3) with aria-label naming the next view. Last view remembered (localStorage). Still no clock time.
 
 ## Week: planets and chakras (Sasha 2026-11-21)
 | Day | Planet (photo) | Chakra | Colour |
@@ -50,15 +45,16 @@ Planet images: `public/assets/equilibrium/planets/{moon,mars,mercury,jupiter,ven
 - Sunday: `Illumination & Celebration` → **`Threshold & Celebration`** (liminal day between weeks); description starts «Between weeks: vision, ceremony, sharing with community. Write, don't send; seed Monday.»
 
 ## Where it lives
-- Village map: replaces the `MoonDial` dial; the Moon Focus line stays; Do now removed (PR #380).
-- Character sheet header `/game/me/overview`: the same component.
-- Desktop: dial left, readout right. Phone (~390 px): dial on top, readout below, nothing clipped.
+- Village map: a compact watch in the **top-right corner of the map** (Sasha asked where; my pick 2026-11-22: it stays visible while you look at the village, never covers place labels, and on a phone it sits as a small dial over the map's corner). Views 2–3 open as a card dropping down from the dial over the map, closing back to the dial. Replaces the old `MoonDial` block in the header; Do now gone.
+- Character sheet header `/game/me/overview`: the same component, beside the name, same three views (opens in place, pushing content down).
+- Phone (~390 px): dial ~96 px; the card is full width under it; nothing clipped.
 
 ## Done when
-A player opens the village map and, without a legend, sees the moon phase and the day of the week with symbol, meaning, previous, next and the time to the next moon phase; «+ Year and day» opens the other two; checked live on desktop and on a phone.
+A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 
 ## History
 - v0/v1 (2026-11-21): four rings Year · Moon · Week · Day, built in PR #378. Sasha 2026-11-22 10:38: hard to read even for its author; insider glyphs, four grammars, legend only in the mockup.
 - v2: one grammar, word labels (rejected: cut pieces, lost the meaning). v3: Equilibrium-style strips with meanings (rejected: must look like cycles). v4: v3 content on two rings. v5: photo planets, chakra track, new words → decided.
 - Lessons: reuse Equilibrium before drawing new visuals; 5-second test without a legend.
 - v5 built (issue #381, 2026-11-22): `BiologicClock.tsx` rewritten to two rings + readout + «+ Year and day» (localStorage `bioclock:expanded`); engine words changed; Do now removed from `MoonDial`. The day-part arc carries no words (the engine has none for parts of the day).
+- 2026-11-22 14:49: Sasha: default shows only the dial; the toggle cycles dial → text → + Year and day → dial. Placement asked; picked the map's top-right corner (also clears the Moon Focus line running under the CAFÉ label).
