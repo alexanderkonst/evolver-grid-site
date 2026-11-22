@@ -48,6 +48,9 @@ L1 and L2 start together (about 1–2 days). Then L3 and L4 in parallel (about 3
 - **Low-quality listings:** self-serve lets anyone in. Counter: AI check plus one manual click at stage 1.
 - **Partner data:** cards from unreleased work never go to the public repo.
 
+## Later: coordinated media burst (Sasha, 2026-11-22)
+Idea: at launch, invite every partner to a coordinated media burst for the game, all at once, so a large wave of players enters. Every module gains: players walk through the game and reach each partner's profile. To design: the social dynamic (why each partner joins and posts on the same day) and the economic mechanic (who earns what; ties to [referrals_both_ways.md](./referrals_both_ways.md)). Possible only because of the ecosystem approach. Timing: not at first launch; around late Q1 – mid 2027, Sasha to decide.
+
 ## Open for Sasha
 
 1. «Да» to start L1 + L2 now.
