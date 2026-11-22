@@ -93,9 +93,10 @@ import MoonMedallion from "@/components/game/MoonMedallion";
  * state `placeState()` gives it (closed · open · next · done · live). Pane 2 still opens
  * the section list of the module each place holds (`PANE_BY_PLACE`, src/lib/railPlaces.ts).
  *
- * Each place gets a small photoreal icon of its building (Sasha 2026-11-02), framed in
- * CSS (`.village-place-icon`, src/index.css): moon-stone border, ochre inner line, soft
- * glow. The state still reads from the shared lock / open / live tokens
+ * Each place gets a painted gold-engraving icon of its object, lit by the player's topaz
+ * (icon grammar v1.2, Sasha 2026-11-22; replaces the photoreal buildings of 2026-11-02),
+ * framed in CSS (`.village-place-icon`, src/index.css): moon-stone border, ochre inner
+ * line, soft glow. Closed places dim through --lock-filter, so an unlit icon needs no file. The state still reads from the shared lock / open / live tokens
  * (src/styles/theme-tokens.css), so every skin renders every state.
  */
 const placeIconSrc = (key: VillagePlaceKey) => `/game/village/icons/${key}.webp`;
