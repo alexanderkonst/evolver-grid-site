@@ -95,7 +95,8 @@
   margin: 24px 0 0; color: var(--cs-ink); text-wrap: balance;
 }
 
-/* A9 (#377, v5 #381): the biological clock under the name; the dial ~240px, readout beside or below it */
+/* A9 (#377, v5 #381, #385): the biological clock under the name; the dial ~240px with its round
+   control under it; views 2–3 open in place, the readout beside or below the dial, pushing content down */
 .cs-hero .cs-clock { --bc-size: 240px; margin-top: 24px; text-align: left; }
 
 /* ---------- Values and the one button ---------- */
