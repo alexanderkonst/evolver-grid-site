@@ -66,22 +66,22 @@ const eyebrow: CSSProperties = {
   fontSize: "10.5px",
   letterSpacing: "0.16em",
   textTransform: "uppercase",
-  color: "var(--skin-accent-gold, #b8860b)",
+  color: "#8a6508",
 };
 const title: CSSProperties = {
   fontFamily: "'Cormorant Garamond', serif",
   fontWeight: 700,
   letterSpacing: "-0.005em",
-  color: "var(--skin-text-primary, #0b2a5a)",
+  color: "#0b2a5a",
 };
 const body: CSSProperties = {
   fontFamily: "'Source Serif 4', serif",
   fontWeight: 500,
-  color: "var(--skin-text-primary, #0b2a5a)",
+  color: "#0b2a5a",
   lineHeight: 1.65,
 };
 const card: CSSProperties = {
-  background: "var(--skin-card-fill, rgba(255, 252, 245, 0.92))",
+  background: "rgba(255, 252, 245, 0.96)",
   border: "0.5px solid rgba(212, 175, 55, 0.55)",
   boxShadow: "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.22)",
 };
@@ -191,7 +191,14 @@ const BringYourModule = () => {
     <div
       className="min-h-dvh"
       style={{
-        backgroundColor: "var(--skin-page-bg, #f7f3ea)",
+        backgroundColor: "#f7f3ea",
+        color: "#0b2a5a",
+        // Fixed light page: pin the theme tokens so labels and inputs stay dark-on-light under any skin.
+        ["--background" as string]: "0 0% 100%",
+        ["--foreground" as string]: "217 78% 20%",
+        ["--input" as string]: "40 35% 78%",
+        ["--border" as string]: "40 35% 78%",
+        ["--muted-foreground" as string]: "217 25% 38%",
         backgroundImage:
           "linear-gradient(rgba(248, 245, 238, 0.08), rgba(248, 245, 238, 0.08)), url('/images/evolution-portal-atmosphere.png')",
         backgroundPosition: "center top",
