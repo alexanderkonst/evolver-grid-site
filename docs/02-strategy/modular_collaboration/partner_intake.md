@@ -2,6 +2,9 @@
 
 v1 spec · 2026-11-22 · Hark. Roadmap step 2 («Модуль 2 простыми словами», approved 2026-11-22). Terms come from [partner_offer.md](./partner_offer.md) v2.1; data shape from the module registry `src/data/modules.ts` (PR #379).
 
+## Status
+**Live (unlinked), 2026-11-22:** https://findyourtoptalent.com/bring-your-module · built by Claude (issue #383, PR #386, merge de76d8b). Page, route, helper `src/lib/partnerIntake.ts`, test; not linked from any screen. Table `partner_submissions`: migration in the repo, **not deployed** (Lovable, Sasha's yes); until then submissions go out as a prefilled email.
+
 ## What it is
 One page where a partner brings their project into the game by themselves. Stage 1 is partly manual: the form collects everything, Hark turns each submission into module cards by hand, the partner confirms. No AI drafting yet (needs a budget, Sasha's yes).
 

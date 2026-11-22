@@ -11,7 +11,7 @@ Face 2 of the Golden Age ([golden_age_canon.md](../golden_age_canon.md)): Sasha'
 | [planetir_inside.md](./planetir_inside.md) | Planetir: landing vs what really works; Sasha's profile there; research | v1, 2026-11-21 |
 | [dry_run_planetir.md](./dry_run_planetir.md) | L6: Planetir described as module cards by hand; Flourish peer model found | v1, 2026-11-21 |
 | [partner_offer.md](./partner_offer.md) | Partner terms: 10% as a gift under a social contract, money one way only, tax notes | Draft v2.1, 2026-11-22 |
-| [partner_intake.md](./partner_intake.md) | Partner intake form «Bring your module»: fields, places, social-contract checkbox, what happens after submit | Spec v1, 2026-11-22 |
+| [partner_intake.md](./partner_intake.md) | Partner intake form «Bring your module»: fields, places, social-contract checkbox, what happens after submit | Live (unlinked) at /bring-your-module, 2026-11-22; table not deployed (email fallback) |
 | [launch_plan.md](./launch_plan.md) | Plan v3: phases L1–L9 to the epic launch | v1, 2026-11-21 |
 | [launch_from_corpus.md](./launch_from_corpus.md) | What the corpus already decides for the launch (terms, matchmaking, modules, assembly) and what blocks it | v1, 2026-11-21 |
 | [research/](./research/) | Three full reads: matchmaking, modules, assembly | 2026-11-21 |
