@@ -1,4 +1,4 @@
-# Integral holonic taxonomy of social engineering (v1, 2026-11-21)
+# Integral holonic taxonomy of social engineering (v2, 2026-11-21)
 
 Premise (Sasha, 2026-11-21): everything is a game; reality already is one, the question is how aware we are of it. So we learn mechanics not only from video games but from any social structure that proved itself, best over many years. See [game_design_almanac.md § Everything is a game](../../game_design_almanac.md#everything-is-a-game-sasha-2026-11-21).
 
@@ -6,61 +6,97 @@ The taxonomy has two parts. **Part A: sources** — what kinds of "games" we lea
 
 # Part A. Sources: what we learn from
 
-Lens for every source (filled when it is analysed): **holon** it works at (H1 person … H6 civilization), **quadrant** it is strongest in (I / IT / WE / ITS), **longevity** (years it kept working), **evidence grade** (A/B/C). Examples below are candidates, not analyses: the "learn" line is the question we take to it, not a finding.
+Three levels: **class (I–V) → kind → examples**. Lens for every source, filled when it is analysed: **holon** (H1 person … H6 civilization), **quadrant** it is strongest in (I / IT / WE / ITS), **longevity** (years it kept working), **evidence grade** (A/B/C). The "learn" line is the question we take to a source, not a finding. ✓ = already analysed. v2 (2026-11-21 18:18) adds Sasha's classes: land projects, campuses, clusters, high-HDI places, certification, flagship programs, science, labs, military and intelligence.
 
-## A1. Video and board games (designed games)
+## I. Games
+
+### I.1 Designed games
 | Kind | Examples | What to learn |
 |---|---|---|
-| A1.1 Classic board and tabletop | chess, Go, Monopoly (origin: The Landlord's Game), D&D | rules that last centuries; a game master who holds the table |
-| A1.2 Iconic video games 1980s–2000s | Heroes III ✓, SimCity, Ultima Online, The Sims, StarCraft, Diablo II | a town that grows, persistent worlds, the first online communities |
-| A1.3 Modern iconic games | Minecraft, Roblox, Animal Crossing, Stardew Valley, Fortnite, Among Us, Journey | creation by players, a slow daily loop, wordless cooperation with strangers |
-| A1.4 Fiction about games | Ready Player One ✓, Foundation, Ender's Game | the world we are building toward |
+| Classic board and tabletop | chess, Go, Monopoly (origin: The Landlord's Game), D&D | rules that last centuries; a game master who holds the table |
+| Iconic video games 1980s–2000s | Heroes III ✓, SimCity, Ultima Online, The Sims, StarCraft, Diablo II | a town that grows; persistent worlds; first online communities |
+| Modern iconic games | Minecraft, Roblox, Animal Crossing, Stardew Valley, Among Us, Journey | creation by players; a slow daily loop; wordless help between strangers |
+| Fiction about games and worlds | Ready Player One ✓, Foundation, Ender's Game | the world we build toward |
 
-## A2. Games played in real life
+### I.2 Games played in real life
 | Kind | Examples | What to learn |
 |---|---|---|
-| A2.1 Location games | Pokémon GO / Ingress ✓ | real places, meeting in person |
-| A2.2 Movement and body | parkrun ✓, Strava ✓, martial-arts belts | showing up counts; ranks earned in front of people |
-| A2.3 Party and circle games | Mafia ✓, Humans vs Zombies | a host who is easy to replace; a whole campus as a board |
-| A2.4 Festivals and pilgrimages | Burning Man ✓, Camino ✓ | a portable charter; a passport of stamps |
-| A2.5 Youth movements | Scouting ✓ | badges signed by people who walked the path |
+| Location games | Pokémon GO / Ingress ✓ | real places, meeting in person |
+| Movement and body | parkrun ✓, Strava ✓, martial-arts belts | showing up counts; a rank earned in front of people |
+| Circle games | Mafia ✓, Humans vs Zombies | a host easy to replace; a whole campus as a board |
+| Festivals and pilgrimages | Burning Man ✓, Camino ✓ | a portable charter; stamps from hosts on the way |
+| Youth movements | Scouting ✓ | badges signed by people who walked the path |
 
-## A3. Apps and online platforms
+## II. Products
 | Kind | Examples | What to learn |
 |---|---|---|
-| A3.1 Habit and learning | Duolingo ✓, Apple Watch rings ✓, Khan Academy | a forgiving streak, one glance at your day |
-| A3.2 Social networks | Facebook ✓, LinkedIn ✓, Instagram, Telegram | density first, mutual contact + intro |
-| A3.3 Trust between strangers | Couchsurfing ✓, Airbnb, BlaBlaCar | vouching, reviews both ways |
-| A3.4 Knowledge commons | Wikipedia, Stack Overflow ✓ (in levels study) | rights earned by work, governance by editors |
-| A3.5 Launch and maker communities | Product Hunt, Kickstarter, GitHub, Hacker News | a daily launch moment, backers, contributions merged by people with rights |
-| A3.6 Gift and neighbour networks | Buy Nothing, Nextdoor, Reddit gift exchanges | gift without money, the neighbourhood as a unit |
+| Habit, learning, self-tracking | Duolingo ✓, Apple Watch rings ✓, Khan Academy, Oura, Day One | a forgiving streak; one glance at your day; a finite log of your own life |
+| Social networks | Facebook ✓, LinkedIn ✓, Instagram, Telegram | mutual contact + intro; a feed that ends |
+| Trust between strangers | Couchsurfing ✓, Airbnb, BlaBlaCar | vouching; blind two-sided reviews |
+| Knowledge commons | Wikipedia, Stack Overflow ✓ | rights earned by work; governance by editors |
+| Launch and maker communities | Product Hunt, Kickstarter, GitHub, Hacker News | a daily launch moment; backers; contributions merged by people with rights |
+| Gift and neighbour networks | Buy Nothing, Nextdoor | gift without money; the neighbourhood as a unit |
 
-## A4. Organizations with game-like mechanics
+## III. Organizations
+
+### III.1 Builders of founders and leaders
 | Kind | Examples | What to learn |
 |---|---|---|
-| A4.1 Accelerators | Y Combinator, Techstars, Entrepreneur First | batches, office hours, Demo Day, an alumni network that helps for life |
-| A4.2 Peer leadership networks | YPO, EO, Vistage, Toastmasters ✓, Rotary | small confidential forums of peers; a role that rotates |
-| A4.3 Youth leadership | AIESEC, JCI, student unions | lead something real young; exchange between countries; the network across countries |
-| A4.4 Universities and schools | MIT (hacks, IAP, UROP, "mens et manus"), Oxford/Cambridge colleges, Montessori | culture of play inside rigor; small houses inside a big whole |
-| A4.5 Initiation orders and lodges | Freemasons, guild journeymen (Wanderjahre), monastic orders | steps of initiation; a wandering year from master to master |
-| A4.6 Recovery and mutual-aid groups | Alcoholics Anonymous (12 steps, sponsor) | one who walked the path guides the next; groups that need no centre |
+| Accelerators | Y Combinator, Techstars, Entrepreneur First | batches, office hours, Demo Day, alumni who help for life |
+| Peer leadership forums | YPO, EO, Vistage, Toastmasters ✓, Rotary | small confidential forums of peers; a role that rotates |
+| Youth leadership | AIESEC, JCI | lead something real young; exchange between countries |
+| Flagship programs with heavy demand | Harvard Business School (case method), Stanford GSB (Interpersonal Dynamics, "Touchy Feely"), Stanford d.school, RISD, Rhodes Scholarship, Thiel Fellowship, Fulbright | selection as a rite; a cohort that becomes a network; learning by doing in a studio |
 
-## A5. Global institutions and gatherings
+### III.2 Guilds of mastery
 | Kind | Examples | What to learn |
 |---|---|---|
-| A5.1 Global governance | United Nations, Red Cross | a charter many nations sign; a symbol that protects |
-| A5.2 Elite convenings | World Economic Forum (Davos, Young Global Leaders), TED, Aspen | the invitation as an honour; one stage, many local copies (TEDx) |
-| A5.3 Prizes and games of nations | Olympics, Nobel Prize, XPRIZE | a ritual every N years; a prize that pulls a field forward |
+| Certification bodies | International Coaching Federation (hours, mentor coaching, exam), Court of Master Sommeliers, PMI, chartered professions, medical boards | a ladder of mastery proven by practice hours and peers; renewal |
+| Initiation orders and guilds | Freemasons (degrees), guild journeymen (Wanderjahre), monastic orders | steps of initiation; a wandering year from master to master |
+| Mutual-aid groups | Alcoholics Anonymous (12 steps, sponsor) | one who walked the path guides the next; groups with no centre |
 
-## A6. Long-lived social structures and dynamics
+### III.3 Science and labs
 | Kind | Examples | What to learn |
 |---|---|---|
-| A6.1 Self-governing communities | kibbutz, Mondragon cooperatives, Quaker meetings, open-source projects (Linux, Apache) | decisions without a boss; a maintainer who holds quality |
-| A6.2 Gift economies and exchange rings | potlatch, Kula ring, barn raising, harvest festivals | giving as status; the whole village builds one house |
-| A6.3 Rites of passage and calendars | coming-of-age rites, Sabbath, lunar and harvest festivals | a threshold everyone crosses; a shared rhythm |
-| A6.4 Salons and circles | Enlightenment salons, Inklings, Esalen, Jefferson-style dinners | a host who curates; one conversation at one table |
+| Science self-organization | peer review, arXiv, CERN collaborations, Human Genome Project, Gordon Research Conferences, Santa Fe Institute, Max Planck institutes | thousands self-organize with no boss; credit by contribution; conferences as a village |
+| Labs | MIT Media Lab ("demo or die", antidisciplinary), MIT Human Dynamics (Alex "Sandy" Pentland, social physics, sociometric badges), UN Global Pulse (the Secretary-General's innovation lab: data, AI, behavioural science), Bell Labs, Xerox PARC, Skunk Works, Stanford Behavior Design Lab, Google X | small teams with freedom; measuring how people interact; demos over papers |
 
-Rule for choosing the next source: longevity and evidence first (structures that kept working for decades), then fit to a gap in Part B. ✓ = already analysed.
+### III.4 Universities and schools
+| Kind | Examples | What to learn |
+|---|---|---|
+| Universities | MIT (hacks, IAP, UROP, "mens et manus"), Stanford, Oxford and Cambridge colleges | play inside rigor; small houses inside a big whole; undergrads in real research |
+| Schools | Montessori, Minerva, Waldorf | the learner leads; the city as campus |
+
+### III.5 Military and intelligence (open sources only)
+| Kind | Examples | What to learn |
+|---|---|---|
+| Leadership doctrine | mission command (Auftragstaktik), US Army after-action review, Sandhurst "serve to lead", OODA loop | intent over orders; learning after every act without blame |
+| Selection and units | Navy SEAL training and swim buddy, IDF Talpiot, Unit 8200 alumni network | a pair never leaves anyone; alumni as an ecosystem |
+| Intelligence methods | structured analytic techniques, red teaming, Bletchley Park | thinking against yourself; mixed teams on one hard problem |
+
+### III.6 Global institutions and gatherings
+| Kind | Examples | What to learn |
+|---|---|---|
+| Global governance | United Nations, Red Cross | a charter many sign; a symbol that protects |
+| Convenings | World Economic Forum (Davos, Young Global Leaders), TED and TEDx, Aspen | the invitation as an honour; one stage, many local copies |
+| Rituals and prizes | Olympics, Nobel Prize, XPRIZE | a ritual every N years; a prize that pulls a field forward |
+
+## IV. Places and ecosystems
+| Kind | Examples | What to learn |
+|---|---|---|
+| Projects on the land, whole countries | Bhutan (Gross National Happiness), NEOM, Auroville, Findhorn, pop-up cities (Zuzalu) | a society that measures what matters; a city designed from zero |
+| Tech campuses | Apple Park, Googleplex, Bell Labs Holmdel | buildings that make people meet |
+| Innovation clusters | Silicon Valley, Boston and Cambridge MA biotech (Kendall Square), Shenzhen, Tsukuba Science City (Japan), Pangyo Techno Valley (Korea), Tel Aviv, Bangalore | density of talent, capital and pride; spin-offs; people move between firms |
+| High-HDI towns | Palo Alto, Cambridge MA, Oxford, Cambridge UK, Zurich, Nordic cities, Singapore | what makes a place grow people |
+
+## V. Long-lived social structures
+| Kind | Examples | What to learn |
+|---|---|---|
+| Self-governing communities | kibbutz, Mondragon, Quaker meetings, open source (Linux, Apache) | decisions without a boss; a maintainer who holds quality |
+| Gift economies | potlatch, Kula ring, barn raising, harvest festivals | giving as status; the whole village builds one house |
+| Rites of passage and calendars | coming-of-age rites, Sabbath, lunar and harvest festivals | a threshold everyone crosses; a shared rhythm |
+| Salons and circles | Enlightenment salons, the Inklings, Esalen | a host who curates; one conversation at one table |
+
+Rule for choosing the next source: longevity and evidence first (structures that kept working for decades), then fit to a gap in Part B.
 
 # Part B. Map: where mechanics land
 
