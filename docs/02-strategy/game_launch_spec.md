@@ -1,6 +1,20 @@
 # The Game of Being You — launch spec (Module 1)
 
 v1, 2026-11-21. Source of the rows: Sasha's notebook (2026-11-20, ledger B1/B2). Canon: [golden_age_canon.md](./golden_age_canon.md) face 1 · Blueprint: [game_of_being_you.md](./game_of_being_you.md) (GoBY).
+Key documents and this moon: [golden_age_canon.md §0](./golden_age_canon.md) (the set to keep in view) and its §5 (this moon's tasks).
+
+**Who writes where** (2026-11-22). One place per fact; in another project's place, only through its owner.
+
+| Place | Writer |
+|---|---|
+| [golden_age_canon.md](./golden_age_canon.md): key documents, harvest of insights (§3), this moon (§5) | main chat |
+| this spec: rows | text only on Sasha's yes; the project that builds a row updates its Status |
+| [GoBY §24](./game_of_being_you.md): mechanics list | project «Модуль 1.1: Синтез механик знаковых игр» |
+| [biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) | project «Биологические часы Equilibrium» |
+| Circles (our own Luma), spec when written | project «Круги в GoBY» |
+
+**Write rule for every project.** Read the file fresh from the GitHub API right before editing (never raw.githubusercontent.com: it served a stale copy and a row was lost on 2026-11-21). Commit on the current head. After the commit, compare it with the parent and check that only your lines changed.
+
 Mechanics Sasha accepted live in one list: [GoBY §24](./game_of_being_you.md) (24.1 accepted, 24.2 considering, 24.3 open, 24.4 later, 24.5 rejected). A mechanic becomes a row here only on his yes to the exact text, and the row names its §24 number. Research behind them: [research/iconic-mechanics/](./research/iconic-mechanics/).
 Launch: early January 2027, after 2027-01-04. No phase dates: we go down the list; Sasha sets the order.
 Status: **live** = on the site · **partial** = exists, gap named · **none** = not built. **Yes** = needs Sasha's yes to the exact change (core flows, money, public).

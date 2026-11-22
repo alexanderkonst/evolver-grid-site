@@ -17,6 +17,18 @@
 
 ---
 
+## 0. Key documents (keep in view)
+The set every project reads before work and writes to by the rule in [game_launch_spec.md](./game_launch_spec.md) ("Who writes where"). Added 2026-11-22.
+
+| Document | What it holds |
+|---|---|
+| this file | the whole project on one page; §3 harvest of insights; §5 this moon |
+| [game_launch_spec.md](./game_launch_spec.md) | rows to build for the January launch; who writes where; write rule |
+| [game_of_being_you.md](./game_of_being_you.md) | the game blueprint; §24 mechanics Sasha accepted, with status |
+| [game_design_almanac.md](./game_design_almanac.md) | stages of game design; everything is a game |
+| [research/iconic-mechanics/](./research/iconic-mechanics/) | analyses behind §24: registry, games, taxonomy |
+| [biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) | the four-ring biological clock |
+
 ## 1. Four faces
 
 Sasha, 2026-11-20 (renamed branch Z → 2 the same day):
@@ -57,7 +69,8 @@ In one line: ontology → phase-shift technologies → new markets; AI evolution
 
 **Central image: the Holy Grail, a self-everting torus** (B2-20..22). A dipole / toroidal field through one central point, with horizontal, vertical and diagonal axes. Sasha's text: the electromagnetic field turns itself inside out like a rubber glove, constantly and endlessly, everywhere and in everything, because it holds a dual and at the same time opposite form: electricity and magnetism, yin and yang. Nearest repo anchor: [universal_ontology.md](../01-vision/universal_ontology.md) §11.1 ("two holes in one, the inversion"). Reading (hypothesis, not Sasha's words): the engine is the same torus at project scale; founders flow in through the center and out as connected modules, and the system keeps turning itself inside out.
 
-## 3. Implementation insights
+## 3. Harvest: the biggest insights
+Every big insight lands here in the same turn it is said: one row, who said it and when, and the one place it lives. Renamed from "Implementation insights" on 2026-11-22.
 
 | Insight | Ledger | Where it already lives |
 |---|---|---|
@@ -72,6 +85,10 @@ In one line: ontology → phase-shift technologies → new markets; AI evolution
 | **ACT opens when the person works on the business** (Equilibrium ATTUNE / ACT trigger). Plus biological clocks; lunar creative hours for creative cycles. | B1-55, B1-56, B2-14 | [equilibrium_v2_spec.md](../specs/equilibrium/equilibrium_v2_spec.md) §11 |
 | **Hark AI as market confirmation** for Your AI; take pricing from Hark, connect via API; communicate the benefits (and understand them first). | B1-29, B1-39, B1-41 | [product_brief.md](../04-products/product_brief.md) §6 |
 | References for the game's feel: Ready Player One · Heroes III · Monopoly (for collaboration) · Foundation (Asimov) for the civilizational angle. "People love stats." | B2-10, B2-04 | [game_design_almanac.md](./game_design_almanac.md) |
+| **Everything is a game.** All of reality is already a game; any social structure that proved itself is a source of mechanics. | Sasha, chat 2026-11-21 | [game_design_almanac.md](./game_design_almanac.md) § Everything is a game |
+| **Our work is an integral holonic taxonomy of social engineering** («Вот чем мы занимаемся»). | Sasha, chat 2026-11-21 15:54 | [research/iconic-mechanics/taxonomy.md](./research/iconic-mechanics/taxonomy.md) |
+| **Quality is held by a person who already walked that path.** This is how steps open, not by limits. | Sasha, chat 2026-11-21 | [GoBY §24](./game_of_being_you.md) #15 |
+| **A number only where it mirrors a real-world act**, never a mindless hook. | Sasha, chat 2026-11-21 | [GoBY §24](./game_of_being_you.md), rule |
 
 ## 4. Modules per face
 

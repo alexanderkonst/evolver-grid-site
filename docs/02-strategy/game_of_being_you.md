@@ -17,9 +17,34 @@
 - What emerges: a person becoming themselves, played as one game: Uniqueness found, then mission, offer, first sale, tribe, village.
 - As a part of the whole: the Meta-Template seen as architecture (named in Meta-Template §2): every product, page and funnel is a place in one village, so the whole can be walked, built and re-run (§16, Village #1) as one form.
 - Siblings / repeats: §14.4 Module form, §13.4 Victories, §15.8 Koster facet check (its L3 parts, candidates to promote as one template); `game_spaces.md`, `module_taxonomy.md`; the real village (§16) as the same blueprint landing in a physical place.
-- Status · applied in · last reviewed: in use · findyourtoptalent.com (Journey build, WP-1…) · 2026-10-27
+- Status · applied in · last reviewed: in use · findyourtoptalent.com (Journey build, WP-1…) · 2026-10-27; contents and §24 status column added 2026-11-22. Where this file sits among the key documents: [golden_age_canon.md §0](./golden_age_canon.md)
 
-
+## Contents
+- [1. Core metaphor: one light in, your spectrum out](#1-core-metaphor-one-light-in-your-spectrum-out)
+- [2. Five paths = five Platonic solids = five elements](#2-five-paths--five-platonic-solids--five-elements)
+- [3. Soul colors: the Spectrum mechanic](#3-soul-colors-the-spectrum-mechanic-core-of-the-game)
+- [4. Title screen](#4-title-screen-homepage)
+- [5. Visual system and anti-kitsch rules](#5-visual-system-and-anti-kitsch-rules)
+- [6. Lead magnets = free parts of the game](#6-lead-magnets--free-parts-of-the-game)
+- [7. The golden thread of iconic virality](#7-the-golden-thread-of-iconic-virality)
+- [8. Decisions log](#8-decisions-log)
+- [9. Next](#9-next)
+- [10. Core loop v0.1: goal and levels](#10-core-loop-v01-goal-and-levels-2026-10-26)
+- [10a. Fidelity principle](#10a-fidelity-principle-2026-10-26-sasha)
+- [11. The Fifth Element](#11-the-fifth-element-2026-10-26-sasha)
+- [12. Ideas & findings log](#12-ideas--findings-log-append-only)
+- [13. Quest map over the existing modules](#13-quest-map-over-the-existing-modules-2026-10-27)
+- [14. Platform coherence: the whole site as one game — Scope of Work](#14-platform-coherence-the-whole-site-as-one-game--scope-of-work-2026-10-27)
+- [15. Game masters' principles — Sasha's verdicts](#15-game-masters-principles--sashas-verdicts-2026-10-27)
+- [16. The real village: San Pancho as Village #1](#16-the-real-village-san-pancho-as-village-1-sasha-2026-10-27)
+- [17. Shift offers per module](#17-shift-offers-per-module-2026-10-27)
+- [18. The player raises their own AI](#18-the-player-raises-their-own-ai-sasha-2026-10-29)
+- [19. Live audit 2026-10-30: what to fix, add, debug and polish](#19-live-audit-2026-10-30-what-to-fix-add-debug-and-polish)
+- [20. The Gift Path: the game's progress line](#20-the-gift-path-the-games-progress-line-sasha-2026-10-30)
+- [21. The World layer and the daily loop](#21-the-world-layer-and-the-daily-loop-sasha-2026-11-01)
+- [22. Strategy 2026-11-02: the reveal-activation loop and the living…](#22-strategy-2026-11-02-the-reveal-activation-loop-and-the-living-village)
+- [23. The Player One path](#23-the-player-one-path-sasha-2026-11-02)
+- [24. Mechanics from iconic games and real-life games](#24-mechanics-from-iconic-games-and-real-life-games-sashas-verdicts-2026-11-21)
 
 ---
 
@@ -150,7 +175,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 2. Crystal brightens with level: visible identity progression.
 3. ✅ **Approved (Sasha, 2026-10-26).** Daily 5-minute quests (practices), gentle streak with freezes.
 4. Party / guild = Mastermind: shared season quest, contribution to others (feeds Impact and Social Ties).
-5. Seasons of ~6 weeks: Masterclass opens a season; a closing ceremony shows the before/after map.
+5. Seasons of ~6 weeks: Masterclass opens a season; a closing ceremony shows the before/after map. *(Superseded 2026-11-21: 6-week seasons rejected, §24.5; rhythm = day / week / month / year, §24 #7.)*
 6. ✅ **Approved.** Real loot: first income from your unique offer is a boss drop.
 7. ✅ **Approved.** Bosses = real-life thresholds (first sale, a move, a hard conversation).
 8. ✅ **Approved.** Compare only with your past self. No QoL leaderboard; if any leaderboard, only for contribution to others.
@@ -1345,35 +1370,37 @@ Premise: everything is a game ([almanac](./game_design_almanac.md)); sources are
 
 Single list of what we take into the game from the iconic-mechanics research. Reasoning and sources: [research/iconic-mechanics/](./research/iconic-mechanics/) (registry.md = status per mechanic, games/ = one analysis per game, taxonomy.md = map of all mechanics). A row of `game_launch_spec.md` changes only on Sasha's yes to its exact text.
 
+Owner: project «Модуль 1.1: Синтез механик знаковых игр» writes §24; other projects send it their verdicts. Status column: accepted → in spec → in work → live.
+
 Rule for every mechanic: a counter, streak or number only where it mirrors a real-world act, never a mindless hook. No linear planning or time estimates (Golden Age).
 
 ### 24.1 Accepted
-| # | What we include | From | Lands | Sasha |
-|---|---|---|---|---|
-| 1 | Forgiving streak on real acts only (2 earned freezes, never sold) | Duolingo DL-1 | A13 (in spec) | yes |
-| 2 | Town screen: Your House grows building by building from real steps | Heroes III H3-1 | Your House, A12 | "cool! iconic status" |
-| 3 | Interior from earned artifacts | Ready Player One RPO-2 | Your House, A12 | "cool" |
-| 4 | Constructor of buildings, interiors and villages; opens by steps (real deeds, no artificial limits) | H3-3, RPO-2, PG-1 | new row + §23 | yes |
-| 5 | Button "Create a new digital village" | Ingress PG-1 | World map, A11 | yes |
-| 6 | Constructor: presets and editing first, AI generation second; credits may buy generations, never artifacts, badges or rights | Sasha + §23.2 | constructor | "yes, but needs careful work" |
-| 7 | Rhythm: day = one real act; week = Monday step -> Sunday Save Point; month = real moon -> Harvest; year = New Year or the player's birthday. No 6-week seasons | Heroes III H3-6 | new row "Rhythm", A9, A13 | "LOVE IT!!!" |
-| 8 | Four rings as the personal biological clock: day / week / month / year, from the Equilibrium engine, NOT tied to actions (Sasha 16:35), on the main game screen. Spec: [docs/specs/equilibrium/biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) | Apple Watch rings + H3-6 | A9, main game screen | yes; build this lunar cycle |
-| 9 | Reviews of shops and products (Market) | Couchsurfing CS-2 | A6, A7 | yes |
-| 10 | Circles: our own Luma inside GoBY. First launch: host (who created the circle) + co-host + hand the role on in one tap; succession rules added on demand | Facebook FB-2, Mafia | Circles project | "crucial"; host v1 "yes!!!! do it" |
-| 11 | Artifact sets: a finished chapter set opens the right to the physical artifact Sasha makes | Heroes III H3-8 | A12 | "VERY COOL!!!" |
-| 12 | Village music: A8 radio plays the village's musicians (Radio San Pancho stream, issue #371) | Heroes III H3-9 | A8 | "connect it" |
-| 13 | Season Harvest of real projects: villagers offer real backing, no winners; part of the Collective; first version = locked section + email collection | Evoke JM-3 | Collective, A11 | "yes!" |
-| 14 | Camino stamps (the word "passport" is not used, Sasha 2026-11-21; name open): the player's book of stamps; a stamp = a villager confirming a real quest at their place; a full page = artifact set (#11). Visual form of A12 badges and village visits | Camino de Santiago | A12 | "COOL!!!" |
-| 15 | Core principle: quality is held by a person who already walked that path. This is how constructor steps open | Scouting, Camino, H3-7, JM-1 | constructor, §23.4 | "powerful, part of the solution" |
-| 16 | Proof model: daily act = the player alone, private; village quest = the villager who gave it confirms (H3-7); Journey step = one witness the player picks, checked against a pre-written "done when", answered in words, never scored; rights over others = two people already on that step, both needed, picked by the player from anyone on it. Proof is never sold, ranked or turned into points | proof-of-learning PL-1..14 | §23.4 | yes |
-| 17 | Village quest: a villager pins one real deed to their place with a "done when" line; the player comes in person; the villager confirms -> stamp + artifact | Heroes III H3-7 | §23.4, World map | yes |
-| 18 | Achievements for real-life deeds: closing a set (e.g. 3 sessions from 3 different people) = an achievement. Separate track: research/iconic-mechanics/achievements.md | §23.4, Camino, Scouting | A12 | "very cool, separate task" |
-| 19 | Levels matter only where they open something: a right to act, people, a new chapter. Earned right fits only as constructor steps; the word "level" is not used for it. No ranks or ratings that set people against each other. Chapter = Path J1-J12; what cannot be lost = Peak, badges | levels study LV-1..8 | constructor, §20 | "TRUE! smart! yes" 16:28 |
-| 20 | Shops: only people Sasha approves get a shop (an app store in essence); anyone can browse shops, filtered to any one village; an offer goes only where someone's open quest matches it (#21) (no spam, no mass mailing); matches searched across all villages, own village shown first; payment in whatever tool the shop uses, which is direct between people; no internal currency, no seller ratings: everyone is unique. "Quest at a place" dropped from shops | Needs & Offers (H3-7), CS-2 | Market, A6, A7 | "yes" 2026-11-21 |
-| 21 | Village quests = the needs: a villager pins a real request to their place with a "done when" line, with or without a price; the player comes in person; the villager confirms. A quest is only a request, never an offer (otherwise the map becomes a billboard). The word "needs" is not used; it is "quest". How confirmation works is decided case by case (two confirmers and false-confirmation handling parked until a real case) | Seer's Hut H3-7, Needs & Offers | village map, Market | "yes, quests are better" 2026-11-21 |
-| 22 | Village Charter (for now two lines): 1. A real place: we meet in person. 2. A real person behind every avatar. "Create a new digital village" opens once its founders accept it | Burning Man regionals | Create a village, H5 | "let's keep it like this for now" 2026-11-21 |
-| 23 | Feed of real deeds: one scrollable chronological feed of real events, finite because it holds only events that happened (no filler, no algorithmic ranking); it ends with "you're up to date". Only event types chosen one by one by Sasha get in. Type 1 (yes, 2026-11-21): "quest closed", confirmed by the one who posted the quest. One tap "I see you" + optional written line; the doer sees who tapped; no public counts | Strava kudos, self-tracking apps; Burke & Kraut 2016, Allcott 2020 | Village, Your House | "yes", event types chosen one by one, 2026-11-21 |
-| 24 | Reviews after a real deal: one written line, no stars; both sides write blind and reviews open together (Airbnb RCT, Fradkin et al. 2021: negative text +12% guests, +17% hosts; 1-star retaliation -31%); a negative review goes first privately to the shop owner and to Sasha as approver | Airbnb, Couchsurfing CS-2 | Market, A6, A7 | "yes" 2026-11-21 |
+| # | What we include | From | Lands | Sasha | Status |
+|---|---|---|---|---|---|
+| 1 | Forgiving streak on real acts only (2 earned freezes, never sold) | Duolingo DL-1 | A13 (in spec) | yes | in spec: A13 (issue #368) |
+| 2 | Town screen: Your House grows building by building from real steps | Heroes III H3-1 | Your House, A12 | "cool! iconic status" | accepted |
+| 3 | Interior from earned artifacts | Ready Player One RPO-2 | Your House, A12 | "cool" | accepted |
+| 4 | Constructor of buildings, interiors and villages; opens by steps (real deeds, no artificial limits) | H3-3, RPO-2, PG-1 | new row + §23 | yes | accepted; no spec row yet |
+| 5 | Button "Create a new digital village" | Ingress PG-1 | World map, A11 | yes | accepted |
+| 6 | Constructor: presets and editing first, AI generation second; credits may buy generations, never artifacts, badges or rights | Sasha + §23.2 | constructor | "yes, but needs careful work" | accepted |
+| 7 | Rhythm: day = one real act; week = Monday step -> Sunday Save Point; month = real moon -> Harvest; year = New Year or the player's birthday. No 6-week seasons | Heroes III H3-6 | new row "Rhythm", A9, A13 | "LOVE IT!!!" | accepted; no spec row yet |
+| 8 | Four rings as the personal biological clock: day / week / month / year, from the Equilibrium engine, NOT tied to actions (Sasha 16:35), on the main game screen. Spec: [docs/specs/equilibrium/biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) | Apple Watch rings + H3-6 | A9, main game screen | yes; build this lunar cycle | live: A9 (#378) |
+| 9 | (merged into #24) Reviews of shops and products (Market) | Couchsurfing CS-2 | A6, A7 | yes | merged into #24 |
+| 10 | Circles: our own Luma inside GoBY. First launch: host (who created the circle) + co-host + hand the role on in one tap; succession rules added on demand | Facebook FB-2, Mafia | Circles project | "crucial"; host v1 "yes!!!! do it" | in work: Circles project |
+| 11 | Artifact sets: a finished chapter set opens the right to the physical artifact Sasha makes | Heroes III H3-8 | A12 | "VERY COOL!!!" | accepted |
+| 12 | Village music: A8 radio plays the village's musicians (Radio San Pancho stream, issue #371) | Heroes III H3-9 | A8 | "connect it" | in work: issue #371 |
+| 13 | Season Harvest of real projects: villagers offer real backing, no winners; part of the Collective; first version = locked section + email collection | Evoke JM-3 | Collective, A11 | "yes!" | accepted |
+| 14 | Camino stamps (the word "passport" is not used, Sasha 2026-11-21; name open): the player's book of stamps; a stamp = a villager confirming a real quest at their place; a full page = artifact set (#11). Visual form of A12 badges and village visits | Camino de Santiago | A12 | "COOL!!!" | accepted |
+| 15 | Core principle: quality is held by a person who already walked that path. This is how constructor steps open | Scouting, Camino, H3-7, JM-1 | constructor, §23.4 | "powerful, part of the solution" | accepted |
+| 16 | Proof model: daily act = the player alone, private; village quest = the villager who gave it confirms (H3-7); Journey step = one witness the player picks, checked against a pre-written "done when", answered in words, never scored; rights over others = two people already on that step, both needed, picked by the player from anyone on it. Proof is never sold, ranked or turned into points | proof-of-learning PL-1..14 | §23.4 | yes | accepted |
+| 17 | (merged into #21) Village quest: a villager pins one real deed to their place with a "done when" line; the player comes in person; the villager confirms -> stamp + artifact | Heroes III H3-7 | §23.4, World map | yes | merged into #21 |
+| 18 | Achievements for real-life deeds: closing a set (e.g. 3 sessions from 3 different people) = an achievement. Separate track: research/iconic-mechanics/achievements.md | §23.4, Camino, Scouting | A12 | "very cool, separate task" | accepted |
+| 19 | Levels matter only where they open something: a right to act, people, a new chapter. Earned right fits only as constructor steps; the word "level" is not used for it. No ranks or ratings that set people against each other. Chapter = Path J1-J12; what cannot be lost = Peak, badges | levels study LV-1..8 | constructor, §20 | "TRUE! smart! yes" 16:28 | accepted |
+| 20 | Shops: only people Sasha approves get a shop (an app store in essence); anyone can browse shops, filtered to any one village; an offer goes only where someone's open quest matches it (#21) (no spam, no mass mailing); matches searched across all villages, own village shown first; payment in whatever tool the shop uses, which is direct between people; no internal currency, no seller ratings: everyone is unique. "Quest at a place" dropped from shops | Needs & Offers (H3-7), CS-2 | Market, A6, A7 | "yes" 2026-11-21 | accepted |
+| 21 | Village quests: a villager pins a real request to their place with a "done when" line, with or without a price; the player comes in person; the villager confirms. A quest is only a request, never an offer (otherwise the map becomes a billboard). The word "needs" is not used; it is "quest". How confirmation works is decided case by case (two confirmers and false-confirmation handling parked until a real case) | Seer's Hut H3-7, Needs & Offers | village map, Market | "yes, quests are better" 2026-11-21 | accepted |
+| 22 | Village Charter (for now two lines): 1. A real place: we meet in person. 2. A real person behind every avatar. "Create a new digital village" opens once its founders accept it | Burning Man regionals | Create a village, H5 | "let's keep it like this for now" 2026-11-21 | accepted |
+| 23 | Feed of real deeds: one scrollable chronological feed of real events, finite because it holds only events that happened (no filler, no algorithmic ranking); it ends with "you're up to date". Only event types chosen one by one by Sasha get in. Type 1 (yes, 2026-11-21): "quest closed", confirmed by the one who posted the quest. One tap "I see you" + optional written line; the doer sees who tapped; no public counts | Strava kudos, self-tracking apps; Burke & Kraut 2016, Allcott 2020 | Village, Your House | "yes", event types chosen one by one, 2026-11-21 | accepted |
+| 24 | Reviews after a real deal: one written line, no stars; both sides write blind and reviews open together (Airbnb RCT, Fradkin et al. 2021: negative text +12% guests, +17% hosts; 1-star retaliation -31%); a negative review goes first privately to the shop owner and to Sasha as approver | Airbnb, Couchsurfing CS-2 | Market, A6, A7 | "yes" 2026-11-21 | accepted |
 
 ### 24.2 Considering
 - Shops, open parts: gift as a mode (not sure yet); offers also in reply to "Open to…" (parked).
