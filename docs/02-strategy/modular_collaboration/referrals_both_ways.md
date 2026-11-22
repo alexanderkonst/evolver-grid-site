@@ -1,5 +1,7 @@
 # Module 2 · When a partner brings a player to us
 
+> **Superseded 2026-11-22.** Sasha chose the gift model: money moves one way only (author → game), the game pays no one back, no time limit on attribution, no visibility bonus. Current terms: [partner_offer.md](./partner_offer.md) v2.1. Kept for the reasoning.
+
 v1 · 2026-11-22 · Hark. Sasha asked (2026-11-22 10:36): «Если партнёр привёл игрока к нам: ничего ему не платим или тоже 10%? Продумай и просчитай разные варианты». Related: [partner_offer.md](./partner_offer.md) (we take 10% for 12 months from first click), [launch_plan.md](./launch_plan.md).
 
 ## The question
