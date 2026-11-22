@@ -89,12 +89,16 @@ Every big insight lands here in the same turn it is said: one row, who said it a
 | **Our work is an integral holonic taxonomy of social engineering** («Вот чем мы занимаемся»). | Sasha, chat 2026-11-21 15:54 | [research/iconic-mechanics/taxonomy.md](./research/iconic-mechanics/taxonomy.md) |
 | **Quality is held by a person who already walked that path.** This is how steps open, not by limits. | Sasha, chat 2026-11-21 | [GoBY §24](./game_of_being_you.md) #15 |
 | **A number only where it mirrors a real-world act**, never a mindless hook. | Sasha, chat 2026-11-21 | [GoBY §24](./game_of_being_you.md), rule |
+| **Coordinated media burst at launch.** Invite every partner to one media wave for the game at once: a big wave of players walks the game and reaches each partner's profile, so every module gains. Possible only through the ecosystem; social and economic mechanic still to design. | Sasha, Module 2, 2026-11-22 10:36 | [launch_plan.md](./modular_collaboration/launch_plan.md) «Later: coordinated media burst» |
+| **Six separate but linked things, and courses live only in the Academy.** AI training → course constructor → a mini-course; after it a founder uses AI the way Sasha does (his harness), in the business too (Founder Cockpit), all inside Your AI, all serving the collective. | Sasha, Module 3, 2026-11-22 («в целом всё так») | §4 Ring · Your AI, «Six linked things» |
 
 ## 4. Modules per face
 
 Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [product_brief.md](../04-products/product_brief.md) · MT = [module_taxonomy.md](./module_taxonomy.md) · UB = [alexanders_unique_business.md](./unique-businesses/alexanders_unique_business.md) · SFC = [sovereign_founder_collective.md](./sovereign_founder_collective.md) · AIF = [ai-familiar_tracker.md](../specs/ai-familiar/ai-familiar_tracker.md).
 
 ### Ring · Your AI (through all faces, tentative)
+**Six linked things** (Sasha, 2026-11-22, «в целом всё так»): (1) **Your AI**: an AI that already carries all of Sasha's harnesses, plus a console of buttons (most from the AI OS suites); (2) **Sasha's own AI harness**: how he works with AI, packageable for founders; (3) **Founder Cockpit**: the business harness (face 3, 3.2); (4) **AI training**: run by Sasha several times (4 workshop PDFs, 2 Fathom calls, [Training 5 // AI // Founder Academy Level 1](https://youtu.be/NZeUR7-OMSk)); (5) **Course constructor**: turns any of Sasha's material into a mini-course with a stated result (face 4 row); (6) **the founders' collective**, which all of this serves. Chain: 4 goes through 5 into a mini-course → the founder uses AI like 2, in the business like 3, all inside 1, serving 6.
+
 | Module | Status | Source | Result |
 |---|---|---|---|
 | Your AI | live | `/game/your-ai`; AIF §20; GoBY §18 · B1-25, B1-53 | The player's own AI with our harness. |
@@ -104,6 +108,8 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 | AI credits / pricing | spec | PB §6 · B1-39 | Free tier, then credit packs (pricing via Hark API: notebook). |
 | Next-interface features (one chat + projects) | spec | AIF §17; [interface_almanac.md](../ai/interface_almanac.md) · B1-32 | One chat with projects; windows per workstream. |
 | Deep AI training (The Nature of AI, mental-garbage clearings on AI) | spec, partial | PB 0.2 · B1-34, B1-35 | Understand AI for years ahead. |
+| AI training (workshops Sasha has run) | live, partial (taught live, not yet a course) | Module 3 project wizard-pilot/ (private); YouTube NZeUR7-OMSk | Becomes a mini-course through the course constructor; lives in the Academy. |
+| Sasha's own AI harness as a product for founders | notebook | Sasha 2026-11-22 | A founder works with AI the way Sasha does. |
 | Founder's AI suite: terminal prompt, GitHub setup, agent orchestration, AI company, company-wide harnesses, licence / business model | notebook | B1-27, B1-30, B1-31, B1-33, B1-36, B1-40 | A founder runs an AI company, not a prompt. |
 
 ### Face 1 · The iconic game (The Game of Being You)
@@ -131,7 +137,7 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 | Town Hall / Venture Co-op | spec | GoBY J13 | Residents' income and voice. |
 | Gift Path progress line · Share card · Oracle Reading | spec | GoBY §20, §14.12a, §14.5 | Progress line, share, deep reveal. |
 | Lead magnets = free game levels | spec | GoBY §6 · B1-22 | Free parts of the game as entry. |
-| Academy (school for adults) | live | `/game/learn`, `/academy/:slug`; GoBY §13.1 · B1-66 ("school") | Learning place in the village. |
+| Academy (school for adults) | live | `/game/learn`, `/academy/:slug`; GoBY §13.1 · B1-66 ("school") | Learning place in the village. **The only home of courses** (Sasha 2026-11-22); AI courses are one case. Has levels: Sasha's working names Academy of Human Development → University of the Soul → Mystery School (exact names to confirm with him); the site today shows Founder Academy → Integral Mystery School → Advanced micro-course. |
 
 ### Face 2 · Sasha's own unique business (modular collaboration; formerly branch Z)
 Working folder: [modular_collaboration/](./modular_collaboration/README.md) (plan, connector, our rack).
@@ -193,7 +199,7 @@ Working folder: [modular_collaboration/](./modular_collaboration/README.md) (pla
 | Industry-polarization template | notebook | B1-68, B1-69 | How industries polarize, projected onto technologies. |
 | Educational game: 3D model of the elements | spec, partial | GoBY §2 · B1-74 | The elements as a playable 3D model. |
 | Book of Psychoactive Infographics | spec | [BOOK.md](../assets/infographics/BOOK.md) · B1-77, B1-78 | The journey as infographic cards. |
-| Course constructor ← infographics | spec | [course-from-source.md](../templates/course-from-source.md) · B1-75 | Courses from sources and infographics. |
+| Course constructor ← infographics | spec | [course-from-source.md](../templates/course-from-source.md) · B1-75 | Courses from sources and infographics. Two pieces today (this template; Sasha's 2026-11-21 sequence: materials → lesson series → infographic + NotebookLM video per micro-module → wizard-like micro-course → platform); to be merged into one template that Sasha edits first, nothing added by Hark. Output goes only to the Academy. |
 | Holonic-intuitive learning sequence | notebook | B1-76 | Learning ordered holonically and intuitively. |
 | New courses: session rotation = Platonic solids | notebook | B1-79 | Sasha's sessions rotated through the five solids. |
 | Insight → integration → formalization → application | notebook | B1-66 | From mystical insight to applied product. |
