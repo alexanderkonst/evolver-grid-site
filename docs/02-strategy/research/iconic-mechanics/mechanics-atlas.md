@@ -6,18 +6,22 @@ Format per source: kind · longevity · holon (H1 person … H6 civilization) ·
 
 ## Invariants v0 (draft for step 3)
 
-Patterns that recur across classes. Count = how many of the six classes show it independently.
+Patterns that recur across classes. Count = how many of the eight classes show it independently.
 
 | # | Invariant | Classes | Strongest evidence |
 |---|---|---|---|
-| 1 | **Small circle inside a big whole** (2–15 people with a host, nested in a network of thousands) | 6/6 | AA participation (Cochrane 2020), Pentland team communication, Discord/Reddit, YC sections, kibbutz/Mondragon size caps |
-| 2 | **Status granted by peers who walked the path, through a live act** (already our principle #15) | 6/6 | medical boards (−16% mortality), Wikipedia barnstars (+60%, RCT), Apache/Linux committers, belts and dan ranks |
-| 3 | **Fixed rhythm, the date is not negotiable** (daily, weekly, seasonal, multi-year) | 6/6 | AAR after every act (meta-analysis, ~25%), Sabbath, Lunar New Year, Olympiad, Wordle, Benedictine horarium |
-| 4 | **A protected container that makes honesty safe** (speech rules, off-record, blind reveal, no-blame review, assigned dissent) | 5/6 | Airbnb simultaneous reveal (PNAS 2017), red teams, GRC off-record, EO 'experience only, no advice' |
-| 5 | **Players become producers and owners; purpose shared, method free** | 5/6 | Roblox creator payouts ($1.5B 2025), open D&D rules, mission command, TEDx licence (44k events), Zuzalu forks |
-| 6 | **Designed collisions in real places** (paths that make different people meet) | 4/6 | MIT same-building study (A), Bell Labs corridors, PC bangs, Pentland shared breaks |
-| 7 | **Graded entry and a real commitment to join** | 4/6 | religious communes outlast secular (35.6 vs 7.7 yrs, A), Auroville trial year, Kickstarter all-or-nothing (34% vs 17%) |
-| 8 | **Voice from below, rotation, easy exit** | 3/6 | elected abbots (463-year abbeys), California non-competes (A), JCI one-year terms |
+| 1 | **Small circle inside a big whole** (2–15 people with a host, nested in a network of thousands) | 8/8 | AA participation (Cochrane 2020), Pentland team communication, YC sections, kibbutz/Mondragon size caps, Burning Man theme camps (85.5% return for belonging, 2025 Census) |
+| 2 | **Status granted by peers who walked the path, through a live act** (already our principle #15) | 8/8 | medical boards (−16% mortality), Wikipedia barnstars (+60%, RCT), Apache/Linux committers, Elsewhere membership earned by leading a camp for a year |
+| 3 | **Fixed rhythm, the date is not negotiable** (daily, weekly, seasonal, multi-year; including rest years) | 8/8 | AAR after every act (meta-analysis, ~25%), Sabbath, Olympiad, Boom every two years, Glastonbury fallow year, Edge City yearly return |
+| 4 | **A protected container that makes honesty safe** (speech rules, off-record, blind reveal, no-blame review, assigned dissent) | 6/8 | Airbnb simultaneous reveal (PNAS 2017), red teams, EO 'experience only, no advice', ZEGG Forum |
+| 5 | **Players become producers and owners; purpose shared, method free** | 7/8 | Roblox creator payouts ($1.5B 2025), open D&D rules, mission command, Burning Man participation, Borderland members fund each other's art |
+| 6 | **Designed collisions in real places** (paths that make different people meet) | 6/8 | MIT same-building study (A), Bell Labs corridors, Pentland shared breaks, Nuanu shared spaces built first |
+| 7 | **Graded entry and a real commitment to join** | 6/8 | religious communes outlast secular (35.6 vs 7.7 yrs, A), Twin Oaks visit → trial → vote, Sieben Linden ⅔ vote, Lampu entry only via a camp or department |
+| 8 | **Voice from below, rotation, easy exit; governance that changes as it grows** | 5/8 | elected abbots (463-year abbeys), California non-competes (A), decision structure ranked first for community success (Sociological Spectrum 2019, A); Sieben Linden, ZEGG, Earthaven moved off full consensus |
+| 9 | **New: a short charter anyone can copy, plus volunteer local leads** (spread by format, not by growing one site) | 5/8 (est.) | Burning Man 10 Principles → 96 regional events, ~110k people (C), TEDx licence, Zuzalu forks, GEN design course (26k+ graduates), AA traditions |
+| 10 | **New: visible care of the shared ground** (own the land; count contributions openly; public check that the commons is kept) | 3/8 (est.) | 454 US communes: owning land predicted survival, religion did not (A); Burning Man passes the federal cleanup inspection every year (A); Twin Oaks labor hours |
+
+Classes are now eight (IV.1 land projects and IV.2 festivals added 2026-11-22); counts for #9–10 are estimates from the new classes plus earlier ones. Failure mode seen in both new classes: worn-out volunteer cores and rented or state-held ground (Nowhere ended 2026, Envision has no path to 2027, Network School moved out of Malaysia, Cabin DAO wound down 2025).
 
 Next: check each invariant against GoBY §24 (what we already have, what is missing), then choose the smallest combination where each piece strengthens the others.
 
@@ -29,6 +33,8 @@ Next: check each invariant against GoBY §24 (what we already have, what is miss
 - [III.3–III.4 Science, labs, universities and schools](#iii3–iii4-science-labs-universities-and-schools)
 - [III.5–III.6 Military and intelligence (open sources), global institutions and gatherings](#iii5–iii6-military-and-intelligence-open-sources-global-institutions-and-gatherings)
 - [IV–V Places and ecosystems, long-lived social structures](#iv–v-places-and-ecosystems-long-lived-social-structures)
+- [IV.1 Projects on the land](#iv1-projects-on-the-land-intentional-communities-and-ecovillages-added-2026-11-22)
+- [IV.2 Festivals](#iv2-transformational-and-pioneering-festivals-temporary-villages-added-2026-11-22)
 
 ## I. Games
 
@@ -1032,3 +1038,301 @@ Scope: 31 sources (high-HDI towns grouped into one block). Grades: A = peer-revi
 - **Fixed rhythms carry culture.** Weekly (Sabbath, salons, Inklings, Linux 9-week cycle), seasonal (harvest, lunar reunions with 9bn trips), multi-year (Bhutan 5-year survey). The date is non-negotiable, so participation does not depend on motivation.
 - **Graded entry and costly commitment sustain communities.** Auroville's 1-year Newcomer trial, Findhorn's Experience Week, religious-commune survival (35.6 vs 7.7 yrs, A), shared ordeals → fusion (A).
 - **Seeds that exit or fork scale better than megaplans.** Yozma left once VC self-sustained; Zuzalu's alumni forked 20+ villages; NEOM's capital-first plan stalled. Small, size-capped units (≈150–500) inside a pooling whole (kibbutz, Mondragon, Amish districts) are the durable form.
+
+## IV.1 Projects on the land: intentional communities and ecovillages (added 2026-11-22)
+
+
+Scope note: Findhorn and Auroville already appear in `6-places-structures.md` (Experience Week, attunement, Auroville graded entry, working groups). Below they carry only mechanics not covered there. Zuzalu is also covered there; Edge City below adds only post-Zuzalu data. Base rates for the class: Kanter's classic sample judged only 11 of 91 19th-c. US communities "successful" ([Communal Societies, Natural Limits](https://doi.org/10.9707/0739-1250.1768)); founders' estimates put failure at ~80% in the first two years / ~1 in 10 succeeding (cited in [Baumber et al. 2022](https://doi.org/10.5751/ES-13166-270226)). Everything that follows is survivorship among the few.
+
+### Damanhur (Italy)
+- Kind: spiritual eco-federation · Longevity: 51 yrs (1975); peak ~1,000 citizens (2000s), ~400–600 now · Holon: H4 (federation of H3 households) · Quadrant strongest: WE
+- Mechanics:
+  1. **Nucleo households inside a federation** — citizens live in "nucleos" of 12–30 adults that eat, share costs and childcare; ~20 nucleos form the Federation. Evidence: structure and size documented at the 2005 ICSA conference held there ([Metcalf, ICSA](https://communa.org.il/call29/call29.pdf)); Damanhurians themselves report a "critical number" per social unit found by 30 yrs of trial ([Antipode 2018](https://doi.org/10.1111/anti.12414), excerpt only). Grade B. Driver: daily life runs in a group small enough for everyone to know everyone; identity comes from the larger whole.
+  2. **Short-rotation top office** — two "King Guides" elected for 6-month terms; a College of Justice checks communities against the Constitution. Evidence: ([FIC](https://www.ic.org/communiversity-library/article/damanhur)). Grade C for effect. Driver: power rotates before it can harden.
+  3. **Internal currency (Credito, since 1981) + civic spillover** — 1:1 with euro, used for all internal trade; a Damanhurian became local mayor and 22 sat on valley councils. Evidence: ([it.wikipedia](https://it.wikipedia.org/wiki/Federazione_di_Damanhur); Metcalf, same). Grade B/C.
+- Counter-evidence: population fell from ~1,000 to ~400 after founder Airaudi's death (2013) ([MDPI Religions 2024](https://www.mdpi.com/2077-1444/15/2/219)). Charisma held the whole; the nucleo layer persisted.
+- Invariant hint: small group inside a big whole, with office that rotates on a fixed rhythm.
+
+### Tamera (Portugal)
+- Kind: peace-research ecovillage · Longevity: 48 yrs as a group (1978 Germany), 31 on site (1995); ~150–190 people · Holon: H4 · Quadrant strongest: WE
+- Mechanics:
+  1. **Daily Forum (transparency ritual)** — members meet for Forum, revealing "what's happening inside and among them"; built because the group concluded no project lasts without a social frame of trust. Evidence: history ([Tamera](https://www.tamera.org/history/)); 2023 accounts name Forum as the core practice ([Tamera report](https://www.tamera.org/wp-content/uploads/AMH_Activities_and_Accounts_2023_EN_240704.pdf)). Grade C. Driver: conflict surfaced early and publicly costs less than conflict hidden.
+  2. **Visible ecological demonstrator (Water Retention Landscape)** — since 2006, open water grew from 0.62 ha to ~8.3 ha across 29 lakes on 154 ha; water autonomy, stabilized groundwater, lakes used by firefighters. Evidence: EU Climate-ADAPT case study ([EEA](https://climate-adapt.eea.europa.eu/en/metadata/case-studies/tamera-water-retention-landscape-to-restore-the-water-cycle-and-reduce-vulnerability-to-droughts); [ePLANETe](http://eplanete.oieau.fr/case-study/water-retention-spaces-reforestation-and-grazing-management-southern-portugal?fa=89&fc=427&fp=49&gid=15)). Grade B. Driver: a tangible result neighbors and officials can walk through earns legitimacy that ideas alone cannot.
+  3. **7-day intro → 3-year joining program** — education funnel from week course to a 3-year path into the General Assembly. Evidence: ([Tamera, Joining](https://www.tamera.org/learn/joining-tamera-3-year-program-of-education-and-engagement/)). Grade C.
+- Invariant hint: a fixed-rhythm truth ritual as the community's immune system.
+
+### ZEGG (Germany)
+- Kind: ecovillage + seminar centre · Longevity: 35 yrs (1991; group from 1978) · ~115 people (2025: 77 members, 16 entrants, 12 volunteers) · Holon: H4 · Quadrant strongest: WE
+- Mechanics:
+  1. **ZEGG Forum as an exportable method** — one person in the centre of 10–50, guided by a facilitator, mirrored by the group. Evidence: "adopted worldwide by various social networks and communities" ([GEO](https://geo.coop/story/zegg-forum-%E2%80%93-ritualized-form-communication-larger-groups)); taught to other communities for 15+ yrs ([Litfin, Ecovillages](https://ecovillagebook.org/ecovillages/zegg/)). Grade B. Driver: a portable social technology spreads the community further than its members can travel.
+  2. **Governance evolution from charisma → grassroots democracy (1994) → sociocracy (2008)** — the group survived the founders leaving (to found Tamera). Evidence: ([ZEGG, 33 Jahre](https://www.zegg.de/de/aktuelles/das-ziel-ist-im-weg-33-jahre-gemeinschaftsbildung)); staged entry (Einsteiger:innen) visible in 2025 report ([ZEGG Jahresbericht 2025](https://www.zegg-gemeinschaft.de/images/pdfs/Jahresberichte/ZEGG-Jahresbericht-2025.pdf)). Grade C.
+- Invariant hint: the ritual outlives the founder when it is written down and taught.
+
+### Sieben Linden (Germany)
+- Kind: cooperative ecovillage · Longevity: 29 yrs (1997); ~160 residents, target ~300 · Holon: H4 · Quadrant strongest: ITS
+- Mechanics:
+  1. **Councils instead of all-consensus (2008)** — the founding rule "everything essential by consensus of all" was dropped "because it cost the community too much strength"; now 7 annually elected councils decide their domains by consensus, plus a plenary. Evidence: ([Sieben Linden facts file](https://siebenlinden.org/llms.txt)). Grade B (community's own audited self-report). Driver: delegating domains stops one meeting from carrying every decision.
+  2. **Capital stake + trial + ⅔ vote** — ~€25k equity per adult (refundable coop shares) after a trial period, admission by ⅔ of all residents; solidarity shares for those who cannot pay. Evidence: same source. Grade B. Driver: costly, reversible commitment selects for staying power (they note it also skews intake toward academics).
+  3. **Measured footprint as public proof** — 5.0 t CO₂e/person vs 10.5 t German average; ecological footprint ~56% of German (Univ. Turin study). Evidence: ([Bocco et al. 2019, Routledge](https://www.routledge.com/The-Environmental-Impact-of-Sieben-Linden-Ecovillage/Bocco-Gerace-Pollini/p/book/9780367670320); [Sieben Linden](https://siebenlinden.org/de/oekologischer-fussabdruck/)). Grade A/B. Plus >100 seminars and ~1,000 guests a year as an economic and outreach engine.
+- Invariant hint: governance that is allowed to be redesigned when it exhausts people.
+
+### Findhorn (Scotland) — only what is new
+- Kind: ecovillage web of organisations · Longevity: 64 yrs (1962) · Holon: H4 · Quadrant strongest: ITS
+- Mechanics:
+  1. **Community-share investment co-op (Ekopia, 2001)** — one member one vote regardless of investment, capped returns; financed wind turbines, a 220-investor £225k buy-out of the community shop, affordable housing; >£2.5M asset base. Evidence: ([Ekopia](https://www.ekopia.org.uk/about-us/); [Moray Local Place Plan](https://www.moray.gov.uk/media/ef3nfyaf/file163230.pdf); [Aisling](https://www.aislingmagazine.com/aislingmagazine/articles/TAM33/monotheism/Regrowing%20local%20Economies.html)). Grade B. Driver: residents own the assets they depend on, so the place survives any one organisation.
+  2. **Many legal bodies, not one** — 40+ charities/businesses under the New Findhorn Association; when the Foundation Trust closed education (2023), residents bought land and assets (Nov 2024). Evidence: ([Scottish Parliament visit report](https://www.parliament.scot/-/media/files/committees/local-gov/correspondence/2025/reportonfindhornvisit.pdf); [NFA](https://www.findhorn.cc/about/)). Grade B. Plus Eko local currency (£15–20k in circulation, >£100k turnover/yr) ([Ekopia](https://www.ekopia.org.uk/investments/eko-community-currency/)), grade C.
+- Invariant hint: modularity — when the central body fails, the village does not.
+
+### Auroville (India) — only ownership/funds side
+- Kind: international township · Longevity: 58 yrs (1968) · Holon: H5 · Quadrant strongest: ITS
+- Mechanics:
+  1. **Non-ownership + stewardship + maintenance stipend** — all land/buildings held by the Auroville Foundation "in trust for humanity"; residents are stewards; those working for Auroville get a monthly "maintenance". Evidence: ([Entry Policy](https://files.auroville.org/auroville-org/Entry_Policy_-_Full_RA_approved_-_23.09.17.pdf); [FAQ economy](https://www.auroville.org/page/faq-economy)); interview study names "rejection of ownership, money and status" and shared Charter as resilience factors, and **nestedness** (Indian Parliament's 1988 Act) as what saved it after the founder's death ([Baumber et al. 2022, Ecology & Society](https://doi.org/10.5751/ES-13166-270226)). Grade A (qualitative, n=10 managers).
+- Counter-evidence: the same nesting let a state-appointed Governing Board since 2021–22 void stewardships and replace them with "permissive occupancy" for Masterplan implementation ([Auroville Media](https://auroville.media/wp-content/uploads/2025/10/Voice-of-Auroville-Issue-9-October-2025-DIGITAL_compressed-1.pdf)). Grade B/C.
+- Invariant hint: a protective outer shell is also a point of capture; who holds the title decides the future.
+
+### Twin Oaks (Virginia, USA)
+- Kind: income-sharing commune · Longevity: 59 yrs (1967); ~85 adults + 15 children · Holon: H4 · Quadrant strongest: ITS
+- Mechanics:
+  1. **Labor-credit system** — 1 hour of any work = 1 credit; quota ~38.5–43/week; ~100 work areas, chosen by members; hours budgeted by vote. Evidence: ethnography ([Social Analysis 2022](https://www.berghahnjournals.com/view/journals/social-analysis/66/3/sa660302.xml)); members and ex-members asked why it survived "to a person" answered "the labor system is the secret" ([C-VILLE 2007](https://c-ville.com/making_a_living/)). Grade B. Driver: a transparent, equal unit of contribution removes the freeloader suspicion that killed The Farm's communal phase.
+  2. **3-week visitor program as gate** — required before applying; one month away afterwards before decision. Evidence: ([Twin Oaks](https://www.twinoaks.org/twinoaks-visits-60/visit-tour/visitor-program)). Grade C. Driver: both sides test fit through lived work, then decide cold.
+  3. **Collective businesses (hammocks, tofu, seeds, indexing)** and a federation of sister communities (Acorn, FEC). Evidence: ([FEC](https://www.thefec.org/communities/twin-oaks/)). Grade C.
+- Invariant hint: one shared unit of value that everyone can see and audit.
+
+### The Farm (Tennessee, USA)
+- Kind: spiritual commune → cooperative · Longevity: 55 yrs (1971); peak 1,200+ (1980), ~200–250 since 1985 · Holon: H4 · Quadrant strongest: ITS
+- Mechanics:
+  1. **"The Changeover" (1983): commune → dues cooperative** — at crisis the community took in ~$6k/week while spending $10k, with >$400k debt; it moved to a real board, voted a line-item budget, split it into ~$100/adult/month dues + $35 debt levy, privatized businesses to their managers. Debt-free within 4 years. Evidence: insider account ([Stevenson, Communities 2017](https://thefarmcommunity.com/why-the-farm-survived)); [Tennessee Encyclopedia](https://tennesseeencyclopedia.net/entries/the-farm/). Grade B. Driver: visible prices and personal accountability replaced invisible subsidy; the land stayed common.
+  2. **Outward missions that carry the name** — Plenty International (1974) relief arm; the Farm midwives (Ina May Gaskin) delivered 1,250+ births and built a college. Evidence: ([Plenty](https://plenty.org/history); [Sun Magazine](https://www.thesunmagazine.org/articles/21290-the-end-of-a-sixties-dream)). Grade B. Driver: a craft valued outside gives members income and status beyond the village.
+- Invariant hint: keep the commons shared, make contributions individual and visible.
+
+### Crystal Waters (Queensland, Australia)
+- Kind: permaculture village (legal subdivision) · Longevity: 38 yrs (1987/88); ~250 residents · Holon: H4 · Quadrant strongest: ITS
+- Mechanics:
+  1. **Private plots + common land via body corporate** — 83 freehold one-acre lots on 20% of 259 ha; the best 80% held in common and licensed to residents for farming/forestry; by-laws bind land use. First rural body corporate approved in Queensland. Evidence: ([Crystal Waters](https://crystalwaters.org.au/about/cw-history-and-background); [ABC 2018](https://www.abc.net.au/news/2018-07-03/crystal-waters-eco-village-celebrates-30-years/9929342)); 1996 World Habitat Award ([World Habitat](https://world-habitat.org/awards/winners/crystal-waters-permaculture-village)). Grade B. Driver: ordinary property law gives security and bankability; the commons gives the shared project.
+  2. **Two bodies: property (Body Corporate) vs social (Co-op)** — and an annual PDC course, monthly markets as outward flow; children return to raise families there. Evidence: ([GEN Australia 2025](https://www.genaustralia.org.au/2025/09/05/crystal-waters-37-years-of-living-permaculture)). Grade C.
+- Invariant hint: separate the legal container from the social life.
+
+### Earthaven (North Carolina, USA)
+- Kind: aspiring ecovillage · Longevity: 31 yrs (1994/95); ~75 adults + 25 children · Holon: H4 · Quadrant strongest: WE
+- Mechanics:
+  1. **Limiting the block** — after 18 yrs of unanimity, 2012 rule: a block is invalid if 85% of Council say so; valid blocks trigger up to 3 joint meetings to co-write a new proposal; 2014 removed blocking altogether (unanimity kept only for admitting members). Evidence: ([Christian, Earthaven 2013](https://www.earthaven.org/governance-and-legal/earthavens-new-decision-making-method/); [FIC 2014](https://www.ic.org/communiversity-library/article/radical-governance-changes-in-two-north-american-ecovillages/)); observers report "a more relaxed, cooperative atmosphere" ([FIC dispatch](https://www.ic.org/communiversity-library/article/in-community-on-the-road-dispatch-2-earthaven-ecovillage/)). Grade C.
+  2. **Pods (neighborhood legal entities) under an HOA** — fixed after a 2010–2019 legal restructuring with a membership moratorium; seven new members joined within six months of reopening. Evidence: ([Legal at Last](https://www.earthaven.org/governance-and-legal/legal-at-last/)). Grade C.
+- Invariant hint: protect the group from a single veto, but keep the veto at the gate.
+
+### Svanholm (Denmark)
+- Kind: large collective with organic estate · Longevity: 48 yrs (1978); ~130–140 people · Holon: H4 · Quadrant strongest: ITS
+- Mechanics:
+  1. **80/20 shared economy** — 80% of every member's income (in- or out-side jobs) goes to one fund covering tax, rent, food; 20% private (now a "40-40-20" scheme). Evidence: ([GEN](https://ecovillage.org/map/community/svanholm/); [Green Power Denmark 2025](https://greenpowerdenmark.dk/nyheder/46-aar-naturens-tjeneste); [Svanholm info](https://svanholm.dk/wp-content/uploads/2026/02/INFO-TIL-NYE-SVANHOLMERE.pdf)). Grade B. Driver: pooling without full communism; members keep a private zone.
+  2. **Common meeting as top authority + autonomous working groups within an annual budget**, consensus without veto ("the right to be heard, the duty to find a solution all can live with"). Evidence: peer-reviewed case ([Int. J. Leadership in Education 1998](https://doi.org/10.1080/1360312980010403)); [bofaellesskab.dk](https://bofaellesskab.dk/bofaellesskaber/bofaellesskaber/729-svanholm). Grade A/B. Outcome: 30% of members have lived there 30+ yrs; 9 founders remain (2019) ([Expedition Ecovillage](https://expeditionecovillage.home.blog/2019/03/12/ideological-community-life-in-svanholm/), C); its farmers helped set Danish organic standards.
+- Invariant hint: a shared purse with a guaranteed private margin.
+
+### Dancing Rabbit (Missouri, USA)
+- Kind: ecovillage · Longevity: 29 yrs (1997); ~50–60 people · Holon: H4 · Quadrant strongest: ITS
+- Mechanics:
+  1. **Binding ecological covenants** — no personal motor vehicles on site, no fossil fuels for heating/cooling/refrigeration/vehicles, organic-only land use; a vehicle co-op instead. Evidence: per-capita use <10% of average American in most categories ([Boyer 2016, Sustainability: Science, Practice & Policy](https://www.tandfonline.com/doi/10.1080/15487733.2016.11908153); [Lockyer report](https://www.atu.edu/research/facultyresearchgrants/14-15/Lockyer-FinalReport-Evaluating%20Progress%20Toward%20Sustainability%20Goals%20at%20Dancing%20Rabbit%20Ecovillage.pdf)); 2025 re-audit: 75–80% fewer miles driven ([DR 2025](https://www.dancingrabbit.org/newsletter/what-happened-in-2025/)). Grade A. Driver: a few hard, non-negotiable rules make the low-impact choice the default practice, not a daily willpower test.
+  2. **Visitor session → letter of intent → resident → member (dues, can lease land)** — graded rights. Evidence: ([DR](https://www.dancingrabbit.org/ecovillage-life/residency-membership); [Communal Societies case](https://scholarworks.gvsu.edu/cgi/viewcontent.cgi?article=1213&context=communalsocieties)). Grade C.
+- Invariant hint: few bright-line rules set at founding beat many soft norms.
+
+### Global Ecovillage Network (GEN)
+- Kind: network of villages · Longevity: 31 yrs (1995, founded at a 400-person Findhorn conference) · Holon: H5 · Quadrant strongest: ITS
+- Mechanics:
+  1. **Regional hubs hosted by mature villages** — first nodes at The Farm (Americas), Lebensgarten (Europe/Africa), Crystal Waters (Asia/Oceania), seed-funded 5 yrs by Gaia Trust; UN Habitat II 1996 presence; ECOSOC status. Evidence: ([Gaia Education history](https://www.gaiaeducation.org/blog/76984-the-evolution-of-gaia-education)); 2024: 252 new ecovillages joined, 1,295 mapped, 135 countries ([GEN COP30](https://ecovillage.org/resources-library/article/global-ecovillage-network-at-cop30-belem-2025/)). Grade C (self-reported).
+  2. **A licensed, replicable course (EDE, 2005)** — month-long ~125 h, 4 dimensions (social, ecological, economic, worldview); graduates encouraged to run their own. Evidence: 380+ EDEs by 111 host sites, 26,000+ people, 55 countries ([CoFSA case](https://consciousfoodsystems.org/wp-content/uploads/2025/10/2024_CoFSA_Case-Study_Global_Gaia-Education.pdf)). Grade C. Driver: the curriculum travels without the village; each graduate is a potential new node.
+- Invariant hint: the network grows through a teachable format plus host nodes, not a central HQ.
+
+### Cross-class research notes (grade A/B on longevity)
+- FIC data, N=454 US communes: survival 1995–2000 predicted by population size, owning the land, and age; religion had no direct effect once controlled ([J. Sci. Study of Religion 2006](https://onlinelibrary.wiley.com/doi/10.1111/j.1468-5906.2006.00006.x)). Grade A.
+- Living ICs survey: decision-making structure mattered more than any other factor for reported success ([Sociological Spectrum 2019](https://doi.org/10.1080/02732173.2019.1645063)). Grade A.
+- Centralized power and membership costs (fees/dues) both positively related to survival ([Communal Societies, life-spans](https://scholarworks.gvsu.edu/cgi/viewcontent.cgi?article=1615&context=communalsocieties)). Grade B.
+- 70 established ecovillages: intangible resources (participatory decision-making, shared vision, shared ownership, non-monetary exchange) mattered more than physical assets ([Community Development Journal 2026](https://academic.oup.com/cdj/advance-article-abstract/doi/10.1093/cdj/bsag014/8663128)). Grade A (abstract only read).
+- High-turnover communes stay stable through a core of permanent long-term members holding institutional memory ([J. Study of Radicalism 2012](https://doi.org/10.1353/jsr.2012.0005)). Grade B.
+
+---
+
+**New / emerging (picked for momentum in 2024–26)**
+Why these: each tests a new answer to "how does a place-based community form now": (a) subscription society with daily ritual (Network School), (b) recurring month-long pop-up funded by tickets (Edge City), (c) legal jurisdiction + digital residency (Próspera/Infinita), (d) developer-built "amenities before houses" (Nuanu), (e) a well-funded network city that wound down (Cabin, as counter-case). Skipped: Praxis (no verified operating settlement found), Traditional Dream Factory (no data found in this pass).
+
+### Network School (Balaji Srinivasan)
+- Kind: subscription co-living "startup society" · Longevity: 2 yrs (Sept 2024) · Holon: H4 · Quadrant strongest: WE
+- Mechanics:
+  1. **Daily ritual stack "Learn, Burn, Earn, Fun" bundled into one fee** — US$1,500–3,000/mo: room, 3 meals, gym, lectures, hackathons; morning group workout logged by a daily "burn" NFT scanned at the gym. Evidence: ([Straits Times](https://www.straitstimes.com/asia/se-asia/ghost-city-true-believers-and-an-israeli-row-inside-network-school-the-tech-commune-dividing-johor); [Brooklyn Rail](https://brooklynrail.org/2026/10/field-notes/how-to-ship-a-state/)). Grade B. Driver: the healthy, productive choice is the default of the environment.
+  2. **Scarce first cohort → rolling growth** — 4,000+ applications for 128 places (v1, ~3%), v2 256 year-long, ~550 on site in May 2026, half long-termers. Evidence: ([InsideASEAN](https://insideasean.com/malaysia/network-school-forest-city-shutdown-johor-sfz-lesson/); [Parallel Citizen](https://www.parallelcitizen.xyz/p/ns-2026)). Grade C.
+- Counter-evidence: Malaysian authorities revoked the licence (~22 July 2026); NS reopened in Astana, Kazakhstan within a month ([CNA](https://www.channelnewsasia.com/asia/network-school-johor-forest-school-closure-6270371); [Business Insider](https://www.businessinsider.com/balaji-srinivasan-network-school-reopen-kazakhstan-2026-8)). The community proved portable; the place was rented and politically exposed.
+- Invariant hint: a community bound by ritual and network can relocate; one without its own land cannot stay.
+
+### Edge City (post-Zuzalu pop-up villages)
+- Kind: recurring month-long pop-up village network · Longevity: 3 yrs (2023/24) · Holon: H4 → H5 · Quadrant strongest: WE
+- Mechanics:
+  1. **Ticket-funded nonprofit, same place each year** — Edge Esmeralda (Healdsburg): 1,300 visitors in 2024 (~200 full month), 850 residents from 66 countries + 80 kids in 2025; ticket revenue intended to cover ~$2M costs. Evidence: ([Edge City](https://www.edgecity.live/blog/edge-esmeralda-2025-month-in-review); [Supernuclear](https://supernuclear.substack.com/p/case-study-edge-esmeralda); [tickets FAQ](https://edgeesmeralda2025.substack.com/p/tickets-for-edge-esmeralda-2025)). Grade C. Driver: annual return to one town builds local ties and a path toward a permanent town.
+  2. **Thematic residencies + local inclusion** — Patagonia 2025: 11 residencies, 700+ sessions, 150+ local participants, 50 local kids weekly. Evidence: ([Edge City Patagonia](https://www.edgecity.live/blog/edge-city-patagonia-2025-month-in-review)). Grade C.
+- Invariant hint: a fixed annual season in a fixed place turns an event into a village.
+
+### Próspera / Infinita City (Roatán, Honduras)
+- Kind: charter jurisdiction + longevity network city · Longevity: Próspera 2017/2020; Vitalia pop-up 2024 → Infinita 2025 · Holon: H4 (+ digital H5) · Quadrant strongest: ITS
+- Mechanics:
+  1. **Digital residency ahead of physical residency** — 2,262 e-residents from 40 countries and 478 companies vs ~100 physical residents (2026). Evidence: ([Limn 2026](https://limn.press/article/prosperas-stack)); zone registry 2,456 persons, 305 physical residents, verified direct jobs fell 950→409 (2024→2026) ([Próspera press note](https://www.rfsa.hn/documents/external/f90cfa35a47b-Prospera-ZEDE-Strengthens-its-Institutions_EN-.pdf)). Grade B/C. Driver: low-cost membership with an option to move later.
+  2. **Pop-up seasons feeding a permanent district** — Vitalia 2024 pop-up → Infinita with 40–50 permanent residents, ~1,000 visitors targeted per season; 300+ at Feb–Mar 2026 games. Evidence: ([Infinita Manifesto](https://www.infinitatimes.com/p/infinita-manifesto-20); [Infinita April '26](https://www.infinitatimes.com/p/infinita-newsletter-april-26)). Grade C.
+- Counter-evidence: Honduran Supreme Court ruled ZEDEs unconstitutional (Sept 2024); status contested, ~$10.8bn claim ([New Republic](https://newrepublic.com/article/201135/vitalia-roatan-honduras-island-cheat-death)). Founders split in 2025.
+- Invariant hint: legal novelty attracts a network but leaves the place hostage to the host state.
+
+### Nuanu Creative City (Bali)
+- Kind: developer-built creative town · Longevity: started 2020, opened publicly Aug 2025 · Holon: H4 · Quadrant strongest: ITS
+- Mechanics:
+  1. **Amenities and culture before housing** — school, beach club, art park, festivals opened before most homes; 44 ha with 70% kept green; >Rp 2.4 tn (~US$150M) invested, ~$30M on infrastructure. Evidence: ([Windonesia](https://windonesia.com/article/nuanu-have-invested-rp24-trillion-to-build-nuanu-city-in-bali); [The Edge](https://theedgemalaysia.com/node/784849)); 4,000+ visitors/day (Aug 2026), 30+ venues ([Riserealbali](https://riserealbali.com/guides/nuanu-city-bali), developer-adjacent). Grade C. Driver: daily visitors create life and demand that later sell the residences (485 units in 12 projects).
+- Counter-evidence: no independent data on resident community or governance; model is real estate first.
+- Invariant hint: build the commons first, sell the private lots later.
+
+### Cabin (network city) — counter-case
+- Kind: DAO-governed network of co-living neighborhoods · Longevity: 2021–2025 (DAO wound down May 2025) · Holon: H5 · Quadrant strongest: WE
+- Mechanics:
+  1. **Graded node status by community vote** — Outposts promoted to "Neighborhoods" when meeting criteria (≥4 bedrooms, 20 Mbps) and 1,000 ₡ABIN votes; 4,200 members, 355 paying citizens, 23 locations (2023). Evidence: ([grin.io](https://grin.io/tns/); [BelongHub](https://communities.urbanodx.com/archive/cabin-neighborhoods-outposts-abin-votes)). Grade C.
+  2. **What survived: supper clubs → shared "third place" → neighbors move nearby** — 10-week neighborhood-steward accelerator, now the Neighborhood Village Project. Evidence: ([Cabin](https://paragraph.com/@cabin/network-city); [LibaD 2025](https://startofsomethingnew.substack.com/p/cabin-wandering-around-network-villages)). Grade C.
+- Counter-evidence: founders concluded "venture-backed businesses, DAOs, and community-driven networks serve different purposes"; treasury returned to token holders ([Cabin on X](https://x.com/cabindotcity/status/1920220527530225764)). "Citizenship" bundle met a "lukewarm market".
+- Invariant hint: recurring shared meals near where people already live outlast a token.
+
+---
+
+### Cross-cutting patterns in this class
+- **Governance is the main survival variable, and the winners redesigned it.** Sieben Linden (2008), ZEGG (2008), Earthaven (2012/14) all retreated from unanimity; The Farm and Damanhur moved from founder authority to boards/rotating offices. Survey data rank decision structure first for success (A).
+- **Costly, graded entry.** Visits of 1–3 weeks → trial → vote (Twin Oaks, Dancing Rabbit, Sieben Linden ⅔ vote, Tamera's 3-year path). Membership costs correlate with survival (B); the cost can be money, time or a lived work trial.
+- **Own the ground, separate the containers.** Land ownership predicts survival (A); durable places split property from social life (Crystal Waters body corporate + co-op; Findhorn's 40+ bodies and community shares). Rented or state-held ground is where newer projects broke (Network School, Próspera; Auroville's state trust).
+- **A visible, auditable unit of contribution** (Twin Oaks hour, Farm dues, Svanholm 80/20) replaces suspicion of freeloading; hidden subsidy precipitated The Farm's 1983 crisis.
+- **Small group inside a big whole + fixed-rhythm ritual.** Nucleos of 12–30, daily Forum, shared dinners, daily workout; the household/circle is where life happens, the federation is where identity lives.
+- **Spread by exportable formats, not by growth of one site.** ZEGG Forum, EDE (26k graduates), Tamera/Sieben Linden seminars, Edge City seasons, Cabin supper clubs: the method travels; villages stay at ~100–300.
+
+## IV.2 Transformational and pioneering festivals (temporary villages) (added 2026-11-22)
+
+
+Grading: A = peer-reviewed or official/third-party data (government inspection, census with confidence intervals); B = serious journalism, books, filed accounts; C = organiser's own claim, fan site, or inference. Organiser-published counts are graded C unless a third party confirms them.
+Caveat for the whole class: almost no festival has a controlled study that links its survival to one mechanic. Most "worked" claims below are inferred from longevity plus organiser data. Where the evidence is weak or points the other way, the block says so.
+
+### Burning Man (Black Rock City + Regional Network + Decompression)
+- Kind: participatory temporary city + global licensed network · Longevity: 39 years, 1986 (desert since 1990) · Holon: H5 network of villages · Quadrant strongest: WE
+- Mechanics:
+  1. **Theme camps placed for interactivity, with "good standing"** — groups get a spot in the city only if they offer daily interactivity open to all. Each camp is scored afterwards (post-playa report, MOOP record, neighbour feedback), and that score decides whether it is placed again. Evidence: criteria are official ([placement criteria](https://burningman.org/black-rock-city/camps/placement-process/criteria)). A record 1,545 theme camps were placed in 2019 ([2019 AfterBurn](https://journal.burningman.org/2019afterburn/)), C. In the 2025 Census, 85.5% returned "to feel a sense of belonging" and 56.5% "to volunteer with a theme camp or BMP department" ([BRC Census 2025](https://history.burningman.org/wp-content/uploads/report_2025_sociodemo.pdf)), A (random sample with CIs). Driver: a 5–50-person crew gives identity and obligation inside an anonymous 70k city. The reputation score makes your contribution count toward next year.
+  2. **10 Principles as a portable charter → Regional Network** — principles written in 2004 *specifically* so others could replicate the culture without central control. Local volunteers run events under a letter of agreement. Decompression parties (SF since 1999) serve as the re-entry ritual and recruiting funnel. Evidence: [10 Principles page](https://burningman.org/about-us/10-principles) (written 2004 for the Regional Network). The network grew from 3 regions to 240 volunteer Regional Contacts in 34 countries, with 96 official Regional Events and ~110k participants in 2025, more than BRC itself ([2025 AfterBurn](https://journal.burningman.org/2025-afterburn/); [Our Impact](https://burningman.org/about-us/what-we-do/our-impact/)), C. Roughly 30–37% of BRC attendees attended a regional in every year 2013–2022 ([Census 2013–22](https://volunteers.census.burningman.org/reports/2013-2022/beyond-the-burn-regionals-media-and-volunteering.html)), A. Driver: a short, quotable, values-only code is cheap to copy, and local leaders gain standing by carrying it.
+  3. **Leave No Trace as a public collective score** — a federal agency inspects the site (BLM post-event inspection, ≤1 sq ft of debris per acre at 120 test points). Volunteers then publish a colour-coded MOOP map that shows each camp's block. Evidence: passed every year. It was close in 2022 (8 test areas failed); 2023 had 11 of 120 points over and still passed ([MOOP 2022](https://journal.burningman.org/2023/03/black-rock-city/leaving-no-trace/2022-moop-maps), [MOOP 2025](https://journal.burningman.org/2026/03/black-rock-city/leaving-no-trace/moop-map-2025)), A (government test, reported by the organiser). Driver: an outside pass/fail exam that can end the permit, plus visible attribution by place, turns cleanup into shared pride and shared shame.
+- Invariant hint: small group inside a big whole, governed by a short charter anyone can copy, with a public scoreboard for shared stewardship.
+
+### Boom Festival (Portugal)
+- Kind: biennial psychedelic-culture festival on owned land · Longevity: 29 years, 1997 (biennial since 1998; Boomland bought 2016) · Holon: H4 village (a place) · Quadrant strongest: ITS
+- Mechanics:
+  1. **Full-moon biennial rhythm + no sponsors + no line-up needed** — the festival is held every two years and funded only by tickets, bar and stall rents. It publishes a financial report. Evidence: 2025 was the "7th consecutive sold-out edition, selling out in 48 hours, without even announcing a line-up" ([Letter to the Boomers 2025](https://www.boomfestival.org/news/letter-to-the-boomers-2025)), C. Visitors came from 177 countries in 2022, and tickets also sell through 63 ambassadors in 60 countries ([Yourope case](https://yourope.org/wp-content/uploads/2023/05/1-boom-festival.pdf)), C. Driver: scarcity in time (a two-year wait) plus trust that the money isn't going to sponsors makes people buy the experience, not the headliners.
+  2. **Regenerative infrastructure as identity** — compost toilets have been developed since 2006 (538 units in 2025, no water or chemicals), alongside on-site water treatment and reforestation of owned land. Evidence: Outstanding Greener Festival Awards 2008–2018, 2023 and 2025, plus the European Festival Award Green Operations 2023 ([awards](https://www.boomfestival.org/news/awards-nominations); [compost toilets](https://www.boomfestival.org/environment/compost-toilets)), B (third-party award). Driver: participants co-own a visible ethic ("leave the land healthier"), which turns rules into belonging.
+- Invariant hint: a ritual on a fixed (rare) rhythm, anchored to a place the community regenerates.
+
+### Lampu (Bali)
+- Kind: unofficial burn-style community event (Russian-speaking diaspora core) · Longevity: 4 editions, 2023 · Holon: H4 village · Quadrant strongest: WE
+- Mechanics:
+  1. **No spectator tickets: entry only through a camp or department** — you join via a team whose lead vouches that members know the principles. There is an organiser fee plus a camp fee set by the camp, and a competitive low-income quota. Evidence: rules stated on [lampu.org](https://lampu.org/). Attendance was ~700 in 2023 ("far more than expected"), C. "Over 1,000" in 2024 ([Bitcoinmoney](https://bitcoinmoney.net/balis-lampu-festival-embraces-web3-innovation-with-nft-ticketing-and-crypto/)), C. Too young to attribute survival. Driver: belonging is granted by a small group before arrival, so culture is transmitted peer-to-peer and not by marketing.
+  2. **Invite-chain onboarding through a chat** — "talk to people to get an invitation link" in the Telegram chat, then a questionnaire and a personal cabinet. Each year gets a theme (Hati ke Hati, Kontak, Kompas) ([lampu.org](https://lampu.org/)). Evidence: none beyond the organiser, C. Driver: friction plus a human sponsor filters for intent.
+- Invariant hint: admission through a sponsor-led small group, not through a box office.
+
+### Fusion Festival (Germany, Kulturkosmos Müritz e.V.)
+- Kind: non-profit association festival on a former Soviet airfield · Longevity: 29 years, 1997 (association since 1999) · Holon: H5 network of crews around one place · Quadrant strongest: ITS
+- Mechanics:
+  1. **Ticket lottery for purchase options, personalised tickets, face-value-only exchange** — register once, two draws, groups can win together, and resale happens only on the official exchange at the original price. The price has been held at €220 incl. a €10 trash deposit. Evidence: 65–70k tickets, financed solely by tickets, no advertising, no sponsors ([Deutschlandfunk Nova](https://www.deutschlandfunknova.de/beitrag/links-unkommerziell-und-super-erfolgreich-die-besonderheit-und-der-zauber-des-fusion-festivals), B; [ticket FAQ](https://tickets.fusion-festival.de/faq), C). Driver: luck feels fairer than speed or wealth, and the cohort stays mixed.
+  2. **Crew economy: volunteer time converted into funding for your own cause** — most crews (bars, build, services) are non-profit, cultural or political collectives. They earn money for their own projects outside the festival, and individuals work for ticket plus fee. Evidence: "over 200 crews", >1,000 helpers in the build-up, ~7,000 active during the festival ([fusion-festival.de](https://fusion-festival.de/de/festival); [Kulturkosmos infopage](https://kulturkosmos.de/infopage.html)), C. Organiser on record: "if your anti-repression group is looking for money, sign up with us" (Dlf Nova, B). Driver: contribution pays twice, as belonging now and as resources for a home community.
+  3. **Planned rest years** — 2027 is announced as "Fusion-free" ("Rhythmus und Veränderung") ([tickets page](https://tickets.fusion-festival.de/)), C.
+- Invariant hint: the big whole as a funding engine for many small homes; fair access by lot.
+
+### O.Z.O.R.A. (Hungary)
+- Kind: week-long psychedelic arts festival on a family farm · Longevity: 22 years annual, 2004 (seed: 1999 eclipse "Solipse") · Holon: H4 village · Quadrant strongest: ITS
+- Mechanics:
+  1. **Celestial origin → permanent home owned by a host family** — a one-off eclipse gathering led the landowner (Dániel Zimányi, d. 2018) to build an annual festival. His son now produces it, with ~15 people working year-round on organisation and site upkeep ([Telex 2022](https://telex.hu/after/2022/06/10/ozora-daad-gathering-fesztival-interju)), B. Official capacity is 30,000, but de facto 60–70k has been reported ([Wikipedia](https://en.wikipedia.org/wiki/Ozora_Festival)), C. New permanent structures are added every year ([note.com guide](https://note.com/masaakiobari/n/n7f318bfae57b)), C. Evidence that these mechanics *caused* longevity: C (inference). Driver: a returning crowd finds the "same village, a bit more built" each year, which mixes continuity with novelty.
+  2. **Global pilgrimage audience** — the large majority of attendees are foreigners, and the festival is barely known domestically (Telex, B). Driver: a journey raises commitment, and the crowd self-selects for the culture.
+- Invariant hint: a sacred-time founding moment, then a stewarded place that accretes year by year.
+
+### Envision Festival (Costa Rica)
+- Kind: music + permaculture + education festival · Longevity: 16 editions, 2011–2026; **future announced "unknown", no 2027 edition** · Holon: H4 village · Quadrant strongest: ITS
+- Mechanics:
+  1. **Land regeneration and zero single-use operations** — the site went from cattle pasture to food forest. There is a reusable dish program with no single-use cups or cutlery, and the Somos el Cambio foundation was started in 2020. Evidence: 45,000+ native trees reported ([Costa Pacifica Living](https://costapacificaliving.com/costa-rica-news/costa-rica-entertainment-culture/envision-festivals-grass-roots)), C. Growth went from 700 to 5,000 attendees and from 4 to 7 days ([El Financiero](https://www.elfinancierocr.com/negocios/luigi-jimenez-del-festival-envision-la-comunidad/CYY4DCF2TZHDXGXTPALZRABJ4Y/story/)), B. Driver: attendees see their ticket become trees and water systems, which ties a party to a purpose.
+  2. **Counter-evidence: capacity cut ("smaller by design") did not secure survival** — after the 2024 overload, the 2026 cap dropped to 5,500 (−2,000) and local hiring went up ([2026 improvements](https://www.envisionfestival.com/improvements)). Then: "the cost was unsustainable… we do not see a path to a 2027 festival" ([announcement](https://www.envisionfestival.com/)), C. Lesson: ethics and volunteer work exchange did not offset a production model that depended on an international crew and a single site.
+- Invariant hint: a purpose visible in the land; a costly production model is the binding constraint, not values.
+
+### Lightning in a Bottle (California, The Do LaB)
+- Kind: company-run transformational festival · Longevity: ~20 editions, 2004 (hiatus 2020–21) · Holon: H4 village · Quadrant strongest: IT/ITS
+- Mechanics:
+  1. **"The Village" learning layer next to the music** — talks, workshops, a Learning Kitchen and yoga sit as a co-equal zone, and participants apply to present. Evidence: program described officially ([LIB FAQ](https://www.libfestival.org/info-faq)). No outcome data, C. Driver: the attendee can arrive as a learner and leave as a teacher, which widens the reasons to return.
+  2. **Operational Leave-No-Trace with participant labour** — free water refills since 2006, mandatory pre-sorted waste stations, fees for unsorted waste, daily volunteer MOOP walks, and a Ranger corps for conflict mediation ([Dancing Astronaut 2022](https://dancingastronaut.com/2022/06/10-factors-that-make-lightning-in-a-bottle-a-one-of-a-kind-experience), C; [political.org 2026](https://political.org/2026/05/26/lightning-in-a-bottle-what-permanent-cities-can-learn-from-a-temporary-city/), C). The founders name finding a site as the biggest challenge (5 relocations) ([Press-Enterprise](https://www.pressenterprise.com/2023/05/17/lightning-in-a-bottle-celebrating-20-years-of-the-indie-music-and-arts-fest)), B. Evidence for attribution: C.
+- Invariant hint: a burner-derived ethic transplanted into a ticketed format; the place, not the culture, is the fragile part.
+
+### Shambhala Music Festival (Canada)
+- Kind: family-owned farm festival, no corporate sponsors · Longevity: 28 editions, 1998 · Holon: H4 village · Quadrant strongest: IT (body/safety) + ITS
+- Mechanics:
+  1. **Sanctioned on-site drug checking with results shown publicly** — ANKORS (a non-profit) has tested substances since 2003. Results go up on a public screen, with an amnesty bin, fentanyl strips and naloxone training. Evidence: peer-reviewed study of 2,683 checks at Shambhala, results posted live ([Can J Public Health via PMC](https://pmc.ncbi.nlm.nih.gov/articles/PMC6964406/)), A. In 2025, 4,592 samples were tested and ~7% were not what users expected ([NYT 2026](https://www.nytimes.com/2026/08/06/well/shambhala-music-festival-drugs-ketamine-ecstasy.html)), B. Government support is noted by [Billboard](https://www.billboard.com/music/music-news/shambhala-music-festival-drug-testing-2020-dance-issue-9332924/), B. Driver: non-judgmental truth-telling builds trust, and a visible screen turns private risk into shared knowledge.
+  2. **Family land + independence + "Farmily" identity** — growth from ~500 (1998) to 23,500 guests/crew/artists, no sponsorship; the farm returns to working ranch after ([About](https://shambhalamusicfestival.com/about)), C; [The Tyee](https://thetyee.ca/News/2014/05/17/Shambhala-Festival/) on winning over the host town, B.
+- Invariant hint: care infrastructure that treats people as adults; a family-held place as the stable core.
+
+### Glastonbury (UK)
+- Kind: farm-based mega-festival with charity mission · Longevity: 56 years, 1970 (most years since 1981) · Holon: H4 village (at city scale) · Quadrant strongest: ITS
+- Mechanics:
+  1. **Fallow year roughly every five years** — no festival, so the farm, the village and the organisers can rest (2026 was one). Profit is kept for the fallow year. Evidence: [BBC 2025](https://www.bbc.co.uk/news/articles/cz70l92j90vo), B. The 2024/25 accounts show £5.7m profit retained "for the 2026 fallow year" ([Spark Intel, from Companies House](https://www.spark-intel.co.uk/bright-sparks/deep-dives/glastonbury/)), B. Driver: absence renews desire, and the host community's tolerance is protected.
+  2. **Charity-volunteer exchange** — partner charities (Oxfam, WaterAid, Greenpeace) supply stewards and run fields, and the festival pays them for the volunteering plus donations. Evidence: £4.2m to 300+ organisations in 2025, of which >£2m went to the three partners as "donations and payments made in exchange for volunteering" ([official](http://www.glastonburyfestivals.co.uk/news/glastonburys-support-for-charities-and-good-causes-reaches-4-2m-in-2025/)), C. Accounts show £2.7m donated + £1.5m paid to charities for services (Spark Intel, B). Oxfam stewards have been noted since at least 2003 ([Guardian 2003](https://www.theguardian.com/music/2003/jun/13/glastonbury2003.glastonbury)), B. Driver: volunteers work for a cause they believe in, not for the promoter.
+  3. **Photo-registered, non-transferable tickets** — pre-registration with a photo printed on the ticket, checked at the gate ([2027 ticket info](https://glastonburyfestivals.co.uk/news/glastonbury-2027-ticket-information-confirmed)), C. 2027 general sale sold out in under 30 minutes ([BBC](https://www.bbc.co.uk/news/articles/cv62kp9enz08o)), B. Driver: identity-bound admission kills touting and keeps price fairness credible.
+- Invariant hint: a rest rhythm, plus labour routed through causes larger than the event.
+
+### Rainbow Gatherings (USA → worldwide)
+- Kind: leaderless, non-commercial forest gathering · Longevity: 54 years, 1972 (July 1–7 annually) · Holon: H5 network ("non-organization of non-members") · Quadrant strongest: WE
+- Mechanics:
+  1. **Council by consensus with a talking object** — open circle, a feather passed around, no interruptions; Main Council is "the only time decisions affecting the Gathering can be made" (Rainbow Guide quoted in [US v. Kalb, 2000](https://law.justia.com/cases/federal/district-courts/FSupp2/86/509/2398546)), B; [Mini-Manual](https://www.welcomehome.org/info/mini-manual.html), C. Driver: being heard without interruption confers equal dignity, which legitimises decisions without officers.
+  2. **Shanti Sena — everyone is the peace force** — "you do not call the Shanti Sena, you become the Shanti Sena". Conflict is handled by crowd presence, chanting and listening. Evidence: ethnographic and government-document study finds these methods effective and less violent than police approaches ([Niman 2011, Contemporary Justice Review](https://www.tandfonline.com/doi/full/10.1080/10282580.2011.541077)), A. Driver: distributed responsibility plus social capital replaces enforcement.
+  3. **Magic Hat — pooled voluntary money, no commerce** — the only cash solicitation, pay-what-you-wish, which funds shared kitchens and supplies ([welcomehome.org](https://www.welcomehome.org/media/newyork.txt)), C; consensus and non-commerce documented in Niman's monograph ([People of the Rainbow, UT Press](https://utpress.org/9781572337466/people-of-the-rainbow/)), B.
+- Invariant hint: authority held by the circle; safety held by everyone; money pooled, never priced.
+
+### Nowhere (Spain) — regional burn, ended 2026
+- Kind: official Burning Man regional, all-volunteer · Longevity: 2004–2025 (discontinued 2026) · Holon: H4 village · Quadrant strongest: WE
+- Mechanics:
+  1. **Do-ocracy + shift system for every participant (FIST)** — no hired workforce except transport/logistics, nobody paid, no free tickets (artists and organisers included), and the books are open ([Wikipedia](https://en.wikipedia.org/wiki/Nowhere_(event)), C; [financial reports](https://www.goingnowhere.org/event/financial-reports/), C). Evidence of the mechanic working: cap raised from 1,500 to 2,000 (2016), then ~3,600 in 2018–19 ([BM Journal 2016](https://journal.burningman.org/2016/07/global-network/regionals/europes-13th-nowhere-takes-big-steps-into-the-future)), C.
+  2. **Counter-evidence: decline and closure** — participation fell every year after 2019 (2,670 in 2023) and the event was discontinued in 2026 (Wikipedia, C). Its 2024 financial report shows €154k VAT on €758k gross revenue, ~20% lost to the "default world" tax regime ([2024 report](https://www.goingnowhere.org/wp-content/uploads/2026/05/2024-Nowhere-Financial-Report.pdf)), C. Successor: Elsewhere (see below). Lesson: an all-volunteer core without an ownership/governance renewal path can wear out even with sound principles (inference, C).
+- Invariant hint: the volunteer engine requires a renewal mechanism for its leaders, not just for its participants.
+
+### Midburn (Israel) — regional burn
+- Kind: official regional burn in the Negev · Longevity: community 2011, recognised 2013, events from 2014 · Holon: H4 village · Quadrant strongest: WE
+- Mechanics:
+  1. **Community before event** — it started as beach gatherings of returning burners (2011). The group then built an art piece at BRC ("Hand of Inspiration") as its first collective project, before running its own event ([midburn.org](https://www.midburn.org/en/onmidburn)), C. Growth: 2,876 participants/40 camps (2014) → 8,264/130 camps (2016) → ~12,000 (2018), at the time the largest regional ([BM Journal 2015](https://journal.burningman.org/2015/01/global-network/regionals/midburn-2015-seeking-transcendence-at-the-israel-regional-burn), [2016](https://journal.burningman.org/2016/07/global-network/regionals/the-transformational-dance-between-midburn-and-israeli-society), C; [Pacific Standard](https://psmag.com/magazine/burning-mensch-inside-middle-east-version-of-burning-man/), B). Driver: shared making builds a crew before strangers arrive.
+  2. **Translating the principles to authorities** — after a 2015 court order to halt the build, organisers negotiated compromises in court and recruited a former police officer to explain "no spectators, no consumers" to licensing officials ([BM Journal 2015](https://journal.burningman.org/2015/06/global-network/regionals/midburn-2015-the-burn-that-almost-didnt/), C; [Israel21c](https://www.israel21c.org/midburn-the-freedom-to-be-different), B; [Schusterman](https://www.schusterman.org/article/feeling-the-burn-an-insiders-perspective-of-midburn-israels-version-of-burning-man), C).
+- Invariant hint: the crew forms through a shared project first; a boundary-spanner speaks the host society's language.
+
+### Rainbow Serpent / Rainbow Spirit (Australia)
+- Kind: bush "doof" arts and music festival on a farm · Longevity: 1998–2019, paused, returned 2026 renamed · Holon: H4 village · Quadrant strongest: WE
+- Mechanics:
+  1. **Opening ceremony led by Traditional Owners** — Welcome to Country, smoking ceremony and song by Wadawurrung and Dja Dja Wurrung people at the main-stage opening ([2011 guide](https://wildscribe.com.au/wp-content/uploads/2019/04/rsf11_ga0012_campsite_hr2.pdf), C; [scenestr 2016](https://scenestr.com.au/music/rainbow-serpent-unleashes-epic-2017-line-up-20160706), C). In 2023 the festival was renamed after discussion with Traditional Owners to stop appropriating a Dreamtime story ([ABC](https://www.abc.net.au/news/2023-07-06/rainbow-serpent-music-festival-renamed-rainbow-spirit-festival/102570150)), B. Driver: entering with permission from the land's custodians frames the whole event as a guest rite.
+  2. **Host-town co-benefit** — the Lexton community barbecue runs 24h during the festival with 180+ local volunteers and raises >$50k for community groups. The local store says it would not exist without the event ([The Courier 2019](https://www.thecourier.com.au/story/5862115/town-embraces-rainbow-colours-as-festival-brings-more-than-economic-benefits)), B. Growth went from 300 (1998) to ~16,000–18,000 ([The Age 2017](https://www.theage.com.au/national/victoria/just-one-more-track-grandma-tilda-finds-her-groove-at-rainbow-serpent-festival-20170125-gtyn9c.html)), B.
+- Invariant hint: permission from the place's elders, and a town that profits from hosting.
+
+### Symbiosis Gathering / Oregon Eclipse 2017 (USA)
+- Kind: one-off consortium production around a total solar eclipse · Longevity: Symbiosis 2005–2019; Oregon Eclipse single edition 2017 · Holon: H5 network of festivals · Quadrant strongest: ITS
+- Mechanics:
+  1. **Co-production by a consortium of festivals** — 12–14 festivals pooled crews and brands for one event: Symbiosis, LIB, Envision, Rainbow Serpent, Bass Coast, Origin, Universo Paralello, Hadra, Re:Birth and others. Evidence: ~30,000 attendees for 7 days, the largest organised event in Crook County history, with the county doubling its cap to 30k ([Bend Bulletin](https://bendbulletin.com/2017/04/23/30000-person-festival-approved-in-crook-county), B; [OPB](https://www.opb.org/radio/article/oregon-eclipse-festival-symbiosis-big-summit-prairie), B). It spawned a new organisation, Global Eclipse Gathering ([Symbiosis](https://symbiosisgathering.com/oregon-eclipse/)), C. Driver: each scene brings its own trusted crowd and crew, so the whole gets instant critical mass.
+  2. **A natural event as fixed date and shared focus** — "one of the only times thousands of people will be focusing on the same thing" (organiser, [Bend Bulletin](https://bendbulletin.com/2017/03/12/30000-people-expected-for-solar-eclipse-party)), B. The concept was planned from 2006, 11 years ahead (YourEDM, C). Same seed as Ozora 1999.
+- Invariant hint: many villages federate for one rare moment; the sky sets the calendar.
+
+### Self-selected 1: The Borderland (Sweden/Denmark) — why: most advanced participatory-budgeting tooling in the burn world
+- Kind: regional burn run by members, with open-source co-funding tools · Longevity: ~2012 to present · Holon: H4 village with H5 tools · Quadrant strongest: WE/ITS
+- Mechanics:
+  1. **Dreams: members allocate the art budget themselves** — every member gets a share of the grant pot to fund other people's project "buckets" (all-or-nothing). Unspent funds are redistributed in three rounds, introduced because only 40–60% used to be spent. 33% is earmarked for large or permanent art (Fund 33). Evidence: ~half of a ~9M SEK 2026 budget goes to Dream grants, "more than any other burn" ([Borderland](https://talk.theborderland.se/main)), C. Rules are on the [Dreams 2023 page](https://cobudget.com/borderland/dreams-2023/about), C. Participation stayed high as the event tripled in three years to 3,210 co-creators, and the tools spread to ≥5 other events ([CCC Camp 2019 talk](https://media.ccc.de/v/Camp2019-10204-participatory_art_event_tools_co-creation_and_silk_road_networks)), C. Driver: giving money to others' dreams creates ownership and an early web of ties before the event.
+  2. **Realities + advice process** — responsibilities are mapped publicly (who holds what), and decisions go through an advice process, not a board (Fund 33 itself was created by an advice process) ([fund33](https://fund33.theborderland.se/)), C.
+- Invariant hint: distribute decision power by distributing the budget.
+
+### Self-selected 2: Elsewhere (Spain, Nobodies Collective) — why: newest (2026); a rebuild that answers Nowhere's failure mode with earned membership
+- Kind: official regional burn run by a member-governed non-profit · Longevity: 1 edition, 2026 · Holon: H4 village · Quadrant strongest: WE
+- Mechanics:
+  1. **Membership earned by leading** — anyone who has led an area or a barrio for at least one year can apply to become a voting member. Members elect the board at a General Assembly, and board notes are published ([nobodies.team](https://nobodies.team/)), C. Driver: voice is granted to those who carried responsibility, which creates a path from participant to owner.
+  2. **Every ticket holder volunteers; "VIP" = Voluntarily Inflated Price** — no free entry for anyone. Higher-priced tickets carry no perks and subsidise low-income tickets and art. There are also local-resident discounts (same source), C. Evidence of results: none yet (first edition completed, site "Left No Trace" per organiser), C.
+- Invariant hint: status granted by peers for responsibility carried; generosity as a ticket tier.
+
+### Self-selected 3: AfrikaBurn (South Africa) — why: largest regional, Global South, and it pushes grants outward into the "default world"
+- Kind: official regional burn in the Tankwa Karoo · Longevity: 19 years, 2007 · Holon: H5 (event + national grant network) · Quadrant strongest: WE/ITS
+- Mechanics:
+  1. **Members set the art-grant pot; Spark Grants fund community projects outside the event** — 11 default-world projects in townships and towns are selected each year by a volunteer panel ([2025 Annual Report](https://www.afrikaburn.org/wp-content/uploads/2026/03/2025-ANNUAL-REPORT-AFRIKABURN-AU.pdf); [grants policy](https://www.afrikaburn.org/creative-grants-policy/)), C. Scale in 2025: 10,782 participants from 107 countries, 1,073 volunteers, 109 theme camps, ~174 mutant vehicles. It was the largest regional event in 2023 and 2025 per Burning Man Project ([Dispatch 2023](https://dispatch2023.burningman.org/regional-network)), C.
+  2. **Mutant vehicles licensed only if they invite participation** — a "DMV" refuses anything that still looks like a car ([mutant vehicles](https://www.afrikaburn.org/event/participation/mutant-vehicles/)), C. Survey finding: volunteer *numbers* are falling while volunteer *hours* rise, so "fewer participants did more" ([2025 survey](https://www.afrikaburn.org/wp-content/uploads/2025/09/2025-AfrikaBurn-Survey-Results-2.pdf)), C. This is a warning sign of core burnout.
+- Invariant hint: the temporary village exports its gift economy to permanent communities.
+
+### Cross-cutting patterns in this class
+- **Belonging via a small crew, not a ticket.** Theme camps, barrios, Fusion crews, Lampu's camp-only entry, and Midburn's pre-event art build all place each person in a group of roughly 5–50 inside the big whole. The strongest quantitative signal in the class is Burning Man's Census: belonging is the #1 reason to return (85.5%, A).
+- **A short, copyable charter enables spread without a center.** The 10 Principles were written in 2004 *for* replication. They now carry ~100 official regionals (and unofficial ones like Lampu) with more participants than the mother event. Spread runs through volunteer local leads plus a light license.
+- **Rhythm and rest.** Boom's biennial full moon, Glastonbury's fallow year, Fusion's 2027 pause, and eclipse-anchored one-offs (Ozora 1999, Oregon 2017) all use scarcity in time to renew desire and protect land and hosts.
+- **Fair, identity-bound access protects the culture.** Fusion's lottery with face-value exchange, Glastonbury's photo tickets, Burning Man's low-income and directed sales, and Elsewhere's "Voluntarily Inflated Price" decouple belonging from speed or wealth.
+- **Public stewardship scoreboards.** The BLM pass/fail inspection with a public MOOP map, Shambhala's drug-check screen, and Boom's eco reports all make the shared commons visible and attributable, so care becomes social. The evidence is strongest here (A grades: BLM inspection, peer-reviewed drug-checking study).
+- **Failure mode: volunteer-core and production-cost exhaustion, not loss of values.** Nowhere ended (2026) after six years of decline. Envision paused because costs were unsustainable. AfrikaBurn sees fewer volunteers doing more hours. The newest designs (Elsewhere's earned membership, Borderland's distributed budget) try to answer this by moving ownership to those who carry the work.
