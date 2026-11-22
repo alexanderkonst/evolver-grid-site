@@ -12,6 +12,7 @@ Key documents and this moon: [golden_age_canon.md §0](./golden_age_canon.md) (t
 | [GoBY §24](./game_of_being_you.md): mechanics list | project «Модуль 1.1: Синтез механик знаковых игр» |
 | [biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) | project «Биологические часы Equilibrium» |
 | Circles (our own Luma), spec when written | project «Круги в GoBY» |
+| [source-integration.md](../templates/source-integration.md) (v2.0) and the knowledge intake stream | project «Интейк знаний в проект» |
 
 **Write rule for every project.** Read the file fresh from the GitHub API right before editing (never raw.githubusercontent.com: it served a stale copy and a row was lost on 2026-11-21). Commit on the current head. After the commit, compare it with the parent and check that only your lines changed.
 
