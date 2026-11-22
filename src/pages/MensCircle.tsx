@@ -720,7 +720,7 @@ const MensCircle = () => {
             <BulletItem>не "покурить с пацанами" и не вечеринка;</BulletItem>
             <BulletItem>не соревнование "кто круче / осознаннее / прожареннее";</BulletItem>
             <BulletItem>не психотерапия, не диагностика и не медицинский сервис;</BulletItem>
-            <BulletItem>не попытка завербовать тебя в веру, систему или культ.</BulletItem>
+            <BulletItem>не попытка завербовать тебя в веру или систему.</BulletItem>
           </div>
 
           <div className="pt-6 md:pt-8 text-center">
