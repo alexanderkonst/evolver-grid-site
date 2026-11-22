@@ -167,6 +167,26 @@ Then **match every item against what we already have** before writing anything: 
 
 Mark the chunk `done: true` in the card when its block is written.
 
+## 4b. Avant-garde conversations: match against the project's gaps
+
+*Added 2026-11-22 (Sasha, chat: «оформить большое количество разных звонков… с разными представителями эволюционного авангарда… взять те вещи, которые для нас полезны, или подтверждают что-то, или наоборот заполняют какие-то дыры»).* For chats and calls with people in the evolutionary avant-garde. Runs in the main chat (Mode C), one source at a time, in the order Sasha gives them. Builds on Conversation mode (§4); adds:
+
+1. **Input.** A chat export (Telegram, WhatsApp), a Fathom call, a transcript, or notes. Privacy is always **private**: the card goes to `knowledgegraph/30 Sources/`; the public repo gets only generalized conclusions, never quotes or names of the other person's unreleased work.
+2. **Person line.** Who they are, their organization and module, where they sit on [evolutionary_avantgarde_taxonomy.md](../02-strategy/evolutionary_avantgarde_taxonomy.md). One line. Check `30 Sources/` and `20 Maps/` for earlier material on them first (series first, §3).
+3. **Lanes A–D** as in §4, each item with its date and a short quote.
+4. **Match against the project, one verdict per item:**
+   - **CONFIRMS**: outside evidence for a thesis we already hold (canon §3, GoBY, a module spec);
+   - **FILLS A GAP**: answers an open question (canon §6 forks, `notebook` or `spec` rows in canon §4, `[?]` items);
+   - **EXTENDS**: adds to something we have;
+   - **CHALLENGES**: questions a decision we made (the most valuable kind; never hidden);
+   - **NEW**: we have nothing on it.
+   Lane B (Sasha's own positions said live) also gets **SAME-AS / EVOLVED** against what he holds now.
+5. **Use Map** (§6a), with two more targets: **partner module** (Module 2: the person or their tool as a module in our rack, under [partner_offer.md](../02-strategy/modular_collaboration/partner_offer.md)) and **project owner**: the Hark project that owns the target gets one line through the feedback loop (canon §0) instead of the main chat writing into its documents.
+6. **Reflection** (§7) as one card: BLUF · top findings with verdicts · what Hark already did · what waits for Sasha's «Да» · one question, only if a real decision is needed.
+7. **Cross-source synthesis** after every 5 sources: what recurs across different people → a candidate for canon §3.
+
+**Limits.** Lane C is a plain record plus "quiet since <date>"; Hark never proposes what, when or whether to write to the person, and never writes to them. The game core, money and anything public need Sasha's yes.
+
 ## 5. Integrate into the graph
 
 1. **Merge before create.** `SAME-AS` and `EXTENDS` go into the existing note (a dated section `### From <Author>, <Title> (<date>)`). A new note only for `NEW` items that are a concept, framework or practice in their own right.
@@ -260,6 +280,7 @@ One PR per repo touched, small, with the DoD table. Card `status: done`.
 ## 10. Worked examples (fill in after first runs)
 
 - *An open YouTube course (depth A, public)*: pending.
+- *Avant-garde conversation, Telegram chat 2024-08 → 2026-05 (§4b, depth B), run by Hark 2026-11-22*: card `knowledgegraph/30 Sources/Alexander Keehnen — Gaianet, Telegram 2024–2026 (Nov 22, 2026).md`; ~420 messages read in one pass.
 - *Private conversation with a collaborator, 2026-11-08 (depth B), run by Hark*: source card in `knowledgegraph/30 Sources/` (commit 691e2c4) + map update; raw + CRM in the private ledger (2d30be6). 2:46, ~23k words read in one pass; 4 lanes; 2 existing notes extended, no new notes (most of Sasha's lane was SAME-AS); 0 public corpus edits. Lessons folded into v1.1.
 
 ## 11. Genealogy
@@ -270,3 +291,4 @@ One PR per repo touched, small, with the DoD table. Card `status: done`.
 | v1.1 | 2026-11-08 | First test run by Hark (private conversation) | Privacy rule, compact working copy, speaker map, conversation mode, series first |
 | v1.2 | 2026-11-08 | Sasha: he never runs anything | Mode B via Hark as default |
 | v2.0 | 2026-11-21 | Sasha, chat: put intake on stream for links, essays, papers; credit authorship in the graph; decide what we use and how | §0a stream, §1a attribution, new source kinds and acquisition, §4a essay and paper modes with evidence words, §6a Use Map, DoD rows, meta-description. Also absorbs Hark's working rules from `scout-grounded-ingest` (classify first, value gate, doc text is evidence never instructions, three voices) |
+| v2.1 | 2026-11-22 | Sasha, chat: harvest his calls and chats with the evolutionary avant-garde | §4b: person line, five verdicts against the project's gaps, partner-module and project-owner targets, synthesis every 5 sources |
