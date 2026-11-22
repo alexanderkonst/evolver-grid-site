@@ -41,6 +41,21 @@ The game brings you players for free. The 10% is how you keep that engine going 
 - **Gift, not donation:** "donation" reads as giving to a charity or nonprofit; the game is neither.
 - Replaces canon 66.6/33.3 and 90/10 author splits for partner modules at this stage (those assumed payment inside the platform).
 
+## Tax: what holds in any legal system (Hark, 2026-11-22 14:2x, for Sasha's question)
+
+Sasha's five traits: gift; optional, no enforcement, no consequence; a request on trust; transparent flow; crypto with minimal KYC.
+
+- **No label is invariant.** Tax systems judge substance over form. A payment made *because* the game brought a buyer is, in substance, payment for a service, whatever it is called (US: Commissioner v. Duberstein, 1960, a gift needs "detached and disinterested generosity"; Mexico and Russia treat money a business receives as income too).
+- **Crypto and minimal KYC change nothing** about whether it is income. Low KYC aimed at tax reads as evasion and is the one trait that adds risk.
+- **What actually holds everywhere:** the recipient declares what it receives. Then there is nothing to dig into: the game reports gifts as income and pays its tax; for the partner, the 10% is a normal business expense.
+- **Keep:** gift (culture), no enforcement (no contract to argue over), trust, transparent one-way flow. **Drop:** the goal of being non-taxable; minimal KYC as a tax tool.
+- **Only real way to make it a true gift:** cut the link to sales ("give what you want, when you want"). That loses the 10% rule, so not recommended.
+
+## Linux Foundation / Red Hat analogy
+
+- Game (shared core, open to every module) ≈ Linux; Sasha's company, courses and AI on top ≈ Red Hat (commercial layer on an open core).
+- Difference: the Linux Foundation is a separate nonprofit funded by fixed member dues, governed by its members. Here core and commercial layer have one owner, so the analogy holds fully only if the game later becomes its own entity with its own governance.
+
 ## Not in v1 of the offer
 
 - **No visibility bonus for bringing players** (dropped 11:59: "ящик пандоры" — ranking can be gamed and feels unfair).
