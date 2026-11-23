@@ -1,32 +1,32 @@
 /**
- * /bring-your-module: partner intake form «Bring your module» (issue #383).
+ * /bring-your-module: short partner intake form «Bring your module» (issues #383, #404).
  * Spec: docs/02-strategy/modular_collaboration/partner_intake.md; terms wording from partner_offer.md v2.1.
  *
  * Not linked from any screen: it becomes reachable when the public page goes live (Sasha's yes).
- * Submit inserts a row into `partner_submissions`. While that table is not deployed the insert
- * fails, and the form falls back to a prefilled email so it never dead-ends.
+ * Submit inserts one row into `partner_submissions`, then pings the `notify-partner-submission`
+ * edge function (fire-and-forget) so Sasha is emailed at once. If the insert fails, the form
+ * falls back to a prefilled email so it never dead-ends.
  */
 import { useState, type CSSProperties, type FormEvent } from "react";
-import { Plus, Trash2 } from "lucide-react";
 import SEO from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/integrations/supabase/client";
 import {
-  DEFAULT_REFERRAL_PARAM,
-  PARTNER_MODULE_KINDS,
+  NOTE_PLACEHOLDER,
+  PARTNER_LIMITS,
   SOCIAL_CONTRACT_TEXT,
   THANK_YOU_TEXT,
   isHoneypotTripped,
-  placeLabelForKind,
-  referralId,
+  isValidEmail,
+  normalizeUrl,
   submissionMailto,
+  toNotifyBody,
   toSubmissionRow,
   type PartnerFormInput,
-  type PartnerModuleKind,
   type PartnerSubmissionRow,
 } from "@/lib/partnerIntake";
 
@@ -37,28 +37,6 @@ const CONTACT_EMAIL = "alexanderkonst@gmail.com";
 type UntypedInsertClient = {
   from: (table: string) => { insert: (row: PartnerSubmissionRow) => PromiseLike<{ error: unknown }> };
 };
-
-type ModuleDraft = {
-  uid: number;
-  kind: PartnerModuleKind;
-  title: string;
-  result: string;
-  price: string;
-  link: string;
-  referralParam: string;
-  noReferral: boolean;
-};
-
-const emptyModule = (uid: number): ModuleDraft => ({
-  uid,
-  kind: "course",
-  title: "",
-  result: "",
-  price: "",
-  link: "",
-  referralParam: DEFAULT_REFERRAL_PARAM,
-  noReferral: false,
-});
 
 const eyebrow: CSSProperties = {
   fontFamily: "'DM Sans', system-ui, sans-serif",
@@ -86,54 +64,21 @@ const card: CSSProperties = {
   boxShadow: "0 0 22px -8px rgba(212, 175, 55, 0.30), 0 16px 40px -20px rgba(10, 22, 40, 0.22)",
 };
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-/** Adds https:// when the partner typed a bare domain; null when it is not a usable web address. */
-const normalizeUrl = (value: string): string | null => {
-  const v = value.trim();
-  if (!v) return null;
-  const withScheme = /^https?:\/\//i.test(v) ? v : `https://${v}`;
-  try {
-    const url = new URL(withScheme);
-    return url.hostname.includes(".") ? withScheme : null;
-  } catch {
-    return null;
-  }
-};
-
 const BringYourModule = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [projectName, setProjectName] = useState("");
   const [projectUrl, setProjectUrl] = useState("");
-  const [modules, setModules] = useState<ModuleDraft[]>([emptyModule(1)]);
-  const [nextUid, setNextUid] = useState(2);
+  const [note, setNote] = useState("");
   const [accepted, setAccepted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
 
-  const patchModule = (uid: number, patch: Partial<ModuleDraft>) =>
-    setModules((list) => list.map((m) => (m.uid === uid ? { ...m, ...patch } : m)));
-
-  const addModule = () => {
-    setModules((list) => [...list, emptyModule(nextUid)]);
-    setNextUid((n) => n + 1);
-  };
-
   const validate = (): string | null => {
     if (!name.trim()) return "Please add your name.";
-    if (!EMAIL_RE.test(email.trim())) return "Please add a valid email.";
-    if (!projectName.trim()) return "Please add your project name.";
+    if (!isValidEmail(email)) return "Please add a valid email.";
     if (!normalizeUrl(projectUrl)) return "Please add a link to your project.";
-    for (const [i, m] of modules.entries()) {
-      const label = `Module ${i + 1}`;
-      if (!m.title.trim()) return `${label}: please add a title.`;
-      if (!m.result.trim()) return `${label}: please add the one result it gives.`;
-      if (!m.price.trim()) return `${label}: please add a price (for example "$300" or "free").`;
-      if (!normalizeUrl(m.link)) return `${label}: please add the link where people buy or join it.`;
-    }
     if (!accepted) return "Please accept the social contract to continue.";
     return null;
   };
@@ -154,16 +99,8 @@ const BringYourModule = () => {
     const input: PartnerFormInput = {
       name,
       email,
-      projectName,
       projectUrl: normalizeUrl(projectUrl) ?? projectUrl,
-      modules: modules.map((m) => ({
-        kind: m.kind,
-        title: m.title,
-        result: m.result,
-        price: m.price,
-        link: normalizeUrl(m.link) ?? m.link,
-        referralParam: m.noReferral ? null : m.referralParam,
-      })),
+      note,
       acceptedSocialContract: accepted,
       honeypot,
     };
@@ -179,8 +116,15 @@ const BringYourModule = () => {
     } catch {
       saved = false;
     }
-    if (!saved) {
-      // Table missing (or any failure): never dead-end. Open a prefilled email with every field.
+    if (saved) {
+      // Fire-and-forget: never block the thank-you screen, swallow every error.
+      try {
+        void Promise.resolve(supabase.functions.invoke("notify-partner-submission", { body: toNotifyBody(row) })).catch(() => {});
+      } catch {
+        /* ignore */
+      }
+    } else {
+      // Insert failed: never dead-end. Open a prefilled email with every field.
       window.location.href = submissionMailto(CONTACT_EMAIL, row);
     }
     setSubmitting(false);
@@ -215,16 +159,14 @@ const BringYourModule = () => {
     >
       <SEO
         title="Bring your module | Game of Being You"
-        description="Bring your project into the game as modules."
+        description="Bring your course, product or sessions into the Game of Being You."
         path="/bring-your-module"
         noIndex
       />
       <style>{`
         .bym-page label { color: #0b2a5a !important; opacity: 1 !important; text-shadow: none !important; }
-        .bym-page input, .bym-page button[role="combobox"] { background: #ffffff !important; color: #0b2a5a !important; border-color: rgba(184, 134, 11, 0.45) !important; }
-        .bym-page input::placeholder { color: #8a93a8 !important; opacity: 1; }
-        .bym-select, .bym-select [role="option"] { background-color: #fffcf5 !important; color: #0b2a5a !important; }
-        .bym-select [role="option"][data-highlighted] { background-color: #f1e6c8 !important; }
+        .bym-page input, .bym-page textarea { background: #ffffff !important; color: #0b2a5a !important; border-color: rgba(184, 134, 11, 0.45) !important; }
+        .bym-page input::placeholder, .bym-page textarea::placeholder { color: #8a93a8 !important; opacity: 1; }
       `}</style>
       <div className="max-w-[680px] mx-auto px-5 py-14 sm:py-20">{children}</div>
     </div>
@@ -233,144 +175,55 @@ const BringYourModule = () => {
   if (done) {
     return shell(
       <div className="rounded-2xl p-6 sm:p-8 text-center" style={card} role="status">
-        <h1 className="text-3xl sm:text-4xl mb-4" style={title}>
-          Thank you
-        </h1>
-        <p className="text-base sm:text-lg" style={body}>
+        <p className="text-lg sm:text-xl" style={{ ...body, ...title, fontWeight: 600 }}>
           {THANK_YOU_TEXT}
         </p>
       </div>,
     );
   }
 
-  const refId = referralId(projectName);
-
   return shell(
     <form onSubmit={onSubmit} noValidate className="space-y-6">
-      <header className="mb-4">
+      <header className="mb-4 space-y-3">
         <p style={eyebrow}>Partners</p>
-        <h1 className="text-4xl sm:text-5xl mt-2 mb-3" style={title}>
+        <h1 className="text-4xl sm:text-5xl mt-2" style={title}>
           Bring your module
         </h1>
         <p className="text-base sm:text-lg" style={body}>
-          Tell us about your project and what you offer. We draft one card per thing, with one result and one
-          button, and send them to you to confirm. Nothing goes live without your yes.
+          Bring your course, product or sessions into the Game of Being You. Players find your work inside the
+          game's village and go to your own site to buy. You keep your site, your prices and your clients.
+        </p>
+        <p className="text-base sm:text-lg" style={body}>
+          Leave three things. We read your site, draft one card per offer and email them to you to confirm.
+          Nothing goes live without your yes.
         </p>
       </header>
 
       <section className="rounded-2xl p-6 sm:p-7 space-y-4" style={card}>
-        <h2 className="text-xl" style={title}>
-          About you
-        </h2>
         <div className="space-y-1.5">
           <Label htmlFor="bym-name">Your name</Label>
-          <Input id="bym-name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" maxLength={200} />
+          <Input id="bym-name" value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" maxLength={PARTNER_LIMITS.name} />
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="bym-email">Email</Label>
-          <Input id="bym-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" maxLength={320} />
+          <Input id="bym-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" maxLength={PARTNER_LIMITS.email} />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="bym-project">Project name</Label>
-          <Input id="bym-project" value={projectName} onChange={(e) => setProjectName(e.target.value)} maxLength={200} />
-          {refId && (
-            <p className="text-xs" style={{ ...body, opacity: 0.75 }}>
-              Your referral id: <code>{refId}</code>
-            </p>
-          )}
+          <Label htmlFor="bym-url">Link to your project</Label>
+          <Input id="bym-url" inputMode="url" placeholder="https://" value={projectUrl} onChange={(e) => setProjectUrl(e.target.value)} maxLength={PARTNER_LIMITS.projectUrl} />
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="bym-url">Project link</Label>
-          <Input id="bym-url" inputMode="url" placeholder="https://" value={projectUrl} onChange={(e) => setProjectUrl(e.target.value)} maxLength={2000} />
+          <Label htmlFor="bym-note">Anything we should know?</Label>
+          <Textarea
+            id="bym-note"
+            rows={4}
+            placeholder={NOTE_PLACEHOLDER}
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            maxLength={PARTNER_LIMITS.note}
+          />
         </div>
       </section>
-
-      {modules.map((m, i) => (
-        <section key={m.uid} className="rounded-2xl p-6 sm:p-7 space-y-4" style={card}>
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-xl" style={title}>
-              Module {i + 1}
-            </h2>
-            {modules.length > 1 && (
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={() => setModules((list) => list.filter((x) => x.uid !== m.uid))}
-                aria-label={`Remove module ${i + 1}`}
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            )}
-          </div>
-
-          <div className="space-y-1.5">
-            <Label htmlFor={`bym-kind-${m.uid}`}>What it is</Label>
-            <Select value={m.kind} onValueChange={(v) => patchModule(m.uid, { kind: v as PartnerModuleKind })}>
-              <SelectTrigger id={`bym-kind-${m.uid}`}>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent className="bym-select bg-[#fffcf5] text-[#0b2a5a] border-[#d4af37]/40 opacity-100">
-                {PARTNER_MODULE_KINDS.map((k) => (
-                  <SelectItem key={k.kind} value={k.kind} className="text-[#0b2a5a] focus:bg-[#f1e6c8] focus:text-[#0b2a5a]">
-                    {k.label}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            <p className="text-sm" style={{ ...body, opacity: 0.85 }}>
-              Place in the game: <strong>{placeLabelForKind(m.kind)}</strong>
-            </p>
-          </div>
-
-          <div className="space-y-1.5">
-            <Label htmlFor={`bym-title-${m.uid}`}>Title</Label>
-            <Input id={`bym-title-${m.uid}`} value={m.title} onChange={(e) => patchModule(m.uid, { title: e.target.value })} maxLength={200} />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor={`bym-result-${m.uid}`}>One result it gives, in one sentence</Label>
-            <Input id={`bym-result-${m.uid}`} value={m.result} onChange={(e) => patchModule(m.uid, { result: e.target.value })} maxLength={400} />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor={`bym-price-${m.uid}`}>Price</Label>
-            <Input
-              id={`bym-price-${m.uid}`}
-              placeholder={'"$300", "free", "from $50/month"'}
-              value={m.price}
-              onChange={(e) => patchModule(m.uid, { price: e.target.value })}
-              maxLength={100}
-            />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor={`bym-link-${m.uid}`}>Link where people buy or join it</Label>
-            <Input id={`bym-link-${m.uid}`} inputMode="url" placeholder="https://" value={m.link} onChange={(e) => patchModule(m.uid, { link: e.target.value })} maxLength={2000} />
-          </div>
-          <div className="space-y-2">
-            <Label htmlFor={`bym-ref-${m.uid}`}>Referral parameter your site reads</Label>
-            <Input
-              id={`bym-ref-${m.uid}`}
-              value={m.referralParam}
-              disabled={m.noReferral}
-              onChange={(e) => patchModule(m.uid, { referralParam: e.target.value })}
-              maxLength={50}
-            />
-            <div className="flex items-center gap-2">
-              <Checkbox
-                id={`bym-noref-${m.uid}`}
-                checked={m.noReferral}
-                onCheckedChange={(v) => patchModule(m.uid, { noReferral: v === true })}
-              />
-              <Label htmlFor={`bym-noref-${m.uid}`} className="font-normal">
-                My site can't read referral links yet
-              </Label>
-            </div>
-          </div>
-        </section>
-      ))}
-
-      <Button type="button" variant="outline" onClick={addModule}>
-        <Plus className="h-4 w-4 mr-1" /> Add another module
-      </Button>
 
       <section className="rounded-2xl p-6 sm:p-7" style={card}>
         <h2 className="text-xl mb-3" style={title}>
