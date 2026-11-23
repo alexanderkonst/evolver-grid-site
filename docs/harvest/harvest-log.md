@@ -14,9 +14,70 @@
 - A new law, principle or understanding that changes how we build or sell (seed, 2026-11-19).
 - A form that makes his method repeatable without him (template, router, rule) (seed, 2026-11-19).
 - A breakthrough that is, or becomes, a technology; Hark flags it if Sasha skips the moment (2026-11-19).
+- Lead with what is new, the gaps and the challenges; one more confirmation of what we already know is not harvest (2026-11-22).
 - *(grows from his marks and corrections)*
 
 ## Cycle: 2026-11 (from 2026-11-16)
+
+### 2026-11-22 · Circles v1 live: the village meets weekly, and cares for a real place (Hark proposes)
+- **Essence:** a player hosts a weekly circle in the village Café; Care of a place is the same event at a real place, closed by the host's "after" photo.
+- **Significance:** the first social mechanic that happens offline, in the real world, through the game.
+- **Consequences:** one events tab for all gatherings (no separate event dynamics); feed and map show what happened.
+- Link: [PR #388](https://github.com/alexanderkonst/evolver-grid-site/pull/388) · Holon: —
+
+### 2026-11-22 · Ten invariants of iconic social games, each closed by a mechanic (Hark proposes; Sasha accepted the list 15:19)
+- **Essence:** proven mechanics from games, land communities (Auroville, Findhorn, Damanhur, Tamera, ZEGG, Nuanu) and festivals (Boom, Burning Man) reduced to ten invariants; every one has a mechanic in GoBY §24.
+- **Significance:** the game repeats social dynamics that already work instead of inventing them.
+- **Consequences:** core bundle = small circle × weekly rhythm × speech rule × confirmation by someone who walked the path (§24.1 #25); §24.2/24.3 parked.
+- Link: [mechanics-atlas.md](../02-strategy/research/iconic-mechanics/mechanics-atlas.md) · Holon: —
+
+### 2026-11-22 · Money flows one way: the partner's 10% is a gift (Sasha's decision)
+- **Essence:** no contract; a partner who got a buyer through the game gives a voluntary 10%, in crypto, as a social contract for the game, the team and the planet; nothing is redistributed.
+- **Significance:** removes the legal, financial and tax trap of the platform paying bringers.
+- **Consequences:** partners are invited personally by Sasha, one by one; the form at /bring-your-module is where they submit.
+- Link: [partner_offer.md](../02-strategy/modular_collaboration/partner_offer.md) · Holon: —
+
+### 2026-11-22 · The Academy is the only home of courses (Sasha's decision)
+- **Essence:** every course lives in the Academy: L1 Human Development Academy, L2 Soul University, L3 Mystery School.
+- **Significance:** one place for all learning, ordered as a path of growth.
+- **Consequences:** course constructor and Result Wizards land there; `/game/learn` still shows old names and prices.
+- Link: [golden_age_canon.md](../02-strategy/golden_age_canon.md) · Holon: —
+
+### 2026-11-22 · Time as cycles: the player locates themselves in Moon and Week (Hark proposes)
+- **Essence:** the biologic clock shows two primary rings, Moon (8 phases) and Week (7 planets), each as symbol + meaning; Year and Day open on tap.
+- **Significance:** answers "where am I in my cycles", not "what time is it".
+- **Consequences:** one clock on the village and the character sheet; words «Prepping» and «Readying» across Equilibrium.
+- Link: [biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) · Holon: —
+
+### 2026-11-22 · Ask-AI buttons already know the player (Hark proposes)
+- **Essence:** each micro-module ends with a ready prompt built from the player's profile (talents, archetype, mission, weakest area), sent with one tap, editable or spoken; an empty field drops its whole clause.
+- **Significance:** the learner feels the idea on their own life within seconds.
+- **Consequences:** Mini-training 1 «AI as a Mirror»: texts v0.1 for Sasha's signature, page and live AI call merged (#396, #403), videos in production.
+- Link: [01-ai-as-a-mirror-texts.md](../02-strategy/ai-suite/mini-trainings/01-ai-as-a-mirror-texts.md) · Holon: —
+
+### 2026-11-22 · Place icons with soul (Hark proposes)
+- **Essence:** 11 village places as painted gold-engraving icons; every crystal is a dodecahedron; one set per skin (gold, warm gold on black, lunar silver, ink on white).
+- **Significance:** the village rail starts to look like a world, not a menu.
+- **Consequences:** round 2 for the weak ones (Quest Board, Oracle, Market, Coworking).
+- Link: `public/game/village/icons/` (live) · Holon: —
+
+### 2026-11-22 · Reveal leads straight into the game (Hark proposes)
+- **Essence:** after the reveal: the next potential + one micro-quest doable today, accepted onto the Quest Board (A4, #399); the Quest Board shows a finite feed of real deeds (A16, #400).
+- **Significance:** the reveal becomes the first move, and real acts become visible to the village.
+- **Consequences:** on findyourtoptalent.com after the Lovable publish.
+- Link: [game_launch_spec.md](../02-strategy/game_launch_spec.md) · Holon: —
+
+### 2026-11-22 · Theory: known physics derived from the invariant, first risky test registered (Hark proposes)
+- **Essence:** Stage 2 done (Steps 78–83): 3+1, Lorentz, Maxwell, matter and gravity follow from the invariant plus named postulates; Stage 3 began with pre-registered tests (Step 84 fails today's data, Step 85 strained).
+- **Significance:** a coherent, honest frame; still no confirmed prediction of our own.
+- **Consequences:** next: the handedness seam (Step 86); existing physics is not assumed seamless (Sasha).
+- Link: — (private repo) · Holon: —
+
+### 2026-11-22 · Avant-garde sources: nothing new in ideas, two gaps in execution (Hark proposes)
+- **Essence:** six calls and demos of the evolutionary avant-garde read through source-integration §4b; nearly all of it is already built or in work.
+- **Significance:** confirms the direction; the stream's value is the gaps.
+- **Consequences:** gaps: a profile that actually travels across partner systems; outcome cases with real numbers.
+- Link: [source-integration.md](../templates/source-integration.md) §4b · Holon: —
 
 ### 2026-11-21 · Result Wizards, not courses (marked by Sasha)
 - **Essence:** Sasha's materials → micro-modules → each one an infographic + AI video (one NotebookLM per micro-module) → chained into a wizard that walks a person to a transformational result, on our platform.
@@ -216,4 +277,4 @@
 ## Hit rate
 | Cycle | Hark proposed | Confirmed | Rejected / reframed |
 |---|---|---|---|
-| 2026-11 | 23 | 5 (Sasha, 2026-11-19); 18 waiting (3 from 2026-11-21, 15 from the 2026-11-19..21 pass) | 0 |
+| 2026-11 | 31 | 5 (Sasha, 2026-11-19); 26 waiting (3 from 2026-11-21, 15 from the 2026-11-19..21 pass, 8 from 2026-11-22) | 0 |

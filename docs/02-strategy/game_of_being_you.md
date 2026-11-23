@@ -148,6 +148,14 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 - 2026-10-26: soul colors become the core Spectrum mechanic; profile page to be designed around the player's crystal.
 - 2026-10-26: build the real homepage from mockup v0.2 (GitHub issue).
 - 2026-10-27: San Pancho is Village #1: the Digital Village gets a physical twin; build first, then partner with the community network and individual shop owners (§16).
+- 2026-11-22: Circles v1 = a weekly circle hosted by a player; Care of a place is an ordinary event at a real place, no separate event dynamics.
+- 2026-11-22: the feed of real deeds lives on the Quest Board: finite, no ranking, one tap «I see you» (§24 #23, launch spec A16).
+- 2026-11-22: the «Which way?» fork stays: Faster (prompt to the player's own AI) and Guided (in-game assessment) both lead to the top talent reveal.
+- 2026-11-22: Your AI place has no test: one screen «Take your AI» (copy the personal prompt into a new chat), then the outro.
+- 2026-11-22: place icons are painted gold engraving; every crystal is a dodecahedron; one set per skin; no religious or human figures.
+- 2026-11-22: loading screen gets a matte layer and a waxing moon; «Chat with us» hidden while loading; the cursor glow stays.
+- 2026-11-22: biologic clock: Moon and Week are primary, Year and Day open on tap; «Prepping» joins «Readying» for the lunar phase across Equilibrium.
+- 2026-11-22: open items in §24.2 and §24.3 parked; the mechanics synthesis branch is closed.
 
 ## 9. Next
 

@@ -254,6 +254,12 @@ Working folder: [modular_collaboration/](./modular_collaboration/README.md) (pla
 | 4 | The Book of Infographics (psychoactive) | B1-77, B1-78 |
 | 4 | New courses: rotation of Sasha's sessions = Platonic solids | B1-79 |
 
+**Progress as of 2026-11-22 (Sunday, before the harvest week).** Details: [game_launch_spec.md](./game_launch_spec.md) Progress · [harvest-log.md](../harvest/harvest-log.md).
+- **Face 1, the game:** live or merged: messaging and People Directory, stats cards, clients, 3D elements, Book of Infographics, biologic clock (Moon + Week), Circles v1 with Care of a place, hook after reveal, feed of real deeds, painted place icons per skin. In work: Your AI hand-over, loading screen, player badge. Waiting on Sasha: reveal words, glyph look, badge designs, promo video, streak migration yes.
+- **Face 2, Sasha's unique business:** partner terms v2.1 (one-way 10% gift); intake form live at /bring-your-module, short form in work; Sasha invites partners personally.
+- **Face 3, the Collective:** Academy levels set; Mini-training 1 «AI as a Mirror» texts for Sasha's signature, page and AI call merged, videos in production; Result Wizards spec v0.1; funnel parked.
+- **Face 4, theory:** formalization Stage 2 complete (Steps 78–83), Stage 3 started with pre-registered tests (Steps 84–85); avant-garde stream of six sources closed: nothing new in ideas, gaps = portable profile, outcome cases.
+
 ## 6a. Forks settled (Sasha, 2026-11-20 15:53)
 - **Fund:** keep, but later (not this moon).
 - **Moon strategy 3, the playable game (B2-50):** part of the strategy, not struck out.
