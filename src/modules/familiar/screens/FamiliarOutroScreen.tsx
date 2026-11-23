@@ -2,7 +2,7 @@
  * Screen 4 · Outro (the after-screen, the deliverable). A stable screen, never a toast: it stays
  * until the player leaves. The naming line, the three gifts as the result, and the possibility
  * map: what the player can do in the village now, with the first open next step as the one button.
- * Your AI lives inside the game, so there is no hand-off to an outside chat app here.
+ * The hand-over to the outside chat app happened on the screen before; nothing here asks for more.
  * Spec: docs/specs/ai-familiar/ai-familiar_tracker.md §1.3.
  */
 import { Link } from "react-router-dom";

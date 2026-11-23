@@ -68,7 +68,14 @@ describe("possibility map", () => {
 
   it("wraps the centre text to the ring without cutting a word", () => {
     expect(wrapCentreText("after the Zone of Genius", 14)).toEqual(["after the Zone", "of Genius"]);
-    expect(wrapCentreText("  Your top talent ", 14)).toEqual(["Your top talent"]);
+    expect(wrapCentreText("  Your top talent ", 14)).toEqual(["Your top", "talent"]);
+    // The empty-centre placeholder is one sentence: joined, it wraps by width and keeps its spaces.
+    expect(wrapCentreText("Your top talent appears here after the Zone of Genius", 14)).toEqual([
+      "Your top",
+      "talent appears",
+      "here after the",
+      "Zone of Genius",
+    ]);
     expect(wrapCentreText("Entrepreneurship", 14)).toEqual(["Entrepreneurship"]);
     expect(wrapCentreText("", 14)).toEqual([]);
   });

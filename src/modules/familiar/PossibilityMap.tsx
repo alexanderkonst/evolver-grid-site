@@ -41,14 +41,18 @@ const PossibilityMap = () => {
   const move = map.next ? nextMoveCopy(map.next, t) : null;
 
   // The ring holds a few short lines. Wrap the text to the ring; more lines mean smaller type.
-  const centreLines = talent
-    ? wrapCentreText(talent, CENTRE_MAX_CHARS)
-    : [
+  // The placeholder is one sentence in three keys: join it first, so the words wrap by width and
+  // keep their spaces, instead of three fragments each on its own line.
+  const centreLines = wrapCentreText(
+    talent ||
+      [
         t("familiar.map.talentPlaceholder1", { defaultValue: "Your top talent" }),
         t("familiar.map.talentPlaceholder2", { defaultValue: "appears here" }),
         t("familiar.map.talentPlaceholder3", { defaultValue: "after the Zone of Genius" }),
-      ].flatMap((line) => wrapCentreText(line, CENTRE_MAX_CHARS));
-  const centreSize = centreLines.length <= 2 ? 3.4 : centreLines.length === 3 ? 3 : centreLines.length === 4 ? 2.7 : 2.3;
+      ].join(" "),
+    CENTRE_MAX_CHARS,
+  );
+  const centreSize = centreLines.length <= 2 ? 3.4 : centreLines.length === 3 ? 3.3 : centreLines.length === 4 ? 3.1 : 2.7;
   const centreLead = centreSize * CENTRE_LEADING;
   const centreTop = 50 - ((centreLines.length - 1) * centreLead) / 2;
 
@@ -97,6 +101,7 @@ const PossibilityMap = () => {
           {centreLines.map((line, i) => (
             <tspan key={i} x={50} y={centreTop + i * centreLead}>
               {line}
+              {i < centreLines.length - 1 ? " " : ""}
             </tspan>
           ))}
         </text>
