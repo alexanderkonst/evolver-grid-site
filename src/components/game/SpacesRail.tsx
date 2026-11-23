@@ -95,8 +95,8 @@ import MoonMedallion from "@/components/game/MoonMedallion";
  *
  * Each place gets a painted gold-engraving icon of its object, lit by the player's topaz
  * (icon grammar v1.2, Sasha 2026-11-22; replaces the photoreal buildings of 2026-11-02),
- * framed in CSS (`.village-place-icon`, src/index.css): moon-stone border, ochre inner
- * line, soft glow. Closed places dim through --lock-filter, so an unlit icon needs no file.
+ * framed in CSS (`.village-place-icon`, src/index.css): one thin line in the skin accent,
+ * so the object's own light stays the brightest thing; 34px (30 compact), files cache-busted by ?v. Closed places dim through --lock-filter, so an unlit icon needs no file.
  * The crystal in the icons is the dodecahedron (Sasha 2026-11-22). The state still reads from the shared lock / open / live tokens
  * (src/styles/theme-tokens.css), so every skin renders every state.
  */
@@ -105,9 +105,9 @@ import MoonMedallion from "@/components/game/MoonMedallion";
 // their own folders; every other skin falls back to the root set.
 const ICON_SKIN_DIR: Partial<Record<Skin, string>> = { aurum: "aurum/", lunar: "lunar/", dao: "dao/" };
 const placeIconSrc = (key: VillagePlaceKey, skin?: Skin) =>
-    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}.webp`;
+    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}.webp?v=3`;
 const placeIconSrc2x = (key: VillagePlaceKey, skin?: Skin) =>
-    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}@2x.webp`;
+    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}@2x.webp?v=3`;
 
 const PlaceIcon = ({ place, size, skin }: { place: VillagePlace; size: number; skin?: Skin }) => (
     <span className="village-place-icon flex-shrink-0" style={{ width: size, height: size }}>
@@ -847,7 +847,7 @@ const SpacesRail = ({
                                 )}
                                 style={closed ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" } : undefined}
                             >
-                                <PlaceIcon place={place} size={compact ? 26 : 28} skin={skin} />
+                                <PlaceIcon place={place} size={compact ? 30 : 34} skin={skin} />
                                 {!compact && (
                                     <span
                                         className={cn(

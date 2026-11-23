@@ -8068,22 +8068,16 @@ form.liquid-glass input:-webkit-autofill:active {
 /* Village place icons (Sasha 2026-11-02): photoreal building icons in the rail,
    framed the same everywhere: moon-stone border, ochre inner line, soft moon glow. */
 .village-place-icon {
+  /* Grammar check 2026-11-22: the frame was the brightest thing in the icon (2px cream + bronze
+     line + halo) and fought the object's own topaz light. One thin line in the skin's accent now;
+     the object carries the light. */
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  border: 2px solid #D9D1B4;
-  border-radius: 3px;
-  box-shadow: 0 0 0 0 transparent, 0 0 6px 1px rgba(236, 230, 208, 0.25);
+  border: 1px solid rgba(var(--accent-rgb, 212, 175, 55), 0.45);
+  border-radius: 4px;
   overflow: hidden;
   background: #0b1018;
-}
-.village-place-icon::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid #96703A;
-  border-radius: 1px;
-  pointer-events: none;
 }
 .village-place-icon img {
   display: block;
