@@ -1,66 +1,28 @@
 /**
- * FamiliarPage — the Your AI place at /game/your-ai: Intro → Ask → Reveal → Outro.
+ * FamiliarPage — the Your AI place at /game/your-ai: one hand-over screen, then the Outro.
  *
- * The step lives in the address (`?step=ask|reveal|outro`; none = Intro), so a deep link lands on
- * the right screen, the browser's Back walks the screens in reverse, and a refresh stays put.
- * The question is kept in sessionStorage across a refresh; a Reveal with no question falls back to
- * Ask. The place is open to everyone: a guest sees gift 2 lit and gifts 1 and 3 dim.
+ * The step lives in the address (`?step=outro`; none = the hand-over), so a deep link lands on the
+ * right screen, the browser's Back returns to the hand-over, and a refresh stays put. Any other
+ * `?step=` (including the retired `ask` and `reveal` of the old test) is replaced by the hand-over.
+ * The place is open to everyone: a guest sees gift 2 lit and gifts 1 and 3 dim.
  */
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { Navigate, useSearchParams } from "react-router-dom";
-import FamiliarAskScreen from "./screens/FamiliarAskScreen";
-import FamiliarIntroScreen from "./screens/FamiliarIntroScreen";
+import FamiliarHandOverScreen from "./screens/FamiliarHandOverScreen";
 import FamiliarOutroScreen from "./screens/FamiliarOutroScreen";
-import FamiliarRevealScreen from "./screens/FamiliarRevealScreen";
-import { getQuestion, setQuestion as storeQuestion } from "./storage";
 import { useFamiliar } from "./useFamiliar";
-
-type Step = "intro" | "ask" | "reveal" | "outro";
-
-const STEPS: readonly Step[] = ["intro", "ask", "reveal", "outro"];
-
-const stepOf = (raw: string | null): Step | null => {
-  if (raw === null) return "intro";
-  return STEPS.includes(raw as Step) ? (raw as Step) : null;
-};
 
 const FamiliarPage = () => {
   const [params, setParams] = useSearchParams();
   const state = useFamiliar();
-  const [question, setQuestion] = useState<string>(() => getQuestion());
 
-  const go = useCallback(
-    (step: Step) => setParams(step === "intro" ? {} : { step }),
-    [setParams],
-  );
+  const toOutro = useCallback(() => setParams({ step: "outro" }), [setParams]);
 
-  const requested = stepOf(params.get("step"));
-  // An unknown ?step= is a bad link, not a screen: start at the Intro.
-  if (requested === null) return <Navigate to="/game/your-ai" replace />;
-  // The Reveal compares answers to a question; without one, ask first.
-  const step: Step = requested === "reveal" && question.trim() === "" ? "ask" : requested;
-
-  if (step === "ask") {
-    return (
-      <FamiliarAskScreen
-        state={state}
-        initialQuestion={question}
-        onSubmit={(q) => {
-          setQuestion(q);
-          storeQuestion(q);
-          go("reveal");
-        }}
-        onSkip={() => go("outro")}
-      />
-    );
-  }
-  if (step === "reveal") {
-    return <FamiliarRevealScreen state={state} question={question} onNext={() => go("outro")} />;
-  }
-  if (step === "outro") {
-    return <FamiliarOutroScreen state={state} />;
-  }
-  return <FamiliarIntroScreen onStart={() => go("ask")} />;
+  const raw = params.get("step");
+  if (raw === "outro") return <FamiliarOutroScreen state={state} />;
+  // An old or unknown ?step= is a stale link, not a screen: land on the hand-over.
+  if (raw !== null) return <Navigate to="/game/your-ai" replace />;
+  return <FamiliarHandOverScreen state={state} onNext={toOutro} />;
 };
 
 export default FamiliarPage;

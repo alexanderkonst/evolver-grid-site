@@ -23,7 +23,7 @@ describe("Your AI copy", () => {
   const keys = [...code.matchAll(/\bt\(\s*"(familiar\.[A-Za-z0-9.]+)"/g)].map((m) => m[1]);
 
   it("finds the keys it is meant to check", () => {
-    expect(keys.length).toBeGreaterThan(30);
+    expect(keys.length).toBeGreaterThan(15);
   });
 
   it("has every key in the English catalog, as a string", () => {
@@ -32,7 +32,18 @@ describe("Your AI copy", () => {
 
   it("has the dynamic gift and example keys", () => {
     for (const k of ["knowsYou", "activated", "knowsYourWork"]) expect(typeof lookup(`familiar.gift.${k}`), k).toBe("string");
-    for (const k of ["future", "focus", "stuck"]) expect(typeof lookup(`familiar.ask.example.${k}`), k).toBe("string");
+  });
+
+  it("carries no comparison or rating copy, and no retired screens", () => {
+    const f = lookup("familiar") as Record<string, unknown>;
+    for (const k of ["intro", "ask", "reveal"]) expect(f[k], k).toBeUndefined();
+    expect(JSON.stringify(f)).not.toMatch(/both answers|same model|notice the difference|1 to 10|of 10/i);
+  });
+
+  it("keeps a space before the gift chip parenthetical", () => {
+    const g = lookup("familiar.gifts") as Record<string, string>;
+    for (const k of ["lit", "dim"]) expect(g[k], k).toMatch(/^\(/);
+    expect(readFileSync(new URL("GiftChips.tsx", root), "utf8")).toMatch(/\{" "\}\s*<span className="sr-only">/);
   });
 
   it("names the place «Your AI» in the village catalog", () => {

@@ -6,4 +6,3 @@ export type GiftKey = "knowsYou" | "activated" | "knowsYourWork";
 export interface GiftState { key: GiftKey; lit: boolean; label: string; detail?: string; opensWhen?: string }
 export interface FamiliarState { gifts: GiftState[]; prompt: string; version: string; lastLearned?: string; loading: boolean }
 export type ChatApp = "chatgpt" | "claude" | "gemini";
-export interface CompareResult { mode: "live" | "self"; plain?: string; personal?: string }

@@ -7,21 +7,10 @@ import type { ChatApp } from "./types";
 
 const APP_KEY = "familiar:chatApp";
 const COPIED_KEY = "familiar:copiedVersion";
-const RATING_KEY = "familiar:rating";
-/** The question lives in sessionStorage: it survives a refresh of the tab, not a new visit. */
-const QUESTION_KEY = "familiar:question";
 
 const local = (): Storage | null => {
   try {
     return typeof window === "undefined" ? null : window.localStorage;
-  } catch {
-    return null;
-  }
-};
-
-const session = (): Storage | null => {
-  try {
-    return typeof window === "undefined" ? null : window.sessionStorage;
   } catch {
     return null;
   }
@@ -52,12 +41,3 @@ export const setChatApp = (app: ChatApp) => write(local(), APP_KEY, app);
 /** The prompt version the player last copied, or null if they never have. */
 export const getCopiedVersion = (): string | null => read(local(), COPIED_KEY);
 export const setCopiedVersion = (version: string) => write(local(), COPIED_KEY, version);
-
-export const getRating = (): number | null => {
-  const n = Number(read(local(), RATING_KEY));
-  return Number.isInteger(n) && n >= 1 && n <= 10 ? n : null;
-};
-export const setRating = (rating: number) => write(local(), RATING_KEY, String(rating));
-
-export const getQuestion = (): string => read(session(), QUESTION_KEY) ?? "";
-export const setQuestion = (question: string) => write(session(), QUESTION_KEY, question);

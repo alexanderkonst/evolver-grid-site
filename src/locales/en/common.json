@@ -9439,59 +9439,25 @@
     "reuseDiscipline": "Say founder-market fit, exactly those words, every time. Not founder/market fit, not founder-market alignment. A category is a phrase people have to remember, and every synonym splits the memory in two."
   },
   "familiar": {
-    "askMyAi": "Ask my AI",
+    "takeYourAi": "Take your AI",
     "updateMyAi": "Update my AI",
-    "pasteNote": "Copied. Paste it into the new {{app}} chat, then ask it anything.",
+    "pasteNote": "Copied. Paste it into the new chat.",
     "copyFailed": "Your browser blocked the copy. Press the button again, or try another browser.",
     "whereLive": "Where will your AI live?",
-    "back": "← Back",
     "gifts": {
       "aria": "What your AI has",
-      "lit": " (has it)",
-      "dim": " (not yet)"
+      "lit": "(has it)",
+      "dim": "(not yet)"
     },
     "gift": {
       "knowsYou": "Knows you",
       "activated": "Activated",
       "knowsYourWork": "Knows your work"
     },
-    "intro": {
+    "handover": {
       "eyebrow": "Your AI",
-      "headline": "Same question. Two answers. See what happens when your AI knows you.",
-      "silhouette": "Ask something real. You'll get a plain chat's answer and your own AI's answer, side by side, in the chat app you already use. Same model underneath.",
-      "cta": "Ask my question"
-    },
-    "ask": {
-      "aria": "Ask your question",
-      "eyebrow": "Your AI",
-      "label": "Ask something real.",
-      "placeholder": "What are you deciding right now?",
-      "examples": "Examples",
-      "example": {
-        "future": "Based on everything you know about me, what are the best actions for me in the short, medium and long term? One sentence each.",
-        "focus": "What should I focus on this week, and what should I stop doing?",
-        "stuck": "Where am I playing smaller than I could, and what is one move to change that?"
-      },
-      "brings": "Your AI will bring:",
-      "cta": "See both answers",
-      "ctaHint": "Write your question above, or tap an example.",
-      "skip": "Skip the test, give me my AI"
-    },
-    "reveal": {
-      "aria": "Compare the two answers",
-      "eyebrow": "Your AI · the test",
-      "yourQuestion": "Your question",
-      "sameModel": "Same model on both sides. The only difference is what your AI carries.",
-      "step1": "Ask your question in a plain AI chat. Read the answer.",
-      "step3": "Notice the difference.",
-      "copyQuestion": "Copy my question",
-      "copied": "Copied",
-      "rateQ": "How different is this, 1 to 10?",
-      "rateOf": "{{n}} of 10",
-      "thanks": "Thank you. You gave it {{rating}} of 10.",
-      "notSaved": "Could not save your rating, but you can go on.",
-      "skipRating": "Skip rating",
-      "cta": "Hear why"
+      "line": "Your AI: your prompt, carried into the chat you already use.",
+      "next": "Next"
     },
     "outro": {
       "aria": "Your AI is ready",

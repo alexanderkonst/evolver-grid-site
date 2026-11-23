@@ -9412,58 +9412,25 @@
     "whatsappHint": "Abre una conversación privada"
   },
   "familiar": {
-    "askMyAi": "Preguntar a mi IA",
+    "takeYourAi": "Llévate tu IA",
     "updateMyAi": "Actualizar mi IA",
-    "pasteNote": "Copiado. Pégalo en un chat nuevo de {{app}} y pregúntale lo que quieras.",
+    "pasteNote": "Copiado. Pégalo en el chat nuevo.",
     "copyFailed": "Tu navegador bloqueó la copia. Pulsa el botón otra vez o prueba con otro navegador.",
     "whereLive": "¿Dónde vivirá tu IA?",
-    "back": "← Atrás",
     "gifts": {
       "aria": "Lo que tiene tu IA",
-      "lit": " (lo tiene)",
-      "dim": " (aún no)"
+      "lit": "(lo tiene)",
+      "dim": "(aún no)"
     },
     "gift": {
       "knowsYou": "Te conoce",
       "activated": "Activada",
       "knowsYourWork": "Conoce tu trabajo"
     },
-    "intro": {
+    "handover": {
       "eyebrow": "Tu IA",
-      "headline": "La misma pregunta. Dos respuestas. Mira qué pasa cuando tu IA te conoce.",
-      "silhouette": "Pregunta algo real. Recibirás la respuesta de un chat común y la de tu propia IA, lado a lado, en la app de chat que ya usas. El mismo modelo por debajo.",
-      "cta": "Hacer mi pregunta"
-    },
-    "ask": {
-      "aria": "Haz tu pregunta",
-      "eyebrow": "Tu IA",
-      "label": "Pregunta algo real.",
-      "placeholder": "¿Qué estás decidiendo ahora mismo?",
-      "examples": "Ejemplos",
-      "example": {
-        "future": "Con todo lo que sabes de mí, ¿cuáles son las mejores acciones para mí a corto, mediano y largo plazo? Una frase cada una.",
-        "focus": "¿En qué debería enfocarme esta semana y qué debería dejar de hacer?",
-        "stuck": "¿Dónde estoy jugando más pequeño de lo que podría, y qué paso cambiaría eso?"
-      },
-      "brings": "Tu IA traerá:",
-      "cta": "Ver ambas respuestas",
-      "skip": "Saltar la prueba y darme mi IA"
-    },
-    "reveal": {
-      "aria": "Compara las dos respuestas",
-      "eyebrow": "Tu IA · la prueba",
-      "yourQuestion": "Tu pregunta",
-      "sameModel": "El mismo modelo en ambos lados. La única diferencia es lo que lleva tu IA.",
-      "step1": "Haz tu pregunta en un chat de IA común. Lee la respuesta.",
-      "step3": "Nota la diferencia.",
-      "copyQuestion": "Copiar mi pregunta",
-      "copied": "Copiado",
-      "rateQ": "¿Qué tan diferente es, del 1 al 10?",
-      "rateOf": "{{n}} de 10",
-      "thanks": "Gracias. Le diste {{rating}} de 10.",
-      "notSaved": "No pudimos guardar tu calificación, pero puedes seguir.",
-      "skipRating": "Saltar calificación",
-      "cta": "Escuchar por qué"
+      "line": "Tu IA: tu prompt, llevado al chat que ya usas.",
+      "next": "Siguiente"
     },
     "outro": {
       "aria": "Tu IA está lista",
