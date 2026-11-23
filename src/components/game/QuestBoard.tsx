@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import PlaceState from "@/components/game/PlaceState";
 import ReflectionQuests from "@/components/game/ReflectionQuests";
 import SaveCharacterCta from "@/components/game/SaveCharacterCta";
+import VillageFeed from "@/components/game/VillageFeed";
 import { getJourneyModule, moduleText } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
 import { useAcceptedMicroQuest } from "@/hooks/useAcceptedMicroQuest";
@@ -23,6 +24,7 @@ import "./QuestBoard.css";
  * Design: docs/02-strategy/game_of_being_you.md §14.2, §14.3, §14.8 row WP-11.
  *
  *   the Quest Board scene · the one next quest · the Journey (J1–J7) · in the world (J8–J12)
+ *   · «What happened» (A16: the feed of real deeds, signed-in players)
  *
  * It replaces the next-move hub and Today (`/game/next-move*` and `/today` redirect here).
  * Every row is a real event in the save in one of the five states of `placeState`; no points,
@@ -200,6 +202,10 @@ const QuestBoard = () => {
                 ))}
               </ol>
             </section>
+
+            {/* A16: «What happened», below the open quests. Renders nothing while the database part
+                is missing, so the board is unchanged until the migration is deployed. */}
+            {sheet.userId ? <VillageFeed userId={sheet.userId} /> : null}
           </>
         )}
       </div>

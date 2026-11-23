@@ -9616,5 +9616,43 @@
     "promiseBody": "Los fundadores suelen tardar meses de iteraciones en llegar aquí. En una sesión obtienes el núcleo del fit; lo confirman las personas a quienes vendes.",
     "format": "Uno a uno, en línea, unas 2 horas.",
     "cta": "Reservar la sesión"
+  },
+  "deeds": {
+    "heading": "Lo que pasó",
+    "seeYou": "Te veo",
+    "seenSent": "Enviado: te veo.",
+    "lineAdd": "Añadir una línea",
+    "lineLabel": "Una línea, si quieres",
+    "linePlaceholder": "¿Qué viste?",
+    "lineSend": "Enviar",
+    "lineCancel": "Ahora no",
+    "yourLine": "Tu línea",
+    "seenBy": "Quién lo vio",
+    "someone": "Alguien",
+    "upToDate": "Estás al día",
+    "event": {
+      "resident": "{{name}} entró en la aldea",
+      "top_talent": "{{name}} encontró su talento principal",
+      "mission": "{{name}} nombró su misión",
+      "uniqueness": "{{name}} puso su singularidad en una frase",
+      "stall": "{{name}} abrió un puesto en el Mercado",
+      "first_price": "{{name}} puso precio por primera vez",
+      "first_sale": "{{name}} hizo su primera venta"
+    },
+    "own": {
+      "resident": "Entraste en la aldea",
+      "top_talent": "Encontraste tu talento principal",
+      "mission": "Nombraste tu misión",
+      "uniqueness": "Pusiste tu singularidad en una frase",
+      "stall": "Abriste un puesto en el Mercado",
+      "first_price": "Pusiste precio por primera vez",
+      "first_sale": "Hiciste tu primera venta"
+    },
+    "error": {
+      "generic": "No se pudo en este momento. Inténtalo de nuevo en un rato.",
+      "too_long": "Acórtala, por favor: 140 caracteres como máximo.",
+      "too_short": "Escribe al menos 3 caracteres, por favor.",
+      "profanity": "¿Podrías decirlo de otra manera?"
+    }
   }
 }
