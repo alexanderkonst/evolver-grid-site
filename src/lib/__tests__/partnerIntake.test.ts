@@ -1,58 +1,50 @@
 import { describe, expect, it } from "vitest";
 import {
-  ECOSYSTEM_PLACE_LABEL,
-  PARTNER_MODULE_KINDS,
+  MODULE_SOURCE,
+  hostnameOf,
   isHoneypotTripped,
-  placeForKind,
-  placeLabelForKind,
+  isValidEmail,
+  normalizeUrl,
   projectSlug,
   referralId,
   submissionMailto,
+  toNotifyBody,
   toSubmissionRow,
   type PartnerFormInput,
 } from "@/lib/partnerIntake";
-import { VILLAGE_PLACES } from "@/data/villagePlaces";
 
 const form = (over: Partial<PartnerFormInput> = {}): PartnerFormInput => ({
   name: " Ada ",
   email: "ada@example.com",
-  projectName: "Ada's Studio",
-  projectUrl: "https://ada.example.com",
-  modules: [
-    { kind: "course", title: "Calm", result: "You sleep.", price: "$300", link: "https://ada.example.com/calm", referralParam: "ref" },
-    { kind: "ecosystem", title: "All", result: "One home.", price: "free", link: "https://ada.example.com", referralParam: null },
-  ],
+  projectUrl: "https://www.ada-studio.com/courses",
+  note: " Courses, $300. ",
   acceptedSocialContract: true,
   honeypot: "",
   ...over,
 });
 
-describe("placeForKind (placement rule)", () => {
-  it("course → academy, product → market, session and community → the Mastermind", () => {
-    expect(placeForKind("course")).toBe("academy");
-    expect(placeForKind("product")).toBe("market");
-    expect(placeForKind("session")).toBe("fire-circle");
-    expect(placeForKind("community")).toBe("fire-circle");
+describe("url helpers", () => {
+  it("adds https:// to a bare domain and rejects non-addresses", () => {
+    expect(normalizeUrl("ada.com")).toBe("https://ada.com");
+    expect(normalizeUrl("http://ada.com/x")).toBe("http://ada.com/x");
+    expect(normalizeUrl("  ")).toBeNull();
+    expect(normalizeUrl("localhost")).toBeNull();
   });
 
-  it("a whole ecosystem has no place: own building, by our decision", () => {
-    expect(placeForKind("ecosystem")).toBeNull();
-    expect(placeLabelForKind("ecosystem")).toBe(ECOSYSTEM_PLACE_LABEL);
+  it("hostname strips www and lowercases", () => {
+    expect(hostnameOf("https://www.Ada-Studio.com/courses")).toBe("ada-studio.com");
+    expect(hostnameOf("ada.com")).toBe("ada.com");
+    expect(hostnameOf("nonsense")).toBe("");
   });
 
-  it("every mapped place is a real village place, and its label is the place's name", () => {
-    for (const { kind } of PARTNER_MODULE_KINDS) {
-      const key = placeForKind(kind);
-      if (!key) continue;
-      const place = VILLAGE_PLACES.find((p) => p.key === key);
-      expect(place, kind).toBeDefined();
-      expect(placeLabelForKind(kind)).toBe(place!.name);
-    }
+  it("validates email", () => {
+    expect(isValidEmail(" a@b.co ")).toBe(true);
+    expect(isValidEmail("a@b")).toBe(false);
   });
 });
 
 describe("referral id", () => {
-  it("slugs the project name into fytt-<slug>", () => {
+  it("slugs the name into fytt-<slug>", () => {
     expect(referralId("Ada Studio")).toBe("fytt-ada-studio");
     expect(referralId("  My Project! v2 ")).toBe("fytt-my-project-v2");
     expect(referralId("Café Ñandú")).toBe("fytt-cafe-nandu");
@@ -65,17 +57,21 @@ describe("referral id", () => {
 });
 
 describe("submission row", () => {
-  it("trims, adds place and referral id per module, null param when the site can't read links", () => {
+  it("maps the short form onto the existing table without a migration", () => {
     const row = toSubmissionRow(form());
-    expect(row.name).toBe("Ada");
-    expect(row.modules[0]).toMatchObject({ place: "academy", referral_param: "ref", referral_id: "fytt-ada-s-studio" });
-    expect(row.modules[1]).toMatchObject({ place: null, referral_param: null });
-    expect(row.accepted_social_contract).toBe(true);
+    expect(row).toEqual({
+      name: "Ada",
+      email: "ada@example.com",
+      project_name: "ada-studio.com",
+      project_url: "https://www.ada-studio.com/courses",
+      modules: [{ kind: "unread", note: "Courses, $300.", source: MODULE_SOURCE, referral_id: "fytt-ada-studio-com" }],
+      accepted_social_contract: true,
+    });
+    expect(MODULE_SOURCE).toBe("short-form-v2");
   });
 
-  it("an empty referral parameter falls back to ref", () => {
-    const row = toSubmissionRow(form({ modules: [{ ...form().modules[0], referralParam: "  " }] }));
-    expect(row.modules[0].referral_param).toBe("ref");
+  it("an empty note stays an empty string", () => {
+    expect(toSubmissionRow(form({ note: "  " })).modules[0].note).toBe("");
   });
 
   it("honeypot is tripped only by a non-empty value", () => {
@@ -83,18 +79,24 @@ describe("submission row", () => {
     expect(isHoneypotTripped({ honeypot: " " })).toBe(false);
     expect(isHoneypotTripped({ honeypot: "http://spam" })).toBe(true);
   });
+
+  it("notify body carries the four fields", () => {
+    expect(toNotifyBody(toSubmissionRow(form()))).toEqual({
+      name: "Ada",
+      email: "ada@example.com",
+      project_url: "https://www.ada-studio.com/courses",
+      note: "Courses, $300.",
+    });
+  });
 });
 
 describe("fallback mailto", () => {
-  it("carries every field in the body", () => {
+  it("carries the four fields in the body", () => {
     const url = submissionMailto("to@example.com", toSubmissionRow(form()));
     expect(url.startsWith("mailto:to@example.com?subject=")).toBe(true);
+    expect(decodeURIComponent(url)).toContain("Bring your module: ada-studio.com");
     const body = decodeURIComponent(url.split("&body=")[1]);
-    for (const piece of [
-      "Ada", "ada@example.com", "Ada's Studio", "https://ada.example.com", "fytt-ada-s-studio",
-      "Calm", "You sleep.", "$300", "https://ada.example.com/calm", "Academy",
-      "my site can't read referral links yet", "Social contract accepted: yes",
-    ]) {
+    for (const piece of ["Ada", "ada@example.com", "https://www.ada-studio.com/courses", "Courses, $300.", "Social contract accepted: yes"]) {
       expect(body).toContain(piece);
     }
   });

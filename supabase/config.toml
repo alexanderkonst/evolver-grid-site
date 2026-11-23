@@ -200,3 +200,6 @@ verify_jwt = true
 
 [functions.mini-training-chat]
 verify_jwt = true
+
+[functions.notify-partner-submission]
+verify_jwt = false
