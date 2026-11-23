@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
-import BiologicClock from "@/components/game/BiologicClock";
+import ProfileClock from "@/components/game/ProfileClock";
 import SoulDodecahedron from "@/components/SoulDodecahedron";
 import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
@@ -402,7 +402,7 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 )}
                 <h1 className="cs-name">{name}</h1>
                 {/* A9 (#377): the player's own biological clock, compact, in the page header. */}
-                <BiologicClock className="cs-clock" />
+                <ProfileClock className="cs-clock" />
             </header>
 
             {stats.length > 0 && (
@@ -466,7 +466,7 @@ const ProfileOverviewContent = () => {
                     </div>
                     {/* A9: the clock does not wait for the save, so it is on the page from the start. */}
                     <div className="cs-hero">
-                        <BiologicClock className="cs-clock" />
+                        <ProfileClock className="cs-clock" />
                     </div>
                     <ol className="cs-rooms" aria-hidden="true">
                         {[0, 1, 2, 3].map((i) => (
@@ -484,7 +484,7 @@ const ProfileOverviewContent = () => {
                         {t("profileOverview.retry")}
                     </button>
                     <div className="cs-hero">
-                        <BiologicClock className="cs-clock" />
+                        <ProfileClock className="cs-clock" />
                     </div>
                 </div>
             ) : (

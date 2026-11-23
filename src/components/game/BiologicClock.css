@@ -1,112 +1,129 @@
-/* BiologicClock v5 (spec: docs/specs/equilibrium/biologic_clock_rings_spec.md; issues #381, #385).
-   Two rings, Moon outside and Week inside; view 3 adds a Year ring and a thin gold arc.
-   Three views, one tap: dial only · dial + text · + Year and day. The dial and its round
-   control form the watch; the readout (views 2–3) sits beside / below it (--inline) or drops
-   down from it as a card over what is behind (--card, the village map).
-   Phone: dial on top, readout below, nothing clipped.
+/* BiologicClock v6 (spec: docs/specs/equilibrium/biologic_clock_rings_spec.md, «Improvements v6»;
+   issues #381, #385, #405). Two rings, Moon outside and Week inside; they keep size and place in
+   every view. View 3 adds two thin rings OUTSIDE (Day gold, then Year silver) and the dial grows
+   outward. The dial itself is the control (role button); the card (views 2–3) sits beside / below
+   it (--inline) or drops down from it over what is behind (--card, the village map).
+   One grammar on every ring: the current phase is one large glowing symbol, what is lived is dim
+   (~35%), what is ahead is bright (~85%).
+   Card type: three sizes only (11 / 13 / 20), serif for names, sans for the rest.
    Palette: night #070b16, moon warm white / silver rgb(217,209,180), gold #f2c46b, the seven
    chakra colours set per segment in the component. No motion: no load or hover animation. */
 .bio-clock {
   --bc-silver: 217, 209, 180;
   --bc-gold: 242, 196, 107;
+  --bc-lived: 0.35;
+  --bc-ahead: 0.85;
   --bc-size: 300px;
+  --bc-grow: 1; /* view 3: the viewBox is 228 wide, so the dial is 1.14× and Moon / Week stay the same size */
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
   gap: 20px 32px; box-sizing: border-box; max-width: 100%; min-width: 0;
   font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif);
   color: var(--vl-ink, rgba(235, 238, 242, 0.92));
 }
+.bio-clock[data-view="3"] { --bc-grow: 1.14; }
 @media (max-width: 720px) { .bio-clock { --bc-size: min(340px, 100%); } }
 
-/* The watch: the dial with its round + / − control under it */
-.bio-clock__watch { display: flex; flex: none; flex-direction: column; align-items: center; gap: 8px; max-width: 100%; }
+/* The watch: the dial, which is itself the control */
+.bio-clock__watch { display: flex; flex: none; flex-direction: column; align-items: center; max-width: 100%; }
 .bio-clock__dial {
   display: block; flex: none; overflow: visible;
-  width: var(--bc-size); max-width: 100%; height: auto; aspect-ratio: 1 / 1;
+  width: calc(var(--bc-size) * var(--bc-grow)); max-width: 100%; height: auto; aspect-ratio: 1 / 1;
 }
 .bio-clock__dial.is-tappable { cursor: pointer; -webkit-tap-highlight-color: transparent; }
-.bio-clock__more {
-  appearance: none; display: inline-flex; align-items: center; justify-content: center; flex: none;
-  width: 28px; height: 28px; padding: 0; margin: 0; cursor: pointer; border-radius: 50%;
-  font: inherit; font-size: 18px; line-height: 1; color: rgba(235, 238, 242, 0.85);
-  background: rgba(7, 11, 22, 0.55); border: 1px solid rgba(var(--bc-silver), 0.45);
-}
-.bio-clock__more:hover, .bio-clock__more:focus-visible { color: #fff; border-color: rgba(var(--bc-silver), 0.9); outline: none; }
-.bio-clock__more:focus-visible { box-shadow: 0 0 0 2px rgba(var(--bc-silver), 0.6); }
 .bio-clock__dial:focus-visible { outline: 2px solid rgb(var(--bc-silver)); outline-offset: 4px; border-radius: 50%; }
 .bio-clock__night { fill: #070b16; fill-opacity: 0.55; }
 
 /* Rings: thin tracks, the same grammar for every ring */
-.bio-clock__track, .bio-clock__track-lit, .bio-clock__seg, .bio-clock__year, .bio-clock__day-track, .bio-clock__day-lit {
+.bio-clock__track-lived, .bio-clock__track-ahead, .bio-clock__seg, .bio-clock__year, .bio-clock__day-lived, .bio-clock__day-ahead {
   fill: none; stroke-linecap: round;
 }
-.bio-clock__track { stroke: rgb(var(--bc-silver)); stroke-opacity: 0.22; }
-.bio-clock__track-lit { stroke: rgb(var(--bc-silver)); stroke-opacity: 0.85; }
 
-/* Moon orbs: up to now lit, later dim; the current one larger with a glow (drawn in the component) */
-.bio-clock__moon.is-lit { opacity: 0.9; }
-.bio-clock__moon.is-dim { opacity: 0.4; }
-.bio-clock__moon.is-now { opacity: 1; }
+/* Moon: lived part of the track dim, the part still ahead bright; orbs the same */
+.bio-clock__track-lived { stroke: rgb(var(--bc-silver)); stroke-opacity: var(--bc-lived); }
+.bio-clock__track-ahead { stroke: rgb(var(--bc-silver)); stroke-opacity: var(--bc-ahead); }
+.bio-clock__moon.is-lived, .bio-clock__planet.is-lived { opacity: var(--bc-lived); }
+.bio-clock__moon.is-ahead, .bio-clock__planet.is-ahead { opacity: var(--bc-ahead); }
+.bio-clock__moon.is-now, .bio-clock__planet.is-today { opacity: 1; }
 
-/* Week: seven chakra segments, today bright and thicker, the rest ~35% */
-.bio-clock__seg { stroke: var(--bc-seg); stroke-opacity: 0.35; }
+/* Week: seven chakra segments; lived days dim, days ahead bright, today full and thicker */
+.bio-clock__seg { stroke: var(--bc-seg); }
+.bio-clock__seg.is-lived { stroke-opacity: var(--bc-lived); }
+.bio-clock__seg.is-ahead { stroke-opacity: var(--bc-ahead); }
 .bio-clock__seg.is-today { stroke-opacity: 1; }
 
-/* Year (expanded): four seasons, the current one bright */
-.bio-clock__year { stroke: rgb(var(--bc-silver)); stroke-opacity: 0.3; stroke-width: 2.6; }
-.bio-clock__year.is-now { stroke-opacity: 0.9; stroke-width: 3.4; }
-.bio-clock__year--empty { stroke-dasharray: 1 4; }
-.bio-clock__year-dot { fill: #fff; stroke: rgba(7, 11, 22, 0.8); stroke-width: 0.8; }
+/* Year (view 3, outermost, silver): four seasons from the birthday */
+.bio-clock__year { stroke: rgb(var(--bc-silver)); stroke-width: 2.4; }
+.bio-clock__year.is-lived { stroke-opacity: var(--bc-lived); }
+.bio-clock__year.is-ahead { stroke-opacity: var(--bc-ahead); }
+.bio-clock__year.is-now { stroke-opacity: 1; stroke-width: 3.2; }
+.bio-clock__year--empty { stroke-opacity: 0.4; stroke-dasharray: 1 4; }
+.bio-clock__year-dot { fill: #fff; stroke: rgba(7, 11, 22, 0.8); stroke-width: 0.8; filter: drop-shadow(0 0 3px rgba(var(--bc-silver), 0.9)); }
 
-/* Day part (expanded): a thin gold arc, midnight at the top */
-.bio-clock__day-track { stroke: rgb(var(--bc-gold)); stroke-opacity: 0.2; stroke-width: 1.4; }
-.bio-clock__day-lit { stroke: rgb(var(--bc-gold)); stroke-opacity: 0.9; stroke-width: 1.4; }
-.bio-clock__day-dot { fill: rgb(var(--bc-gold)); filter: drop-shadow(0 0 2px rgba(var(--bc-gold), 0.9)); }
+/* Day (view 3, gold, between the Moon and the Year): lived part dim, what is left bright; midnight at the top */
+.bio-clock__day-lived, .bio-clock__day-ahead { stroke: rgb(var(--bc-gold)); stroke-width: 1.6; }
+.bio-clock__day-lived { stroke-opacity: var(--bc-lived); }
+.bio-clock__day-ahead { stroke-opacity: var(--bc-ahead); }
+.bio-clock__day-dot { fill: rgb(var(--bc-gold)); filter: drop-shadow(0 0 3px rgba(var(--bc-gold), 0.95)); }
 
-/* Centre: the moon phase word over the day word */
+/* Centre: two addressed words, same size and weight; the colour comes from the ring (inline) */
 .bio-clock__word {
-  font-family: inherit; font-weight: 700; fill: #fff; user-select: none;
-  paint-order: stroke; stroke: rgba(7, 11, 22, 0.55); stroke-width: 2px; stroke-linejoin: round;
+  font-family: inherit; font-weight: 700; user-select: none;
+  paint-order: stroke; stroke: rgba(7, 11, 22, 0.6); stroke-width: 2px; stroke-linejoin: round;
 }
-.bio-clock__word--day { font-weight: 400; fill: rgba(235, 238, 242, 0.82); }
 
-/* Readout: one block per ring */
-.bio-clock__readout { flex: 1 1 280px; min-width: 0; max-width: 460px; display: flex; flex-direction: column; gap: 22px; }
-.bio-clock__block, .bio-clock__extra { min-width: 0; }
+/* Card: one grid per ring, thin dividers between blocks */
+.bio-clock__readout {
+  flex: 1 1 280px; min-width: 0; max-width: 460px; display: flex; flex-direction: column; gap: 12px;
+  font-family: var(--vl-sans, "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
+  font-size: 13px; line-height: 1.4;
+}
+.bio-clock__block { --bc-ring: #fff; display: grid; gap: 4px; min-width: 0; }
+.bio-clock__block + .bio-clock__block { padding-top: 12px; border-top: 1px solid rgba(235, 238, 242, 0.12); }
 .bio-clock__block p { margin: 0; }
-.bio-clock__chain { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
-.bio-clock__step { display: inline-flex; align-items: center; gap: 7px; font-size: 15px; color: rgba(235, 238, 242, 0.62); }
-.bio-clock__step.is-current { font-size: 24px; font-weight: 700; color: #fff; }
-.bio-clock__step-symbol { display: inline-flex; flex: none; align-items: center; justify-content: center; line-height: 1; }
-.bio-clock__step-symbol svg, .bio-clock__planet-img { display: block; }
-.bio-clock__planet-img.is-saturn { transform: scale(1.5); }
-.bio-clock__sep { font-size: 15px; color: rgba(235, 238, 242, 0.4); }
-/* Phone: previous › current › next stays on one line (the symbols and type shrink, never clip) */
-@media (max-width: 720px) {
-  .bio-clock__chain { gap: 4px 6px; flex-wrap: nowrap; }
-  .bio-clock__step { gap: 5px; font-size: 13px; min-width: 0; }
-  .bio-clock__step.is-current { font-size: 20px; }
-  .bio-clock__step-symbol svg, .bio-clock__planet-img { width: 20px; height: 20px; }
-  .bio-clock__step.is-current .bio-clock__step-symbol svg, .bio-clock__step.is-current .bio-clock__planet-img { width: 28px; height: 28px; }
-  .bio-clock__sep { font-size: 13px; }
-}
-.bio-clock__small { margin-top: 4px !important; font-size: 13px; color: rgba(235, 238, 242, 0.55); }
-.bio-clock__meaning { margin-top: 2px !important; font-size: 16px; line-height: 1.35; color: var(--vl-ink-2, rgba(235, 238, 242, 0.85)); overflow-wrap: anywhere; }
-.bio-clock__ends { margin-top: 2px !important; font-size: 15px; font-weight: 700; color: #fff; }
 
-/* The empty-year invitation */
-.bio-clock__link {
-  appearance: none; background: none; border: 0; margin: 0; cursor: pointer; text-align: left;
-  font: inherit; font-size: 16px; font-style: italic; color: var(--vl-ink-2, rgba(235, 238, 242, 0.85));
+/* (a) small caps label in the ring colour, with its address; time left right-aligned */
+.bio-clock__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; min-width: 0; }
+.bio-clock__label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bc-ring); }
+.bio-clock__time { flex: none; font-size: 11px; color: rgba(235, 238, 242, 0.7); text-align: right; }
+
+/* (b) current symbol + word large in the ring colour; was … · next … small and dim on the right */
+.bio-clock__now { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; min-width: 0; }
+.bio-clock__symbol { display: inline-flex; flex: none; align-items: center; justify-content: center; line-height: 1; }
+.bio-clock__symbol svg, .bio-clock__planet-img { display: block; }
+.bio-clock__name { font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif); font-size: 20px; font-weight: 700; line-height: 1.1; color: var(--bc-ring); }
+.bio-clock__around { margin-left: auto; font-size: 11px; color: rgba(235, 238, 242, 0.5); text-align: right; }
+.bio-clock__planet-img.is-saturn { transform: scale(1.5); }
+.bio-clock__year-mark { display: block; width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px rgba(var(--bc-silver), 0.85); }
+
+/* The Sun: a round mask over the square PNG (its disc is ~88% of the image) and our own glow */
+.bio-clock__sun { display: inline-flex; flex: none; overflow: hidden; border-radius: 50%; box-shadow: 0 0 8px 1px rgba(255, 154, 60, 0.6); }
+.bio-clock__sun .bio-clock__planet-img { width: 100%; height: 100%; transform: scale(1.136); }
+
+/* (c) the meaning, one plain sentence */
+.bio-clock__meaning { font-size: 13px; color: var(--vl-ink-2, rgba(235, 238, 242, 0.85)); overflow-wrap: anywhere; }
+
+/* Extras sit under their own block: Moon Focus under Moon, the day left (gold) under Year */
+.bio-clock__extra { min-width: 0; font-size: 13px; }
+.bio-clock__today { font-size: 13px; color: rgb(var(--bc-gold)); }
+.bio-clock__focus { margin: 0; font-size: 13px; line-height: 1.35; color: var(--vl-ink-2, rgba(235, 238, 242, 0.85)); }
+.bio-clock__focus-label { display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(235, 238, 242, 0.7); }
+.bio-clock__focus-value {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; font-style: italic;
+}
+.bio-clock__focus--invite a, .bio-clock__link {
+  font-size: 13px; font-style: italic; color: var(--vl-ink-2, rgba(235, 238, 242, 0.85));
   border-bottom: 1px solid rgba(150, 112, 58, 0.8); padding: 0 0 1px;
 }
+.bio-clock__focus--invite a:hover, .bio-clock__focus--invite a:focus-visible,
 .bio-clock__link:hover, .bio-clock__link:focus-visible { color: #fff; outline: none; text-decoration: underline; }
+.bio-clock__link { appearance: none; background: none; border: 0; margin: 0; cursor: pointer; text-align: left; font-family: inherit; }
 
 /* Card placement (the village map): the dial stays put at the end of the row; views 2–3 drop a
-   card down from it over the map. Desktop: a card up to 440px wide under the dial. Phone: full width. */
+   card down from it over the map. Desktop: ≤ 340px wide so it covers fewer places. Phone: full width. */
 .bio-clock--card { flex-direction: column; flex-wrap: nowrap; align-items: flex-end; gap: 8px; width: 100%; }
 .bio-clock--card .bio-clock__readout {
-  flex: none; width: min(440px, 100%); max-width: 100%; box-sizing: border-box; gap: 18px;
-  padding: 16px 18px; border-radius: 14px;
+  flex: none; width: min(340px, 100%); max-width: 100%; box-sizing: border-box;
+  padding: 14px 16px; border-radius: 14px;
   background: rgba(7, 11, 22, 0.96); border: 1px solid rgba(150, 112, 58, 0.45);
   max-height: calc(100svh - 220px); overflow-y: auto; overscroll-behavior: contain;
 }
@@ -116,6 +133,6 @@
 
 @media (forced-colors: active) {
   .bio-clock__night { fill: Canvas; }
-  .bio-clock__track, .bio-clock__track-lit, .bio-clock__year, .bio-clock__day-track, .bio-clock__day-lit { stroke: CanvasText; }
-  .bio-clock__word { fill: CanvasText; stroke: none; }
+  .bio-clock__track-lived, .bio-clock__track-ahead, .bio-clock__year, .bio-clock__day-lived, .bio-clock__day-ahead { stroke: CanvasText; }
+  .bio-clock__word { fill: CanvasText !important; stroke: none; }
 }

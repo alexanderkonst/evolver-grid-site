@@ -1,15 +1,14 @@
-/* MoonDial (village-as-dashboard step 2). Village ink tokens + the moon accent #D9D1B4 and the
-   ochre hairline #96703A already used by the moon theme; no new palette. */
+/* MoonDial (village-as-dashboard step 2; v6 #405). Village ink tokens; the card type and the Moon
+   Focus line are styled in BiologicClock.css (`.bio-clock__focus`), shared with the profile card. */
 .moon-dial {
-  --md-moon: 217, 209, 180;
-  --md-ochre: 150, 112, 58;
   font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif);
   color: var(--vl-ink, rgba(235, 238, 242, 0.92));
   text-shadow: 0 1px 18px rgba(var(--scene-shadow-rgb, 0, 0, 0), 0.75);
 }
 /* On the village map (#385): a compact watch in the top-right corner of the map frame. The overlay
-   spans the frame so a phone card can run full width, but only the dial, its control and the card
-   take taps; the map and its pins stay reachable everywhere else. Dial ~128px, ~96px on a phone. */
+   spans the frame so a phone card can run full width, but only the dial and the card take taps; the
+   map and its pins stay reachable everywhere else. Dial 200px on desktop and on a phone (v6: the
+   centre words must stay >= 12px; at 148px they were ~9px). */
 .moon-dial.vl-watch {
   position: absolute; z-index: 4; top: 66px; right: 14px; left: 14px; /* 66px: below the fixed language pill in the corner */
   display: flex; justify-content: flex-end; pointer-events: none;
@@ -19,20 +18,6 @@
 .moon-dial .moon-dial__clock { --bc-size: 200px; }
 @media (max-width: 720px) {
   .moon-dial.vl-watch { top: 8px; right: 8px; left: 8px; }
-  .moon-dial .moon-dial__clock { --bc-size: 148px; }
+  .moon-dial .moon-dial__clock { --bc-size: 200px; }
 }
-.moon-dial__line { margin: 6px 0 0; font-size: var(--vl-text-small, 15px); line-height: 1.3; color: var(--vl-ink-2, rgba(235, 238, 242, 0.82)); }
-.moon-dial__label {
-  display: block; font-family: var(--vl-mono, "IBM Plex Mono", ui-monospace, monospace); font-weight: 300;
-  font-size: var(--vl-text-micro, 11px); letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-3, rgba(235, 238, 242, 0.7));
-}
-.moon-dial__value {
-  display: block; font-style: italic; overflow: hidden; text-overflow: ellipsis;
-  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
-}
-.moon-dial__invite a {
-  font-style: italic; color: var(--vl-ink-2, rgba(235, 238, 242, 0.82));
-  border-bottom: 1px solid rgba(var(--md-ochre), 0.8); padding-bottom: 1px; transition: color 0.5s ease, border-color 0.5s ease;
-}
-.moon-dial__invite a:hover, .moon-dial__invite a:focus-visible { color: var(--vl-ink); border-color: rgb(var(--md-moon)); outline: none; }
-@media (prefers-reduced-motion: reduce) { .moon-dial__invite a { transition: none; } }
+.moon-dial .bio-clock__focus { text-shadow: none; }

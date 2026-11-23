@@ -579,7 +579,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     // Elongation 135°–180°. Mean-cycle days 11.074–14.765.
     start: 11.074,
     end: 14.765,
-    energy: "Readying · Prep for harvest · Set up infrastructure · Get the help",
+    energy: "Prepping · Prep for harvest · Set up infrastructure · Get the help",
     holonicQuadrant: "enrichment",
     guidance:
       "Prepare the system for the upcoming harvest — what tools, helpers, and storage need to be in place?",
