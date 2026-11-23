@@ -42,21 +42,23 @@ Planet images: `public/assets/equilibrium/planets/{moon,mars,mercury,jupiter,ven
 
 ## Words (engine copy; also changes Equilibrium)
 - Waxing Gibbous: `Leading` → **`Readying`** («готовить к жатве»): energy `Readying · Prep for harvest · Set up infrastructure · Get the help`.
+- Waxing Gibbous again (Sasha 2026-11-22 21:09): `Readying` → **`Prepping`**, in the clock and everywhere in Equilibrium.
 - Sunday: `Illumination & Celebration` → **`Threshold & Celebration`** (liminal day between weeks); description starts «Between weeks: vision, ceremony, sharing with community. Write, don't send; seed Monday.»
 
 ## Where it lives
 - Village map: a compact watch in the **top-right corner of the map** (Sasha asked where; my pick 2026-11-22: it stays visible while you look at the village, never covers place labels, and on a phone it sits as a small dial over the map's corner). Views 2–3 open as a card dropping down from the dial over the map, closing back to the dial. Replaces the old `MoonDial` block in the header; Do now gone.
 - Character sheet header `/game/me/overview`: the same component, beside the name, same three views (opens in place, pushing content down).
-- Sizes (Sasha 2026-11-22 15:36 «слишком маленькие», commit 056d963): village dial 200 px desktop, 148 px phone; profile up to 320 px. Phone (~390 px): the card is full width under the dial; nothing clipped.
+- Sizes (Sasha 2026-11-22 15:36 «слишком маленькие», commit 056d963): village dial 200 px desktop, 148 px phone; profile up to 320 px. Phone (~390 px): the card is full width under the dial; nothing clipped. v6: the centre words never render below 12 px, so the phone dial is 200 px too (148 px gave ~9 px words).
 
 ## Improvements v6 (from the live review, Sasha 2026-11-22 21:06 «сделай спецификацию по улучшению»)
+Mockup v6 (real values, Sun 2026-11-22 ~21:00 MST): [three views](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v6-views.jpg) · [village, desktop 200 px](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v6-village.jpg) · [phone 390 px, dial 200 px](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v6-mobile.jpg). Static, not in code.
 Why: live check 2026-11-22. The two centre words don't say which cycle they belong to; the second is grey and barely readable; each ring shows «where I am» its own way; symbols are 9–13 px and merge into dots; the rings jump when Year and day open. The 5-second test fails.
 
 1. **One grammar for every ring** (Moon, Week, Year, Day): the current phase is one large glowing symbol; what is already lived is dim (~35%); what is still ahead is bright (~85%). Track arcs follow the same rule: the part from now to the end of the cycle bright, the part already lived faint. (Today the moon lights the past, the week has no progress, and the day lights the lived part; the founding idea was «lived part dim, what's left bright».)
 2. **Readable symbols**: the current moon and today's planet 2–3× the others (radius ~15–16 viewBox units instead of ~10); the other phases stay small, quiet marks. At 148 px (phone) the current symbols are at least ~20 px. Nothing overlaps the centre words.
 3. **Centre words with an address**: each word carries its ring's symbol and colour. Line 1: small current moon + phase word, in moon colour (warm white). Line 2: small planet of the day + day word, in today's chakra colour (Sunday green). Both words same size, weight and full brightness. A newcomer links each word to its ring without a legend.
-4. **Stable rings**: Moon and Week keep the same size and place in all three views. View 3 adds Year as a thin ring outside them (the dial grows outward) and the Day arc as a thin ring just inside the week ring; the centre words don't shrink.
-5. **Year names** (fork, waits for Sasha; my pick A): the personal year runs birthday to birthday, so calendar names mislead (on 2026-11-22 the clock said «Autumn Equinox»). A: show only the energy names (Seeding, Sprouting, Fruiting, Harvest) with the line «Your year, from your birthday», no calendar season. B: keep the names and add «your year:» before them.
+4. **Stable rings**: Moon and Week keep the same size and place in all three views. View 3 adds two thin rings outside them, Day (gold) then Year (silver), and the dial grows outward; nothing new goes inside the week ring (no room beside the centre words); the centre words don't shrink.
+5. **Year names** (decided A, Sasha 2026-11-22 21:08 «делай»): the personal year runs birthday to birthday, so calendar names mislead (on 2026-11-22 the clock said «Autumn Equinox»). A: show only the energy names (Seeding, Sprouting, Fruiting, Harvest) with the line «Your year, from your birthday», no calendar season. B: keep the names and add «your year:» before them.
 6. **Small fixes**:
    - The dial itself is the control (role button, keyboard Enter/Space, aria-label naming the next view); the separate round `+` / `−` goes.
    - Moon Focus line also in the profile card (view 2), as on the village.
@@ -77,3 +79,4 @@ A player opens the village map and, without a legend, sees in the dial alone the
 - 2026-11-22 14:49: Sasha: default shows only the dial; the toggle cycles dial → text → + Year and day → dial. Placement asked; picked the map's top-right corner (also clears the Moon Focus line running under the CAFÉ label).
 - Three views + village placement built (issue #385, 2026-11-22): `BiologicClock` takes `view` 1/2/3 (`onCycleView`, round `+` / `−` control under the dial, localStorage `bioclock:view`; the v5 key `bioclock:expanded` migrates: «1» → view 3, «0» → view 2). The village mounts `MoonDial` as a watch in the top-right of `vl-frame` (dial 128 px, 96 px on a phone; Moon Focus moved into the card, view 2 onward; sky moon steps left of it; offset below the fixed language pill). Character sheet: same component, `placement="inline"`.
 - 2026-11-22 21:06: live review (two-part analysis in chat) → «Improvements v6» section; Sasha asked for the spec. Next: mockup, his yes, then build.
+- 2026-11-22 21:08–21:09: Sasha «делай» (Year names A) and Readying → Prepping everywhere; mockup v6 made.
