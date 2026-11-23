@@ -725,8 +725,7 @@
         "lockedHint": "Coming soon. Connection-tracking surface in progress."
       },
       "people": {
-        "label": "People Directory",
-        "lockedHint": "Coming soon. Directory needs profile permissions before it ships."
+        "label": "People Directory"
       },
       "messages": {
         "label": "Messages"
@@ -1125,7 +1124,9 @@
     "loadMore": "Load more",
     "fallbackName": "Community Member",
     "unknownArchetype": "Unknown archetype",
-    "loadError": "Unable to load directory."
+    "loadError": "Unable to load directory.",
+    "notAvailable": "The directory is not available yet.",
+    "searchPlaceholder": "Search by name or talent"
   },
   "growthPaths": {
     "back": "Back",
