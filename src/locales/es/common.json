@@ -9420,8 +9420,8 @@
     "back": "← Atrás",
     "gifts": {
       "aria": "Lo que tiene tu IA",
-      "lit": " (lo tiene)",
-      "dim": " (aún no)"
+      "lit": "(lo tiene)",
+      "dim": "(aún no)"
     },
     "gift": {
       "knowsYou": "Te conoce",
@@ -9455,7 +9455,8 @@
       "yourQuestion": "Tu pregunta",
       "sameModel": "El mismo modelo en ambos lados. La única diferencia es lo que lleva tu IA.",
       "step1": "Haz tu pregunta en un chat de IA común. Lee la respuesta.",
-      "step3": "Nota la diferencia.",
+      "step2": "Ahora pregunta a Tu IA: un toque copia Tu IA con tu pregunta y abre un chat nuevo. Pega.",
+      "step3": "Compara las dos respuestas.",
       "copyQuestion": "Copiar mi pregunta",
       "copied": "Copiado",
       "rateQ": "¿Qué tan diferente es, del 1 al 10?",

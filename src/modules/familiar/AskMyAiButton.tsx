@@ -16,6 +16,8 @@ import "@/components/game/ModuleForm.css";
 type Props = {
   state: FamiliarState;
   app: ChatApp;
+  /** What to copy; default is the personal prompt alone (the Reveal adds the player's question). */
+  text?: string;
   /** Called after a successful copy (the screen may want to note it). */
   onCopied?: () => void;
   className?: string;
@@ -23,7 +25,7 @@ type Props = {
 
 type Outcome = "idle" | "copied" | "failed";
 
-const AskMyAiButton = ({ state, app, onCopied, className }: Props) => {
+const AskMyAiButton = ({ state, app, text, onCopied, className }: Props) => {
   const { t } = useTranslation();
   const [outcome, setOutcome] = useState<Outcome>("idle");
   // Read at render: a version stored by an earlier visit, or by a click just now.
@@ -33,7 +35,7 @@ const AskMyAiButton = ({ state, app, onCopied, className }: Props) => {
 
   const onClick = async () => {
     // Copy first and open second, both before the first await: iOS Safari ties both to the tap.
-    const copying = copyText(state.prompt);
+    const copying = copyText(text ?? state.prompt);
     window.open(chatAppUrl(app), "_blank", "noopener,noreferrer");
     const ok = await copying;
     if (ok) {

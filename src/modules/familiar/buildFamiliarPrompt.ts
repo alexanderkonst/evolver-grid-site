@@ -88,3 +88,16 @@ export function buildFamiliarPrompt(input: BuildFamiliarPromptInput): string {
   if (sections.length === 0) return aiOs;
   return [PREAMBLE, ...sections, "---", aiOs].filter((s) => s !== "").join("\n\n");
 }
+
+/**
+ * buildAskPrompt — the text the Reveal's «Ask my AI» copies: the personal prompt, then the player's
+ * own question as a closing line, so one paste into a fresh chat both installs the AI and asks it.
+ * With no prompt yet it is the question alone.
+ */
+export function buildAskPrompt(prompt: string, question: string): string {
+  const p = clean(prompt);
+  const q = clean(question);
+  if (!q) return p;
+  const closing = `---\nMy question: ${q}`;
+  return p ? `${p}\n\n${closing}` : q;
+}

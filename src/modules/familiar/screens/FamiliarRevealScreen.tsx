@@ -1,25 +1,30 @@
 /**
- * Screen 3 · Reveal, `mode: "self"` (the guided self-experiment, no backend):
- *   1. ask the question in a plain chat
- *   2. notice the difference, rate it 1–10 (optional)
- * The «Ask my AI» hand-off to ChatGPT / Claude / Gemini is gone: Your AI lives inside the game
- * (AskMyAiButton and buildFamiliarPrompt stay in the module, unused, for the in-game AI later).
+ * Screen 3 · Reveal, `mode: "self"` (the guided self-experiment, no backend, no model calls):
+ *   1. ask the question in a plain chat (copy the question)
+ *   2. ask Your AI: one tap copies the personal prompt plus the question and opens a new chat in the
+ *      player's own app (ChatGPT by default); the player's external AI carries this rung
+ *   3. compare the two answers, rate the difference 1–10 (optional)
  * Spec: docs/specs/ai-familiar/ai-familiar_tracker.md §1.3, §1 «Honest split». The rating goes to
  * `resonance_events` with `message_seen = "familiar reveal"`. «Hear why →» appears once the player
  * has rated, or says they would rather not.
  */
-import { useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import AskMyAiButton from "../AskMyAiButton";
+import ChatAppPicker from "../ChatAppPicker";
 import GiftChips from "../GiftChips";
+import { buildAskPrompt } from "../buildFamiliarPrompt";
 import { copyText } from "../copyText";
 import { recordRating } from "../recordRating";
-import { getRating, setRating } from "../storage";
-import type { CompareResult, FamiliarState } from "../types";
+import { getChatApp, getRating, setChatApp, setRating } from "../storage";
+import type { ChatApp, CompareResult, FamiliarState } from "../types";
 import "@/components/game/ModuleForm.css";
 
 const MODE: CompareResult["mode"] = "self";
 const RATINGS = Array.from({ length: 10 }, (_, i) => i + 1);
+/** How long the «Copied» label stays before the button reads «Copy my question» again. */
+const COPIED_MS = 2000;
 
 type Props = {
   state: FamiliarState;
@@ -48,9 +53,24 @@ const FamiliarRevealScreen = ({ state, question, onNext }: Props) => {
   const [note, setNote] = useState<string | null>(null);
   const [skipped, setSkipped] = useState(false);
 
+  const [app, setApp] = useState<ChatApp>(() => getChatApp());
+  const askPrompt = buildAskPrompt(state.prompt, question);
+
+  // «Copied» is a moment, not a state: the label goes back to the idle one after COPIED_MS.
+  useEffect(() => {
+    if (!questionCopied) return;
+    const id = window.setTimeout(() => setQuestionCopied(false), COPIED_MS);
+    return () => window.clearTimeout(id);
+  }, [questionCopied]);
+
   const copyQuestion = async () => {
     const ok = await copyText(question);
     setQuestionCopied(ok);
+  };
+
+  const pickApp = (next: ChatApp) => {
+    setApp(next);
+    setChatApp(next);
   };
 
   const rate = async (value: number) => {
@@ -100,7 +120,17 @@ const FamiliarRevealScreen = ({ state, question, onNext }: Props) => {
             </button>
           </Step>
 
-          <Step n={2} text={t("familiar.reveal.step3", { defaultValue: "Notice the difference." })} />
+          <Step
+            n={2}
+            text={t("familiar.reveal.step2", {
+              defaultValue: "Now ask Your AI: one tap copies Your AI with your question and opens a new chat. Paste.",
+            })}
+          >
+            <ChatAppPicker value={app} onChange={pickApp} />
+            <AskMyAiButton state={state} app={app} text={askPrompt} />
+          </Step>
+
+          <Step n={3} text={t("familiar.reveal.step3", { defaultValue: "Compare the two answers." })} />
         </ol>
 
         {rating !== null ? (

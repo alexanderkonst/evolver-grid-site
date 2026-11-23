@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   ARTIFACT_CHAR_CAP,
   artifactText,
+  buildAskPrompt,
   buildFamiliarPrompt,
   type FamiliarArtifactInput,
   type FamiliarTalentInput,
@@ -135,5 +136,27 @@ describe("artifactText", () => {
   it("is empty when there is nothing", () => {
     expect(artifactText({ content: null, content_json: null })).toBe("");
     expect(artifactText({})).toBe("");
+  });
+});
+
+describe("buildAskPrompt", () => {
+  it("puts the prompt first and the question in a closing line", () => {
+    const prompt = buildFamiliarPrompt({ aiOs: AI_OS, talent: TALENT });
+    const out = buildAskPrompt(prompt, "What am I deciding?");
+    expect(out.startsWith(prompt)).toBe(true);
+    expect(out.endsWith("\n\n---\nMy question: What am I deciding?")).toBe(true);
+  });
+
+  it("works for a guest: AI OS, then the question", () => {
+    expect(buildAskPrompt(AI_OS, "Should I quit?")).toBe(`${AI_OS.trim()}\n\n---\nMy question: Should I quit?`);
+  });
+
+  it("trims both parts and keeps the question's own line breaks", () => {
+    expect(buildAskPrompt("  P  ", "  line one\nline two \n")).toBe("P\n\n---\nMy question: line one\nline two");
+  });
+
+  it("falls back to the question alone when there is no prompt, and to the prompt when there is no question", () => {
+    expect(buildAskPrompt("  ", "Q?")).toBe("Q?");
+    expect(buildAskPrompt("P", "  ")).toBe("P");
   });
 });

@@ -26,7 +26,8 @@ const GiftChips = ({ gifts }: { gifts: GiftState[] }) => {
           <p className="m-0 text-base" style={{ color: "var(--vl-ink)" }}>
             <span aria-hidden="true">{g.lit ? "● " : "○ "}</span>
             {t(`familiar.gift.${g.key}`, { defaultValue: g.label })}
-            <span className="sr-only">{g.lit ? t("familiar.gifts.lit", { defaultValue: " (has it)" }) : t("familiar.gifts.dim", { defaultValue: " (not yet)" })}</span>
+            {" "}
+            <span className="sr-only">{g.lit ? t("familiar.gifts.lit", { defaultValue: "(has it)" }) : t("familiar.gifts.dim", { defaultValue: "(not yet)" })}</span>
           </p>
           {g.lit && g.detail ? (
             <p className="m-0 mt-1 text-sm italic" style={{ color: "var(--vl-ink-2)" }}>

@@ -9447,8 +9447,8 @@
     "back": "← Back",
     "gifts": {
       "aria": "What your AI has",
-      "lit": " (has it)",
-      "dim": " (not yet)"
+      "lit": "(has it)",
+      "dim": "(not yet)"
     },
     "gift": {
       "knowsYou": "Knows you",
@@ -9483,7 +9483,8 @@
       "yourQuestion": "Your question",
       "sameModel": "Same model on both sides. The only difference is what your AI carries.",
       "step1": "Ask your question in a plain AI chat. Read the answer.",
-      "step3": "Notice the difference.",
+      "step2": "Now ask Your AI: one tap copies Your AI with your question and opens a new chat. Paste.",
+      "step3": "Compare the two answers.",
       "copyQuestion": "Copy my question",
       "copied": "Copied",
       "rateQ": "How different is this, 1 to 10?",
