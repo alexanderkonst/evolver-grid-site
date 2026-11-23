@@ -105,9 +105,9 @@ import MoonMedallion from "@/components/game/MoonMedallion";
 // their own folders; every other skin falls back to the root set.
 const ICON_SKIN_DIR: Partial<Record<Skin, string>> = { aurum: "aurum/", lunar: "lunar/", dao: "dao/" };
 const placeIconSrc = (key: VillagePlaceKey, skin?: Skin) =>
-    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}.webp?v=3`;
+    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}.webp?v=4`;
 const placeIconSrc2x = (key: VillagePlaceKey, skin?: Skin) =>
-    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}@2x.webp?v=3`;
+    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}@2x.webp?v=4`;
 
 const PlaceIcon = ({ place, size, skin }: { place: VillagePlace; size: number; skin?: Skin }) => (
     <span className="village-place-icon flex-shrink-0" style={{ width: size, height: size }}>
