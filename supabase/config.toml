@@ -197,3 +197,6 @@ verify_jwt = false
 # users can invoke it (same posture as the other logged-in LLM functions).
 [functions.remove-duplicate-assets]
 verify_jwt = true
+
+[functions.mini-training-chat]
+verify_jwt = true
