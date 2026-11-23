@@ -30,7 +30,7 @@ Status: **live** = on the site · **partial** = exists, gap named · **none** = 
 | A1 | Title screen (NEW GAME) | exists | live `/` | — |
 | A2 | Promo video = opening screen (B2-15, B2-18①) | a short film plays before the title; skip button; then onboarding into the village | none (no video yet) | Yes |
 | A3 | Onboarding into the digital village (B2-18②) | after the film/title a new player lands in the village with one obvious first step | partial: guest path + Home, issue #354 (main chat) | Yes |
-| A4 | Hook after reveal: «Your next potential is… Your first micro-quest to claim that version of yourself is this:» | every reveal ends with one named potential and one doable micro-quest | none | Yes |
+| A4 | Hook after reveal: «Your next potential is… Your first micro-quest to claim that version of yourself is this:» | every reveal ends with one named potential and one doable micro-quest | merged 2026-11-22 (#399), on findyourtoptalent.com after Lovable publish: next potential + micro-quest block after the reveal card, «Accept the quest» puts it on the Quest Board; reveals made before have no block | Yes |
 | A5 | Stats cards on Your House, owner-only, shown only when they have a value (Sasha 2026-11-21): QoL; U = resonance of the current uniqueness statement (1–10); $ = income the unique business brought, if the player has the number. U.O. parked | the cards a player has values for appear; nothing empty | live 2026-11-21 (#364): owner-only QoL, U, $ cards on Your House, only with a value | — |
 | A6 | Social network: see a profile, filter for useful people, write to them | from a profile a player can send a message; the person gets it | live 2026-11-21 (#363): Write from a profile and the directory, inbox at `/game/messages`; table player_messages deployed on Sasha's yes | — |
 | A7 | Artifacts / products / clients | player sees what they made, sell and who bought | live 2026-11-21 (#366): `/my-artifacts`, `/game/marketplace/my-products` with Clients list from sales_events | — |
@@ -59,7 +59,7 @@ Design compass (not tasks): actions in the game world are done in the real one; 
 
 | # | Feature | Done when | Status | Yes |
 |---|---|---|---|---|
-| C1 | 3D model of the elements | the five elements as a playable 3D model | live 2026-11-21 (#367): /game/learn/elements | — |
+| C1 | 3D model of the elements | the five elements as a playable 3D model | live 2026-11-21 (#367): /game/learn/elements; drag rotation fixed for the fallback view and touch, merged 2026-11-22 (#398) | — |
 | C2 | Course constructor ← infographics | a course assembled from infographics | none | — |
 | C3 | Holonic-intuitive learning sequence | courses ordered by it | none | — |
 | C4 | Book of Infographics | readable book in the Academy | live 2026-11-21 (#365): reader at `/game/learn/book`, card on `/game/learn` | — |
