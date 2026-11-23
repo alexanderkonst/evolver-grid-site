@@ -515,6 +515,36 @@ export type Database = {
           },
         ]
       }
+      deed_seen: {
+        Row: {
+          created_at: string
+          doer_id: string
+          event_key: string
+          id: string
+          line: string | null
+          seer_id: string
+          seer_name: string | null
+        }
+        Insert: {
+          created_at?: string
+          doer_id: string
+          event_key: string
+          id?: string
+          line?: string | null
+          seer_id?: string
+          seer_name?: string | null
+        }
+        Update: {
+          created_at?: string
+          doer_id?: string
+          event_key?: string
+          id?: string
+          line?: string | null
+          seer_id?: string
+          seer_name?: string | null
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
@@ -3752,6 +3782,7 @@ export type Database = {
         }[]
       }
       can_message_player: { Args: { p_recipient: string }; Returns: boolean }
+      can_see_player_deeds: { Args: { p_target: string }; Returns: boolean }
       circle_face_visible: { Args: { p_user: string }; Returns: boolean }
       circle_going_faces: {
         Args: { p_event_ids: string[] }
@@ -3810,6 +3841,7 @@ export type Database = {
           token: string
         }[]
       }
+      deed_first_name: { Args: { p_name: string }; Returns: string }
       eq_complete_task: { Args: { p_task_id: string }; Returns: undefined }
       eq_promote_do_now: {
         Args: { p_item_id: string; p_item_type: string; p_owner: string }
@@ -3851,6 +3883,18 @@ export type Database = {
           created_at: string
           mastery_action: string
           share_slug: string
+        }[]
+      }
+      get_village_feed: {
+        Args: { p_limit?: number }
+        Returns: {
+          detail: string
+          doer_id: string
+          doer_name: string
+          event_key: string
+          is_own: boolean
+          kind: string
+          occurred_at: string
         }[]
       }
       has_role: {
