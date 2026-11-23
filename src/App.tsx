@@ -6,6 +6,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 import CustomCursor from "@/components/CustomCursor";
 import SiteLogo from "@/components/SiteLogo";
+import LunarPageLoader from "@/components/LunarPageLoader";
 import { GlobalLanguageSwitcher } from "@/i18n/LanguageSwitcher";
 import RequireAuth from "@/components/RequireAuth";
 import RequireAdmin from "@/components/RequireAdmin";
@@ -321,11 +322,9 @@ import AiOsPage from "./modules/ai-os/AiOsPage";
 import AiOsPricingPage from "./modules/ai-os/pages/AiOsPricingPage";
 import AiOsBenchmark from "./pages/AiOsBenchmark";
 
-const PageLoader = () => (
-  <div className="h-screen flex items-center justify-center bg-[#0a0a1a]">
-    <div className="animate-spin w-8 h-8 border-2 border-white/30 border-t-transparent rounded-full" />
-  </div>
-);
+// Issue #401: under the Lunar skin the fallback is the matte screen with the waxing moon;
+// every other skin keeps the original spinner (same markup, inside LunarPageLoader).
+const PageLoader = LunarPageLoader;
 
 // Day 102 (Sasha 2026-06-14): clean-URL bridge for the static Blue Lotus
 // microsite (public/karime/bluelotus). When the SPA fallback serves this app

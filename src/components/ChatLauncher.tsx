@@ -89,6 +89,7 @@ const ChatLauncher = () => {
 
   return (
     <div
+      data-chat-launcher=""
       data-game-route={isGameRoute || undefined}
       className={`fixed z-[65] sm:bottom-6 sm:right-6 ${
         isGameRoute

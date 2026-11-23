@@ -1,0 +1,150 @@
+/* ==========================================================================
+   LUNAR PAGE LOADER — issue #401 (Sasha yes 2026-11-22, "A+B" + hide the chat pill).
+   Only the app's Suspense fallback (App.tsx PageLoader -> LunarPageLoader.tsx) uses this.
+   Every rule below is scoped to [data-skin="lunar"]; under any other skin the layers stay
+   display:none and the original spinner shows. No new image assets (the texture is the
+   existing public/game/lunar-surface file, the grain is a 40px inline SVG).
+
+   A  Matte    texture blurred (inset -6% + scale hides the blur's edge halo), a soft vignette,
+               and film grain at 3.5% opacity. Frosted, not smeared.
+   B  Moon     a crescent waxes to full in 1.6s (two 0.8s halves), holds, then breathes.
+               Colour is rgb(var(--seam-moon)) (lunar-panels.css). prefers-reduced-motion:
+               a static full moon.
+   C  Chat     <html data-page-loading> (set while mounted) hides the «Chat with us» pill.
+   The cursor glow (CustomCursor, z-cursor 90) is a separate layer above and is untouched.
+   ========================================================================== */
+
+.lunar-loader {
+  display: none;
+}
+
+[data-skin="lunar"] .page-loader__spinner {
+  display: none;
+}
+
+[data-skin="lunar"] .lunar-loader {
+  display: block;
+  position: fixed;
+  inset: 0;
+  /* z-overlay (40): over the page, under the global chrome (logo, language switcher: z 50)
+     and the cursor glow (z 90). */
+  z-index: 40;
+  overflow: hidden;
+  background: #090d13;
+  pointer-events: none;
+}
+
+/* ── A. Matte ─────────────────────────────────────────────────────────── */
+[data-skin="lunar"] .lunar-loader__texture {
+  position: absolute;
+  inset: -6%;
+  /* The same night + Nectaris tile the Lunar body wears (lunar-panels.css), overlay-blended. */
+  background:
+    url("/game/lunar-surface/moon-p3-nectaris.webp") 0 0 / 1200px 1200px repeat,
+    linear-gradient(180deg, #090d13 0%, #0e141c 48%, #121b26 100%);
+  background-blend-mode: overlay, normal;
+  filter: blur(8px);
+  transform: scale(1.04);
+}
+
+[data-skin="lunar"] .lunar-loader__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 70% at 50% 50%, transparent 38%, rgba(3, 5, 9, 0.62) 100%);
+}
+
+[data-skin="lunar"] .lunar-loader__grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n' x='0' y='0' width='100%25' height='100%25'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -0.3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 120px 120px;
+}
+
+/* ── B. Waxing moon ───────────────────────────────────────────────────── */
+[data-skin="lunar"] .lunar-loader__moon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: clamp(88px, 14vmin, 150px);
+  height: clamp(88px, 14vmin, 150px);
+  overflow: visible;
+  filter: drop-shadow(0 0 22px rgba(var(--seam-moon), 0.32));
+  animation: lunar-loader-breathe 3.2s ease-in-out 1.6s infinite;
+}
+
+/* The unlit part of the disc: a whisper, so the crescent sits in a visible orb. */
+[data-skin="lunar"] .lunar-loader__disc {
+  fill: rgba(var(--seam-moon), 0.07);
+  stroke: rgba(var(--seam-moon), 0.16);
+  stroke-width: 0.6;
+}
+[data-skin="lunar"] .lunar-loader__lit {
+  fill: rgb(var(--seam-moon));
+}
+
+/* Terminator: dark ellipse shrinks 0.86 -> 0 (thin crescent -> half), then a light one grows
+   0 -> 1 (half -> full). transform-origin is in the 100x100 viewBox's user units. */
+[data-skin="lunar"] .lunar-loader__eraser,
+[data-skin="lunar"] .lunar-loader__adder {
+  transform-origin: 50px 50px;
+  animation-fill-mode: both;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  animation-duration: 0.8s;
+}
+[data-skin="lunar"] .lunar-loader__eraser {
+  animation-name: lunar-loader-erase;
+  animation-delay: calc(0s - var(--ll-elapsed, 0s));
+}
+[data-skin="lunar"] .lunar-loader__adder {
+  animation-name: lunar-loader-add;
+  animation-delay: calc(0.8s - var(--ll-elapsed, 0s));
+}
+
+@keyframes lunar-loader-erase {
+  from { transform: scaleX(0.86); }
+  to   { transform: scaleX(0); }
+}
+@keyframes lunar-loader-add {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes lunar-loader-breathe {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.82; }
+}
+
+/* ── Ready: a copy of the loader (LunarPageLoader.tsx) fades out over the content. ── */
+[data-skin="lunar"] .lunar-loader--leaving {
+  z-index: 40;
+  animation: lunar-loader-leave 0.42s ease-out forwards;
+}
+[data-skin="lunar"] .lunar-loader--leaving .lunar-loader__moon {
+  animation: none;
+}
+@keyframes lunar-loader-leave {
+  to { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* A static full moon, no movement. */
+  [data-skin="lunar"] .lunar-loader__moon {
+    animation: none;
+  }
+  [data-skin="lunar"] .lunar-loader__eraser,
+  [data-skin="lunar"] .lunar-loader__adder {
+    animation: none;
+  }
+  [data-skin="lunar"] .lunar-loader__eraser {
+    transform: scaleX(0);
+  }
+  [data-skin="lunar"] .lunar-loader__adder {
+    transform: scaleX(1);
+  }
+}
+
+/* ── C. «Chat with us» stays out of the way while the loader is up ───────── */
+html[data-skin="lunar"][data-page-loading] [data-chat-launcher] {
+  display: none;
+}
