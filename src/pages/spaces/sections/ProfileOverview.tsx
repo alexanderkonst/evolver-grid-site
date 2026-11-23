@@ -464,6 +464,10 @@ const ProfileOverviewContent = () => {
                         <Skeleton className="h-28 w-28 rounded-full" />
                         <Skeleton className="h-6 w-48" />
                     </div>
+                    {/* A9: the clock does not wait for the save, so it is on the page from the start. */}
+                    <div className="cs-hero">
+                        <BiologicClock className="cs-clock" />
+                    </div>
                     <ol className="cs-rooms" aria-hidden="true">
                         {[0, 1, 2, 3].map((i) => (
                             <li key={i} className="cs-room">
@@ -479,6 +483,9 @@ const ProfileOverviewContent = () => {
                     <button type="button" className="cs-mono" onClick={() => sheet.retry()}>
                         {t("profileOverview.retry")}
                     </button>
+                    <div className="cs-hero">
+                        <BiologicClock className="cs-clock" />
+                    </div>
                 </div>
             ) : (
                 // Mounted once the save has loaded, so the open rooms start from the real state.

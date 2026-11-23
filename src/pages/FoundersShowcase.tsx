@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { Fragment, useState, useEffect, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -408,7 +408,7 @@ export const FounderCard = ({
                     }}
                   >
                     {f.archetype}
-                  </span>
+                  </span>{" "}
                   {f.status === "in-progress" && (
                     <span className="text-[10px] px-2 py-0.5 rounded-full border border-amber-500/30 text-amber-400/60 bg-amber-500/5">
                       {t('foundersShowcase.inProgressBadge')}
@@ -709,14 +709,17 @@ const FoundersShowcase = () => {
               { val: "$0", label: t('foundersShowcase.statAdSpend') },
               { val: "100%", label: t('foundersShowcase.statConversion') },
             ].map((s, i) => (
-              <div key={i} className="flex flex-col items-center gap-0.5">
+              <Fragment key={i}>
+        {i > 0 && " "}
+        <div className="flex flex-col items-center gap-0.5">
                 <span
                   className={`text-sm font-display font-medium bg-gradient-to-b bg-clip-text text-transparent ${inShell ? 'from-[#2c3150]/60 to-[#2c3150]/30' : 'from-white/40 to-white/15'}`}
                 >
                   {s.val}
-                </span>
+                </span>{" "}
                 <span>{s.label}</span>
               </div>
+              </Fragment>
             ))}
           </div>
         </header>

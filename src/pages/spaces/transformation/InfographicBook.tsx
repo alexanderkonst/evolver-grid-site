@@ -29,7 +29,19 @@ interface OpenCard {
 }
 
 /** A card image that never shows the browser's broken-image icon: on error it shows the title. */
-const CardImage = ({ card, className, eager }: { card: BookCard; className?: string; eager?: boolean }) => {
+const CardImage = ({
+  card,
+  className,
+  eager,
+  decorative,
+}: {
+  card: BookCard;
+  className?: string;
+  eager?: boolean;
+  /** The title (and caption) are printed right next to the image: no alt, so a screen reader
+   *  or text extraction does not say them twice. */
+  decorative?: boolean;
+}) => {
   const [failed, setFailed] = useState(false);
   if (failed) {
     return (
@@ -44,7 +56,7 @@ const CardImage = ({ card, className, eager }: { card: BookCard; className?: str
   return (
     <img
       src={card.image}
-      alt={card.caption ? `${card.title}. ${card.caption}` : card.title}
+      alt={decorative ? "" : card.caption ? `${card.title}. ${card.caption}` : card.title}
       loading={eager ? "eager" : "lazy"}
       decoding="async"
       draggable={false}
@@ -132,7 +144,7 @@ const CardViewer = ({
               <ChevronLeft className="w-6 h-6" aria-hidden="true" />
             </button>
             <div className="flex-1 min-w-0 h-full flex items-center justify-center">
-              <CardImage key={card.id} card={card} eager className="max-h-full max-w-full w-auto h-auto object-contain select-none rounded-md" />
+              <CardImage key={card.id} card={card} eager decorative className="max-h-full max-w-full w-auto h-auto object-contain select-none rounded-md" />
             </div>
             <button type="button" className={`${navBtn} hidden sm:inline-flex`} onClick={() => onStep(1)} disabled={index === total - 1} aria-label="Next card">
               <ChevronRight className="w-6 h-6" aria-hidden="true" />
@@ -166,7 +178,7 @@ const ChapterHeading = ({ chapter }: { chapter: BookChapter }) => {
     >
       <span className="tabular-nums mr-2" style={{ color: MUTED }}>
         {chapter.number}
-      </span>
+      </span>{" "}
       {chapter.title}
     </Tag>
   );
@@ -229,7 +241,7 @@ const InfographicBookPage = () => {
                             className="group block w-full text-left rounded-xl overflow-hidden bg-white/60 transition-transform hover:scale-[1.015] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none motion-reduce:hover:scale-100"
                             style={{ boxShadow: "0 8px 24px -12px rgba(10, 22, 40, 0.18), 0 0 0 1px rgba(212, 175, 55, 0.22)" }}
                           >
-                            <CardImage card={card} className="block w-full aspect-[4/5] object-cover" />
+                            <CardImage card={card} decorative className="block w-full aspect-[4/5] object-cover" />
                             <span className="block p-3">
                               <span className="block text-sm font-semibold leading-snug infographic-book-lower" style={{ color: INK }}>
                                 {card.title}
