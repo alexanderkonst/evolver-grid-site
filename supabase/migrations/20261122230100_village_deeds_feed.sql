@@ -214,8 +214,8 @@ GRANT EXECUTE ON FUNCTION public.get_village_feed(INT) TO authenticated;
 CREATE TABLE IF NOT EXISTS public.deed_seen (
   id         UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   event_key  TEXT NOT NULL CHECK (char_length(event_key) BETWEEN 10 AND 120),
-  doer_id    UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,
-  seer_id    UUID NOT NULL DEFAULT auth.uid() REFERENCES auth.users(id) ON DELETE CASCADE,
+  doer_id    UUID NOT NULL,
+  seer_id    UUID NOT NULL DEFAULT auth.uid(),
   seer_name  TEXT,
   line       TEXT CHECK (line IS NULL OR char_length(btrim(line)) BETWEEN 1 AND 140),
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
