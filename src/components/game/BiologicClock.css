@@ -30,6 +30,8 @@
   width: calc(var(--bc-size) * var(--bc-grow)); max-width: 100%; height: auto; aspect-ratio: 1 / 1;
 }
 .bio-clock__dial.is-tappable { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+/* The ring is for keyboard focus only: a mouse click must leave no frame behind (it did, after a click) */
+.bio-clock__dial:focus:not(:focus-visible) { outline: none; box-shadow: none; }
 .bio-clock__dial:focus-visible { outline: 2px solid rgb(var(--bc-silver)); outline-offset: 4px; border-radius: 50%; }
 .bio-clock__night { fill: #070b16; fill-opacity: 0.55; }
 
@@ -114,6 +116,8 @@
   font-size: 13px; font-style: italic; color: var(--vl-ink-2, rgba(235, 238, 242, 0.85));
   border-bottom: 1px solid rgba(150, 112, 58, 0.8); padding: 0 0 1px;
 }
+/* The Moon Focus invitation sits in the Moon block: the Moon label colour at full opacity (#fff4dc) */
+.bio-clock__focus--invite a { color: var(--bc-ring, #fff4dc); opacity: 1; }
 .bio-clock__focus--invite a:hover, .bio-clock__focus--invite a:focus-visible,
 .bio-clock__link:hover, .bio-clock__link:focus-visible { color: #fff; outline: none; text-decoration: underline; }
 .bio-clock__link { appearance: none; background: none; border: 0; margin: 0; cursor: pointer; text-align: left; font-family: inherit; }

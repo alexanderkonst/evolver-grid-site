@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
@@ -330,6 +330,16 @@ export const BiologicClockFace = ({
   const fmt = makeFmt(t);
   const uid = useId().replace(/:/g, "");
 
+  // When the card opens or grows (a tap on the dial), bring it into view: on the profile it runs
+  // below the fold. Not on first mount, so a remembered view never moves the page.
+  const readoutRef = useRef<HTMLDivElement>(null);
+  const lastView = useRef(view);
+  useEffect(() => {
+    if (lastView.current === view) return;
+    lastView.current = view;
+    if (view >= 2) readoutRef.current?.scrollIntoView?.({ block: "nearest", behavior: "smooth" });
+  }, [view]);
+
   const { solar, lunar, dayOfWeek } = cycles;
   const expanded = view === 3; // the Day and Year rings, outside
   const showText = view >= 2;
@@ -532,7 +542,7 @@ export const BiologicClockFace = ({
       </div>
 
       {showText && (
-      <div className="bio-clock__readout">
+      <div className="bio-clock__readout" ref={readoutRef}>
         <Block
           ring="moon"
           colour={MOON_GLOW}
