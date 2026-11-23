@@ -3893,6 +3893,24 @@ export type Database = {
           token: string
         }[]
       }
+      list_directory_players: {
+        Args: { p_limit?: number }
+        Returns: {
+          archetype: string
+          avatar_url: string
+          can_write: boolean
+          first_name: string
+          last_name: string
+          location: string
+          show_location: boolean
+          show_mission: boolean
+          tagline: string
+          top_talent: string
+          user_id: string
+          username: string
+          visibility: string
+        }[]
+      }
       lit_windows_count: { Args: never; Returns: number }
       normalize_profile_username: { Args: { p_value: string }; Returns: string }
       profile_username_is_reserved: {
