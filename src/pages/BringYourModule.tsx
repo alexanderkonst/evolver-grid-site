@@ -189,7 +189,7 @@ const BringYourModule = () => {
 
   const shell = (children: React.ReactNode) => (
     <div
-      className="min-h-dvh"
+      className="min-h-dvh bym-page"
       style={{
         backgroundColor: "#f7f3ea",
         color: "#0b2a5a",
@@ -199,6 +199,12 @@ const BringYourModule = () => {
         ["--input" as string]: "40 35% 78%",
         ["--border" as string]: "40 35% 78%",
         ["--muted-foreground" as string]: "217 25% 38%",
+        ["--skin-input-fill" as string]: "#ffffff",
+        ["--skin-card-fill" as string]: "rgba(255, 252, 245, 0.96)",
+        ["--skin-ink-muted" as string]: "#6b7690",
+        ["--skin-text-primary" as string]: "#0b2a5a",
+        ["--skin-text-muted" as string]: "#3d4a66",
+        ["--skin-text-body" as string]: "#0b2a5a",
         backgroundImage:
           "linear-gradient(rgba(248, 245, 238, 0.08), rgba(248, 245, 238, 0.08)), url('/images/evolution-portal-atmosphere.png')",
         backgroundPosition: "center top",
@@ -213,6 +219,13 @@ const BringYourModule = () => {
         path="/bring-your-module"
         noIndex
       />
+      <style>{`
+        .bym-page label { color: #0b2a5a !important; opacity: 1 !important; text-shadow: none !important; }
+        .bym-page input, .bym-page button[role="combobox"] { background: #ffffff !important; color: #0b2a5a !important; border-color: rgba(184, 134, 11, 0.45) !important; }
+        .bym-page input::placeholder { color: #8a93a8 !important; opacity: 1; }
+        .bym-select, .bym-select [role="option"] { background-color: #fffcf5 !important; color: #0b2a5a !important; }
+        .bym-select [role="option"][data-highlighted] { background-color: #f1e6c8 !important; }
+      `}</style>
       <div className="max-w-[680px] mx-auto px-5 py-14 sm:py-20">{children}</div>
     </div>
   );
@@ -297,9 +310,9 @@ const BringYourModule = () => {
               <SelectTrigger id={`bym-kind-${m.uid}`}>
                 <SelectValue />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="bym-select bg-[#fffcf5] text-[#0b2a5a] border-[#d4af37]/40 opacity-100">
                 {PARTNER_MODULE_KINDS.map((k) => (
-                  <SelectItem key={k.kind} value={k.kind}>
+                  <SelectItem key={k.kind} value={k.kind} className="text-[#0b2a5a] focus:bg-[#f1e6c8] focus:text-[#0b2a5a]">
                     {k.label}
                   </SelectItem>
                 ))}
