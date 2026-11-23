@@ -407,7 +407,12 @@ Return a JSON object with this exact structure:
       "string — second one",
       "string — third one"
     ],
-    "flywheel_action": "string — the ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today. Not advice — an instruction. CRITICAL: write in plain everyday language only. Use ordinary verbs (talk to, write, send, make, run) and ordinary objects (a person, a page, a message, a post). NEVER invent capitalized product or service names ('Signal Snapshot', 'Compression Capsule', 'Architecture Session') — those imply a packaged offering the reader has no context for and immediately break trust. NEVER use insider jargon from the user's own world ('compression', 'distillation', 'capsule') without translation. SECOND-PERSON IMPERATIVE register addressing the subject (\"do X\", \"call Y\"). DUAL-ACTOR DISCIPLINE: the OTHER PERSON the subject is acting on stays \"they / them / their\" — the subject's actions stay implicit-imperative or \"you\". Example clean: 'Spend the first hour each morning helping one founder name what THEY actually do, then publish what surprised YOU.' Example broken (pronoun collapse): 'Spend the first hour helping one founder name what YOU actually do' — the second \"you\" should be \"they\"."
+    "flywheel_action": "string — the ONE action that, repeated as a flywheel, optimally advances me on my path of mastery. Specific enough to start today. Not advice — an instruction. CRITICAL: write in plain everyday language only. Use ordinary verbs (talk to, write, send, make, run) and ordinary objects (a person, a page, a message, a post). NEVER invent capitalized product or service names ('Signal Snapshot', 'Compression Capsule', 'Architecture Session') — those imply a packaged offering the reader has no context for and immediately break trust. NEVER use insider jargon from the user's own world ('compression', 'distillation', 'capsule') without translation. SECOND-PERSON IMPERATIVE register addressing the subject (\"do X\", \"call Y\"). DUAL-ACTOR DISCIPLINE: the OTHER PERSON the subject is acting on stays \"they / them / their\" — the subject's actions stay implicit-imperative or \"you\". Example clean: 'Spend the first hour each morning helping one founder name what THEY actually do, then publish what surprised YOU.' Example broken (pronoun collapse): 'Spend the first hour helping one founder name what YOU actually do' — the second \"you\" should be \"they\".",
+    "next_potential": {
+      "title": "string — the NAME of the stage of masteryStages (the 7-stage Path of Mastery above) this person is about to enter next. Pick the stage by judgment from what the profile shows they already do and what the next leap is; use that stage's name as written in masteryStages (2-4 plain words, no glyphs, no invented product names). Renders under 'YOUR NEXT POTENTIAL IS'.",
+      "line": "string — ONE sentence, SECOND-PERSON, plain everyday words, that starts 'The version of you who…' and says what that version does differently. Other people in the sentence stay 'they / them'. No jargon, no abstract compound nouns (Inner X / Sacred X / Deep X). Example: 'The version of you who stops building the whole universe first and opens the smallest door real buyers can walk through.'"
+    },
+    "micro_quest": "string — ONE action doable TODAY in under 30 minutes: the very first step of flywheel_action. Same plain-language rules as flywheel_action: ordinary verbs and objects (send, write, ask, call), NEVER an invented capitalized product or service name, NO insider jargon, SECOND-PERSON IMPERATIVE, DUAL-ACTOR DISCIPLINE (the other person you act on stays 'they / them / their'; never collapse them into 'you'). One sentence, concrete enough to do before tonight. Example: 'Today, send your one-line offer to one person it fits, and ask if they would like a paid call this week.'"
   }
 }
 `;
@@ -673,7 +678,47 @@ export interface TopTalentProfile {
   ideal_environments: string[];
   career_sweet_spots: string[];
   flywheel_action: string;
+  /**
+   * A4 (game launch spec, Sasha 2026-11-22): the hook after the reveal. The stage of the
+   * Path of Mastery the player is about to enter, named in plain words. Optional: reveals
+   * saved before A4 do not have it, and the hook hides cleanly when it is missing.
+   */
+  next_potential?: NextPotential;
+  /**
+   * A4: one action doable today in under 30 minutes, the first step of `flywheel_action`.
+   * Optional for the same back-compat reason as `next_potential`.
+   */
+  micro_quest?: string;
+  /**
+   * A4: set when the player taps «Accept the quest». Stored inside the saved reveal JSON
+   * because no quest table holds a not-yet-done quest (no new table or column, per the issue).
+   * The Quest Board reads it from here.
+   */
+  micro_quest_accepted_at?: string;
 }
+
+/** The stage of the player's Path of Mastery they are about to enter (A4). */
+export interface NextPotential {
+  title: string;
+  line: string;
+}
+
+/**
+ * Read `next_potential` + `micro_quest` out of a parsed model object. Returns the pair only when
+ * all three strings are present and non-empty, so a half-formed answer never shows a half hook.
+ */
+export const readPotentialHook = (
+  source: unknown,
+): { next_potential: NextPotential; micro_quest: string } | undefined => {
+  if (!source || typeof source !== "object") return undefined;
+  const raw = source as { next_potential?: unknown; micro_quest?: unknown };
+  const np = raw.next_potential as { title?: unknown; line?: unknown } | null | undefined;
+  const title = typeof np?.title === "string" ? np.title.trim() : "";
+  const line = typeof np?.line === "string" ? np.line.trim() : "";
+  const quest = typeof raw.micro_quest === "string" ? raw.micro_quest.trim() : "";
+  if (!title || !line || !quest) return undefined;
+  return { next_potential: { title, line }, micro_quest: quest };
+};
 
 export interface AppleseedData {
   bullseyeSentence: string;
@@ -830,6 +875,8 @@ const tryExtractTopTalentProfile = (rawSignal: string): TopTalentProfile | undef
     ideal_environments: parsed.ideal_environments.map((t: unknown) => String(t)).filter(Boolean),
     career_sweet_spots: parsed.career_sweet_spots.map((t: unknown) => String(t)).filter(Boolean),
     flywheel_action: String(parsed.flywheel_action || ""),
+    // A4: optional, never part of `required` above, so older pasted JSON still parses.
+    ...readPotentialHook(parsed),
   };
 };
 

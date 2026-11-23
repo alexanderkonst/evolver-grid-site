@@ -6,6 +6,7 @@ import ReflectionQuests from "@/components/game/ReflectionQuests";
 import SaveCharacterCta from "@/components/game/SaveCharacterCta";
 import { getJourneyModule, moduleText } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
+import { useAcceptedMicroQuest } from "@/hooks/useAcceptedMicroQuest";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { usePlayerMetricHistory } from "@/hooks/usePlayerMetricHistory";
 import { measureMonthQuest } from "@/lib/playerMetrics";
@@ -38,6 +39,8 @@ const QuestBoard = () => {
   const journeyId = useId();
   const worldId = useId();
   const monthId = useId();
+  const microId = useId();
+  const microQuest = useAcceptedMicroQuest();
 
   // A guest who has finished the test holds the reading on this device: the next move is to
   // save it, the same «Save your character» that Home shows (WP-7b).
@@ -131,6 +134,23 @@ const QuestBoard = () => {
             {/* Share card slice 2: a visitor's answer comes back as a quest. Renders nothing
                 while the database part is missing or nothing is unread, so the board is unchanged. */}
             {sheet.userId ? <ReflectionQuests /> : null}
+
+            {/* A4: the micro-quest accepted after the reveal. Renders nothing until one is accepted. */}
+            {microQuest ? (
+              <section className="qb__group" aria-labelledby={microId}>
+                <h2 id={microId} className="qb__h">
+                  {t("zogEntry.microQuestBoardGroup")}
+                </h2>
+                <ol className="qb__list">
+                  <PlaceState as="li" state="open" className="qb__row">
+                    <span className="qb__name">{microQuest.quest}</span>
+                    {microQuest.potential ? (
+                      <p className="qb__done-when">{t("zogEntry.microQuestBoardFor", { title: microQuest.potential })}</p>
+                    ) : null}
+                  </PlaceState>
+                </ol>
+              </section>
+            ) : null}
 
             <section className="qb__group" aria-labelledby={journeyId}>
               <h2 id={journeyId} className="qb__h">

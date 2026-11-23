@@ -543,6 +543,47 @@ export const saveExcalibur = async (
 };
 
 /**
+ * A4: «Accept the quest». Marks the reveal's micro-quest as accepted inside the saved reveal
+ * JSON (`topTalentProfile.micro_quest_accepted_at`), so the Quest Board can list it. No quest
+ * table holds a not-yet-done quest, and this change adds no table or column.
+ *
+ * Guests: the localStorage copy. Signed in: the current snapshot's `appleseed_data` only
+ * (nothing else on the row is touched).
+ */
+export const acceptMicroQuest = async (appleseed: AppleseedData): Promise<{ success: boolean; appleseed?: AppleseedData }> => {
+  const profile = appleseed.topTalentProfile;
+  if (!profile?.micro_quest) return { success: false };
+  const accepted: AppleseedData = {
+    ...appleseed,
+    topTalentProfile: { ...profile, micro_quest_accepted_at: new Date().toISOString() },
+  };
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      saveAppleseedToLocalStorage(accepted);
+      return { success: true, appleseed: accepted };
+    }
+    const profileId = await getProfileId();
+    if (!profileId) return { success: false };
+    const snapshot = await fetchTopTalentSnapshot<{ id: string }>(profileId, "id");
+    if (!snapshot) return { success: false };
+    const { data: rows, error } = await withRetry(() =>
+      supabase
+        .from("zog_snapshots")
+        .update({ appleseed_data: JSON.parse(JSON.stringify(accepted)) })
+        .eq("id", snapshot.id)
+        .select("id"),
+    );
+    if (error || !rows || rows.length === 0) throw error ?? new Error("micro-quest update affected 0 rows");
+    clearCachedZogSnapshot();
+    return { success: true, appleseed: accepted };
+  } catch (err) {
+    console.error("[saveToDatabase] acceptMicroQuest error:", supabaseErrorFields(err), err);
+    return { success: false };
+  }
+};
+
+/**
  * Load saved Appleseed and Excalibur data for the current user
  */
 export const loadSavedData = async (): Promise<{
