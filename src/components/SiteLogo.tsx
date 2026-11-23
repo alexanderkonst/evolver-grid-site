@@ -100,6 +100,8 @@ const SiteLogo = () => {
         // covers /equilibrium (legacy redirect) and /preview/equilibrium-v2.
         "/build/equilibrium",
         "/equilibrium",
+        // Partner intake form: the fixed wordmark floated over the form fields while scrolling.
+        "/bring-your-module",
         "/preview/equilibrium-v2",
         // Day 81 (Sasha 2026-05-23): /build/karime lives in GameShellV2
         // with hideLogo (Karime's offering page). Same fix shape as
