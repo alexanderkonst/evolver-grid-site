@@ -98,6 +98,34 @@ Everything is a holon. This is its deepest nature.
 
 ---
 
+## 15. THE NOVEMBER 23 RECOGNITIONS: The Point Without Directions, Time's Two Ends, the Ocean of Light
+
+> *November 23, 2026. Sasha's own words, recorded verbatim in dialogue during the formalization (Steps 104–106). Recorded as a dated addendum; existing sections stand untouched. Formal readings live in the formalization record, not here.*
+
+### 15.1 The Infinitely Small Point
+
+> *«В бесконечно малой точке нет пока ещё направлений в принципе, соответственно они все равны, потому что их нет, не в какую сторону смотреть.»*
+
+### 15.2 Nothing Is Fixed
+
+> *«Конечно не задано, все постоянно достраивается, фрактально и прочее.»*
+
+### 15.3 Time
+
+> *«Время асимптотично с обоих концов. У него инвариант - это его текучесть. Вначале - статично, его нет, нет процессов, затем квазидискретно, затем уменьшается доля дискретности, резких перепадов, и они становятся все более текучими, аналоговыми, и в конце вселенной ускоряется в бесконечность.»*
+
+### 15.4 Space
+
+> *«Также и пространство - точка света без измерений, и далее фрактально-динамическое радиальное множение создающее геометрию, структуру, устойчивые эквилибриумы движения энергии, и кристаллизацию во все более организованную материю.»*
+
+### 15.5 The Ocean of Light
+
+> *«Еще пришло что потом это становится волнами. Можно сказать что пространственно-временной континуум - это волнение океана света вызванное первым(и) цунами.»*
+
+**Honesty marker:** recognitions, held as given, awaiting their articulation. §15.1 sits beside §13.2 and §13.3 (before the pulse there are no directions); §15.3–15.4 beside §6 (Time) and §5 (Crystallization). Not yet reconciled with them.
+
+---
+
 ## 14. THE OCTOBER 12 RECOGNITION: Source and Spin, the Great Being
 
 > *October 12, 2026. Recognized while reading this document as a knowledge graph. An AI reading had ranked Spin above Source as "the real engine", because Spin carries the most "generates" links in the text. Sasha corrected it. Recorded as a dated addendum; existing sections stand untouched.*
