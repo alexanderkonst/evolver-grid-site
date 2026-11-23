@@ -27,7 +27,7 @@ describe("playtest 2026-11-22 point fixes (#391)", () => {
 
   it("house: the four-ring clock is in the page header and also while the save loads or fails", () => {
     const src = read("../spaces/sections/ProfileOverview.tsx");
-    expect((src.match(/<BiologicClock className="cs-clock" \/>/g) ?? []).length).toBe(3);
+    expect((src.match(/<ProfileClock className="cs-clock" \/>/g) ?? []).length).toBe(3);
   });
 
   it("clients showcase: stat values and labels are separated by whitespace", () => {
