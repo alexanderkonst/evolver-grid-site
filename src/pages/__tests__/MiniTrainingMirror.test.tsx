@@ -52,10 +52,10 @@ describe("mini-training 1 page", () => {
     expect(html).not.toContain("My weakest life area now:");
   });
 
-  it("has Send, Edit, Microphone and Copy on a card, and a marked stub", () => {
+  it("has Send, Edit, Microphone and Copy on a card, and no stub notice once live", () => {
     const html = render(profileWithGaps);
     for (const label of ["Send", "Edit", "Microphone", "Copy"]) expect(html).toContain(label);
-    expect(html).toContain('data-testid="stub-notice"');
+    expect(html).not.toContain('data-testid="stub-notice"');
   });
 
   it("#6 asks for step 1 first, and shows [LINE] until a line is tapped", () => {
