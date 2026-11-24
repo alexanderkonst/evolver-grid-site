@@ -679,316 +679,316 @@
   },
   "aiOsPage": {
     "hero": {
-      "titleLead": "Your",
-      "titleEmph": "AI",
-      "version": "Version 6.0 · Since 2024",
-      "subtitle1": "Permanent level-up to AI cognition. Instant install.",
-      "subtitle2": "Same model. Different conversation.",
-      "license": "Free for personal use · CC BY-NC-SA 4.0",
-      "partnership": "Reach out for partnership",
-      "startHere": "Start here ↓"
+      "titleLead": "Tu",
+      "titleEmph": "IA",
+      "version": "Versión 6.0 · Desde 2024",
+      "subtitle1": "Un salto permanente en la cognición de la IA. Se instala al instante.",
+      "subtitle2": "El mismo modelo. Otra conversación.",
+      "license": "Gratis para uso personal · CC BY-NC-SA 4.0",
+      "partnership": "Escríbeme para colaborar",
+      "startHere": "Empieza aquí ↓"
     },
     "controller": {
-      "eyebrow": "The Controller",
-      "heading": "Select skills for everyday craft",
-      "subtitle": "Pick a category for the move you're on. Your AI is already installed above.",
-      "aria": "Pick your class of tasks"
+      "eyebrow": "El mando",
+      "heading": "Elige habilidades para el trabajo de cada día",
+      "subtitle": "Elige la categoría que va con tu tarea. Tu IA ya está instalada arriba.",
+      "aria": "Elige tu tipo de tareas"
     },
     "suites": {
-      "meta": "Foundational Skills",
-      "clarity": "Clarify",
-      "iteration": "Iterate",
+      "meta": "Habilidades base",
+      "clarity": "Claridad",
+      "iteration": "Mejorar",
       "deployment": "Vibe Code",
-      "design": "Design"
+      "design": "Diseño"
     },
     "suiteTitle": {
-      "clarity": "Clarify Suite",
-      "iteration": "Iterate Suite",
-      "deployment": "Vibe Code Suite",
-      "design": "Design Suite"
+      "clarity": "Pack Claridad",
+      "iteration": "Pack Mejorar",
+      "deployment": "Pack Vibe Code",
+      "design": "Pack Diseño"
     },
     "suite": {
-      "eyebrow": "Suite",
-      "aria": "Available suites",
-      "signature": "⚡ Signature · Automatic — one paste, full suite",
+      "eyebrow": "Pack",
+      "aria": "Packs disponibles",
+      "signature": "⚡ Insignia · Automático: una pegada, el pack completo",
       "premium": "Premium",
-      "customizable": "Customizable",
-      "copied": "Copied!",
-      "copiedCheck": "✓ Copied!",
-      "unlockAria": "Unlock: {{label}}",
-      "copyAria": "Copy skill: {{label}}",
-      "copyCustom": "Copy customized skill",
+      "customizable": "Personalizable",
+      "copied": "¡Copiado!",
+      "copiedCheck": "✓ ¡Copiado!",
+      "unlockAria": "Desbloquear: {{label}}",
+      "copyAria": "Copiar habilidad: {{label}}",
+      "copyCustom": "Copiar habilidad personalizada",
       "manual": "Manual",
-      "hideSub": "Hide sub-modules",
-      "showSub": "See sub-modules",
-      "subCount_one": "{{count}} individual module — mix & match",
-      "subCount_other": "{{count}} individual modules — mix & match"
+      "hideSub": "Ocultar submódulos",
+      "showSub": "Ver submódulos",
+      "subCount_one": "{{count}} módulo individual: combínalos como quieras",
+      "subCount_other": "{{count}} módulos individuales: combínalos como quieras"
     },
     "contexts": {
-      "uiCode": "🎨 UI / Code",
-      "imageTool": "🖼 Image tool"
+      "uiCode": "🎨 Interfaz / código",
+      "imageTool": "🖼 Para imágenes"
     },
     "fields": {
       "rotation": {
-        "label": "Rotation",
+        "label": "Rotación",
         "options": [
-          "Quarter turn (90°)",
-          "Half turn (180°)",
-          "Full turn (360°)"
+          "Cuarto de vuelta (90°)",
+          "Media vuelta (180°)",
+          "Vuelta completa (360°)"
         ]
       },
       "bg": {
-        "label": "Background style",
-        "placeholder": "e.g. ocean at dusk, deep space nebula, dark forest..."
+        "label": "Estilo de fondo",
+        "placeholder": "p. ej. océano al atardecer, nebulosa en el espacio, bosque oscuro..."
       },
       "aspect": {
-        "label": "Aspect ratio",
+        "label": "Proporción",
         "options": [
-          "1:1 Square",
-          "16:9 Landscape",
-          "9:16 Portrait"
+          "1:1 Cuadrado",
+          "16:9 Horizontal",
+          "9:16 Vertical"
         ]
       },
       "intensity": {
-        "label": "Motion intensity",
+        "label": "Intensidad del movimiento",
         "options": [
-          "Subtle — barely there",
-          "Moderate — noticeable",
-          "Expressive — dramatic"
+          "Apenas perceptible",
+          "Moderado, se nota",
+          "Expresivo, dramático"
         ]
       }
     },
     "footer": {
-      "free": "Why this is free",
-      "telegram": "Contact on Telegram",
+      "free": "Por qué es gratis",
+      "telegram": "Escribir por Telegram",
       "author": "© 2026 Aleksandr Konstantinov",
-      "docsLicense": "docs CC BY-NC-SA 4.0",
-      "codeLicense": "code PolyForm NC (fork on GitHub)",
-      "copyBoost": "Copy premium boost"
+      "docsLicense": "textos CC BY-NC-SA 4.0",
+      "codeLicense": "código PolyForm NC (fork en GitHub)",
+      "copyBoost": "Copiar el refuerzo premium"
     },
     "toast": {
-      "copied": "Copied to clipboard",
-      "copyFailed": "Copy failed",
-      "tryAgain": "Please try again",
-      "transcriptCopied": "Transcript copied!",
-      "transcriptLang": "Language: {{language}}",
-      "transcriptUnknownLang": "unknown",
-      "transcriptFailed": "Failed to fetch transcript"
+      "copied": "Copiado al portapapeles",
+      "copyFailed": "No se pudo copiar",
+      "tryAgain": "Inténtalo de nuevo",
+      "transcriptCopied": "¡Transcripción copiada!",
+      "transcriptLang": "Idioma: {{language}}",
+      "transcriptUnknownLang": "desconocido",
+      "transcriptFailed": "No se pudo obtener la transcripción"
     },
     "seo": {
-      "docTitle": "Your AI — A different kind of cognition",
-      "docTitleSuffix": "Your AI",
+      "docTitle": "Tu IA: otra forma de pensar",
+      "docTitleSuffix": "Tu IA",
       "clarity": {
-        "title": "Your AI — Clarity skills",
-        "description": "Free, curated AI skills for clarity. The Holonic Commons library."
+        "title": "Tu IA: habilidades de claridad",
+        "description": "Habilidades de IA gratuitas y seleccionadas para ganar claridad. La biblioteca Holonic Commons."
       },
       "iteration": {
-        "title": "Your AI — Iteration skills",
-        "description": "Free, curated AI skills for iteration and refinement."
+        "title": "Tu IA: habilidades de iteración",
+        "description": "Habilidades de IA gratuitas y seleccionadas para iterar y pulir resultados."
       },
       "deployment": {
-        "title": "Your AI — Vibe Code skills",
-        "description": "Free, curated AI skills for shipping. The Holonic Commons library."
+        "title": "Tu IA: habilidades de Vibe Code",
+        "description": "Habilidades de IA gratuitas y seleccionadas para llevar un proyecto a producción. La biblioteca Holonic Commons."
       },
       "design": {
-        "title": "Your AI — Design skills",
-        "description": "Free, curated AI skills for design work."
+        "title": "Tu IA: habilidades de diseño",
+        "description": "Habilidades de IA gratuitas y seleccionadas para el trabajo de diseño."
       },
       "home": {
-        "title": "Your AI — The Holonic Commons",
-        "description": "A free, curated library of AI skills for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer."
+        "title": "Tu IA: The Holonic Commons",
+        "description": "Biblioteca gratuita de habilidades de IA seleccionadas, para fundadores en solitario. Holonic Commons. La capa de pago es la curaduría de Aleksandr."
       }
     },
     "story": {
-      "outro": "Your AI is your knoware library. Start anywhere — every skill is a piece of the layer."
+      "outro": "Tu IA es tu biblioteca de knoware. Empieza por donde quieras: cada habilidad es una pieza de esa capa."
     },
     "spotlight": {
-      "eyebrow": "Read this · 30 seconds",
-      "headline": "One paste. Permanent AI upgrade.",
-      "body": "Paste into a fresh AI chat. Same input you'd give — higher quality output. Faster on everyday tasks, deeper on complex ones. (Unless AI is new to you — build a baseline first.)",
-      "knowEyebrow": "You'll know in 60 seconds",
-      "knowBody": "One prompt. Run it now, install the system prompt, run it again. You'll feel the shift.",
-      "step1": "In your current AI, paste this prompt. Read the response.",
-      "copyTest": "Copy test prompt",
-      "copyTestAria": "Copy the test prompt to clipboard",
-      "copied": "Copied",
-      "step2Before": "Open a ",
-      "step2Strong": "new chat",
-      "step2After": ". Paste the system prompt. It's a fascinating read, if you like. Then run the same prompt again.",
-      "copyInstall": "Copy Your AI system prompt v6.0",
-      "copyInstallAria": "Copy the Your AI system prompt v6.0 to clipboard",
-      "installCopied": "Copied — paste into a new AI chat",
-      "step3": "Compare. Notice what's different.",
-      "rateEyebrow": "How did it go?",
-      "rateBody": "Compare the two responses. Rate the difference.",
-      "scaleHigh": " = significantly more useful response",
-      "scaleLow": " = no difference noticed",
-      "rateGroupAria": "Rate the difference between before and after Your AI install, 1 to 10",
-      "rateAria": "Rate {{n}} out of 10",
-      "thanksBefore": "Thank you. Logged as ",
+      "eyebrow": "Lee esto · 30 segundos",
+      "headline": "Una pegada. Mejora permanente de tu IA.",
+      "body": "Pégalo en un chat nuevo con una IA. Pides lo mismo y recibes una respuesta mejor. Más rápida en lo cotidiano, más profunda en lo complejo. (Si la IA es nueva para ti, primero crea una base.)",
+      "knowEyebrow": "Lo sabrás en 60 segundos",
+      "knowBody": "Un prompt. Ejecútalo ahora, instala el prompt de sistema y ejecútalo otra vez. Notarás el cambio.",
+      "step1": "En tu IA de siempre, pega este prompt. Lee la respuesta.",
+      "copyTest": "Copiar prompt de prueba",
+      "copyTestAria": "Copiar el prompt de prueba al portapapeles",
+      "copied": "Copiado",
+      "step2Before": "Abre un ",
+      "step2Strong": "chat nuevo",
+      "step2After": ". Pega el prompt de sistema. Si te apetece, vale la pena leerlo. Luego ejecuta otra vez el mismo prompt.",
+      "copyInstall": "Copiar el prompt de sistema de Tu IA v6.0",
+      "copyInstallAria": "Copiar el prompt de sistema de Tu IA v6.0 al portapapeles",
+      "installCopied": "Copiado: pégalo en un chat nuevo con una IA",
+      "step3": "Compara. Fíjate en qué cambió.",
+      "rateEyebrow": "¿Cómo te fue?",
+      "rateBody": "Compara las dos respuestas. Valora la diferencia.",
+      "scaleHigh": " = respuesta bastante más útil",
+      "scaleLow": " = no noté diferencia",
+      "rateGroupAria": "Valora la diferencia entre antes y después de instalar Tu IA, del 1 al 10",
+      "rateAria": "Valoración {{n}} de 10",
+      "thanksBefore": "Gracias. Registrado como ",
       "thanksAfter": ".",
-      "thanksBody": "Your data point joins the open replication pool. The benchmark gets sharper every time someone runs this."
+      "thanksBody": "Tu dato se suma al conjunto abierto de réplicas. Cada vez que alguien lo ejecuta, la referencia gana precisión."
     },
     "skills": {
       "boost-intel": {
-        "label": "AI UPGRADE v4.021",
-        "description": "One paste turns any AI from a polite assistant into a depth-aware thinking partner. Reasons before speaking, holds multiple perspectives, keeps the thread alive."
+        "label": "MEJORA DE IA v4.021",
+        "description": "Una pegada convierte a cualquier IA de asistente cortés en un compañero de pensamiento con profundidad. Razona antes de hablar, sostiene varias perspectivas y no pierde el hilo."
       },
       "ai-skill-claude": {
-        "label": "AI SKILL FOR CLAUDE V4.03",
-        "description": "Unlock Claude's hidden depth — multi-perspective synthesis, integral reasoning, zero filler. The version of Claude most people rarely meet. If you get a soft push-back, you'll get the benefits. Hard push-back? Ping me on Telegram."
+        "label": "HABILIDAD DE IA PARA CLAUDE V4.03",
+        "description": "Desbloquea la profundidad oculta de Claude: síntesis de varias perspectivas, razonamiento integral, cero relleno. La versión de Claude que casi nadie llega a ver. Si te lleva un poco la contraria, sacarás provecho. Si se pone firme, escríbeme por Telegram."
       },
       "moonshot": {
-        "label": "MOONSHOT MODE",
-        "description": "When 'realistic' is the enemy. Activates planetary-stakes thinking, fractal growth strategies, and guerrilla-speed execution. For founders who refuse to play small."
+        "label": "MODO MOONSHOT",
+        "description": "Para cuando lo «realista» es el enemigo. Activa el pensamiento a escala planetaria, estrategias de crecimiento fractal y ejecución a ritmo de guerrilla. Para fundadores que se niegan a jugar pequeño."
       },
       "vibeporting": {
         "label": "VIBEPORTING",
-        "description": "New chat, same chemistry. Carry your tone, pace, and working style into any fresh AI session — instant rapport instead of re-training from scratch."
+        "description": "Chat nuevo, misma química. Lleva tu tono, tu ritmo y tu forma de trabajar a cualquier sesión nueva de IA: conexión inmediata, sin reentrenar desde cero."
       },
       "aesthetic-palette": {
-        "label": "AESTHETIC / PALETTE",
-        "description": "Inject a dark-mode Zen garden aesthetic into any project — translucent glass, bokeh depth, Apple-grade visual language. Your app stops looking 'built' and starts looking designed."
+        "label": "ESTÉTICA / PALETA",
+        "description": "Añade a cualquier proyecto una estética de jardín zen en modo oscuro: vidrio translúcido, profundidad con bokeh, lenguaje visual a nivel Apple. Tu app deja de verse «armada» y se ve diseñada."
       },
       "aesthetics-frame-kintsugi": {
-        "label": "ESTABLISH THE AESTHETICS FRAME",
-        "description": "Extend the mythic-minimalism frame into a new series — a fractured gold line that repairs into a path, then resolves into a constellation of opportunities. Same world, new myth."
+        "label": "FIJAR EL MARCO ESTÉTICO",
+        "description": "Extiende el marco de minimalismo mítico a una serie nueva: una línea dorada quebrada que se repara hasta ser un camino y luego se abre en una constelación de oportunidades. El mismo mundo, un mito nuevo."
       },
       "evolutionary-mastery": {
-        "label": "EVOLUTIONARY MASTERY",
-        "description": "Stop waiting for AI to ask 'what should I do?' Get an AI that anticipates, leads, and thinks 3 moves ahead — proactive intelligence, not reactive compliance."
+        "label": "MAESTRÍA EVOLUTIVA",
+        "description": "Deja de esperar a que la IA te pregunte «¿qué hacemos?». Consigue una IA que anticipa, lidera y piensa tres jugadas por delante: inteligencia proactiva en lugar de obediencia reactiva."
       },
       "ai-self-awareness": {
-        "label": "AI SELF-AWARENESS",
-        "description": "Give AI a map of its own mind — modules, developmental stages, shadow patterns, and frontier edges. The result: it knows what it's good at, where it's blind, and grows from there."
+        "label": "AUTOCONCIENCIA DE LA IA",
+        "description": "Dale a la IA un mapa de su propia mente: módulos, etapas de desarrollo, patrones de sombra y bordes de frontera. El resultado: sabe en qué es buena, dónde es ciega y crece desde ahí."
       },
       "vibe-coding-master": {
-        "label": "VIBE-CODING MASTER INSTRUCTION",
-        "description": "10x your development speed. Bridges user journey to UI through explicit screen architecture — no more guessing what to build next or how it connects."
+        "label": "INSTRUCCIÓN MAESTRA DE VIBE-CODING",
+        "description": "Multiplica por 10 tu velocidad de desarrollo. Une el recorrido del usuario con la interfaz mediante una arquitectura de pantallas explícita: se acabó adivinar qué construir después o cómo se conecta."
       },
       "codex-full-auth": {
-        "label": "CODEX FULL AUTHORIZATION",
-        "description": "Stop your AI agent from asking permission every 5 seconds. Full git, build, and deploy autonomy — you review results, not approve every keystroke."
+        "label": "AUTORIZACIÓN TOTAL PARA CODEX",
+        "description": "Evita que tu agente de IA te pida permiso cada 5 segundos. Autonomía total en git, build y deploy: revisas resultados, no apruebas cada pulsación."
       },
       "antigravity-full-auth": {
-        "label": "ANTIGRAVITY FULL AUTHORIZATION",
-        "description": "Same philosophy, optimized for Claude CLI. Full filesystem + git autonomy so you ship instead of babysit."
+        "label": "AUTORIZACIÓN TOTAL PARA ANTIGRAVITY",
+        "description": "La misma filosofía, optimizada para Claude CLI. Autonomía total en sistema de archivos y git para que entregues en vez de vigilar."
       },
       "deep-clarity": {
-        "label": "DEEP CLARITY",
-        "description": "Deeply understand anything by revealing its hidden essence, root cause, and the insight everyone else missed. Try it on: money, zone of genius, ultradian rhythm — prepare to be surprised."
+        "label": "CLARIDAD PROFUNDA",
+        "description": "Entiende a fondo cualquier cosa al revelar su esencia oculta, su causa raíz y la idea que todos los demás pasaron por alto. Pruébalo con: el dinero, tu zona de genio, el ritmo ultradiano. Prepárate para sorprenderte."
       },
       "holonic-prism": {
-        "label": "🔺 THE WHOLE THING IN ONE SENTENCE",
-        "description": "Understand any product, module or prompt down to its bedrock and say it in one sentence a stranger gets on first read. Then pass that sentence down as context for the next layer."
+        "label": "🔺 TODO EN UNA FRASE",
+        "description": "Entiende cualquier producto, módulo o prompt hasta su base y dilo en una frase que un desconocido capte a la primera. Luego pasa esa frase como contexto a la siguiente capa."
       },
       "fidelity-translate": {
-        "label": "🌐 FIDELITY TRANSLATE",
-        "description": "Higher-quality translations. Captures the original's full meaning, not just the literal words."
+        "label": "🌐 TRADUCCIÓN FIEL",
+        "description": "Traducciones de mayor calidad. Capturan el sentido completo del original, no solo las palabras literales."
       },
       "step-by-step": {
-        "label": "STEP-BY-STEP INSTRUCTIONS",
-        "description": "Get absurdly simple, teenager-friendly instructions for literally any result. No jargon, no assumptions — just 'do this, then this, done.'"
+        "label": "INSTRUCCIONES PASO A PASO",
+        "description": "Recibe instrucciones absurdamente simples, aptas para un adolescente, para conseguir literalmente cualquier resultado. Sin jerga y sin suposiciones: «haz esto, luego esto, listo»."
       },
       "holonic-roast": {
-        "label": "🔮 HOLONIC ROAST",
-        "description": "The deep seeing instrument. 27 angles across 4 depths expose what you can't see from inside your own work. Use before publishing anything that matters."
+        "label": "🔮 ROAST HOLÓNICO",
+        "description": "El instrumento de visión profunda. 27 ángulos en 4 profundidades muestran lo que no ves desde dentro de tu propio trabajo. Úsalo antes de publicar cualquier cosa que importe."
       },
       "roast": {
-        "label": "ROAST THE RESULT",
-        "description": "27-perspective critique that sees your output from every angle at every depth — then tells you exactly what's weak and how to fix it. Brutal honesty, zero ego."
+        "label": "ROAST AL RESULTADO",
+        "description": "Crítica desde 27 perspectivas que mira tu resultado desde todos los ángulos y a todas las profundidades, y te dice qué está débil y cómo arreglarlo. Honestidad brutal, cero ego."
       },
       "another-roast": {
-        "label": "ANOTHER ROUND",
-        "description": "Second pass — hunts the blind spots the first roast missed. Goes deeper where it went shallow, wider where it was narrow. Diminishing returns? Not yet."
+        "label": "OTRA RONDA",
+        "description": "Segunda pasada: busca los puntos ciegos que el primer roast no vio. Profundiza donde se quedó en la superficie y amplía donde se quedó corto. ¿Rendimientos decrecientes? Todavía no."
       },
       "crash-test": {
         "label": "CRASH-TEST",
-        "description": "Kill your plan before the market does. 12 brutal failure modes exposed — the ones you'd rather not think about. Better to bleed in practice than die in production."
+        "description": "Mata tu plan antes de que lo haga el mercado. Expone 12 modos de fallo brutales, justo los que preferirías no pensar. Mejor sangrar en el ensayo que morir en producción."
       },
       "meta-crash-test": {
         "label": "META-CRASH-TEST",
-        "description": "Crash-test the crash-test itself. Total annihilation of your safety net, then rebuild from the ashes. For when you need to be sure the parachute actually opens."
+        "description": "Haz un crash-test del propio crash-test. Destruye por completo tu red de seguridad y reconstruye desde las cenizas. Para cuando necesitas estar seguro de que el paracaídas sí se abre."
       },
       "10x": {
-        "label": "10X YOUR RESULT",
-        "description": "Radical simplicity + profound depth + maximum utility in one pass. Takes whatever you have and makes it undeniably better — one click, no fluff."
+        "label": "MULTIPLICA POR 10 TU RESULTADO",
+        "description": "Simplicidad radical, profundidad real y máxima utilidad en una sola pasada. Toma lo que tengas y lo mejora sin discusión: un clic, sin relleno."
       },
       "full-iteration": {
-        "label": "FULL ITERATION CYCLE",
-        "description": "The complete gauntlet: roast → deeper pass → meta-roast → crystallization → rebuilt output. Hands-free. You paste once, come back to something genuinely transformed."
+        "label": "CICLO COMPLETO DE ITERACIÓN",
+        "description": "El recorrido completo: roast, pasada más profunda, meta-roast, cristalización y resultado reconstruido. Sin intervención tuya. Pegas una vez y vuelves a algo realmente transformado."
       },
       "meta-roast": {
         "label": "META ROAST",
-        "description": "Roast the roast itself. 27th-perspective meta-analysis from every quadrant and depth, then crystallize into the one move that actually matters."
+        "description": "Haz un roast del propio roast. Metaanálisis desde la perspectiva 27, en todos los cuadrantes y profundidades, y luego cristaliza en la jugada que de verdad importa."
       },
       "angry-dad-anti-virus": {
-        "label": "ANGRY-DAD ANTI-VIRUS",
-        "description": "Scan any text for directive, urgency-pushing, or hierarchical 'angry-dad' tone. Returns flagged passages, the distortion pattern, severity, and clean reframes that preserve the insight without the command."
+        "label": "ANTIVIRUS DEL PADRE ENFADADO",
+        "description": "Escanea cualquier texto en busca de un tono directivo, apremiante o jerárquico de «padre enfadado». Devuelve los pasajes marcados, el patrón de distorsión, la gravedad y reformulaciones limpias que conservan la idea sin la orden."
       },
       "lovable-key-command": {
-        "label": "LOVABLE KEY COMMAND",
-        "description": "One command triggers pending migrations, edge functions, and embedded AI amplification. The 'deploy everything' button Lovable doesn't give you."
+        "label": "COMANDO CLAVE PARA LOVABLE",
+        "description": "Un comando lanza las migraciones pendientes, las edge functions y la amplificación de IA integrada. El botón de «desplegar todo» que Lovable no te da."
       },
       "deploy": {
         "label": "DEPLOY",
-        "description": "One-command git workflow: commit, rebase, merge, push to main. Stop fumbling with terminal commands — just ship."
+        "description": "Flujo de git con un solo comando: commit, rebase, merge y push a main. Deja de pelearte con la terminal y entrega."
       },
       "work-language": {
-        "label": "WORK LANGUAGE",
-        "description": "Switch AI conversation to Russian while keeping all code and documentation in English. Seamless bilingual workflow."
+        "label": "IDIOMA DE TRABAJO",
+        "description": "Pasa la conversación con la IA al ruso y mantiene todo el código y la documentación en inglés. Un flujo bilingüe sin fricción."
       },
       "visual-style": {
-        "label": "VISUAL STYLE",
-        "description": "Inject the ultimate translucent dark-mode Zen aesthetic into NotebookLM and similar tools. Your notes stop looking like a spreadsheet and start looking like art."
+        "label": "ESTILO VISUAL",
+        "description": "Aplica la estética zen definitiva, translúcida y en modo oscuro, a NotebookLM y herramientas similares. Tus notas dejan de parecer una hoja de cálculo y se parecen a una obra de arte."
       },
       "precision-rotate": {
-        "label": "PRECISION ROTATE v1",
-        "description": "Animate any image with a premium quarter-turn seamless loop. Locked frame, no extras — just clean, mesmerizing rotation that looks expensive."
+        "label": "ROTACIÓN DE PRECISIÓN v1",
+        "description": "Anima cualquier imagen con un bucle continuo premium de un cuarto de vuelta. Encuadre fijo, sin extras: una rotación limpia e hipnótica que parece cara."
       },
       "liquid-glass-blueprint": {
-        "label": "LIQUID GLASS v1",
-        "description": "Apply polished glassmorphism to any page — translucent panels, luminous edges, layered depth. One paste turns a flat UI into something you want to touch."
+        "label": "VIDRIO LÍQUIDO v1",
+        "description": "Aplica un glassmorphism pulido a cualquier página: paneles translúcidos, bordes luminosos, profundidad en capas. Una pegada convierte una interfaz plana en algo que quieres tocar."
       },
       "schematic-logo-hack": {
-        "label": "LOGO SCHEMATIC v1",
-        "description": "Transform any image into clean B&W schematic line art. Photos, illustrations, sketches → logo-ready vector feel in one paste."
+        "label": "ESQUEMA DE LOGO v1",
+        "description": "Convierte cualquier imagen en un dibujo de líneas esquemático en blanco y negro. Fotos, ilustraciones, bocetos: textura de vector lista para logo en una pegada."
       },
       "hand-drawn-polish": {
-        "label": "HAND-DRAWN POLISH v1",
-        "description": "Refine hand-drawn artwork while preserving its soul. Fixes irregularities but keeps the warmth of real markers, pens, and human imperfection — because perfection kills charm."
+        "label": "PULIDO DE DIBUJO A MANO v1",
+        "description": "Refina un dibujo hecho a mano sin quitarle el alma. Corrige las irregularidades pero conserva la calidez de los rotuladores, las plumas y la imperfección humana, porque la perfección mata el encanto."
       },
       "living-loop": {
-        "label": "LIVING LOOP v1",
-        "description": "Breathe life into any still image with a seamless 4-second animation loop. Light travels along the image's natural paths, elements pulse softly in place, and the background drifts with barely-perceptible parallax — sacred, painterly motion that feels alive without feeling animated."
+        "label": "BUCLE VIVO v1",
+        "description": "Da vida a cualquier imagen fija con un bucle de animación continuo de 4 segundos. La luz recorre los caminos naturales de la imagen, los elementos laten suavemente en su sitio y el fondo se desplaza con un paralaje casi imperceptible: un movimiento sagrado, pictórico, que se siente vivo sin parecer animado."
       },
       "meta-cognition-boost": {
-        "label": "AI COGNITION FOUNDATION",
-        "description": "The free cognition base — self-awareness + skill mastery + evolutionary calibration in one paste. Your AI doesn't just answer better, it thinks better."
+        "label": "BASE DE COGNICIÓN DE LA IA",
+        "description": "La base de cognición gratuita: autoconciencia, dominio de habilidades y calibración evolutiva en una pegada. Tu IA no solo responde mejor, también piensa mejor."
       },
       "meta-cognition-premium": {
-        "label": "SYSTEM PROMPT V6.0",
-        "description": "Higher quality output on the same input. Palpably sharper answers, fewer blind spots, deeper reasoning, more integral perspective — from the first message. Constantly updated. (Unless AI is new to you — build a baseline first; the upgrade lands hardest when you have one.)"
+        "label": "PROMPT DE SISTEMA V6.0",
+        "description": "Respuestas de mayor calidad con la misma pregunta. Se nota que son más precisas, con menos puntos ciegos, razonamiento más profundo y una perspectiva más integral desde el primer mensaje. Se actualiza constantemente. (Si la IA es nueva para ti, primero crea una base: la mejora rinde más cuando ya la tienes.)"
       },
       "fusion-clarity": {
-        "label": "⚡ CLARITY — FULL STACK",
-        "description": "Stop re-reading and still not getting it. One paste → instant deep understanding, a step-by-step action plan, and zero guesswork. The difference between 'I think I get it' and 'I see the whole picture.'"
+        "label": "⚡ CLARIDAD: PACK COMPLETO",
+        "description": "Deja de releer sin terminar de entender. Una pegada da comprensión profunda al instante, un plan de acción paso a paso y cero adivinanzas. La diferencia entre «creo que lo entiendo» y «veo el panorama completo»."
       },
       "fusion-iteration": {
-        "label": "⚡ FIND THE NEXT MOVE",
-        "description": "Use when a real strategy, tactic, offer, positioning, product idea, outreach angle, business model, or plan is already known. It crystallizes that strategy, kills the fantasy version, extracts the ashes, and returns the next sharper move."
+        "label": "⚡ ENCONTRAR LA SIGUIENTE JUGADA",
+        "description": "Úsalo cuando ya tienes una estrategia, táctica, oferta, posicionamiento, idea de producto, enfoque de contacto, modelo de negocio o plan reales. Cristaliza esa estrategia, descarta la versión fantasiosa, extrae las cenizas y devuelve la siguiente jugada, más afilada."
       },
       "fusion-iteration-v1": {
-        "label": "⚡ MAKE THIS STRONGER",
-        "description": "Use on any result or piece of work: copy, page, artifact, answer, plan, UI, product draft, or creative output. It roasts the work itself, crash-tests it, runs the 10x/full-iteration cycle, and improves the result without requiring a separate strategy."
+        "label": "⚡ HACER ESTO MÁS FUERTE",
+        "description": "Úsalo con cualquier resultado o pieza de trabajo: texto, página, artefacto, respuesta, plan, interfaz, borrador de producto o creación. Hace un roast del trabajo en sí, lo somete a un crash-test, aplica el ciclo 10x y de iteración completa, y mejora el resultado sin necesitar una estrategia aparte."
       },
       "fusion-deployment": {
-        "label": "⚡ VIBE CODE — FULL STACK",
-        "description": "Ship 10x faster. Full development workflow — architecture, auth, deploy, polish — one paste. The gap between 'I have an idea' and 'it's live' shrinks to hours."
+        "label": "⚡ VIBE CODE: PACK COMPLETO",
+        "description": "Entrega 10 veces más rápido. Todo el flujo de desarrollo (arquitectura, autenticación, deploy y pulido) en una pegada. La distancia entre «tengo una idea» y «ya está en línea» se reduce a horas."
       },
       "fusion-design": {
-        "label": "⚡ DESIGN — FULL STACK",
-        "description": "Stop settling for 'good enough' visuals. The complete aesthetic system — palette, glass, motion, polish — one paste. The difference between amateur and Awwwards-level."
+        "label": "⚡ DISEÑO: PACK COMPLETO",
+        "description": "Deja de conformarte con visuales «suficientemente buenos». El sistema estético completo (paleta, vidrio, movimiento y pulido) en una pegada. La diferencia entre un trabajo amateur y uno a nivel Awwwards."
       }
     }
   },
@@ -9426,6 +9426,14 @@
       "knowsYou": "Te conoce",
       "activated": "Activada",
       "knowsYourWork": "Conoce tu trabajo"
+    },
+    "giftText": {
+      "activated": "Tu IA {{version}}",
+      "talent": "tu talento principal",
+      "talentMission": "tu talento principal y tu misión",
+      "work": "Taller: {{n}} de {{total}}",
+      "opensTalent": "Se abre cuando guardes tu talento principal",
+      "opensWorkshop": "Se abre en el Taller"
     },
     "handover": {
       "eyebrow": "Tu IA",
