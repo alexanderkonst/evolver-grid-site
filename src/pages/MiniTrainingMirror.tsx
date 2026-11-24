@@ -233,7 +233,7 @@ const Training = ({ userId, profile }: { userId: string; profile: MirrorProfile 
                 <div className="mt-4 aspect-video w-full overflow-hidden rounded-lg border border-border" data-testid={`video-${module.n}`}>
                   <iframe
                     src={embed}
-                    title={`${module.title}, 90-second video`}
+                    title={`${module.title}, short video`}
                     className="h-full w-full"
                     loading="lazy"
                     allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"

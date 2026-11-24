@@ -75,7 +75,7 @@ describe("video slot", () => {
     expect(videoEmbedUrl("other", 1, cfg)).toBeNull();
   });
 
-  it("ships with every slot empty", () => {
-    for (let n = 1; n <= 8; n++) expect(videoEmbedUrl("ai-as-a-mirror", n)).toBeNull();
+  it("ships with a valid video in every slot", () => {
+    for (let n = 1; n <= 8; n++) expect(videoEmbedUrl("ai-as-a-mirror", n)).toMatch(/^https:\/\/www\.youtube-nocookie\.com\/embed\/[A-Za-z0-9_-]{11}\?rel=0$/);
   });
 });
