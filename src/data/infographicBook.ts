@@ -5,13 +5,13 @@
  * captions, status). This file FOLLOWS it; edit BOOK.md first, then mirror the change here.
  * Nothing is parsed at runtime. Chapters are in BOOK.md order. Card images live in
  * docs/assets/infographics/book/ (the source) and are copied to public/infographics/book/
- * with the same folder names (first-principles, laws, noosphere).
+ * with the same folder names (first-principles, ideal-client, laws, noosphere).
  *
  * The word "psychoactive" is the book's name only; it never appears on a card.
  */
 
 export interface BookCard {
-  /** Card id from BOOK.md (primitives-NN, noosphere-N, or the law's old ID such as III.01). */
+  /** Card id from BOOK.md (primitives-NN, ideal-client-NN, noosphere-N, or the law's old ID such as III.01). */
   id: string;
   title: string;
   /** The one-line caption from BOOK.md. Absent where BOOK.md has none. */
@@ -122,6 +122,15 @@ export const BOOK_CHAPTERS: BookChapter[] = [
     depth: 2,
     coming: false,
     cards: [
+      { id: "ideal-client-01", title: "Your Ideal Client Is You", caption: "No one else is you. So measure everyone by how close they are to you.", image: "/infographics/book/ideal-client/ideal-client-01.png", status: "draft v1" },
+      { id: "ideal-client-02", title: "Similar, and Different", caption: "Two corners make them like you. One corner makes them want to buy.", image: "/infographics/book/ideal-client/ideal-client-02.png", status: "draft v1" },
+      { id: "ideal-client-03", title: "Three Kinds of Marketing", caption: "Speak to who they are, what they believe, and where they are crossing.", image: "/infographics/book/ideal-client/ideal-client-03.png", status: "draft v1" },
+      { id: "ideal-client-04", title: "Take Them to the Next Village", caption: "You are the ferryman. The client comes to the pier at their threshold.", image: "/infographics/book/ideal-client/ideal-client-04.png", status: "draft v1" },
+      { id: "ideal-client-05", title: "The Delta Is the Product", caption: "Your gift grows in stages. The step you've crossed is what you can hand on.", image: "/infographics/book/ideal-client/ideal-client-05.png", status: "draft v1" },
+      { id: "ideal-client-06", title: "The Product Ladder", caption: "Describe the path you walked, then cut it into pieces that make sense.", image: "/infographics/book/ideal-client/ideal-client-06.png", status: "draft v1" },
+      { id: "ideal-client-07", title: "Your Method Already Exists", caption: "You've delivered results. A structure was there, even if no one saw it.", image: "/infographics/book/ideal-client/ideal-client-07.png", status: "draft v1" },
+      { id: "ideal-client-08", title: "The Key Is Inside", caption: "People look only at the doors available to them, not inward.", image: "/infographics/book/ideal-client/ideal-client-08.png", status: "draft v1" },
+      { id: "ideal-client-09", title: "One Path", caption: "Your business grows as you grow. Inner work and business work become one.", image: "/infographics/book/ideal-client/ideal-client-09.png", status: "draft v1" },
       { id: "III.01", title: "Three Readinesses Multiply", caption: "If any one is near zero, the whole is zero.", image: "/infographics/book/laws/III.01.png", status: "draft v6" },
       { id: "III.02", title: "Which Program to Offer", caption: "Where is the person on their hero's journey?", image: "/infographics/book/laws/III.02.png", status: "draft v6" },
     ],
