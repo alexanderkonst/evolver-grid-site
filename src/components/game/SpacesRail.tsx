@@ -15,7 +15,7 @@ import {
     UserRound,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { closedLine, placeLine, type PlaceStateName } from "@/lib/placeState";
+import { closedLine, closedShortLine, placeLine, type PlaceStateName } from "@/lib/placeState";
 import { placeName, stateWordText, tr } from "@/lib/villageCopy";
 import { PANE_BY_PLACE, RAIL_PLACES, tourIdFor } from "@/lib/railPlaces";
 import type { VillagePlace, VillagePlaceKey } from "@/data/villagePlaces";
@@ -191,6 +191,11 @@ interface SpacesRailProps {
      * Absent = every place reads open, which is what a rail rendered before the save loads shows.
      */
     placeStates?: PlaceStateName[];
+    /**
+     * The save has not loaded yet (issue #443 A1): every place is drawn in one neutral, dimmed
+     * loading state, not entered, and settles once to open or locked when the save arrives.
+     */
+    placesLoading?: boolean;
     /** Called with the pane-2 space id of the place just entered. */
     onSpaceSelect?: (spaceId: string) => void;
     /**
@@ -241,6 +246,7 @@ interface SpacesRailProps {
 const SpacesRail = ({
     activePlace = null,
     placeStates,
+    placesLoading = false,
     onSpaceSelect,
     compact: compactRequested = false,
     drawer = false,
@@ -774,17 +780,21 @@ const SpacesRail = ({
                     className={compact ? "flex flex-col gap-[6px] p-[8px]" : drawer ? "flex flex-col gap-1 px-2 pt-3 pb-3" : "flex flex-col gap-1 px-3 pt-3 pb-3"}
                 >
                 {RAIL_PLACES.map((place, i) => {
-                    const state: PlaceStateName = placeStates?.[i] ?? "open";
+                    // While the save loads the state is unknown: draw it neutral (no lock, no mark),
+                    // never «open», so nothing flips from lit to grey after the page paints.
+                    const loading = placesLoading;
+                    const state: PlaceStateName = loading ? "open" : placeStates?.[i] ?? "open";
                     const closed = state === "closed";
                     const active = place.key === activePlace;
-                    const line = placeLine(place, state, t, true);
+                    // The lock tooltip uses the short form when a place has one («Opens with your first sale.»).
+                    const line = closed ? closedShortLine(place, t) : placeLine(place, state, t, true);
                     const name = placeName(place, t);
                     // The state word ("Opens when…", Next, Done, live line) is the description,
                     // not the name: the button is named by the place alone.
                     const describedBy = stateWord(place, state, t) ? `${uid}-state-${place.key}` : undefined;
 
                     const handleClick = () => {
-                        if (closed) return;
+                        if (closed || loading) return;
                         onSpaceSelect?.(PANE_BY_PLACE[place.key]);
                         navigate(place.to);
                     };
@@ -795,9 +805,10 @@ const SpacesRail = ({
                             type="button"
                             data-tour-id={tourIdFor(place.key)}
                             data-place={place.key}
-                            data-place-state={state}
+                            data-place-state={loading ? "loading" : state}
                             aria-current={active ? "page" : undefined}
-                            aria-disabled={closed ? true : undefined}
+                            aria-disabled={closed || loading ? true : undefined}
+                            aria-busy={loading ? true : undefined}
                             onClick={handleClick}
                             className={cn(
                                 "transition-all duration-300 relative group",
@@ -834,7 +845,7 @@ const SpacesRail = ({
                             // Native title is the plain fallback where the label column is
                             // hidden (mobile). In compact and closed the hover card below
                             // carries the same line.
-                            title={!closed && !compact ? line : undefined}
+                            title={!closed && !loading && !compact ? line : undefined}
                             aria-label={name}
                             aria-describedby={describedBy}
                         >
@@ -845,7 +856,13 @@ const SpacesRail = ({
                                     // Issue #270: icon over a short text label (see .rail-cell-label).
                                     compact && "flex-col !gap-[3px] justify-center"
                                 )}
-                                style={closed ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" } : undefined}
+                                style={
+                                    closed
+                                        ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" }
+                                        : loading && !active
+                                            ? { opacity: "var(--lock-dim)" }
+                                            : undefined
+                                }
                             >
                                 <PlaceIcon place={place} size={compact ? 30 : 34} skin={skin} />
                                 {!compact && (
@@ -882,7 +899,7 @@ const SpacesRail = ({
                                 )}
                             </span>
 
-                            <StateMark state={state} compact={compact} />
+                            {!loading && <StateMark state={state} compact={compact} />}
                             <span id={describedBy} className="sr-only">{stateWord(place, state, t)}</span>
 
                             {/* Active-state gold pip, hidden in compact (its left-edge
@@ -1242,6 +1259,7 @@ const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
     if (prev.compact !== next.compact) return false;
     if (prev.drawer !== next.drawer) return false;
     if (prev.activePlace !== next.activePlace) return false;
+    if (prev.placesLoading !== next.placesLoading) return false;
     if (prev.onSpaceSelect !== next.onSpaceSelect) return false;
     if (prev.className !== next.className) return false;
     if (prev.pageOwnsBackground !== next.pageOwnsBackground) return false;

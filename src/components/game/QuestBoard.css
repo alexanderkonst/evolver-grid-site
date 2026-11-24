@@ -4,14 +4,14 @@
  * same semantic tokens, never a literal colour, so every skin renders it, Lunar included.
  */
 
-.qb { display: block; min-height: min(100vh, 900px); }
-.qb__scene { position: absolute; inset: 0; z-index: -1; height: min(56vh, 520px); }
-.qb__scene::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(to bottom, rgba(var(--scene-bg-rgb), 0.35) 0%, rgba(var(--scene-bg-rgb), 0.6) 60%, var(--vl-bg) 100%);
-}
-.qb__body { position: relative; z-index: 1; padding: 72px var(--vl-space-5) calc(var(--vl-space-6) + var(--chat-clearance)); }
-.qb__head { text-align: center; padding-bottom: clamp(20px, 4vh, 40px); text-shadow: 0 1px 24px rgba(var(--scene-shadow-rgb), 0.65); }
+.qb { display: block; } /* height comes from .mf--fill (fills pane 3, issue 443) */
+/* Issue 443 (village register): the scene is a monochrome banner ABOVE the heading, in the flow,
+   not a warm daylight picture the heading sits on. Grey and dimmed so it reads as night, a hairline
+   under it, no gradient. */
+.qb__scene { position: relative; z-index: 0; height: clamp(160px, 28vh, 280px); border-bottom: 1px solid var(--vl-hair); overflow: hidden; }
+.qb__scene .mf__img { filter: grayscale(1) brightness(0.62) contrast(1.05); }
+.qb__body { position: relative; z-index: 1; padding: var(--vl-space-5) var(--vl-space-5) calc(var(--vl-space-6) + var(--chat-clearance)); }
+.qb__head { text-align: center; padding-bottom: clamp(20px, 4vh, 40px); }
 .qb__group { max-width: 640px; margin: clamp(24px, 4vh, 40px) auto 0; }
 .qb__h {
   margin: 0 0 var(--vl-space-3); font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-label);

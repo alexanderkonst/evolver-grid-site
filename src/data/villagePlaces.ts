@@ -288,6 +288,8 @@ export const VILLAGE_PLACES: VillagePlace[] = [
         event: "your first sale is recorded",
         inside: "ventures built together, and your voice in the village",
         key: "village.closed.town-hall",
+        short: "Opens with your first sale.",
+        shortKey: "village.closedShort.town-hall",
       },
     },
     opened: "The Town Hall is open.",

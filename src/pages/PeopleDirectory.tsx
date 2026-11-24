@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { MapPin, Search, Sparkles, Target, Users } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
+import { PLACE_BACK_LINK_CLASS } from "@/components/game/VillagePlaceHeader";
 import WriteButton from "@/components/game/WriteButton";
 import { Button } from "@/components/ui/button";
 import SkeletonCard from "@/components/ui/SkeletonCard";
@@ -295,6 +296,8 @@ const PeopleDirectory = () => {
     <GameShellV2>
       <div className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
+          {/* Issue #443 (A10): the same «← Village» every place carries (WP-15). */}
+          <Link to="/village" className={`${PLACE_BACK_LINK_CLASS} mb-2`}>{t("village.backVillage")}</Link>
           <div className="mb-8">
             <div className="flex items-center gap-3 text-foreground">
               <Users className="w-6 h-6" />

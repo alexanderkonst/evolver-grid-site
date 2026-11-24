@@ -1,5 +1,7 @@
 /* Founder Cockpit landing (/build/cockpit). Lunar "Moonlight" surface rendered
-   inside the game shell (pane 3). Every rule is scoped under .fc so nothing
+   inside the game shell (pane 3). Issue #443: village register, i.e. serif letter-spaced
+   uppercase headings, thin-border buttons, one moonlight accent, no glow, no gradient, and no
+   second top bar (the shell already has one). Every rule is scoped under .fc so nothing
    leaks into the skinned app. Ink / lines are the Lunar silver values; the
    moonlight accent reads the Lunar tokens (src/index.css [data-skin="lunar"])
    with the same hex as fallback, so the page looks the same under any skin. */
@@ -18,55 +20,30 @@
   background: var(--fc-bg);
   color: var(--fc-ink);
   font-family: system-ui, -apple-system, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --fc-serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --fc-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
   -webkit-font-smoothing: antialiased;
 }
 .fc *,
 .fc *::before,
 .fc *::after { box-sizing: border-box; }
-.fc h1, .fc h2, .fc h3, .fc p { margin: 0; font-family: inherit; }
+.fc h1, .fc h2, .fc h3, .fc p { margin: 0; }
 
-/* Local nav */
-.fc-nav {
-  position: sticky; top: 0; z-index: 20;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 52px; padding: 0 clamp(20px, 5vw, 48px);
-  /* Room for the app's global language pill (fixed top-right, ~67px wide). */
-  padding-right: calc(clamp(20px, 5vw, 48px) + 78px);
-  background: rgba(9, 13, 19, 0.72);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid var(--fc-line);
-}
-.fc-nav-name { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
-.fc-nav-links { display: flex; align-items: center; gap: 26px; }
-.fc-nav-links a.fc-nav-link { font-size: 13px; color: var(--fc-mute); text-decoration: none; transition: color 0.2s; }
-.fc-nav-links a.fc-nav-link:hover { color: var(--fc-moon-bright); }
-
-/* Buttons. Lunar CTA: dark glass, moonlight outline, soft glow. The outline is
-   an inset shadow, so button size is unchanged. */
+/* Buttons: thin moonlight hairline on the dark ground, mono caps. No fill, glow or gradient. */
 .fc-btn {
   display: inline-flex; align-items: center; justify-content: center;
-  height: 48px; padding: 0 28px; border-radius: 999px;
-  background: linear-gradient(135deg, rgba(var(--fc-moon-glow-rgb), 0.18) 0%, rgba(var(--fc-moon-glow-rgb), 0.08) 100%);
-  color: #f7f4ea;
-  box-shadow:
-    inset 0 0 0 1px rgba(var(--fc-moon-deep-rgb), 0.7),
-    0 0 22px -4px rgba(var(--fc-moon-glow-rgb), 0.45),
-    0 12px 30px -12px rgba(0, 0, 0, 0.72);
-  font-size: 16px; font-weight: 600; letter-spacing: -0.01em; text-decoration: none;
-  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  min-height: 48px; padding: 0 28px; border-radius: 2px;
+  background: transparent;
+  color: var(--fc-ink);
+  box-shadow: inset 0 0 0 1px rgba(var(--fc-moon-deep-rgb), 0.7);
+  font-family: var(--fc-mono); font-size: 12px; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
 }
 .fc-btn:hover {
-  background: linear-gradient(135deg, rgba(var(--fc-moon-glow-rgb), 0.28) 0%, rgba(var(--fc-moon-glow-rgb), 0.14) 100%);
-  box-shadow:
-    inset 0 0 0 1px var(--fc-moon),
-    0 0 28px -2px rgba(var(--fc-moon-glow-rgb), 0.6),
-    0 12px 30px -12px rgba(0, 0, 0, 0.72);
-  transform: translateY(-1px);
+  background: rgba(var(--fc-moon-glow-rgb), 0.06);
+  box-shadow: inset 0 0 0 1px var(--fc-moon);
 }
-.fc-btn:focus-visible,
-.fc-nav-links a:focus-visible { outline: 2px solid var(--fc-moon); outline-offset: 3px; }
-.fc-btn-sm { height: 30px; padding: 0 14px; font-size: 13px; }
+.fc-btn:focus-visible { outline: 2px solid var(--fc-moon); outline-offset: 3px; }
 .fc-btn-ghost {
   background: transparent; color: var(--fc-ink);
   box-shadow: inset 0 0 0 1px rgba(200, 210, 222, 0.34);
@@ -75,25 +52,20 @@
   background: rgba(200, 210, 222, 0.08);
   box-shadow: inset 0 0 0 1px rgba(var(--fc-moon-deep-rgb), 0.7);
 }
-.fc-nav-cta { transition: opacity 0.3s ease, transform 0.2s ease, background 0.2s ease; }
-.fc-nav-cta-hidden { opacity: 0; pointer-events: none; }
-
 /* Type */
 .fc-eyebrow {
-  font-size: 13px; font-weight: 600; letter-spacing: 0.14em;
+  font-family: var(--fc-mono); font-size: 12px; font-weight: 300; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--fc-mute);
 }
 .fc-eyebrow span { color: var(--fc-dim); margin-right: 12px; }
-.fc h1 { font-size: clamp(44px, 7.6vw, 92px); font-weight: 700; letter-spacing: -0.035em; line-height: 1.03; }
-.fc h2 { font-size: clamp(34px, 4.6vw, 60px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.07; }
+.fc h1 { font-family: var(--fc-serif); font-size: clamp(30px, 4.8vw, 60px); font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; line-height: 1.2; }
+.fc h2 { font-family: var(--fc-serif); font-size: clamp(26px, 3.4vw, 44px); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.2; }
 .fc-lede { font-size: clamp(18px, 1.9vw, 24px); line-height: 1.45; color: var(--fc-mute); letter-spacing: -0.005em; }
 .fc-lede b { color: var(--fc-ink); font-weight: 500; }
 
 /* Layout */
 .fc-sec { position: relative; padding: clamp(88px, 12vw, 168px) clamp(20px, 5vw, 48px); }
 .fc-wrap { position: relative; max-width: 1140px; margin: 0 auto; }
-/* Anchor targets land clear of the 52px sticky nav. */
-.fc-sec[id] { scroll-margin-top: 52px; }
 .fc-sec + .fc-sec { border-top: 1px solid rgba(200, 210, 222, 0.07); }
 
 /* Screens */
@@ -116,12 +88,6 @@
 
 /* Hero */
 .fc-hero { padding-bottom: 0; text-align: center; overflow: hidden; }
-.fc-hero::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(60% 50% at 50% 104%, rgba(44, 69, 96, 0.55), transparent 70%),
-    radial-gradient(50% 40% at 50% -10%, rgba(200, 214, 232, 0.06), transparent 70%);
-}
 .fc-hero .fc-lede { margin-top: 24px; }
 .fc-hero h1 { margin-top: 24px; }
 .fc-cta { margin-top: 36px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
@@ -136,14 +102,14 @@
 .fc-stage .fc-side { margin-top: 24%; opacity: 0.72; --r: clamp(16px, 2.2vw, 28px); }
 
 /* Idea */
-.fc-idea h2 { font-size: clamp(36px, 5.2vw, 68px); max-width: 1050px; margin-top: 28px; }
+.fc-idea h2 { font-size: clamp(28px, 4vw, 52px); max-width: 1050px; margin-top: 28px; }
 .fc-idea .fc-lede { max-width: 820px; margin-top: 32px; }
 .fc-trio {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(28px, 4vw, 56px);
   margin-top: clamp(64px, 9vw, 128px); padding-top: 40px;
   border-top: 1px solid var(--fc-line);
 }
-.fc-trio h3 { font-size: 24px; font-weight: 600; letter-spacing: -0.015em; }
+.fc-trio h3 { font-family: var(--fc-serif); font-size: 20px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
 .fc-trio p { margin-top: 10px; font-size: 17px; line-height: 1.5; color: var(--fc-mute); }
 
 /* Split sections */
@@ -154,10 +120,6 @@
 .fc-split h2 { margin-top: 24px; }
 .fc-split .fc-lede { margin-top: 28px; }
 .fc-media { display: flex; flex-direction: column; gap: 28px; width: 100%; max-width: 480px; justify-self: end; }
-.fc-glow::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(45% 60% at 76% 52%, rgba(44, 69, 96, 0.38), transparent 70%);
-}
 .fc-source .fc-media { max-width: 420px; }
 .fc-design .fc-media { max-width: 540px; }
 .fc-design .fc-shot { aspect-ratio: 806 / 800; }
@@ -193,7 +155,7 @@
 .fc-flow-row .fc-shot { --r: 20px; aspect-ratio: 251 / 328; }
 .fc-flow-row .fc-shot img { transform-origin: top center; transform: scale(1.045) translateY(-1.2%); }
 .fc-flow-row .fc-shot.fc-flat img { transform: none; }
-.fc-flow-row h3 { margin-top: 24px; font-size: 21px; font-weight: 600; letter-spacing: -0.01em; }
+.fc-flow-row h3 { margin-top: 24px; font-family: var(--fc-serif); font-size: 18px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
 .fc-flow-row h3 span { color: var(--fc-dim); font-weight: 500; margin-right: 8px; }
 .fc-flow-row p { margin-top: 8px; font-size: 16px; line-height: 1.45; color: var(--fc-mute); }
 
@@ -208,11 +170,7 @@
 
 /* Close */
 .fc-close { text-align: center; }
-.fc-close::before {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(60% 55% at 50% 108%, rgba(44, 69, 96, 0.5), transparent 70%);
-}
-.fc-close h2 { font-size: clamp(42px, 6.6vw, 84px); margin-top: 26px; }
+.fc-close h2 { font-size: clamp(28px, 4.6vw, 56px); margin-top: 26px; }
 .fc-close .fc-lede { max-width: 720px; margin: 28px auto 0; }
 .fc-early { margin-top: 56px; display: flex; justify-content: center; }
 .fc .fc-by { margin-top: 72px; font-size: 14px; color: var(--fc-dim); letter-spacing: 0.02em; }
@@ -231,7 +189,7 @@
 @media (prefers-reduced-motion: reduce) {
   .fc-anim [data-reveal] { opacity: 1; transform: none; transition: none; }
   .fc-anim .fc-side[data-reveal] { opacity: 0.72; }
-  .fc-btn, .fc-nav-cta { transition: none; }
+  .fc-btn { transition: none; }
 }
 
 /* Tablet */
@@ -243,7 +201,6 @@
 
 /* Phone */
 @media (max-width: 720px) {
-  .fc-nav-links a.fc-nav-link { display: none; }
   /* Side screens peek in from the edges; .fc-hero clips them, so no page scroll. */
   .fc-stage {
     grid-template-columns: 1fr 1.6fr 1fr; gap: 14px;

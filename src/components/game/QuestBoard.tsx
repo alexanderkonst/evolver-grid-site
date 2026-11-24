@@ -59,7 +59,7 @@ const QuestBoard = () => {
   const monthQuest = measureMonthQuest(metrics);
 
   return (
-    <section className="mf qb" aria-labelledby={headingId} aria-busy={sheet.isLoading || undefined}>
+    <section className="mf mf--fill qb" aria-labelledby={headingId} aria-busy={sheet.isLoading || undefined}>
       <Link className="mf__back" to="/village">
         {tr(t, "village.backVillage", "← Village")}
       </Link>

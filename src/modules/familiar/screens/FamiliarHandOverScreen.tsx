@@ -32,7 +32,7 @@ const FamiliarHandOverScreen = ({ state, onNext }: Props) => {
   };
 
   return (
-    <section className="mf mf--outro" aria-labelledby={headingId}>
+    <section className="mf mf--outro mf--fill" aria-labelledby={headingId}>
       <Link className="mf__back" to="/village">
         {t("village.backVillage", { defaultValue: "← Village" })}
       </Link>
