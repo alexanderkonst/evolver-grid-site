@@ -170,16 +170,16 @@ const EventsSpace = () => {
                               tabIndex={0}
                               onClick={() => navigate(`/game/meet/${c.id}`)}
                               onKeyDown={(e) => e.key === "Enter" && navigate(`/game/meet/${c.id}`)}
-                              className={`${cardClass} p-4 flex items-center gap-4 cursor-pointer hover:border-foreground/40 transition-colors`}
+                              className={`${cardClass} p-4 flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4 cursor-pointer hover:border-foreground/40 transition-colors`}
                             >
                               {thumb && <img src={thumb} alt="" loading="lazy" className="w-14 h-14 shrink-0 rounded-lg object-cover" />}
-                              <div className="w-28 shrink-0 text-sm text-muted-foreground">
+                              <div className="sm:w-28 sm:shrink-0 text-sm text-muted-foreground">
                                 {formatClock(c.event_time)}
                                 <span className="block text-xs">{zoneLabel(c.timezone, at)}</span>
                               </div>
-                              <div className="min-w-0 flex-1">
+                              <div className="min-w-0 w-full sm:w-auto sm:flex-1">
                                 <div className="flex flex-wrap items-center gap-2">
-                                  <h3 className="font-semibold text-foreground truncate">{c.title}</h3>
+                                  <h3 className="font-semibold text-foreground break-words sm:truncate">{c.title}</h3>
                                   <KindChip kind={c.kind} />
                                 </div>
                                 {where && <p className="text-sm text-muted-foreground truncate">{where}</p>}
@@ -191,7 +191,7 @@ const EventsSpace = () => {
                                   </div>
                                 )}
                               </div>
-                              <div className="shrink-0 text-sm text-right">
+                              <div className="sm:shrink-0 text-sm sm:text-right">
                                 {runs ? (
                                   <span className="text-muted-foreground">
                                     {CAFE.going(goingCounts[c.id] || 0)} ·{" "}
