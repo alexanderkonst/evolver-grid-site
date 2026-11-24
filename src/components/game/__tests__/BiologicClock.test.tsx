@@ -1,9 +1,11 @@
+import { readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import { getAllCyclesV2, MOON_PHASES, PLANETARY_DAYS } from "@/lib/equilibrium-cycles";
 import {
-  BiologicClockFace, LEGACY_EXPANDED_KEY, VIEW_KEY, daysToBirthday, formatTimeLeft, isActivationKey, loadView, moonMeaning, nextView, phaseWord, saveView,
+  BiologicClockFace, LEGACY_EXPANDED_KEY, VIEW_KEY, WEEK_TEXT_COLOURS, contrastRatio, daysToBirthday, formatTimeLeft, isActivationKey, loadView, moonMeaning,
+  nextView, phaseWord, readableOnDark, saveView,
   type ClockView,
 } from "../BiologicClock";
 
@@ -44,6 +46,14 @@ describe("engine words (spec «Words»)", () => {
     expect(sunday.name).toBe("Sunday");
     expect(sunday.energy).toBe("Threshold & Celebration");
     expect(sunday.description.startsWith("Between weeks: vision, ceremony, sharing with community. Write, don't send; seed Monday.")).toBe(true);
+  });
+
+  it("Fixes v6.2 item 5: Full Moon and Tuesday copy (engine, so Equilibrium shows it too)", () => {
+    expect(MOON_PHASES[4].energy).toBe("Harvesting · Reap what's ripe. Receive the fruits of your work.");
+    expect(moonMeaning(MOON_PHASES[4].energy)).toBe("Reap what's ripe. Receive the fruits of your work.");
+    expect(PLANETARY_DAYS[1].name).toBe("Tuesday");
+    expect(PLANETARY_DAYS[1].description).toBe("Massive action. Sends, invites, asks. The week's day to move.");
+    expect(PLANETARY_DAYS.map((d) => d.description).join(" ")).not.toContain("kinetic");
   });
 
   it("phase word = first word of energy, meaning = the rest", () => {
@@ -127,17 +137,22 @@ describe("BiologicClock v5: two rings from one engine", () => {
 
   it("centre: two addressed words (moon + phase word in moon colour, planet + day word in the chakra colour), same size, no clock time", () => {
     const html = render(BIRTHDAY);
-    expect(texts(html)).toEqual(["Prepping", "Structure"]);
+    // each word sits under its cycle's name in small caps (Fixes v6.2 item 1)
+    expect(texts(html)).toEqual(["WAXING GIBBOUS", "Prepping", "SATURDAY", "Structure"]);
     expect(html).not.toMatch(/\d{1,2}:\d{2}/);
     expect(html).toContain('aria-label="Prepping · Waxing Gibbous · Saturday · Structure"');
     const centre = html.slice(html.indexOf('data-ring="centre"'));
     expect(centre.match(/data-centre-line/g)).toHaveLength(2);
     expect(centre).toMatch(/fill:#fff4dc/); // the moon word: warm white
     expect(centre).toMatch(/fill:#e8c447/); // Saturday: solar plexus yellow
-    const sizes = [...centre.matchAll(/font-size:([\d.]+)px/g)].map((m) => Number(m[1]));
-    expect(sizes).toHaveLength(2);
-    expect(sizes[0]).toBe(sizes[1]);
-    expect(sizes[0]).toBeGreaterThanOrEqual(12); // never below 12 (the dial is >= 200 px)
+    const words = [...centre.matchAll(/class="bio-clock__word"[^>]*font-size:([\d.]+)px/g)].map((m) => Number(m[1]));
+    expect(words).toHaveLength(2);
+    expect(words[0]).toBe(words[1]);
+    expect(words[0]).toBeGreaterThanOrEqual(12); // never below 12 (the dial is >= 200 px)
+    // the addresses: >= 11 px (the dial is >= 200 px on a phone, 1 unit = 1 px), in their ring's colour
+    const addresses = [...centre.matchAll(/data-centre-address[^>]*font-size:([\d.]+)px;fill:(#[0-9a-f]{6})/g)];
+    expect(addresses.map((m) => Number(m[1]))).toEqual([11, 11]);
+    expect(addresses.map((m) => m[2])).toEqual(["#fff4dc", "#e8c447"]);
     expect(centre).toContain("saturn.png"); // the small planet of the day
   });
 
@@ -146,21 +161,23 @@ describe("BiologicClock v5: two rings from one engine", () => {
     const moon = /data-readout="moon".*?<\/section>/s.exec(html)![0];
     expect(moon).toMatch(/bio-clock__label">Moon · Waxing Gibbous</);
     expect(moon).toMatch(/bio-clock__name">Prepping</);
-    expect(moon).toContain("was Seeing · next Harvesting");
-    expect(moon).toContain("Prep for harvest · Set up infrastructure · Get the help");
     const { lunar } = getAllCyclesV2(NOW, BIRTHDAY);
-    expect(moon).toMatch(new RegExp(`bio-clock__time">Full Moon in ${formatTimeLeft(lunar.daysRemainingInPhase)}<`));
+    const left = formatTimeLeft(lunar.daysRemainingInPhase);
+    // «next» has a time (item 4): the same time as the head line
+    expect(moon).toContain(`before Seeing · next Harvesting, in ${left}`);
+    expect(moon).toContain("Prep for harvest · Set up infrastructure · Get the help");
+    expect(moon).toMatch(new RegExp(`bio-clock__time">Next: Full Moon in ${left}<`));
     expect(lunar.nextPhaseName).toBe("Full Moon");
 
     const week = /data-readout="week".*?<\/section>/s.exec(html)![0];
     expect(week).toMatch(/bio-clock__label">Week · Saturday, Saturn</);
     expect(week).toMatch(/bio-clock__name">Structure</);
-    expect(week).toContain("was Beauty · next Threshold");
+    expect(week).toContain("before Beauty · next Threshold, tomorrow");
     expect(week).toContain(PLANETARY_DAYS[5].description);
     expect(week).not.toContain("bio-clock__time"); // the week shows no time left
   });
 
-  it("card wraps around the week: Sunday reads was Structure · next Intuition", () => {
+  it("card wraps around the week: Sunday reads before Structure · next Intuition, tomorrow", () => {
     const sunday = new Date(2026, 10, 22, 11, 15).getTime();
     const html = renderToStaticMarkup(
       <MemoryRouter>
@@ -168,11 +185,11 @@ describe("BiologicClock v5: two rings from one engine", () => {
       </MemoryRouter>,
     );
     const week = /data-readout="week".*?<\/section>/s.exec(html)![0];
-    expect(week).toContain("was Structure · next Intuition");
+    expect(week).toContain("before Structure · next Intuition, tomorrow");
     expect(week).toContain("Week · Sunday, Sun");
     expect(week).toContain("bio-clock__sun"); // the Sun image is masked round
     expect(week).toContain("Between weeks: vision, ceremony, sharing with community.");
-    expect(texts(html)[1]).toBe("Threshold");
+    expect(texts(html)).toEqual(["WAXING GIBBOUS", "Prepping", "SUNDAY", "Threshold"]);
     // the Sun on the dial: a circular mask (disc 88% of the image) and our own glow
     const dial = html.slice(0, html.indexOf("bio-clock__readout"));
     expect(dial).toContain('data-sun-mask="true"');
@@ -196,12 +213,27 @@ describe("three views, one tap cycles them (#385)", () => {
     expect(seen).toEqual([1, 2, 3, 1]);
   });
 
-  it("view 1: the dial and its two centre words only, no card, no separate control", () => {
+  it("view 1: the dial and its two addressed centre words, no card, no real control besides the dial", () => {
     const html = render(BIRTHDAY, { view: 1, onCycleView: () => {} });
-    expect(texts(html)).toEqual(["Prepping", "Structure"]);
+    expect(texts(html)).toEqual(["WAXING GIBBOUS", "Prepping", "SATURDAY", "Structure"]);
     expect(html).not.toContain("bio-clock__readout");
     expect(html).not.toContain("bio-clock__more");
-    expect(html).not.toContain("<button");
+  });
+
+  it("click cue (item 2): a «+ tap» chip under the dial in view 1 only; out of the tab order and the accessibility tree", () => {
+    const v1 = render(BIRTHDAY, { view: 1, onCycleView: () => {} });
+    expect(v1).toMatch(/<button type="button" class="bio-clock__cue"[^>]*tabindex="-1"[^>]*aria-hidden="true"/);
+    expect(v1).toContain(">+</span> <span>tap</span>");
+    expect(v1.indexOf("</svg>")).toBeLessThan(v1.indexOf("bio-clock__cue")); // under the dial
+    expect(v1.match(/<button/g)).toHaveLength(1);
+    expect(render(BIRTHDAY, { view: 2, onCycleView: () => {} })).not.toContain("bio-clock__cue");
+    expect(render(BIRTHDAY, { view: 3, onCycleView: () => {} })).not.toContain("bio-clock__cue");
+    expect(render(BIRTHDAY, { view: 1 })).not.toContain("bio-clock__cue"); // a static dial has nothing to tap
+    const css = readFileSync(new URL("../BiologicClock.css", import.meta.url), "utf8");
+    expect(css).toMatch(/\.bio-clock__dial\.is-tappable \{[^}]*cursor: pointer/);
+    expect(css).toMatch(/is-tappable:hover[^{]*\{[^}]*drop-shadow/s);
+    expect(css).toMatch(/is-tappable:focus-visible[^{]*\{[^}]*drop-shadow/s);
+    expect(css).toMatch(/\.bio-clock__cue \{[^}]*min-height: 24px/);
   });
 
   it("the dial itself is the control: role button, focusable, aria-label names the summary and the next view", () => {
@@ -245,7 +277,8 @@ describe("three views, one tap cycles them (#385)", () => {
     expect(v3).not.toContain("bio-clock__day-lit");
     // the Year block: the day left, gold, under it (Saturday 16:38 → 31% left)
     const year = /data-readout="year".*?<\/section>/s.exec(v3)![0];
-    expect(year).toContain('<p class="bio-clock__today">Today: 31% of the day left</p>');
+    // item 6: the line starts with a dot in the Day ring's colour (gold)
+    expect(year).toContain('<p class="bio-clock__today"><span class="bio-clock__today-dot" aria-hidden="true"></span> Today: 31% of the day left</p>');
   });
 
   it("the Moon Focus line (children) shows from view 2, never in view 1", () => {
@@ -364,7 +397,7 @@ describe("view 3: Year and day", () => {
     const year = /data-readout="year".*?<\/section>/s.exec(html)![0];
     expect(year).toMatch(/bio-clock__label">Your year · From your birthday</);
     expect(year).toMatch(/bio-clock__name">Harvest</);
-    expect(year).toContain("was Fruiting · next Seeding");
+    expect(year).toContain("before Fruiting · next Seeding, in 44 days");
     expect(year).toContain("Gather what grew.");
     expect(html).toContain("Your year, from your birthday: Harvest"); // the ring's title
     for (const calendar of ["Equinox", "Solstice", "Autumn", "Winter", "Spring", "Summer"]) {
@@ -381,17 +414,73 @@ describe("view 3: Year and day", () => {
     expect(daysToBirthday("garbage", NOW)).toBeNull();
   });
 
-  it("no birthday: an empty year track and an invitation (guest → Equilibrium, signed in → the prompt)", () => {
+  it("no birthday: an empty year track; signed in → the birthday prompt link, signed out → no invitation here (item 7)", () => {
     const guest = render(null, { view: 3 });
-    expect(guest).toContain("Add your birthday to see your year");
-    expect(guest).toContain('href="/build/equilibrium"');
+    expect(guest).not.toContain("Add your birthday");
+    expect(guest).not.toContain('href="/build/equilibrium"');
+    expect(guest).not.toContain("<button");
     expect(guest).not.toContain("data-season=");
+    expect(guest).toContain("Today: "); // the day-left line still sits in the Year block
     const signedIn = render(null, { view: 3, onAskBirthday: () => {} });
     expect(signedIn).toContain("<button");
+    expect(signedIn).toContain("Add your birthday to see your year");
     expect(signedIn).not.toContain('href="/build/equilibrium"');
   });
 
   it("while the birthday is still loading there is no invitation", () => {
     expect(render(null, { view: 3, birthdayLoading: true })).not.toContain("Add your birthday");
+  });
+});
+
+describe("Fixes v6.2 (#434)", () => {
+  it("item 6: «YEAR» and «DAY» labels on the two outer rings, in view 3 only", () => {
+    const v3 = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
+    expect(v3).toMatch(/data-ring-label="year"[^>]*>.*?<textPath[^>]*>YEAR<\/textPath>/s);
+    expect(v3).toMatch(/data-ring-label="day"[^>]*>.*?<textPath[^>]*>DAY<\/textPath>/s);
+    expect(v3).toContain("bio-clock__ring-label--day");
+    expect(v3).toContain("bio-clock__ring-label--year");
+    for (const view of [1, 2] as ClockView[]) expect(render(BIRTHDAY, { view })).not.toContain("data-ring-label");
+    // the labels do not change the ring count or order
+    expect(v3.match(/data-ring="(year|moon|week|day)"/g)).toHaveLength(4);
+  });
+
+  it("item 8: every weekday's word colour reaches WCAG AA (4.5:1) on the night background; readable colours stay as they were", () => {
+    expect(WEEK_TEXT_COLOURS).toHaveLength(7);
+    for (const c of WEEK_TEXT_COLOURS) expect(contrastRatio(c, "#070b16")).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio("#fff4dc", "#070b16")).toBeGreaterThanOrEqual(4.5); // the moon's warm white
+    expect(contrastRatio("#5b4fc4", "#070b16")).toBeLessThan(4.5); // the pure Monday indigo did not
+    expect(WEEK_TEXT_COLOURS[0]).not.toBe("#5b4fc4");
+    expect(readableOnDark("#e8c447")).toBe("#e8c447"); // already reads
+    // the track keeps the pure chakra colour; only the words are lightened
+    expect(render(BIRTHDAY)).toContain("--bc-seg:#5b4fc4");
+    const monday = new Date(2026, 10, 23, 10, 0).getTime();
+    const html = renderToStaticMarkup(
+      <MemoryRouter>
+        <BiologicClockFace cycles={getAllCyclesV2(monday, BIRTHDAY)} nowMs={monday} birthday={BIRTHDAY} view={2} />
+      </MemoryRouter>,
+    );
+    expect(html).toContain(`fill:${WEEK_TEXT_COLOURS[0]}`);
+    expect(html).toContain("--bc-ring:" + WEEK_TEXT_COLOURS[0]);
+    const css = readFileSync(new URL("../BiologicClock.css", import.meta.url), "utf8");
+    expect(css).toMatch(/\.bio-clock__readout \{[^}]*text-shadow/s);
+  });
+
+  it("item 9: adjacent label / word pairs are separated by a space, so a screen reader does not read «Harvestingwas»", () => {
+    const html = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
+    const readout = html.slice(html.indexOf("bio-clock__readout"));
+    expect(readout).not.toMatch(/<\/span><span/);
+    expect(readout).toMatch(/bio-clock__label">[^<]*<\/span> <span class="bio-clock__time"/);
+    expect(readout).toMatch(/bio-clock__name">[^<]*<\/span> <span class="bio-clock__around"/);
+    // text content: no two words glued together
+    const text = readout.replace(/<[^>]+>/g, "|");
+    expect(text).not.toMatch(/[a-z]\|[a-z]/);
+  });
+
+  it("item 10: opening view 2 or 3 scrolls the WHOLE card into view (end when it fits, start when taller than the screen)", () => {
+    const src = readFileSync(new URL("../BiologicClock.tsx", import.meta.url), "utf8");
+    expect(src).toContain('rect.height <= screen ? "end" : "start"');
+    expect(src).toContain("requestAnimationFrame");
+    expect(src).toContain("already all in view");
+    expect(readFileSync(new URL("../BiologicClock.css", import.meta.url), "utf8")).toContain("scroll-margin-block");
   });
 });
