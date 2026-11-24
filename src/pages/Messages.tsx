@@ -19,7 +19,6 @@ import SkeletonCard from "@/components/ui/SkeletonCard";
 import EmptyState from "@/components/ui/EmptyState";
 import { useToast } from "@/hooks/use-toast";
 import { useSessionUserId } from "@/hooks/useSessionUserId";
-import { supabase } from "@/integrations/supabase/client";
 import { formatDate, formatTime } from "@/i18n/format";
 import { splitCircleLinks, stripCircleLinks } from "@/lib/circles";
 import {
