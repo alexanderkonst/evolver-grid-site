@@ -341,7 +341,7 @@ const SavePlan = ({ saved, hasOther, onSave }: { saved: boolean; hasOther: boole
       {saved ? "Plan saved" : hasOther ? "Save plan (replaces the saved one)" : "Save plan"}
     </Button>
     <span className="text-xs text-muted-foreground">
-      {saved ? "Saved on this device. You'll find it at the end of the page." : "Saved on this device, shown at the end of the page."}
+      {saved ? "Saved on this device. You'll find it at the end of the page." : "It will be kept on this device and shown at the end of the page."}
     </span>
   </div>
 );
