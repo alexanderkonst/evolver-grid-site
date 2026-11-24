@@ -7,7 +7,7 @@
 
 You already know your top talents. You've seen your archetype and your mission. In the next half hour you'll do something with them: you'll turn AI from a random helper into your partner.
 
-Eight short steps. Each one is a single idea, a button, and a 90-second video. Press the button first. You don't type anything: the question is already written from your profile, and you can change it or say it by voice. Then watch the video.
+Eight short steps. Each one is a single idea, a button, and a 1.5–2 minute video. Press the button first. You don't type anything: the question is already written from your profile, and you can change it or say it by voice. Then watch the video.
 
 By the end you'll have two things: a three-step plan for your mission, made together with AI and saved, and one moment when you caught AI saying something about you that would fit anyone. Both matter. The first shows what AI can do with you. The second shows where you stay the judge.
 
@@ -119,4 +119,4 @@ This chat is yours. It remembers your plan. Come back tomorrow and tell it how t
 
 Half an hour ago AI was a random helper. Now it knows your talents, your mission and your plan, and you know two things about it: it reflects how clearly you speak, and it likes to please. You stay the judge.
 
-Your plan is saved in this chat. Start the first step tomorrow.
+Your plan is saved on this device. Start the first step tomorrow.
