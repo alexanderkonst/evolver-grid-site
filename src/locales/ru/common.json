@@ -1308,7 +1308,7 @@
     "send": "Отправить",
     "placeholder": "Напишите сообщение…",
     "fallbackName": "Участник сообщества",
-    "you": "Вы: ",
+    "you": "Ты: ",
     "unreadCount_one": "{{count}} непрочитанное",
     "unreadCount_few": "{{count}} непрочитанных",
     "unreadCount_many": "{{count}} непрочитанных",
@@ -9431,6 +9431,14 @@
       "knowsYou": "Знает тебя",
       "activated": "Активирован",
       "knowsYourWork": "Знает твоё дело"
+    },
+    "giftText": {
+      "activated": "Твой ИИ {{version}}",
+      "talent": "твой главный талант",
+      "talentMission": "твой главный талант и твоя миссия",
+      "work": "Мастерская: {{n}} из {{total}}",
+      "opensTalent": "Откроется, когда ты сохранишь свой главный талант",
+      "opensWorkshop": "Откроется в Мастерской"
     },
     "handover": {
       "eyebrow": "Твой ИИ",

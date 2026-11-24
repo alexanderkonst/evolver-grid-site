@@ -31,12 +31,12 @@ const GiftChips = ({ gifts }: { gifts: GiftState[] }) => {
           </p>
           {g.lit && g.detail ? (
             <p className="m-0 mt-1 text-sm italic" style={{ color: "var(--vl-ink-2)" }}>
-              {g.detail}
+              {g.detailKey ? t(`familiar.giftText.${g.detailKey}`, { ...g.params, defaultValue: g.detail }) : g.detail}
             </p>
           ) : null}
           {!g.lit && g.opensWhen ? (
             <p className="m-0 mt-1 text-sm italic" style={{ color: "var(--vl-ink-2)" }}>
-              {g.opensWhen}
+              {g.opensWhenKey ? t(`familiar.giftText.${g.opensWhenKey}`, { defaultValue: g.opensWhen }) : g.opensWhen}
             </p>
           ) : null}
         </li>

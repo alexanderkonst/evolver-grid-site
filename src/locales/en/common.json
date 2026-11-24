@@ -9455,6 +9455,14 @@
       "activated": "Activated",
       "knowsYourWork": "Knows your work"
     },
+    "giftText": {
+      "activated": "Your AI {{version}}",
+      "talent": "your top talent",
+      "talentMission": "your top talent + your mission",
+      "work": "{{n}} of {{total}} Workshop pieces",
+      "opensTalent": "Opens when you save your top talent",
+      "opensWorkshop": "Opens in the Workshop"
+    },
     "handover": {
       "eyebrow": "Your AI",
       "line": "Your AI: your prompt, carried into the chat you already use.",
