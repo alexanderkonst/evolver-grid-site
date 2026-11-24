@@ -3885,6 +3885,16 @@ export type Database = {
           share_slug: string
         }[]
       }
+      get_message_partners: {
+        Args: { p_user_ids: string[] }
+        Returns: {
+          avatar_url: string
+          first_name: string
+          last_name: string
+          user_id: string
+          username: string
+        }[]
+      }
       get_village_feed: {
         Args: { p_limit?: number }
         Returns: {

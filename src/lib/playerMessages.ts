@@ -99,6 +99,45 @@ export async function markThreadRead(me: string, otherUserId: string): Promise<v
   if (!error) notifyMessagesChanged();
 }
 
+export interface MessagePartner {
+  userId: string;
+  /** "First Last" trimmed; empty string when the profile has no usable name. */
+  name: string;
+  avatarUrl: string | null;
+}
+
+/** One row of public.get_message_partners(). */
+interface MessagePartnerRow {
+  user_id: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  avatar_url: string | null;
+}
+
+export const partnerFromRow = (row: MessagePartnerRow): MessagePartner | null =>
+  row.user_id
+    ? {
+        userId: row.user_id,
+        name: `${row.first_name || ""} ${row.last_name || ""}`.trim(),
+        avatarUrl: row.avatar_url || null,
+      }
+    : null;
+
+/**
+ * Public name / avatar of the people in the viewer's threads (and of someone they are about to
+ * write to). game_profiles is owner-readable only, so this goes through the SECURITY DEFINER
+ * function public.get_message_partners (20261124020000_message_partner_names.sql), which
+ * returns only public fields and skips hidden profiles. While the function is not deployed the
+ * call errors and the caller keeps its fallback name.
+ */
+export async function fetchMessagePartners(userIds: string[]): Promise<MessagePartner[]> {
+  const ids = Array.from(new Set(userIds.filter(Boolean)));
+  if (ids.length === 0) return [];
+  const { data, error } = await db.rpc("get_message_partners", { p_user_ids: ids });
+  if (error) throw error;
+  return ((data || []) as MessagePartnerRow[]).map(partnerFromRow).filter((p): p is MessagePartner => !!p);
+}
+
 /** Postgres "relation does not exist" / PostgREST "table not in schema cache". */
 export const isMissingTableError = (error: unknown) => {
   const e = error as { code?: string; message?: string } | null;
