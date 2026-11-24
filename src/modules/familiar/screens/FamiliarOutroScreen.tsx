@@ -20,7 +20,7 @@ const FamiliarOutroScreen = ({ state }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <section className="mf mf--outro" aria-label={t("familiar.outro.aria", { defaultValue: "Your AI is ready" })}>
+    <section className="mf mf--outro mf--fill" aria-label={t("familiar.outro.aria", { defaultValue: "Your AI is ready" })}>
       <Link className="mf__back" to="/village">
         {t("village.backVillage", { defaultValue: "← Village" })}
       </Link>

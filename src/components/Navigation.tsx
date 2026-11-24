@@ -22,7 +22,7 @@ const HIDE_ON_ROUTES = ["/game", "/start", "/zone-of-genius", "/quality-of-life-
 
 const Navigation = () => {
   const { pathname } = useLocation();
-  const { states } = usePlaceStates();
+  const { states, ready } = usePlaceStates();
 
   if (HIDE_ON_ROUTES.some((route) => pathname.startsWith(route))) return null;
 
@@ -46,8 +46,11 @@ const Navigation = () => {
           </Link>
         </li>
         {RAIL_PLACES.map((place, i) => {
+          // Issue #443 A1: until the save loads the state is unknown. Draw the place neutral
+          // (dimmed, not a link, no lock line) and settle once, instead of lit then grey.
+          const loading = !ready;
           const state = states[i];
-          const closed = state === "closed";
+          const closed = !loading && state === "closed";
           const line = placeLine(place, state);
           const active = pathname === place.to || pathname.startsWith(`${place.to}/`);
           const cls = cn(
@@ -55,8 +58,17 @@ const Navigation = () => {
             active && "font-bold underline underline-offset-4",
           );
           return (
-            <li key={place.key} className="shrink-0" data-place={place.key} data-place-state={state}>
-              {closed ? (
+            <li key={place.key} className="shrink-0" data-place={place.key} data-place-state={loading ? "loading" : state}>
+              {loading ? (
+                <span
+                  className={cls}
+                  aria-disabled="true"
+                  aria-busy="true"
+                  style={{ color: "var(--text-muted)", opacity: "var(--lock-dim)" }}
+                >
+                  {place.name}
+                </span>
+              ) : closed ? (
                 <span
                   className={cls}
                   aria-disabled="true"

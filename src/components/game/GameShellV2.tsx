@@ -42,7 +42,7 @@ import SpacesRail from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS, STATIC_LABEL_KEYS } from "./SectionsPanel";
 import { useJourneyProgress } from "@/hooks/useJourneyProgress";
 import { usePlaceStates } from "@/hooks/usePlaceStates";
-import { activePlaceKey, PANE_BY_PLACE, RAIL_PLACES } from "@/lib/railPlaces";
+import { activePlaceKey, isHomePath, PANE_BY_PLACE, RAIL_PLACES } from "@/lib/railPlaces";
 import { useLinkedQuizResult } from "@/hooks/useLinkedQuizResult";
 import {
     QUIZ_RESULT_EVENT,
@@ -651,10 +651,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         const p = window.location.pathname;
         const isLandingPage = p === '/' || p.startsWith('/game/journey');
         const isIgnitePage = p === '/ignite' || isProductLandingRoute(p);
-        const isEquilibriumPage =
-            p === '/build/equilibrium' ||
-            p === '/equilibrium' ||
-            p === '/preview/equilibrium-v2';
+        // Issue #443 (A4): Equilibrium no longer starts with pane 2 closed. It is a Home
+        // route now (railPlaces `isHomePath`), and a closed pane 2 drew the rail's collapse
+        // chevron and pane 2's expand chevron side by side. The player can still close it.
         // Day 82 v5 (Sasha 2026-05-24): Karime's offering surfaces
         // default to fully-collapsed nav (pane 2 closed AND pane 1 in
         // compact mode) so the visitor lands on the editorial card with
@@ -670,7 +669,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // user can still toggle it open. Covers all /admin/* sub-pages
         // (content, genius-offers, mission-participants, mission-sync).
         const isAdminPage = p === '/admin' || p.startsWith('/admin/');
-        return !isLandingPage && !isIgnitePage && !isEquilibriumPage && !isKarimePage && !isAdminPage;
+        // Issue #443 (A9): /holomap sits in the shell but has no pane-2 sections; start closed.
+        const isHolomapPage = p === '/holomap';
+        return !isLandingPage && !isIgnitePage && !isKarimePage && !isAdminPage && !isHolomapPage;
     });
 
     // Auth is a focused account surface inside the persistent shell: pane 2 has no
@@ -715,7 +716,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const { progress: journeyProgress } = useJourneyProgress();
 
     // WP-4: the state of each village place, the rail's only source (same as /village).
-    const { states: placeStates } = usePlaceStates();
+    const { states: placeStates, ready: placesReady } = usePlaceStates();
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
@@ -824,6 +825,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // activeSpaceId stayed on the default "next-move" space — which
         // has no pane-2 content — and Sasha got pane 1 + pane 3 only,
         // no contextual nav. Same shape of fix as the Day 64 QoL entry.
+        // Issue #443 A3: Equilibrium, saved artifacts and Settings are Home (the place the rail
+        // lights and pane 2 names), so pane 2 lists Home's rows, not the Forge's or the Journey's.
+        if (isHomePath(location.pathname)) {
+            setActiveSpaceId("grow");
+            return;
+        }
+
         const buildSharedPaths = ["/playbook", "/path", "/dashboard", "/ignite"];
         const isBuildSharedPath = isProductLandingRoute(location.pathname) || buildSharedPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
@@ -1584,6 +1592,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 <SpacesRail
                     activePlace={activePlace}
                     placeStates={placeStates}
+                    placesLoading={!placesReady}
                     onSpaceSelect={handleSpaceSelect}
                     compact={railMinimized}
                     className={cn(
@@ -1936,6 +1945,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     <SpacesRail
                         activePlace={activePlace}
                         placeStates={placeStates}
+                        placesLoading={!placesReady}
                         onSpaceSelect={handleSpaceSelect}
                         pageOwnsBackground={pageOwnsBackground}
                         userName={playerName ?? undefined}

@@ -1295,6 +1295,9 @@ const SectionsPanel = ({
                 )}
             </div>
 
+            {/* Issue #443 A3: a pane with no rows (a guest or a new player in the Workshop, where
+                nothing is staged yet) shows its header only, not an empty «THE FORGE path» box. */}
+            {spaceData.sections.length > 0 && (
             <ScrollArea className="flex-1">
             {/* Day 50 (Sasha): TooltipProvider wraps the pane so locked
                 section rows can render the same dark-glass + gold-hairline
@@ -2071,12 +2074,20 @@ const SectionsPanel = ({
             </nav>
             </TooltipProvider>
             </ScrollArea>
+            )}
         </div>
     );
 };
 
 const areEqual = (prev: SectionsPanelProps, next: SectionsPanelProps) => (
     prev.activeSpaceId === next.activeSpaceId &&
+    // Issue #443 A3: the header names the place, and two places can share one pane
+    // (Workshop and Mastermind, Home and the Cockpit's neighbours). A memo that ignored these
+    // kept the first place's name on screen after the player walked to the second.
+    prev.placeName === next.placeName &&
+    prev.placeLine === next.placeLine &&
+    prev.pageOwnsBackground === next.pageOwnsBackground &&
+    prev.publicProfilePath === next.publicProfilePath &&
     prev.onSectionSelect === next.onSectionSelect &&
     prev.onClose === next.onClose &&
     prev.className === next.className

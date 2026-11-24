@@ -3573,6 +3573,9 @@
       "first-price": "Opens when your offer is saved. Inside: your first price, said to a real client.",
       "first-sale": "Opens when your offer is saved. Inside: proof in the world that someone pays you for being you."
     },
+    "closedShort": {
+      "town-hall": "Opens with your first sale."
+    },
     "live": {
       "fire-circle": "Live now: Mastermind, Nov 9–10.",
       "academy": "Live now: Webinar, Wed Nov 4."

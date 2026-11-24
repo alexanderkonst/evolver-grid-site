@@ -6,6 +6,7 @@ import { courseSalesPath } from "@/data/courseSales";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { BOOK_CARDS, BOOK_TITLE } from "@/data/infographicBook";
 import { BODY_STYLE, EYEBROW_STYLE, TITLE_STYLE } from "@/pages/Library";
+import { PLACE_BACK_LINK_CLASS } from "@/components/game/VillagePlaceHeader";
 
 /**
  * AcademyPath — the Academy (/game/learn): the two courses we have, shown as one path
@@ -48,6 +49,8 @@ const AcademyPath = () => {
   const { t } = useTranslation();
   return (
     <div className="p-6 pb-24 lg:p-10 lg:pb-12 max-w-3xl mx-auto">
+      {/* Issue #443 (A10): the same «← Village» every place carries (WP-15). */}
+      <Link to="/village" className={`${PLACE_BACK_LINK_CLASS} mb-2`}>{t("village.backVillage")}</Link>
       <div className="text-center mb-10">
         <h1 className="text-5xl sm:text-6xl font-semibold mb-4 tracking-tight leading-[1.05]" style={TITLE_STYLE}>
           <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>

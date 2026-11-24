@@ -42,18 +42,13 @@ export const MoonFocusInput = ({
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-2xl px-4 py-3",
+        "flex items-center gap-2 rounded-md border border-foreground/20 bg-foreground/5 px-4 py-3",
         variant === "compact"
           ? "mt-6 mx-auto max-w-md justify-center"
           : "w-full justify-center",
       )}
-      style={{
-        background: "rgba(255,255,255,0.35)",
-        boxShadow:
-          "inset 0 2px 4px rgba(10,22,40,0.08), inset 0 -1px 0 rgba(255,255,255,0.6), 0 1px 2px rgba(10,22,40,0.04)",
-      }}
     >
-      <span className="eq-text-halo shrink-0 text-xs uppercase tracking-wider text-[#0a1628]/90">
+      <span className="shrink-0 font-mono text-xs font-light uppercase tracking-[0.2em] text-muted-foreground">
         Focus:
       </span>
       <div className="flex-1 min-w-0 text-center">

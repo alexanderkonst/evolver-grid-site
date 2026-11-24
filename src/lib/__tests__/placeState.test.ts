@@ -8,6 +8,7 @@ import { PlaceState } from "@/components/game/PlaceState";
 import {
   awaitingSave,
   closedLine,
+  closedShortLine,
   emptyPlaceSave,
   gatedByUnsavedTalent,
   houseLit,
@@ -196,6 +197,13 @@ describe("closed lines come from data (§14.3)", () => {
       "Opens when your mission is saved. Inside: your offer, built from your top talent.",
     );
     expect(placeLine(place("town-hall"), "closed")).toMatch(/^Opens when your first sale is recorded\. Inside: .+\.$/);
+  });
+
+  it("the rail's lock tooltip says «Opens with your first sale.» for Town Hall, and the whole line elsewhere (#443 A2)", () => {
+    expect(closedShortLine(place("town-hall"))).toBe("Opens with your first sale.");
+    expect(closedShortLine(place("workshop"))).toBe(closedLine(place("workshop")));
+    // the long line is untouched: the map and the top bar still read it
+    expect(closedLine(place("town-hall"))).toMatch(/^Opens when your first sale is recorded\./);
   });
 
   it("every place that can be closed has a line, and always-open places have none", () => {
