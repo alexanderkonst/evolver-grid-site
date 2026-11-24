@@ -31,7 +31,7 @@ The video names the idea; the button lets the person **live** it. Each button do
 - **Short answers.** Every prompt ends with «Up to 5 lines, no emojis.», so a button takes about 90 s. (Test: without the emoji ban, answers came with emojis; even with the line cap, follow-up turns ran 6–10 lines.)
 - **Copy** works in any AI (ChatGPT, Claude, Gemini).
 - **Rule:** whatever the AI answers, it cannot refute the video. Never ask AI to lecture about itself.
-- **Order (hypothesis, test on people):** button first, then the 90 s video.
+- **Order (Sasha, 2026-11-24):** video first, then the button. (Earlier hypothesis «button first» dropped.)
 
 ### Filling rule (fixes broken grammar)
 Profile data always goes **after a colon, as a label and its value**: «My weakest life area: health.» Never inside a sentence that needs a grammatical case («for {area}»), which breaks in Russian and Spanish.
