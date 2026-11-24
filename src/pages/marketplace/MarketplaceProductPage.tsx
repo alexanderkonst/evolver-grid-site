@@ -3,24 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Download, Phone, Laptop, Sparkles, ArrowRight } from "lucide-react";
-
-interface MarketplaceProduct {
-    id: string;
-    slug: string;
-    title: string;
-    landing_html: string | null;
-    blueprint_content: {
-        title: string;
-        steps: string[];
-        ctaSection: string;
-    } | null;
-    cta_config: {
-        type: "session" | "software";
-        buttonText: string;
-        description: string;
-    } | null;
-    user_id: string;
-}
+import { supabase } from "@/integrations/supabase/client";
+import {
+    type MarketplaceProduct,
+    blueprintToText,
+    parseBlueprint,
+    parseCta,
+    safeCtaUrl,
+} from "./marketplaceProductData";
 
 const MarketplaceProductPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -31,54 +21,77 @@ const MarketplaceProductPage: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        loadProduct();
-    }, [slug]);
+        let cancelled = false;
 
-    const loadProduct = async () => {
-        if (!slug) {
-            setError(t("marketplaceProduct.errorProductNotFound"));
+        const loadProduct = async () => {
+            setLoading(true);
+            setError(null);
+            setProduct(null);
+
+            if (!slug) {
+                setError(t("marketplaceProduct.errorProductNotFound"));
+                setLoading(false);
+                return;
+            }
+
+            // RLS: anyone can read live products; owners can also read their own drafts.
+            const { data, error: dbError } = await supabase
+                .from("marketplace_products")
+                .select("id, slug, title, landing_html, blueprint_content, cta_config, user_id")
+                .eq("slug", slug)
+                .maybeSingle();
+
+            if (cancelled) return;
+
+            if (dbError) {
+                console.error("Failed to load marketplace product:", dbError);
+                setError(t("marketplaceProduct.errorLoadFailed"));
+            } else if (!data) {
+                setError(t("marketplaceProduct.errorProductNotFound"));
+            } else {
+                setProduct({
+                    id: data.id,
+                    slug: data.slug,
+                    title: data.title,
+                    landing_html: data.landing_html,
+                    blueprint_content: parseBlueprint(data.blueprint_content),
+                    cta_config: parseCta(data.cta_config),
+                    user_id: data.user_id,
+                });
+            }
             setLoading(false);
-            return;
-        }
-
-        // For demo: use mock data until migration is applied
-        // TODO: Replace with actual database query after migration
-        const mockProduct: MarketplaceProduct = {
-            id: "demo-1",
-            slug: slug,
-            title: "Transform Your Genius Into a Thriving Business",
-            landing_html: null,
-            blueprint_content: {
-                title: "The Genius Business Blueprint",
-                steps: [
-                    "Identify your unique Zone of Genius — the intersection of what you love, what you're great at, and what feels effortless",
-                    "Define your Ideal Client — the person who needs exactly what you offer and is ready to pay for it",
-                    "Craft your Transformational Promise — the clear Point A → Point B journey you guide clients through",
-                    "Build your minimum viable product — start with 1:1 sessions before scaling",
-                    "Launch with authenticity — your story is your marketing"
-                ],
-                ctaSection: "Ready to build your Genius Business with expert guidance?"
-            },
-            cta_config: {
-                type: "session",
-                buttonText: "Book a Discovery Call",
-                description: "Let's explore how I can help you fast-track your transformation from stuck professional to thriving Genius Business owner."
-            },
-            user_id: "demo-user"
         };
 
-        // Simulate loading
-        await new Promise(resolve => setTimeout(resolve, 500));
-        setProduct(mockProduct);
-        setLoading(false);
-    };
+        loadProduct();
+        return () => {
+            cancelled = true;
+        };
+    }, [slug, t]);
+
+    // A CTA button is only shown when it has somewhere to go.
+    const ctaUrl = safeCtaUrl(product?.cta_config?.url);
 
     const handleCTA = () => {
-        console.log("CTA clicked:", product?.cta_config?.type);
+        if (!ctaUrl) return;
+        if (ctaUrl.startsWith("mailto:")) {
+            window.location.href = ctaUrl;
+        } else {
+            window.open(ctaUrl, "_blank", "noopener,noreferrer");
+        }
     };
 
     const handleDownloadBlueprint = () => {
-        console.log("Download blueprint");
+        const blueprint = product?.blueprint_content;
+        if (!blueprint) return;
+        const text = blueprintToText(blueprint);
+        const href = URL.createObjectURL(new Blob([text], { type: "text/plain;charset=utf-8" }));
+        const a = document.createElement("a");
+        a.href = href;
+        a.download = `${product?.slug || "blueprint"}-blueprint.txt`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(href);
     };
 
     // Day 91 (Sasha 2026-06-09): full-viewport white washes (all three render
@@ -129,7 +142,7 @@ const MarketplaceProductPage: React.FC = () => {
                         {product.title}
                     </h1>
 
-                    {product.cta_config && (
+                    {product.cta_config && ctaUrl && (
                         <Button
                             size="lg"
                             className="bg-white hover:bg-white/90 text-[#2c3150] font-semibold px-8 py-6 text-lg rounded-xl shadow-lg shadow-black/10 transition-all hover:shadow-xl hover:scale-[1.02] mt-4"
@@ -190,16 +203,17 @@ const MarketplaceProductPage: React.FC = () => {
                 </section>
             )}
 
-            {/* Final CTA Section */}
+            {/* Final CTA Section — only when there is a CTA to show */}
+            {product.cta_config && (
             <section className="py-20 px-6 bg-gradient-to-b from-[color:var(--skin-page-bg,#fff)] to-[#8460ea]/5">
                 <div className="container mx-auto max-w-lg text-center">
                     <h3 className="text-2xl sm:text-3xl font-bold text-[#2c3150] mb-4">
                         {t("marketplaceProduct.finalCtaHeading")}
                     </h3>
                     <p className="text-[#2c3150]/60 mb-8 leading-relaxed">
-                        {product.cta_config?.description}
+                        {product.cta_config.description}
                     </p>
-                    {product.cta_config && (
+                    {product.cta_config && ctaUrl && (
                         <Button
                             size="lg"
                             onClick={handleCTA}
@@ -216,6 +230,7 @@ const MarketplaceProductPage: React.FC = () => {
                     )}
                 </div>
             </section>
+            )}
         </div>
     );
 };

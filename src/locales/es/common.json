@@ -4056,6 +4056,7 @@
     "exploreHint": "Explora tus espacios"
   },
   "marketplaceProduct": {
+    "errorLoadFailed": "No se pudo cargar este producto. Inténtalo de nuevo.",
     "errorProductNotFound": "Producto no encontrado",
     "loading": "Cargando...",
     "notFoundHeading": "Producto no encontrado",
