@@ -98,6 +98,19 @@ Works well:
 16. Three-click cycle dial → card → Year and day → dial is clean and reversible on both pages; the button name updates («Show Year and day», «Back to the dial only»).
 17. Year is right against the birthday: «Harvest», «41 days to 4 Jan», «was Fruiting · next Seeding».
 
+## Fixes v6.2 (Sasha 2026-11-24 10:09 «правь», from the walk-through above)
+1. **Centre words name the cycle.** Each centre line gets its address as a small caps label above the meaning word: `FULL MOON` over «Harvesting» (moon colour), `TUESDAY` over «Action» (chakra colour). This is what the 5-second test needs.
+2. **Click cue.** View 1 shows a small «tap» hint under the dial («+» chip, ≥24 px target) and the dial has `cursor: pointer` and a soft glow on hover/focus.
+3. **One word per moment.** The village caption («Full moon. Harvest.») uses the same engine word as the card («Harvesting»); never a second spelling. Year seasons keep their own names (Harvest etc.) but always under `YOUR YEAR`.
+4. **«next» has a time.** Moon: `Next: Waning Gibbous in 3 d 4 h` (word «Next:» added). Meta line: `before Prepping · next Celebrating, in 3 d 4 h`; week: `before Intuition · next Clarity, tomorrow`.
+5. **Copy (engine, also Equilibrium):** Full Moon line «Reap what's ripe · Cut · Receive the fruits of labor» → «Reap what's ripe. Receive the fruits of your work.»; Tuesday «The week's kinetic day.» → «The week's day to move.»
+6. **View 3 rings labelled.** Small labels `YEAR` and `DAY` on the two outer rings; the line «Today: 60% of the day left» starts with a dot in the day ring's colour.
+7. **One invitation, not three.** Signed out: one quiet line «Sign in to see your year and Moon Focus». Signed in: «Moon Focus: name it in Equilibrium →». No «Add your birthday» line when the player is signed out.
+8. **Contrast.** «before · next» meta text and coloured words reach WCAG AA (4.5:1) on the map: lighter grey, subtle text-shadow behind the card text.
+9. **Text layer.** Every adjacent label/word pair is separated by a space or its own block so screen readers don't read «Harvestingwas» (check first; fix only if real).
+10. **Profile.** After opening view 2 or 3, the whole card scrolls into view (recheck #409).
+Not changed (by spec): the open village card may cover map labels; dial framing differs per place.
+
 ## Done when
 A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 
