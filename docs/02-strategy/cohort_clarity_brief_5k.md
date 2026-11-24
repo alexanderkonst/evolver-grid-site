@@ -22,7 +22,7 @@ His known weakness, which this plan can feed: he builds ever-larger structure wh
 
 ## Facts (do not contradict)
 
-- Revenue to date: **$3,428**. Real money, not pre-revenue. Do not inflate.
+- Revenue to date: **$6,259** (as of 2026-11-24, source: CRM). Real money, not pre-revenue. Do not inflate.
 - ~9 client canvases exist. One $2,000 two-month container is sold and mid-delivery.
 - **A second practitioner delivers with the method** under her own brand, ~12 sessions in a recent month. This is the only evidence it transfers to another human.
 - The method has run start to finish in Russian as well as English.

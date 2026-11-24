@@ -43,7 +43,12 @@ const REVENUE_TIMELINE = [
   { day: 146, date: "Aug 5", total: 3705, label: "G. $1,000 — first program container (The Crossing), half paid before session 1" },
   { day: 176, date: "Sep 6", total: 4705, label: "G. final $1,000 — The Crossing fully paid at $2,000" },
   { day: 180, date: "Sep 10", total: 4721, label: "K. 300 MXN donation (≈$16)" },
-  { day: 186, date: "Sep 16", total: 4721, label: "Current — as of Sep 16, 2026" },
+  { day: 202, date: "Oct 2", total: 4775, label: "K. 1,000 MXN donation (≈$54)" },
+  { day: 216, date: "Oct 16", total: 4784, label: "B. ≈$9 in-kind (barter)" },
+  { day: 223, date: "Oct 23", total: 4786, label: "B. ≈$2 in-kind (barter)" },
+  { day: 233, date: "Nov 2", total: 5036, label: "G. $250 extra session (held Oct 28, received Nov 2)" },
+  { day: 241, date: "Nov 10", total: 5436, label: "G. $400 pitch session" },
+  { day: 255, date: "Nov 24", total: 6536, label: "First success-based mentorship payment ($1,100) — current as of Nov 24, 2026" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
@@ -51,12 +56,12 @@ const REVENUE_TIMELINE = [
 const KPIS = [
   {
     labelKey: "ventureDashboard.kpi.totalRevenue",
-    value: "$4,444",
-    subline: "$3,325 cash · $1,119 in-kind",
-    trend: "+$2,016",
-    trendLabel: "Sep 6",
-    detail: "Tracked relationship revenue: $4,721 ($4,444 + $277 rev share, pending)",
-    stamp: "as of 2026-10-12 · reconciled",
+    value: "$6,259",
+    subline: "$5,129 cash · $1,130 in-kind",
+    trend: "+$1,100",
+    trendLabel: "Nov 24",
+    detail: "Tracked relationship revenue: $6,536 ($6,259 + $277 rev share, pending)",
+    stamp: "as of 2026-11-24 · source: CRM",
     gold: true,
   },
   {
@@ -90,11 +95,14 @@ const REVENUE_BREAKDOWN = [
   { name: "K.", cash: 111, inKind: 0, revShare: 0, type: "Cash ($111) · Apr 6", status: "received", color: "#7a5108" },
   { name: "K.", cash: 0, inKind: 200, revShare: 0, type: "In-kind ($200) · Apr 12", status: "received", color: "#7a5108" },
   { name: "K.", cash: 16, inKind: 0, revShare: 0, type: "Cash ($16) · Sep 10", status: "received", color: "#7a5108" },
+  { name: "K.", cash: 54, inKind: 0, revShare: 0, type: "Cash (≈$54) · Oct 2", status: "received", color: "#7a5108" },
   { name: "S.", cash: 0, inKind: 0, revShare: 277, type: "Rev share", status: "pending", color: "#b8860b" },
   { name: "N.", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555)", status: "received", color: "#d4af37" },
   { name: "Ro.", cash: 20, inKind: 0, revShare: 0, type: "Cash ($20)", status: "received", color: "#c99322" },
   { name: "R.", cash: 57, inKind: 0, revShare: 0, type: "Cash ($57)", status: "received", color: "#e0ac42" },
-  { name: "G.", cash: 2000, inKind: 0, revShare: 0, type: "Program container ($2,000)", status: "received", color: "#f0c250" },
+  { name: "G.", cash: 2650, inKind: 0, revShare: 0, type: "Program container ($2,000) + sessions ($250 · $400)", status: "received", color: "#f0c250" },
+  { name: "B.", cash: 0, inKind: 11, revShare: 0, type: "In-kind barter (≈$11) · Oct 16/23", status: "received", color: "#c99322" },
+  { name: "Mentorship", cash: 1100, inKind: 0, revShare: 0, type: "First success-based mentorship payment ($1,100) · Nov 24", status: "received", color: "#d4af37" },
 ];
 
 // ─── Timeline ───────────────────────────────────────────────────────────────
@@ -117,6 +125,7 @@ const TIMELINE = [
   { day: 146, date: "Aug 5", name: "G.", type: "Program container ($2,000)", desc: "The first full program container sold: two months, eight weekly sessions, the productization session included. Half paid before the first session." },
   { day: 176, date: "Sep 6", name: "G.", type: "Container complete ($1,000 final)", desc: "The Crossing fully paid at $2,000 and delivered. First program container to run end to end." },
   { day: 177, date: "Sep 7", name: "D.", type: "First cold reply", desc: "The first cold conversation opened by a mirror message: the profile was surfaced by a high-precision query, the stuck point named without a pitch, and the reply came the same day." },
+  { day: 255, date: "Nov 24", name: "Mentorship", type: "Success-based ($1,100)", desc: "First success-based mentorship payment: a mentee's first sale paid the fee." },
 ];
 
 // ─── Radar ──────────────────────────────────────────────────────────────────

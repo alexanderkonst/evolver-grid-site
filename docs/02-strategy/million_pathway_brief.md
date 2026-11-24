@@ -54,7 +54,7 @@ Two ledgers. While bootstrapping the share routes to him personally. Past a node
 
 ## Facts (do not contradict)
 
-- Revenue to date: **$3,428**. Real, not pre-revenue. Never inflate.
+- Revenue to date: **$6,259** (as of 2026-11-24, source: CRM). Real, not pre-revenue. Never inflate.
 - Nine client canvases. One $2,000 container sold and mid-delivery. The method has run end to end in Russian as well as English.
 - **A second practitioner already delivers the method** under her own brand. The branch is proven once, and it happened without being sold to her.
 - **Distribution is the constraint.** Community hosts with cohorts are the answer.
