@@ -28,7 +28,7 @@ const ChatAppPicker = ({ value, onChange, legend }: Props) => {
           <button
             key={a.id}
             type="button"
-            className="mf__rate-btn mf__rate-btn--outline"
+            className="mf__rate-btn"
             style={{ padding: "0 16px" }}
             aria-pressed={value === a.id}
             onClick={() => onChange(a.id)}

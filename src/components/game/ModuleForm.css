@@ -34,9 +34,9 @@
   font-family: var(--vl-serif);
 }
 .mf a { color: inherit; text-decoration: none; }
-/* Issue 443 (A6): a module screen mounted inside the game shell (Your AI) fills pane 3, so the
+/* Issue 443 (A6): a module screen mounted inside the game shell (the Quest Board) fills pane 3, so the
    lighter shell texture never shows as a band under, or beside, the panel. The shell's pane 3
-   starts 1rem (pt-4) from the top. */
+   starts 1rem (pt-4) from the top. Not used on Your AI: it is out of the village restyle. */
 .mf--fill { max-width: none; min-height: calc(100dvh - 1rem); }
 
 /* ---------- scene (Intro) ---------- */
@@ -164,9 +164,6 @@
 }
 .mf__rate-btn:hover:not(:disabled), .mf__rate-btn:focus-visible { border-color: var(--vl-accent); color: var(--vl-ink); outline: none; }
 .mf__rate-btn[aria-pressed="true"] { background: var(--vl-accent); border-color: var(--vl-accent); color: var(--vl-bg); }
-/* Issue 443: a choice that is not a rating (Your AI's «where will it live?») marks the pick with the
-   accent hairline and full ink, never a filled cream block: no light surface in the village register. */
-.mf__rate-btn--outline[aria-pressed="true"] { background: transparent; border-color: var(--vl-accent); color: var(--vl-ink); box-shadow: inset 0 0 0 1px var(--vl-accent); }
 .mf__rate-btn:disabled { cursor: default; }
 .mf__rate-note { margin: 10px 0 0; font-style: italic; font-size: var(--vl-text-body); color: var(--vl-ink); min-height: 1.4em; }
 
