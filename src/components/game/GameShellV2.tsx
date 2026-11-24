@@ -863,7 +863,12 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const activePlace = activePlaceKey(location.pathname, activeSpaceId);
     const activePlaceData = RAIL_PLACES.find((p) => p.key === activePlace);
     // W2: the one player name for the rail and the place line; null for a guest.
-    const playerName = displayName({ signedIn: !!user, firstName: profile?.first_name });
+    // Issue #419: until the game_profiles row exists, the name given at signup (auth metadata) stands in.
+    const playerName = displayName({
+        signedIn: !!user,
+        firstName: profile?.first_name,
+        givenName: user?.user_metadata?.first_name,
+    });
     // A signed-in player is never «guest», and a guest never reads a name (Reception has a returning line).
     const activePlaceLine = activePlaceData ? placeTagline(activePlaceData, t, !!user, playerName) : undefined;
 

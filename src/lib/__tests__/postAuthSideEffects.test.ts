@@ -10,17 +10,20 @@ const mocks = vi.hoisted(() => ({
   order: [] as string[],
   migrate: vi.fn(),
   claim: vi.fn(),
+  seedProfile: vi.fn(),
+  onAuthStateChange: vi.fn(),
   clearCache: vi.fn(),
 }));
 
 vi.mock("@/integrations/supabase/client", () => ({
-  supabase: { auth: { onAuthStateChange: vi.fn() } },
+  supabase: { auth: { onAuthStateChange: mocks.onAuthStateChange } },
 }));
 vi.mock("@/lib/zogSnapshotCache", () => ({ clearCachedZogSnapshot: mocks.clearCache }));
+vi.mock("@/lib/gameProfile", () => ({ getOrCreateGameProfileId: mocks.seedProfile }));
 vi.mock("@/modules/zone-of-genius/saveToDatabase", () => ({ migrateGuestDataToProfile: mocks.migrate }));
 vi.mock("@/lib/anonClaimGuard", () => ({ claimAnonymousZogIfAllowed: mocks.claim }));
 
-import { awaitGuestResultSync } from "../postAuthSideEffects";
+import { awaitGuestResultSync, installPostAuthSideEffects } from "../postAuthSideEffects";
 
 let userSeq = 0;
 const freshUser = () => `user-${++userSeq}`;
@@ -34,6 +37,10 @@ describe("awaitGuestResultSync", () => {
     mocks.claim.mockReset().mockImplementation(async () => {
       mocks.order.push("claim");
       return "claim_new_user";
+    });
+    mocks.seedProfile.mockReset().mockImplementation(async () => {
+      mocks.order.push("seed");
+      return "profile-id";
     });
     mocks.clearCache.mockReset();
   });
@@ -76,6 +83,46 @@ describe("awaitGuestResultSync", () => {
   it("never throws when migrate fails", async () => {
     mocks.migrate.mockRejectedValue(new Error("boom"));
     await expect(awaitGuestResultSync(freshUser())).resolves.toBeUndefined();
+    expect(mocks.claim).toHaveBeenCalled();
+  });
+});
+
+/** Issue #419: the signup name must reach game_profiles at sign-in, not when a module first runs. */
+describe("sign-in seeds the game profile", () => {
+  beforeEach(() => {
+    mocks.order.length = 0;
+    mocks.migrate.mockReset().mockImplementation(async () => {
+      mocks.order.push("migrate");
+    });
+    mocks.claim.mockReset().mockImplementation(async () => {
+      mocks.order.push("claim");
+      return "claim_new_user";
+    });
+    mocks.seedProfile.mockReset().mockImplementation(async () => {
+      mocks.order.push("seed");
+      return "profile-id";
+    });
+  });
+
+  it("seeds the profile before migrate and claim on SIGNED_IN, and not on a loader call", async () => {
+    installPostAuthSideEffects();
+    const listener = mocks.onAuthStateChange.mock.calls[0][0];
+    const id = freshUser();
+    listener("SIGNED_IN", { user: { id } });
+    await awaitGuestResultSync(id);
+    expect(mocks.order).toEqual(["seed", "migrate", "claim"]);
+
+    mocks.order.length = 0;
+    await awaitGuestResultSync(freshUser());
+    expect(mocks.order).toEqual(["migrate", "claim"]);
+  });
+
+  it("still migrates and claims when the seed fails", async () => {
+    mocks.seedProfile.mockRejectedValue(new Error("rls"));
+    const listener = mocks.onAuthStateChange.mock.calls[0][0];
+    const id = freshUser();
+    listener("SIGNED_IN", { user: { id } });
+    await awaitGuestResultSync(id);
     expect(mocks.claim).toHaveBeenCalled();
   });
 });
