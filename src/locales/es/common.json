@@ -9416,7 +9416,7 @@
     "takeYourAi": "Llévate tu IA",
     "updateMyAi": "Actualizar mi IA",
     "pasteNote": "Copiado. Pégalo en el chat nuevo.",
-    "copyFailed": "Tu navegador bloqueó la copia. Pulsa el botón otra vez o prueba con otro navegador.",
+    "copyFailed": "Tu navegador bloqueó la copia. Copia el texto de la caja de abajo o descárgalo.",
     "whereLive": "¿Dónde vivirá tu IA?",
     "gifts": {
       "aria": "Lo que tiene tu IA",
@@ -9439,7 +9439,9 @@
     "handover": {
       "eyebrow": "Tu IA",
       "line": "Tu IA: tu prompt, llevado al chat que ya usas.",
-      "next": "Siguiente"
+      "next": "Siguiente",
+      "benefit": "Tu IA conocerá tu talento, tu misión y tu trabajo, y responderá como tu copiloto. La diferencia es qué tan bien te conoce.",
+      "reading": "Leyendo tu aldea…"
     },
     "outro": {
       "aria": "Tu IA está lista",
@@ -9472,6 +9474,35 @@
         "market": "Abre tu tienda.",
         "town-hall": "Construyan proyectos juntos."
       }
+    },
+    "box": {
+      "aria": "El prompt de tu IA, listo para copiar",
+      "copy": "Copiar el texto",
+      "download": "Descargar .txt",
+      "copied": "Copiado. Pégalo en el chat.",
+      "fileName": "your-ai-prompt.txt"
+    },
+    "receives": {
+      "title": "Lo que recibe tu IA",
+      "words": "unas {{n}} palabras",
+      "total": "En total, unas {{n}} palabras.",
+      "part": {
+        "aboutMe": "Sobre mí",
+        "myWork": "Mi trabajo",
+        "aiOs": "AI OS v{{version}}"
+      },
+      "attachment": "Un texto largo puede aparecer en el chat como adjunto. Es normal: envíalo tal cual.",
+      "firstLabel": "Después de pegar, envía esto primero:",
+      "first": "Con lo que sabes de mí, dime en dos líneas quién soy y cómo me ayudarás.",
+      "firstGuest": "Confirma que todo cargó y hazme una pregunta para conocerme.",
+      "show": "Mostrar el texto",
+      "hide": "Ocultar el texto",
+      "previewAria": "El texto que recibe tu IA"
+    },
+    "house": {
+      "badge": "Tu IA",
+      "line": "Tu IA está en tu chat.",
+      "behind": "Tu IA se quedó atrás: el juego ya tiene más de ti."
     }
   },
   "playerNextMove": {

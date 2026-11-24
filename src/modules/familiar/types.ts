@@ -15,5 +15,17 @@ export interface GiftState {
   opensWhenKey?: string;
   params?: Record<string, string | number>;
 }
-export interface FamiliarState { gifts: GiftState[]; prompt: string; version: string; lastLearned?: string; loading: boolean }
+/** One part of the prompt, for the «What your AI receives» list (`chars` is its size). */
+export interface PromptPart { key: "aboutMe" | "myWork" | "aiOs"; chars: number }
+export interface FamiliarState {
+  gifts: GiftState[];
+  prompt: string;
+  version: string;
+  /** The parts the prompt holds, in prompt order. */
+  parts: PromptPart[];
+  /** Release of the AI OS text inside the prompt, e.g. "6.0". */
+  aiOsVersion: string;
+  lastLearned?: string;
+  loading: boolean;
+}
 export type ChatApp = "chatgpt" | "claude" | "gemini";

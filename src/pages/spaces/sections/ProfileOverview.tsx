@@ -29,6 +29,7 @@ import { getVillagePlace } from "@/data/villagePlaces";
 import { placeTagline, tr } from "@/lib/villageCopy";
 import { displayName } from "@/lib/displayName";
 import { Skeleton } from "@/components/ui/skeleton";
+import YourAiHouseLine from "@/modules/familiar/YourAiHouseLine";
 import "./CharacterSheet.css";
 
 /**
@@ -404,6 +405,9 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 {/* A9 (#377): the player's own biological clock, compact, in the page header. */}
                 <ProfileClock className="cs-clock" />
             </header>
+
+            {/* AI-08: Your AI leaves its mark here once the player has taken it. */}
+            <YourAiHouseLine />
 
             {stats.length > 0 && (
                 <section className="cs-stats" aria-label={t("characterSheet.stats.title")}>

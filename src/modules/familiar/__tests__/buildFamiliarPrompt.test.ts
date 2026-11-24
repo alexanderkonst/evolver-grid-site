@@ -4,12 +4,16 @@ import {
   ARTIFACT_CHAR_CAP,
   artifactText,
   buildFamiliarPrompt,
+  promptSections,
+  splitLicence,
   type FamiliarArtifactInput,
   type FamiliarTalentInput,
 } from "../buildFamiliarPrompt";
 
 // The bundled source of truth, read straight from the file the module imports.
-const AI_OS = readFileSync(new URL("../../../../system-prompts/v5.2/system-prompt.md", import.meta.url), "utf8");
+const AI_OS = readFileSync(new URL("../../../../system-prompts/v6.0/system-prompt.md", import.meta.url), "utf8");
+
+const { licence: LICENCE, body: AI_OS_BODY } = splitLicence(AI_OS);
 
 const TALENT: FamiliarTalentInput = {
   archetypeTitle: "Pattern Architecting",
@@ -40,7 +44,7 @@ describe("buildFamiliarPrompt: guest", () => {
     expect(out).not.toContain("# My work");
   });
 
-  it("the bundled AI OS text is the real v5.2 prompt, not a stub", () => {
+  it("the bundled AI OS text is the real v6.0 prompt, not a stub", () => {
     expect(AI_OS.split(/\s+/).length).toBeGreaterThan(5000);
   });
 });
@@ -54,11 +58,20 @@ describe("buildFamiliarPrompt: J1 only (top talent saved)", () => {
     expect(out).toContain("My core pattern: You see the structure under a tangle and hand it back as a map.");
     expect(out).toContain("- You build the frame.");
     expect(out).not.toContain("# My work");
-    expect(out.indexOf("# About me")).toBeLessThan(out.indexOf(AI_OS.trim()));
+    expect(out.indexOf("# About me")).toBeLessThan(out.indexOf(AI_OS_BODY));
   });
 
-  it("ends with the AI OS text, untouched", () => {
-    expect(out.endsWith(AI_OS.trim())).toBe(true);
+  it("carries the AI OS text untouched, with its licence header last", () => {
+    expect(LICENCE).toContain("License: CC BY-NC-SA 4.0");
+    expect(out.includes(AI_OS_BODY)).toBe(true);
+    expect(out.endsWith(LICENCE)).toBe(true);
+    expect(out.split(LICENCE).length - 1).toBe(1);
+    expect(out.indexOf(LICENCE)).toBeGreaterThan(out.indexOf(AI_OS_BODY));
+  });
+
+  it("opens on About me, not on the licence", () => {
+    expect(out.indexOf("# About me")).toBeLessThan(out.indexOf("License:"));
+    expect(out.startsWith("Below is who I am")).toBe(true);
   });
 
   it("adds the mission when there is one, and only then", () => {
@@ -81,7 +94,7 @@ describe("buildFamiliarPrompt: J1 + Workshop artifacts", () => {
   it("orders About me, My work, AI OS", () => {
     const about = out.indexOf("# About me");
     const work = out.indexOf("# My work");
-    const aiOs = out.indexOf(AI_OS.trim());
+    const aiOs = out.indexOf(AI_OS_BODY);
     expect(about).toBeGreaterThanOrEqual(0);
     expect(work).toBeGreaterThan(about);
     expect(aiOs).toBeGreaterThan(work);
@@ -135,5 +148,40 @@ describe("artifactText", () => {
   it("is empty when there is nothing", () => {
     expect(artifactText({ content: null, content_json: null })).toBe("");
     expect(artifactText({})).toBe("");
+  });
+});
+
+describe("splitLicence", () => {
+  it("takes the leading version and License lines, and nothing else", () => {
+    expect(LICENCE.split("\n")).toHaveLength(2);
+    expect(LICENCE.startsWith("AI OS v6.0")).toBe(true);
+    expect(AI_OS_BODY.startsWith("Editions:")).toBe(true);
+    expect(`${LICENCE}\n${AI_OS_BODY}`).toBe(AI_OS.trim());
+  });
+
+  it("leaves a text without that header whole", () => {
+    expect(splitLicence("Some prompt\nsecond line")).toEqual({ licence: "", body: "Some prompt\nsecond line" });
+  });
+
+  it("a guest prompt stays the whole AI OS text, header first", () => {
+    expect(buildFamiliarPrompt({ aiOs: AI_OS }).startsWith(LICENCE)).toBe(true);
+  });
+});
+
+describe("promptSections", () => {
+  it("lists only the parts the prompt holds, in prompt order, AI OS last", () => {
+    expect(promptSections({ aiOs: "OS" }).map((p) => p.key)).toEqual(["aiOs"]);
+    expect(promptSections({ aiOs: "OS", talent: TALENT }).map((p) => p.key)).toEqual(["aboutMe", "aiOs"]);
+    expect(promptSections({ aiOs: "OS", talent: TALENT, artifacts: SIX }).map((p) => p.key)).toEqual([
+      "aboutMe",
+      "myWork",
+      "aiOs",
+    ]);
+  });
+
+  it("reports each part's size in characters", () => {
+    const parts = promptSections({ aiOs: "OS text", talent: TALENT });
+    expect(parts.find((p) => p.key === "aiOs")?.chars).toBe("OS text".length);
+    expect(parts.find((p) => p.key === "aboutMe")?.chars).toBeGreaterThan(40);
   });
 });

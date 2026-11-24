@@ -1,11 +1,13 @@
 /**
  * buildFamiliarPrompt — pure assembly of the player's personal prompt (Task A, §9).
  *
- *   «About me» (top talent, mission) + «My work» (Workshop artifacts) + AI OS
+ *   «About me» (top talent, mission) + «My work» (Workshop artifacts) + AI OS + its licence header
  *
  * The two short sections come first so the model reads who it is talking to before it reads
- * how to think. Empty parts are omitted, headings included: a guest gets AI OS alone, which is
- * today's `/ai-os` install. No I/O and no clock, so it tests without a browser.
+ * how to think. AI OS follows, and its licence header (the leading version and License lines,
+ * text untouched) closes the prompt, so a long paste does not open on legal text. Empty parts
+ * are omitted, headings included: a guest gets AI OS alone, header first, which is today's
+ * `/ai-os` install. No I/O and no clock, so it tests without a browser.
  */
 
 export interface FamiliarTalentInput {
@@ -79,12 +81,47 @@ const myWork = (artifacts: FamiliarArtifactInput[] | null | undefined): string =
   return blocks.length > 0 ? `# My work\n\n${blocks.join("\n\n")}` : "";
 };
 
-const PREAMBLE =
-  "Below is who I am and what I do, followed by the system prompt you operate under. Keep it in mind in every answer and use it where it helps me. Do not recite it back unless I ask.";
+const preamble = (withLicence: boolean): string =>
+  `Below is who I am and what I do, followed by the system prompt you operate under${withLicence ? " and, at the very end, its licence" : ""}. Keep it in mind in every answer and use it where it helps me. Do not recite it back unless I ask.`;
+
+/** The AI OS header lines: «AI OS v6.0 · date · © owner» and «License: …». */
+const LICENCE_LINE = /^(AI OS v\d|License:)/;
+
+/**
+ * Splits the AI OS text into its leading licence header and the rest. A text without that header
+ * (an older release) comes back whole as `body`. Lines are kept exactly as written.
+ */
+export const splitLicence = (aiOs: string): { licence: string; body: string } => {
+  const lines = clean(aiOs).split("\n");
+  let n = 0;
+  while (n < lines.length && LICENCE_LINE.test(lines[n])) n++;
+  if (n === 0) return { licence: "", body: lines.join("\n") };
+  return { licence: lines.slice(0, n).join("\n"), body: lines.slice(n).join("\n").trim() };
+};
+
+/** Which parts the personal prompt holds, with each one's size in characters (`prompt.length` in total). */
+export type PromptSectionKey = "aboutMe" | "myWork" | "aiOs";
+export interface PromptSection {
+  key: PromptSectionKey;
+  chars: number;
+}
+
+/** The sections `buildFamiliarPrompt` puts in the prompt, for the «what your AI receives» list. */
+export function promptSections(input: BuildFamiliarPromptInput): PromptSection[] {
+  const out: PromptSection[] = [];
+  const about = aboutMe(input.talent, input.mission);
+  const work = myWork(input.artifacts);
+  if (about) out.push({ key: "aboutMe", chars: about.length });
+  if (work) out.push({ key: "myWork", chars: work.length });
+  out.push({ key: "aiOs", chars: clean(input.aiOs).length });
+  return out;
+}
 
 export function buildFamiliarPrompt(input: BuildFamiliarPromptInput): string {
   const aiOs = clean(input.aiOs);
   const sections = [aboutMe(input.talent, input.mission), myWork(input.artifacts)].filter(Boolean);
   if (sections.length === 0) return aiOs;
-  return [PREAMBLE, ...sections, "---", aiOs].filter((s) => s !== "").join("\n\n");
+  const { licence, body } = splitLicence(aiOs);
+  const tail = licence ? ["---", licence] : [];
+  return [preamble(!!licence), ...sections, "---", body, ...tail].filter((s) => s !== "").join("\n\n");
 }

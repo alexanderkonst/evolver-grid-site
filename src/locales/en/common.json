@@ -9443,7 +9443,7 @@
     "takeYourAi": "Take your AI",
     "updateMyAi": "Update my AI",
     "pasteNote": "Copied. Paste it into the new chat.",
-    "copyFailed": "Your browser blocked the copy. Press the button again, or try another browser.",
+    "copyFailed": "Your browser blocked the copy. Copy the text from the box below, or download it.",
     "whereLive": "Where will your AI live?",
     "gifts": {
       "aria": "What your AI has",
@@ -9466,7 +9466,9 @@
     "handover": {
       "eyebrow": "Your AI",
       "line": "Your AI: your prompt, carried into the chat you already use.",
-      "next": "Next"
+      "next": "Next",
+      "benefit": "Your AI will know your talent, mission and work, and answer as your co-pilot. The difference is how well it knows you.",
+      "reading": "Reading your village…"
     },
     "outro": {
       "aria": "Your AI is ready",
@@ -9499,6 +9501,35 @@
         "market": "Open your shop.",
         "town-hall": "Build ventures together."
       }
+    },
+    "box": {
+      "aria": "Your AI prompt, ready to copy",
+      "copy": "Copy the text",
+      "download": "Download .txt",
+      "copied": "Copied. Paste it into the chat.",
+      "fileName": "your-ai-prompt.txt"
+    },
+    "receives": {
+      "title": "What your AI receives",
+      "words": "about {{n}} words",
+      "total": "About {{n}} words in all.",
+      "part": {
+        "aboutMe": "About me",
+        "myWork": "My work",
+        "aiOs": "AI OS v{{version}}"
+      },
+      "attachment": "A long paste may arrive in the chat as an attachment. That is fine: send it as it is.",
+      "firstLabel": "After you paste, send this first:",
+      "first": "Using what you know about me, tell me in two lines who I am and how you will help me.",
+      "firstGuest": "Confirm that everything loaded, then ask me one question to get to know me.",
+      "show": "Show the text",
+      "hide": "Hide the text",
+      "previewAria": "The text your AI receives"
+    },
+    "house": {
+      "badge": "Your AI",
+      "line": "Your AI is in your chat.",
+      "behind": "Your AI is behind: the game now holds more of you."
     }
   },
   "playerNextMove": {

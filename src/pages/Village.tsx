@@ -86,11 +86,8 @@ type Direction = "left" | "right" | "up" | "down";
 
 const HOUSE_PLACE = "house";
 
-/**
- * Where a pin or list row goes. Every place opens its scene first, except Your AI: it is a
- * place of the game itself, open to guests, so its pin goes straight to /game/your-ai.
- */
-const pinTo = (p: VillagePlace) => (p.key === "oracle" ? p.to : `/village/${p.key}`);
+/** Where a pin or list row goes: every place, Your AI included, opens its painted scene first; ENTER goes inside. */
+const pinTo = (p: VillagePlace) => `/village/${p.key}`;
 const RECEPTION_INDEX =VILLAGE_PLACES.findIndex((p) => p.key === "reception");
 const ASPECT = VILLAGE_MAP.width / VILLAGE_MAP.height;
 

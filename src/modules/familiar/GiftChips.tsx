@@ -7,16 +7,17 @@
 import { useTranslation } from "react-i18next";
 import type { GiftState } from "./types";
 
-const GiftChips = ({ gifts }: { gifts: GiftState[] }) => {
+/** `row` lays the three chips side by side from tablet width up, so the hand-over keeps its button on one screen. */
+const GiftChips = ({ gifts, row = false }: { gifts: GiftState[]; row?: boolean }) => {
   const { t } = useTranslation();
   return (
-    <ul className="m-0 flex w-full max-w-md list-none flex-col gap-2 p-0 text-left" aria-label={t("familiar.gifts.aria", { defaultValue: "What your AI has" })}>
+    <ul className={`m-0 flex w-full list-none flex-col gap-2 p-0 text-left ${row ? "max-w-md md:max-w-3xl md:flex-row md:items-stretch" : "max-w-md"}`} aria-label={t("familiar.gifts.aria", { defaultValue: "What your AI has" })}>
       {gifts.map((g) => (
         <li
           key={g.key}
           data-gift={g.key}
           data-lit={g.lit}
-          className="rounded-sm border px-4 py-3 transition-opacity"
+          className={`rounded-sm border px-4 py-3 transition-opacity ${row ? "md:flex-1" : ""}`}
           style={{
             borderColor: g.lit ? "var(--open-accent)" : "var(--vl-hair)",
             opacity: g.lit ? 1 : 0.62,

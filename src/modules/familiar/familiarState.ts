@@ -3,7 +3,7 @@
  * Pure; `useFamiliar` loads the data and calls this. Gift 2 (activated) needs no data, so it is
  * lit for everyone, guests included (§1.2).
  */
-import { buildFamiliarPrompt, type BuildFamiliarPromptInput } from "./buildFamiliarPrompt";
+import { buildFamiliarPrompt, promptSections, type BuildFamiliarPromptInput } from "./buildFamiliarPrompt";
 import type { FamiliarState, GiftState } from "./types";
 
 export const WORKSHOP_TOTAL = 19;
@@ -59,5 +59,11 @@ export function buildGifts(src: FamiliarSources): GiftState[] {
 
 export function buildFamiliarState(src: FamiliarSources): Omit<FamiliarState, "loading"> {
   const prompt = buildFamiliarPrompt(src);
-  return { gifts: buildGifts(src), prompt, version: hashPrompt(prompt) };
+  return {
+    gifts: buildGifts(src),
+    prompt,
+    version: hashPrompt(prompt),
+    parts: promptSections(src),
+    aiOsVersion: src.aiOsVersion,
+  };
 }

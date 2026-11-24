@@ -53,7 +53,7 @@ import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
 import MoonMedallion from "@/components/game/MoonMedallion";
-import { placeTagline } from "@/lib/villageCopy";
+import { placeName as placeNameText, placeTagline } from "@/lib/villageCopy";
 import { displayName } from "@/lib/displayName";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
@@ -871,6 +871,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     });
     // A signed-in player is never «guest», and a guest never reads a name (Reception has a returning line).
     const activePlaceLine = activePlaceData ? placeTagline(activePlaceData, t, !!user, playerName) : undefined;
+    // The pane-2 header says the place's name in the player's language (RU «Твой ИИ», ES «Tu IA»).
+    const activePlaceName = activePlaceData ? placeNameText(activePlaceData, t) : undefined;
 
     // Load profile
     const loadProfile = async (userId: string, healed = false) => {
@@ -1722,7 +1724,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 >
                     <SectionsPanel
                         activeSpaceId={activeSpaceId}
-                        placeName={activePlaceData?.name}
+                        placeName={activePlaceName}
                         placeLine={activePlaceLine}
                         onSectionSelect={handleSectionSelect}
                         onClose={toggleSectionsPanel}
@@ -1992,7 +1994,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     >
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
-                            placeName={activePlaceData?.name}
+                            placeName={activePlaceName}
                             placeLine={activePlaceLine}
                             onSectionSelect={handleSectionSelect}
                             className="w-full h-full"
