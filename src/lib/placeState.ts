@@ -360,7 +360,11 @@ const isMet = (save: PlaceSave, req: PlaceRequirement) => save.met[req] === true
 
 export const placeState = (place: PlaceInput, save: PlaceSave): PlaceStateName => {
   const { opens, steps, live } = place.rule;
-  if (opens && !isMet(save, opens)) return "closed";
+  // Issue #414: a place whose steps are all met is done, even when what opens it is not met
+  // (QoL is optional and can be finished while the mission is not saved: its Level room and
+  // badge must show done, not «first victory is one quest away»). Done is checked before closed.
+  const finished = !!steps && steps.length > 0 && steps.every((req) => isMet(save, req));
+  if (opens && !isMet(save, opens) && !finished) return "closed";
   if (isLiveNow(live, save.now)) return "live";
   // Issue #354: a revealed top talent finishes Reception even before it is saved to an account
   // (the Journey step itself still waits on the account, so Home and the rest stay closed).
