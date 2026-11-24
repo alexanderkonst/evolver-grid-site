@@ -70,6 +70,34 @@ Why: live check 2026-11-22. The two centre words don't say which cycle they belo
 
 Done when: a newcomer, without a legend, names the moon phase and the day of the week from the dial in 5 seconds, on desktop and phone.
 
+## Observations: user walk-through 2026-11-24 (live v6 + #409, signed in, desktop ~1920; phone not checked)
+Sasha 2026-11-24 09:39 «Просмотри как пользователь, наблюдай, запиши наблюдения». Observed by a browser agent as a first-time user on /village and /game/me/overview, Tuesday, Full Moon. Observations only, no decisions yet.
+
+**«Done when» fails.** Without a legend the newcomer named neither the moon phase nor the weekday from the dial in 5 s: the dial read as decoration. The phase was guessed only from the separate sky moon and the caption «Full moon. Harvest.»; the weekday not at all.
+
+Confusing:
+1. Nothing says the dial is clickable on either page (the cue is only its accessible name).
+2. One moment, three names: village caption «Full moon. Harvest.», Moon card «Harvesting», Year card «Harvest» (moon phase and year season collide on the same word family).
+3. «Waning Gibbous in 3 d 4 h» beside «MOON · FULL MOON»: not clear it is the next phase.
+4. «was Prepping · next Celebrating»: no time for «next».
+5. «Reap what's ripe · Cut · Receive the fruits of labor»: three near-synonyms; one instruction or three?
+6. Week copy «The week's kinetic day.»: «kinetic» is jargon.
+7. View 3: the two outer rings carry no label; which is year and which is day is not readable.
+8. «Today: 60% of the day left»: no ring points to it.
+9. Card asks for things elsewhere: village «Add your birthday to see your year» / «Sign in to see your Moon Focus», profile «Name your Moon Focus in Equilibrium»; each leaves the page.
+10. Village: open card covers TOWN HALL, CO-WORKING, MASTERMIND, WORKSHOP labels (by spec, still felt).
+11. Profile: last card line still below the fold on the agent's screen (#409 scroll fix to recheck).
+
+Cosmetic:
+12. Small low-contrast grey «was · next» and orange «Action» over the dark textured map.
+13. Profile shows «Loading profile...» bars while the clock is already drawn above the name.
+14. The same dial looks like two different objects (small over the map vs large on a dark disc).
+15. Text layer runs words together («Harvestingwas Prepping», «MOON · FULL MOONWaning Gibbous in 3 d 4 h»): screen readers may read one word. Unverified: may be the agent's DOM reader; check the JSX before filing.
+
+Works well:
+16. Three-click cycle dial → card → Year and day → dial is clean and reversible on both pages; the button name updates («Show Year and day», «Back to the dial only»).
+17. Year is right against the birthday: «Harvest», «41 days to 4 Jan», «was Fruiting · next Seeding».
+
 ## Done when
 A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 
