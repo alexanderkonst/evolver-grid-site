@@ -72,5 +72,20 @@ Design compass (not tasks): actions in the game world are done in the real one; 
 - 2026-11-21: live A5 stats cards (#364), A6 messages (#363, table player_messages deployed on Sasha's yes; open to everyone by default, profile visibility setting closes it), A7 clients (#366), A9 four-ring clock (#378), B2 quiz → game link (#372), C1 3D elements (#367), C4 Book of Infographics (#365). A12 badge logic live, art v1 rejected. A10 glyphs v2 drafted.
 - 2026-11-22: merged A4 hook after reveal (#399), A16 feed of real deeds (#400, migration applied), A6 People Directory (#397), playtest fixes (#398), clock Moon + Week and three views (#382, #387), Circles v1 with Care of a place (#388, live), place icons painted set per skin (live). Your AI place re-scoped to a plain hand-over, no test (#402, in work). Loading screen matte + waxing moon (#401, in work). A13 streak PR #373 green, held for «Да: деплой миграции streak_acts». Waiting on Sasha: A10 glyph look, A12 badge designs, A2 video, reveal words.
 
+## Moon picture, 2026-11-23 (eve of the Harvest; Sasha: «пиши это в спеку»)
+
+- **One picture.** Four faces (game · Sasha's business of businesses · Collective · Theory), Your AI as the ring through all four. Launch early January 2027, after 01-04.
+- **What the moon gave.** Game: messages + People Directory, stats, Moon + Week clock, Circles with Care of a place, hook after reveal, feed of real deeds, 3D elements, Book, place icons; 25 mechanics accepted (GoBY §24.1), core = circle × weekly rhythm × Save Point × confirmation by one who walked the step. Business: partner's 10% gift, money one way; /bring-your-module live. Collective: Academy three levels, Result Wizards, mini-training «AI as a Mirror» in work. Theory: Stage 2 closed, Stage 3 on pre-registered tests.
+- **Main observation.** The specs are whole; the live game is still separate good pieces (synthesis pass v2: 44/100). Three player paths are not reconciled: Journey J0–J13 (GoBY §14.2, what the code follows), Gift Path 22 steps (§20), Player One 13 steps (§23.1, Sasha's order). Result: three different Level unlock rules and contradicting locks. The funnel / player path work starts by merging them into one path.
+- **Sasha's check list (2026-11-23) and its state.**
+  - Messaging, profiles, social network: built (A6); a live two-player exchange not yet tested; first in the next check.
+  - Character room (Your House): passed in synthesis pass v2; bugs in work (#413–#419); recheck after fixes.
+  - Your AI console: Controller with lens buttons is spec only (AIF §20.3); the game has the prompt hand-over (#402).
+  - Your AI design: check /ai-os and /game/your-ai as a product.
+  - Course constructor: not built (C2); template and Result Wizards spec only.
+  - Transitions between screens and iconic look and feel: one click-by-click pass through the whole world, each seam judged.
+- **Sales chain (offer → shop → buyer):** parked; UBB is run personally by Sasha with people for now, nobody is sent to /ubb (Sasha 2026-11-23).
+- **Harvest (2026-11-24, full moon):** harvest-log 31 entries, 5 confirmed, 26 await ✅/✗; after marks the cycle goes through the holonic prism → one sentence + one infographic.
+
 ## Working rule
 Take the next row Sasha names (or the top open row without "Yes"), build it through an @claude issue, test, mark live here.
