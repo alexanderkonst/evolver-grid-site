@@ -36,7 +36,7 @@ export default function UniqueBusinessLayout() {
           set their own max-width (CanvasOverview: full-width grid;
           GenericArtifactScreen: max-w-2xl; Compound: max-w-4xl). */}
       <div className="px-6 py-4">
-        <VillagePlaceHeader place="workshop" />
+        <VillagePlaceHeader place="workshop" titleAs="label" />
         <Outlet />
       </div>
       <ImproveReviewDrawer />
