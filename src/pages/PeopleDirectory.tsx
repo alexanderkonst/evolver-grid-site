@@ -131,23 +131,6 @@ const PeopleDirectory = () => {
           return;
         }
 
-        // Use the email-free public view for cross-team reads
-        const { data: missionRows } = await (supabase as any)
-          .from("mission_participants_public")
-          .select(
-            "user_id, mission_id, mission_title, outcome_id, challenge_id, focus_area_id, pillar_id, created_at"
-          )
-          .in("user_id", userIds)
-          .eq("share_consent", true)
-          .order("created_at", { ascending: false });
-
-        const missionByUser = new Map<string, MissionRow>();
-        (missionRows || []).forEach((row) => {
-          if (!missionByUser.has(row.user_id)) {
-            missionByUser.set(row.user_id, row as MissionRow);
-          }
-        });
-
         const directoryPeople: DirectoryPerson[] = usableProfiles.map((row) => {
           const visibility = resolveVisibility(row.visibility);
           const name =
@@ -167,13 +150,43 @@ const PeopleDirectory = () => {
             topTalent: row.top_talent || null,
             archetype: row.archetype || t("peopleDir.unknownArchetype"),
             tagline: row.tagline || null,
-            mission: missionByUser.get(row.user_id) ?? null,
+            mission: null,
           };
         });
 
-        if (isMounted) {
-          setPeople(directoryPeople);
-          setLoading(false);
+        // Issue #438: the cards need only the RPC above. Paint them now; the mission lines and
+        // mission filters fill in when the second read lands, instead of the whole grid waiting
+        // on it behind a skeleton.
+        if (!isMounted) return;
+        setPeople(directoryPeople);
+        setLoading(false);
+
+        // A failed missions read leaves the cards as they are: never an error over a painted grid.
+        try {
+          // Use the email-free public view for cross-team reads
+          const { data: missionRows } = await (supabase as any)
+            .from("mission_participants_public")
+            .select(
+              "user_id, mission_id, mission_title, outcome_id, challenge_id, focus_area_id, pillar_id, created_at"
+            )
+            .in("user_id", userIds)
+            .eq("share_consent", true)
+            .order("created_at", { ascending: false });
+
+          const missionByUser = new Map<string, MissionRow>();
+          ((missionRows || []) as MissionRow[]).forEach((row) => {
+            if (!missionByUser.has(row.user_id)) {
+              missionByUser.set(row.user_id, row);
+            }
+          });
+
+          if (isMounted && missionByUser.size > 0) {
+            setPeople((prev) =>
+              prev.map((person) => ({ ...person, mission: missionByUser.get(person.userId) ?? null }))
+            );
+          }
+        } catch {
+          // mission lines stay empty
         }
       } catch (err: any) {
         if (isMounted) {

@@ -24,6 +24,7 @@ vi.mock("@/integrations/supabase/client", () => ({
 
 // Issue #370: loadCompletion waits for the guest-result sync (tested in postAuthSideEffects.test.ts).
 vi.mock("@/lib/postAuthSideEffects", () => ({ awaitGuestResultSync: vi.fn(async () => {}) }));
+import { awaitGuestResultSync } from "@/lib/postAuthSideEffects";
 
 import { loadCompletion } from "../useJourneyCompletion";
 import { LOAD_TIMEOUT_MS, REQUEST_TIMEOUT_MS, TimeoutError, withTimeout } from "@/lib/withTimeout";
@@ -126,5 +127,54 @@ describe("loadCompletion", () => {
     const settled = expect(bounded).rejects.toBeInstanceOf(TimeoutError);
     await vi.advanceTimersByTimeAsync(LOAD_TIMEOUT_MS);
     await settled;
+  });
+
+  // Issue #438: the read no longer sits behind the guest-result sync for everyone.
+  describe("guest-result sync (#370 / #438)", () => {
+    const pendingSync = () => {
+      let release!: () => void;
+      const gate = new Promise<void>((resolve) => {
+        release = resolve;
+      });
+      vi.mocked(awaitGuestResultSync).mockReturnValueOnce(gate);
+      return release;
+    };
+
+    it("a player who already has Top Talent is not held by a sync that is still running", async () => {
+      mocks.getSession.mockResolvedValue(signedIn);
+      mocks.from.mockImplementation((table: string) =>
+        table === "game_profiles"
+          ? query(Promise.resolve({ data: { id: "p1" } }))
+          : query(Promise.resolve({ count: 1, error: null })),
+      );
+      pendingSync(); // never released
+
+      const out = await loadCompletion();
+      expect(out.completion["find-top-talent"]).toBe(true);
+    });
+
+    it("Top Talent empty + sync running: waits for the sync, then reads again", async () => {
+      mocks.getSession.mockResolvedValue(signedIn);
+      let synced = false;
+      mocks.from.mockImplementation((table: string) =>
+        table === "game_profiles"
+          ? query(Promise.resolve({ data: { id: "p1" } }))
+          : query(Promise.resolve({ count: synced ? 1 : 0, error: null })),
+      );
+      const release = pendingSync();
+
+      let done = false;
+      const pending = loadCompletion().then((r) => {
+        done = true;
+        return r;
+      });
+      await vi.advanceTimersByTimeAsync(10);
+      expect(done).toBe(false); // first read found nothing, so it holds for the sync
+
+      synced = true;
+      release();
+      const out = await pending;
+      expect(out.completion["find-top-talent"]).toBe(true);
+    });
   });
 });

@@ -31,6 +31,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { getSessionUser } from "@/lib/sessionUser";
 
 export type DeeperAccessState = {
   hasAccess: boolean;
@@ -50,7 +51,7 @@ export function useDeeperAccess(): DeeperAccessState {
     (async () => {
       setIsLoading(true);
       try {
-        const { data: { user } } = await supabase.auth.getUser();
+        const user = await getSessionUser();
         if (!user) {
           // Unauthenticated — not the gate's concern (MeGate handles
           // guests). Treat as no deeper access; the gate only acts on

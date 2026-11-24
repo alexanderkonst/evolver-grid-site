@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { getSessionUser } from "@/lib/sessionUser";
 
 /**
  * The player's own Equilibrium lines for the village moon dial (village-as-dashboard step 2):
@@ -60,8 +61,7 @@ export const useMoonDialData = (): MoonDialData => {
     let live = true;
     const load = async () => {
       try {
-        const { data: auth } = await supabase.auth.getUser();
-        const user = auth?.user;
+        const user = await getSessionUser();
         if (!user) {
           if (live) setData({ status: "guest", moonFocus: null, doNow: null });
           return;

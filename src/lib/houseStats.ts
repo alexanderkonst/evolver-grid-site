@@ -183,16 +183,22 @@ async function loadCircleCounts(userId: string): Promise<{ cameToYours: number; 
   }
 }
 
+type HouseStatsData = {
+  resonance: StatReading[];
+  income: string | null;
+  circles: { cameToYours: number; youCameTo: number };
+};
+
+const NO_STATS: HouseStatsData = { resonance: [], income: null, circles: { cameToYours: 0, youCameTo: 0 } };
+
 /**
- * The extra reads behind the U and $ cards, for the owner's House only. Nothing is shown until
- * both settle; a failed read counts as «no value», so a card never appears from a guess.
+ * The extra reads behind the U, $ and circles cards, for the owner's House only. Issue #438: each
+ * card appears as its own read lands (the QoL card needs none of them), instead of the whole
+ * block waiting for the slowest of three. Until a read lands it counts as «no value», and a failed
+ * read stays «no value», so a card never appears from a guess.
  */
 export function useHouseStatsData(userId: string | null, profileId: string | null) {
-  const [state, setState] = useState<{
-    resonance: StatReading[];
-    income: string | null;
-    circles: { cameToYours: number; youCameTo: number };
-  } | null>(null);
+  const [state, setState] = useState<HouseStatsData | null>(null);
 
   useEffect(() => {
     if (!userId) {
@@ -200,13 +206,13 @@ export function useHouseStatsData(userId: string | null, profileId: string | nul
       return;
     }
     let live = true;
-    Promise.all([
-      profileId ? loadResonance(profileId) : Promise.resolve([]),
-      loadOwnIncome(userId),
-      loadCircleCounts(userId),
-    ]).then(([resonance, income, circles]) => {
-      if (live) setState({ resonance, income, circles });
-    });
+    setState((prev) => prev ?? NO_STATS);
+    const fill = (part: Partial<HouseStatsData>) => {
+      if (live) setState((prev) => ({ ...(prev ?? NO_STATS), ...part }));
+    };
+    if (profileId) void loadResonance(profileId).then((resonance) => fill({ resonance }));
+    void loadOwnIncome(userId).then((income) => fill({ income }));
+    void loadCircleCounts(userId).then((circles) => fill({ circles }));
     return () => {
       live = false;
     };

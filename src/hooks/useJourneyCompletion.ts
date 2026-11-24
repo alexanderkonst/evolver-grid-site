@@ -111,25 +111,37 @@ export async function loadCompletion(): Promise<{ completion: CompletionMap; fai
     const user = session?.user ?? null;
     if (!user) return { completion: EMPTY_COMPLETION, failed: false };
 
-    // Issue #370: decide the gating AFTER the guest Top Talent result is synced into the
-    // account (a freshly confirmed player lands here before the sync has finished). If the
-    // sync outlasts the wait, re-read once it lands.
-    await awaitGuestResultSync(user.id, {
+    // Issue #370: never decide the gating before the guest Top Talent result is synced into the
+    // account (a freshly confirmed player lands here before the sync has finished). Issue #438:
+    // but do not make every player wait for it either. Start (or join) the sync, read the
+    // chain at once, and wait only when Top Talent came back empty and the sync is still
+    // running. If the sync outlasts the wait, re-read once it lands.
+    let syncSettled = false;
+    const synced = awaitGuestResultSync(user.id, {
         onLate: () => window.dispatchEvent(new CustomEvent(JOURNEY_ITEM_COMPLETED_EVENT, { detail: { id: "guest-sync" } })),
+    }).then(() => {
+        syncSettled = true;
     });
 
+    const first = await readChain(user.id);
+    if (first.completion["find-top-talent"] || syncSettled) return first;
+    await synced;
+    return readChain(user.id);
+}
+
+async function readChain(userId: string): Promise<{ completion: CompletionMap; failed: boolean }> {
     // Step 2: lookup the game_profiles row. Read-only — do NOT create one if missing.
     // Some predicates only need user.id (e.g. user_assets), so a missing profile
     // doesn't disqualify every item from completing.
     const { data: profile } = await supabase
         .from("game_profiles")
         .select("id")
-        .eq("user_id", user.id)
+        .eq("user_id", userId)
         .maybeSingle();
 
     const ctx = {
         supabase,
-        userId: user.id,
+        userId,
         profileId: profile?.id ?? null,
     };
 

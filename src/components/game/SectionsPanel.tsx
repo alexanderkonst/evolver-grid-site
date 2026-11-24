@@ -7,6 +7,7 @@ import { Check, ChevronRight, ChevronDown, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { filterAdminOnlyRows } from "./adminOnlyRows";
 import { supabase } from "@/integrations/supabase/client";
+import { getSessionUser } from "@/lib/sessionUser";
 import { PLAYBOOK_STEPS } from "@/data/playbookSteps";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
 import { journeyStepLine, journeyStepRows } from "@/lib/journeyLabels";
@@ -941,7 +942,7 @@ const SectionsPanel = ({
 
     // Check user email for feature gating
     useEffect(() => {
-        supabase.auth.getUser().then(({ data: { user } }) => {
+        getSessionUser().then((user) => {
             setUserEmail(user?.email || null);
         });
     }, []);

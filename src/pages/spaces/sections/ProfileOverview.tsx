@@ -94,13 +94,17 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
     const badges = useMemo(() => houseBadges(save), [save]);
 
     // The next room starts open, and the shelf: the two things a returning player looks for.
-    const [open, setOpen] = useState<Set<HouseRoomId>>(() => {
+    // #438: the header now draws before the save is fully read, so the default follows the real
+    // state until the player opens or folds a room; from then on their own choice stands.
+    const defaultOpen = useMemo(() => {
         const next = nextHouseRoom(rooms);
         return new Set<HouseRoomId>(next ? ["victories", next.id] : ["victories"]);
-    });
+    }, [rooms]);
+    const [chosenOpen, setChosenOpen] = useState<Set<HouseRoomId> | null>(null);
+    const open = chosenOpen ?? defaultOpen;
     const toggle = (id: HouseRoomId) =>
-        setOpen((s) => {
-            const next = new Set(s);
+        setChosenOpen((s) => {
+            const next = new Set(s ?? defaultOpen);
             if (!next.delete(id)) next.add(id);
             return next;
         });
@@ -431,7 +435,19 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 </section>
             )}
 
-            <ol className="cs-rooms">{rooms.map(renderRoom)}</ol>
+            {sheet.isLoading ? (
+                // #438: the header is up; the rooms wait for the rest of the save, in their own shape.
+                <ol className="cs-rooms" aria-busy="true">
+                    <li className="sr-only" aria-live="polite">{t("profileOverview.loading")}</li>
+                    {[0, 1, 2, 3].map((i) => (
+                        <li key={i} className="cs-room" aria-hidden="true">
+                            <Skeleton className="h-5 w-2/3" />
+                        </li>
+                    ))}
+                </ol>
+            ) : (
+                <ol className="cs-rooms">{rooms.map(renderRoom)}</ol>
+            )}
         </div>
     );
 };
@@ -455,7 +471,7 @@ const ProfileOverviewContent = () => {
                 <img className="scene-art" src={SCENE_SRC} alt="" decoding="async" />
             </div>
             <div className="cs-grain" aria-hidden="true" />
-            {sheet.isLoading ? (
+            {sheet.headerLoading ? (
                 // Issue #370: the shared Skeleton in the shape of the sheet (crystal, name, rooms),
                 // not a bare line. The text stays for screen readers.
                 <div className="cs-inner" aria-busy="true">
@@ -476,7 +492,7 @@ const ProfileOverviewContent = () => {
                         ))}
                     </ol>
                 </div>
-            ) : sheet.loadFailed ? (
+            ) : sheet.loadFailed && !sheet.isLoading ? (
                 // A failed or timed-out read: say so, never an endless loading line (#263).
                 <div className="cs-inner">
                     <p className="cs-mono" role="alert">{t("profileOverview.loadFailed")}</p>
@@ -488,7 +504,8 @@ const ProfileOverviewContent = () => {
                     </div>
                 </div>
             ) : (
-                // Mounted once the save has loaded, so the open rooms start from the real state.
+                // #438: mounted as soon as the profile row is in (name, photo, crystal); the rooms
+                // fill in when the rest of the save has loaded.
                 <HouseSheet sheet={sheet} />
             )}
         </div>

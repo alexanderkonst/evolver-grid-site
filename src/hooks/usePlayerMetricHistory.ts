@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { getSessionUser } from "@/lib/sessionUser";
 import {
   PLAYER_METRICS,
   isMonthMeasured,
@@ -35,9 +36,9 @@ export function usePlayerMetricHistory(): {
     let live = true;
     (async () => {
       try {
-        const {
-          data: { user },
-        } = await supabase.auth.getUser();
+        // From the stored session: `getUser()` is a network call that holds the auth lock and
+        // stalls every other read on the page behind it (#438).
+        const user = await getSessionUser();
         if (!user) return;
         if (live) setSignedIn(true);
         const { data: profile, error: profileError } = await supabase

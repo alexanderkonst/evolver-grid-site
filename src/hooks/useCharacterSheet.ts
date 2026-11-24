@@ -114,7 +114,10 @@ const writeLastSeen = (state: Record<string, boolean>) => {
     }
 };
 
-async function loadSheet(): Promise<CharacterSheetData> {
+/** What the page header needs: the profile row alone (name, photo, crystal colors). */
+type SheetHeader = Pick<CharacterSheetData, "userId" | "profileId" | "firstName" | "avatarUrl" | "soulColors">;
+
+async function loadSheet(onHeader?: (header: SheetHeader) => void): Promise<CharacterSheetData> {
     // From the stored session: `auth.getUser()` is a network call that can stall and keep Home
     // on «Loading profile...» for good (#263). RLS still checks the token on every read below.
     const {
@@ -123,10 +126,24 @@ async function loadSheet(): Promise<CharacterSheetData> {
     const user = session?.user ?? null;
     if (!user) return EMPTY;
 
-    // Issue #370: read the save only after the guest Top Talent result is synced into the
-    // account. Shares the one memoised run with useJourneyCompletion (the late re-read is
-    // fired from there, so it is not duplicated here).
-    await awaitGuestResultSync(user.id);
+    // Issue #370: never decide «Top Talent not found» before the guest result is synced into the
+    // account. Issue #438: but do not make every player wait for it. Start (or join) the one
+    // memoised sync, read the save at once, and wait only when Top Talent came back empty and the
+    // sync is still running (a freshly confirmed player). A returning player's header and rooms
+    // no longer sit behind an edge call they do not need.
+    let syncSettled = false;
+    const synced = awaitGuestResultSync(user.id).then(() => {
+        syncSettled = true;
+    });
+
+    const first = await readSheet(user.id, onHeader);
+    if (first.topTalent || syncSettled) return first;
+    await synced;
+    return readSheet(user.id, onHeader);
+}
+
+async function readSheet(userId: string, onHeader?: (header: SheetHeader) => void): Promise<CharacterSheetData> {
+    const user = { id: userId };
 
     // Five of the reads below are keyed by the user id, not the profile id. Start them now,
     // beside the profile lookup, so they do not wait for it (#263: in series, Home paid for
@@ -181,6 +198,17 @@ async function loadSheet(): Promise<CharacterSheetData> {
         last_zog_snapshot_id?: string | null;
         mission_statement?: string | null;
     };
+    const soulColors = row.soul_colors && row.soul_colors.length > 0 ? row.soul_colors : null;
+
+    // #438: the header (name, photo, crystal) is on screen as soon as its own row is in; the
+    // rooms, QoL and Top Talent below fill in when theirs are.
+    onHeader?.({
+        userId: user.id,
+        profileId,
+        firstName: row.first_name ?? null,
+        avatarUrl: row.avatar_url ?? null,
+        soulColors,
+    });
 
     const [zog, qol, [assets, mission, offer, phrases, victories]] = await Promise.all([
         // Same read as Reception: the pointer's snapshot, newest only as fallback. The pointer
@@ -219,7 +247,7 @@ async function loadSheet(): Promise<CharacterSheetData> {
         profileId,
         firstName: row.first_name ?? null,
         avatarUrl: row.avatar_url ?? null,
-        soulColors: row.soul_colors && row.soul_colors.length > 0 ? row.soul_colors : null,
+        soulColors,
         topTalent: zog?.archetype_title ?? null,
         // The mission step saves its sentence to game_profiles.mission_statement
         // (MissionDiscoveryLanding); mission_participants is the legacy wizard's row.
@@ -240,6 +268,8 @@ async function loadSheet(): Promise<CharacterSheetData> {
 export function useCharacterSheet() {
     const [data, setData] = useState<CharacterSheetData>(EMPTY);
     const [isLoading, setIsLoading] = useState(true);
+    // #438: false once the profile row (name, photo, crystal) is in, before the rest of the save.
+    const [headerLoading, setHeaderLoading] = useState(true);
     const [loadFailed, setLoadFailed] = useState(false);
     const [justCompleted, setJustCompleted] = useState<Set<JourneyItemId>>(new Set());
     const { completion, isLoading: chainLoading, loadFailed: chainFailed, recheck } = useJourneyCompletion();
@@ -249,7 +279,16 @@ export function useCharacterSheet() {
     const refresh = useCallback(async () => {
         try {
             // Bounded: a request that never settles ends as a failed load, not as endless loading.
-            setData(await withTimeout(loadSheet(), LOAD_TIMEOUT_MS, "character sheet"));
+            const full = await withTimeout(
+                loadSheet((header) => {
+                    // Header fields only: the rest of the sheet keeps what it has (empty on a first load).
+                    setData((prev) => ({ ...prev, ...header }));
+                    setHeaderLoading(false);
+                }),
+                LOAD_TIMEOUT_MS,
+                "character sheet",
+            );
+            setData(full);
             setLoadFailed(false);
         } catch {
             // Silent fail, as ProfileOverview always did: an empty sheet is a valid sheet.
@@ -257,6 +296,7 @@ export function useCharacterSheet() {
             setLoadFailed(true);
         } finally {
             setIsLoading(false);
+            setHeaderLoading(false);
         }
     }, []);
 
@@ -267,6 +307,7 @@ export function useCharacterSheet() {
     // «Try again» after a failed or timed-out load: back to loading, re-read both halves.
     const retry = useCallback(() => {
         setIsLoading(true);
+        setHeaderLoading(true);
         recheck();
         refresh();
     }, [recheck, refresh]);
@@ -318,6 +359,8 @@ export function useCharacterSheet() {
         ...data,
         chain,
         isLoading: isLoading || chainLoading,
+        /** The header (name, photo, crystal) can be drawn; `isLoading` still covers the rooms. */
+        headerLoading,
         // Either half unread: «empty» means «unread», not «nothing done».
         loadFailed: loadFailed || chainFailed,
         refresh,

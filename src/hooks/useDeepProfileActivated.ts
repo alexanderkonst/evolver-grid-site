@@ -31,6 +31,7 @@
 import { useEffect, useState } from "react";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { supabase } from "@/integrations/supabase/client";
+import { getSessionUser } from "@/lib/sessionUser";
 
 export type DeepProfileState = {
   activated: boolean;
@@ -48,8 +49,7 @@ export function useDeepProfileActivated(): DeepProfileState {
     let cancelled = false;
     (async () => {
       try {
-        const { data: userRes } = await supabase.auth.getUser();
-        const uid = userRes.user?.id;
+        const uid = (await getSessionUser())?.id;
         if (!uid) {
           if (!cancelled) setRevealState({ hasReveal: false, loading: false });
           return;

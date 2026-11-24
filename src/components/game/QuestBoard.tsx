@@ -9,6 +9,7 @@ import { getJourneyModule, moduleText } from "@/data/journeyModules";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
 import { useAcceptedMicroQuest } from "@/hooks/useAcceptedMicroQuest";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
+import { Skeleton } from "@/components/ui/skeleton";
 import { usePlayerMetricHistory } from "@/hooks/usePlayerMetricHistory";
 import { measureMonthQuest } from "@/lib/playerMetrics";
 import { hasGuestTopTalentResult, readGuestTalentName } from "@/lib/firstVisit";
@@ -112,7 +113,19 @@ const QuestBoard = () => {
           )}
         </header>
 
-        {sheet.isLoading ? null : (
+        {sheet.isLoading ? (
+          // #438: the lists wait for the save, so say so in their own shape instead of leaving the
+          // scene and heading alone on the page for seconds.
+          <section className="qb__group" aria-hidden="true">
+            <ol className="qb__list">
+              {[0, 1, 2, 3].map((i) => (
+                <li key={i} className="qb__row">
+                  <Skeleton className="h-5 w-2/3" />
+                </li>
+              ))}
+            </ol>
+          </section>
+        ) : (
           <>
             {monthQuest ? (
               <section className="qb__group qb__group--month" aria-labelledby={monthId}>

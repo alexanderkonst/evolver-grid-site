@@ -25,6 +25,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { getSessionUser } from "@/lib/sessionUser";
 
 export type EntitlementTier =
   | "tasting"
@@ -74,8 +75,7 @@ export function useEntitlement(): EntitlementState {
 
     (async () => {
       try {
-        const { data: userRes } = await supabase.auth.getUser();
-        const uid = userRes.user?.id;
+        const uid = (await getSessionUser())?.id;
         if (!uid) {
           if (!cancelled) setState({ ...DEFAULT_STATE, isLoading: false });
           return;
