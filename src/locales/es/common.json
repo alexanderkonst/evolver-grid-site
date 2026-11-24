@@ -9550,6 +9550,7 @@
     }
   },
   "publicProfile": {
+    "back": "Atrás",
     "privateTitle": "Perfil privado",
     "unavailable": "Este perfil no está disponible ahora mismo.",
     "audienceFriends": "Este perfil solo es visible para sus conexiones.",

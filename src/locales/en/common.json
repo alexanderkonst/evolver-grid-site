@@ -9577,6 +9577,7 @@
     }
   },
   "publicProfile": {
+    "back": "Back",
     "privateTitle": "Profile Private",
     "unavailable": "This profile is not available right now.",
     "audienceFriends": "This profile is visible to connections only.",

@@ -70,7 +70,11 @@ export const BirthdayPrompt = ({
   useEffect(() => {
     if (loading || !userId || birthday || !onDismiss) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onDismiss();
+      if (e.key !== "Escape") return;
+      // Escape only closes the prompt; page-level Escape handlers (the village place) must not
+      // also act on it (#440).
+      e.preventDefault();
+      onDismiss();
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);

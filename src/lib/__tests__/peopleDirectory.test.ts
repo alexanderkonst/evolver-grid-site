@@ -13,6 +13,12 @@ describe("founder card (issue #417)", () => {
     expect(directoryProfilePath("sasha", "u1")).toBe("/profile/u/sasha");
     expect(directoryProfilePath("Sasha", "u1")).toBe("/profile/u/Sasha");
   });
+  it("routes every username that App.tsx shadows with the founder page to the standard profile (#440)", () => {
+    for (const u of ["aleksandr", "Alexander", "integralevolution"]) {
+      expect(directoryProfilePath(u, "u1")).toBe(`/profile/u/${u}`);
+    }
+    expect(directoryProfilePath("ann", "u1")).toBe("/ann");
+  });
   it("uses the public spelling for the founder only", () => {
     expect(residentDisplayName("sasha", "Sasha", "Konstantinov")).toBe(FOUNDER_PUBLIC_NAME);
     expect(FOUNDER_PUBLIC_NAME).toBe("Aleksandr Konstantinov");

@@ -438,6 +438,8 @@ const Village = () => {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (place) {
         if (e.key === "Escape") {
+          // A modal (the birthday prompt) owns Escape: it closes, the place stays open (#440).
+          if (e.defaultPrevented || document.querySelector('[aria-modal="true"]')) return;
           const el = document.activeElement;
           if (el instanceof HTMLInputElement || el instanceof HTMLTextAreaElement) return; // typing a particle
           e.preventDefault();

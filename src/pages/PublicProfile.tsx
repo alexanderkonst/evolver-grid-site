@@ -364,7 +364,7 @@ const PublicProfile = ({ onMissing }: PublicProfileProps = {}) => {
               {t("publicProfile.signIn")}
             </Button>
           )}
-          <BackButton />
+          <BackButton label={t("publicProfile.back")} />
         </div>
       </div>
     );
@@ -392,7 +392,7 @@ const PublicProfile = ({ onMissing }: PublicProfileProps = {}) => {
       }}
     >
       <div className="px-4 py-6 max-w-4xl mx-auto">
-        <BackButton />
+        <BackButton label={t("publicProfile.back")} />
       </div>
       <div className="max-w-4xl mx-auto px-4 pb-12">
         <div className="rounded-3xl bg-[var(--skin-card-fill,rgba(255,255,255,0.8))] backdrop-blur p-6 sm:p-10 shadow-lg border border-[var(--skin-hairline,rgba(255,255,255,0.6))]">

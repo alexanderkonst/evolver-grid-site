@@ -15,8 +15,17 @@ export const directoryProfilePath = (username: string | null | undefined, userId
   return `/${username}`;
 };
 
-/** Usernames whose root slug is a static page, not the standard resident profile. */
-const STATIC_PAGE_USERNAMES = new Set(["sasha"]);
+/**
+ * Usernames whose root slug is a static page or a redirect to one (App.tsx: /sasha is the founder
+ * page; /aleksandr, /alexander and /integralevolution redirect to it), not the standard resident
+ * profile. Keep in sync with those routes. (#440)
+ */
+export const STATIC_PAGE_USERNAMES: ReadonlySet<string> = new Set([
+  "sasha",
+  "aleksandr",
+  "alexander",
+  "integralevolution",
+]);
 
 /** The founder's public spelling. The profile row may still carry the short name "Sasha". */
 export const FOUNDER_USERNAME = "sasha";
