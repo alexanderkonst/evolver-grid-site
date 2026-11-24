@@ -680,6 +680,7 @@ export const BiologicClock = ({
           userId={user?.id ?? null}
           onSaved={() => void refresh()}
           onDismiss={() => setPromptDismissed(true)}
+          fullViewport
         />
       )}
     </>

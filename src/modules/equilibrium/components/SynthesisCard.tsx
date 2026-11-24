@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { supabase } from "@/integrations/supabase/client";
@@ -28,9 +28,10 @@ const FOUR_HOURS_MS = 4 * 60 * 60 * 1000;
 /**
  * Box 1 — Synthesis Reading.
  *
- * Tap to regenerate. Calls `generate-equilibrium-v2-synthesis` edge function.
- * Auto-regenerates once per session if cached reading is missing OR > 4 hours old.
- * Pulse-breath when stale (per Phase 3.5).
+ * Shows the cached reading. Generation is USER-INITIATED ONLY: the button is
+ * the sole trigger (no mount auto-fire, no keyboard shortcut) because it calls
+ * the paid `generate-equilibrium-v2-synthesis` edge function (#415).
+ * Pulse-breath on the button when the cache is missing or > 4 hours old.
  *
  * Edge function returns `{ reading: string }`. Falls back to deterministic
  * cycle-math sentence on error.
@@ -48,7 +49,6 @@ export const SynthesisCard = ({
   const [reading, setReading] = useState<string | null>(cachedReading);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const autoFiredRef = useRef(false);
 
   // Sync local state when cache updates from upstream.
   useEffect(() => {
@@ -137,83 +137,50 @@ export const SynthesisCard = ({
     }
   };
 
-  // Auto-regenerate on first mount if cache is stale or missing.
-  useEffect(() => {
-    if (autoFiredRef.current) return;
-    if (disabled) return;
-    if (!reading || isStale()) {
-      autoFiredRef.current = true;
-      void regenerate();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [disabled]);
-
-  // Keyboard shortcut: press `r` (when no input/textarea is focused) to
-  // regenerate the synthesis reading. Phase 3.9 Nielsen #7 polish.
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if (e.key !== "r" && e.key !== "R") return;
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
-      const target = e.target as HTMLElement | null;
-      const tag = target?.tagName;
-      if (tag === "INPUT" || tag === "TEXTAREA" || target?.isContentEditable) return;
-      e.preventDefault();
-      void regenerate();
-    };
-    document.addEventListener("keydown", handler);
-    return () => document.removeEventListener("keydown", handler);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [disabled]);
-
   const showPulse = !loading && (!cachedAt || isStale());
+  const buttonLabel = loading
+    ? "Reading the moment…"
+    : reading
+      ? "Refresh reading"
+      : "Generate reading";
 
   return (
-    <button
-      type="button"
-      onClick={regenerate}
-      disabled={disabled}
-      aria-live="polite"
-      aria-label="Synthesis reading. Tap to regenerate."
-      className={cn(
-        "group relative mt-2 w-full rounded-2xl px-2 py-4 text-left transition",
-        "hover:bg-white/20 focus:outline-none focus:bg-white/20",
-        showPulse && "eq-synth-pulse",
-      )}
-    >
-      <div className="flex items-start gap-3">
-        <span
-          className={cn(
-            "eq-text-halo flex-1 font-serif text-xl font-medium leading-relaxed text-[#0a1628] sm:text-2xl",
-            loading && "opacity-60",
-          )}
-        >
-          {reading ?? (
-            <span className="text-[#0a1628]/95 italic">
-              {loading ? "reading the moment…" : "tap to read"}
-            </span>
-          )}
-        </span>
-        <RotateCcw
-          size={18}
-          className={cn(
-            "mt-2 shrink-0 text-[#0a1628]/95 transition group-hover:text-[#0a1628]/90",
-            loading && "animate-spin",
-          )}
-        />
-      </div>
+    <div aria-live="polite" className="relative mt-2 w-full rounded-2xl px-2 py-4 text-left">
+      <p
+        className={cn(
+          "eq-text-halo font-serif text-xl font-medium leading-relaxed text-[#0a1628] sm:text-2xl",
+          loading && "opacity-60",
+        )}
+      >
+        {reading ?? (
+          <span className="text-[#0a1628]/95 italic">
+            {loading ? "reading the moment…" : "No reading yet — generate one when you want it."}
+          </span>
+        )}
+      </p>
+
+      <button
+        type="button"
+        onClick={regenerate}
+        disabled={disabled || loading}
+        className={cn(
+          "mt-4 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-[#0a1628]",
+          "bg-white/40 transition hover:bg-white/60 focus:bg-white/60 focus:outline-none",
+          "disabled:cursor-not-allowed disabled:opacity-60",
+          showPulse && "eq-synth-pulse",
+        )}
+      >
+        <RotateCcw size={16} className={cn("shrink-0", loading && "animate-spin")} />
+        {buttonLabel}
+      </button>
 
       {error && (
         <p className="mt-2 flex items-center justify-between text-xs italic text-[#0a1628]/85">
           <span>fallback reading — synthesis unavailable</span>
-          <span
-            aria-hidden="true"
-            className="not-italic font-mono text-[10px] text-[#0a1628]/95"
-          >
-            press R to retry
-          </span>
+          <span className="not-italic text-[#0a1628]/95">tap refresh to retry</span>
         </p>
       )}
-    </button>
+    </div>
   );
 };
 
