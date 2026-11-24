@@ -534,6 +534,13 @@ export interface MoonPhaseInfo {
 // not Phase 7 as a calendar would suggest) — but the array order here stays
 // astronomically-sorted (New Moon = index 0) for runtime simplicity. The
 // "phase number" annotation in each entry maps back to Sasha's 1-8.
+/**
+ * The one word of a phase: the first word of the energy string («Harvesting · Reap what's ripe. …»
+ * → «Harvesting»; «Threshold & Celebration» → «Threshold»). The clock card, the clock centre and the
+ * village sky caption all take their word from here: one word per moment, never a second spelling.
+ */
+export const phaseWord = (energy: string): string => energy.split(" · ")[0].trim().split(/\s+/)[0];
+
 export const MOON_PHASES: MoonPhaseInfo[] = [
   // Phase 3 in Sasha's map. The mind freaks out about HOW the new
   // intention will be realized — limiting beliefs reinforce, doubt forms.
@@ -591,7 +598,7 @@ export const MOON_PHASES: MoonPhaseInfo[] = [
     // Mean-cycle days 14.765–18.457.
     start: 14.765,
     end: 18.457,
-    energy: "Harvesting · Reap what's ripe · Cut · Receive the fruits of labor",
+    energy: "Harvesting · Reap what's ripe. Receive the fruits of your work.",
     holonicQuadrant: "enrichment",
     guidance:
       "Reap what's ripe. Cut what's ready. Receive the fruits of labor — both work and reception.",
@@ -1132,7 +1139,7 @@ export const PLANETARY_DAYS: PlanetaryDayInfo[] = [
     emoji: "🔥",
     energy: "Action & Courage",
     intelligence: "Kinesthetic (Body)",
-    description: "Massive action. Sends, invites, asks. The week's kinetic day.",
+    description: "Massive action. Sends, invites, asks. The week's day to move.",
   },
   {
     dayOfWeek: 3,

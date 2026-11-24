@@ -3451,8 +3451,8 @@
       "doNow": "Do now",
       "notSet": "not set yet",
       "nothingChosen": "nothing chosen",
-      "signIn": "Sign in to see your Moon Focus",
-      "setUp": "Name your Moon Focus in Equilibrium",
+      "signIn": "Sign in to see your year and Moon Focus",
+      "setUp": "Moon Focus: name it in Equilibrium →",
       "phase": {
         "Planning": "Planning",
         "Planting": "Planting",
@@ -3493,7 +3493,7 @@
     "sky": {
       "new": "New moon. A night for letting go.",
       "waxing": "The moon is growing. Build.",
-      "full": "Full moon. Harvest.",
+      "full": "Full moon. Harvesting.",
       "waning": "The moon wanes. Digest."
     },
     "map": {

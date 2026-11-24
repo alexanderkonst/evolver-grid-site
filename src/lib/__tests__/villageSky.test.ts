@@ -26,7 +26,7 @@ describe("getVillageSky", () => {
     const sky = getVillageSky(utc("2026-01-04T12:00:00Z"));
     expect(sky.phase).toBe("full");
     expect(sky.illumination).toBeGreaterThan(0.95);
-    expect(sky.mood).toBe("Full moon. Harvest.");
+    expect(sky.mood).toBe("Full moon. Harvesting."); // the clock card's word (MOON_PHASES[4])
   });
 
   it("is waxing between new and full", () => {

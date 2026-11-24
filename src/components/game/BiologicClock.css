@@ -1,5 +1,5 @@
-/* BiologicClock v6 (spec: docs/specs/equilibrium/biologic_clock_rings_spec.md, «Improvements v6»;
-   issues #381, #385, #405). Two rings, Moon outside and Week inside; they keep size and place in
+/* BiologicClock v6.2 (spec: docs/specs/equilibrium/biologic_clock_rings_spec.md, «Improvements v6» and
+   «Fixes v6.2»; issues #381, #385, #405, #434). Two rings, Moon outside and Week inside; they keep size and place in
    every view. View 3 adds two thin rings OUTSIDE (Day gold, then Year silver) and the dial grows
    outward. The dial itself is the control (role button); the card (views 2–3) sits beside / below
    it (--inline) or drops down from it over what is behind (--card, the village map).
@@ -29,7 +29,22 @@
   display: block; flex: none; overflow: visible;
   width: calc(var(--bc-size) * var(--bc-grow)); max-width: 100%; height: auto; aspect-ratio: 1 / 1;
 }
-.bio-clock__dial.is-tappable { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.bio-clock__dial.is-tappable { cursor: pointer; -webkit-tap-highlight-color: transparent; transition: filter 0.15s ease; }
+/* Click cue: the dial glows softly under the pointer or the keyboard focus (and while the «+ tap» chip is hovered) */
+.bio-clock__dial.is-tappable:hover, .bio-clock__dial.is-tappable:focus-visible,
+.bio-clock__watch:has(.bio-clock__cue:hover) .bio-clock__dial.is-tappable {
+  filter: drop-shadow(0 0 7px rgba(255, 244, 220, 0.6)) drop-shadow(0 0 16px rgba(255, 244, 220, 0.28));
+}
+/* The «+ tap» chip under the dial in view 1: a >= 24 x 24 px target, quiet but legible on the map */
+.bio-clock__cue {
+  display: inline-flex; align-items: center; justify-content: center; gap: 4px; box-sizing: border-box;
+  min-width: 24px; min-height: 24px; margin-top: 6px; padding: 2px 10px 2px 6px; border-radius: 999px;
+  font: 700 11px/1 var(--vl-sans, "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif); letter-spacing: 0.06em;
+  color: #fff4dc; background: rgba(7, 11, 22, 0.82); border: 1px solid rgba(255, 244, 220, 0.5);
+  text-shadow: none; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.bio-clock__cue:hover { background: rgba(7, 11, 22, 0.95); border-color: #fff4dc; }
+.bio-clock__cue-plus { font-size: 15px; font-weight: 400; line-height: 1; }
 /* The ring is for keyboard focus only: a mouse click must leave no frame behind (it did, after a click) */
 .bio-clock__dial:focus:not(:focus-visible) { outline: none; box-shadow: none; }
 .bio-clock__dial:focus-visible { outline: 2px solid rgb(var(--bc-silver)); outline-offset: 4px; border-radius: 50%; }
@@ -73,27 +88,43 @@
   paint-order: stroke; stroke: rgba(7, 11, 22, 0.6); stroke-width: 2px; stroke-linejoin: round;
 }
 
+/* Centre address: the cycle's own name in small caps over its word («FULL MOON», «TUESDAY»); colour inline */
+.bio-clock__address, .bio-clock__ring-label {
+  font-family: var(--vl-sans, "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif); font-weight: 700; user-select: none;
+  paint-order: stroke; stroke: rgba(7, 11, 22, 0.75); stroke-width: 2px; stroke-linejoin: round;
+}
+.bio-clock__address { letter-spacing: 0.01em; }
+/* «DAY» and «YEAR» on the two outer rings (view 3): the dark halo cuts the ring line under the letters */
+.bio-clock__ring-label { letter-spacing: 0.14em; stroke-width: 2.6px; }
+.bio-clock__ring-label--day { fill: rgb(var(--bc-gold)); }
+.bio-clock__ring-label--year { fill: rgb(var(--bc-silver)); }
+
 /* Card: one grid per ring, thin dividers between blocks */
 .bio-clock__readout {
   flex: 1 1 280px; min-width: 0; max-width: 460px; display: flex; flex-direction: column; gap: 12px;
   font-family: var(--vl-sans, "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif);
   font-size: 13px; line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(7, 11, 22, 0.85); /* a quiet dark edge behind the text, for the textured map */
+  scroll-margin-block: 16px; /* «scroll the whole card into view» leaves some air at the edge */
 }
 .bio-clock__block { --bc-ring: #fff; display: grid; gap: 4px; min-width: 0; }
 .bio-clock__block + .bio-clock__block { padding-top: 12px; border-top: 1px solid rgba(235, 238, 242, 0.12); }
 .bio-clock__block p { margin: 0; }
 
 /* (a) small caps label in the ring colour, with its address; time left right-aligned */
-.bio-clock__head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; min-width: 0; }
+.bio-clock__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 12px; min-width: 0; }
 .bio-clock__label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bc-ring); }
-.bio-clock__time { flex: none; font-size: 11px; color: rgba(235, 238, 242, 0.7); text-align: right; }
+/* «Next: Waning Crescent in 2 d 22 h» is long: it drops under the label when the row is too narrow, never clipped */
+.bio-clock__time { margin-left: auto; font-size: 11px; color: rgba(235, 238, 242, 0.82); text-align: right; }
 
 /* (b) current symbol + word large in the ring colour; was … · next … small and dim on the right */
 .bio-clock__now { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; min-width: 0; }
 .bio-clock__symbol { display: inline-flex; flex: none; align-items: center; justify-content: center; line-height: 1; }
 .bio-clock__symbol svg, .bio-clock__planet-img { display: block; }
 .bio-clock__name { font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif); font-size: 20px; font-weight: 700; line-height: 1.1; color: var(--bc-ring); }
-.bio-clock__around { margin-left: auto; font-size: 11px; color: rgba(235, 238, 242, 0.5); text-align: right; }
+/* before … · next …, in …: lighter grey (≈ 10:1 on the card, AA is 4.5:1) */
+/* On its own row under the word: «before Celebrating · next Planting, in 2 d 22 h» no longer fits beside it */
+.bio-clock__around { flex: 1 1 100%; font-size: 11px; color: rgba(235, 238, 242, 0.78); text-align: left; }
 .bio-clock__planet-img.is-saturn { transform: scale(1.5); }
 .bio-clock__year-mark { display: block; width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px rgba(var(--bc-silver), 0.85); }
 
@@ -107,6 +138,11 @@
 /* Extras sit under their own block: Moon Focus under Moon, the day left (gold) under Year */
 .bio-clock__extra { min-width: 0; font-size: 13px; }
 .bio-clock__today { font-size: 13px; color: rgb(var(--bc-gold)); }
+/* the dot in the Day ring's colour: it points the line at its ring */
+.bio-clock__today-dot {
+  display: inline-block; width: 8px; height: 8px; margin-right: 2px; border-radius: 50%; vertical-align: baseline;
+  background: rgb(var(--bc-gold)); box-shadow: 0 0 4px rgba(var(--bc-gold), 0.9);
+}
 .bio-clock__focus { margin: 0; font-size: 13px; line-height: 1.35; color: var(--vl-ink-2, rgba(235, 238, 242, 0.85)); }
 .bio-clock__focus-label { display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(235, 238, 242, 0.7); }
 .bio-clock__focus-value {
@@ -138,5 +174,6 @@
 @media (forced-colors: active) {
   .bio-clock__night { fill: Canvas; }
   .bio-clock__track-lived, .bio-clock__track-ahead, .bio-clock__year, .bio-clock__day-lived, .bio-clock__day-ahead { stroke: CanvasText; }
-  .bio-clock__word { fill: CanvasText !important; stroke: none; }
+  .bio-clock__word, .bio-clock__address, .bio-clock__ring-label { fill: CanvasText !important; stroke: none; }
+  .bio-clock__cue { color: ButtonText; background: ButtonFace; border-color: ButtonText; }
 }

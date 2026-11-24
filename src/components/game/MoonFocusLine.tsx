@@ -5,8 +5,8 @@ import { tr } from "@/lib/villageCopy";
 
 /**
  * The player's own Moon Focus, one line for the Moon block of the clock card (village and profile).
- * A guest gets one invitation to sign in, an empty Equilibrium one invitation to name it; never
- * sample data. Styles: `.bio-clock__focus` in BiologicClock.css.
+ * A guest gets ONE quiet line that covers the year and the focus («Sign in to see your year and
+ * Moon Focus»), a signed-in player with an empty Equilibrium one line to name it; never sample data. Styles: `.bio-clock__focus` in BiologicClock.css.
  */
 export const MoonFocusLine = ({ redirect = "/village" }: { redirect?: string }) => {
   const { t } = useTranslation();
@@ -17,7 +17,7 @@ export const MoonFocusLine = ({ redirect = "/village" }: { redirect?: string }) 
     return (
       <p className="bio-clock__focus bio-clock__focus--invite">
         <Link to={`/auth?redirect=${encodeURIComponent(redirect)}`}>
-          {tr(t, "village.dial.signIn", "Sign in to see your Moon Focus")}
+          {tr(t, "village.dial.signIn", "Sign in to see your year and Moon Focus")}
         </Link>
       </p>
     );
@@ -26,7 +26,7 @@ export const MoonFocusLine = ({ redirect = "/village" }: { redirect?: string }) 
     return (
       <p className="bio-clock__focus bio-clock__focus--invite">
         <Link to="/build/equilibrium">
-          {tr(t, "village.dial.setUp", "Name your Moon Focus in Equilibrium")}
+          {tr(t, "village.dial.setUp", "Moon Focus: name it in Equilibrium →")}
         </Link>
       </p>
     );
@@ -34,7 +34,7 @@ export const MoonFocusLine = ({ redirect = "/village" }: { redirect?: string }) 
   if (data.status === "ready") {
     return (
       <p className="bio-clock__focus">
-        <span className="bio-clock__focus-label">{tr(t, "village.dial.focus", "Moon Focus")}</span>
+        <span className="bio-clock__focus-label">{tr(t, "village.dial.focus", "Moon Focus")}</span>{" "}
         <span className="bio-clock__focus-value">{data.moonFocus ?? tr(t, "village.dial.notSet", "not set yet")}</span>
       </p>
     );

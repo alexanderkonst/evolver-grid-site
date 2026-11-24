@@ -376,7 +376,7 @@ the user can do or notice. No metaphor without instruction.
 | Waxing Crescent | Gathering · Say yes · Take meetings · Receive resources |
 | First Quarter | Seeing · The how reveals · Write it down · Capture before it drifts |
 | Waxing Gibbous | Leading · Prep for harvest · Set up infrastructure · Get the help |
-| Full Moon | Harvesting · Reap what's ripe · Cut · Receive the fruits of labor |
+| Full Moon | Harvesting · Reap what's ripe. Receive the fruits of your work. |
 | Waning Gibbous | Celebrating · Announce the harvest · Thank · Feel the gratitude |
 | Last Quarter | Planning · The next intention surfaces · Receive it · Name it |
 | Waning Crescent | Planting · The 1–3 strategies reveal · Write them down |

@@ -1,5 +1,5 @@
 import type { TFunction } from "i18next";
-import { getLunarState } from "@/lib/equilibrium-cycles";
+import { getLunarState, MOON_PHASES, phaseWord } from "@/lib/equilibrium-cycles";
 import { tr } from "@/lib/villageCopy";
 
 /**
@@ -29,10 +29,13 @@ export interface VillageSky {
   mood: string;
 }
 
+/** The Full Moon window is `MOON_PHASES[4]`: its caption word is the engine's, the card's («Harvesting»). */
+const FULL_MOON_WORD = phaseWord(MOON_PHASES[4].energy);
+
 export const VILLAGE_SKY_MOODS: Record<VillageMoonPhase, string> = {
   new: "New moon. A night for letting go.",
   waxing: "The moon is growing. Build.",
-  full: "Full moon. Harvest.",
+  full: `Full moon. ${FULL_MOON_WORD}.`,
   waning: "The moon wanes. Digest.",
 };
 
