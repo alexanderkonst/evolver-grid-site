@@ -612,6 +612,9 @@ const App = () => (
                   <Route path="/license" element={<License />} />
                   <Route path="/intros" element={<Intros />} />
                   <Route path="/profile/:userId" element={<PublicProfile />} />
+                  {/* Issue #417: the standard resident profile for a username whose root slug is a static
+                      page (/sasha). The People Directory links here so the card gets the Write button. */}
+                  <Route path="/profile/u/:username" element={<PublicProfileRoute />} />
                   <Route path="/u/:username" element={<LegacyPublicProfileRedirect />} />
                   <Route path="/p/:slug" element={<CreatorPage />} />
                   <Route path="/mp/:slug" element={<MarketplaceProductPage />} />
