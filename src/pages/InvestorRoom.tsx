@@ -110,7 +110,7 @@ const COPY = {
     kicker: "Live numbers",
     note: "Player counts are read live. Revenue as of November 24, 2026. No names, no personal data.",
     traction: [
-      { value: "$6,259", label: "paid to us since April 2026" },
+      { value: "$6,814", label: "paid to us since April 2026" },
       { value: "11", label: "founders working with us now" },
       { value: "60%", label: "of paying clients bought again" },
     ],
