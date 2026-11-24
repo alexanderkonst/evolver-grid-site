@@ -24,6 +24,68 @@ export const captureReferralIdFromUrl = () => {
   getReferralId();
 };
 
+// Issue #420 (2026-11-24): a fresh sign-up has no `game_profiles` row until some
+// path calls getOrCreateGameProfileId. The shell and Settings only READ the row
+// (Day 148 v7 removed an unguarded self-heal because it drove a token-refresh
+// storm into Supabase's 429), so a new player saw name «—», could not save
+// Settings, and was missing from the People Directory.
+//
+// This is the guarded self-heal. Rules that keep it storm-proof:
+//   - callers invoke it ONLY after a read that succeeded (no error) and found
+//     no row — never on a query error or a transient null session;
+//   - it runs at most once in flight per user (shell mounts 3-4x per load);
+//   - after success it never runs again for that user in this page session;
+//   - after failure it waits FAILURE_COOLDOWN_MS before trying again.
+const FAILURE_COOLDOWN_MS = 30_000;
+const ensureInFlight = new Map<string, Promise<string | null>>();
+const ensureDone = new Map<string, string>();
+const ensureFailedAt = new Map<string, number>();
+
+/**
+ * Ensure the signed-in user has a game_profiles row. Uses the same create path
+ * as every other caller (getOrCreateGameProfileId): it attaches a pending
+ * anonymous profile if there is one, otherwise inserts a row carrying the
+ * sign-up name from auth user metadata, and tolerates the concurrent-insert race.
+ *
+ * Never throws. Resolves to the profile id, or null if it could not be ensured.
+ */
+export function ensureGameProfileForSignedInUser(userId: string): Promise<string | null> {
+  const done = ensureDone.get(userId);
+  if (done) return Promise.resolve(done);
+
+  const inFlight = ensureInFlight.get(userId);
+  if (inFlight) return inFlight;
+
+  const failedAt = ensureFailedAt.get(userId);
+  if (failedAt && Date.now() - failedAt < FAILURE_COOLDOWN_MS) {
+    return Promise.resolve(null);
+  }
+
+  const run = (async () => {
+    try {
+      const id = await getOrCreateGameProfileId();
+      ensureDone.set(userId, id);
+      ensureFailedAt.delete(userId);
+      return id;
+    } catch (err) {
+      ensureFailedAt.set(userId, Date.now());
+      console.warn("[gameProfile] ensureGameProfileForSignedInUser failed", err);
+      return null;
+    } finally {
+      ensureInFlight.delete(userId);
+    }
+  })();
+  ensureInFlight.set(userId, run);
+  return run;
+}
+
+/** Test-only: reset the module-level guards. */
+export function __resetEnsureGameProfileGuards() {
+  ensureInFlight.clear();
+  ensureDone.clear();
+  ensureFailedAt.clear();
+}
+
 /**
  * Gets or creates a game profile ID, with support for both authenticated users and anonymous guests.
  * 
