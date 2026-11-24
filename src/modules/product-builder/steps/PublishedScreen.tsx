@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Copy, ExternalLink, Share2, Edit, Check, PartyPopper, Sparkles, Star } from "lucide-react";
+import { Copy, ExternalLink, Share2, Edit, Check, PartyPopper, Sparkles, Star, AlertCircle, RefreshCw } from "lucide-react";
 import { useProductBuilder } from "../ProductBuilderContext";
 import ProductBuilderLoading from "../ProductBuilderLoading";
 import { PRODUCT_BUILDER_STEPS } from "../productBuilderRoutes";
@@ -18,6 +18,8 @@ const PublishedScreen: React.FC = () => {
     const { t } = useTranslation();
     const [isPublishing, setIsPublishing] = useState(false);
     const [copied, setCopied] = useState(false);
+    const [publishError, setPublishError] = useState<string | null>(null);
+    const publishInFlight = useRef(false);
     const productUrl = state.productUrl || `https://geniusbusiness.app/p/your-genius-product`;
 
     useEffect(() => {
@@ -55,11 +57,14 @@ const PublishedScreen: React.FC = () => {
     };
 
     const publishProduct = async () => {
+        if (publishInFlight.current) return;
+        publishInFlight.current = true;
         setIsPublishing(true);
+        setPublishError(null);
 
         try {
             const { data: { user } } = await supabase.auth.getUser();
-            if (!user) throw new Error("Not authenticated");
+            if (!user) throw new Error("Please sign in to publish your product.");
 
             const slug = `genius-${Date.now().toString(36)}`;
             const url = `/mp/${slug}`;
@@ -75,26 +80,27 @@ const PublishedScreen: React.FC = () => {
                 published_at: new Date().toISOString(),
             };
 
-            try {
-                const { error: dbError } = await supabase
-                    .from("marketplace_products")
-                    .insert(productData);
+            const { error: dbError } = await supabase
+                .from("marketplace_products")
+                .insert(productData);
 
-                if (dbError) {
-                    console.warn("Could not save to database:", dbError);
-                }
-            } catch (saveErr) {
-                console.warn("Database save failed, continuing with demo:", saveErr);
-            }
+            if (dbError) throw dbError;
 
             setPublished(url);
             triggerCelebration();
         } catch (err) {
             console.error("Error publishing:", err);
-            const demoSlug = `genius-demo-${Date.now().toString(36)}`;
-            setPublished(`/mp/${demoSlug}`);
-            triggerCelebration();
+            const message = err instanceof Error && err.message
+                ? err.message
+                : (err as { message?: string } | null)?.message || "Something went wrong while saving.";
+            setPublishError(message);
+            toast({
+                title: "Publishing failed",
+                description: message,
+                variant: "destructive",
+            });
         } finally {
+            publishInFlight.current = false;
             setIsPublishing(false);
         }
     };
@@ -150,6 +156,35 @@ const PublishedScreen: React.FC = () => {
 
     if (isPublishing) {
         return <ProductBuilderLoading message="Publishing to marketplace..." submessage="Almost there!" />;
+    }
+
+    if (publishError && !state.isPublished) {
+        return (
+            <div className="py-8 text-center max-w-md mx-auto">
+                <AlertCircle className="w-10 h-10 text-destructive mx-auto mb-4" />
+                <h1 className="text-2xl font-bold text-[#2c3150] mb-2">Your product is not published yet</h1>
+                <p className="text-[#2c3150]/70 mb-6">{publishError}</p>
+                <div className="flex flex-wrap items-center justify-center gap-3">
+                    <Button
+                        size="lg"
+                        onClick={publishProduct}
+                        className="gap-2 bg-[#8460ea] hover:bg-[#7350d0] text-white"
+                    >
+                        <RefreshCw className="w-4 h-4" />
+                        Try again
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        size="lg"
+                        onClick={handleEdit}
+                        className="gap-2 text-[#2c3150]/60 hover:text-[#2c3150] hover:bg-[#8460ea]/5"
+                    >
+                        <Edit className="w-4 h-4" />
+                        Edit
+                    </Button>
+                </div>
+            </div>
+        );
     }
 
     return (

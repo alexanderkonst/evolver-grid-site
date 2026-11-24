@@ -6265,6 +6265,7 @@
     "deleteFailedDescription": "Не удалось удалить PDF из LinkedIn."
   },
   "marketplaceProduct": {
+    "errorLoadFailed": "Не удалось загрузить продукт. Попробуй ещё раз.",
     "errorProductNotFound": "Продукт не найден",
     "loading": "Загрузка...",
     "notFoundHeading": "Продукт не найден",
