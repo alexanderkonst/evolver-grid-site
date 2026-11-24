@@ -103,6 +103,7 @@ const REVENUE_BREAKDOWN = [
   { name: "G.", cash: 2650, inKind: 0, revShare: 0, type: "Program container ($2,000) + sessions ($250 · $400)", status: "received", color: "#f0c250" },
   { name: "B.", cash: 0, inKind: 11, revShare: 0, type: "In-kind barter (≈$11) · Oct 16/23", status: "received", color: "#c99322" },
   { name: "Mentorship", cash: 1100, inKind: 0, revShare: 0, type: "First success-based mentorship payment ($1,100) · Nov 24", status: "received", color: "#d4af37" },
+  { name: "Unique Business container", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555) · Nov 24", status: "received", color: "#e0ac42" },
 ];
 
 // ─── Timeline ───────────────────────────────────────────────────────────────
@@ -126,6 +127,7 @@ const TIMELINE = [
   { day: 176, date: "Sep 6", name: "G.", type: "Container complete ($1,000 final)", desc: "The Crossing fully paid at $2,000 and delivered. First program container to run end to end." },
   { day: 177, date: "Sep 7", name: "D.", type: "First cold reply", desc: "The first cold conversation opened by a mirror message: the profile was surfaced by a high-precision query, the stuck point named without a pitch, and the reply came the same day." },
   { day: 255, date: "Nov 24", name: "Mentorship", type: "Success-based ($1,100)", desc: "First success-based mentorship payment: a mentee's first sale paid the fee." },
+  { day: 255, date: "Nov 24", name: "Unique Business", type: "Program container ($555)", desc: "A new Unique Business container sold." },
 ];
 
 // ─── Radar ──────────────────────────────────────────────────────────────────
@@ -229,6 +231,9 @@ const VentureDashboard = () => {
   const totalInKind = REVENUE_BREAKDOWN.reduce((s, r) => s + r.inKind, 0);
   const totalRevShare = REVENUE_BREAKDOWN.reduce((s, r) => s + r.revShare, 0);
   const totalAll = totalCash + totalInKind + totalRevShare;
+  // Headline total = received revenue (cash + in-kind), matching the KPI
+  // card ($6,814 as of 2026-11-24). Pending rev share is shown separately.
+  const totalReceived = totalCash + totalInKind;
 
   // Day 65 wave 4 (Sasha 2026-05-15): cross-device visit tracking
   // via shared helper. See src/lib/journeyVisits.ts.
@@ -526,7 +531,7 @@ const VentureDashboard = () => {
                 <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>{t('ventureDashboard.revenue.breakdown.total')}</span>
                 <span className="text-2xl font-medium" style={numerals}>
                   <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                    {formatCurrencyCompact(totalAll)}
+                    {formatCurrencyCompact(totalReceived)}
                   </span>
                 </span>
               </div>
