@@ -670,7 +670,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // user can still toggle it open. Covers all /admin/* sub-pages
         // (content, genius-offers, mission-participants, mission-sync).
         const isAdminPage = p === '/admin' || p.startsWith('/admin/');
-        return !isLandingPage && !isIgnitePage && !isEquilibriumPage && !isKarimePage && !isAdminPage;
+        // Issue #443 (A9): /holomap sits in the shell but has no pane-2 sections; start closed.
+        const isHolomapPage = p === '/holomap';
+        return !isLandingPage && !isIgnitePage && !isEquilibriumPage && !isKarimePage && !isAdminPage && !isHolomapPage;
     });
 
     // Auth is a focused account surface inside the persistent shell: pane 2 has no
