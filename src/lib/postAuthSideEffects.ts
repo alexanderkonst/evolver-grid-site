@@ -47,6 +47,7 @@
  */
 import { supabase } from "@/integrations/supabase/client";
 import { clearCachedZogSnapshot } from "@/lib/zogSnapshotCache";
+import { getOrCreateGameProfileId } from "@/lib/gameProfile";
 import { migrateGuestDataToProfile } from "@/modules/zone-of-genius/saveToDatabase";
 // 2026-10-24 incident: claims go through the ownership guard (see file).
 import { claimAnonymousZogIfAllowed } from "@/lib/anonClaimGuard";
@@ -149,6 +150,17 @@ function syncGuestResult(userId: string, force: boolean): Promise<void> {
     if (!force && wasSyncedBefore(userId)) return Promise.resolve();
 
     const run = (async () => {
+        // Issue #419: seed the game_profiles row (with the signup first/last name from auth
+        // metadata) on a real sign-in, so House shows the name before any module has run.
+        // Runs first and is awaited, so migrate/claim below find the row instead of racing to
+        // insert it. Only on a sign-in transition: loaders must not re-trigger profile reads.
+        if (force) {
+            try {
+                await getOrCreateGameProfileId();
+            } catch (err) {
+                console.warn("[postAuthSideEffects] profile seed failed:", err);
+            }
+        }
         let migrated = true;
         try {
             await migrateGuestDataToProfile();
