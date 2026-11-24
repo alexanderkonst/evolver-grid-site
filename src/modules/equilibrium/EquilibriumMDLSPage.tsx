@@ -81,6 +81,7 @@ export const EquilibriumMDLSPage = () => {
   const eq = useEquilibriumV2();
   const { cycles } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
+  const [birthdayDismissed, setBirthdayDismissed] = useState(false);
   const isAttune = mode === "attune";
 
   const activeWorkstream =
@@ -100,12 +101,15 @@ export const EquilibriumMDLSPage = () => {
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
+      {!birthdayDismissed && (
       <BirthdayPrompt
         birthday={eq.birthday}
         loading={eq.loading}
         userId={eq.user?.id ?? null}
         onSaved={() => void eq.refresh()}
+        onDismiss={() => setBirthdayDismissed(true)}
       />
+      )}
 
       <header className="mb-10">
         <HeroHeadline

@@ -123,6 +123,7 @@ export const EquilibriumV2Page = () => {
   const { cycles, nowMs } = useCycles(eq.birthday ?? undefined);
   const [mode, setMode] = useWatchMode();
   const [exportingPdf, setExportingPdf] = useState(false);
+  const [birthdayDismissed, setBirthdayDismissed] = useState(false);
   const isAttune = mode === "attune";
 
   const activeWorkstream =
@@ -253,12 +254,15 @@ export const EquilibriumV2Page = () => {
 
   return (
     <main className="eq-v2-page mx-auto w-full max-w-2xl px-4 py-8 sm:px-6 sm:py-12">
+      {!birthdayDismissed && (
       <BirthdayPrompt
         birthday={eq.birthday}
         loading={eq.loading}
         userId={eq.user?.id ?? null}
         onSaved={() => void eq.refresh()}
+        onDismiss={() => setBirthdayDismissed(true)}
       />
+      )}
       <header className="mb-8 text-center">
         {/*
           Title + subtitle (Sasha 2026-05-16 round 7):

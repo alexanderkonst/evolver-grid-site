@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 import { parseBirthdate } from "../lib/parseBirthdate";
@@ -12,9 +13,11 @@ interface BirthdayPromptProps {
   userId: string | null;
   /** Called after a successful save so the hook can refresh state. */
   onSaved: (newBirthday: string) => void;
-  /** Optional «Not now». Equilibrium's own pages omit it (there the prompt stays until answered);
-   *  the village biologic clock passes it so opening «+ Year and day» never traps a player. */
+  /** Optional «Not now» (also closes on Escape). Every caller passes it, so the prompt never traps a player. */
   onDismiss?: () => void;
+  /** Cover the whole viewport instead of offsetting for the Equilibrium page's side rails
+   *  (the village clock sits outside that layout). */
+  fullViewport?: boolean;
 }
 
 /**
@@ -42,6 +45,7 @@ export const BirthdayPrompt = ({
   userId,
   onSaved,
   onDismiss,
+  fullViewport = false,
 }: BirthdayPromptProps) => {
   const [value, setValue] = useState("");
   const [saving, setSaving] = useState(false);
@@ -62,7 +66,18 @@ export const BirthdayPrompt = ({
     };
   }, [loading, userId, birthday]);
 
+  // Escape closes the modal when the caller allows dismissing.
+  useEffect(() => {
+    if (loading || !userId || birthday || !onDismiss) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onDismiss();
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [loading, userId, birthday, onDismiss]);
+
   if (loading || !userId || birthday) return null;
+  if (typeof document === "undefined") return null;
 
   const parsed = parseBirthdate(value);
   const showInvalid = value.trim().length >= 8 && !parsed;
@@ -118,15 +133,19 @@ export const BirthdayPrompt = ({
     onSaved(value);
   };
 
-  return (
+  // Portaled to <body>: an ancestor with transform/filter/contain (the village
+  // MoonDial card) becomes the containing block for `fixed` and crushed the
+  // modal to a ~75px column at 1440 (#415).
+  return createPortal(
     <div
       className={cn(
         // Bounded to the 3rd pane on desktop — offset for SpacesRail
         // (280px) + SectionsPanel (260px) = 540px. On mobile the rails
         // collapse/overlay so we cover the full viewport. Sasha
         // 2026-05-16: modal should center within content pane, not full
-        // window.
-        "fixed top-0 right-0 bottom-0 left-0 lg:left-[540px]",
+        // window. `fullViewport` (village clock) skips the offset.
+        "fixed top-0 right-0 bottom-0 left-0",
+        !fullViewport && "lg:left-[540px]",
         "z-[100] flex items-center justify-center p-4",
       )}
       style={{
@@ -206,7 +225,8 @@ export const BirthdayPrompt = ({
           </button>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 };
 
