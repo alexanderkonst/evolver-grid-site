@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { PLACE_BACK_LINK_CLASS } from "@/components/game/VillagePlaceHeader";
-import { getVillagePlace } from "@/data/villagePlaces";
-import { placeName } from "@/lib/villageCopy";
+import { ModulePageHeader, PlaceBackLink } from "@/components/game/VillagePlaceHeader";
 import { useTranslation } from "react-i18next";
 import { MapPin, Users, Languages } from "lucide-react";
 import { toast } from "sonner";
@@ -15,7 +13,7 @@ import { supabase } from "@/integrations/supabase/client";
 // suggest-asset-matches edge function — see §5 of the strategy doc.
 import MatchCard from "@/components/matchmaking/MatchCard";
 import MatchExplainer, { useMatchExplainerState } from "@/components/matchmaking/MatchExplainer";
-import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
+import BokehSkeleton from "@/components/ui/bokeh-skeleton";
 import { TimeoutError, withTimeout } from "@/lib/withTimeout";
 
 // Ceiling for the matching engine call (LLM pass per candidate).
@@ -362,8 +360,6 @@ const _ParkedFreshMatchesMondayPanel = () => {
 
 const Matchmaking = () => {
   const { t } = useTranslation();
-  const coworking = getVillagePlace("coworking");
-  const coworkingName = coworking ? placeName(coworking, t) : "Co-working";
   // Day 80 (Sasha 2026-05-23): ?debug=1 in the URL surfaces the four
   // sub-scores below each match card. Validation-only — lets testers
   // give precise feedback on the algorithm ("rank 3 felt better than
@@ -425,19 +421,8 @@ const Matchmaking = () => {
   const [interestedUserIds, setInterestedUserIds] = useState<Set<string>>(new Set());
   const [mutualUserIds, setMutualUserIds] = useState<Set<string>>(new Set());
 
-  // Day 63 night: Skeleton bg matched to parchment-card surface so the
-  // shimmer reads against the cream wash, not against an inverted dark.
-  // Day 91 (Sasha 2026-06-09): tokenized for Aurum — dark skins define
-  // --skin-card-fill; lapis keeps the exact white/45 via the fallback.
-  const Skeleton = ({ className }: { className?: string }) => (
-    <div
-      className={`animate-pulse rounded-2xl ${className || ""}`}
-      style={{
-        background: "var(--skin-card-fill, rgba(255, 255, 255, 0.45))",
-        border: "0.5px solid var(--skin-rule-hairline, rgba(26, 30, 58, 0.08))",
-      }}
-    />
-  );
+  // Seam 2/4 (S-04): the one shared skeleton, in the village's night (src/components/ui/bokeh-skeleton.tsx).
+  const Skeleton = ({ className }: { className?: string }) => <BokehSkeleton className={`rounded-2xl ${className || ""}`} />;
 
   // Day 80 (Sasha 2026-05-23): close Pane 2 on mount. The COLLABORATE
   // sub-nav (Find Collaborators / Connections / People Directory /
@@ -980,61 +965,15 @@ const Matchmaking = () => {
 
   return (
     <GameShellV2>
-      <div className="p-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:p-8 max-w-3xl mx-auto">
-        <div className="mb-6">
-          {/* WP-15: the shared place header: «← Village» (same link as every place), then the place name. */}
-          <Link
-            to="/village"
-            className={PLACE_BACK_LINK_CLASS}
-            style={{ color: "var(--skin-goldDeep, #5d4307)", textShadow: "var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))" }}
-          >
-            {t("village.backVillage", { defaultValue: "← Village" })}
-          </Link>
-          <p className="mt-1 font-mono text-xs font-light uppercase tracking-[0.2em] text-muted-foreground">
-            {coworkingName}
-          </p>
-        </div>
-
-        {/* ═══════ HEADER — Aurora editorial register ═══════ */}
-        {/* Cormorant headline with GOLD_TEXT_STYLE accent + italic echo
-            + Ornament — same rhythm as `/`, `/zone-of-genius`, dossier.
-            Day 79 (Sasha 2026-05-22) — title broadened to include
-            co-founders (match-path users are often founders looking
-            for co-founders, not just collaborators); subtitle promoted
-            from "resonates" to "complements" because the matching
-            mechanic is built on complementarity (different top talents
-            that fit together), not similarity. Subtitle font bumped
-            from clamp(16px,1.7vw,20px) → clamp(18px,2vw,22px) to read
-            as a real sub-promise, not an afterthought. */}
-        <header className="text-center mb-8">
-          <h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold leading-[1.1] tracking-[-0.018em] mb-3 sm:mb-4"
-            style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              color: "var(--skin-text-primary, #0a1628)",
-              textShadow: legibleHeadlineHalo,
-            }}
-          >
-            {t('matchmaking.headlineBefore')}{" "}
-            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              {t('matchmaking.headlineCollaborators')}
-            </span>
-            {" "}{t('matchmaking.headlineAnd')}{" "}
-            <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-              {t('matchmaking.headlineCoFounders')}
-            </span>
-          </h1>
-          <p
-            className="text-lg sm:text-xl md:text-2xl leading-[1.32]"
-            style={{
-              ...legibleItalicEcho,
-              fontSize: "clamp(18px, 2vw, 22px)",
-            }}
-          >
-            {t('matchmaking.subtitle')}
-          </p>
-          <Ornament className="my-6 sm:my-7" />
-        </header>
+      <PlaceBackLink />
+      <div className="px-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:px-8 max-w-3xl mx-auto">
+        {/* Seam 2/4 (S-07, L-01): one header. «← Village» above, then the village title voice and one
+            line. The sub-sidebar already names the place, so the mono place-name row is gone, and
+            the headline loses its gold gradient: one ink, the same face as every module. */}
+        <ModulePageHeader
+          title={`${t('matchmaking.headlineBefore')} ${t('matchmaking.headlineCollaborators')} ${t('matchmaking.headlineAnd')} ${t('matchmaking.headlineCoFounders')}`}
+          line={t('matchmaking.subtitle')}
+        />
 
         {/* Day 79 (Sasha 2026-05-22): "How introductions work" explainer
             now uses a slot pattern. First-visit users see it

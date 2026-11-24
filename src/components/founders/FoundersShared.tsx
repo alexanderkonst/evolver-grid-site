@@ -13,26 +13,23 @@ import { Fragment } from "react";
 
 export const FoundersHero = ({ lightMode = true }: { lightMode?: boolean }) => (
   <div className="text-center space-y-5" id="showcase-header">
-    <p className="text-[11px] font-medium tracking-[0.4em] uppercase text-[#8460ea]/60">
+    <p className="mp-label tracking-[0.3em] text-muted-foreground">
       The Originals
     </p>
 
-    <h2 className="text-3xl md:text-5xl font-display font-medium tracking-tight leading-[1.1]">
-      <span className="bg-gradient-to-r from-[#8460ea] via-[#5eaf8b] to-[#d49a5e] bg-clip-text text-transparent">
-        Founders Who Found
-      </span>
-      <br />
-      <span className={lightMode ? 'text-[#2c3150]/85' : 'text-white/85'}>Their Genius</span>
+    {/* L-05: the village's title voice, one solid ink, no gradient text. */}
+    <h2 className="mp-title mx-auto" style={{ fontSize: "clamp(24px, 3.2vw, 36px)" }}>
+      Founders Who Found Their Genius
     </h2>
 
-    <p className={`text-sm max-w-md mx-auto leading-relaxed ${lightMode ? 'text-[#2c3150]/40' : 'text-white/30'}`}>
+    <p className={`text-sm max-w-md mx-auto leading-relaxed ${lightMode ? 'text-[#2c3150]/40' : 'text-muted-foreground'}`}>
       Each person went through the Unique Business Canvas process.
       Their myth was discovered. Their business was designed
       around who they already are.
     </p>
 
     {/* Stats ribbon */}
-    <div className={`flex justify-center gap-6 text-[11px] pt-2 ${lightMode ? 'text-[#2c3150]/25' : 'text-white/15'}`}>
+    <div className={`flex justify-center gap-6 text-[11px] pt-2 ${lightMode ? 'text-[#2c3150]/25' : 'text-muted-foreground'}`}>
       {[
         { val: "4", label: "canvases" },
         { val: "10", label: "days" },
@@ -43,7 +40,7 @@ export const FoundersHero = ({ lightMode = true }: { lightMode?: boolean }) => (
         {i > 0 && " "}
         <div className="flex flex-col items-center gap-0.5">
           <span
-            className={`text-sm font-display font-medium bg-gradient-to-b bg-clip-text text-transparent ${lightMode ? 'from-[color:var(--skin-ink-body,rgba(44,49,80,0.6))] to-[color:var(--skin-ink-muted,rgba(44,49,80,0.3))]' : 'from-white/40 to-white/15'}`}
+            className={`text-sm font-display font-medium ${lightMode ? 'text-[color:var(--skin-ink-body,rgba(44,49,80,0.6))]' : 'text-foreground'}`}
           >
             {s.val}
           </span>{" "}
@@ -57,48 +54,28 @@ export const FoundersHero = ({ lightMode = true }: { lightMode?: boolean }) => (
 
 export const FoundersCTA = ({ lightMode = true }: { lightMode?: boolean }) => (
   <div id="showcase-cta">
-    {/* Rotating border */}
+    {/* L-02: a dark card on the village's paper token, one hairline border, no gradient edge. */}
     <div
-      className="relative rounded-3xl p-[1px]"
-      style={{
-        background:
-          "linear-gradient(135deg, #8460ea40, #5eaf8b30, #d49a5e30, #7eb8d430, #8460ea40)",
-      }}
+      className={`border p-10 md:p-14 text-center ${lightMode ? 'bg-[var(--skin-card-fill,#fff)] border-[#8460ea]/20' : 'border-[rgba(var(--scene-ink-rgb),0.14)]'}`}
+      style={lightMode ? undefined : { background: "var(--scene-paper, #0e0d0b)" }}
     >
-      <div className={`rounded-3xl p-10 md:p-14 text-center relative overflow-hidden ${lightMode ? 'bg-[var(--skin-card-fill,#fff)]' : 'bg-[#0e1528]'}`}>
-        {/* Internal glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[120px] ${lightMode ? 'bg-[#8460ea]/8' : 'bg-[#8460ea]/6'}`} />
-        </div>
+      <p className="mp-label tracking-[0.3em] text-muted-foreground mb-4">
+        Ready to Find Your Genius?
+      </p>
 
-        <div className="relative z-10">
-          <p className="text-[11px] tracking-[0.4em] uppercase text-[#8460ea]/50 mb-4">
-            Ready to Find Your Genius?
-          </p>
+      <h3 className="mp-title mx-auto mb-3" style={{ fontSize: "clamp(24px, 3.2vw, 36px)" }}>
+        Your Uniqueness IS Your Business
+      </h3>
 
-          <h3 className="text-2xl md:text-4xl font-display font-medium mb-3">
-            <span className="bg-gradient-to-r from-[#8460ea] via-[#5eaf8b] to-[#d49a5e] bg-clip-text text-transparent">
-              Your Uniqueness IS
-            </span>
-            <br />
-            <span className={lightMode ? 'text-[#2c3150]/80' : 'text-white/80'}>Your Business</span>
-          </h3>
+      <p className={`text-sm max-w-sm mx-auto mb-8 ${lightMode ? 'text-[#2c3150]/40' : 'text-muted-foreground'}`}>
+        One session. Your myth discovered. Your canvas complete.
+        The business you were always meant to build — revealed.
+      </p>
 
-          <p className={`text-sm max-w-sm mx-auto mb-8 ${lightMode ? 'text-[#2c3150]/40' : 'text-white/30'}`}>
-            One session. Your myth discovered. Your canvas complete.
-            The business you were always meant to build — revealed.
-          </p>
-
-          <a
-            href="/ignite"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-semibold bg-gradient-to-r from-[#8460ea] to-[#6a4ecf] text-white hover:shadow-xl hover:shadow-[#8460ea]/25 transition-all duration-500 hover:scale-[1.03] active:scale-[0.98]"
-            id="book-session-btn"
-          >
-            <span className="text-lg">◉</span>
-            Book Your Private Founder-Market Fit Session — $555
-          </a>
-        </div>
-      </div>
+      {/* The village's one button (.mp-btn = .mf__go), not a coloured pill. */}
+      <a href="/ignite" className="mp-btn" id="book-session-btn">
+        Book Your Private Founder-Market Fit Session — $555
+      </a>
     </div>
   </div>
 );

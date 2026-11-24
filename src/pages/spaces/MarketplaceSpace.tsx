@@ -1,7 +1,6 @@
-import VillagePlaceHeader from "@/components/game/VillagePlaceHeader";
+import VillagePlaceHeader, { PlaceBackLink } from "@/components/game/VillagePlaceHeader";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/button";
 import { usePublishedGeniusBusiness } from "@/modules/product-builder/ProductBuilderContext";
 import { useState, useCallback } from "react";
 import GameShellV2 from "@/components/game/GameShellV2";
@@ -25,18 +24,19 @@ const MarketplaceSpace = () => {
     return (
         <GameShellV2>
             <ErrorBoundary>
+                <PlaceBackLink />
                 {/* pb: room under the last control for the «Chat with us» pill (WP-15, --chat-clearance) */}
-                <div className="p-4 pb-[calc(var(--chat-clearance)+1rem)] lg:p-6 max-w-4xl mx-auto space-y-10">
+                <div className="px-4 pb-[calc(var(--chat-clearance)+1rem)] lg:px-6 max-w-4xl mx-auto space-y-10">
                     <VillagePlaceHeader place="market" />
                     <MyStall />
                     {!business && (
-                        <div className="space-y-3 rounded-xl border border-dashed border-border p-6">
+                        <div className="space-y-3 border border-dashed border-border p-6">
                             <p>{t("villagePlaces.market.empty")}</p>
-                            <Button asChild><Link to="/ubb">{t("villagePlaces.openWorkshop")}</Link></Button>
+                            <Link to="/ubb" className="mp-btn">{t("villagePlaces.openWorkshop")}</Link>
                         </div>
                     )}
                     {/* ─── Hero ──────────────────────────────────── */}
-                    <FoundersHero lightMode />
+                    <FoundersHero lightMode={false} />
 
                     {/* ─── Founder Cards ─────────────────────────── */}
                     <div className="space-y-6" id="founders-grid">
@@ -47,13 +47,13 @@ const MarketplaceSpace = () => {
                                 index={i}
                                 isExpanded={expandedFounder === f.name}
                                 onToggle={() => toggle(f.name)}
-                                lightMode
+                                lightMode={false}
                             />
                         ))}
                     </div>
 
                     {/* ─── CTA ──────────────────────────────────── */}
-                    <FoundersCTA lightMode />
+                    <FoundersCTA lightMode={false} />
                 </div>
             </ErrorBoundary>
         </GameShellV2>

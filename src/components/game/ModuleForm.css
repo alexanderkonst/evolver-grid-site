@@ -67,6 +67,11 @@
   font-family: var(--vl-serif); font-weight: 300; font-size: clamp(36px, 6vw, 72px);
   line-height: 1.04; letter-spacing: 0.01em; color: var(--vl-ink);
 }
+/* One module title voice (ModulePage.css .mp-title): the place name on a module form. */
+.mf__title {
+  margin: 0; text-wrap: balance; font-family: var(--vl-serif); font-weight: 300; text-transform: uppercase;
+  letter-spacing: 0.06em; font-size: clamp(26px, 3.6vw, 44px); line-height: 1.04; color: var(--vl-ink);
+}
 .mf__silhouette {
   margin: 18px auto 0; max-width: 40ch; text-wrap: balance;
   font-style: italic; font-weight: 300; font-size: clamp(18px, 2vw, 24px); line-height: 1.4; color: var(--vl-ink-2);
@@ -157,6 +162,11 @@
   min-width: 44px; min-height: 44px; padding: 0; cursor: pointer; border-radius: 0;
   border: 1px solid var(--vl-hair); background: transparent; color: var(--vl-ink-2);
   font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-small); transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+/* L-04 (Seam 2/4): chat-app chips take the village's label voice, not the monospace of the 1–10 digits. */
+.mf__rate-btn--label {
+  font-family: var(--vl-serif); font-weight: 500; font-size: var(--vl-text-small);
+  letter-spacing: 0.14em; text-transform: uppercase;
 }
 .mf__rate-btn:hover:not(:disabled), .mf__rate-btn:focus-visible { border-color: var(--vl-accent); color: var(--vl-ink); outline: none; }
 .mf__rate-btn[aria-pressed="true"] { background: var(--vl-accent); border-color: var(--vl-accent); color: var(--vl-bg); }

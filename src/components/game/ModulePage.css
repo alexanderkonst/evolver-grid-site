@@ -1,0 +1,83 @@
+/*
+ * Module pages in the village register (Seam 2/4, issue #437).
+ *
+ * One header for every module screen (Café, Market, People Directory, Co-working,
+ * Quest Board, Your AI, Mastermind): the «← Village» control, then one place name in the
+ * village's title voice (the same face, weight, case and tracking as `.vl-place h2` and
+ * `.vl-head h1` in Village.css), then one line. Colours follow the skin (--foreground,
+ * --muted-foreground), exactly like the place pages did; no literal colours here.
+ */
+
+.mp-bar {
+  /* Full-width and left-aligned to the pane, never to a centred max-w column, so the
+     control keeps one position whether pane 2 is open or collapsed. */
+  box-sizing: border-box;
+  width: 100%;
+  padding: 8px 16px 0;
+}
+@media (min-width: 1024px) {
+  .mp-bar { padding-left: 24px; padding-right: 24px; }
+}
+
+.mp-back {
+  display: inline-flex; align-items: center; min-height: 44px; padding-right: 12px;
+  font-family: var(--vl-mono, "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace);
+  font-weight: 300; font-size: var(--vl-text-label, 12px); letter-spacing: 0.2em; text-transform: uppercase;
+  color: hsl(var(--muted-foreground)); text-decoration: none; transition: color 0.4s ease;
+}
+.mp-back:hover, .mp-back:focus-visible { color: hsl(var(--foreground)); outline: none; }
+
+.mp-head { margin: 0 0 24px; display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.mp-head__text { min-width: 0; }
+
+/* The one title scale of module pages. */
+.mp-title {
+  margin: 0; text-wrap: balance;
+  font-family: var(--vl-serif, "Cormorant Garamond", "EB Garamond", Georgia, serif);
+  font-weight: 300; text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: clamp(26px, 3.6vw, 44px); line-height: 1.04;
+  color: hsl(var(--foreground));
+}
+.mp-line {
+  margin: 12px 0 0; max-width: 60ch;
+  font-family: var(--vl-serif, "Cormorant Garamond", "EB Garamond", Georgia, serif);
+  font-style: italic; font-weight: 300; font-size: var(--vl-text-lead, 18px); line-height: 1.4;
+  color: hsl(var(--muted-foreground));
+}
+
+/* One label face for chips and small tags on module pages (L-04). */
+.mp-label {
+  font-family: var(--vl-mono, "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace);
+  font-weight: 300; font-size: var(--vl-text-micro, 11px); letter-spacing: 0.14em; text-transform: uppercase;
+}
+
+/* The one button of module pages: the village's thin-bordered button (.mf__go, .vl-enter). */
+.mp-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 0 28px; cursor: pointer; text-align: center; text-decoration: none;
+  border: 1px solid var(--scene-accent); border-radius: 0; background: rgba(var(--scene-bg-rgb), 0.25);
+  font-family: var(--vl-mono, "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace);
+  font-weight: 300; font-size: var(--vl-text-label, 12px); letter-spacing: 0.2em; text-transform: uppercase;
+  color: hsl(var(--foreground)); transition: background-color 0.6s ease, color 0.6s ease;
+}
+.mp-btn:hover, .mp-btn:focus-visible { background: var(--scene-accent); color: var(--scene-bg); outline: none; }
+
+/* Loading skeletons: the village's night, never a light slab (S-04). One component:
+   src/components/ui/bokeh-skeleton.tsx. */
+.mp-skeleton {
+  position: relative; overflow: hidden;
+  background: rgba(var(--scene-ink-rgb), 0.05);
+  border: 1px solid rgba(var(--scene-ink-rgb), 0.06);
+  animation: mp-skeleton-pulse 2.4s ease-in-out infinite;
+}
+.mp-skeleton::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(var(--scene-ink-rgb), 0.05), transparent);
+  transform: translateX(-100%); animation: mp-skeleton-sweep 2.4s ease-in-out infinite;
+}
+@keyframes mp-skeleton-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+@keyframes mp-skeleton-sweep { to { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) {
+  .mp-skeleton, .mp-skeleton::after { animation: none; }
+  .mp-back, .mp-btn { transition: none; }
+}

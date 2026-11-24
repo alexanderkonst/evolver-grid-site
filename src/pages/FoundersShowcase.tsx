@@ -342,7 +342,7 @@ export const FounderCard = ({
           style={{
             background: lightMode
               ? `rgba(255,255,255,0.95)`
-              : "#0e1528",
+              : "var(--scene-paper, #0e0d0b)",
           }}
         >
           {/* Internal aurora */}
@@ -420,8 +420,8 @@ export const FounderCard = ({
                     </span>
                   )}
                 </div>
-                <p className={`text-sm italic ${lightMode ? 'text-[#2c3150]/50' : 'text-white/35'}`}>{f.tagline}</p>
-                <div className={`text-[10px] mt-1.5 font-mono ${lightMode ? 'text-[#2c3150]/30' : 'text-white/15'}`}>
+                <p className={`text-sm italic ${lightMode ? 'text-[#2c3150]/50' : 'text-white/60'}`}>{f.tagline}</p>
+                <div className={`text-[10px] mt-1.5 font-mono ${lightMode ? 'text-[#2c3150]/30' : 'text-white/45'}`}>
                   {f.sessionNumber} · {f.date}
                 </div>
               </div>

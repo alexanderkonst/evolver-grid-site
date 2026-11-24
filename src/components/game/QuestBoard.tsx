@@ -1,5 +1,6 @@
 import { useId } from "react";
 import { Link } from "react-router-dom";
+import { PlaceBackLink } from "@/components/game/VillagePlaceHeader";
 import { useTranslation } from "react-i18next";
 import PlaceState from "@/components/game/PlaceState";
 import ReflectionQuests from "@/components/game/ReflectionQuests";
@@ -59,10 +60,9 @@ const QuestBoard = () => {
   const monthQuest = measureMonthQuest(metrics);
 
   return (
+    <>
+    <PlaceBackLink />
     <section className="mf qb" aria-labelledby={headingId} aria-busy={sheet.isLoading || undefined}>
-      <Link className="mf__back" to="/village">
-        {tr(t, "village.backVillage", "← Village")}
-      </Link>
       {place ? (
         <div className="qb__scene">
           <img
@@ -77,7 +77,6 @@ const QuestBoard = () => {
 
       <div className="qb__body">
         <header className="qb__head">
-          <p className="mf__eyebrow">{tr(t, "village.place.quest-board.name", "Quest Board")}</p>
           <h1 id={headingId} className="mf__headline">
             {tr(t, "village.quest.heading", "Your next quest")}
           </h1>
@@ -210,6 +209,7 @@ const QuestBoard = () => {
         )}
       </div>
     </section>
+    </>
   );
 };
 

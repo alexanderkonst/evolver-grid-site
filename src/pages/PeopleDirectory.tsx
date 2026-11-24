@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { MapPin, Search, Sparkles, Target, Users } from "lucide-react";
+import { MapPin, Search, Sparkles, Target } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import WriteButton from "@/components/game/WriteButton";
 import { Button } from "@/components/ui/button";
+import { ModulePageHeader, PlaceBackLink } from "@/components/game/VillagePlaceHeader";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 import {
   Select,
@@ -293,16 +294,11 @@ const PeopleDirectory = () => {
 
   return (
     <GameShellV2>
-      <div className="px-4 py-10 sm:px-6 lg:px-8">
+      <PlaceBackLink />
+      <div className="px-4 pt-2 pb-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-8">
-            <div className="flex items-center gap-3 text-foreground">
-              <Users className="w-6 h-6" />
-              <h1 className="text-2xl sm:text-3xl font-semibold">{t("peopleDir.title")}</h1>
-            </div>
-            <p className="text-sm text-muted-foreground mt-2">
-              {t("peopleDir.subtitle")}
-            </p>
+          <div className="mb-2">
+            <ModulePageHeader title={t("peopleDir.title")} line={t("peopleDir.subtitle")} />
           </div>
 
           <div className="relative mb-3">

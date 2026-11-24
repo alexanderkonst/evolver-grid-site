@@ -12,14 +12,11 @@
  * as the bridge line) and the price block says "Registration opens soon".
  */
 import { ArrowRight } from "lucide-react";
-import { Link } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import GameShellV2 from "../components/game/GameShellV2";
 import SEO from "@/components/SEO";
-import geniusLogo from "@/assets/ignite-logo.png";
+import { PlaceBackLink } from "@/components/game/VillagePlaceHeader";
 import { Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
-import { tr } from "@/lib/villageCopy";
 import { MASTERMIND_LIVE_SESSION_URL } from "@/data/mastermindSession";
 import KindCircles from "@/components/circles/KindCircles";
 import type { CircleKind } from "@/lib/circles";
@@ -35,8 +32,9 @@ const MASTERMIND_PRICE = "$222";
 const MASTERMIND_CTA_URL = "https://buy.stripe.com/14AcN5aIAbCr8idh1CdEs0I";
 
 const MASTERMIND_COPY = {
-  eyebrow: "Founder-Market Fit Discovery Mastermind · Nov 9–10",
-  // Slogan headline removed (Sasha 2026-10-30 22:43); `title` is the name, used for og:title only.
+  // The name is the page's one h1 (Seam 2/4, L-01: it was a 12px eyebrow); the dates sit under it.
+  dates: "Nov 9–10",
+  // Slogan headline removed (Sasha 2026-10-30 22:43); `title` is the name.
   title: "Founder-Market Fit Discovery Mastermind",
   /** The product/method name, for the event schema and anywhere a name (not a promise) is needed. */
   productName: "Founder-Market Fit Discovery Mastermind",
@@ -103,7 +101,6 @@ const SectionLabel = ({ children }: { children: string }) => (
 
 const Mastermind = () => {
   const c = MASTERMIND_COPY;
-  const { t } = useTranslation();
 
   return (
     <>
@@ -132,30 +129,23 @@ const Mastermind = () => {
         <div
           // -mt-4 cancels the shell's pane-3 `pt-4` (desktop and mobile <main>)
           // so the card starts flush at the top of the pane, no beige strip.
-          className="relative min-h-dvh overflow-x-hidden font-sans -mt-4"
+          // pt-4 puts «← Village» where it sits on every other module (the shell's pane-3 pt-4).
+          className="relative min-h-dvh overflow-x-hidden font-sans -mt-4 pt-4"
           id="mastermind-page"
           style={{
             background:
               "var(--surface-page)",
           }}
         >
-          <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 pt-8 pb-16 space-y-12">
-            <Link
-              to="/village"
-              className="inline-flex min-h-11 items-center text-sm text-muted-foreground hover:text-foreground"
-            >
-              {tr(t, "village.backVillage", "← Village")}
-            </Link>
-            {/* HERO */}
+          <div className="relative z-10">
+            <PlaceBackLink />
+          </div>
+          <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 pt-2 pb-16 space-y-12">
+            {/* HERO: one place name in the village title voice; no second logo (the shell carries it). */}
             <header className="text-center space-y-6 pb-2">
-              <img src={geniusLogo} alt="" className="skin-emblem w-[140px] h-auto mx-auto opacity-80" />
               {/* Sasha 2026-10-30 22:43: slogan headline removed, no replacement; the name is the h1. */}
-              <h1
-                className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
-                style={LABEL_TEXT_STYLE}
-              >
-                {c.eyebrow}
-              </h1>
+              <h1 className="mp-title">{c.title}</h1>
+              <p className="mp-label tracking-[0.26em] text-muted-foreground">{c.dates}</p>
               <p
                 className="text-base sm:text-lg italic max-w-md mx-auto leading-relaxed"
                 style={BODY_SERIF}

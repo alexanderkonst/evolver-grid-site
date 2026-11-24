@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { CalendarDays } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
-import { PLACE_BACK_LINK_CLASS } from "@/components/game/VillagePlaceHeader";
+import { ModulePageHeader, PlaceBackLink } from "@/components/game/VillagePlaceHeader";
 import { Button } from "@/components/ui/button";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -82,27 +81,21 @@ const EventsSpace = () => {
   return (
     <GameShellV2>
       <ErrorBoundary>
-        <div className="p-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:p-8 max-w-4xl mx-auto">
-          {/* Same back link as every place (WP-15), for guests and players alike. */}
-          <Link to="/village" className={`${PLACE_BACK_LINK_CLASS} mb-2`}>
-            {t("eventsSpace.backToVillage")}
-          </Link>
-
-          {/* Header: S1 */}
-          <div className="flex items-start justify-between gap-4 mb-6">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <CalendarDays className="w-6 h-6 text-foreground" />
-                <h1 className="text-2xl font-bold text-foreground">{CAFE.title}</h1>
-              </div>
-              <p className="text-muted-foreground">{CAFE.subtitle}</p>
-            </div>
-            {userId && (
-              <Button onClick={() => navigate("/game/meet/create")} className="shrink-0">
-                {CAFE.host}
-              </Button>
-            )}
-          </div>
+        {/* Same back link as every place (WP-15), for guests and players alike. */}
+        <PlaceBackLink />
+        <div className="px-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:px-8 max-w-4xl mx-auto">
+          {/* Header: S1. One place name and one line; no icon, no second title. */}
+          <ModulePageHeader
+            title={CAFE.title}
+            line={CAFE.subtitle}
+            action={
+              userId ? (
+                <Button onClick={() => navigate("/game/meet/create")}>
+                  {CAFE.host}
+                </Button>
+              ) : null
+            }
+          />
 
           {/* Upcoming | Past: writes ?period=past */}
           <div role="tablist" aria-label="Period" className="inline-flex rounded-lg border border-border p-0.5 mb-6">
