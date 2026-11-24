@@ -72,6 +72,12 @@ describe("houseRooms", () => {
     expect(nextHouseRoom(rooms)).toBeUndefined();
   });
 
+  it("a finished QoL shows the level room done even while the mission is not saved (issue #414)", () => {
+    const rooms = houseRooms(saveWith(["find-top-talent", "assess-qol"]));
+    expect(stateOf(rooms, "level")).toBe("done");
+    expect(rooms.find((r) => r.id === "level")?.line).toBe("");
+  });
+
   it("only a closed room carries a line", () => {
     for (const room of houseRooms(saveWith([]))) {
       if (room.state === "closed") expect(room.line).not.toBe("");
@@ -104,6 +110,13 @@ describe("houseBadges", () => {
     expect(mission?.state).toBe("closed");
     expect(mission?.line).toMatch(/^Opens when .+\. Inside: .+\.$/);
     expect(badges.find((b) => b.step === "find-top-talent")?.line).toBe("");
+  });
+
+  it("the Real Level badge is earned once QoL is done, even while the mission is not saved (issue #414)", () => {
+    const badges = houseBadges(saveWith(["find-top-talent", "assess-qol"]));
+    const level = badges.find((b) => b.step === "assess-qol");
+    expect(level?.state).toBe("done");
+    expect(level?.line).toBe("");
   });
 
   it("the offer badge is earned by a saved offer", () => {
