@@ -111,6 +111,14 @@ Works well:
 10. **Profile.** After opening view 2 or 3, the whole card scrolls into view (recheck #409).
 Not changed (by spec): the open village card may cover map labels; dial framing differs per place.
 
+## Observations: phone 390 px, 2026-11-24 (live v6.2 after #439, guest, local Chromium 390x844, iPhone UA)
+Works: centre reads FULL MOON / Harvesting / TUESDAY / Action at a glance; «+ tap» cue visible under the dial; three views cycle; YEAR and DAY labels present.
+1. The open card covers the primary CTA block («YOUR NEXT MOVE · ENTRY PORTAL · Start by finding your top talent»), and that text shows through the card (card not opaque), reading as ghost text under «Action» and «Massive action…». For a new player this hides the first move.
+2. View 3 for a guest: header «YOUR YEAR · FROM YOUR BIRTHDAY» is followed only by «Today: 40% of the day left» (a day line under a year header; a guest has no birthday).
+3. «Next: Waning Gibbous in 2 d 22 h» (card header) and «next Celebrating, in 2 d 22 h» (line below) say the same moment twice with two names.
+4. YEAR / DAY sit stacked in a small pill at 12 o'clock and crowd the ring stroke (also on the desktop profile dial).
+5. Screen reader: adjacent spans join without spaces («FULL MOONHarvestingTUESDAYAction», «YOUR YEAR · FROM YOUR BIRTHDAY41 days to 4 Jan»), seen in the accessibility tree.
+
 ## Done when
 A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 
