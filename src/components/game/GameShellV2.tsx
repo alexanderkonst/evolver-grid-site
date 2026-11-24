@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate, useNavigationType, Outlet } from "react-router-dom";
 import { ArrowLeft, ChevronRight, Menu } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { getOrCreateGameProfileId, ensureGameProfileForSignedInUser } from "@/lib/gameProfile";
 import { cn } from "@/lib/utils";
 import { useIsMobile } from "@/hooks/use-mobile";
 // Top-right corner icon — FYTT glyph, separate from the rail wordmark.
@@ -868,7 +868,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const activePlaceLine = activePlaceData ? placeTagline(activePlaceData, t, !!user, playerName) : undefined;
 
     // Load profile
-    const loadProfile = async (userId: string) => {
+    const loadProfile = async (userId: string, healed = false) => {
         try {
             const { data, error } = await supabase
                 .from("game_profiles")
@@ -890,6 +890,18 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             // Supabase's 429 rate limit, at which point supabase-js removed the
             // session and logged the user out. Just read the row; a transient
             // null is reloaded by the next auth event.
+            //
+            // Issue #420 (2026-11-24): the one exception is a read that
+            // SUCCEEDED and found no row — a fresh sign-up that has not yet
+            // hit a profile-creating path. Create it once (guarded: in-flight
+            // dedupe, once per user, failure cooldown — see
+            // ensureGameProfileForSignedInUser) and re-read. Never on error.
+            if (!data && !error && !healed) {
+                const ensuredId = await ensureGameProfileForSignedInUser(userId);
+                if (ensuredId) {
+                    return loadProfile(userId, true);
+                }
+            }
             const row = data;
             setProfile(row || null);
 

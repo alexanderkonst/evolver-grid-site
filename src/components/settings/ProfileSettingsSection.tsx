@@ -16,7 +16,7 @@ import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { supabase } from "@/integrations/supabase/client";
-import { getOrCreateGameProfileId } from "@/lib/gameProfile";
+import { getOrCreateGameProfileId, ensureGameProfileForSignedInUser } from "@/lib/gameProfile";
 import { useToast } from "@/hooks/use-toast";
 import { useStripePortal } from "@/hooks/use-stripe-portal";
 // Day 61 (Sasha 2026-05-04 17:00): Reset Progress wipes the
@@ -119,6 +119,35 @@ const ProfileSettingsSection = () => {
         loadUserData();
     }, []);
 
+    // Reads the signed-in user's game_profiles row into state. When the read
+    // succeeds with no row (fresh sign-up), creates it via the guarded helper
+    // and re-reads once. Returns the row, or null if there is still none.
+    // `syncForm=false` keeps the edit fields as typed (used by Save).
+    const readOwnProfile = async (userId: string, syncForm = true): Promise<UserProfile | null> => {
+        const read = () =>
+            supabase
+                .from("game_profiles")
+                .select("id, first_name, last_name, spoken_languages, avatar_url, username")
+                .eq("user_id", userId)
+                .maybeSingle();
+        let { data: profileData, error: readError } = await read();
+        if (!profileData && !readError) {
+            const ensuredId = await ensureGameProfileForSignedInUser(userId);
+            if (ensuredId) {
+                ({ data: profileData } = await read());
+            }
+        }
+        if (!profileData) return null;
+        setProfile(profileData);
+        if (syncForm) {
+            setEditFirstName(profileData.first_name || "");
+            setEditLastName(profileData.last_name || "");
+            setEditUsername(profileData.username || "");
+            setEditLanguages(Array.isArray(profileData.spoken_languages) ? profileData.spoken_languages : []);
+        }
+        return profileData;
+    };
+
     const loadUserData = async () => {
         setIsLoading(true);
         // Day 148 (Sasha 2026-08-07): getSession() (local, reliable), NOT
@@ -143,23 +172,14 @@ const ProfileSettingsSection = () => {
             return;
         }
         setUser(user);
-        // Day 148 v7 (Sasha 2026-08-24): plain read, no self-heal. The
+        // Day 148 v7 (Sasha 2026-08-24): plain read, no UNGUARDED self-heal. The
         // earlier self-heal (getOrCreateGameProfileId on a null read) helped
         // drive a token-refresh storm that hit Supabase's 429 rate limit and
-        // logged the user out. Read the row and use it; a transient null is
-        // reloaded on the next auth event.
-        const { data: profileData } = await supabase
-            .from("game_profiles")
-            .select("id, first_name, last_name, spoken_languages, avatar_url, username")
-            .eq("user_id", user.id)
-            .maybeSingle();
-        if (profileData) {
-            setProfile(profileData);
-            setEditFirstName(profileData.first_name || "");
-            setEditLastName(profileData.last_name || "");
-            setEditUsername(profileData.username || "");
-            setEditLanguages(Array.isArray(profileData.spoken_languages) ? profileData.spoken_languages : []);
-        }
+        // logged the user out.
+        // Issue #420 (2026-11-24): a read that succeeded but found no row is a
+        // fresh sign-up — ensure the row exists through the guarded helper
+        // (once per user, deduped, failure cooldown) and re-read.
+        await readOwnProfile(user.id);
         const { data: purchaseData } = await supabase
             .from("ai_boost_purchases")
             .select("id, created_at, source")
@@ -274,15 +294,6 @@ const ProfileSettingsSection = () => {
         // profile was null — pressing Save appeared to do nothing at all (no
         // toast, no error), which is exactly what "I cannot add languages, it
         // doesn't save" looked like. Never fail silently.
-        if (!profile) {
-            console.error("[ProfileSettingsSection] Save pressed with no profile row loaded");
-            toast({
-                title: t('profileSettings.toastErrorTitle'),
-                description: t('profileSettings.saveNoRowMessage'),
-                variant: "destructive",
-            });
-            return;
-        }
         if (!user?.id) {
             toast({
                 title: t('profileSettings.toastErrorTitle'),
@@ -293,13 +304,25 @@ const ProfileSettingsSection = () => {
         }
         setIsSaving(true);
         try {
+            // Issue #420: no row loaded = fresh sign-up (or a failed earlier
+            // heal). Ensure it exists before saving, so the first Save works.
+            const row = profile ?? (await readOwnProfile(user.id, false));
+            if (!row) {
+                console.error("[ProfileSettingsSection] Save pressed with no profile row loaded");
+                toast({
+                    title: t('profileSettings.toastErrorTitle'),
+                    description: t('profileSettings.saveNoRowMessage'),
+                    variant: "destructive",
+                });
+                return;
+            }
             const normalizedLanguages = editLanguages
                 .map(normalizeLanguage)
                 .filter(Boolean)
                 .filter((l, i, list) => list.findIndex(v => normalizeKey(v) === normalizeKey(l)) === i);
             const requestedUsername = editUsername.trim().toLowerCase();
-            let savedUsername = profile.username;
-            if (requestedUsername !== (profile.username || "")) {
+            let savedUsername = row.username;
+            if (requestedUsername !== (row.username || "")) {
                 const { data: usernameData, error: usernameError } = await supabase.rpc(
                     "set_my_public_profile_username",
                     { p_username: requestedUsername },
@@ -326,7 +349,7 @@ const ProfileSettingsSection = () => {
                     last_name: editLastName.trim() || null,
                     spoken_languages: normalizedLanguages,
                 })
-                .eq("id", profile.id)
+                .eq("id", row.id)
                 .select("id, first_name, last_name, spoken_languages, avatar_url, username");
             if (error) {
                 console.error("[ProfileSettingsSection] profile update failed", error);
@@ -334,12 +357,12 @@ const ProfileSettingsSection = () => {
                 return;
             }
             if (!data || data.length === 0) {
-                console.error("[ProfileSettingsSection] profile update matched 0 rows", { profileId: profile.id });
+                console.error("[ProfileSettingsSection] profile update matched 0 rows", { profileId: row.id });
                 toast({ title: t('profileSettings.toastErrorTitle'), description: t('profileSettings.saveNoRowMessage'), variant: "destructive" });
                 return;
             }
             setProfile({
-                ...profile,
+                ...row,
                 first_name: editFirstName.trim() || null,
                 last_name: editLastName.trim() || null,
                 spoken_languages: normalizedLanguages,
