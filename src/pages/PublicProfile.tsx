@@ -7,6 +7,7 @@ import ShareCardAnswer from "@/components/game/ShareCardAnswer";
 import WriteButton from "@/components/game/WriteButton";
 import { usePlayerReflections } from "@/hooks/usePlayerReflections";
 import { pickGift } from "@/lib/shareCard";
+import { residentDisplayName } from "@/lib/peopleDirectory";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -273,9 +274,11 @@ const PublicProfile = ({ onMissing }: PublicProfileProps = {}) => {
   }, [userId, username]);
 
   const fullName = useMemo(() => {
-    const parts = [profile?.first_name, profile?.last_name].filter(Boolean);
-    return parts.length > 0 ? parts.join(" ") : t("publicProfile.communityMember");
-  }, [profile?.first_name, profile?.last_name, t]);
+    return (
+      residentDisplayName(username, profile?.first_name, profile?.last_name) ||
+      t("publicProfile.communityMember")
+    );
+  }, [username, profile?.first_name, profile?.last_name, t]);
 
   const archetypeTitle = appleseed?.threeLenses?.archetype || appleseed?.vibrationalKey?.name;
 

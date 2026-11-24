@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/select";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
-import { directoryProfilePath, matchesDirectoryQuery } from "@/lib/peopleDirectory";
+import { directoryProfilePath, matchesDirectoryQuery, residentDisplayName } from "@/lib/peopleDirectory";
 import { MISSIONS } from "@/modules/mission-discovery/data/missions";
 import { DESIRED_OUTCOMES } from "@/modules/mission-discovery/data/outcomes";
 import { KEY_CHALLENGES } from "@/modules/mission-discovery/data/challenges";
@@ -150,9 +150,9 @@ const PeopleDirectory = () => {
 
         const directoryPeople: DirectoryPerson[] = usableProfiles.map((row) => {
           const visibility = resolveVisibility(row.visibility);
-          const firstName = row.first_name || "";
-          const lastName = row.last_name || "";
-          const name = `${firstName} ${lastName}`.trim() || t("peopleDir.fallbackName");
+          const name =
+            residentDisplayName(row.username, row.first_name, row.last_name) ||
+            t("peopleDir.fallbackName");
 
           return {
             userId: row.user_id,

@@ -1,7 +1,25 @@
 import { describe, expect, it } from "vitest";
-import { directoryProfilePath, matchesDirectoryQuery } from "../peopleDirectory";
+import {
+  directoryProfilePath,
+  FOUNDER_PUBLIC_NAME,
+  matchesDirectoryQuery,
+  residentDisplayName,
+} from "../peopleDirectory";
 
 const ann = { name: "Ann Lee", topTalent: "Catalyst", archetype: "The Weaver" };
+
+describe("founder card (issue #417)", () => {
+  it("opens the standard resident profile, not the static /sasha page", () => {
+    expect(directoryProfilePath("sasha", "u1")).toBe("/profile/u/sasha");
+    expect(directoryProfilePath("Sasha", "u1")).toBe("/profile/u/Sasha");
+  });
+  it("uses the public spelling for the founder only", () => {
+    expect(residentDisplayName("sasha", "Sasha", "Konstantinov")).toBe(FOUNDER_PUBLIC_NAME);
+    expect(FOUNDER_PUBLIC_NAME).toBe("Aleksandr Konstantinov");
+    expect(residentDisplayName("ann", "Ann", "Lee")).toBe("Ann Lee");
+    expect(residentDisplayName("ann", null, null)).toBe("");
+  });
+});
 
 describe("directoryProfilePath", () => {
   it("opens the root slug when the player has a username", () => {
