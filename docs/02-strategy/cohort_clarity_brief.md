@@ -42,7 +42,7 @@ Alexander Konstantinov (goes by Sasha) has a two-hour session that takes a found
 
 ## 4. Established facts (do not contradict these)
 
-- Total revenue received to date is **$6,259** (as of 2026-11-24, source: CRM). This is real money from real clients, not projections. Do not inflate it and do not describe the business as pre-revenue.
+- Total revenue received to date is **$6,814** (as of 2026-11-24, source: CRM). This is real money from real clients, not projections. Do not inflate it and do not describe the business as pre-revenue.
 - Roughly **nine client canvases** exist for named individuals who went through the method.
 - **One full program container has sold and is in delivery**: a two-month, eight-session container at $2,000, half paid up front, currently mid-delivery. This is the proof that a multi-week container converts, not just a single session.
 - **A second practitioner is delivering with the method** under her own practice, roughly twelve client sessions in a recent month. Her clients and income are hers, not counted in the figures above. This is the only existing evidence that the method transfers to another human.

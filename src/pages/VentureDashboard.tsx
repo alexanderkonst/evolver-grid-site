@@ -48,7 +48,7 @@ const REVENUE_TIMELINE = [
   { day: 223, date: "Oct 23", total: 4786, label: "B. ≈$2 in-kind (barter)" },
   { day: 233, date: "Nov 2", total: 5036, label: "G. $250 extra session (held Oct 28, received Nov 2)" },
   { day: 241, date: "Nov 10", total: 5436, label: "G. $400 pitch session" },
-  { day: 255, date: "Nov 24", total: 6536, label: "First success-based mentorship payment ($1,100) — current as of Nov 24, 2026" },
+  { day: 255, date: "Nov 24", total: 7091, label: "First success-based mentorship payment ($1,100) and a new Unique Business container — current as of Nov 24, 2026" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
@@ -56,11 +56,11 @@ const REVENUE_TIMELINE = [
 const KPIS = [
   {
     labelKey: "ventureDashboard.kpi.totalRevenue",
-    value: "$6,259",
-    subline: "$5,129 cash · $1,130 in-kind",
-    trend: "+$1,100",
+    value: "$6,814",
+    subline: "$5,684 cash · $1,130 in-kind",
+    trend: "+$1,655",
     trendLabel: "Nov 24",
-    detail: "Tracked relationship revenue: $6,536 ($6,259 + $277 rev share, pending)",
+    detail: "Tracked relationship revenue: $7,091 ($6,814 + $277 rev share, pending)",
     stamp: "as of 2026-11-24 · source: CRM",
     gold: true,
   },
