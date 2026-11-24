@@ -65,10 +65,10 @@ describe("mini-training 1 page", () => {
     expect(html).toContain("Press the button in step 1 first");
   });
 
-  it("shows no video frame while the ids are empty", () => {
+  it("shows one video frame per micro-module, after the button", () => {
     const html = render(profileWithGaps);
-    expect(html).not.toContain("<iframe");
-    expect(html).not.toContain('data-testid="video-');
+    for (let n = 1; n <= 8; n++) expect(html).toContain(`data-testid="video-${n}"`);
+    expect(html).toContain("youtube-nocookie.com/embed/");
   });
 
   it("starts at 0 of 8 and never says «course»", () => {
