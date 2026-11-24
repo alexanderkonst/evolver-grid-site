@@ -188,6 +188,28 @@ const Training = ({ userId, profile }: { userId: string; profile: MirrorProfile 
                 ) : null}
               </h2>
 
+              {embed ? (
+                <div className="aspect-video w-full overflow-hidden rounded-lg border border-border" data-testid={`video-${module.n}`}>
+                  <iframe
+                    src={embed}
+                    title={`${module.title}, short video`}
+                    className="h-full w-full"
+                    loading="lazy"
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              ) : null}
+
+              <Collapsible className="mt-3 mb-6">
+                <CollapsibleTrigger className="group inline-flex items-center gap-1 text-sm font-medium text-foreground underline-offset-2 hover:underline">
+                  Read instead
+                  <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" aria-hidden />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-3">
+                  <Paragraphs items={module.paragraphs} />
+                </CollapsibleContent>
+              </Collapsible>
               <div className="space-y-3">
                 {module.n === 6 ? (
                   <LinePicker lines={lines} picked={pickedLine} onPick={setPickedLine} taps={state.lineTaps} />
@@ -252,28 +274,6 @@ const Training = ({ userId, profile }: { userId: string; profile: MirrorProfile 
                 })}
               </div>
 
-              {embed ? (
-                <div className="mt-4 aspect-video w-full overflow-hidden rounded-lg border border-border" data-testid={`video-${module.n}`}>
-                  <iframe
-                    src={embed}
-                    title={`${module.title}, short video`}
-                    className="h-full w-full"
-                    loading="lazy"
-                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              ) : null}
-
-              <Collapsible className="mt-4">
-                <CollapsibleTrigger className="group inline-flex items-center gap-1 text-sm font-medium text-foreground underline-offset-2 hover:underline">
-                  Read instead
-                  <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" aria-hidden />
-                </CollapsibleTrigger>
-                <CollapsibleContent className="mt-3">
-                  <Paragraphs items={module.paragraphs} />
-                </CollapsibleContent>
-              </Collapsible>
             </section>
           );
         })}
