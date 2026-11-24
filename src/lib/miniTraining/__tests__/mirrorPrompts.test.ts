@@ -103,12 +103,20 @@ describe("the eight buttons", () => {
     expect(prompt("7a", full)).toBe("Help me with my life. Up to 5 lines, no emojis.");
     const b = prompt("7b", full);
     expect(b).toContain("My weakest life area now: wealth.");
+    expect(b).toContain("My most important life area: health.");
     expect(b).toContain("My archetype:");
+    expect(stepById("7a")!.isolated).toBe(true);
     expect(b).toContain("Three moves that use my talents.");
   });
 
   it("#7b leaves the weakest area out when it is empty (a tie)", () => {
     expect(prompt("7b", { ...full, weakestArea: null })).not.toMatch(/weakest/);
+  });
+
+  it("#8 asks one question at a time and lets the player answer", () => {
+    expect(prompt("8", full)).toContain("Ask only the first question now and wait for my answer.");
+    expect(stepById("8")!.replies).toBe(4);
+    expect(stepById("5")!.replies).toBe(2);
   });
 
   it("#8 ends with the exact last line from the spec and offers Save plan", () => {

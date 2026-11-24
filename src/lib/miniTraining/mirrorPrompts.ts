@@ -30,8 +30,8 @@ export type MirrorProfile = {
 /** What the Copy button writes where the weakest area was. */
 export const WEAKEST_AREA_MASK = "[an area of my life]";
 
-/** The one token #6 carries until the player taps a line. */
-export const LINE_TOKEN = "[LINE]";
+/** What #6 shows where the line goes until the player taps one (never a raw placeholder). */
+export const LINE_TOKEN = "(tap a line above)";
 
 /** Every prompt ends with this (spec: «Up to 5 lines, no emojis»). */
 const CLOSER = "Up to 5 lines, no emojis.";
@@ -124,6 +124,10 @@ export type PromptStep = {
   savePlan?: boolean;
   /** #6: the prompt carries [LINE], filled by tapping a line of an earlier answer. */
   needsLine?: boolean;
+  /** #7a: sent alone, like a brand-new chat, so the vague question gets a vague answer. */
+  isolated?: boolean;
+  /** #5, #8: the AI asks back, so the player can answer under its reply (voice or text). */
+  replies?: number;
 };
 
 const nameLine = (p: MirrorProfile) => labelLine("My name", p.firstName);
@@ -192,6 +196,7 @@ export const MIRROR_STEPS: PromptStep[] = [
     module: 5,
     title: "Ask AI for a plan for this week",
     savePlan: true,
+    replies: 2,
     build: (p) => {
       const mission = missionLine(p);
       const priority = labelLine("My most important life area", p.priorityArea);
@@ -224,6 +229,7 @@ export const MIRROR_STEPS: PromptStep[] = [
     id: "7a",
     module: 7,
     title: "First, the vague question",
+    isolated: true,
     build: () => join(["Help me with my life.", CLOSER]),
   },
   {
@@ -234,6 +240,7 @@ export const MIRROR_STEPS: PromptStep[] = [
       join([
         nameLine(p),
         archetypeLine(p),
+        labelLine("My most important life area", p.priorityArea),
         labelLine("My weakest life area now", p.weakestArea),
         talentsLine(p, "My talents"),
         "Three moves that use my talents.",
@@ -245,9 +252,10 @@ export const MIRROR_STEPS: PromptStep[] = [
     module: 8,
     title: "Talk to it like a colleague",
     savePlan: true,
+    replies: 4,
     build: () =>
       join([
-        "You know my plan from this conversation. Ask me three questions, one at a time, to understand what I want most right now. Then tell me which of the three steps we start with tomorrow.",
+        "You know my plan from this conversation. Ask me three questions, one at a time, to understand what I want most right now. Ask only the first question now and wait for my answer. After my third answer, tell me which of the three steps we start with tomorrow.",
         // Spec: the last line of the #8 prompt, verbatim.
         "Your final answer: up to 5 lines, no emojis.",
       ]),

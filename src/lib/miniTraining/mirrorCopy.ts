@@ -116,5 +116,5 @@ export const MIRROR_MODULE_COPY: MirrorModuleCopy[] = [
 
 export const MIRROR_CLOSING: string[] = [
   "Half an hour ago AI was a random helper. Now it knows your talents, your mission and your plan, and you know two things about it: it reflects how clearly you speak, and it likes to please. You stay the judge.",
-  "Your plan is saved in this chat. Start the first step tomorrow.",
+  "Your plan is saved on this device. Start the first step tomorrow.",
 ];

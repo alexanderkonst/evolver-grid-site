@@ -4,6 +4,7 @@ import { describe, expect, it, vi } from "vitest";
 import type { MirrorProfileState } from "@/hooks/useMirrorProfile";
 
 const hook = vi.hoisted(() => ({ value: { status: "loading" } as MirrorProfileState }));
+vi.mock("@/integrations/supabase/client", () => ({ supabase: { functions: { invoke: vi.fn() } } }));
 vi.mock("@/hooks/useMirrorProfile", () => ({ useMirrorProfile: () => hook.value }));
 
 import MiniTrainingMirror from "../MiniTrainingMirror";
@@ -58,10 +59,11 @@ describe("mini-training 1 page", () => {
     expect(html).not.toContain('data-testid="stub-notice"');
   });
 
-  it("#6 asks for step 1 first, and shows [LINE] until a line is tapped", () => {
+  it("#6 asks for step 1 first, and asks for a tap until a line is tapped", () => {
     const html = render(profileWithGaps);
     expect(html).toContain('data-testid="line-picker"');
-    expect(html).toContain("This line would fit anyone: [LINE].");
+    expect(html).toContain("This line would fit anyone: (tap a line above).");
+    expect(html).not.toContain("[LINE]");
     expect(html).toContain("Press the button in step 1 first");
   });
 

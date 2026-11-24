@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import { Check, Copy, Mic, MicOff, Pencil, Send, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 /**
  * PromptButtonCard (issue #392, spec: 01-ai-as-a-mirror.md «The Ask AI button»).
@@ -146,6 +147,7 @@ const PromptButtonCard = ({
       }
     }
     setCopied(true);
+    toast("Copied. Paste it into any AI.");
     window.setTimeout(() => setCopied(false), 2000);
   };
 
