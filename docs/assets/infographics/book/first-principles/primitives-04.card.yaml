@@ -1,0 +1,18 @@
+id: primitives-04
+chapter: "3.1"
+number: 4
+of: 19
+title: Uniqueness and Myth
+caption: Where the energy comes from, and what it does to the space.
+skin: v4
+max_words: 47
+parity: {module: primitives_v4, fn: p04, index: 4}
+text:
+  eyebrow: "Business from first principles"
+  field: "the myth: a field"
+  uniqueness: {title: Uniqueness, sub: the source the energy flows from}
+  myth: {title: Myth, sub: polarizes people and makes reality more coherent around it}
+  quote: Not a distortion field. A coherence field.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p04)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 04)

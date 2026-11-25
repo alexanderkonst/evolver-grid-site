@@ -1,0 +1,20 @@
+id: noosphere-3
+chapter: "5"
+number: 3
+of: 3
+title: "Most Venture Funds Lose to an Index Fund"
+caption: ""
+skin: v4
+max_words: 74
+parity: {module: primitives_v4, fn: n3, index: 3}
+text:
+  eyebrow: "Business from first principles  ·  the noosphere"
+  caption: "The Kauffman Foundation checked 100 venture funds it invested in over 20 years (2012)."
+  rows:
+    - {head: "20 funds", text: "clearly beat the stock market (by 3%+ a year)"}
+    - {head: "18 funds", text: "about the same as the stock market (derived: 100 − 20 − 62)"}
+    - {head: "62 funds", text: "did worse than a simple index fund, after fees"}
+  quote: "Managers earn fees either way. Founders and investors carry the risk."
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (n3)
+  - docs/assets/infographics/BOOK.md (The noosphere, card 3)

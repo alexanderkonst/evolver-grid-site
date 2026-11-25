@@ -1,0 +1,98 @@
+# The Book: single source of truth for order, chapters and status. Edit this file, then run
+#   python3 kit/book_build.py          (from docs/assets/infographics/)
+# It renders the cards, copies the PNGs to public/, and regenerates src/data/infographicBook.ts,
+# the generated blocks of BOOK.md and book/sheet.png. See kit/README.md (Book recipes).
+#
+# Card entry:    - {id, spec, status}   spec = path of <card>.card.yaml relative to this file.
+#                title and caption are read from the spec (one place), never typed here.
+# status:        draft | approved | to-make, optionally followed by a version: "draft v4".
+# Placeholder:   a chapter or section with `status: to-make` and no cards, or a card entry with
+#                status: to-make and no spec (title:/caption: given here). Shown in the contents as
+#                "(to make)"; not rendered, not in the reader's card grid.
+# Chapter:       number, title, optional note (shown in the reader), optional toc (replaces the
+#                automatic suffix in BOOK.md contents), sections: [...] or cards: [...].
+title: The Book of Psychoactive Infographics
+chapters:
+  - number: "1"
+    title: Activate Your Dormant Potential
+    note: "the course's main infographic"
+    status: to-make
+  - number: "2"
+    title: See yourself
+    sections:
+      - number: "2.1"
+        title: "Uniqueness (top talent)"
+        status: to-make
+      - number: "2.2"
+        title: Mission
+        status: to-make
+      - number: "2.3"
+        title: Resources
+        status: to-make
+      - number: "2.4"
+        title: Quality of life
+        status: to-make
+  - number: "3"
+    title: "Branch A, default: Unique Business"
+    sections:
+      - number: "3.1"
+        title: Business from first principles
+        cards:
+          - {id: primitives-01, spec: first-principles/primitives-01.card.yaml, status: draft v4}
+          - {id: primitives-02, spec: first-principles/primitives-02.card.yaml, status: draft v4}
+          - {id: primitives-03, spec: first-principles/primitives-03.card.yaml, status: draft v4}
+          - {id: primitives-04, spec: first-principles/primitives-04.card.yaml, status: draft v4}
+          - {id: primitives-05, spec: first-principles/primitives-05.card.yaml, status: draft v4}
+          - {id: primitives-06, spec: first-principles/primitives-06.card.yaml, status: draft v4}
+          - {id: primitives-07, spec: first-principles/primitives-07.card.yaml, status: draft v4}
+          - {id: primitives-08, spec: first-principles/primitives-08.card.yaml, status: draft v4}
+          - {id: primitives-09, spec: first-principles/primitives-09.card.yaml, status: draft v4}
+          - {id: primitives-10, spec: first-principles/primitives-10.card.yaml, status: draft v4}
+          - {id: primitives-11, spec: first-principles/primitives-11.card.yaml, status: draft v4}
+          - {id: primitives-12, spec: first-principles/primitives-12.card.yaml, status: draft v4}
+          - {id: primitives-13, spec: first-principles/primitives-13.card.yaml, status: draft v4}
+          - {id: primitives-14, spec: first-principles/primitives-14.card.yaml, status: draft v4}
+          - {id: primitives-15, spec: first-principles/primitives-15.card.yaml, status: draft v4}
+          - {id: primitives-16, spec: first-principles/primitives-16.card.yaml, status: draft v4}
+          - {id: primitives-17, spec: first-principles/primitives-17.card.yaml, status: draft v4}
+          - {id: primitives-18, spec: first-principles/primitives-18.card.yaml, status: draft v4}
+          - {id: primitives-19, spec: first-principles/primitives-19.card.yaml, status: draft v4}
+      - number: "3.2"
+        title: Choosing your client
+        cards:
+          - {id: ideal-client-01, spec: ideal-client/ideal-client-01.card.yaml, status: draft v1}
+          - {id: ideal-client-02, spec: ideal-client/ideal-client-02.card.yaml, status: draft v1}
+          - {id: ideal-client-03, spec: ideal-client/ideal-client-03.card.yaml, status: draft v1}
+          - {id: ideal-client-04, spec: ideal-client/ideal-client-04.card.yaml, status: draft v1}
+          - {id: ideal-client-05, spec: ideal-client/ideal-client-05.card.yaml, status: draft v1}
+          - {id: ideal-client-06, spec: ideal-client/ideal-client-06.card.yaml, status: draft v1}
+          - {id: ideal-client-07, spec: ideal-client/ideal-client-07.card.yaml, status: draft v1}
+          - {id: ideal-client-08, spec: ideal-client/ideal-client-08.card.yaml, status: draft v1}
+          - {id: ideal-client-09, spec: ideal-client/ideal-client-09.card.yaml, status: draft v1}
+          - {id: III.01, spec: laws/III.01.card.yaml, status: draft v6}
+          - {id: III.02, spec: laws/III.02.card.yaml, status: draft v6}
+      - number: "3.3"
+        title: Results and fair exchange
+        cards:
+          - {id: VI.01, spec: laws/VI.01.card.yaml, status: draft v6}
+          - {id: VI.02, spec: laws/VI.02.card.yaml, status: draft v6}
+          - {id: VI.03, spec: laws/VI.03.card.yaml, status: draft v6}
+  - number: "4"
+    title: "Branch B: Grow"
+    note: "further learning and activation of potential"
+    sections:
+      - number: "4.1"
+        title: Consciousness Meets Science
+        note: "the course's main infographic"
+        status: to-make
+      - number: "4.2"
+        title: Next Grow courses
+        status: to-make
+        toc: "(and so on)"
+  - number: "5"
+    title: "Closing: the system behind it"
+    cards:
+      - {id: VII.01, spec: laws/VII.01.card.yaml, status: draft v6}
+      - {id: noosphere-1, spec: noosphere/noosphere-1.card.yaml, status: draft v4}
+      - {id: noosphere-2, spec: noosphere/noosphere-2.card.yaml, status: draft v4}
+      - {id: noosphere-3, spec: noosphere/noosphere-3.card.yaml, status: draft v4}

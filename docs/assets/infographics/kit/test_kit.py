@@ -8,7 +8,7 @@ import unittest
 HERE = os.path.dirname(os.path.abspath(__file__))
 INF = os.path.dirname(HERE)
 sys.path.insert(0, INF)
-from kit import book_sync, compare, lint, skins, spec as specmod  # noqa: E402
+from kit import book_build, book_sync, compare, lint, skins, spec as specmod  # noqa: E402
 
 
 class Fake:
@@ -113,6 +113,153 @@ class BookSync(unittest.TestCase):
 
     def test_main_content_passes(self):
         self.assertEqual(book_sync.main([]), 0)
+
+
+MANIFEST = """title: T
+chapters:
+  - number: "1"
+    title: Opening
+    status: to-make
+    note: the main one
+  - number: "2"
+    title: Part
+    sections:
+      - number: "2.1"
+        title: First
+        cards:
+%s
+      - number: "2.2"
+        title: Later
+        status: to-make
+        toc: "(and so on)"
+"""
+BOOKMD = """# Book
+<!-- book:begin toc (generated) -->
+old
+<!-- book:end toc -->
+prose stays
+<!-- book:begin cards-proof (generated) -->
+old
+<!-- book:end cards-proof -->
+tail
+"""
+
+
+class BookBuild(unittest.TestCase):
+    """The manifest drives order, reader data and BOOK.md; --check notices drift. Built in a temp copy with two proof cards."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.tmp = tempfile.TemporaryDirectory()
+        r = cls.tmp.name
+        os.makedirs(os.path.join(r, "book", "proof")); os.makedirs(os.path.join(r, "public"))
+        for n in ("ideal-client-02", "laws-v4-l3"):
+            for ext in (".card.yaml", ".py"):
+                src = os.path.join(INF, "kit", "proof", n + ext)
+                with open(src, encoding="utf-8") as f:
+                    t = f.read()
+                if ext == ".card.yaml":  # make them Book cards of chapter 2.1
+                    t = t.replace('chapter: "3.2"', 'chapter: "2.1"').replace('chapter: "3.3"', 'chapter: "2.1"')
+                with open(os.path.join(r, "book", "proof", n + ext), "w", encoding="utf-8") as f:
+                    f.write(t)
+        cls.paths = book_build.Paths(book=os.path.join(r, "book"), public=os.path.join(r, "public"),
+                                     ts=os.path.join(r, "infographicBook.ts"), md=os.path.join(r, "BOOK.md"))
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.tmp.cleanup()
+
+    def write(self, order):
+        cards = "\n".join(f"          - {{id: {i}, spec: proof/{i}.card.yaml, status: draft v1}}" for i in order)
+        with open(os.path.join(self.paths.book, "book.yaml"), "w", encoding="utf-8") as f:
+            f.write(MANIFEST % cards)
+        with open(self.paths.md, "w", encoding="utf-8") as f:
+            f.write(BOOKMD)
+
+    def test_text_generation_follows_manifest_order(self):
+        self.write(["laws-v4-l3", "ideal-client-02"])
+        title, chapters, errors = book_build.load(self.paths)
+        self.assertEqual(errors, [])
+        ts = book_build.gen_ts(title, chapters)
+        self.assertLess(ts.index('id: "laws-v4-l3"'), ts.index('id: "ideal-client-02"'))
+        self.assertIn('coming: true', ts)
+        self.assertIn('note: "the main one"', ts)
+        toc = book_build.gen_toc(chapters).splitlines()
+        self.assertEqual(toc, ["1. Opening (the main one) (to make)", "2. Part", "   - 2.1 First (2 cards)", "   - 2.2 Later (and so on)"])
+        lst = book_build.gen_cards_list(chapters, "proof").splitlines()
+        self.assertTrue(lst[0].startswith("- [Seen Value Restores the Exchange](book/proof/laws-v4-l3.png) · "))
+        self.assertTrue(lst[0].endswith("· status: draft v1"))
+
+    def test_markers_replace_only_generated_blocks(self):
+        md, found = book_build.apply_markers(BOOKMD, {"toc": "NEW", "cards-proof": "- x"})
+        self.assertEqual(found, ["toc", "cards-proof"])
+        self.assertIn("<!-- book:begin toc (generated) -->\nNEW\n<!-- book:end toc -->\nprose stays", md)
+        self.assertEqual(book_build.apply_markers(md, {"toc": "NEW", "cards-proof": "- x"})[0], md)  # idempotent
+
+    def test_manifest_errors_are_named(self):
+        self.write(["laws-v4-l3", "ideal-client-02"])
+        path = os.path.join(self.paths.book, "book.yaml")
+        with open(path, encoding="utf-8") as f:
+            t = f.read()
+        bad = t.replace("id: ideal-client-02, spec: proof/ideal-client-02", "id: ideal-client-03, spec: proof/ideal-client-02") \
+               .replace("status: draft v1}\n", "status: nope}\n", 1)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(bad)
+        _, _, errors = book_build.load(self.paths)
+        joined = "\n".join(errors)
+        self.assertIn("status 'nope'", joined)
+        self.assertIn("spec file is named ideal-client-02, the id must match", joined)
+
+    def test_build_check_reorder_and_drift(self):
+        self.write(["ideal-client-02", "laws-v4-l3"])
+        out = []
+        self.assertEqual(book_build.build(self.paths, say=out.append), 0, out)
+        self.assertEqual(book_build.check(self.paths, say=out.append), 0, out)
+        with open(self.paths.ts, encoding="utf-8") as f:
+            before = f.read()
+        self.assertIn("GENERATED by", before)
+        # reordering = moving a line: the reader data, BOOK.md and the sheet follow, PNGs are not re-rendered
+        self.write(["laws-v4-l3", "ideal-client-02"])
+        self.assertNotEqual(book_build.check(self.paths, skip_lint=True, say=lambda *_: None), 0)  # out of sync until built
+        out = []
+        self.assertEqual(book_build.build(self.paths, say=out.append), 0, out)
+        self.assertIn("rendered 0 of 2 card(s)", "\n".join(out))
+        with open(self.paths.ts, encoding="utf-8") as f:
+            after = f.read()
+        self.assertLess(after.index("laws-v4-l3"), after.index("ideal-client-02"))
+        self.assertEqual(book_build.check(self.paths, skip_lint=True, say=lambda *_: None), 0)
+        # a hand edit of a generated file, a stale public copy and an edited spec are all caught
+        with open(self.paths.ts, "a", encoding="utf-8") as f:
+            f.write("// hand edit\n")
+        self.assertNotEqual(book_build.check(self.paths, skip_lint=True, say=lambda *_: None), 0)
+        book_build.build(self.paths, say=lambda *_: None)
+        pub = os.path.join(self.paths.public, "proof", "laws-v4-l3.png")
+        with open(pub, "ab") as f:
+            f.write(b"x")
+        self.assertNotEqual(book_build.check(self.paths, skip_lint=True, say=lambda *_: None), 0)
+        book_build.build(self.paths, say=lambda *_: None)
+        spec = os.path.join(self.paths.book, "proof", "ideal-client-02.card.yaml")
+        with open(spec, "a", encoding="utf-8") as f:
+            f.write("# touched\n")
+        self.assertNotEqual(book_build.check(self.paths, skip_lint=True, say=lambda *_: None), 0)
+        out = []
+        book_build.build(self.paths, say=out.append)
+        self.assertIn("rendered 1 of 2 card(s)", "\n".join(out))
+        self.assertEqual(book_build.check(self.paths, say=lambda *_: None), 0)
+
+
+class Waivers(unittest.TestCase):
+    def test_waive_turns_a_named_fail_into_a_labelled_pass(self):
+        card = Fake("v4", [text("tiny", size=12)] + FOOT)
+        spec = specmod.Spec(GOOD_SPEC, skin="v4", waive={"min-font": "legacy 12px note"})
+        ok, detail = res(card, spec)["min-font"]
+        self.assertTrue(ok); self.assertIn("WAIVED (legacy 12px note)", detail); self.assertIn('"tiny" is 12px', detail)
+        self.assertFalse(res(card)["min-font"][0])  # no waiver, still a FAIL
+        self.assertFalse(res(card, specmod.Spec(spec, waive={"spec-fields": "no"}))["spec-fields"][0])
+
+    def test_empty_caption_is_allowed_when_the_book_has_none(self):
+        self.assertEqual(specmod.missing(specmod.Spec(GOOD_SPEC, caption="")), [])
+        self.assertIn("caption", specmod.missing(specmod.Spec({k: v for k, v in GOOD_SPEC.items() if k != "caption"})))
 
 
 class OldScripts(unittest.TestCase):

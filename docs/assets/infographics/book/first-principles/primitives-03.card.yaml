@@ -1,0 +1,22 @@
+id: primitives-03
+chapter: "3.1"
+number: 3
+of: 19
+title: The DNA of a Business
+caption: Six cells. Every business that holds has all six.
+skin: v4
+max_words: 46
+parity: {module: primitives_v4, fn: p03, index: 3}
+waive:   # legacy layout, ported pixel-for-pixel; fix by redesign, not by editing lint
+  fit: "engine layout: cell tag wider than its maxw"
+  margins: "engine layout: cell tag past the margin"
+  min-font: "engine layout: cell numbers are 15px"
+text:
+  eyebrow: "Business from first principles"
+  source1: "the founder\u2019s uniqueness"
+  source2: the single source
+  cells: [Uniqueness, Myth, Tribe, Transition, Transformational Promise, Tagline]
+  quote: Six is the core. Everything else grows on top.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p03)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 03)

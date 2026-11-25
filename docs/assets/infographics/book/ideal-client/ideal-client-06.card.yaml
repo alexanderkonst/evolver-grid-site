@@ -1,0 +1,28 @@
+id: ideal-client-06
+chapter: "3.2"
+number: 6
+of: 9
+title: "The Product Ladder"
+caption: "Describe the path you walked, then cut it into pieces that make sense."
+skin: v4
+max_words: 85
+parity: {module: ideal_client, fn: k6, index: 6}
+text:
+  eyebrow: "Offers · Your path in pieces"
+  rungs:
+    - {title: "Long-term container", sub: "the whole way to where you now stand"}
+    - {title: "Higher ticket", sub: "the next product, maybe a two-day"}
+    - {title: "Entry product", sub: "very inexpensive, quick to get, so trust forms"}
+    - {title: "Free lead magnet", sub: "something they find useful"}
+  you: "you"
+  top:
+    title: "Where you stand now"
+    sub: "the next village"
+  bottom:
+    title: "Their threshold"
+    sub: "they come to the pier, ready to cross"
+  delta: "THE DELTA"
+  quote: "You simply take people to the point where you stand now."
+sources:
+  - docs/assets/infographics/engine-v4/ideal_client.py (k6)
+  - docs/assets/infographics/BOOK.md (Find Your Ideal Client and Take Them Across, card 06)

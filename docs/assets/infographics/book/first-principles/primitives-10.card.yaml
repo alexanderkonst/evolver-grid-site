@@ -1,0 +1,20 @@
+id: primitives-10
+chapter: "3.1"
+number: 10
+of: 19
+title: Two Signals
+caption: Co-founders are two signals. They amplify or they collide.
+skin: v4
+max_words: 28
+parity: {module: primitives_v4, fn: p10, index: 10}
+text:
+  eyebrow: "Business from first principles"
+  tune: in tune
+  conflict: in conflict
+  plus: "+"
+  amplify: they amplify
+  friction: friction
+  quote: Friction means they want different things.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p10)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 10)

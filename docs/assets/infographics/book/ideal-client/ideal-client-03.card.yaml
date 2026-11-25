@@ -1,0 +1,20 @@
+id: ideal-client-03
+chapter: "3.2"
+number: 3
+of: 9
+title: "Three Kinds of Marketing"
+caption: "Speak to who they are, what they believe, and where they are crossing."
+skin: v4
+max_words: 61
+parity: {module: ideal_client, fn: k3, index: 3}
+waive:   # legacy layout, ported pixel-for-pixel; fix by redesign, not by editing lint
+  margins: "engine layout: side columns sit outside the 80px margin"
+text:
+  eyebrow: "Ideal client · Marketing"
+  columns:
+    - {title: "Identity", line: "How they describe themselves.", detail: "Your own self-description is their portrait.", label: "similarity"}
+    - {title: "Myth", line: "What they believe.", detail: "They resonate with the story you live by.", label: "similarity"}
+    - {title: "Threshold", line: "Where they are crossing.", detail: "The moment of transition you have already made.", label: "the secret sauce"}
+sources:
+  - docs/assets/infographics/engine-v4/ideal_client.py (k3)
+  - docs/assets/infographics/BOOK.md (Find Your Ideal Client and Take Them Across, card 03)

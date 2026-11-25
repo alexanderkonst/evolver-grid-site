@@ -1,0 +1,19 @@
+id: primitives-15
+chapter: "3.1"
+number: 15
+of: 19
+title: Equity VC Is a Casino
+caption: Investors who buy shares are placing bets.
+skin: v4
+max_words: 52
+parity: {module: primitives_v4, fn: p15, index: 15}
+text:
+  eyebrow: "Business from first principles"
+  steps:
+    - {title: "1  Bet", sub: we read the market better than others}
+    - {title: "2  Fuel", sub: pump the founder with money to go all in}
+    - {title: "3  Wait", sub: "the bet plays, or it doesn't"}
+  quote: Some truth in it. And primitives nobody sees.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p15)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 15)

@@ -1,0 +1,22 @@
+id: ideal-client-08
+chapter: "3.2"
+number: 8
+of: 9
+title: "The Key Is Inside"
+caption: "People look only at the doors available to them, not inward."
+skin: v4
+max_words: 41
+parity: {module: ideal_client, fn: k8, index: 8}
+text:
+  eyebrow: "Uniqueness · Seeing your place"
+  rows:
+    - "Village"
+    - "City district"
+    - "Silicon Valley"
+  doors: "the doors around you"
+  inside: "inside"
+  see: "See yourself first."
+  then: "Then the doors where you fit open to you."
+sources:
+  - docs/assets/infographics/engine-v4/ideal_client.py (k8)
+  - docs/assets/infographics/BOOK.md (Find Your Ideal Client and Take Them Across, card 08)

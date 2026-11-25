@@ -1,0 +1,20 @@
+# Rebuilt from the committed PNG (draft v6; the v6 script is not in the repo). Style source: engine-v4/laws_v4.py (l6).
+id: VII.01
+chapter: "5"
+number: 6
+of: 6
+title: One Transformation, Three Forms
+caption: Each shift we deliver exists as a product, a game step and a software module.
+skin: v4
+max_words: 41
+text:
+  eyebrow: "Our system · How it is built"
+  centre: "one shift"
+  forms:
+    top:   {title: Product,   sub: you buy it}
+    right: {title: Game step, sub: you live it}
+    left:  {title: Module,    sub: the code runs it}
+sources:
+  - docs/assets/infographics/book/laws/VII.01.png
+  - docs/assets/infographics/BOOK.md (VII.01)
+  - docs/assets/infographics/engine-v4/laws_v4.py (style source: l6 one shift, three prisms)

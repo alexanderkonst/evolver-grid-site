@@ -1,0 +1,24 @@
+id: primitives-09
+chapter: "3.1"
+number: 9
+of: 19
+title: Primitive or Noise
+caption: Skip the primitive and you start solving with your head.
+skin: v4
+max_words: 53
+parity: {module: primitives_v4, fn: p09, index: 9}
+text:
+  eyebrow: "Business from first principles"
+  bullet: "—  "
+  primitive:
+    title: Primitive
+    label: start here
+    items: [a real story, progress you can feel, one clear sentence]
+  noise:
+    title: Noise
+    label: skip it
+    items: [a puzzle that never solves, you convince yourself you moved, no certainty at all]
+  quote: Begin with what cannot be removed.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p09)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 09)

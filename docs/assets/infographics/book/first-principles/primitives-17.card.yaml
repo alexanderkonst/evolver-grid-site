@@ -1,0 +1,23 @@
+id: primitives-17
+chapter: "3.1"
+number: 17
+of: 19
+title: Sell What They Want
+caption: Give what they need inside it.
+skin: v4
+max_words: 60
+parity: {module: primitives_v4, fn: p17, index: 17}
+text:
+  eyebrow: "Business from first principles"
+  need: the need
+  door: "the door: the want"
+  sell_need:
+    title: Sell the need
+    sub: "they barely notice what they got; the value stays hidden"
+  sell_want:
+    title: Sell the want
+    sub: "they get it, and find out it works differently: the real gift shows itself"
+  quote: The want is the door. The need is the room.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p17)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 17)
