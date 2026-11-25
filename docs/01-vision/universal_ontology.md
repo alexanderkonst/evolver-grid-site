@@ -166,6 +166,14 @@ Everything is a holon. This is its deepest nature.
 >
 > *Он показывает двойственное деление, и также первое прото-закручивание.»* (typed, November 25, 2026, 00:18 MST, as written)
 
+### 17.5 The Instant Cut, the Uneven Winding, the First Events
+
+> Asked (November 25, 2026, 00:45 MST): when the ray cuts the ball, is it already known which way it turns, right or left? Or is that decided later?
+
+> *«нет, разрезается мгновенно, нет еще времени. Первое действие почти полностью дискретное, но создает пространство первое, первое измерение и так как сначала пульс “уходит", а потом “приходит” (что происходит мгновенно, безвременно (в пределе единомоментно) но уже прото-пространственно, то разница потенциалов и закручивание. Закручивание неравномерно по одной стрелке часов, а по мере “продвижения” луча, то есть тоже с прото-градиентом - вот что мне приходит прямо сейчас. Инь Янь показывает устаканившееся следствие этого прото-следа создания разницы потенциала, и поэтому тор. Эта динамика закладывается самыми первыми событиями. И теперь у нас есть математика и физика обоих, и изображения которыми я делился, да и физика рог-тора все же показывает и известна?*
+>
+> *Где мы прокладываем путь, так это в самых первых событиях. Которые суть природы реальности.»* (typed, November 25, 2026, 00:52 MST, as written)
+
 **Honesty marker:** recognition, held as given, awaiting its articulation. Sits beside §16 (the diameter of the limit point, two holes in one), §11.1, §13 (pulse before ray) and §15.1 (the point without directions). Not yet reconciled with them.
 
 ---
@@ -1439,6 +1447,7 @@ Asking "which came first, creation or evolution?" is like asking "which came fir
 ---
 
 *Universal Ontology v3.0*
+*Updated: November 25, 2026, 00:52 MST (§17.5 The Instant Cut, the Uneven Winding, the First Events: the cut is instantaneous, no time yet; the first action almost fully discrete, creating the first space and dimension; the pulse goes out and comes back in one instant; winding uneven, with a proto-gradient along the ray; yin-yang as its settled trace, hence the torus; the path is laid in the very first events; recorded verbatim with dates)*
 *Updated: November 25, 2026 (§17.4 The Limit Point Is a Ball: outgoing and incoming simultaneous in the limit; the ray goes around the ball and cuts it in half; ray = vector = radius = axis = dimension = proto-distance; proto-difference of potential, the system winds; yin-yang as dual division and first proto-winding; recorded verbatim with dates)*
 *Updated: November 24, 2026, late (§17 The November 24 Recognition, Late: the two ends of the diameter are simultaneous; the act of self-relation and pulse happens inside the limit point; ray, light, vector, impulse, pulse as one invariant; not settled by words; the Si–Do phase transition; recorded verbatim with dates)*
 *Updated: November 24, 2026 (§16 The November 24 Recognition: the torus winds as a consequence of the black-white hole, the system of two light cones as the two ends of the diameter of the limit point, two rays and a potential difference giving the second vector that winds the proto-system and starts time; recorded verbatim)*
