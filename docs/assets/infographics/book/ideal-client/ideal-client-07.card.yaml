@@ -1,0 +1,20 @@
+id: ideal-client-07
+chapter: "3.2"
+number: 7
+of: 9
+title: "Your Method Already Exists"
+caption: "You've delivered results. A structure was there, even if no one saw it."
+skin: v4
+max_words: 54
+parity: {module: ideal_client, fn: k7, index: 7}
+text:
+  eyebrow: "Offers · From sessions to product"
+  chain:
+    - {title: "Recorded sessions", sub: "phone voice memo is enough"}
+    - {title: "Transcripts", sub: ""}
+    - {title: "AI synthesis", sub: "finds the method you used"}
+    - {title: "Your product", sub: "page · infographic · entry course"}
+  quote: "You don't build from zero. Record every session from now on."
+sources:
+  - docs/assets/infographics/engine-v4/ideal_client.py (k7)
+  - docs/assets/infographics/BOOK.md (Find Your Ideal Client and Take Them Across, card 07)

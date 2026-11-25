@@ -10,6 +10,7 @@ Needs `pip install pillow numpy pyyaml` (matplotlib + scipy only for the old `fy
 | `skins.py` | skins as token sets: `v4` (default), `grayscale`, `moonworld` |
 | `spec.py`, `render.py` | load `<card>.card.yaml`; import `<card>.py`, call `build(spec)`, save `<card>.png` |
 | `lint.py` | 8 rules on a rendered card, read from `card.log` (not image recognition) |
+| `book_build.py` | the Book from one manifest: `book/book.yaml` → render, lint, PNGs, reader data, BOOK.md blocks, `book/sheet.png`; `--check` for CI (see Book below) |
 | `book_sync.py` | `--check`: spec title/caption equal `BOOK.md` and `src/data/infographicBook.ts` |
 | `sheet.py` | one contact sheet PNG per batch: grid, each card with id + title |
 | `compare.py` | mean abs pixel diff of a ported card against the engine-v4 render it came from |
@@ -39,12 +40,13 @@ One file per card, beside its script and PNG: `<card>.card.yaml`, `<card>.py`, `
 | `id` | yes | Book id: `ideal-client-02`, `primitives-07`, `III.01` |
 | `chapter` | yes | Book chapter number as a string, `"3.2"` |
 | `title` | yes | the neon title on the card; equals the Book title |
-| `caption` | yes | the one line under the title; equals the Book caption (`""` only if the Book has none) |
+| `caption` | yes | the one line under the title; equals the Book caption (`""` only if the Book has none, then the script draws its own line from `text`) |
 | `skin` | yes | `v4` \| `grayscale` \| `moonworld` |
 | `text` | yes | every other on-card string, any shape your script wants. `eyebrow` is read by `vocab.card()` |
 | `sources` | yes | list of where it came from: files, calls, sessions |
 | `number`, `of` | no | footer `NN / TT` (default 1 / 1) |
 | `max_words` | no | waiver above the skin's 25. Only for ported legacy cards; shows up in the lint line |
+| `waive` | no | `{rule: reason}`: a rule a ported legacy card fails by its original layout (`fit`, `margins`, `min-font`, ...). The lint line says `WAIVED (reason)` and keeps the detail. Never for `spec-fields` |
 | `parity` | no | `{module, fn, index}`: the engine-v4 call `compare.py` diffs against |
 
 Full example, `proof/ideal-client-02.card.yaml`:
@@ -116,13 +118,40 @@ What lint sees: everything drawn through the vocabulary (`card.log`). Raw `c.d.*
 
 `python3 kit/sheet.py kit/proof` writes `kit/proof/contact-sheet.png` (3 columns, id + title under each card). `--render` draws the cards first, `--out` and `--cols` as named.
 
+## Book
+
+`book/book.yaml` is the single source for the Book: chapters → sections → cards, in reading order. Each card entry is `{id, spec, status}`; title and caption come from the card's spec, never from the manifest. Status: `draft | approved | to-make` plus an optional version (`draft v4`). A chapter with `status: to-make` is a placeholder row ("coming" in the reader). Run from `docs/assets/infographics/`:
+
+| Command | |
+|---|---|
+| `python3 kit/book_build.py` | render the cards whose spec, script or renderer changed, lint them, write PNGs to `book/**` and `public/infographics/book/**`, regenerate `src/data/infographicBook.ts`, the generated blocks of `BOOK.md` (contents, card lists) and `book/sheet.png`. A card whose pixels did not change keeps its file |
+| `python3 kit/book_build.py --check` | write nothing; exit 1 if anything is out of sync: stale PNG, stale public copy, hand-edited generated file, card not in the manifest, lint FAIL, spec vs BOOK.md prose. Compares fingerprints (`book/book.lock.json`), not pixels, so it is machine-independent |
+| `python3 kit/book_build.py --list` | the Book in manifest order |
+
+Generated: `infographicBook.ts`, the `<!-- book:begin … -->` blocks of `BOOK.md`, `book/sheet.png`, `book/book.lock.json`, and every PNG. Everything else in `BOOK.md` is hand-written prose.
+
+### Recipe: reorder
+1. Move the card's line (or a whole section) in `book/book.yaml`. Chapter numbers stay as written; a card moved into another section needs its spec's `chapter` changed to that number.
+2. `python3 kit/book_build.py`.
+3. Commit the manifest and the regenerated files. No PNG is re-rendered; the reader, `BOOK.md` and the sheet follow.
+
+### Recipe: add a card
+1. Write `book/<folder>/<id>.card.yaml` and `<id>.py` (see Card spec; `<id>` is the file name and the spec's `id`; `chapter` = the section number).
+2. Add `- {id: <id>, spec: <folder>/<id>.card.yaml, status: draft}` where it belongs in `book/book.yaml`. A new `<folder>` needs a `<!-- book:begin cards-<folder> -->` / `<!-- book:end cards-<folder> -->` pair in `BOOK.md` if you want its list there.
+3. `python3 kit/book_build.py`: it renders, lints, copies to `public/`, regenerates everything. Fix any lint FAIL it prints.
+
+### Recipe: update a card
+1. Edit the card's `*.card.yaml` (text, title, caption) or `*.py` (drawing).
+2. `python3 kit/book_build.py`: only that card re-renders; it prints the mean pixel diff against the previous PNG. A title or caption change also moves the reader data and the `BOOK.md` list.
+3. If the card is a law (`III.01` ...), also edit its hand-written `### III.01` section in `BOOK.md` (title, Subtitle); `--check` fails until they agree.
+
 ## Old scripts
 
 `fyt_style.py` stays at its path and API (`import fyt_style`, `fyt_style.footer(a)`); it forwards to `kit/mpl.py`. `speedrun-matching/make.py` renders byte-identical PNGs.
 
 ## CI
 
-`infographics.workflow.yml` runs on PRs touching `docs/assets/infographics/**`: kit self-test (`python3 -m unittest discover -s docs/assets/infographics/kit -p "test_*.py"`), then `kit/ci.py` (render the touched cards, lint, `book_sync --check`, contact sheet), then uploads `kit/out/contact-sheet.png`. It must be moved to `.github/workflows/infographics.yml` (the Claude GitHub App cannot write there).
+`infographics.workflow.yml` runs on PRs touching `docs/assets/infographics/**`: kit self-test (`python3 -m unittest discover -s docs/assets/infographics/kit -p "test_*.py"`), then `kit/ci.py` (render the touched cards, lint, `book_sync --check`, contact sheet), then uploads `kit/out/contact-sheet.png`. It must be moved to `.github/workflows/infographics.yml` (the Claude GitHub App cannot write there). The staged copy also runs `book_build.py --check` and uploads `book/sheet.png`; it triggers on `src/data/infographicBook.ts` and `public/infographics/book/**` too.
 
 ## Migrating a card
 

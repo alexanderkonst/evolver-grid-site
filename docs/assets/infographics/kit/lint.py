@@ -6,6 +6,7 @@ One line per rule per card:  PASS|FAIL  <card id>  <rule>  <detail with the offe
 Rules (skin tokens in kit/skins.py):
   fit          every text line fits its maxw (measured with the real font) and its box, if it sits in one
   words        on-card words <= skin max_words (25), footer excluded; a spec may carry `max_words` as a waiver
+  (any other rule: a spec may carry `waive: {rule: reason}`; the lint line says WAIVED and keeps the detail)
   palette      only skin palette colours (accent included)
   accent       the skin's single accent (v4 NEON, moonworld teal) used by at most one element
   margins      every non-footer element inside the skin margin
@@ -94,7 +95,23 @@ def check(card, spec, skin=None):
 
     missing = specmod.missing(spec)
     add("spec-fields", [f"missing: {', '.join(missing)}"] if missing else [], "all required spec fields present")
-    return out
+    return _waived(out, spec)
+
+
+def _waived(out, spec):
+    """A spec may waive a rule for a ported legacy card: `waive: {fit: "why"}`. A waived FAIL passes and says so.
+    `words` has its own waiver (`max_words`). Waivers never hide a rule that passes, and an unknown rule is an error."""
+    waive = spec.get("waive") or {}
+    res = []
+    for rule, ok, detail in out:
+        if not ok and rule in waive and rule != "spec-fields":
+            ok, detail = True, f"WAIVED ({waive[rule]}): {detail}"
+        res.append((rule, ok, detail))
+    unknown = [r for r in waive if r not in RULES or r == "spec-fields"]
+    if unknown:
+        res = [(r, False, f"waive names a rule that cannot be waived: {', '.join(unknown)}") if r == "spec-fields" else (r, ok, d)
+               for r, ok, d in res]
+    return res
 
 
 def lint_spec(path):

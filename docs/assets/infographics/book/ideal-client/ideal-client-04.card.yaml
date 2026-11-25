@@ -1,0 +1,24 @@
+id: ideal-client-04
+chapter: "3.2"
+number: 4
+of: 9
+title: "Take Them to the Next Village"
+caption: "You are the ferryman. The client comes to the pier at their threshold."
+skin: v4
+max_words: 48
+parity: {module: ideal_client, fn: k4, index: 4}
+waive:   # legacy layout, ported pixel-for-pixel; fix by redesign, not by editing lint
+  margins: "engine layout: right-hand label sits outside the 80px margin"
+text:
+  eyebrow: "Ideal client · The threshold"
+  pier:
+    title: "the pier"
+    sub: "they are ready to cross"
+  you: "you"
+  village:
+    title: "the next village"
+    sub: "where you stand now"
+  quote: "“I know the way to the next village. Let's go.”"
+sources:
+  - docs/assets/infographics/engine-v4/ideal_client.py (k4)
+  - docs/assets/infographics/BOOK.md (Find Your Ideal Client and Take Them Across, card 04)

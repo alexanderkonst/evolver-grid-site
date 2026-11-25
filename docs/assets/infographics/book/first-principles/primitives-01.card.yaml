@@ -1,0 +1,18 @@
+id: primitives-01
+chapter: "3.1"
+number: 1
+of: 19
+title: Two Humans
+caption: Every business, even deep tech, is a relationship between people.
+skin: v4
+max_words: 60
+parity: {module: primitives_v4, fn: p01, index: 1}
+text:
+  eyebrow: "Business from first principles"
+  gives: gives
+  receives: receives, and restores the balance
+  human: human
+  quote: Remove the humans and it is no longer a business.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p01)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 01)

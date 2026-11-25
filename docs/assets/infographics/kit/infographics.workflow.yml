@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - "docs/assets/infographics/**"
+      - "src/data/infographicBook.ts"
+      - "src/data/__tests__/infographicBook.test.ts"
+      - "public/infographics/book/**"
       - ".github/workflows/infographics.yml"
 permissions:
   contents: read
@@ -22,9 +25,14 @@ jobs:
         run: python3 -m unittest discover -s docs/assets/infographics/kit -p "test_*.py" -v
       - name: Render touched cards, lint, book_sync, contact sheet
         run: python3 docs/assets/infographics/kit/ci.py --base "origin/${{ github.base_ref }}"
+      - name: Book in sync with book.yaml (PNGs, public copies, reader data, BOOK.md blocks, lint)
+        run: python3 kit/book_build.py --check
+        working-directory: docs/assets/infographics
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: infographics-contact-sheet
-          path: docs/assets/infographics/kit/out/contact-sheet.png
+          path: |
+            docs/assets/infographics/kit/out/contact-sheet.png
+            docs/assets/infographics/book/sheet.png
           if-no-files-found: ignore

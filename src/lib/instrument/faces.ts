@@ -12,6 +12,9 @@
  */
 import type { ComponentType } from "react";
 import { VILLAGE_ELEMENTS, type ElementKey } from "@/data/villagePlaces";
+import WaterFace from "@/components/game/instrument/faces/WaterFace";
+import EarthFace from "@/components/game/faces/EarthFace";
+import FireFace from "@/components/game/faces/FireFace";
 
 export type FaceProps = {
   /** Signed-in player id, or null for a guest. */
@@ -45,6 +48,12 @@ export const registerFace = (element: ElementKey, component: ComponentType<FaceP
   FACES[element].component = component;
 };
 
+registerFace("water", WaterFace); // WP3
+
 export const getFace = (element: ElementKey): ComponentType<FaceProps> | null => FACES[element].component;
 
 export const hasFace = (element: ElementKey): boolean => FACES[element].component !== null;
+
+// WP4: the fire and earth lenses fill their slots.
+registerFace("fire", FireFace);
+registerFace("earth", EarthFace);

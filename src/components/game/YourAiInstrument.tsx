@@ -46,6 +46,7 @@ import {
   writeTourSeen,
   type TourGroup,
 } from "@/lib/yourAiInstrument";
+import ConsolePanel from "@/components/game/console/ConsolePanel";
 import { getFace, hasFace, registerFace, type FaceProps } from "@/lib/instrument/faces";
 import { instrumentModel, instrumentReduce, isRaised } from "@/lib/instrument/state";
 
@@ -103,6 +104,8 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
   const convoKey = ownerId ?? "guest";
 
   const [beat, setBeat] = useState<number | null>(null);
+  // The air face has two tabs beside each other: the conversation and the Console (Phoenix chain).
+  const [tab, setTab] = useState<"conversation" | "console">("conversation");
   const [messages, setMessagesState] = useState<DialogueMessage[]>(() => conversations.get(convoKey) ?? []);
   const setMessages = (next: DialogueMessage[]) => {
     conversations.set(convoKey, next);
@@ -120,6 +123,10 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
   const swipeRef = useRef<{ y: number; atTop: boolean } | null>(null);
 
   const tourActive = beat !== null;
+  // The tour walks the conversation view, so it brings that tab forward.
+  useEffect(() => {
+    if (tourActive) setTab("conversation");
+  }, [tourActive]);
 
   // Once the face is forward: focus moves in; the first time ever, the tour starts.
   useEffect(() => {
@@ -182,6 +189,20 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
   // Host-handled actions (the ZoG reveal) have no meaning here: only buttons that go somewhere.
   const offered: YourAiButton[] =
     !thinking && lastMessage?.role === "ai" ? (lastMessage.buttons ?? []).filter((b) => b.kind !== "action" && b.to) : [];
+
+  const playerCard = () => (ownerId ? buildPlayerCard(getCachedZogSnapshot(ownerId), readTraces(ownerId)) : null);
+  // Console button 1 with no goal to ground in: the one question lands in the conversation.
+  const askInConversation = (question: string) => {
+    setMessages([...messages, { role: "ai", text: question }]);
+    setTab("conversation");
+  };
+  const onTabKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    e.preventDefault();
+    const next = tab === "conversation" ? "console" : "conversation";
+    setTab(next);
+    requestAnimationFrame(() => panelRef.current?.querySelector<HTMLElement>(`[data-tab="${next}"]`)?.focus());
+  };
 
   const goTo = (to: string, trace?: YourAiButton) => {
     if (trace) writeTrace({ kind: trace.kind, payload_id: trace.id, outcome: "tapped" }, ownerId);
@@ -254,6 +275,52 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                   </button>
                 </header>
 
+                {/* Tabs: the conversation, and the Console (the Phoenix chain, docs/specs/your-ai-console/console-v1.md) */}
+                <div role="tablist" aria-label={t("yourAiConsole.tablist")} className="flex gap-1" onKeyDown={onTabKeyDown} style={lit("conversation")}>
+                  {(["conversation", "console"] as const).map((k) => (
+                    <button
+                      key={k}
+                      type="button"
+                      role="tab"
+                      id={`${titleId}-tab-${k}`}
+                      data-tab={k}
+                      aria-selected={tab === k}
+                      aria-controls={`${titleId}-panel-${k}`}
+                      tabIndex={tab === k ? 0 : -1}
+                      onClick={() => setTab(k)}
+                      className={`${pill} flex-1`}
+                      style={tab === k ? { backgroundColor: "rgba(188,215,230,0.14)", color: INK, fontWeight: 600 } : { color: MUTED, border: `1px solid ${HAIRLINE}` }}
+                    >
+                      {k === "conversation" ? t("yourAiConsole.tabConversation") : t("yourAiConsole.tab")}
+                    </button>
+                  ))}
+                </div>
+
+                <div
+                  role="tabpanel"
+                  id={`${titleId}-panel-console`}
+                  aria-labelledby={`${titleId}-tab-console`}
+                  className={tab === "console" ? "flex min-h-0 flex-1 flex-col" : "hidden"}
+                  {...inertProps(tab !== "console")}
+                >
+                  <ConsolePanel
+                    key={ownerId ?? "guest"}
+                    ownerId={ownerId}
+                    language={i18n.resolvedLanguage}
+                    messages={messages}
+                    getPlayerCard={playerCard}
+                    onAskGoal={askInConversation}
+                    onOpenConversation={() => setTab("conversation")}
+                  />
+                </div>
+
+                <div
+                  role="tabpanel"
+                  id={`${titleId}-panel-conversation`}
+                  aria-labelledby={`${titleId}-tab-conversation`}
+                  className={tab === "conversation" ? "flex min-h-0 flex-1 flex-col gap-3" : "hidden"}
+                  {...inertProps(tab !== "conversation")}
+                >
                 {/* Group 2 · conversation */}
                 <section className="flex min-h-0 flex-1 flex-col gap-2" style={lit("conversation")}>
                   <div
@@ -377,6 +444,7 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                   </p>
                   <p className="text-[12px] leading-relaxed">{t("yourAiInstrument.powerUpsLine")}</p>
                 </section>
+                </div>
               </div>
 
               {/* The tour caption: one line per beat, skippable, shown once, replayable from the header. */}

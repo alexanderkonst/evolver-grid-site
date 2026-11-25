@@ -1,0 +1,25 @@
+# Rebuilt from the committed PNG (draft v6; the v6 script is not in the repo). Style source: engine-v4/laws_v4.py.
+# The card draws only the first half of the Book subtitle under the title (text.lead); the quoted question
+# is set large in the body, so the full subtitle is not drawn twice.
+id: VI.02
+chapter: "3.3"
+number: 2
+of: 6
+title: Compared to What You Expected
+caption: 'At the end, one question for each goal: "How far did it come true?"'
+skin: v4
+max_words: 38
+text:
+  eyebrow: "Coaching results · Measuring the shift"
+  lead: "At the end, one question for each goal:"
+  question: "“How far did it come true?”"
+  scale:
+    - {mark: "−2", label: "much less"}
+    - {mark: "−1", label: "less"}
+    - {mark: "0", label: "as I expected"}
+    - {mark: "+1", label: "more"}
+    - {mark: "+2", label: "much more"}
+sources:
+  - docs/assets/infographics/book/laws/VI.02.png
+  - docs/assets/infographics/BOOK.md (VI.02)
+  - docs/assets/infographics/engine-v4/laws_v4.py (style source: l2 expectation scale)

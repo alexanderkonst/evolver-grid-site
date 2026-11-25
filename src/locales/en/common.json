@@ -9847,7 +9847,9 @@
       "earth": "Earth"
     },
     "face": {
-      "air": "Your AI"
+      "air": "Your AI",
+      "fire": "Growth",
+      "earth": "Work"
     },
     "ritual": {
       "line": {
@@ -9861,6 +9863,83 @@
       "label": "Instrument sound",
       "hint": "Soft tones when a body of your instrument lights, and a breath when it opens. Quiet by default.",
       "ariaLabel": "Instrument sound"
+    }
+  },
+  "yourAiConsole": {
+    "tablist": "Your AI views",
+    "tabConversation": "Conversation",
+    "tab": "Console",
+    "intro": "Five buttons. Each gives you one result and hands it to the next.",
+    "lap": "Lap {{n}}",
+    "closed": "Closed",
+    "locked": {
+      "2": "Opens when you have your goal. Inside: the case for it, with its risks.",
+      "3": "Opens when you have the case for your goal. Inside: your goal rewritten to answer every risk.",
+      "4": "Opens when you have your goal, version 2. Inside: what is weak in it, and how to fix it.",
+      "5": "Opens when you know what is weak in your goal. Inside: what is left once it has burned."
+    },
+    "working": "Working on it…",
+    "again": "Run again",
+    "copy": "Copy",
+    "copied": "Copied",
+    "next": "Next: {{label}}",
+    "readAll": "Read all",
+    "retryLine": "That answer did not come back in a form I can show. Try once more.",
+    "retry": "Try again",
+    "failedLine": "Your AI didn't answer this time.",
+    "capLine": "You've used today's Console turns. They come back tomorrow.",
+    "signInLine": "Sign in to use the Console. It works from your profile.",
+    "waitingLine": "Waiting for your answer in the conversation.",
+    "openConversation": "Open the conversation",
+    "field": {
+      "why": "Why this goal",
+      "notThis": "What it is not",
+      "case": "The case",
+      "risks": "Risks",
+      "mistakes": "Mistakes you would likely make",
+      "sign": "Sign",
+      "goalV2": "Version 2",
+      "moves": "Three moves",
+      "whatChanged": "What changed",
+      "weak": "What is weak",
+      "fixes": "How to fix it",
+      "thirteenth": "The centre",
+      "survived": "What survived",
+      "burned": "What burned",
+      "nextMove": "Next move"
+    }
+  },
+  "waterFace": {
+    "title": "Time",
+    "close": "Close your instrument",
+    "phase": {
+      "0": "New Moon",
+      "1": "Waxing Crescent",
+      "2": "First Quarter",
+      "3": "Waxing Gibbous",
+      "4": "Full Moon",
+      "5": "Waning Gibbous",
+      "6": "Last Quarter",
+      "7": "Waning Crescent"
+    },
+    "moon": {
+      "label": "The moon",
+      "day": "Day {{day}} of the lunar cycle"
+    },
+    "fmf": {
+      "label": "Next FMF",
+      "live": "FMF is on now",
+      "go": "Open FMF"
+    },
+    "gathering": {
+      "label": "Next Café gathering",
+      "none": "Nothing on the Café calendar yet.",
+      "loading": "Looking at the Café calendar…",
+      "go": "Open the Café",
+      "when": "{{date}}, {{time}}"
+    },
+    "changes": {
+      "label": "This cycle"
     }
   }
 }

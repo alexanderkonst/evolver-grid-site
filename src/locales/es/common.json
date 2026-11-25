@@ -9820,7 +9820,9 @@
       "earth": "Tierra"
     },
     "face": {
-      "air": "Tu IA"
+      "air": "Tu IA",
+      "fire": "Crecimiento",
+      "earth": "Trabajo"
     },
     "ritual": {
       "line": {
@@ -9834,6 +9836,83 @@
       "label": "Sonido del instrumento",
       "hint": "Tonos suaves cuando se enciende un cuerpo de tu instrumento y un soplo al abrirlo. Volumen bajo por defecto.",
       "ariaLabel": "Sonido del instrumento"
+    }
+  },
+  "yourAiConsole": {
+    "tablist": "Vistas de Tu IA",
+    "tabConversation": "Conversación",
+    "tab": "Consola",
+    "intro": "Cinco botones. Cada uno te da un resultado y se lo pasa al siguiente.",
+    "lap": "Vuelta {{n}}",
+    "closed": "Cerrado",
+    "locked": {
+      "2": "Se abre cuando tengas tu meta. Dentro: el caso a favor, con sus riesgos.",
+      "3": "Se abre cuando tengas el caso de tu meta. Dentro: tu meta reescrita para responder a cada riesgo.",
+      "4": "Se abre cuando tengas tu meta, versión 2. Dentro: qué es débil en ella y cómo arreglarlo.",
+      "5": "Se abre cuando sepas qué es débil en tu meta. Dentro: lo que queda cuando ha ardido."
+    },
+    "working": "Trabajando en ello…",
+    "again": "Repetir",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "next": "Siguiente: {{label}}",
+    "readAll": "Leer todo",
+    "retryLine": "Esa respuesta no llegó en una forma que pueda mostrar. Inténtalo otra vez.",
+    "retry": "Reintentar",
+    "failedLine": "Tu IA no respondió esta vez.",
+    "capLine": "Has usado los turnos de hoy de la Consola. Vuelven mañana.",
+    "signInLine": "Inicia sesión para usar la Consola. Funciona a partir de tu perfil.",
+    "waitingLine": "Esperando tu respuesta en la conversación.",
+    "openConversation": "Abrir la conversación",
+    "field": {
+      "why": "Por qué esta meta",
+      "notThis": "Lo que no es",
+      "case": "El caso",
+      "risks": "Riesgos",
+      "mistakes": "Errores que probablemente cometerías",
+      "sign": "Señal",
+      "goalV2": "Versión 2",
+      "moves": "Tres movimientos",
+      "whatChanged": "Qué cambió",
+      "weak": "Qué es débil",
+      "fixes": "Cómo arreglarlo",
+      "thirteenth": "El centro",
+      "survived": "Lo que sobrevivió",
+      "burned": "Lo que ardió",
+      "nextMove": "Próximo movimiento"
+    }
+  },
+  "waterFace": {
+    "title": "Tiempo",
+    "close": "Cierra tu instrumento",
+    "phase": {
+      "0": "Luna nueva",
+      "1": "Luna creciente",
+      "2": "Cuarto creciente",
+      "3": "Gibosa creciente",
+      "4": "Luna llena",
+      "5": "Gibosa menguante",
+      "6": "Cuarto menguante",
+      "7": "Luna menguante"
+    },
+    "moon": {
+      "label": "La luna",
+      "day": "Día {{day}} del ciclo lunar"
+    },
+    "fmf": {
+      "label": "Próximo FMF",
+      "live": "FMF está en curso",
+      "go": "Abrir FMF"
+    },
+    "gathering": {
+      "label": "Próximo encuentro en el Café",
+      "none": "Aún no hay nada en el calendario del Café.",
+      "loading": "Mirando el calendario del Café…",
+      "go": "Abrir el Café",
+      "when": "{{date}}, {{time}}"
+    },
+    "changes": {
+      "label": "Este ciclo"
     }
   }
 }

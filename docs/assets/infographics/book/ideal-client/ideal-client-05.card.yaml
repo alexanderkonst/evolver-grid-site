@@ -1,0 +1,18 @@
+id: ideal-client-05
+chapter: "3.2"
+number: 5
+of: 9
+title: "The Delta Is the Product"
+caption: "Your gift grows in stages. The step you've crossed is what you can hand on."
+skin: v4
+max_words: 45
+parity: {module: ideal_client, fn: k5, index: 5}
+text:
+  eyebrow: "Ideal client · What you sell"
+  they_stand: "they stand here"
+  you_stand: "you stand here"
+  delta: "the delta"
+  quote: "The better you understand your own path, the better you package it."
+sources:
+  - docs/assets/infographics/engine-v4/ideal_client.py (k5)
+  - docs/assets/infographics/BOOK.md (Find Your Ideal Client and Take Them Across, card 05)

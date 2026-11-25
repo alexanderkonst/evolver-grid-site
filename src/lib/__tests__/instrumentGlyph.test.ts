@@ -1,9 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { VILLAGE_ELEMENTS, VILLAGE_PLACES } from "@/data/villagePlaces";
 import { litQuarters } from "../quarters";
 import type { PlaceStateName } from "../placeState";
 import { GLYPH_PX, INNER_BODY_PX, MOON_RADIUS, RING_RADIUS, innerBodies, liftAbove, moonLitPolygon } from "../instrument/glyph";
 import { FACES, getFace, hasFace, registerFace, type FaceProps } from "../instrument/faces";
+
+// The registry now imports the fire and earth faces (WP4), which read the save through the supabase client.
+vi.mock("@/integrations/supabase/client", () => ({ supabase: {} }));
 
 /** Place states in `VILLAGE_PLACES` order, with the given places open and the rest closed. */
 const states = (open: string[]): PlaceStateName[] => VILLAGE_PLACES.map((p) => (open.includes(p.key) ? "open" : "closed"));
@@ -77,21 +80,23 @@ describe("moon on the ring", () => {
 describe("faces registry", () => {
   const Dummy = (() => null) as unknown as (p: FaceProps) => null;
 
-  it("has one slot per element, in village order, and the other four are empty until a face registers", () => {
+  it("has one slot per element, in village order; ether is empty until its face registers (water: WP3, fire and earth: WP4)", () => {
     expect(Object.keys(FACES)).toEqual(VILLAGE_ELEMENTS.map((e) => e.key));
     expect(Object.keys(FACES)).toEqual(["ether", "air", "water", "fire", "earth"]);
-    for (const k of ["ether", "water", "fire", "earth"] as const) {
+    for (const k of ["ether"] as const) {
       expect(hasFace(k)).toBe(false);
       expect(getFace(k)).toBeNull();
     }
+    expect(hasFace("water")).toBe(true);
   });
 
   it("registering a face fills only that slot", () => {
+    const registered = FACES.water.component;
     registerFace("water", Dummy);
     expect(getFace("water")).toBe(Dummy);
     expect(hasFace("water")).toBe(true);
-    expect(hasFace("fire")).toBe(false);
-    FACES.water.component = null;
+    expect(hasFace("ether")).toBe(false);
+    FACES.water.component = registered;
   });
 });
 

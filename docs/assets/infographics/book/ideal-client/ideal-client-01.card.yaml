@@ -1,0 +1,22 @@
+id: ideal-client-01
+chapter: "3.2"
+number: 1
+of: 9
+title: "Your Ideal Client Is You"
+caption: "No one else is you. So measure everyone by how close they are to you."
+skin: v4
+max_words: 42
+parity: {module: ideal_client, fn: k1, index: 1}
+text:
+  eyebrow: "Ideal client · The target"
+  you: "you"
+  ring_labels:
+    - "4"
+    - "6"
+    - "8"
+    - "9"
+  ten: "10"
+  quote: "Find the people most like you. Give them what only you have."
+sources:
+  - docs/assets/infographics/engine-v4/ideal_client.py (k1)
+  - docs/assets/infographics/BOOK.md (Find Your Ideal Client and Take Them Across, card 01)

@@ -15,6 +15,7 @@
  */
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { PLACE_BACK_LINK_CLASS, PLACE_TITLE_CLASS } from "@/components/game/VillagePlaceHeader";
 import { useTranslation } from "react-i18next";
 import GameShellV2 from "../components/game/GameShellV2";
 import SEO from "@/components/SEO";
@@ -158,7 +159,7 @@ const Mastermind = () => {
           <div className="relative z-10 max-w-2xl mx-auto px-4 md:px-6 pt-8 pb-16 space-y-12">
             <Link
               to="/village"
-              className="inline-flex min-h-11 items-center text-sm text-muted-foreground hover:text-foreground"
+              className={PLACE_BACK_LINK_CLASS}
             >
               {tr(t, "village.backVillage", "← Village")}
             </Link>
@@ -166,12 +167,7 @@ const Mastermind = () => {
             <header className="text-center space-y-6 pb-2">
               {/* Issue #443 (A6): no second «YOU» emblem here; the shell's rail and top bar already carry it. */}
               {/* Sasha 2026-10-30 22:43: slogan headline removed, no replacement; the name is the h1. */}
-              <h1
-                className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"
-                style={LABEL_TEXT_STYLE}
-              >
-                {c.eyebrow}
-              </h1>
+              <h1 className={PLACE_TITLE_CLASS}>{c.eyebrow}</h1>
               <p
                 className="text-base sm:text-lg italic max-w-md mx-auto leading-relaxed"
                 style={BODY_SERIF}

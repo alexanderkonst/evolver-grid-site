@@ -1,6 +1,6 @@
 # Your AI: conceptual architecture, phases and onboarding roadmap
 
-Date: 2026-11-25 · Status: draft v0 for Sasha · Template: integral-synthesis (compressed run, see §7) · Author: Hark
+Date: 2026-11-25 · Status: v0 adopted as working frame (Sasha 2026-11-25 16:56 CST: «Не знаю, делай как рекомендуешь дальше решим»; one ladder taken provisionally, open to revisit) · Template: integral-synthesis (compressed run, see §7) · Author: Hark
 Source: Sasha 2026-11-25 13:54 MST (the eleven parts, tracker §22) and 13:58 MST: «да, надо продумать концептуальную архитектуру, включая ФАЗОВОСТЬ! и включая ДОРОЖНУЮ КАРТУ ОНБОАРДИНГА, УЧИТЫВАЯ ТО УЖЕ СОЗДАЛИ» (*Translation:* "yes, we need to think through the conceptual architecture, including PHASES, and including the ONBOARDING ROADMAP, taking into account what we have already built").
 Single source of truth: the eleven parts and their status live in [ai-familiar_tracker.md §22](./ai-familiar_tracker.md); positioning and pricing in §21; the harness in §20. This file only assembles them into one whole and links.
 
@@ -102,6 +102,6 @@ A new player, from first touch: gets the instrument after their profile, taps on
 ## 9. Decisions for Sasha
 | # | Decision | My recommendation | Confidence |
 |---|---|---|---|
-| 1 | One ladder: five rungs as the spine, the eight levels nested inside; each rung hands a piece by hand first, then by connector | Yes | вероятно |
+| 1 | One ladder: five rungs as the spine, the eight levels nested inside; each rung hands a piece by hand first, then by connector | Adopted provisionally (Sasha 2026-11-25: «делай как рекомендуешь дальше решим») | вероятно |
 | 2 | Order of phases and prices (product phase B trigger, paid buttons) | B starts at rung 4; paid buttons with B | примерно поровну |
 | 3 | Founder Cockpit keeps its name inside Your AI | Keep it (known name, landing exists) | вероятно |

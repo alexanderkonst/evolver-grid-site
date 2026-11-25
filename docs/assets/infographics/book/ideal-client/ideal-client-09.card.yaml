@@ -1,0 +1,22 @@
+id: ideal-client-09
+chapter: "3.2"
+number: 9
+of: 9
+title: "One Path"
+caption: "Your business grows as you grow. Inner work and business work become one."
+skin: v4
+max_words: 46
+parity: {module: ideal_client, fn: k9, index: 9}
+text:
+  eyebrow: "Uniqueness · The way"
+  points:
+    - "A trial appears"
+    - "You go straight in"
+    - "The business moves forward"
+  center:
+    line1: "less doubt"
+    line2: "each turn"
+  quote: "Doubt is where the energy leaks. Ask what to do now, not how."
+sources:
+  - docs/assets/infographics/engine-v4/ideal_client.py (k9)
+  - docs/assets/infographics/BOOK.md (Find Your Ideal Client and Take Them Across, card 09)

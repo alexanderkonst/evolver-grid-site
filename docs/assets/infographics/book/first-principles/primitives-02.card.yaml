@@ -1,0 +1,18 @@
+id: primitives-02
+chapter: "3.1"
+number: 2
+of: 19
+title: Process, Change, Exchange
+caption: What happens between the two.
+skin: v4
+max_words: 43
+parity: {module: primitives_v4, fn: p02, index: 2}
+text:
+  eyebrow: "Business from first principles"
+  process: {title: Process, sub: how the change is made}
+  change: {title: Change, sub: the result the receiver gets}
+  exchange: {title: Exchange, sub: "the receiver restores the balance: money, and not only money"}
+  quote: One side mostly gives, the other mostly receives.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p02)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 02)
