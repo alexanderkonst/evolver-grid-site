@@ -418,3 +418,21 @@ Generative UI. Your AI proposes the next buttons; the player taps or types. **A 
 1. **Model money:** cheap tier for conversation, stronger model only for readings, with a per-player daily cap: is that the budget rule? (Decides step 2.)
 2. **Knowledge graph scope:** may Your AI retrieve from the whole `knowledgegraph`, or only a public subset (no private notes, people, ledger)?
 3. **Next surface after ZoG entry:** the mission test, or the Home / Quest Board as the "button under button" hub?
+
+## 21. What Your AI is, and how it is sold (Sasha, 2026-11-25 00:29 MST) — decided
+
+> «Это практически лендинг для Твоего ИИ.» — Sasha
+
+**The five lines (the landing, in-game and on the web):**
+1. **An "iPhone" in the world of AIs.** Hark already is one; we repeat Hark's interface and add to it.
+2. **Deeply knows you, by design.** A companion that knows you ever closer (§19: one note in the chord, not a copy, not a "digital twin"; Sasha agreed 2026-11-25 00:30).
+3. **Powered by Your AI OS.**
+4. **Comes with a Console of AI Apps:** each app is a button that does something powerful. Free apps come preinstalled (the suites and buttons AI OS already has); paid apps are added.
+5. **Optional power-ups for business.**
+
+**Pricing: premium, never "cheaper than the labs".** Their subscriptions are subsidized; a price war cannot be won. We sell what they lack (it knows your talent and your business, and gives the result by a button). A cheap model underneath is margin, not the message. Shape: usage tiers (base, 5x, 20x, custom). Level: Sasha's proposal ×1.5 of the labs' tiers. Anchors as of 2026-11-25: Claude Pro $20 / Max $100 / Ultra $200; ChatGPT Plus $20 / Pro $100 / $200 / $500 (third-party price round-ups, Nov 2026). At ×1.5: $30 / $150 / $300. Final numbers are Sasha's at launch; Stripe is his.
+
+**Phases:** 1, the model through Lovable's AI gateway (billed from the same Lovable credits as building; the on-platform Your AI already runs this way via `library-advisor`, §20.1), with the per-player daily cap of §20.5; 2, direct APIs with the usage tiers above.
+
+**The landing lives inside the game.** The first time the player receives the instrument (GoBY §25.10), a micro-onboarding: a smooth zoom, by scale and light, onto each group of the product in turn, one line each (the five lines above). Spec: `docs/specs/your-ai-instrument/sow.md`.
+

@@ -43,3 +43,10 @@ Related, also to return to: Founder Collective decisions D1-D4 (who is inside, t
 - Порядок Mission → лавка уже совпадает с решением 10-27 (Mission до бизнеса). Конфликта нет.
 
 После твоего разбора: один раздел в GoBY с канонической таблицей, два других раздела ссылаются на него.
+
+## Pending path moves (Sasha, 2026-11-24/25), collected here, not shipped
+Sasha 2026-11-25 00:30 MST: «эти переносы - трики, там много деталей… Ломается часто. Пока не переносим, собираем в спеку по игровому пути.» Each move below waits for the path spec to be reviewed as a whole.
+1. **Quality-of-life test leaves the profile.** The profile = top talent, mission, assets. QoL moves into the Academy as one of the first steps, after the first course «Your Unfolding Potential» (step 8 above, renamed 2026-11-24).
+2. **Your AI instrument is received after the profile** (without QoL), not from the first screen (GoBY §25.10).
+3. **The `oracle` village place becomes the quest «activate your AI»:** the AI names itself; an interactive course on it, power-ups, access to the Console (GoBY §25.10, Your AI tracker §21).
+Until then the instrument ships behind the gate that already exists (the AI OS chip: T+M+A complete or `fytt:ai-os-visited`), and the `oracle` place stays as it is.

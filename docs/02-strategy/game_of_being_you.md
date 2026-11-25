@@ -1474,8 +1474,9 @@ Decisions (Sasha, 2026-11-24 23:46 MST, on brief v1):
 - **The object:** a clear octahedron of air and sky, the element of air: clarity. Reference: `docs/assets/your-ai/octahedron_reference.png`.
 - **How it opens:** option A. The instrument rises over the living world; the world stays visible, dimmed, behind it; the same gesture closes it and the player is exactly where they were. The exact look is still to be designed.
 - **Inside:** never «Take your AI» to an outside app. A Hark-like interface inside the game, sold the way Hark is sold. Phase 1 runs on a model through Lovable's AI gateway; phase 2 through direct APIs with usage tiers (5x / 10x / 20x / custom). Apps (= buttons = results) are free and paid: free ones come preinstalled (the suites and buttons AI OS already has), paid ones are added.
-- **The `oracle` place becomes a quest:** activate your AI; it names itself and grows into the player's ever closer companion (§19 of the Your AI tracker: one note in the chord). An interactive course on it, power-ups, and access to the Console.
+- **The `oracle` place becomes a quest:** activate your AI; it names itself and grows into a companion that knows the player ever closer (§19 of the Your AI tracker: one note in the chord, not a copy or «digital twin», Sasha agreed 2026-11-25). An interactive course on it, power-ups, and access to the Console.
 - **When it appears:** after the player's profile is created, without the quality-of-life test. The QoL test moves into the Academy as one of the first steps, after the first course, «Your Unfolding Potential» (renamed from «Activate Your Dormant Potential», same day).
+- **First receipt = its own landing** (Sasha, 2026-11-25): the first time the instrument appears, a micro-onboarding zooms by scale and light onto each group of the product in turn, one line each. What Your AI is and how it is sold: Your AI tracker §21. Build spec: `docs/specs/your-ai-instrument/sow.md`.
 
 ### 25.11 Smoothness
 Every transition feels smooth: the whole interface is an ancient mystical instrument (§5; motion respects reduced-motion).
