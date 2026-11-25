@@ -45,7 +45,7 @@ const titleRules: TitleRule[] = [
 
   // Other surfaces.
   { match: (path) => path === "/library" || path.startsWith("/library/"), title: "Library" },
-  { match: (path) => path === "/grow/activate-your-dormant-potential", title: "Activate Your Dormant Potential" },
+  { match: (path) => path === "/grow/activate-your-dormant-potential", title: "Your Unfolding Potential" },
   { match: (path) => path === "/grow/consciousness-meets-science", title: "Consciousness Meets Science" },
   { match: (path) => path === "/contact", title: "Contact" },
   { match: (path) => path === "/start", title: "Onboarding" },
