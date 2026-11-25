@@ -9,6 +9,7 @@ import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { usePlayerMetricHistory } from "@/hooks/usePlayerMetricHistory";
 import MetricHistory from "@/components/game/MetricHistory";
+import { useHouseSince } from "@/hooks/useHouseSince";
 import { useModuleChoices } from "@/hooks/useModuleChoice";
 import { useSoulColors } from "@/hooks/useSoulColors";
 import { choiceDate } from "@/data/journeyChoices";
@@ -51,6 +52,10 @@ import "./CharacterSheet.css";
  * above the rooms, each only when the player has a value (`src/lib/houseStats.ts`). This overrides
  * q4's «ratings never shown» for the owner's own House only.
  *
+ * SINCE (#451): on return, one short block under the header, «Since you were here», with at most
+ * three real changes (places opened, artifacts made, village events that touch you), each a link.
+ * The last visit is stored per player on the server (`useHouseSince`), so it works across devices.
+ *
  * PRIVACY (q5): the private level and the stats cards show only here, to their owner. Choices and
  * asset details never leave this screen. Keep all of it off every public profile, share card,
  * matchmaking and marketplace surface (§13.2).
@@ -89,6 +94,10 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
         [sheet.chain, sheet.offerSaved],
     );
     const rooms = useMemo(() => houseRooms(save), [save]);
+    // #451: «Since you were here». The whole save (victories too), as the village reads it, so the
+    // places that opened are the same ones the map would say.
+    const villageSave = useMemo(() => placeSaveFromSheet(sheet), [sheet]);
+    const since = useHouseSince(sheet.userId, sheet.profileId, villageSave, t);
     // #375: one locked block (the next one) and one quiet line for the rest.
     const lockedFold = useMemo(() => lockedRoomFold(rooms), [rooms]);
     const badges = useMemo(() => houseBadges(save), [save]);
@@ -403,6 +412,21 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 <h1 className="cs-name">{name}</h1>
                 {/* A9 (#377): the player's own biological clock, compact, in the page header. */}
                 <ProfileClock className="cs-clock" />
+                {/* #451: at most three real changes since the last visit; nothing when nothing changed. */}
+                {since.length > 0 && (
+                    <section className="cs-since" aria-labelledby="cs-since-h">
+                        <div className="cs-since__inner">
+                            <p id="cs-since-h" className="cs-mono cs-since__title">{t("houseSince.title")}</p>
+                            <ul className="cs-since__list">
+                                {since.map((line) => (
+                                    <li key={line.id}>
+                                        <Link className="cs-since__link" to={line.to}>{line.text}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </section>
+                )}
             </header>
 
             {stats.length > 0 && (

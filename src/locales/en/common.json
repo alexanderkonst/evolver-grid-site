@@ -7850,6 +7850,22 @@
       "mission": "My Mission"
     }
   },
+  "houseSince": {
+    "title": "Since you were here",
+    "artifact": {
+      "talent": "You found your top talent.",
+      "mission": "You named your mission.",
+      "uniqueness": "You put your uniqueness into one phrase.",
+      "stall": "You added to your stall."
+    },
+    "seen": {
+      "anon": "Someone sees you.",
+      "one": "{{a}} sees you.",
+      "two": "{{a}} and {{b}} see you.",
+      "many": "{{a}}, {{b}} and others see you."
+    },
+    "circle": "You came to {{title}}."
+  },
   "characterSheet": {
     "stats": {
       "title": "Your stats",
