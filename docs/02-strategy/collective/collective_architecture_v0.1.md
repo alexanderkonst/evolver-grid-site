@@ -1,4 +1,4 @@
-# Sovereign Founder Collective: conceptual architecture v0.2
+# Sovereign Founder Collective: conceptual architecture v0.3
 
 > *Draft · 2026-11-25 · Module 3. Asked by Sasha («Делай, начиная с концептуальной архитектуры»). Step 1 of: architecture → landing → each part's description of power and results. Terms: single source is [collective_terms_roadmap.md](./collective_terms_roadmap.md); the Unique Business method and sessions are Sasha's and are only linked here, never restated.*
 
@@ -41,10 +41,13 @@ Terms: 10% rev share, steward now → member-governed entity (2027–28). No equ
 | 10 | Media synergy | A shared media resource: each member's content amplifies the others (channels, cross-features, shared stories) | Reach of the whole collective, not one person | More eyes on each business | To describe |
 | 11 | Shared improvement budget | A common budget to improve the collective and its tools | The tools get better every cycle for everyone | Better cockpit, AI, matchmaking each moon | New. Source of the budget: open, Sasha decides (proposal: a share of the 10%) |
 | 12 | Internal collaborations (key) | Access to collaborations inside the collective: joint offers, shared clients, co-built products, referrals | The collective's main power: businesses that grow by working together | Collaborations a solo founder can't get anywhere else | Matchmaking engine, collaboration_taxonomy.md, collaboration_spectrum_holomap.md |
+| 13 | Mutual promotion | We show each member's landing and promote each other to new founders | Every member is introduced by the whole collective | New clients from the collective's audience | Karime's landing (/karima); other landings to come |
+| 14 | Train-the-trainer | Members train to run Sasha's method themselves (as Sasha teaches it, unchanged) | Growth stops depending on one person: exponential | The member can lead other founders through the method | Terms roadmap (founders who grow lead the next) |
+| 15 | Fund (later) | A fund with the Golden Age investment thesis, uniqueness as the primitive-substrate of its infrastructure | Capital for unique businesses, on terms that fit them | Access to capital (no equity: capped rev share or debt) | uniqueness_economy_thesis.md; fund not yet set up |
 
 ## How the parts feed each other
 
-- The game and the method make a founder; the cockpit runs the business; the AI multiplies it; matchmaking connects businesses; experts scale them; hackathons ship pieces; the rhythm holds the pace. Shared infrastructure and the shared budget carry everyone; media makes each member louder; internal collaborations are the heart: what members can only do together.
+- The game and the method make a founder; the cockpit runs the business; the AI multiplies it; matchmaking connects businesses; experts scale them; hackathons ship pieces; the rhythm holds the pace. Shared infrastructure and the shared budget carry everyone; media makes each member louder; internal collaborations are the heart: what members can only do together. Mutual promotion brings each member clients; train-the-trainer makes growth exponential; the fund, later, brings capital.
 - Each part's result is visible: that is what the landing shows, part by part.
 - The founders who grow become the ones who lead the next (trainers, nodes): this is how the 10% moves to the entity (terms roadmap).
 
@@ -61,3 +64,5 @@ Terms: 10% rev share, steward now → member-governed entity (2027–28). No equ
 4. Open, needs Sasha: the experts' page; the source of the shared budget; the first mini-hackathon's date and theme.
 
 *v0.2 · 2026-11-25 · Sasha added: experts team exists; shared infrastructure, media synergy, shared improvement budget, access to internal collaborations («мега важно»).*
+
+*v0.3 · 2026-11-25 · Sasha added: the future fund (Golden Age thesis, uniqueness as the primitive-substrate of its infrastructure), mutual promotion of each member's landing, training to run the method ourselves for exponential growth.*
