@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { RAIL_PLACES } from "@/lib/railPlaces";
+import { RAIL_PLACES, railState } from "@/lib/railPlaces";
 import { usePlaceStates } from "@/hooks/usePlaceStates";
 import { closedShortLine, placeLine } from "@/lib/placeState";
 import { cn } from "@/lib/utils";
@@ -60,11 +60,11 @@ const Navigation = () => {
             Village
           </Link>
         </li>
-        {RAIL_PLACES.map((place, i) => {
+        {RAIL_PLACES.map((place) => {
           // Issue #443 A1: until the save loads the state is unknown. Draw the place neutral
           // (dimmed, not a link, no lock line) and settle once, instead of lit then grey.
           const loading = !ready;
-          const state = states[i];
+          const state = railState(states, place.key) ?? "open";
           const active = pathname === place.to || pathname.startsWith(`${place.to}/`);
           // The place the player stands in is current, never locked (issue #443 wave 3, item 3).
           const closed = !loading && state === "closed" && !active;

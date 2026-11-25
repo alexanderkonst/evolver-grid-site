@@ -3434,6 +3434,13 @@
     "chapterLabel": "The path of uniqueness"
   },
   "village": {
+    "quarter": {
+      "ether": { "name": "Ether quarter" },
+      "air": { "name": "Air quarter" },
+      "water": { "name": "Water quarter" },
+      "fire": { "name": "Fire quarter" },
+      "earth": { "name": "Earth quarter" }
+    },
     "title": "The Digital Village",
     "tabTitle": "The Digital Village · FindYourTopTalent",
     "eyebrow": "The Game of Being You",

@@ -23,6 +23,8 @@ import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProg
 import { useLinkedQuizResult, type LinkedQuizResult } from "@/hooks/useLinkedQuizResult";
 import { useEntryPath } from "@/contexts/EntryPathContext";
 import { useSkin } from "@/contexts/SkinContext";
+import QuarterSign from "@/components/game/QuarterSign";
+import type { ElementKey } from "@/data/villagePlaces";
 import { useUnreadMessages } from "@/hooks/useUnreadMessages";
 import {
     TooltipProvider,
@@ -508,6 +510,10 @@ interface SectionsPanelProps {
     activeSpaceId: string;
     /** Name of the village place the player stands in; the pane header (WP-4). */
     placeName?: string;
+    /** The place's quarter (§25.14); its sign sits beside the name. Absent = no sign. */
+    placeElement?: ElementKey;
+    /** The quarter's solid is lit: its first place is open. */
+    placeQuarterLit?: boolean;
     /** That place's one line from the village map; the pane subtitle. */
     placeLine?: string;
     onSectionSelect?: (path: string) => void;
@@ -817,6 +823,8 @@ const buildJourneySections = (
 const SectionsPanel = ({
     activeSpaceId,
     placeName,
+    placeElement,
+    placeQuarterLit = false,
     placeLine,
     onSectionSelect,
     onClose,
@@ -1292,6 +1300,9 @@ const SectionsPanel = ({
                         }}
                     >
                         {placeName ?? spaceData.title}
+                        {placeElement && (
+                            <QuarterSign element={placeElement} lit={placeQuarterLit} size={16} className="ml-2 align-[-3px]" />
+                        )}
                     </div>
                     {/* The place's one line from the village map, under its name. A real block
                         (issue #354), so name and line never read as one run-together string. */}
@@ -2103,6 +2114,8 @@ const areEqual = (prev: SectionsPanelProps, next: SectionsPanelProps) => (
     // (Workshop and Mastermind, Home and the Cockpit's neighbours). A memo that ignored these
     // kept the first place's name on screen after the player walked to the second.
     prev.placeName === next.placeName &&
+    prev.placeElement === next.placeElement &&
+    prev.placeQuarterLit === next.placeQuarterLit &&
     prev.placeLine === next.placeLine &&
     prev.pageOwnsBackground === next.pageOwnsBackground &&
     prev.publicProfilePath === next.publicProfilePath &&

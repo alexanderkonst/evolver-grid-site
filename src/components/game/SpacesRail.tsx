@@ -17,8 +17,10 @@ import {
 import { cn } from "@/lib/utils";
 import { closedLine, closedShortLine, placeLine, type PlaceStateName } from "@/lib/placeState";
 import { placeName, stateWordText, tr } from "@/lib/villageCopy";
-import { PANE_BY_PLACE, RAIL_PLACES, tourIdFor } from "@/lib/railPlaces";
-import type { VillagePlace, VillagePlaceKey } from "@/data/villagePlaces";
+import { PANE_BY_PLACE, RAIL_PLACES, railState, tourIdFor } from "@/lib/railPlaces";
+import { litQuarters } from "@/lib/quarters";
+import QuarterSign from "@/components/game/QuarterSign";
+import { VILLAGE_PLACES, type VillagePlace, type VillagePlaceKey } from "@/data/villagePlaces";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -191,7 +193,8 @@ interface SpacesRailProps {
     /** The place the player is standing in (src/lib/railPlaces.ts `activePlaceKey`). */
     activePlace?: VillagePlaceKey | null;
     /**
-     * The state of each place, in `VILLAGE_PLACES` order (src/hooks/usePlaceStates.ts).
+     * The state of each place, in `VILLAGE_PLACES` order (src/hooks/usePlaceStates.ts), which is
+     * not the rail's order once places are grouped by quarter: read it with `railState`.
      * Absent = every place reads open, which is what a rail rendered before the save loads shows.
      */
     placeStates?: PlaceStateName[];
@@ -401,6 +404,12 @@ const SpacesRail = ({
         return () => window.clearTimeout(id);
     }, [compactRequested]);
     const compact = compactLayout;
+    // §25.14 earned light: a quarter's solid is lit once the first place of its quarter is open.
+    // While the save loads nothing is lit, so a sign only ever goes from outline to lit.
+    const quarterLit = litQuarters(
+        VILLAGE_PLACES,
+        placesLoading ? [] : placeStates ?? VILLAGE_PLACES.map(() => "open" as const),
+    );
 
     return (
         <div
@@ -813,11 +822,11 @@ const SpacesRail = ({
                     aria-label={tr(t, "village.railAria", "Village")}
                     className={compact ? "flex flex-col gap-[6px] p-[8px]" : drawer ? "flex flex-col gap-1 px-2 pt-3 pb-3" : "flex flex-col gap-1 px-3 pt-3 pb-3"}
                 >
-                {RAIL_PLACES.map((place, i) => {
+                {RAIL_PLACES.map((place) => {
                     // While the save loads the state is unknown: draw it neutral (no lock, no mark),
                     // never «open», so nothing flips from lit to grey after the page paints.
                     const loading = placesLoading;
-                    const rawState: PlaceStateName = loading ? "open" : placeStates?.[i] ?? "open";
+                    const rawState: PlaceStateName = loading ? "open" : railState(placeStates, place.key) ?? "open";
                     const active = place.key === activePlace;
                     const state: PlaceStateName = rawState === "closed" && active ? "open" : rawState;
                     // The place the player stands in is current, never locked: a guest on the Quest
@@ -944,6 +953,19 @@ const SpacesRail = ({
                                 )}
                             </span>
 
+                            {/* §25.14: the quarter's sign, one per place. A sign, not a door: it takes no tap. */}
+                            <QuarterSign
+                                element={place.element}
+                                lit={quarterLit[place.element]}
+                                size={compact ? 14 : 16}
+                                className={
+                                    compact
+                                        ? "absolute left-[3px] top-[3px]"
+                                        : drawer
+                                            ? ""
+                                            : "absolute left-1 top-1 lg:static"
+                                }
+                            />
                             {!loading && <StateMark state={state} compact={compact} />}
                             <span id={describedBy} className="sr-only">{stateWord(place, state, t)}</span>
 

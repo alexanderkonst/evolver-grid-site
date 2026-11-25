@@ -1,14 +1,22 @@
 import { VILLAGE_PLACES, type VillagePlace, type VillagePlaceKey } from "@/data/villagePlaces";
+import { groupByQuarter } from "@/lib/quarters";
 
 /**
  * The rail is the village map folded (WP-4, game_of_being_you.md §14.1.2, §14.6):
- * the same 11 places, in the same order, with the same names and the same states as
- * `/village`. `RAIL_PLACES` IS `VILLAGE_PLACES`; nothing here restates a name or an order.
+ * the same 11 places, with the same names and the same states as `/village`, grouped by
+ * quarter (ether, air, water, fire, earth; GoBY §25.14) and in map order inside each quarter.
+ * `RAIL_PLACES` is `VILLAGE_PLACES` sorted by `element`; nothing here restates a name.
+ * The states array of `usePlaceStates` follows `VILLAGE_PLACES` order, so read a place's state
+ * with `railState`, never by the index in `RAIL_PLACES`.
  *
  * What this file adds is the bridge to the existing pane 2 (`SectionsPanel`), which is
  * still keyed by the old space ids. Each place opens the pane of the module it holds.
  */
-export const RAIL_PLACES: readonly VillagePlace[] = VILLAGE_PLACES;
+export const RAIL_PLACES: readonly VillagePlace[] = groupByQuarter(VILLAGE_PLACES);
+
+/** The entry of `states` (in `VILLAGE_PLACES` order) that belongs to the place. */
+export const railState = <T>(states: readonly T[] | undefined, key: VillagePlaceKey): T | undefined =>
+  states?.[VILLAGE_PLACES.findIndex((p) => p.key === key)];
 
 /** The pane-2 space id (SECTIONS in SectionsPanel.tsx) behind each place. */
 export const PANE_BY_PLACE: Record<VillagePlaceKey, string> = {

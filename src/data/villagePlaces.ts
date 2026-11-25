@@ -39,9 +39,42 @@ export type VillagePlaceKey =
   | "market"
   | "town-hall";
 
+/**
+ * The five quarters of the village (GoBY §25.14, Sasha 2026-11-25): an element is a quarter of
+ * the map, never a door. Order is the order of the quarters in the rail.
+ */
+export type ElementKey = "ether" | "air" | "water" | "fire" | "earth";
+export type SolidKey = "dodecahedron" | "octahedron" | "icosahedron" | "tetrahedron" | "cube";
+
+export type VillageElement = {
+  key: ElementKey;
+  /** English name of the element; `village.quarter.<key>.name` translates «<Element> quarter». */
+  name: string;
+  solid: SolidKey;
+  /**
+   * The quarter's one accent colour. Each reaches AA (4.5:1) on the Lunar night scene at deep
+   * night and at first light (`--lunar-dawn` 0 and 1, src/styles/lunar-world.css) and on the
+   * rail's navy; src/data/__tests__/villageElements.test.ts holds the numbers.
+   */
+  color: string;
+};
+
+export const VILLAGE_ELEMENTS: readonly VillageElement[] = [
+  { key: "ether", name: "Ether", solid: "dodecahedron", color: "#c8b6ff" },
+  { key: "air", name: "Air", solid: "octahedron", color: "#9fd6ff" },
+  { key: "water", name: "Water", solid: "icosahedron", color: "#5fe0d3" },
+  { key: "fire", name: "Fire", solid: "tetrahedron", color: "#ff9d78" },
+  { key: "earth", name: "Earth", solid: "cube", color: "#dcc473" },
+];
+
+export const getVillageElement = (key: ElementKey): VillageElement =>
+  VILLAGE_ELEMENTS.find((e) => e.key === key)!;
+
 export type VillagePlace = {
   key: VillagePlaceKey;
   name: string;
+  /** The quarter the place stands in (§25.14). One place, one element. */
+  element: ElementKey;
   line: string;
   /** The line once a session exists (Reception: «Welcome back» instead of the guest's line). */
   lineReturning?: string;
@@ -95,6 +128,7 @@ const TOP_TALENT_SAVED = "your top talent is saved to your account";
 export const VILLAGE_PLACES: VillagePlace[] = [
   {
     key: "reception",
+    element: "ether",
     name: "Entry Portal",
     // A guest is «you», never «guest» and never a name (iconic spec §5 #4).
     line: "You're welcome here. Discover your uniqueness.",
@@ -111,6 +145,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "house",
+    element: "ether",
     name: "Home",
     line: "Your crystal, mission and save file.",
     to: "/game/me/overview",
@@ -129,6 +164,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "quest-board",
+    element: "ether",
     name: "Quest Board",
     line: "Your next quest.",
     to: "/game/journey",
@@ -144,6 +180,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "oracle",
+    element: "air",
     name: "Your AI",
     line: "Ask your AI.",
     to: "/game/your-ai",
@@ -159,6 +196,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "cafe",
+    element: "water",
     name: "Café",
     line: "Meet people, professionally or simply.",
     to: "/game/meet",
@@ -175,6 +213,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "coworking",
+    element: "water",
     name: "Co-working",
     line: "Find partners for the work.",
     to: "/game/collaborate/matches",
@@ -196,6 +235,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "fire-circle",
+    element: "fire",
     name: "FMF",
     line: "Your FMF circle.",
     to: FMF_PAGE_PATH,
@@ -217,6 +257,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "academy",
+    element: "fire",
     name: "Academy",
     line: "Grow in what matters most.",
     to: "/game/learn",
@@ -238,6 +279,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "workshop",
+    element: "earth",
     name: "Workshop",
     line: "Craft your offer.",
     to: "/ubb",
@@ -260,6 +302,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "market",
+    element: "earth",
     name: "Market",
     line: "Your shop and others'.",
     to: "/game/marketplace",
@@ -281,6 +324,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "town-hall",
+    element: "earth",
     name: "Town Hall",
     line: "Build ventures together.",
     // Town Hall v0 (WP-12): src/pages/spaces/CoopSpace.tsx.
@@ -326,6 +370,9 @@ export const RECEPTION = VILLAGE_PLACES.find((p) => p.key === "reception")!;
 /** CSS object-position for a scene: its focal point, or centred. */
 export const sceneObjectPosition = (p: VillagePlace) =>
   `${p.focus?.x ?? 50}% ${p.focus?.y ?? 50}%`;
+
+/** A place's element, with its solid and colour. */
+export const placeElement = (p: Pick<VillagePlace, "element">): VillageElement => getVillageElement(p.element);
 
 export const getVillagePlace = (key: string | undefined) =>
   VILLAGE_PLACES.find((p) => p.key === key);
