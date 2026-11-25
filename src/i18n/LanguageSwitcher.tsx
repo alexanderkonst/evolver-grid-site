@@ -15,6 +15,12 @@ import {
 interface LanguageSwitcherProps {
   /** Positioning / sizing classes applied to the trigger pill. */
   className?: string;
+  /**
+   * Name the trigger by what it shows: «EN, Language» instead of «Language» (WCAG 2.5.3 Label in
+   * Name; axe `label-content-name-mismatch`). Used inside the game. The title screen and the
+   * marketing pages keep the plain name (#460: Sasha scoped this fix to the game).
+   */
+  nameIncludesCode?: boolean;
 }
 
 /**
@@ -29,7 +35,7 @@ interface LanguageSwitcherProps {
  * control; placement/visibility is decided by the caller (the guest-only global
  * mount below, or the Settings "Language" row for logged-in users).
  */
-export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
+export const LanguageSwitcher = ({ className, nameIncludesCode = false }: LanguageSwitcherProps) => {
   const { i18n, t } = useTranslation();
   const current = i18n.resolvedLanguage ?? i18n.language ?? "en";
   const active =
@@ -54,7 +60,11 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        aria-label={t("language.label", "Language")}
+        aria-label={
+          nameIncludesCode
+            ? `${active.code.toUpperCase()}, ${t("language.label", "Language")}`
+            : t("language.label", "Language")
+        }
         className={[
           "inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-border/50",
           "bg-background/70 px-3 py-1.5 text-sm font-medium text-foreground/80 shadow-sm",
@@ -93,7 +103,14 @@ export const LanguageSwitcher = ({ className }: LanguageSwitcherProps) => {
  * row instead. Renders nothing until the session is confirmed absent, so there
  * is no flash for authenticated users.
  */
-export const GlobalLanguageSwitcher = ({ always = false }: { always?: boolean }) => {
+export const GlobalLanguageSwitcher = ({
+  always = false,
+  inGame = false,
+}: {
+  always?: boolean;
+  /** Rendered inside the game (village, /game/*), not on the title screen or a marketing page. */
+  inGame?: boolean;
+}) => {
   const [isGuest, setIsGuest] = useState(false);
 
   useEffect(() => {
@@ -114,7 +131,7 @@ export const GlobalLanguageSwitcher = ({ always = false }: { always?: boolean })
   // keeps the switcher visible even for signed-in visitors, since language choice
   // matters most on a cold entry point.
   if (!isGuest && !always) return null;
-  return <LanguageSwitcher className="fixed top-3 right-3 z-50" />;
+  return <LanguageSwitcher className="fixed top-3 right-3 z-50" nameIncludesCode={inGame} />;
 };
 
 export default LanguageSwitcher;
