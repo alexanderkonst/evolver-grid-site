@@ -12,7 +12,7 @@ import { placeName, placeTagline, tr } from "@/lib/villageCopy";
  *   open    condition met, module not done
  *   next    open, and the single next move on the Journey
  *   done    its module reached the Outro / its result is saved
- *   live    something is happening there now (webinar, Mastermind)
+ *   live    something is happening there now (FMF)
  *
  * The state is read from real events in the save file, never from points or XP.
  * Journey order and requirements come from `JOURNEY_MAIN` (src/data/journeySequence.ts);
@@ -77,7 +77,7 @@ export type PlaceClosedLine = {
 export type PlaceLive = {
   from: string;
   until: string;
-  /** «Live now: Webinar, Wed Nov 4.» */
+  /** «Live now: FMF, Monday to Wednesday.» */
   line: string;
   /** i18n key of `line`. Absent = English only. */
   key?: string;

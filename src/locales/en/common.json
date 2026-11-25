@@ -3588,8 +3588,7 @@
       "town-hall": "Opens with your first sale."
     },
     "live": {
-      "fire-circle": "Live now: FMF, Monday to Wednesday.",
-      "academy": "Live now: Webinar, Wed Nov 4."
+      "fire-circle": "Live now: FMF, Monday to Wednesday."
     },
     "result": {
       "find-top-talent": "you'll see your top talent and keep your character.",
@@ -3605,7 +3604,7 @@
       "assess-qol": "all eight areas are answered and your level shows.",
       "map-assets": "your skills, experience and network sit in one inventory.",
       "build-business": "your uniqueness phrase and your tagline are both saved.",
-      "webinar": "you were in the live session on Nov 4.",
+      "webinar": "you met Sasha.",
       "mastermind": "you took part in FMF, Monday and Wednesday.",
       "mastery-practice": "your twenty-first day of practice is behind you.",
       "first-price": "one real client has heard your price.",
@@ -3660,12 +3659,12 @@
       },
       "webinar": {
         "eyebrow": "Academy · Step 8",
-        "headline": "Join the free FMF session (Nov 4)",
-        "silhouette": "One free live session with others on the same path. Come, and leave with one step to take.",
-        "verb": "Join the free session",
-        "task": "Join the free FMF session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
-        "didIt": "I joined the session",
-        "link": "Open the session page"
+        "headline": "Meet Sasha first",
+        "silhouette": "A conversation with Sasha before you commit. Come, and leave with one step to take.",
+        "verb": "Book a time with Sasha",
+        "task": "Book a time with Sasha. Afterwards, come back and say you met.",
+        "didIt": "I met Sasha",
+        "link": "Book a time with Sasha"
       },
       "mastermind": {
         "eyebrow": "FMF · Step 9",
@@ -8129,14 +8128,7 @@
     "emptyDescGuest": "Check back soon for upcoming community gatherings.",
     "createEvent": "Create Event",
     "featured": {
-      "liveSession": {
-        "when": "Wed Nov 4 · 9:00 CDMX",
-        "title": "Free FMF session",
-        "price": "Free · live session",
-        "cta": "Register on Luma"
-      },
       "mastermind": {
-        "when": "Mon Dec 14 + Wed Dec 16",
         "title": "FMF: Discover Founder-Market Fit in Three Days, Guaranteed",
         "price": "Monday + Wednesday live · $222",
         "cta": "See details"

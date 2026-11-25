@@ -67,10 +67,12 @@ describe("journey modules (WP-5 module form)", () => {
     for (const id of QUEST_STEP_IDS) expect(getJourneyChoice(id), id).toBeDefined();
   });
 
-  it("J8 sends the player to the Luma page and J9 to the FMF page", () => {
-    expect(getJourneyModule("webinar")?.quest?.link?.to).toBe("https://lu.ma/qpogt17o");
+  it("J8 sends the player to the booking page (undated) and J9 to the FMF page", () => {
+    expect(getJourneyModule("webinar")?.quest?.link?.to).toBe("https://cal.com/aleksandrkonstantinov/1-hour-co-working");
     expect(getJourneyModule("mastermind")?.quest?.link?.to).toBe("/build/fmf");
-    expect(getJourneyModule("webinar")?.headline).toBe("Join the free FMF session (Nov 4)");
+    expect(getJourneyModule("webinar")?.headline).toBe("Meet Sasha first");
+    const j8 = getJourneyModule("webinar");
+    expect([j8?.headline, j8?.quest?.task, j8?.quest?.doneWhen].join(" ")).not.toMatch(/Nov|free/i);
     expect(getJourneyModule("mastermind")?.headline).toBe("FMF: Discover Founder-Market Fit in Three Days");
   });
 
