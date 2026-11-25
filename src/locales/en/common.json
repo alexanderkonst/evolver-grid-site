@@ -3621,47 +3621,55 @@
       "rateQ": "How much did this resonate, {{min}}–{{max}}? Tap a number to record it.",
       "rateOf": "{{n}} of {{max}}"
     },
+    "opens": {
+      "places": "Opens: {{places}}.",
+      "next": "Next on your path: {{next}}.",
+      "and": "{{head}} and {{last}}"
+    },
     "module": {
+      "academy-welcome": {
+        "silhouette": "You get a short welcome from the free course, and one thing to do this week."
+      },
       "find-top-talent": {
         "eyebrow": "Entry Portal · Step 1",
         "headline": "Discover your top talent",
-        "silhouette": "A short test of what you do best. It ends with the talent that is yours, in your own colors.",
+        "silhouette": "You get your top talent, in your own colors, saved to your character.",
         "verb": "Find my top talent"
       },
       "discover-mission": {
         "eyebrow": "Home · Step 2",
         "headline": "Discover your mission",
-        "silhouette": "Paste one answer from your own AI. You leave with one sentence about what is yours to do in the world.",
+        "silhouette": "You get one sentence about what is yours to do in the world.",
         "verb": "Find my mission"
       },
       "assess-qol": {
         "eyebrow": "Home · Step 3",
         "headline": "Know your real level",
-        "silhouette": "Eight areas of life, answered honestly. The result is private: only you see it.",
+        "silhouette": "You get your real level across eight areas of life, private to you.",
         "verb": "Show my level"
       },
       "map-assets": {
         "eyebrow": "Home · Step 4",
         "headline": "Map everything you can build with",
-        "silhouette": "Your skills, experience and network, gathered once into one inventory.",
+        "silhouette": "You get one inventory of your skills, experience and network.",
         "verb": "Map my assets"
       },
       "uniqueness-phrase": {
         "eyebrow": "Workshop · Step 6",
         "headline": "Your uniqueness in one phrase",
-        "silhouette": "The AI drafts one phrase that only you could say, from your top talent. You sharpen it until it sounds like you.",
+        "silhouette": "You get one phrase that only you could say, built from your top talent.",
         "verb": "Name my uniqueness"
       },
       "tagline": {
         "eyebrow": "Workshop · Step 7",
         "headline": "The tagline of your unique business",
-        "silhouette": "One sentence for the people you serve: where they are, and where you take them.",
+        "silhouette": "You get one sentence for the people you serve: where they are, and where you take them.",
         "verb": "Write my tagline"
       },
       "webinar": {
         "eyebrow": "Academy · Step 8",
         "headline": "Join the free FMF session (Nov 4)",
-        "silhouette": "One free live session with others on the same path. Come, and leave with one step to take.",
+        "silhouette": "You get one free live session with others on the same path, and one step to take.",
         "verb": "Join the free session",
         "task": "Join the free FMF session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
         "didIt": "I joined the session",
@@ -3670,7 +3678,7 @@
       "mastermind": {
         "eyebrow": "FMF · Step 9",
         "headline": "FMF: Discover Founder-Market Fit in Three Days",
-        "silhouette": "Three days in a circle with others who build, live on Monday and Wednesday. You leave with one real step to take this week.",
+        "silhouette": "You get three days in a circle with others who build, and one real step for this week.",
         "verb": "Join FMF",
         "task": "Join FMF on its next dates (Monday and Wednesday, at the start of a moon cycle). When both sessions are over, come back and say you were there.",
         "didIt": "I joined FMF",
@@ -3679,7 +3687,7 @@
       "mastery-practice": {
         "eyebrow": "Academy · Step 10",
         "headline": "Twenty-one days of practice, done",
-        "silhouette": "Practise for 21 days with others walking the same path. When the twenty-first day is behind you, come back and say so.",
+        "silhouette": "You get 21 days of practice with others on the same path.",
         "verb": "Practise my 21 days",
         "task": "Practise every day for 21 days, alongside others walking the same path. Come back when you have done all 21.",
         "didIt": "I did my 21 days"
@@ -3687,7 +3695,7 @@
       "first-price": {
         "eyebrow": "Market · Step 11",
         "headline": "Name your price to a real client",
-        "silhouette": "Your price is part of the gift. You say it out loud to one real person who could buy.",
+        "silhouette": "You get your price, said out loud to one real person who could buy.",
         "verb": "Name my price",
         "task": "Tell one real client the price of your offer, out loud or in writing. Then come back and say you did.",
         "didIt": "I named my price"
@@ -3695,7 +3703,7 @@
       "first-sale": {
         "eyebrow": "Market · Step 12",
         "headline": "Receive your first payment for being you",
-        "silhouette": "Someone pays you for your own offer. A neighbour counts the same as a stranger online.",
+        "silhouette": "You get proof that someone pays you for being you.",
         "verb": "Make my first sale",
         "task": "Sell your offer to one real person and receive the payment. Come back and say you did: no money moves here, and we take your word.",
         "didIt": "I made my first sale"

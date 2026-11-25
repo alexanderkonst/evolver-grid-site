@@ -220,47 +220,55 @@
       "rateQ": "¿Cuánto resonó esto, de {{min}} a {{max}}? Toca un número para registrarlo.",
       "rateOf": "{{n}} de {{max}}"
     },
+    "opens": {
+      "places": "Se abre: {{places}}.",
+      "next": "Siguiente en tu camino: {{next}}.",
+      "and": "{{head}} y {{last}}"
+    },
     "module": {
+      "academy-welcome": {
+        "silhouette": "Obtienes una bienvenida corta del curso gratuito y una cosa por hacer esta semana."
+      },
       "find-top-talent": {
         "eyebrow": "Portal de entrada · Paso 1",
         "headline": "Descubre tu talento principal",
-        "silhouette": "Una prueba corta de lo que mejor haces. Termina con el talento que es tuyo, en tus propios colores.",
+        "silhouette": "Obtienes tu talento principal, en tus propios colores, guardado en tu personaje.",
         "verb": "Encontrar mi talento principal"
       },
       "discover-mission": {
         "eyebrow": "Casa · Paso 2",
         "headline": "Descubre tu misión",
-        "silhouette": "Pega una respuesta de tu propia IA. Te vas con una frase sobre lo que te toca hacer en el mundo.",
+        "silhouette": "Obtienes una frase sobre lo que te toca hacer en el mundo.",
         "verb": "Encontrar mi misión"
       },
       "assess-qol": {
         "eyebrow": "Casa · Paso 3",
         "headline": "Conoce tu nivel real",
-        "silhouette": "Ocho áreas de la vida, respondidas con honestidad. El resultado es privado: solo tú lo ves.",
+        "silhouette": "Obtienes tu nivel real en ocho áreas de la vida, privado para ti.",
         "verb": "Mostrar mi nivel"
       },
       "map-assets": {
         "eyebrow": "Casa · Paso 4",
         "headline": "Mapea todo con lo que puedes construir",
-        "silhouette": "Tus habilidades, experiencia y red, reunidas una sola vez en un inventario.",
+        "silhouette": "Obtienes un inventario de tus habilidades, experiencia y red.",
         "verb": "Mapear mis activos"
       },
       "uniqueness-phrase": {
         "eyebrow": "Taller · Paso 6",
         "headline": "Tu singularidad en una frase",
-        "silhouette": "La IA redacta una frase que solo tú podrías decir, a partir de tu talento principal. Tú la afilas hasta que suene a ti.",
+        "silhouette": "Obtienes una frase que solo tú podrías decir, hecha a partir de tu talento principal.",
         "verb": "Nombrar mi singularidad"
       },
       "tagline": {
         "eyebrow": "Taller · Paso 7",
         "headline": "El eslogan de tu negocio único",
-        "silhouette": "Una frase para las personas a las que sirves: dónde están y adónde las llevas.",
+        "silhouette": "Obtienes una frase para las personas a las que sirves: dónde están y adónde las llevas.",
         "verb": "Escribir mi eslogan"
       },
       "webinar": {
         "eyebrow": "Academia · Paso 8",
         "headline": "Únete a la sesión gratuita de FMF (4 de nov)",
-        "silhouette": "Una sesión gratuita en vivo con otras personas en el mismo camino. Ven y vete con un paso por dar.",
+        "silhouette": "Obtienes una sesión gratuita en vivo con otras personas en el mismo camino, y un paso por dar.",
         "verb": "Unirme a la sesión gratuita",
         "task": "Únete a la sesión gratuita de FMF el miércoles 4 de nov. Después vuelve y di que estuviste.",
         "didIt": "Estuve en la sesión",
@@ -269,7 +277,7 @@
       "mastermind": {
         "eyebrow": "FMF · Paso 9",
         "headline": "FMF: descubre tu Founder-Market Fit en tres días",
-        "silhouette": "Tres días en círculo con otras personas que construyen, en vivo lunes y miércoles. Te vas con un paso real por dar esta semana.",
+        "silhouette": "Obtienes tres días en círculo con otras personas que construyen, y un paso real para esta semana.",
         "verb": "Unirme a FMF",
         "task": "Únete a FMF en sus próximas fechas (lunes y miércoles, al inicio de un ciclo lunar). Cuando terminen las dos sesiones, vuelve y di que estuviste.",
         "didIt": "Estuve en FMF",
@@ -278,7 +286,7 @@
       "mastery-practice": {
         "eyebrow": "Academia · Paso 10",
         "headline": "Veintiún días de práctica, hechos",
-        "silhouette": "Practica durante 21 días con otras personas en el mismo camino. Cuando quede atrás el día veintiuno, vuelve y dilo.",
+        "silhouette": "Obtienes 21 días de práctica con otras personas en el mismo camino.",
         "verb": "Practicar mis 21 días",
         "task": "Practica todos los días durante 21 días, junto a otras personas en el mismo camino. Vuelve cuando hayas hecho los 21.",
         "didIt": "Hice mis 21 días"
@@ -286,7 +294,7 @@
       "first-price": {
         "eyebrow": "Mercado · Paso 11",
         "headline": "Dile tu precio a un cliente real",
-        "silhouette": "Tu precio es parte del regalo. Lo dices en voz alta a una persona real que podría comprar.",
+        "silhouette": "Obtienes tu precio, dicho en voz alta a una persona real que podría comprar.",
         "verb": "Decir mi precio",
         "task": "Dile a un cliente real el precio de tu oferta, en voz alta o por escrito. Luego vuelve y di que lo hiciste.",
         "didIt": "Dije mi precio"
@@ -294,7 +302,7 @@
       "first-sale": {
         "eyebrow": "Mercado · Paso 12",
         "headline": "Recibe tu primer pago por ser tú",
-        "silhouette": "Alguien te paga por tu propia oferta. Un vecino cuenta igual que un desconocido en línea.",
+        "silhouette": "Obtienes la prueba de que alguien te paga por ser tú.",
         "verb": "Hacer mi primera venta",
         "task": "Vende tu oferta a una persona real y recibe el pago. Vuelve y di que lo hiciste: aquí no se mueve dinero y te creemos la palabra.",
         "didIt": "Hice mi primera venta"
