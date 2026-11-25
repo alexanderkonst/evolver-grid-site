@@ -49,6 +49,7 @@ import { useSceneSrc } from "@/lib/sceneSrc";
 import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
 import IntroSequence from "@/components/game/IntroSequence";
 import MoonDial from "@/components/game/MoonDial";
+import PlaceRoomsPane from "@/components/game/PlaceRoomsPane";
 import { placeLight, placeSignalKey, type PlaceLight } from "@/lib/placeLight";
 import "./Village.css";
 
@@ -679,6 +680,8 @@ const Village = () => {
             aria-label={placeName(lastPlace, t)}
           >
             <Link className="vl-mono vl-back" to="/village">{tr(t, "village.backVillage", "← Village")}</Link>
+            {/* §25.3: the scene and the second pane stand together; keyed by place, so every entry opens it afresh. */}
+            <PlaceRoomsPane key={lastPlace.key} place={lastPlace} save={save} signedIn={signedIn === true} mobile={mobile} />
             <PlaceState
               state={lastState}
               className="vl-place__state"

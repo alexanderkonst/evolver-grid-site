@@ -902,6 +902,15 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
 
     // The place the player stands in: the path decides first, the pane second.
     const activePlace = activePlaceKey(location.pathname, activeSpaceId);
+    // GoBY §25.3: pane 2 opens when the player ENTERS a place, from another place. A first load keeps
+    // the route's own default (closed on the title door, /ignite, Karime, admin, /holomap), and a pane
+    // the player closed stays closed while they move inside one place. Derived during render so the
+    // pane's own «no rows for this player» close (SectionsPanel `onEmptyChange`, an effect) still wins.
+    const [stoodInPlace, setStoodInPlace] = useState(activePlace);
+    if (activePlace && activePlace !== stoodInPlace) {
+        setStoodInPlace(activePlace);
+        if (stoodInPlace && !isAuthRoute) setSectionsPanelOpen(true);
+    }
     const activePlaceData = RAIL_PLACES.find((p) => p.key === activePlace);
     // W2: the one player name for the rail and the place line; null for a guest.
     // Issue #419: until the game_profiles row exists, the name given at signup (auth metadata) stands in.
