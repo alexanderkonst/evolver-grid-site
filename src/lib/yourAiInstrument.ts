@@ -5,12 +5,16 @@
 
 /** Open or close the instrument from the keyboard (SoW decision: the period). */
 export const TOGGLE_KEY = ".";
+/** The navigation instrument's key (architecture §5.1): `I`, either case. The period keeps working. */
+export const INSTRUMENT_KEY = "i";
 
 /** localStorage latch: the first-open tour is shown once. */
 export const TOUR_SEEN_KEY = "fytt:your-ai-tour-seen";
 
 /** Swipe down at least this far (px) to close. */
 export const SWIPE_CLOSE_PX = 72;
+/** Swipe up at least this far (px) from the glyph to open. */
+export const SWIPE_OPEN_PX = 40;
 
 /** The four groups the first-open tour zooms onto, in order. */
 export const TOUR_GROUPS = ["header", "conversation", "console", "powerUps"] as const;
@@ -40,9 +44,9 @@ export const isEditableTarget = (target: EventTarget | null): boolean => {
   return el.matches("input, textarea, select, [contenteditable=''], [contenteditable='true']");
 };
 
-/** The bare period, outside text fields, not already handled by something else. */
+/** The bare period or `I`, outside text fields, not already handled by something else. */
 export const isToggleKey = (e: KeyLike): boolean =>
-  e.key === TOGGLE_KEY &&
+  (e.key === TOGGLE_KEY || e.key.toLowerCase() === INSTRUMENT_KEY) &&
   !e.metaKey &&
   !e.ctrlKey &&
   !e.altKey &&

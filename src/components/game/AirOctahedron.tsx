@@ -42,11 +42,13 @@ const LIGHT: [number, number, number] = (() => {
 
 const mix = (a: number[], b: number[], t: number) => a.map((x, i) => Math.round(x + (b[i] - x) * t));
 
-const drawOctahedron = (ctx: CanvasRenderingContext2D, size: number, pose: Pose) => {
+/**
+ * Paint the crystal. `scale` is pixels per unit of r (default: fill the box, 3px margin so edges are
+ * never clipped); `clear: false` lets the instrument glyph paint the ring and inner bodies on the same canvas.
+ */
+export const drawOctahedron = (ctx: CanvasRenderingContext2D, size: number, pose: Pose, scale = size / 2 - 3, clear = true) => {
   const c = size / 2;
-  // The vertex-to-vertex span at its widest is 2 units; leave a 2px margin so edges are never clipped.
-  const scale = c - 3;
-  ctx.clearRect(0, 0, size, size);
+  if (clear) ctx.clearRect(0, 0, size, size);
   ctx.lineJoin = "round";
   ctx.lineCap = "round";
 

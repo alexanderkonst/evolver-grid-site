@@ -1,28 +1,33 @@
 /**
- * YourAiInstrument — Your AI as an instrument the player carries (docs/specs/your-ai-instrument/sow.md,
- * Phase 1; GoBY §25.10–25.12).
+ * YourAiInstrument — the navigation instrument's host (docs/specs/navigation-instrument/architecture.md
+ * §4–§5.1, GoBY §25.10) and the air face, Your AI (docs/specs/your-ai-instrument/sow.md, #458).
  *
- * A clear octahedron sits in the corner of every shell screen. One gesture (tap, or the period key)
- * raises the instrument over the living world; the world stays mounted and visible, dimmed. The same
- * gesture, Esc, or a swipe down lowers it and the player is exactly where they were: opening never
- * changes the route, and focus returns to where it was.
+ * Closed: the glyph in the corner (`InstrumentGlyph`). One gesture (click, Enter, the `I` key, a swipe
+ * up on touch) raises the instrument over the living world: the crystal rises to the centre and turns
+ * a face, the world dims to about 0.9 brightness and stays mounted and live, the bodies unfold in an
+ * arc with their labels (lit ones drawn, unlit ones outlines that say "Opens on your path"). The same
+ * gesture, Esc, or a tap outside lowers it, playing the same motion backwards, and focus goes back to
+ * where it was. Opening never changes the route. Reduced motion: a 150 ms crossfade, no rise, no turn.
  *
- * Inside, three groups plus one closed row: header, conversation (reuses the zone-of-genius
- * dialogue modules and the deployed `library-advisor`), Console (the AI OS suites as app buttons)
- * and «Power-ups for business» in the §25.5 form. The first time it opens, a micro-onboarding zooms
- * by scale and light onto each group in turn, one line each.
+ * A face is one body turned forward (`src/lib/instrument/faces.ts`). Only air has one today: the Your
+ * AI panel below (header, conversation, Console, power-ups, first-open tour). The other slots are
+ * empty, and an empty body is shown but not offered as a door.
  *
- * Design law (GoBY §5): near-black, one accent ice blue, physical materials, no glow rings.
- * AiOsPage is deliberately not imported: its backgrounds are the documented OOM / stacking-context
- * hazard (see SpacesRail.tsx), and this component lives in the shell on every screen.
+ * The machine is `src/lib/instrument/state.ts`. Design law (GoBY §5): near-black, one accent ice blue,
+ * physical materials, no glow rings. AiOsPage is deliberately not imported: its backgrounds are the
+ * documented OOM / stacking-context hazard (see SpacesRail.tsx), and this component lives in the shell
+ * on every screen.
  */
-import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useReducer, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Lock, RotateCcw, Send, X } from "lucide-react";
+import { ArrowRight, ChevronLeft, Lock, RotateCcw, Send, X } from "lucide-react";
 import AirOctahedron from "@/components/game/AirOctahedron";
+import InstrumentGlyph from "@/components/game/InstrumentGlyph";
+import { QuarterSign } from "@/components/game/QuarterSign";
 import { type YourAiButton } from "@/data/yourAiCatalog";
+import { VILLAGE_ELEMENTS, type ElementKey } from "@/data/villagePlaces";
 import { getCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 import { askYourAi, type DialogueMessage } from "@/modules/zone-of-genius/yourAiDialogue";
 import { buildPlayerCard, readTraces, writeTrace } from "@/modules/zone-of-genius/yourAiCard";
@@ -40,9 +45,21 @@ import {
   writeTourSeen,
   type TourGroup,
 } from "@/lib/yourAiInstrument";
+import { getFace, hasFace, registerFace, type FaceProps } from "@/lib/instrument/faces";
+import { instrumentModel, instrumentReduce, isRaised } from "@/lib/instrument/state";
 
-/** The corner object, CSS px: about 2x the first preview (48). Fits a 375px phone beside the chat pill's column. */
-const CORNER_PX = 96;
+/** The crystal raised in the middle of the screen, CSS px. */
+const AIR_PX = 128;
+/** Where the raised crystal sits, as a share of the viewport height. */
+const STAGE_Y = 0.46;
+/** The bodies' arc, degrees from the +x axis (canvas y points down, so negative is up), one per body that is not air. */
+const ARC_DEG = [-165, -118, -62, -15];
+const ARC_RADIUS_MAX = 140;
+/** Open: about 600 ms; reduced motion: a 150 ms crossfade. */
+const OPEN_MS = 600;
+const OPEN_REDUCED_MS = 150;
+/** The world under the instrument: about 0.9 brightness, still live. */
+const DIM = "rgba(0,0,0,0.1)";
 
 const ACCENT = "#bcd7e6";
 const INK = "#e8eef2";
@@ -75,121 +92,43 @@ const useReducedMotion = (): boolean => {
 const FOCUSABLE =
   "a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])";
 
-type Props = {
-  /** The existing gate: T+M+A complete, or the AI OS was ever visited. */
-  enabled: boolean;
-  /** Signed-in player id, for the daily cap and traces; null for a guest. */
-  ownerId: string | null;
-};
+/** Conversations survive the instrument closing and opening again, for as long as the page lives. */
+const conversations = new Map<string, DialogueMessage[]>();
 
-const YourAiInstrument = ({ enabled, ownerId }: Props) => {
+/** The air face: Your AI (#458). It registers itself in the faces registry below. */
+const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigate }: FaceProps) => {
   const { t, i18n } = useTranslation();
-  const navigate = useNavigate();
-  const reduced = useReducedMotion();
   const titleId = useId();
+  const convoKey = ownerId ?? "guest";
 
-  const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [shown, setShown] = useState(false);
   const [beat, setBeat] = useState<number | null>(null);
-
-  const [messages, setMessages] = useState<DialogueMessage[]>([]);
+  const [messages, setMessagesState] = useState<DialogueMessage[]>(() => conversations.get(convoKey) ?? []);
+  const setMessages = (next: DialogueMessage[]) => {
+    conversations.set(convoKey, next);
+    setMessagesState(next);
+  };
   const [draft, setDraft] = useState("");
   const [thinking, setThinking] = useState(false);
   const [turnError, setTurnError] = useState(false);
   const [turnsUsed, setTurnsUsed] = useState(() => getTurnsUsedToday(ownerId));
   const limitReached = turnsUsed >= YOUR_AI_DAILY_FREE_TURNS;
 
-  const objectRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const logRef = useRef<HTMLDivElement>(null);
-  const returnFocusRef = useRef<HTMLElement | null>(null);
   const swipeRef = useRef<{ y: number; atTop: boolean } | null>(null);
 
   const tourActive = beat !== null;
-  const closeMs = reduced ? 120 : 280;
 
-  const openPanel = useCallback(() => {
-    returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    setMounted(true);
-    setOpen(true);
-  }, []);
-  const closePanel = useCallback(() => setOpen(false), []);
-  const toggle = useCallback(() => (open ? closePanel() : openPanel()), [open, openPanel, closePanel]);
-
-  // The period key, from anywhere in the shell (not while typing).
+  // Once the face is forward: focus moves in; the first time ever, the tour starts.
   useEffect(() => {
-    if (!enabled) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (!isToggleKey(e)) return;
-      e.preventDefault();
-      toggle();
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [enabled, toggle]);
-
-  // Rise and lower. The world is never touched: this only mounts and unmounts the overlay.
-  useEffect(() => {
-    if (open) {
-      setTurnsUsed(getTurnsUsedToday(ownerId));
-      const raf = requestAnimationFrame(() => requestAnimationFrame(() => setShown(true)));
-      return () => cancelAnimationFrame(raf);
-    }
-    if (!mounted) return;
-    setShown(false);
-    setBeat(null);
-    const back = returnFocusRef.current;
-    (back && back.isConnected ? back : objectRef.current)?.focus();
-    const timer = window.setTimeout(() => setMounted(false), closeMs);
-    return () => window.clearTimeout(timer);
-  }, [open, mounted, ownerId, closeMs]);
-
-  // Once the panel is up: focus moves in; the first time ever, the tour starts.
-  useEffect(() => {
-    if (!shown) return;
+    if (!active) return;
+    setTurnsUsed(getTurnsUsedToday(ownerId));
     panelRef.current?.focus();
     if (readTourSeen()) return;
     const timer = window.setTimeout(() => setBeat(0), reduced ? 200 : 520);
     return () => window.clearTimeout(timer);
-  }, [shown, reduced]);
-
-  // A player who loses the gate mid-session (sign-out) gets the instrument lowered.
-  useEffect(() => {
-    if (!enabled) setOpen(false);
-  }, [enabled]);
-
-  // Esc closes; Tab stays inside the panel while it is open.
-  useEffect(() => {
-    if (!mounted) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        e.preventDefault();
-        e.stopPropagation();
-        closePanel();
-        return;
-      }
-      if (e.key !== "Tab" || !panelRef.current) return;
-      const nodes = Array.from(panelRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((n) => !n.closest("[inert]"));
-      if (nodes.length === 0) {
-        e.preventDefault();
-        return;
-      }
-      const first = nodes[0];
-      const last = nodes[nodes.length - 1];
-      const active = document.activeElement;
-      if (e.shiftKey && (active === first || active === panelRef.current)) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && active === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-    window.addEventListener("keydown", onKeyDown, true);
-    return () => window.removeEventListener("keydown", onKeyDown, true);
-  }, [mounted, closePanel]);
+  }, [active, reduced, ownerId]);
 
   // The tour: lean into one group, by scale and light. Reduced motion: light only (fades).
   const endTour = useCallback(() => {
@@ -197,11 +136,14 @@ const YourAiInstrument = ({ enabled, ownerId }: Props) => {
     setBeat(null);
   }, []);
   useEffect(() => {
-    if (!open && beat !== null) writeTourSeen();
-  }, [open, beat]);
+    if (!active && beat !== null) {
+      writeTourSeen();
+      setBeat(null);
+    }
+  }, [active, beat]);
   useEffect(() => {
     contentRef.current?.toggleAttribute("inert", tourActive);
-  }, [tourActive, mounted]);
+  }, [tourActive]);
   const nextBeat = () => (beat !== null && beat < TOUR_GROUPS.length - 1 ? setBeat(beat + 1) : endTour());
 
   useEffect(() => {
@@ -242,8 +184,7 @@ const YourAiInstrument = ({ enabled, ownerId }: Props) => {
 
   const goTo = (to: string, trace?: YourAiButton) => {
     if (trace) writeTrace({ kind: trace.kind, payload_id: trace.id, outcome: "tapped" }, ownerId);
-    closePanel();
-    navigate(to);
+    onNavigate(to);
   };
 
   const onTouchStart = (e: React.TouchEvent) => {
@@ -252,10 +193,8 @@ const YourAiInstrument = ({ enabled, ownerId }: Props) => {
   const onTouchEnd = (e: React.TouchEvent) => {
     const start = swipeRef.current;
     swipeRef.current = null;
-    if (start?.atTop && e.changedTouches[0].clientY - start.y >= SWIPE_CLOSE_PX) closePanel();
+    if (start?.atTop && e.changedTouches[0].clientY - start.y >= SWIPE_CLOSE_PX) onClose();
   };
-
-  if (!enabled || typeof document === "undefined") return null;
 
   const focusedGroup = beat === null ? null : TOUR_GROUPS[beat];
   const lit = (g: TourGroup): React.CSSProperties => ({
@@ -268,60 +207,37 @@ const YourAiInstrument = ({ enabled, ownerId }: Props) => {
   const pill =
     "inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full px-4 text-[13px] outline-none focus-visible:ring-2 focus-visible:ring-[#bcd7e6]";
 
-  return createPortal(
-    <>
-      <button
-        ref={objectRef}
-        type="button"
-        onClick={toggle}
-        aria-label={open ? t("yourAiInstrument.close") : t("yourAiInstrument.open")}
-        aria-expanded={open}
-        aria-haspopup="dialog"
-        aria-keyshortcuts="."
-        data-testid="your-ai-object"
-        className="fixed right-2 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+3.75rem)] z-[81] grid h-24 w-24 place-items-center rounded-full outline-none transition-transform duration-300 focus-visible:ring-2 focus-visible:ring-[#bcd7e6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e13] motion-safe:hover:scale-105 motion-safe:active:scale-95 sm:bottom-[5.5rem] sm:right-5"
-      >
-        {/* Drawn once per tick by one small canvas; the loop stops while the panel is open. */}
-        <AirOctahedron size={CORNER_PX} still={open} reduced={reduced} />
-      </button>
-
-      {mounted && (
-        <div className="fixed inset-0 z-[80]" data-testid="your-ai-overlay">
-          {/* The world stays mounted and visible behind: dimmed, not paused. Tapping it lowers the instrument. */}
-          <div
-            aria-hidden="true"
-            onClick={closePanel}
-            className="absolute inset-0"
-            style={{ backgroundColor: "rgba(4,6,9,0.62)", opacity: shown ? 1 : 0, transition: `opacity ${closeMs}ms ${EASE}` }}
-          />
-          <div className="pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+10.25rem)] top-3 flex items-end justify-end sm:inset-x-6 sm:bottom-[12.25rem]">
-            <div
-              ref={panelRef}
-              role="dialog"
-              aria-modal="true"
-              aria-labelledby={titleId}
-              tabIndex={-1}
-              onTouchStart={onTouchStart}
-              onTouchEnd={onTouchEnd}
-              className="pointer-events-auto relative flex max-h-full w-full flex-col overflow-hidden rounded-2xl outline-none sm:w-[26rem]"
-              style={{
-                height: "min(40rem, 100%)",
-                backgroundColor: PANEL,
-                border: `1px solid ${HAIRLINE}`,
-                boxShadow: "0 28px 60px -14px rgba(0,0,0,0.75)",
-                color: INK,
-                transformOrigin: "bottom right",
-                opacity: shown ? 1 : 0,
-                transform: shown || reduced ? "none" : "translateY(28px) scale(0.9)",
-                transition: `opacity ${closeMs}ms ${EASE}, transform ${closeMs}ms ${EASE}`,
-              }}
-            >
+  return (
+    <div
+      ref={panelRef}
+      role="region"
+      aria-labelledby={titleId}
+      tabIndex={-1}
+      data-face-root="air"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      className="pointer-events-auto relative flex max-h-full w-full flex-col overflow-hidden rounded-2xl outline-none sm:w-[26rem]"
+      style={{
+        height: "min(40rem, 100%)",
+        backgroundColor: PANEL,
+        border: `1px solid ${HAIRLINE}`,
+        boxShadow: "0 28px 60px -14px rgba(0,0,0,0.75)",
+        color: INK,
+        transformOrigin: "bottom right",
+        opacity: active ? 1 : 0,
+        transform: active || reduced ? "none" : "translateY(28px) scale(0.9)",
+        transition: `opacity ${closeMs}ms ${EASE}, transform ${closeMs}ms ${EASE}`,
+      }}
+    >
               <div
                 ref={contentRef}
                 className="relative flex min-h-0 flex-1 flex-col gap-3 p-4"
               >
                 {/* Group 1 · header */}
                 <header className="flex items-center gap-3" style={lit("header")}>
+                  <button type="button" onClick={onBack} aria-label={t("instrument.back")} className={`${pill} !px-0 w-11`} style={{ color: MUTED }}>
+                    <ChevronLeft aria-hidden="true" className="h-4 w-4" />
+                  </button>
                   <AirOctahedron size={40} still reduced={reduced} />
                   <div className="min-w-0 flex-1">
                     <h2 id={titleId} className="text-xl leading-tight" style={{ fontFamily: SERIF, fontWeight: 600, color: INK }}>
@@ -332,7 +248,7 @@ const YourAiInstrument = ({ enabled, ownerId }: Props) => {
                   <button type="button" onClick={() => setBeat(0)} aria-label={t("yourAiInstrument.replay")} className={`${pill} !px-0 w-11`} style={{ color: MUTED }}>
                     <RotateCcw aria-hidden="true" className="h-4 w-4" />
                   </button>
-                  <button type="button" onClick={closePanel} aria-label={t("yourAiInstrument.close")} className={`${pill} !px-0 w-11`} style={{ color: MUTED }}>
+                  <button type="button" onClick={onClose} aria-label={t("yourAiInstrument.close")} className={`${pill} !px-0 w-11`} style={{ color: MUTED }}>
                     <X aria-hidden="true" className="h-4 w-4" />
                   </button>
                 </header>
@@ -483,8 +399,289 @@ const YourAiInstrument = ({ enabled, ownerId }: Props) => {
                   </div>
                 </div>
               )}
-            </div>
+    </div>
+  );
+};
+
+registerFace("air", AirFace);
+
+/** `inert` is not in React 18's DOM typings; the attribute itself is what browsers read. */
+const inertProps = (on: boolean): Record<string, string> => (on ? { inert: "" } : {});
+
+type Props = {
+  /** The existing gate: T+M+A complete, or the AI OS was ever visited. */
+  enabled: boolean;
+  /** Signed-in player id, for the daily cap and traces; null for a guest. */
+  ownerId: string | null;
+  /** `litQuarters` for this player: which bodies are lit. */
+  lit: Record<ElementKey, boolean>;
+  /** CSS selector of what the glyph must never cover on this screen (the village's next-move card). */
+  avoid?: string;
+};
+
+const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const reduced = useReducedMotion();
+
+  const [model, dispatch] = useReducer(instrumentReduce, enabled, instrumentModel);
+  const raised = isRaised(model);
+  const [mounted, setMounted] = useState(false);
+  const [shown, setShown] = useState(false);
+  const [rise, setRise] = useState({ dx: 0, dy: 0 });
+  const [announce, setAnnounce] = useState("");
+  const [arcRadius, setArcRadius] = useState(ARC_RADIUS_MAX);
+
+  const glyphRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+  const lastFaceRef = useRef<ElementKey>("air");
+  const wasRaisedRef = useRef(false);
+
+  const moveMs = reduced ? OPEN_REDUCED_MS : OPEN_MS;
+  if (model.face) lastFaceRef.current = model.face;
+
+  // The same gate #458 has (anyone with a profile) decides who carries it.
+  useEffect(() => {
+    dispatch({ type: "gate", enabled });
+  }, [enabled]);
+
+  const openInstrument = useCallback(() => {
+    returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    // The crystal rises from where the glyph is to the middle of the screen.
+    const g = glyphRef.current?.getBoundingClientRect();
+    if (g) setRise({ dx: g.left + g.width / 2 - window.innerWidth / 2, dy: g.top + g.height / 2 - window.innerHeight * STAGE_Y });
+    setArcRadius(Math.max(96, Math.min(ARC_RADIUS_MAX, (window.innerWidth - 84) / 2)));
+    dispatch({ type: "open" });
+  }, []);
+  const closeInstrument = useCallback(() => dispatch({ type: "close" }), []);
+  const toggle = useCallback(() => (raised ? closeInstrument() : openInstrument()), [raised, openInstrument, closeInstrument]);
+
+  // `I` (or the period), from anywhere in the shell, never while typing.
+  useEffect(() => {
+    if (!enabled) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (!isToggleKey(e)) return;
+      e.preventDefault();
+      toggle();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [enabled, toggle]);
+
+  // Rise and lower. The world is never touched: this only mounts and unmounts the overlay.
+  useEffect(() => {
+    if (raised) {
+      setMounted(true);
+      const raf = requestAnimationFrame(() => requestAnimationFrame(() => setShown(true)));
+      return () => cancelAnimationFrame(raf);
+    }
+    if (!mounted) return;
+    setShown(false);
+    const back = returnFocusRef.current;
+    (back && back.isConnected ? back : glyphRef.current)?.focus();
+    const timer = window.setTimeout(() => setMounted(false), moveMs);
+    return () => window.clearTimeout(timer);
+  }, [raised, mounted, moveMs]);
+
+  // One short line for screen readers on open and on close.
+  useEffect(() => {
+    if (raised === wasRaisedRef.current) return;
+    wasRaisedRef.current = raised;
+    setAnnounce(raised ? t("instrument.announceOpen") : t("instrument.announceClose"));
+  }, [raised, t]);
+
+  // Focus moves into the dialog when it is up, and back to the dialog from a face.
+  useEffect(() => {
+    if (shown && model.state === "open") dialogRef.current?.focus();
+  }, [shown, model.state]);
+
+  // Esc closes; Tab stays inside the dialog while it is up.
+  useEffect(() => {
+    if (!mounted) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        e.stopPropagation();
+        closeInstrument();
+        return;
+      }
+      if (e.key !== "Tab" || !dialogRef.current) return;
+      const nodes = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((n) => !n.closest("[inert]"));
+      if (nodes.length === 0) {
+        e.preventDefault();
+        dialogRef.current.focus();
+        return;
+      }
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+      const atStart = active === first || active === dialogRef.current || !!active?.hasAttribute("data-face-root");
+      if (e.shiftKey && atStart) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && (active === last || !dialogRef.current.contains(active))) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    window.addEventListener("keydown", onKeyDown, true);
+    return () => window.removeEventListener("keydown", onKeyDown, true);
+  }, [mounted, closeInstrument]);
+
+  const goTo = useCallback(
+    (to: string) => {
+      closeInstrument();
+      navigate(to);
+    },
+    [closeInstrument, navigate],
+  );
+
+  if (!enabled || model.state === "hidden" || typeof document === "undefined") return null;
+
+  const bodies = VILLAGE_ELEMENTS.filter((e) => e.key !== "air");
+  const FaceComponent = getFace(model.face ?? lastFaceRef.current);
+  const inFace = model.state === "face";
+  const bodyStyle = (i: number): React.CSSProperties => {
+    const a = (ARC_DEG[i] * Math.PI) / 180;
+    const x = Math.cos(a) * arcRadius;
+    const y = Math.sin(a) * arcRadius;
+    return {
+      // Unfold from the crystal like petals; reduced motion fades in place.
+      transform: shown && !inFace ? `translate(${x}px, ${y}px)` : reduced ? `translate(${x}px, ${y}px)` : "translate(0px, 0px) scale(0.3)",
+      opacity: shown && !inFace ? 1 : 0,
+      transition: `transform ${reduced ? 0 : 480}ms ${EASE}, opacity ${reduced ? OPEN_REDUCED_MS : 400}ms ${EASE}`,
+      transitionDelay: shown && !reduced ? `${i * 40}ms` : "0ms",
+    };
+  };
+  const label =
+    "rounded-full px-2.5 py-0.5 text-[12px] leading-tight whitespace-nowrap";
+  const labelStyle: React.CSSProperties = { backgroundColor: "rgba(11,14,19,0.9)", border: `1px solid ${HAIRLINE}`, color: INK };
+
+  return createPortal(
+    <>
+      <InstrumentGlyph
+        ref={glyphRef}
+        lit={lit}
+        carried={!mounted}
+        open={raised}
+        reduced={reduced}
+        label={raised ? t("instrument.close") : t("instrument.open")}
+        avoid={avoid}
+        onToggle={toggle}
+        onSwipeUp={() => {
+          if (!raised) openInstrument();
+        }}
+      />
+      {/* One short line on open and on close, for screen readers. */}
+      <p role="status" aria-live="polite" className="sr-only" data-testid="instrument-announce">
+        {announce}
+      </p>
+
+      {mounted && (
+        <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("instrument.label")}
+          tabIndex={-1}
+          data-testid="your-ai-overlay"
+          data-state={model.state}
+          className="fixed inset-0 z-[80] outline-none"
+        >
+          {/* The world stays mounted and visible behind: dimmed to about 0.9, not paused. Tapping it lowers the instrument. */}
+          <div
+            aria-hidden="true"
+            data-testid="instrument-scrim"
+            onClick={closeInstrument}
+            className="absolute inset-0"
+            style={{ backgroundColor: DIM, opacity: shown ? 1 : 0, transition: `opacity ${moveMs}ms ${EASE}` }}
+          />
+
+          {/* The stage: the crystal at the middle of the screen, the bodies in an arc above it. */}
+          <div
+            className="pointer-events-none absolute left-1/2"
+            style={{ top: `${STAGE_Y * 100}%`, width: 0, height: 0 }}
+            {...inertProps(inFace)}
+          >
+            <button
+              type="button"
+              disabled={!hasFace("air")}
+              onClick={() => dispatch({ type: "face", element: "air" })}
+              aria-label={`${t("instrument.body.air")}: ${t("instrument.face.air")}`}
+              data-testid="instrument-body-air"
+              className="pointer-events-auto absolute flex flex-col items-center gap-1.5 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#bcd7e6]"
+              style={{
+                left: -AIR_PX / 2,
+                top: -AIR_PX / 2,
+                width: AIR_PX,
+                opacity: inFace ? 0 : 1,
+                transformOrigin: "center",
+                // The crystal rises from the glyph and turns one face to the player.
+                transform: shown || reduced ? "none" : `translate(${rise.dx}px, ${rise.dy}px) scale(0.78) rotate(-40deg)`,
+                transition: `transform ${reduced ? 0 : moveMs}ms ${EASE}, opacity ${reduced ? OPEN_REDUCED_MS : 300}ms ${EASE}`,
+              }}
+            >
+              <AirOctahedron size={AIR_PX} still reduced={reduced} />
+              <span className={label} style={{ ...labelStyle, marginTop: -6 }}>
+                {t("instrument.body.air")} · {t("instrument.face.air")}
+              </span>
+            </button>
+
+            <ul aria-label={t("instrument.bodies")} className="m-0 list-none p-0">
+              {bodies.map((b, i) => {
+                const isLit = !!lit[b.key];
+                const openable = isLit && hasFace(b.key);
+                const content = (
+                  <>
+                    <span aria-hidden="true" className="block">
+                      <QuarterSign element={b.key} lit={isLit} size={40} />
+                    </span>
+                    <span className={label} style={labelStyle}>{t(`instrument.body.${b.key}`)}</span>
+                    {!isLit && (
+                      <span className="max-w-[5.5rem] rounded-lg px-1.5 py-0.5 text-center text-[11px] leading-snug" style={{ ...labelStyle, color: MUTED }}>
+                        {t("instrument.opensOnPath")}
+                      </span>
+                    )}
+                  </>
+                );
+                const place: React.CSSProperties = { left: -44, top: -24, width: 88, ...bodyStyle(i) };
+                return (
+                  <li key={b.key} className="absolute" style={place} data-testid={`instrument-body-${b.key}`} data-lit={isLit ? "true" : "false"}>
+                    {openable ? (
+                      <button
+                        type="button"
+                        onClick={() => dispatch({ type: "face", element: b.key })}
+                        className="pointer-events-auto flex w-full flex-col items-center gap-1 rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-[#bcd7e6]"
+                      >
+                        {content}
+                      </button>
+                    ) : (
+                      <div className="pointer-events-none flex w-full flex-col items-center gap-1">{content}</div>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
           </div>
+
+          {/* The face turned forward. The air face stays mounted once opened so a conversation is not lost on Back. */}
+          {FaceComponent && (
+            <div
+              className="pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+10.25rem)] top-3 flex items-end justify-end sm:inset-x-6 sm:bottom-[12.25rem]"
+              {...inertProps(!inFace)}
+            >
+              <FaceComponent
+                ownerId={ownerId}
+                reduced={reduced}
+                closeMs={moveMs}
+                active={shown && inFace}
+                onBack={() => dispatch({ type: "back" })}
+                onClose={closeInstrument}
+                onNavigate={goTo}
+              />
+            </div>
+          )}
         </div>
       )}
     </>,

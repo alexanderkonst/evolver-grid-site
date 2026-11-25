@@ -9802,5 +9802,25 @@
       "console": "La Consola: cada app es un botón que hace algo poderoso.",
       "powerUps": "Los potenciadores para tu negocio son opcionales, y llegan después."
     }
+  },
+  "instrument": {
+    "label": "Tu instrumento",
+    "open": "Abrir tu instrumento",
+    "close": "Cerrar tu instrumento",
+    "announceOpen": "Tu instrumento está abierto.",
+    "announceClose": "Tu instrumento está cerrado.",
+    "back": "Volver al instrumento",
+    "bodies": "Cuerpos de tu instrumento",
+    "opensOnPath": "Se abre en tu camino",
+    "body": {
+      "ether": "Éter",
+      "air": "Aire",
+      "water": "Agua",
+      "fire": "Fuego",
+      "earth": "Tierra"
+    },
+    "face": {
+      "air": "Tu IA"
+    }
   }
 }

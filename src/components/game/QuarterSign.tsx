@@ -22,14 +22,15 @@ const ngon = (n: number, r: number, startDeg: number, c = 12): Pt[] =>
     return [Number((c + r * Math.cos(a)).toFixed(2)), Number((c + r * Math.sin(a)).toFixed(2))] as Pt;
   });
 
-type Drawing = { outline: string; faces: string[] };
+export type Drawing = { outline: string; faces: string[] };
 
 const DODECA_OUT = ngon(5, 10, -90);
 const DODECA_IN = ngon(5, 4.8, -54);
 const HEXA = ngon(6, 10, -90);
 
 /** Each solid as an outline (filled when lit) and its inner edges, from one flat projection. */
-const DRAWINGS: Record<SolidKey, Drawing> = {
+/** Exported so the instrument glyph paints the same solids on its canvas (one symbol, one drawing). */
+export const QUARTER_DRAWINGS: Record<SolidKey, Drawing> = {
   // Outer pentagon, inner pentagon turned half a step, each inner vertex joined to its outer one.
   dodecahedron: {
     outline: poly(DODECA_OUT),
@@ -85,7 +86,7 @@ export const QuarterSign = ({
 }) => {
   const { t } = useTranslation();
   const { solid, color } = getVillageElement(element);
-  const drawing = DRAWINGS[solid];
+  const drawing = QUARTER_DRAWINGS[solid];
   return (
     <svg
       role="img"
