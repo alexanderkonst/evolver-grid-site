@@ -1,9 +1,9 @@
 import type { TFunction } from "i18next";
 import { PLACE_ROOMS } from "@/data/placeRooms";
 import type { VillagePlace } from "@/data/villagePlaces";
-import { QUEST_STEP_IDS } from "@/data/journeyModules";
+import { QUEST_STEP_IDS, getJourneyModule, questTaskText } from "@/data/journeyModules";
 import { journeyResultText, journeyRows, questRows, type JourneyRow, type QuestRow } from "@/lib/questBoard";
-import { closedLine, placeState, type PlaceSave, type PlaceStateName } from "@/lib/placeState";
+import { closedLine, closedRoomLine, placeState, type PlaceSave, type PlaceStateName } from "@/lib/placeState";
 import { tr } from "@/lib/villageCopy";
 
 /**
@@ -15,7 +15,7 @@ import { tr } from "@/lib/villageCopy";
 export type PlaceRoomRow = {
   id: string;
   name: string;
-  /** What the room gives (open) or the place's closed line (closed). Empty when there is nothing to say. */
+  /** What the room gives (open) or its own closed line (closed). Empty when there is nothing to say. */
   line: string;
   state: PlaceStateName;
   to: string;
@@ -43,9 +43,10 @@ export const placeRooms = (
     return { rooms: [], order: { journey: journeyRows(save, t), world: questRows(save, t) } };
   }
 
-  // A room is closed when its place is (the place's one line says what opens it, §25.5).
+  // A room is closed when its place is: «Opens when <what opens the place>. Inside: <that room's own result>.» (§25.5).
   const placeClosed = placeState({ line: "", rule: place.rule }, save) === "closed";
-  const lockLine = placeClosed ? closedLine({ line: "", rule: place.rule }, t) : "";
+  const lockOf = (inside: string, key?: string) =>
+    placeClosed ? closedRoomLine({ line: "", rule: place.rule }, inside, t, key) : "";
 
   const journey = journeyRows(save, t);
   const quests = questRows(save, t);
@@ -58,7 +59,7 @@ export const placeRooms = (
       rooms.push({
         id: jr.id,
         name: jr.label,
-        line: placeClosed ? lockLine : journeyResultText(jr.id, t),
+        line: placeClosed ? lockOf(journeyResultText(jr.id, t), `village.room.${jr.id}.closed`) : journeyResultText(jr.id, t),
         state: placeClosed ? "closed" : jr.state,
         to: jr.to,
       });
@@ -66,7 +67,7 @@ export const placeRooms = (
     }
     const qr = (QUEST_STEP_IDS as readonly string[]).includes(req) ? quests.find((r) => r.id === req) : undefined;
     if (qr) {
-      rooms.push({ id: qr.id, name: qr.title, line: placeClosed ? lockLine : qr.line, state: placeClosed ? "closed" : qr.state, to: qr.to });
+      rooms.push({ id: qr.id, name: qr.title, line: placeClosed ? lockOf(questTaskText(getJourneyModule(qr.id), t), `village.room.${qr.id}.closed`) : qr.line, state: placeClosed ? "closed" : qr.state, to: qr.to });
     }
   }
 
@@ -79,7 +80,9 @@ export const placeRooms = (
     rooms.push({
       id: room.id,
       name: tr(t, `village.room.${room.id}.name`, room.name),
-      line: placeClosed ? lockLine : room.result ? tr(t, `village.room.${room.id}.result`, room.result) : "",
+      line: placeClosed
+        ? lockOf(tr(t, `village.room.${room.id}.result`, room.result), `village.room.${room.id}.closed`)
+        : tr(t, `village.room.${room.id}.result`, room.result),
       state: placeClosed ? "closed" : "open",
       to: room.to,
     });
@@ -90,7 +93,7 @@ export const placeRooms = (
     rooms.push({
       id: place.key,
       name: tr(t, `village.place.${place.key}.name`, place.name),
-      line: placeClosed ? lockLine : tr(t, `village.place.${place.key}.line`, place.line),
+      line: placeClosed ? closedLine({ line: "", rule: place.rule }, t) : tr(t, `village.place.${place.key}.line`, place.line),
       state: placeClosed ? "closed" : "open",
       to: place.to,
     });

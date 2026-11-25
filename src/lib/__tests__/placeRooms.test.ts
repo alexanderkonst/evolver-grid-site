@@ -5,6 +5,7 @@ import { VILLAGE_PLACES, getVillagePlace } from "@/data/villagePlaces";
 import { emptyPlaceSave, placeSaveFromSheet, type PlaceSave } from "@/lib/placeState";
 import { placeRooms } from "@/lib/placeRooms";
 import { JOURNEY_MAIN } from "@/data/journeySequence";
+import { PLACE_ROOMS } from "@/data/placeRooms";
 
 /** GoBY §25.3: the second pane lists every room of the place at once, and the quest order on the Quest Board. */
 const at = (key: string) => getVillagePlace(key)!;
@@ -56,12 +57,30 @@ describe("placeRooms", () => {
     expect(rooms[0].line).toBe(step.result ?? "");
   });
 
-  it("a closed place closes all its rooms and each says the place's one line", () => {
+  it("a closed place closes all its rooms; each says «Opens when <place event>. Inside: <its own result>.»", () => {
     const { rooms } = placeRooms(at("workshop"), guest());
     expect(rooms.length).toBeGreaterThan(1);
     for (const r of rooms) {
       expect(r.state).toBe("closed");
-      expect(r.line).toBe("Opens when your mission is saved. Inside: your offer, built from your top talent.");
+      expect(r.line).toMatch(/^Opens when your mission is saved\. Inside: .+\.$/);
+    }
+    const canvas = rooms.find((r) => r.id === "ubb-landing-page")!;
+    expect(canvas.line).toBe("Opens when your mission is saved. Inside: a landing page that carries your offer.");
+  });
+
+  it("no two rooms of a closed place repeat the same line (§25.5)", () => {
+    for (const p of VILLAGE_PLACES.filter((x) => x.rule.closed && x.key !== "quest-board")) {
+      const { rooms } = placeRooms(p, guest(), { signedIn: true });
+      if (placeRooms(p, guest()).rooms.every((r) => r.state !== "closed")) continue;
+      const lines = rooms.map((r) => r.line);
+      expect(new Set(lines).size, `${p.key}: ${lines.join(" | ")}`).toBe(lines.length);
+      for (const l of lines) expect(l, p.key).toMatch(/^Opens when .+\. Inside: .+\.$/);
+    }
+  });
+
+  it("every static room has its own result", () => {
+    for (const [key, list] of Object.entries(PLACE_ROOMS)) {
+      for (const room of list ?? []) expect(room.result.trim(), `${key}/${room.id}`).not.toBe("");
     }
   });
 
@@ -98,6 +117,24 @@ describe("second pane contracts (source pins)", () => {
     const css = read("src/pages/Village.css");
     const tail = css.slice(css.indexOf("Second pane of a place"));
     expect(tail).toMatch(/prefers-reduced-motion: reduce\) \{\s*\.vl-rooms, \.vl-place__copy \{ transition: none; \}/);
+  });
+
+  it("a closed place gives one enabled «Your next move» that leads where the map's card leads (§25.4)", () => {
+    const src = read("src/pages/Village.tsx");
+    expect(src).toMatch(/<ClosedNextMove[\s\S]*?to=\{move\.to\}/);
+    expect(src).toMatch(/lastState === "closed" && !lastPending && move && moveCopy/);
+    expect(src).not.toMatch(/NewcomerPath/);
+  });
+
+  it("the pane ends above the «Chat with us» pill, on a wide screen and on a phone", () => {
+    const css = read("src/pages/Village.css");
+    const tail = css.slice(css.indexOf("Second pane of a place"));
+    expect(tail).toMatch(/\.vl-rooms \{[\s\S]*?bottom: var\(--chat-clearance, 72px\)/);
+    expect(tail).toMatch(/max-width: 767px\) \{\s*\.vl-rooms \{[\s\S]*?bottom: var\(--chat-clearance, 72px\)/);
+  });
+
+  it("«optional» follows the room name in one text item, so there is a real space", () => {
+    expect(read("src/components/game/PlaceRoomsPane.tsx")).toMatch(/\{" "\}<span className="vl-rooms__opt">/);
   });
 
   it("the shell opens pane 2 only when the player moves from one place to another", () => {
