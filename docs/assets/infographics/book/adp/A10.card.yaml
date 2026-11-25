@@ -1,0 +1,14 @@
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+id: A10
+chapter: "1"
+number: 10
+of: 10
+title: "Genius"
+caption: "Your unique gift to the world. Find your zone, forge your offer, live it."
+skin: v4
+text:
+  eyebrow: Growth
+sources:
+  - docs/08-content/activate_your_dormant_potential_transcripts.md (F01E04, G01E02, G01E03, G01E05)
+  - src/data/courses/activateYourDormantPotential.ts
+  - issue #487 (title and line verbatim)

@@ -1,0 +1,14 @@
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+id: A05
+chapter: "1"
+number: 5
+of: 10
+title: "Balanced Growth"
+caption: "Develop every area together, not one by one. Master practices, like conscious breathing, move several paths at once."
+skin: v4
+text:
+  eyebrow: Growth
+sources:
+  - docs/08-content/activate_your_dormant_potential_transcripts.md (F01E10)
+  - src/data/courses/activateYourDormantPotential.ts
+  - issue #487 (title and line verbatim)
