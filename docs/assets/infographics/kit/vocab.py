@@ -11,11 +11,13 @@ Calls (all methods of the card `c`, coordinates in 1080x1350 px):
   light / star          star (the FYT mark), dot (glow)
   line / arc / path     ln, line, arrow, arc_arrow, iri_line, iri_arc, iri_path, wave, head(), arc_pts()
   node / prism / rings  prism, rings, tri_split, poly, iri_poly, box, iri_box, knob, slider
-  caption / label       text, ctext, rtext, label, tag()
+  caption / label       text, ctext, rtext, label, tag(); name() = a figure label (counted apart by lint, see below)
   quote                 quote (iridescent bar + serif italic)
   chain                 chain(), stack(), column() (free functions: vertical chain / numbered stack / two columns)
+  card spec extras      `caption_size` sets the size of the line under the title (default: the engine's 26)
   footer                drawn on save(): star mark + findyourtoptalent.com + "NN / TT"
 """
+import contextlib
 import inspect
 
 from kit import skins
@@ -105,8 +107,9 @@ def _instrument(name):
 class KitCard(V4):
     """V4 + a log of everything drawn. `skin` must be a skin the PIL renderer can draw (v4)."""
 
-    def __init__(self, num, total, title, essence, eyebrow=EYEBROW, skin="v4"):
+    def __init__(self, num, total, title, essence, eyebrow=EYEBROW, skin="v4", caption_size=None):
         self.skin = skins.get(skin)
+        self._caption_size, self._part = caption_size, None
         if self.skin.renderer != "pil-v4":
             raise SkinHasNoRenderer(f"skin {skin!r} is a token set only in kit v1; the PIL vocabulary draws 'v4'")
         self.log, self._nest, self._role, self._container, self.body_dy = [], 0, "body", None, 0.0
@@ -135,10 +138,21 @@ class KitCard(V4):
             widths.append(total / S)
             x0s.append((ox + l) / S); x1s.append((ox + r) / S); y0s.append(yy + t / S); y1s.append(yy + b / S)
         self._rec("text", (min(x0s), min(y0s), max(x1s), max(y1s)), color, text=s, lines=lines, widths=widths,
-                  maxw=maxw, size=size, font=kind)
+                  maxw=maxw, size=size, font=kind, **({"part": self._part} if self._part else {}))
+
+    @contextlib.contextmanager
+    def labels(self):
+        """Text drawn inside is logged as a figure label (part="label"): lint counts it apart from the prose."""
+        prev, self._part = self._part, "label"
+        try:
+            yield
+        finally:
+            self._part = prev
 
     # ---- text (drawn through V4/Card; logged here) ----
     def text(self, x, y, s, kind="sans", size=24, color=MOON, a=255, anchor="la", maxw=None, lh=1.3, align="left", spacing=0):
+        if self._caption_size and self._role == "header" and (kind, size) == ("sans", 26):
+            size = self._caption_size   # the line under the title (the engine hard-codes 26)
         self._rec_text(x, y, s, kind, size, color, anchor, maxw, lh, align, spacing)
         return super().text(x, y, s, kind, size, color, a, anchor, maxw, lh, align, spacing)
 
@@ -208,4 +222,22 @@ for _name in _PRIMS:
 def card(spec):
     """A KitCard for a spec: title, caption (the one-line meaning under the title), eyebrow, skin, NN / TT."""
     return KitCard(spec.number, spec.total, spec["title"], spec["caption"],
-                   eyebrow=spec.text.get("eyebrow", EYEBROW), skin=spec["skin"])
+                   eyebrow=spec.text.get("eyebrow", EYEBROW), skin=spec["skin"],
+                   caption_size=spec.get("caption_size"))
+
+
+def name(c, x, y, s, align="center", size=40, kind="serif", color=None, a=255, maxw=360):
+    """A figure label: a node name (serif, BRIGHT) or, with kind="sans", size=30, a phrase. Returns the next y.
+    x is the centre, the left edge or the right edge, by `align`. Lint counts it apart from the prose (<= 3 words)."""
+    color = color or BRIGHT
+    with c.labels():
+        if align == "left":
+            return c.text(x, y, s, kind, size, color, a, maxw=maxw, lh=1.05)
+        if align == "right":
+            return c.rtext(x, y, s, kind, size, color, a, maxw=maxw, lh=1.05)
+        return c.ctext(x, y, s, kind, size, color, a, maxw=maxw, lh=1.05)
+
+
+def note(c, x, y, s, align="center", size=30, color=None, a=225, maxw=360):
+    """A phrase label under or beside a figure: `name` in sans, MOON."""
+    return name(c, x, y, s, align, size, "sans", color or MOON, a, maxw)

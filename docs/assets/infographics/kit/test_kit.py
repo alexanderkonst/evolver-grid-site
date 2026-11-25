@@ -66,6 +66,20 @@ class LintRules(unittest.TestCase):
         waived = specmod.Spec(GOOD_SPEC, max_words=30)
         self.assertTrue(res(over, waived)["words"][0])
 
+    def test_label_words_are_counted_apart_from_the_prose_limit(self):
+        labels = [text("one lens", part="label") for _ in range(12)]          # 24 label words: not prose
+        prose = text(" ".join(["w"] * 25))
+        r = res(Fake("v4", [prose] + labels + FOOT))
+        self.assertTrue(r["words"][0], r["words"][1])
+        self.assertIn("12 labels", r["words"][1])
+        self.assertFalse(res(Fake("v4", [text(" ".join(["w"] * 26))] + labels + FOOT))["words"][0])  # prose limit unchanged
+
+    def test_a_label_over_three_words_fails_and_names_itself(self):
+        ok, detail = res(Fake("v4", [text("four words in label", part="label")] + FOOT))["words"]
+        self.assertFalse(ok)
+        self.assertIn('"four words in label"', detail)
+        self.assertTrue(res(Fake("v4", [text("three word label", part="label")] + FOOT))["words"][0])
+
     def test_missing_spec_fields_fail(self):
         r = res(Fake("moonworld", [text("x")] + FOOT), specmod.Spec(id="x", skin="moonworld"))
         self.assertFalse(r["spec-fields"][0])
@@ -246,6 +260,30 @@ class BookBuild(unittest.TestCase):
         book_build.build(self.paths, say=out.append)
         self.assertIn("rendered 1 of 2 card(s)", "\n".join(out))
         self.assertEqual(book_build.check(self.paths, say=lambda *_: None), 0)
+
+
+class CaptionSize(unittest.TestCase):
+    """`caption_size` in a spec sets the size of the line under the title; without it the engine's 26 px stays."""
+    def _caption(self, **extra):
+        from kit import vocab as K
+        sp = specmod.Spec(GOOD_SPEC, skin="v4", caption="Five paths, one cycle.", **extra)
+        sp.path = os.path.join(HERE, "x.card.yaml")
+        c = K.card(sp)
+        return [r for r in c.log if r["kind"] == "text" and r["text"] == sp["caption"]][0]
+
+    def test_default_is_the_engine_size_and_the_param_raises_it(self):
+        self.assertEqual(self._caption()["size"], 26)
+        self.assertEqual(self._caption(caption_size=30)["size"], 30)
+
+    def test_labels_are_logged_as_labels(self):
+        from kit import vocab as K
+        sp = specmod.Spec(GOOD_SPEC, skin="v4"); sp.path = os.path.join(HERE, "x.card.yaml")
+        c = K.card(sp)
+        K.name(c, 540, 600, "Body")
+        K.tag(c, 540, 700, "not a label")
+        parts = {r["text"]: r.get("part") for r in c.log if r["kind"] == "text"}
+        self.assertEqual(parts["Body"], "label")
+        self.assertNotEqual(parts["not a label"], "label")
 
 
 class Waivers(unittest.TestCase):

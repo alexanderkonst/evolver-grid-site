@@ -5,7 +5,8 @@ One line per rule per card:  PASS|FAIL  <card id>  <rule>  <detail with the offe
 
 Rules (skin tokens in kit/skins.py):
   fit          every text line fits its maxw (measured with the real font) and its box, if it sits in one
-  words        on-card words <= skin max_words (25), footer excluded; a spec may carry `max_words` as a waiver
+  words        on-card prose words <= skin max_words (25), footer excluded; a spec may carry `max_words` as a waiver.
+               Figure labels (drawn with vocab.name, part="label") are counted apart: each at most skin.label_words (3)
   (any other rule: a spec may carry `waive: {rule: reason}`; the lint line says WAIVED and keeps the detail)
   palette      only skin palette colours (accent included)
   accent       the skin's single accent (v4 NEON, moonworld teal) used by at most one element
@@ -62,10 +63,15 @@ def check(card, spec, skin=None):
             bad.append(f'{_name(r)} spills out of its box {[round(v) for v in c]}')
     add("fit", bad, f"{len(texts)} text blocks fit their maxw / box")
 
-    n = sum(len(words(r)) for r in texts if r["role"] != "footer")
+    labels = [r for r in texts if r.get("part") == "label"]
+    n = sum(len(words(r)) for r in texts if r["role"] != "footer" and r.get("part") != "label")
     limit = spec.get("max_words", skin.max_words)
     waiver = f" (spec waiver; skin default {skin.max_words})" if limit != skin.max_words else ""
-    add("words", [f"{n} words, limit {limit}"] if n > limit else [], f"{n} words, limit {limit}{waiver}")
+    bad = [f"{n} words, limit {limit}"] if n > limit else []
+    bad += [f'label "{r["text"]}" has {len(words(r))} words, label limit {skin.label_words}'
+            for r in labels if len(words(r)) > skin.label_words]
+    detail = f"{n} words, limit {limit}{waiver}" + (f"; {len(labels)} labels, each at most {skin.label_words} words" if labels else "")
+    add("words", bad, detail)
 
     allowed = skin.colors()
     bad = [f"{_name(r)} uses {_rgb(r['color'])}" for r in log

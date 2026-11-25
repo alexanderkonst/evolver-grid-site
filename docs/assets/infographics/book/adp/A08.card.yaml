@@ -1,4 +1,4 @@
-# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487; v2 labels: issue #495.
 id: A08
 chapter: "1"
 number: 8
@@ -6,9 +6,16 @@ of: 10
 title: "Emotions"
 caption: "One slider, not separate dials. Numb the pain and you numb the joy. Listen first, then turn it back up."
 skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
 text:
   eyebrow: Growth
+  peak: joy
+  trough: pain
+  ends: {left: numb, right: feel}
+  knob: one slider
+  note: listen first
 sources:
   - docs/08-content/activate_your_dormant_potential_transcripts.md (E01E01)
   - src/data/courses/activateYourDormantPotential.ts
   - issue #487 (title and line verbatim)
+  - issue #495 (labels: words from the card's own line only)
