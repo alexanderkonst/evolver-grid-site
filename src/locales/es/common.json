@@ -9868,5 +9868,38 @@
       "burned": "Lo que ardió",
       "nextMove": "Próximo movimiento"
     }
+  },
+  "waterFace": {
+    "title": "Tiempo",
+    "close": "Cierra tu instrumento",
+    "phase": {
+      "0": "Luna nueva",
+      "1": "Luna creciente",
+      "2": "Cuarto creciente",
+      "3": "Gibosa creciente",
+      "4": "Luna llena",
+      "5": "Gibosa menguante",
+      "6": "Cuarto menguante",
+      "7": "Luna menguante"
+    },
+    "moon": {
+      "label": "La luna",
+      "day": "Día {{day}} del ciclo lunar"
+    },
+    "fmf": {
+      "label": "Próximo FMF",
+      "live": "FMF está en curso",
+      "go": "Abrir FMF"
+    },
+    "gathering": {
+      "label": "Próximo encuentro en el Café",
+      "none": "Aún no hay nada en el calendario del Café.",
+      "loading": "Mirando el calendario del Café…",
+      "go": "Abrir el Café",
+      "when": "{{date}}, {{time}}"
+    },
+    "changes": {
+      "label": "Este ciclo"
+    }
   }
 }

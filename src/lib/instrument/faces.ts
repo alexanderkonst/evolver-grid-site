@@ -12,6 +12,7 @@
  */
 import type { ComponentType } from "react";
 import { VILLAGE_ELEMENTS, type ElementKey } from "@/data/villagePlaces";
+import WaterFace from "@/components/game/instrument/faces/WaterFace";
 import EarthFace from "@/components/game/faces/EarthFace";
 import FireFace from "@/components/game/faces/FireFace";
 
@@ -46,6 +47,8 @@ export const FACES: Record<ElementKey, FaceSlot> = Object.fromEntries(
 export const registerFace = (element: ElementKey, component: ComponentType<FaceProps>): void => {
   FACES[element].component = component;
 };
+
+registerFace("water", WaterFace); // WP3
 
 export const getFace = (element: ElementKey): ComponentType<FaceProps> | null => FACES[element].component;
 
