@@ -80,3 +80,12 @@ WP0 → WP1–WP2 (one Lovable migration batch, Sasha's yes) → WP3–WP6 → p
 ## Delegation
 
 One WP = one @claude issue = one branch = one PR. Hark opens the issue per wave, reviews against spec-handoff §7 and the hard lines, merges on green with DoD evidenced, reports in meaning after each wave. One writer per file per wave. No issue opens before Sasha's yes to start building.
+
+## WP0 findings (Hark, 2026-11-25)
+
+- `public.app_role` enum is `('admin', 'user')`; `has_role` exists in migrations. WP1 adds `collective_member` to the enum.
+- Admin area exists at `/admin` (`src/pages/admin/`); WP1 puts the toggle there.
+- `/build/cockpit` and `/build/cockpit/dashboard` exist: «My business» links to the dashboard.
+- Players directory `/game/collaborate/people` exists; Members room can reuse its card pattern.
+- **Blocker for WP4–WP5:** active intro is code on main but not live: it waits for a Lovable SQL apply, an edge function deploy and the `MATCH_CONSENT_SECRET` env var (active-intro_tracker.md). Goes into the same Lovable batch as WP1.
+- Still to confirm when WP6 starts: exact columns for "completed Top Talent" and "completed Mission".
