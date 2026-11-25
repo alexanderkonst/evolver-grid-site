@@ -50,6 +50,7 @@ Later, only when their WP comes: terms line, map place and art, expert roster, h
 - `collective_members`: user_id, joined_at, invited_by, short profile: uniqueness_line, offers, seeks, site_url.
 - `collective_invites`: code, created_by, used_by, expires_at (30 days), single use.
 - `collective_circles` (or config in `src/data/collective.ts`): circle key, label en/es/ru, count, is_approximate, source (`live` | `manual`). Manual counts set by admin only.
+- Live counts: one SQL function `collective_public_counts()` (security definer, returns only numbers, callable without sign-in), because RLS stops the browser from counting other players' rows. Counts: players who started the game, completed the Top Talent reveal, completed Mission, core members. Ships in the same Lovable migration batch as WP1 (Sasha 2026-11-25: live numbers from the game's database).
 - No revenue or money table. Terms stay a text line; money stays in the private ledger.
 
 ## Work packages
