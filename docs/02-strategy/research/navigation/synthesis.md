@@ -94,8 +94,10 @@ Synergy tests: remove the one pull → players wander (Cyberpunk launch); remove
 
 **Acceptance test:** a first-time player dropped on any screen answers in three seconds, without reading help: where am I, what is my one next move and what it gives, how do I get home.
 
-## 8. Decisions for Sasha (real forks only)
+## 8. Decisions (Sasha, 2026-11-24 22:32 MST; recorded in ui_playbook.md Part X)
 
-- **F1.** Remove pane 2; a place opens as one scene with its rooms. Recommend yes.
-- **F2.** Your AI leaves the village map and becomes one global button (a mode outside the world). Recommend yes, consistent with your 2026-11-24 definition.
-- **F3.** Path view as a constellation in Your House, built on the player path v1 draft once you review it. Recommend yes, after your review.
+- **Where am I: both.** Place in the village (game location) and step on the path (hero's-journey roadmap) are both shown.
+- **F1 rejected.** The second pane stays as a key milestone of navigation: it appears at the right moments and is open when the player looks at the order of quests. Section 5 item 1 is withdrawn. Open to better solutions from this research.
+- **F2 accepted, upgraded.** Your AI leaves the map and becomes a carried instrument that opens natively and smoothly from anywhere, like the Pip-Boy.
+- **Smoothness everywhere:** the interface should feel like an ancient mystical instrument.
+- **F3** (constellation path view) still waits on his review of player path v1.
