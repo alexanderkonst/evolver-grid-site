@@ -49,6 +49,7 @@
 | Grant / fellowship / accelerator application | [application-loop.md](./application-loop.md) | An application in your true voice | 93 Vision ↔ Viability Balancing |
 | One unified reading from all positions | [holonic-seeing.md](./holonic-seeing.md) | One reading from every position | 15 Complete Seeing Guaranteed · 66 The 27th Perspective |
 | Any change of a client's amount (offered / agreed / superseded / received / rolled back): every place it lives, in order, then one grep | private ledger: `docs/templates/money-change-checklist.md` (evolver-private-ledger; client names and money stay private) | One amount, the same everywhere | Craft (nearest 115) |
+| Synthesize one domain across many exemplars (navigation, onboarding, progression…): take it apart, find the task invariants by common denominator, keep the proven solutions, reassemble one whole without overload | [integral-synthesis.md](./integral-synthesis.md) | One whole, built from what works everywhere | 98 Prime Invariant Branding · 82 Linguistic Synthesis (candidate) |
 | Anything else / a new template | [meta-template.md](./meta-template.md), then [README.md](./README.md) | A new form for a new kind of work | Craft (nearest 115) |
 
 Every report to Sasha shows the result with one clickable link, never only "done" ([improvement-loop.md](./improvement-loop.md) §3).

@@ -1,0 +1,159 @@
+# Navigation dossier: Heroes of Might and Magic (II–VI) and Civilization (I–VII)
+
+Compiled 2026-11-24 with web_search + web_fetch only. Evidence grades follow SCHEMA.md: **A** = study / large-n data, **B** = hard numbers (sales, telemetry, Steam data, designer-reported telemetry), **C** = designer interview, critical consensus, fan memory. *Judgment* = my inference, not a sourced fact.
+
+**Evidence ceiling for this cluster:** I found **no grade-A evidence** (no published usability study or controlled experiment) on navigation in either series. The best available is B: sales, Steam concurrency, and one piece of telemetry the designers reported themselves (Civ VI completion rate). Most claims about what worked are C.
+
+---
+
+## Heroes of Might and Magic (II 1996, III 1999, IV 2002: New World Computing / 3DO; V 2006: Nival / Ubisoft; VI 2011: Black Hole / Ubisoft)
+
+Lead designers: Jon Van Caneghem (series creator); HoMM III lead designer Gregory Fulton under JVC, with producer/director David Mullich (https://www.filfre.net/2025/07/the-year-of-peak-might-and-magic, 2025-07-18; https://davidmullich.com/2014/02/24/757, 2014-02-24).
+
+The core HoMM navigation model was set in I/II and polished in III. Later titles mostly changed the **camera** and **map logistics**, so III is the baseline below and IV–VI are covered as changes against it.
+
+### 1. Navigation layers (HoMM III baseline)
+
+| Layer | What the player sees | Task it solves | Enter / leave |
+|---|---|---|---|
+| Main menu / campaign map | Scenario select; campaign screen with carried-over heroes | Choose a scenario or campaign step | Start / quit. Campaigns carry heroes and gear between scenarios (filfre, above) |
+| Adventure Map (surface + subterranean) | Tile map under shroud, revealed as heroes and towns see it | Explore, collect, fight, capture | Default screen. U / Elevation Toggle switches between the two levels (HD manual: https://cdn.akamai.steamstatic.com/steam/apps/297000/manuals/Heroes_of_Might_and_Magic_III_HDEdition_OnlineManual_EN.pdf) |
+| World Map (minimap, top right) | Whole map, with a red box marking the current viewport | Show where the view is inside the whole; jump anywhere | Click to recenter, or drag the box (1999 manual: https://heroes3wog.net/download/%5bHeroes%203%5d%20Restoration%20of%20Erathia%20Manual.pdf) |
+| View World (V) | Full-screen whole map. View Air / View Earth spells add artifacts, heroes and resources to it | Strategic overview, scouting | Hotkey V (HD manual; spell effects: https://gamefaqs.gamespot.com/pc/913678-heroes-of-might-and-magic-iii-the-shadow-of-death/faqs/21460) |
+| Hero selector / Town selector columns | Portrait buttons on the right edge | Switch the active unit; jump to it | Click; the map centers on that hero (1999 manual) |
+| Town screen | Painted cityscape of the town's buildings | Build, recruit, garrison | Arrive at a town or click its selector; exit button. A town selector moves between towns from inside (HD manual, town screen items 17–18) |
+| Rollover bar + right-click | Text naming whatever is under the cursor; a right-click info popup | Answer "what is this?" without committing | Hover / right-click anywhere (1999 manual) |
+| Kingdom Overview (K) | All towns, heroes, income | Empire-wide status | Button or K (manual p.57 ref: https://www.manualshelf.com/manual/games-pc/heroes-of-might-and-magic-iii/user-guide-english.html) |
+| Quest Log (Q) | Active quests | Remember goals and conditions | Button or Q (same) |
+| Puzzle Map (P) + Dig (D) | Obscured map that obelisk visits reveal, until an X marks the Grail | Long-range treasure hunt; navigation as a reward | P / D (HD manual p.16) |
+| Battle screen | Hex battlefield | Tactical combat | Entered by contact; returns to the map |
+| Save / options | System menu | Save and return | O / S hotkeys (HD manual) |
+
+### 2. Navigation task questions (HoMM III unless noted)
+
+- **Q1 Where am I?** The red viewport box on the World Map, the active hero highlighted in the selector column, the date (month/week/day), and the elevation toggle state (1999 manual).
+- **Q2 Where can I go?** Shroud hides everything unexplored. Terrain and guarded passes block routes, and wandering monsters act as gates. Subterranean gates and monoliths link areas (https://homm.miraheze.org/wiki/Adventure_Map). The movement cursor itself answers "can I reach it": the horse icon rears when the destination can be interacted with (tutorial: http://uchcom7.botik.ru/archive/a/games/Heroes%20WoG/Heroes%20III%20Tutorial.pdf).
+- **Q3 What next, and why?** No explicit prompt. The game relies on visible lures: resources, mines, chests and dwellings drawn on the map, plus the Quest Log and scenario victory conditions (I / View Scenario Info). The weekly creature growth ("Astrologers proclaim the week of…") sets a 7-day rhythm of returning to towns (https://heroes.thelazy.net/index.php/Growth; meme status: https://tvtropes.org/pmwiki/pmwiki.php/YMMV/HeroesOfMightAndMagicIII). *Judgment: "what next" comes from the map's density of visible rewards, not from instructions.*
+- **Q4 How do I get there?** Click a destination and a path of arrows appears. **Green** arrows and X mean reachable this turn; **red** means later turns. The cursor shows the number of turns. A second click commits. An unfinished path stays on the map and turns green the next day, and the Move Hero button resumes it (HoMM I manual: https://retrogamer.biz/wp-content/uploads/2015/10/Heroes_of_Might_and_Magic_-_Manual_-_PC.pdf; III cursor: manualshelf link; persistence: https://homm.fandom.com/wiki/Tutorial).
+- **Q5 What changed?** Start-of-week popup (growth / special week), new-day resource income, and shroud reveals. No changelog. *Judgment: mostly answered by rhythm (day 1 of each week) rather than notifications.*
+- **Q6 What have I done / been?** Explored shroud stays revealed, captured mines carry your flag colour, visited objects (obelisks, one-time sites) change state, and the Puzzle Map fills in. *Judgment: the map itself is the history log.*
+- **Q7 Return to safety?** Town selector; the Town Portal spell (Earth magic) teleports to towns, widely seen as overpowered (filfre comments, above, C). Saving is unrestricted.
+- **Q8 See the whole?** Minimap, View World, View Air/Earth, Kingdom Overview, and the elevation toggle. Three zoom steps on one consistent tile world.
+- **Q9 Switch modes without getting lost?** Each mode is a full-screen swap with a fixed layout, and every screen shares the rollover-bar convention ("appears on nearly every screen", tutorial PDF). Exit returns to the exact map position.
+- **Q10 (new) Who should act next?** The **Next Hero** button with **Sleep/Wake**: sleeping heroes are skipped in the cycle (manualshelf). Hero 1 to N cycling is the HoMM form of Civ's "units needing orders".
+- **Q11 (new) Is it worth the trip?** Right-click previews of guards (approximate army size), mines and dwellings let you judge a destination before committing movement points.
+
+### 3. Most successful navigation solutions
+
+**(a) The two-colour path preview (green this turn / red later turns) with turn counts on the cursor.**
+- Mechanics: described under Q4. Present since HoMM I (1995 manual) and unchanged through III.
+- Evidence: **C**. It has stayed through every New World sequel, and the Board Game and HD remaster keep the same convention. *Judgment: the strongest single wayfinding device in the cluster. It answers "how far" and "how many turns" before you commit.*
+- Driver: feedforward / preview before commitment. Movement points are made visible, which removes surprises from planning.
+- Sources: HoMM I manual (above); HoMM III tutorial PDF (above).
+
+**(b) One consistent tile world at three zoom levels (adventure view, minimap with viewport box, View World), plus a universal rollover bar and right-click.**
+- Evidence: **B/C**. HoMM III sold 1.5M+ series copies by Dec 1999 (https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_III). Steam HD edition: ~2.1M copies (estimate, https://gamalytic.com/game/297000), ~1.3K concurrent players 11 years after the remaster (https://www.steamplayerstats.com/games/heroes-of-might-and-magic-iii-hd-edition/297000). The fan expansion HotA was still updated in 2026 (https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_III:_Horn_of_the_Abyss). Critics on readability: "the maps don't get overwhelming even after playing for hours" (https://www.pcgamesn.com/best-heroes-of-might-and-magic-game, 2020). *Judgment: the longevity numbers cannot be attributed to navigation alone (low hardware needs, hot-seat play and Russian localisation are also cited: filfre comments).*
+- Driver: overview + detail with a visible viewport (focus+context), and consistency.
+
+**(c) Weekly cadence as a temporal navigation beacon.** Creature growth on day 1 of each week, announced in a single popup.
+- Evidence: **C**. The "Astrologers proclaim…" line became a meme beyond the fandom (TVTropes above) and was adopted as a core mechanic in the 2024 official board game (https://archon-studio.com/files/manuals/homm/homm-rulebook_EN.pdf).
+- Driver: predictable rhythm (scheduled reinforcement). It tells players when to come home.
+
+### 4. Changes and failures, IV → VI
+
+- **HoMM IV (2002).** Fixed isometric "3D" map. Armies can move without heroes, and caravans deliver troops (https://en.wikipedia.org/wiki/Heroes_of_Might_and_Magic_IV; https://www.gamespot.com/articles/heroes-of-might-and-magic-iv-preview/1100-2797577). Criticism (C): "distinguishing important objects from background scenery needlessly difficult… busy-looking interface menus" (https://www.gamespot.com/reviews/heroes-of-might-and-magic-iv-review/1900-2859752, 2002-04-03). At high resolution you "squint a lot", and hotspots are confusing in isometric view (https://web.archive.org/web/20030219013111/http:/www.pcgameworld.com/review.php/id/58/). "Hard to find stuff on the map… much more micromanagement with free-roaming units" (https://www.gog.com/forum/heroes_of_might_and_magic_series/what_exactly_is_so_bad_about_homm_4/page1). Mullich: the team lacked "agreement on the vision" (http://en.ain.ua/2021/12/10/interview-david-mullich). *Judgment: more movable entities plus a lower-contrast map weakened both Q1 and Q10.*
+- **HoMM V (2006).** Fully 3D map with a rotatable, zoomable camera. Hidden treasures reward rotating the camera (https://www.gamespot.com/articles/heroes-of-might-and-magic-v-updated-hands-on-single-player-story-and-adventuring/1100-6147362/). Downside (C): "much easier to misclick or miss things when the camera can be swiveled around" (https://tvtropes.org/pmwiki/pmwiki.php/VideoGame/HeroesOfMightAndMagicV). A fan petition asked that "every single item on the map [be] visible without twisting the camera and losing the way" (http://heroescommunity.com/viewthread.php3?TID=27467, 2008). A "Classic HoMM view" fixed the camera, but objects still got hidden, especially underground (http://www.rindis.com/blog/2885). Players bypassed the 3D town screens with the bottom panel shortcuts (https://www.idnes.cz/hry/novinky/heroes-of-might-and-magic-v-dojmy-z-bety.A060127_homam5beta060127_bw; https://www.metacritic.com/game/heroes-of-might-and-magic-v/user-reviews/?platform=pc).
+- **HoMM VI (2011).** Went back to a **fixed-angle camera and 2D town screen**, reportedly because of fan feedback on V (https://www.jagatreview.com/2010/10/rasa-heroes-of-might-and-magic-klasik-dalam-might-and-magic-heroes-vi/, C, secondary). **Areas of Control:** each region's mines and dwellings belong to whoever holds its town or fort (editor guide: http://static2.cdn.ubi.com/gamesites/mightandmagic/heroes6/download/Heroes6_Editor_Quickstart_Guide.pdf; https://www.gamespot.com/reviews/might-and-magic-heroes-vi-review/1900-6346819). A **Town Portal building** in every town is "intended to curb the age-old problem of hiring throwaway heroes" (https://www.gamespot.com/articles/might-and-magic-heroes-vi-hands-on-preview-new-story-and-armies-classic-music-and-gameplay/1100-6300583/). Resources were cut from 7 to 4 (https://en.wikipedia.org/wiki/Might_%26_Magic_Heroes_VI). Criticism: windowed town screen "not intuitive… adventure map remained visible behind the interface", and "target overload in the missions list" (https://portal.heroesofmightandmagic.es/articulos/ingles-avance-informativo-sobre-la-demo-de-heroes-vi-fanday-en-budapest?cpage=6). *Judgment: VI turned the map into regions (a coarser, more legible ownership layer) at the cost of the classic grab-everything loop.*
+- **HoMM III's own weakness (C):** flagged external dwellings had to be visited by hand every week, which forced extra "collector" heroes. IV/V automated this (https://tvtropes.org/pmwiki/pmwiki.php/YMMV/HeroesOfMightAndMagic).
+
+### 5. Designer intent quotes
+
+- Greg Fulton (HoMM III): "I needed design evolution, not design revolution. Thus, my overarching guideline for Heroes III became, 'If it isn't in the spirit of Heroes of Might and Magic… kill it.'" (https://www.filfre.net/2025/07/the-year-of-peak-might-and-magic)
+- David Mullich, on a HoMM V demo: he worried whether "Ubisoft was adhering to the Heroes design principle that you should be able to tell (or guess at) the function of an object just by looking at it? I worried that a lot of the turrets and structures looked indistinct." (http://www.heroesofmightandmagic.com/heroes5/sir_mullich_preview.shtml)
+- Fulton's diary (1998): the team argued about interface and player colours and left the interface colours "virtually untouched". Light blue was dropped because it "looked like the blue used in the main menu" (https://heroes3wog.net/heroes-of-might-and-magic-iii-lost-designer-diaries-by-greg-fulton/). *Judgment: player colour is a navigation channel (whose flag is on that mine).*
+- Not a designer quote: historian Jimmy Maher describes the HoMM III brief as "The overriding intention was that Heroes III should be perfectly comprehensible to any Heroes II player from the moment she fired up her first scenario" (filfre, above). C.
+
+---
+
+## Civilization (I 1991 MicroProse, Sid Meier & Bruce Shelley; II 1996 Brian Reynolds et al.; III 2001 Firaxis, Jeff Briggs; IV 2005 Soren Johnson; V 2010 Jon Shafer; VI 2016 Ed Beach; VII 2025 Ed Beach)
+
+### 1. Navigation layers (series-wide), with what changed per title
+
+| Layer | What the player sees | Task | Enter / leave · per-title change |
+|---|---|---|---|
+| Setup / main menu | Map, civ and difficulty choice | Frame the game | VII adds Age structure: 3 chapters, ~150–200 turns each (https://civilization.2k.com/civ-vii/game-guide/gameplay/ages-explanation) |
+| World map | Tile (I–IV) or hex (V–VII) map with fog | Everything spatial | Default. III moved city info onto the map (growth, current build, turns left) (https://www.ign.com/articles/2001/10/30/civilization-iii-3). VI added **lenses** (https://gamesbeat.com/why-firaxis-decided-to-make-drastic-changes-to-cities-in-civilization-vi) |
+| Minimap | Whole world with a viewport | Overview / jump | Present throughout. Listed in the VI interface (https://www.gamepressure.com/sidmeierscivilization6/interface/ze92ba) |
+| City screen | Worked tiles, production, citizens | Manage a city | I: "the heart of the original game" (https://www.filfre.net/2018/03/the-game-of-everything-part-2-playing-civilization/). III kept the player on one screen as much as possible (https://civfanatics.com/civ3/infocenter/). VI moved buildings out onto map districts |
+| Tech tree (VI adds Civics tree) | Graph of advances | Navigate *possibility space*: what unlocks what | I: Advances Chart. VI: Eureka boosts tie map actions to tree nodes. VII: a separate tree per Age |
+| Advisors / reports | Domestic, military, science, foreign screens | Empire status; "what should I do?" | II: High Council FMV + "Instant Advice" in the production menu (https://civilization.fandom.com/wiki/Advisor_(Civ2)). III: interactive reports that "zoom to trouble spots" (https://www.gamerevolution.com/review/33193-civilization-iii-review). V: advisors return for beginners (https://www.gamespot.com/articles/civilization-v-qanda-first-e3-details/1100-6265330/) |
+| Turn-flow control | End Turn / Next Unit | "What needs me now?" | IV: the turn button changes colour when every unit has moved. V: a **single action button** (detail below) |
+| Notifications | Popups (I–II) → triaged (III) → side stack (V+) | What changed | Detail below |
+| Civilopedia | Encyclopedia | Reference level | All titles; context help in IV |
+| Victory / goal screens | Score, victory progress; VII Legacy Paths → Triumphs | "Where am I relative to winning?" | VII changed the most (below) |
+
+### 2. Navigation task questions
+
+- **Q1 Where am I?** Map position, minimap viewport, current year/turn. From III on, city banners show city state on the map (IGN 2001). VI lenses recolour the map by one variable (religion, settlement validity, appeal, continent) (GamesBeat 2016; dev stream https://www.youtube.com/watch?v=oRSbI8NANno).
+- **Q2 Where can I go (open/closed, what opens it)?** Fog and terrain for space. The **tech tree** for possibility: Meier: the tree "felt like a very easy to understand mechanism for showing the player how things are connected, giving them kind of an insight into the future, giving them goals and things to look forward to" (https://arstechnica.com/video/watch/war-stories-civilization, 2019). VII locks crossing the ocean until the Exploration Age (https://www.gamedeveloper.com/design/firaxis-big-swing-with-civilization-vii-convincing-players-to-actually-finish-their-games).
+- **Q3 What next, and why?** I–II: advisors and blocking popups. III: popups triaged into three classes. V: the action button names the next required decision. VI: Eureka boosts are "kind of like mini-quests or objectives that are on the map" (Anton Strenger, https://www.pcgamesn.com/civilization-vi/making-of-civilization-6); "the tech boost can work as a guideline that tells the players what they should do first" (https://www.invenglobal.com/articles/1264/civilization-vi-the-game-of-tradition-and-progress). VII: Legacy Paths (four milestone tracks per Age) replaced in 2026 by Triumphs.
+- **Q4 How do I get there?** Unit path preview with turns-to-arrive (series convention). For research, the tree shows turns to each tech. VI showed boost conditions on tree nodes (https://www.civilopedia.net/en-US/rise-and-fall/concepts/science_3).
+- **Q5 What changed?** I–II: game-stopping popups. III: map-localized messages and advisor messages, so "approximately 2/3rds of the game stopping information windows no longer stop the game" (Briggs: https://worthplaying.com/article/2001/10/12/news/957-civlization-iii-qa-3-jeff-morris-jeff-briggs/). V: notifications stacked on the right above Next Turn, with "no annoying popups" (https://www.escapistmagazine.com/review-civilization-v/). VII at launch: notifications "both annoying to click through and simultaneously disappear without any reason" (user quoted at https://www.cgmagonline.com/news/civilization-vii-quality-of-life-updates/).
+- **Q6 What have I done?** Score and history graphs, e.g. III's "histograph" of civ power over time (https://www.rpg.net/reviews/archive/classic/rev_7822.phtml). The completed tech tree. VI Historic Moments / timeline. VII legacy rewards carried across Ages.
+- **Q7 Return to safety/home?** "Center on Capital" hotkey (III manual list: http://cdn.akamai.steamstatic.com/steam/apps/3910/manuals/manual.pdf). Free saving. VII Age transitions reset the board as an enforced pause (https://www.thepopverse.com/live-pax-west-2024-civilization-vii-firaxis-games-epic-novel).
+- **Q8 See the whole?** Minimap, advisor/overview screens, lenses (VI), Global Yields breakdown (VII).
+- **Q9 Switch modes without getting lost?** III: "keep the player on one screen as much as possible" (CivFanatics infocenter). V: "nested menus that can be quickly and easily closed" (https://www.gamespot.com/articles/civilization-v-impressions-first-look/1100-6253246). VII launch failure: an inability to escape some screens was patched (https://www.pcgamer.com/games/strategy/civilization-7-patch-1-0-1-addresses-key-areas-of-player-reported-issues-including-ui-and-tooltip-improvements/).
+- **Q10 (new) What still needs my attention this turn?** Unit cycling. IV: green/yellow/red dots for moves left, and a turn button that changes colour (https://littletinyfrogs.com/article/98788/user-interface-tweaks-civilization-4). V: the action button cycles "Unit Needs Orders → Choose Research → Choose Production → Next Turn" (https://www.gamespot.com/reviews/sid-meiers-civilization-v-review/1900-6276683). This is the turn-level checklist.
+- **Q11 (new) Where am I in the arc of the whole game?** VII's Ages split the game into chapters "for a new player to set their own little milestones" (Shirk: https://www.gamespot.com/articles/how-civilization-7-rethinks-the-series-structure/1100-6525957/).
+
+### 3. Most successful navigation solutions
+
+**(a) The tech tree as a map of the future (Civ I onward).**
+- Mechanics: a dependency graph that shows what each advance unlocks. VI attached map-world triggers (boosts worth 50% of a tech's cost, 40% after Rise & Fall) (https://civilization.fandom.com/wiki/Boost_(Civ6)).
+- Evidence: **C**. Present in all seven titles. Meier names the "one more turn" pull as anticipation: "you were always projecting what was going to happen next… three turns from now… eight turns from now" (https://web.archive.org/web/20170508214138/http:/www.glixel.com/interviews/civilization-creator-sid-meier-i-didnt-really-expect-to-be-a-game-designer-w480988).
+- Driver: goal-gradient / anticipation. Visible next goals keep a "future" always on screen.
+
+**(b) The single turn-flow button and notification stack (IV → V).**
+- Mechanics: IV recolours End Turn once every unit is done. V's one bottom-right button always shows the next required decision. Blocking items (production, research, policy) must be resolved before Next Turn (https://gaming.stackexchange.com/questions/255626/get-the-button-next-turn-in-civ-v-instead-of-some-action-you-can-do; https://support.civilization.com/hc/en-us/articles/37707076880787). Non-blocking events go to a side stack.
+- Evidence: **C/B**. Reviews: "A single action button leads you through every aspect of your turn… figuring out what to do next a breeze" (GameSpot review 2010). Civ V peak 91,363 concurrent on Steam (B, https://www.pcgamer.com/games/strategy/civilization-6-still-has-more-daily-steam-players-than-civilization-7). The pattern was imported by other games: Wardell (Stardock) adopted IV's colour-change button (littletinyfrogs above), and an open-source civ-clone issue in 2026 specifies a "Civ V-style cycle button" (https://github.com/civ-clone/web-renderer/issues/702).
+- Driver: an attention queue and forcing function. Nothing can be forgotten, and only one next action is ever offered (Hick's-law reduction).
+
+**(c) Interruption triage (III) and in-world readability (VI).**
+- Mechanics: III sorted messages into localized-on-map, advisor message, and blocking only when input is required (Briggs). VI themed district buildings by colour and shape so the map reads without tooltips. Shirk: "we don't want people to have to sit there all the time going on a tooltip clickfest" (https://www.pcgamer.com/new-looks-and-classic-gameplay-60-turns-of-civilization-6/). VI also added lenses.
+- Evidence: **C** (designer-stated reduction of ~2/3 of blocking windows). VI is the series' commercial peak: 162,657 Steam peak, and still ~4× VII's daily players in 2025 (B, https://screenrant.com/civ-6-more-players-civilization-7). *Judgment: VI's success has many causes; readability is one plausible part.*
+- Driver: interruption cost and pre-attentive encoding.
+
+### 4. Known failures / criticism
+
+- **Late-game turn bloat (I–VI). Strongest B evidence in the cluster.** Ed Beach: fewer than 50% of Civ VI games were finished ("surprisingly, depressingly… low"). Late-game turns demanded "tiresome 'click here, click here, click, here' decisions" (https://www.gamedeveloper.com/design/firaxis-big-swing-with-civilization-vii-convincing-players-to-actually-finish-their-games, 2024-08-23). "We just saw a lot of data about people never finishing games" (https://arstechnica.com/gaming/2026/02/interview-civilization-viis-devs-on-the-big-update-meant-to-win-critics-back/). **B** (designer-reported telemetry).
+- **Civ III findability:** "doesn't offer any decent way to find specific resources, cities, or units" (https://www.gamespot.com/reviews/civilization-iii-review/1900-2821275). Citizen faces were hard to read (IGN 2001).
+- **Civ V:** a clumsy build queue (http://www.megabearsfan.net/post/2013/06/23/Sid-Meiers-Civilization-V-review.aspx). Shafer regretted the lack of "power features": "an alternate 'expert' switch… adding a significant quantity of detailed information" (https://www.gamedeveloper.com/design/revisiting-the-design-of-civ-5). The forced policy pick blocked the turn and was later made optional (Civ support link above).
+- **Civ VII UI at launch (B):** Steam reviews were 41–51% positive in the first week, with the UI the top complaint (https://www.pcgamer.com/games/live/news/civilization-7-live-launch-coverage-reviews-tips-and-the-latest-news; https://www.pcgamer.com/games/strategy/civilization-7-patch-1-0-1-addresses-key-areas-of-player-reported-issues-including-ui-and-tooltip-improvements/). Firaxis: "Our top priority is improving the UI… making UI interactions more intuitive, improving map readability" (https://www.polygon.com/news/520793/civilization-7-firaxis-responds-mixed-reviews). Steam peak was 84,558 vs VI's 162,657. Monthly average fell from 40,991 (Feb 2025) to about 7,300 (Dec 2025) (https://steamcharts.com/app/1295660). A modder overlay showing gains and losses before replacing a building was called a "game changer" (https://arstechnica.com/gaming/2025/03/civilization-vii-one-month-later-the-community-and-developers-chime-in). *Judgment: the reception mixes UI, Ages and civ-switching; Firaxis itself puts immersion and civ identity at the heart of the controversy (Ars 2026).*
+- **Civ VII Legacy Paths (goal navigation that was too prescriptive):** players called them "railroady". They were "completely removed" and replaced by Triumphs (https://civilization.2k.com/civ-vii/news/anniversary; Ars 2026).
+
+### 5. Designer intent quotes
+
+- Sid Meier: "There was never really a good place to stop playing" (https://www.gamedeveloper.com/design/the-history-of-civilization).
+- Meier: "If the player can be thinking in the future, that's always the kind of gameplay that we're looking for… the game has to not max out the complexity, but be something that the player can absorb and comprehend." (https://www.eurogamer.net/25-years-of-civilization-we-talk-with-sid-meier)
+- Soren Johnson (IV): accessibility was the first of four goals. "Basic things like left click select and right click move which we'd never really adopted, I wanted to bring forward for Civ 4." (https://www.rockpapershotgun.com/making-of-soren-johnson-on-civ-4) GDC 2006 talk: "we want to pop up… context-sensitive help for just about everything… one area where people would focus on that information" (https://www.youtube.com/watch?v=y7AV3tNYd5g). On borrowing UI: "You shouldn't be afraid to borrow interface elements" (via Brad Wardell, littletinyfrogs, C).
+- Game Developer, "Seven Deadly Sins of strategy game design" (2013; byline not verified in the excerpt): interfaces should have "a teaching level and a reference level" (https://www.gamedeveloper.com/business/seven-deadly-sins-of-strategy-game-design).
+- Jon Shafer (V): "we've tried to focus as much as possible on displaying only the information that's important at the time" (GameSpot Q&A 2010). "The size of each interface element reflects its relative importance, e.g. the end turn button is bigger than the button which shows toggleable map options." (Game Developer 2013)
+- Dorian Newcomb (V art director): "We don't want to make a game for dumb people, but we want to make people who are smart feel smart" (https://gameinformer.com/games/civilization_v/b/pc/archive/2010/08/06/interview-civ-v-art-director-dorian-newcomb.aspx).
+- Ed Beach (VI): research "was a very passive activity. We wanted to make sure your progress in the tech tree was something you had more control over" (https://time.com/4324490/civilization-6-interview/).
+- Ed Beach (VII Triumphs): "rather than like pathways through an age, we're looking at it sort of like as a constellation of objectives, and you choose four or five of those guide stars to move towards" (Ars 2026).
+- Beach on exploration: "that first 50 turns of figuring out where you are on the map and who's around you is innately fun. We have done some things to bottle up that fun and spread it throughout the game." (Game Developer 2024)
+
+---
+
+## Cross-game patterns in this cluster
+
+1. **Preview before commit is the core wayfinding invariant.** HoMM's green/red path with turn counts (since 1995) and Civ's path and turns-to-tech both answer "how far, how many turns" before you act. Where VII hid outcomes, a modder's preview overlay was hailed as a "game changer". (C)
+2. **One world, three zooms, one visible viewport.** Tactical view, minimap with viewport box, full overview (HoMM View World, Civ minimap/lenses). Both series' best titles keep every scale on the *same* map, not a separate abstraction. (C)
+3. **A single "what needs me now" queue beats scattered alerts.** HoMM Next Hero + Sleep, Civ IV's colour-changing turn button, and Civ V's one action button that cycles blocking decisions. Blocking only what truly needs input (Civ III triage cut ~2/3 of interruptions) is the recurring best solution. (C; III figure designer-stated)
+4. **Rhythm as temporal navigation.** HoMM's week (growth on day 1) and Civ's turn/era cadence tell players *when* to return home or reassess. VII made the rhythm explicit with Ages/chapters after telemetry showed <50% of VI games were finished. (B for the completion data)
+5. **The map should explain itself; tooltips are the reference layer, not the teaching layer.** Mullich: you should tell an object's function "just by looking at it". Civ VI: avoid a "tooltip clickfest". HoMM IV's low-contrast map is the counterexample. Pattern: teaching level = pre-attentive visuals; reference level = rollover/right-click/Civilopedia. (C)
+6. **Camera freedom costs findability.** HoMM V's rotatable 3D camera hid objects and drew fan petitions; VI went back to a fixed angle. *Candidate invariant: in navigation-dense strategy maps, a fixed legible projection beats a cinematic camera.* (C)
+7. **"Navigation of possibility" works best as a visible graph with near-term goals and many routes, not a prescribed path.** The tech tree's "insight into the future" (Meier) is the series' most durable structure. VII's linear Legacy Paths were rejected as "railroady" and replaced by a "constellation of objectives". (C, plus designer reversal as strong signal)
+8. **Tie abstract goals to concrete map actions.** Civ VI Eureka boosts (settle on the coast → Sailing) and HoMM obelisks → Puzzle Map → dig turn map exploration into progress on a goal screen, and vice versa. (C)
+9. **Reduce entity count to keep "what next" tractable.** HoMM's 8-hero cap kept turns snappy (filfre). HoMM IV's free-roaming armies and Civ's late-game unit sprawl ("combinatorial explosion", Beach) both broke the turn checklist. VI's Areas of Control and VII's Age resets are structural fixes. (B/C)
+10. **Evolution beats revolution in navigation UI.** HoMM III ("design evolution, not design revolution") and Civ's 33/33/33 rule. The two most criticised entries (HoMM IV, Civ VII) each changed the most at once. (C; VII player-count drop is B but confounded)
