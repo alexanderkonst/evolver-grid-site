@@ -1984,29 +1984,15 @@ Before merging any change to a landing or high-traffic route:
 
 ---
 
-# Part X: Platform Design Decisions (Game Navigation)
+# Part X: Navigation design (game)
 
-Source: Sasha, 2026-11-24 22:32 MST, answering the navigation questions while the cult-games navigation synthesis was running ([synthesis v0](../02-strategy/research/navigation/synthesis.md)). These are his decisions; agents build on them and do not reopen them without him.
-
-## D1. "Where am I" has two answers, both shown
-- **Place in the village** = where I am in the game location. It simplifies navigation.
-- **Step on the path** = where I am on my hero's-journey roadmap.
-- Both are shown. Neither replaces the other.
-
-## D2. The second pane stays: a key milestone of navigation
-- The second pane (sections panel next to the rail) is **kept**. It may look a little like SaaS, but it is very convenient.
-- It **appears at the right moments**, and it is **open when the player looks at the order of quests** (= the steps of the hero's journey = moving from module to module).
-- Open to better solutions found in the cult-games research, but the default is: keep it.
-
-## D3. Your AI is not a place: it is an instrument you carry
-- Your AI is used during play, so it needs no space on the village map.
-- It opens **natively and smoothly from anywhere**, like a device on the wrist: the Pip-Boy pattern (Fallout).
-- This changes the design requirements: a diegetic instrument the player carries, not a room they walk into.
-
-## D4. Smoothness everywhere: an ancient mystical instrument
-- Every transition, opening and closing feels smooth.
-- The whole interface should feel like **an ancient mystical instrument** (consistent with the village master style: etching, monochrome, moonlight, the dodecahedron as the sign).
-- Motion still respects `prefers-reduced-motion` (Part IX).
+The decisions live in one place: [game spec §25 Navigation](../02-strategy/game_of_being_you.md#25-navigation-sasha-2026-11-24) (Sasha, 2026-11-24). UI consequences for every screen:
+- Every screen answers where am I (place + path step), where next (one glowing move), how home (Your House, one tap).
+- The second pane and the place scene work together; the pane shows all rooms and the quest order at once.
+- Closed things use the one line «Opens when … Inside: …» and stay readable (≥4.5:1 for words).
+- Your AI opens as a carried instrument (Pip-Boy pattern), smoothly, from anywhere.
+- Motion is smooth everywhere (an ancient mystical instrument) and respects `prefers-reduced-motion`.
+- Acceptance: the 3-second test (§25.12) is in the Definition of Done of every screen.
 
 ---
 

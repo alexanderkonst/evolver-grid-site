@@ -47,6 +47,7 @@
 - [22. Strategy 2026-11-02: the reveal-activation loop and the living…](#22-strategy-2026-11-02-the-reveal-activation-loop-and-the-living-village)
 - [23. The Player One path](#23-the-player-one-path-sasha-2026-11-02)
 - [24. Mechanics from iconic games and real-life games](#24-mechanics-from-iconic-games-and-real-life-games-sashas-verdicts-2026-11-21)
+- [25. Navigation](#25-navigation-sasha-2026-11-24)
 
 ---
 
@@ -1426,3 +1427,53 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 
 ### 24.5 Rejected
 Density gate before the next village (FB-1) · village book night (JM-4) · 6-week seasons · secret identity · villains and battles · points and levels as score · internal currency · votes · crisis simulations · ranking people · "raid" vocabulary.
+
+## 25. Navigation (Sasha, 2026-11-24)
+
+Source: the navigation synthesis of 40+ cult games ([synthesis v0](./research/navigation/synthesis.md)) and Sasha's verdicts on it, 2026-11-24 22:32 and 23:12 MST. This section is the source of truth for navigation; the UI rules that follow from it live in [ui_playbook Part X](../03-playbooks/ui_playbook.md).
+
+### 25.1 Principle
+One world, one home, and on every screen three answers: **where am I, where next, how do I get home.** The same grammar holds at four scales: world (village map) → place (scene with rooms) → module (Intro → one button → Outro) → moment (any screen). Sasha: this is what we had already chosen intuitively; the research confirms it.
+
+### 25.2 Where am I: both answers
+- **Place in the village:** where I am in the game location. It makes moving simple.
+- **Step on the path:** where I am on my hero's journey (§14.2).
+
+### 25.3 One map, several views
+- Village = the full map. Rail = the same map folded (§14.1.2).
+- **The second pane stays, and so does the scene: both.** The place opens as one scene with its rooms, and the second pane shows all rooms and the order of quests at once, so the player takes in every option in one glance. It appears at the right moments and is open when the player looks at the order of quests (= steps of the hero's journey = moving from module to module). Using it must be obvious instantly.
+
+### 25.4 Where next: a bearing, not a route (the balance)
+Sasha: the game must feel like a game, not fully simple and not fully obvious; the sweet spot natural to people. Evidence: turn-by-turn guidance erodes the player's own mental map (GPS research), yet a vague signal loses players (Peacocke et al. 2018: a drawn path or rotating minimap beat a compass or light beam). So, a ladder of help, from least to most:
+1. **Always:** one next move glows; the whole map stays open and every open place can be entered. The player chooses.
+2. **Before entering:** the Intro pitch (25.6).
+3. **Only when lost:** a clear, drawn line to the next move, shown when the player asks («Where next?») or after clear signs of being lost (several entries into places that don't move them forward, or a long pause on one screen). Never by default.
+Discovery stays the game: rooms reveal what is inside only when you enter.
+
+### 25.5 Closed is visible, with one line
+Every closed place, room, quest, module and star says one line: **«Opens when <real event>. Inside: <result>.»** (§14.3, §14.1.5; in code since #354, `PlaceState`). Use it everywhere, including the second pane and the path view.
+
+### 25.6 Pitch before entering
+The Intro says two things in one line each: **what you get** (the transformational result; button law) and **what it opens** next. Not a lore mission briefing; closer to «what this item gives you», with one line of «why it matters on your path».
+
+### 25.7 Home that changes on return
+Your House answers «what changed since you were here» in at most 3 real lines (places opened, artifacts made or changed, village events that touch you); nothing when nothing changed. Task: #451.
+
+### 25.8 Progress shows as light; one private number
+The world fills with light as you live (§14.11): done places light up, the paths between them glow, the sky moves toward dawn. Real game-design lineage: progress shown in the world itself (Okami and Gris restore colour, Journey's ascent). Numbers: none public (§14.1.7); one private number, your real QoL level (§13.2). This «both» is what we already ship.
+
+### 25.9 The path as a constellation
+Your House shows the path as a constellation, not a ladder: walked steps lit, the next step glowing, closed steps faint with their 25.5 line; several next steps can be open at once (Civ's tech tree has lasted 30 years; Civ VII's linear Legacy Paths were criticised as «rails»). Sketch v0: `docs/assets/navigation/constellation_v0.png`. Built on player path v1 only after Sasha reviews it.
+
+### 25.10 Your AI: an instrument you carry
+Your AI is not a place on the map: it is used during play, so it opens natively and smoothly from anywhere, like the Pip-Boy (Fallout). Design and build run as their own project.
+
+### 25.11 Smoothness
+Every transition feels smooth: the whole interface is an ancient mystical instrument (§5; motion respects reduced-motion).
+
+### 25.12 The 3-second test (acceptance test of navigation)
+**A first-time player on any screen answers in 3 seconds, without help: where am I, my one next move and what it gives, how to get home.** Operationalized:
+1. **Every navigation or screen spec** (@claude issue, [spec-handoff](../templates/spec-handoff.md)) carries it in its Definition of Done.
+2. **Every module audit** ([module-form](../templates/module-form.md) §9) checks it per screen.
+3. **Live test with real first-timers** (San Pancho village, 5 people per round): show a screen for 3 seconds, hide it, ask the three questions; a screen passes when 4 of 5 answer all three. Results logged here per screen.
+4. **Hark's QA loop** runs it on every new screen before reporting it done.

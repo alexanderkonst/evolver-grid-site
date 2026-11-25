@@ -36,7 +36,7 @@ For anything a user will touch, the spec rests on a product chain, not on a feat
    | # | Item | Evidence | Status |
    |---|---|---|---|
 
-   5–20 rows (more = split); every row observable (file:line, command output, URL, screenshot; "I checked" doesn't count); ⬜ / ✅ only; covers the **full** intent ("no silent Phase 2").
+   5–20 rows (more = split); every row observable (file:line, command output, URL, screenshot; "I checked" doesn't count); ⬜ / ✅ only; covers the **full** intent ("no silent Phase 2"). Any game screen or navigation spec includes the row **3-second test** ([GoBY §25.12](../02-strategy/game_of_being_you.md#25-navigation-sasha-2026-11-24)): a first-timer answers where am I, next move and what it gives, how home.
 7. **Files:** exact paths to create or change.
 8. **Constraints:** diff size, no refactors, no new deps, files not to touch, UI or not. For UI work: the short design plan and an "Avoid" list (`scout-frontend-design`).
 9. **Verification:** exact commands (lint, build, `tsc --noEmit`, preview, re-read after edit). "No verify, no ✅."
