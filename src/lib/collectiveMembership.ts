@@ -1,3 +1,4 @@
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import type { FounderState } from "@/pages/admin/useFounderStates";
 
@@ -11,36 +12,42 @@ import type { FounderState } from "@/pages/admin/useFounderStates";
  * failure in between never leaves a row without its role.
  */
 
+// Untyped on purpose: the collective tables and the `collective_member` role are not in the
+// generated types until migrations 20261125210000/210100/210200 are applied. Remove this cast
+// (use `supabase` directly) once they are applied and the types are regenerated.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const db = supabase as unknown as SupabaseClient<any>;
+
 export async function grantCollectiveMembership(userId: string): Promise<void> {
-  const role = await supabase
+  const role = await db
     .from("user_roles")
     .upsert({ user_id: userId, role: "collective_member" }, { onConflict: "user_id,role", ignoreDuplicates: true });
   if (role.error) throw role.error;
 
   // ignoreDuplicates: an existing row (and the profile its owner wrote) is never overwritten.
-  const row = await supabase
+  const row = await db
     .from("collective_members")
     .upsert({ user_id: userId }, { onConflict: "user_id", ignoreDuplicates: true });
   if (row.error) throw row.error;
 }
 
 export async function revokeCollectiveMembership(userId: string): Promise<void> {
-  const role = await supabase
+  const role = await db
     .from("user_roles")
     .delete()
     .eq("user_id", userId)
     .eq("role", "collective_member");
   if (role.error) throw role.error;
 
-  const row = await supabase.from("collective_members").delete().eq("user_id", userId);
+  const row = await db.from("collective_members").delete().eq("user_id", userId);
   if (row.error) throw row.error;
 }
 
 /** user_ids of everyone currently in `collective_members` (admin or member read). */
 export async function listCollectiveMemberIds(): Promise<string[]> {
-  const { data, error } = await supabase.from("collective_members").select("user_id");
+  const { data, error } = await db.from("collective_members").select("user_id");
   if (error) throw error;
-  return (data ?? []).map((r) => r.user_id);
+  return (data ?? []).map((r: { user_id: string }) => r.user_id);
 }
 
 export const COLLECTIVE_SEARCH_MIN_QUERY = 2;
