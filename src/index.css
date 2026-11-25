@@ -8078,20 +8078,15 @@ form.liquid-glass input:-webkit-autofill:active {
 }
 
 .village-place-icon {
-  /* Grammar check 2026-11-22: the frame was the brightest thing in the icon (2px cream + bronze
-     line + halo) and fought the object's own topaz light. One thin line in the skin's accent now;
-     the object carries the light. */
+  /* Sasha 2026-11-25: no frame. The icon files have a transparent ground, so the object
+     sits straight in the rail's circle and carries its own topaz light. */
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  border: 1px solid rgba(var(--accent-rgb, 212, 175, 55), 0.45);
-  border-radius: 4px;
-  overflow: hidden;
-  background: #0b1018;
 }
 .village-place-icon img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
