@@ -105,7 +105,9 @@ const EventsSpace = () => {
           </div>
 
           {/* Upcoming | Past: writes ?period=past */}
-          <div role="tablist" aria-label="Period" className="inline-flex rounded-lg border border-border p-0.5 mb-6">
+          {/* Village register (issue #443 wave 3, item 8): the selected tab is a dark surface with a gold
+              underline and off-white text, never a white pill. Mono caps like every other village label. */}
+          <div role="tablist" aria-label="Period" className="inline-flex border-b border-foreground/20 mb-6">
             {(["upcoming", "past"] as const).map((p) => (
               <button
                 key={p}
@@ -113,8 +115,10 @@ const EventsSpace = () => {
                 role="tab"
                 aria-selected={period === p}
                 onClick={() => setPeriod(p)}
-                className={`px-3 py-1 text-sm rounded-md transition-colors ${
-                  period === p ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                className={`-mb-px min-h-[44px] px-4 border-b-2 font-mono text-xs font-light uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:text-foreground ${
+                  period === p
+                    ? "border-[color:var(--select-accent)] bg-foreground/[0.06] text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {p === "upcoming" ? CAFE.upcoming : CAFE.past}

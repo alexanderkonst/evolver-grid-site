@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { RAIL_PLACES } from "@/lib/railPlaces";
 import { usePlaceStates } from "@/hooks/usePlaceStates";
-import { placeLine } from "@/lib/placeState";
+import { closedShortLine, placeLine } from "@/lib/placeState";
 import { cn } from "@/lib/utils";
 
 /**
@@ -23,6 +24,20 @@ const HIDE_ON_ROUTES = ["/game", "/start", "/zone-of-genius", "/quality-of-life-
 const Navigation = () => {
   const { pathname } = useLocation();
   const { states, ready } = usePlaceStates();
+  // Issue #443 wave 3 (item 4): a closed place is `aria-disabled`, not `disabled` and not a dead span:
+  // it keeps focus, and its «Opens when …» line shows on hover, on focus and on tap. The line sits in a
+  // row under the bar (the bar scrolls sideways, so a floating card would be clipped).
+  const [tip, setTip] = useState<string | null>(null);
+  useEffect(() => {
+    if (!tip) return;
+    const timer = window.setTimeout(() => setTip(null), 4500);
+    const onKeyDown = (e: KeyboardEvent) => e.key === "Escape" && setTip(null);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.clearTimeout(timer);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [tip]);
 
   if (HIDE_ON_ROUTES.some((route) => pathname.startsWith(route))) return null;
 
@@ -50,16 +65,17 @@ const Navigation = () => {
           // (dimmed, not a link, no lock line) and settle once, instead of lit then grey.
           const loading = !ready;
           const state = states[i];
-          const closed = !loading && state === "closed";
-          const line = placeLine(place, state);
           const active = pathname === place.to || pathname.startsWith(`${place.to}/`);
+          // The place the player stands in is current, never locked (issue #443 wave 3, item 3).
+          const closed = !loading && state === "closed" && !active;
+          const line = closed ? closedShortLine(place) : placeLine(place, state === "closed" ? "open" : state);
           const cls = cn(
             "block rounded-full px-3 py-1.5 text-xs uppercase tracking-[0.14em] whitespace-nowrap",
             active && "font-bold underline underline-offset-4",
           );
           return (
             <li key={place.key} className="shrink-0" data-place={place.key} data-place-state={loading ? "loading" : state}>
-              {loading ? (
+              {loading && !active ? (
                 <span
                   className={cls}
                   aria-disabled="true"
@@ -69,15 +85,21 @@ const Navigation = () => {
                   {place.name}
                 </span>
               ) : closed ? (
-                <span
+                <button
+                  type="button"
                   className={cls}
                   aria-disabled="true"
                   title={line}
-                  style={{ color: "var(--text-muted)", filter: "var(--lock-filter)", opacity: "var(--lock-dim)" }}
+                  onClick={() => setTip((cur) => (cur === place.key ? null : place.key))}
+                  onMouseEnter={() => setTip(place.key)}
+                  onMouseLeave={() => setTip((cur) => (cur === place.key ? null : cur))}
+                  onFocus={() => setTip(place.key)}
+                  onBlur={() => setTip((cur) => (cur === place.key ? null : cur))}
+                  style={{ color: "var(--text-muted)", filter: "var(--lock-filter)", opacity: "var(--lock-dim)", cursor: "default" }}
                 >
                   {place.name}
                   <span className="sr-only">. {line}</span>
-                </span>
+                </button>
               ) : (
                 <Link
                   to={place.to}
@@ -96,6 +118,15 @@ const Navigation = () => {
           );
         })}
       </ul>
+      {tip && (
+        <p
+          role="status"
+          className="mx-auto max-w-6xl px-3 pb-2 text-xs italic"
+          style={{ color: "var(--text-body)" }}
+        >
+          {closedShortLine(RAIL_PLACES.find((p) => p.key === tip)!)}
+        </p>
+      )}
     </nav>
   );
 };

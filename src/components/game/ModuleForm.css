@@ -36,8 +36,10 @@
 .mf a { color: inherit; text-decoration: none; }
 /* Issue 443 (A6): a module screen mounted inside the game shell (the Quest Board) fills pane 3, so the
    lighter shell texture never shows as a band under, or beside, the panel. The shell's pane 3
-   starts 1rem (pt-4) from the top. Not used on Your AI: it is out of the village restyle. */
-.mf--fill { max-width: none; min-height: calc(100dvh - 1rem); }
+   starts at the top edge on this route (wave 3 item 5: no pt-4 above a full-bleed banner). Not used
+   on Your AI: it is out of the village restyle. On a phone the panel keeps its natural height. */
+.mf--fill { max-width: none; }
+@media (min-width: 768px) { .mf--fill { min-height: 100dvh; } }
 
 /* ---------- scene (Intro) ---------- */
 .mf__state { position: relative; display: flex; flex: 1; width: 100%; min-height: inherit; }

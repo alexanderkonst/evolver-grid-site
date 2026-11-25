@@ -1,4 +1,4 @@
-import { memo, useEffect, useId, useState } from "react";
+import { memo, useEffect, useId, useRef, useState } from "react";
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -265,6 +265,36 @@ const SpacesRail = ({
     const { hasSoulColors, ringGradient, glowColor } = useSoulColors(soulColors, soulColorSeed);
     const location = useLocation();
     const navigate = useNavigate();
+    // Issue #443 wave 3 (item 4): a closed place says what opens it on hover, on focus and on tap.
+    // `tipOpen` is the place whose line is showing; `tappedRef` marks that it was opened by a tap
+    // (a touch screen has no hover, and Radix closes its card on the click that follows the tap),
+    // so only an outside press, Escape or a few seconds close it.
+    const [tipOpen, setTipOpen] = useState<string | null>(null);
+    const tappedRef = useRef<string | null>(null);
+    const closeTip = () => {
+        tappedRef.current = null;
+        setTipOpen(null);
+    };
+    useEffect(() => {
+        if (!tipOpen || tappedRef.current !== tipOpen) return;
+        const key = tipOpen;
+        const timer = window.setTimeout(closeTip, 4500);
+        const onPointerDown = (e: PointerEvent) => {
+            const el = e.target instanceof Element ? e.target.closest("[data-place]") : null;
+            if (el?.getAttribute("data-place") === key && el.closest("nav")) return;
+            closeTip();
+        };
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") closeTip();
+        };
+        document.addEventListener("pointerdown", onPointerDown, true);
+        document.addEventListener("keydown", onKeyDown);
+        return () => {
+            window.clearTimeout(timer);
+            document.removeEventListener("pointerdown", onPointerDown, true);
+            document.removeEventListener("keydown", onKeyDown);
+        };
+    }, [tipOpen]);
     const { skin, setSkin } = useSkin();
     const isNS = skin === "network-school";
     const isDao = skin === "daouniverse";
@@ -783,9 +813,13 @@ const SpacesRail = ({
                     // While the save loads the state is unknown: draw it neutral (no lock, no mark),
                     // never «open», so nothing flips from lit to grey after the page paints.
                     const loading = placesLoading;
-                    const state: PlaceStateName = loading ? "open" : placeStates?.[i] ?? "open";
-                    const closed = state === "closed";
+                    const rawState: PlaceStateName = loading ? "open" : placeStates?.[i] ?? "open";
                     const active = place.key === activePlace;
+                    const state: PlaceStateName = rawState === "closed" && active ? "open" : rawState;
+                    // The place the player stands in is current, never locked: a guest on the Quest
+                    // Board, a signed-in player on Home or in the Workshop before it «opens». Full
+                    // opacity, the marker, no aria-disabled. (Issue #443 wave 3, item 3.)
+                    const closed = rawState === "closed" && !active;
                     // The lock tooltip uses the short form when a place has one («Opens with your first sale.»).
                     const line = closed ? closedShortLine(place, t) : placeLine(place, state, t, true);
                     const name = placeName(place, t);
@@ -794,7 +828,14 @@ const SpacesRail = ({
                     const describedBy = stateWord(place, state, t) ? `${uid}-state-${place.key}` : undefined;
 
                     const handleClick = () => {
-                        if (closed || loading) return;
+                        if (closed) {
+                            // «aria-disabled», not `disabled`: the chip keeps focus and takes the tap.
+                            tappedRef.current = place.key;
+                            setTipOpen(place.key);
+                            return;
+                        }
+                        if (loading && !active) return;
+                        tappedRef.current = null;
                         onSpaceSelect?.(PANE_BY_PLACE[place.key]);
                         navigate(place.to);
                     };
@@ -805,9 +846,9 @@ const SpacesRail = ({
                             type="button"
                             data-tour-id={tourIdFor(place.key)}
                             data-place={place.key}
-                            data-place-state={loading ? "loading" : state}
+                            data-place-state={loading ? "loading" : rawState}
                             aria-current={active ? "page" : undefined}
-                            aria-disabled={closed || loading ? true : undefined}
+                            aria-disabled={closed || (loading && !active) ? true : undefined}
                             aria-busy={loading ? true : undefined}
                             onClick={handleClick}
                             className={cn(
@@ -912,9 +953,40 @@ const SpacesRail = ({
 
                     // Hover card: closed places say what opens them; in compact every
                     // place shows its name (and its line when it has something to say).
+                    // The phone drawer has no hover and no room beside the chip: a tap shows the line under it.
+                    if (drawer && closed) {
+                        return (
+                            <div key={place.key}>
+                                {chipButton}
+                                {tipOpen === place.key && (
+                                    <p
+                                        role="status"
+                                        className="px-3 pb-1 pt-0.5 text-[13px] italic leading-snug"
+                                        style={{
+                                            fontFamily: "'Cormorant Garamond', serif",
+                                            fontWeight: 500,
+                                            color: "rgba(var(--scene-ink-rgb), 0.92)",
+                                        }}
+                                    >
+                                        {line}
+                                    </p>
+                                )}
+                            </div>
+                        );
+                    }
+
                     if (closed || compact) {
                         return (
-                            <Tooltip key={place.key}>
+                            <Tooltip
+                                key={place.key}
+                                open={tipOpen === place.key}
+                                onOpenChange={(open) => {
+                                    if (open) {
+                                        if (tappedRef.current !== place.key) tappedRef.current = null;
+                                        setTipOpen(place.key);
+                                    } else if (tappedRef.current !== place.key) setTipOpen((cur) => (cur === place.key ? null : cur));
+                                }}
+                            >
                                 <TooltipTrigger asChild>
                                     {chipButton}
                                 </TooltipTrigger>

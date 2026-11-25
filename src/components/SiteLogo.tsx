@@ -113,6 +113,10 @@ const SiteLogo = () => {
         "/build/karime",
         "/proposalforwegoodovahere",
         "/build/cockpit",
+        // Issue #443 wave 3 (item 6): /build/mastermind sits in the game shell (rail + top bar carry
+        // the brand). The global lockup was a second «YOU — be original.» at the top of the content
+        // on desktop, and over the top-bar title ("Founder Tools") on a phone.
+        "/build/mastermind",
         // Day 123 (Sasha 2026-07-14): /you (YOU — Be Original) ships its own
         // header with the same lockup, left-aligned. The global SiteLogo
         // wordmark (fixed, top-center, z-50) was rendering on top of the
