@@ -21,6 +21,7 @@ import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Lock, RotateCcw, Send, X } from "lucide-react";
+import AirOctahedron from "@/components/game/AirOctahedron";
 import { type YourAiButton } from "@/data/yourAiCatalog";
 import { getCachedZogSnapshot } from "@/lib/zogSnapshotCache";
 import { askYourAi, type DialogueMessage } from "@/modules/zone-of-genius/yourAiDialogue";
@@ -39,6 +40,9 @@ import {
   writeTourSeen,
   type TourGroup,
 } from "@/lib/yourAiInstrument";
+
+/** The corner object, CSS px: about 2x the first preview (48). Fits a 375px phone beside the chat pill's column. */
+const CORNER_PX = 96;
 
 const ACCENT = "#bcd7e6";
 const INK = "#e8eef2";
@@ -275,16 +279,10 @@ const YourAiInstrument = ({ enabled, ownerId }: Props) => {
         aria-haspopup="dialog"
         aria-keyshortcuts="."
         data-testid="your-ai-object"
-        className="fixed right-4 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+3.75rem)] z-[81] grid h-14 w-14 place-items-center rounded-full outline-none transition-transform duration-300 focus-visible:ring-2 focus-visible:ring-[#bcd7e6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e13] motion-safe:hover:scale-105 motion-safe:active:scale-95 sm:bottom-[5.5rem] sm:right-6"
+        className="fixed right-2 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+3.75rem)] z-[81] grid h-24 w-24 place-items-center rounded-full outline-none transition-transform duration-300 focus-visible:ring-2 focus-visible:ring-[#bcd7e6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e13] motion-safe:hover:scale-105 motion-safe:active:scale-95 sm:bottom-[5.5rem] sm:right-5"
       >
-        <img
-          src="/game/your-ai-octahedron.webp"
-          alt=""
-          width={48}
-          height={48}
-          draggable={false}
-          style={{ filter: "drop-shadow(0 6px 8px rgba(0,0,0,0.5))" }}
-        />
+        {/* Drawn once per tick by one small canvas; the loop stops while the panel is open. */}
+        <AirOctahedron size={CORNER_PX} still={open} reduced={reduced} />
       </button>
 
       {mounted && (
@@ -296,7 +294,7 @@ const YourAiInstrument = ({ enabled, ownerId }: Props) => {
             className="absolute inset-0"
             style={{ backgroundColor: "rgba(4,6,9,0.62)", opacity: shown ? 1 : 0, transition: `opacity ${closeMs}ms ${EASE}` }}
           />
-          <div className="pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+5.5rem)] top-3 flex items-end justify-end sm:inset-x-6 sm:bottom-[8rem]">
+          <div className="pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+10.25rem)] top-3 flex items-end justify-end sm:inset-x-6 sm:bottom-[12.25rem]">
             <div
               ref={panelRef}
               role="dialog"
@@ -324,7 +322,7 @@ const YourAiInstrument = ({ enabled, ownerId }: Props) => {
               >
                 {/* Group 1 · header */}
                 <header className="flex items-center gap-3" style={lit("header")}>
-                  <img src="/game/your-ai-octahedron.webp" alt="" width={40} height={40} draggable={false} style={{ filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.5))" }} />
+                  <AirOctahedron size={40} still reduced={reduced} />
                   <div className="min-w-0 flex-1">
                     <h2 id={titleId} className="text-xl leading-tight" style={{ fontFamily: SERIF, fontWeight: 600, color: INK }}>
                       {t("yourAiInstrument.title")}
