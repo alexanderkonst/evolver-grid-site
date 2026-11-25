@@ -511,11 +511,14 @@ const GlobalChrome = () => {
   // guests — language choice matters most on this cold entry, and it kept
   // vanishing for logged-in testers.
   const isQuiz = /\/quiz(2)?(\/|$)/.test(location.pathname);
+  // #460: inside the game (village and /game/*; the router basename already strips /ru, /es and skins)
+  // the chip's accessible name carries its visible code. The title screen at `/` is left as it was.
+  const isInGame = /^\/(village|game)(\/|$)/.test(location.pathname);
 
   return (
     <>
       {!isHeroQuiz && <SiteLogo />}
-      {!isHeroQuiz && !isYouPage && !isAlexanderPage && !isKarimeIntroduction && <GlobalLanguageSwitcher always={isQuiz} />}
+      {!isHeroQuiz && !isYouPage && !isAlexanderPage && !isKarimeIntroduction && <GlobalLanguageSwitcher always={isQuiz} inGame={isInGame} />}
 
       <TitleManager />
       <ScrollRestoration />

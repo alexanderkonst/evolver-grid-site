@@ -161,3 +161,6 @@ Read `docs/docs_index.md`, then the relevant file. When still unsure, ask Sasha 
 
 ## Templates first (Sasha, 2026-11-03)
 Before building or writing anything (a module screen, copy, an offer, a spec, a course, an application), open `docs/templates/template-router.md` (task → template map; full inventory in `docs/templates/README.md`), find the template whose "What it produces" matches the task, and follow it. Module screens: `docs/templates/module-form.md` (§12 = Landing and Final screen copy law). Name the template you followed in the PR description. If none fits, say so in the PR.
+
+## Verify before claiming (Sasha, 2026-11-25)
+Before saying "done", "fixed" or "passing", run the check and quote fresh output (`.claude/skills/verification-before-completion`). Every bug found becomes a failing test first, then the fix (`test-driven-development`; root cause before any fix, stop after 3 failed fixes and question the design: `systematic-debugging`). Review severity-ranked, Critical blocks (`requesting-code-review`). Browser checks: `webapp-testing`, and the repo's own `docs/templates/qa-pass.md` + `e2e/`. Vendored third-party skills, see `.claude/skills/README.md`.

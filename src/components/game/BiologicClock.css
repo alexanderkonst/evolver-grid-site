@@ -29,6 +29,10 @@
   display: block; flex: none; overflow: visible;
   width: calc(var(--bc-size) * var(--bc-grow)); max-width: 100%; height: auto; aspect-ratio: 1 / 1;
 }
+/* The ring <title>s are hover tooltips, never drawn. display:none says so to axe's label-in-name check, which
+   otherwise counts their text as visible text of the dial on some layouts (#460). The tooltip itself comes from
+   the DOM child, not from rendering. */
+.bio-clock__dial title { display: none; }
 .bio-clock__dial.is-tappable { cursor: pointer; -webkit-tap-highlight-color: transparent; transition: filter 0.15s ease; }
 /* Click cue: the dial glows softly under the pointer or the keyboard focus (and while the «+ tap» chip is hovered) */
 .bio-clock__dial.is-tappable:hover, .bio-clock__dial.is-tappable:focus-visible,

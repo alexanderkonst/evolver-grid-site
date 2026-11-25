@@ -292,6 +292,11 @@ const PlanetSymbol = ({ planet, size }: { planet: string; size: number }) => {
  * One centre line: its cycle's name in small caps (`FULL MOON`, `TUESDAY`), and under it a small
  * symbol and the meaning word, centred as a group (the word's width is estimated). Both in the
  * ring's colour: the address is what lets a newcomer link each word to its ring without a legend.
+ *
+ * The trailing space in each of the two texts is collapsed by SVG and never drawn. It gives the dial's
+ * visible text word breaks («full moon harvesting wednesday clarity») so axe's label-in-name check
+ * (WCAG 2.5.3) finds it inside the dial's accessible name; without it axe reads
+ * «full moonharvestingwednesdayclarity» and flags the dial (#460).
  */
 const CentreLine = ({
   y, address, word, colour, fontSize, symbol,
@@ -311,11 +316,11 @@ const CentreLine = ({
         textAnchor="middle"
         style={{ fontSize: `${CENTRE_LABEL_FONT}px`, fill: colour }}
       >
-        {address.toUpperCase()}
+        {`${address.toUpperCase()} `}
       </text>
       {symbol(start + CENTRE_ICON_R, y - fontSize * 0.34)}
       <text className="bio-clock__word" x={f(start + CENTRE_ICON_R * 2 + 3)} y={f(y)} textAnchor="start" style={{ fontSize: `${fontSize}px`, fill: colour }}>
-        {word}
+        {`${word} `}
       </text>
     </g>
   );
