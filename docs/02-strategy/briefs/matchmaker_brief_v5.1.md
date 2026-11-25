@@ -143,7 +143,7 @@ People may pay to make a chosen next development possible. Do not require a felt
 | Hosted experience leading to optional individual work | Participants experience the method, then decide whether they want help developing their own business | A participating founder may choose a paid container afterward; the host is not automatically the buyer and attendance creates no obligation |
 | Own-business work | The person develops a particular direction, offer or product they actually want to pursue | They commission a scoped individual engagement; establish the desired result and terms before delivery |
 | Training or licensing, if appropriate | A practitioner can eventually carry an agreed process in their own work | Explore after useful delivery has demonstrated fit; scope readiness, support, rights and economics separately |
-| Success-based mentorship | Ongoing accompaniment while the person builds and sells their own unique business | The person, through a share of that business's revenue; terms set by me case by case (the first such client started in November 2026; the first success-based mentorship payment arrived 2026-11-24). Flag only; never propose |
+| Success-based mentorship | Ongoing accompaniment while the person builds and sells their own unique business | The person, through a share of that business's revenue; terms set by me case by case (the first such client started in November 2026). Flag only; never propose |
 
 **Start with one useful paid-delivery hypothesis, not a licensing pitch.** A peer conversation, a free Direction Call, a paid pilot, and a training agreement are different exchanges. Do not blur them, promise a ready-made licensing product, set a price on my behalf, or imply guaranteed revenue for anyone.
 
@@ -255,7 +255,7 @@ PR #304, 2026-11-03; v1.2 upload of the same day), Evolver's memory of Sasha's d
    buildings (game principles, 2026-11-03); commission-only practitioner shops, 10% per game-sourced client, offered by
    Sasha himself (Sasha, 2026-11-02: «ЭТО НАША СТРАТЕГИЯ»). Overlapping frameworks reread as possible neighbours.
 9. Means: success-based terms exist (first mentorship client, 33% of her revenue to her first $5,555, then 10%,
-   agreed verbally 2026-11-02; rate corrected to 33% from 30%; the first success-based mentorship payment arrived 2026-11-24); brief gives no figures and forbids offering terms. New table row "Success-based mentorship".
+   agreed verbally 2026-11-02; rate corrected to 33% from 30%); brief gives no figures and forbids offering terms. New table row "Success-based mentorship".
 10. "Free Recognition Round" → "free Direction Call (45 minutes)": the live entry door since 2026-10-27
     (Product Map §7; /ignite copy on main).
 11. New subsection "What exists now": the seven-step ladder and prices exactly as in canvas v1.12 §4; Built to PMF

@@ -78,8 +78,16 @@ export type JourneyModuleDef = {
   eyebrow: string;
   /** Intro headline: the module's Master Result (workflow §1.1). */
   headline: string;
-  /** 1–2 lines on what will happen. */
+  /**
+   * «What you get»: one line, the module's result (GoBY §25.6). The Intro's second line,
+   * «what it opens», is read from the registry (src/data/moduleOpens.ts), not written here.
+   */
   silhouette: string;
+  /**
+   * Only a module that is not on the path (an Academy lesson): the step it leads to, since
+   * there is no next module to read. `label` is shown as is.
+   */
+  opensNext?: { place: VillagePlaceKey; label: string };
   /** The one button: the result as a verb. */
   verb: string;
   /** Where the module itself starts. */
@@ -121,7 +129,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "reception",
     eyebrow: "Entry Portal · Step 1",
     headline: "Discover your top talent",
-    silhouette: "A short test of what you do best. It ends with the talent that is yours, in your own colors.",
+    silhouette: "You get your top talent, in your own colors, saved to your character.",
     verb: "Find my top talent",
     startPath: "/zone-of-genius/entry",
     outro: {
@@ -137,7 +145,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "house",
     eyebrow: "Home · Step 2",
     headline: "Discover your mission",
-    silhouette: "Paste one answer from your own AI. You leave with one sentence about what is yours to do in the world.",
+    silhouette: "You get one sentence about what is yours to do in the world.",
     verb: "Find my mission",
     startPath: "/mission-discovery",
     outro: {
@@ -153,7 +161,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "house",
     eyebrow: "Home · Step 3",
     headline: "Know your real level",
-    silhouette: "Eight areas of life, answered honestly. The result is private: only you see it.",
+    silhouette: "You get your real level across eight areas of life, private to you.",
     verb: "Show my level",
     startPath: "/quality-of-life-map/assessment",
     outro: {
@@ -169,7 +177,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "house",
     eyebrow: "Home · Step 4",
     headline: "Map everything you can build with",
-    silhouette: "Your skills, experience and network, gathered once into one inventory.",
+    silhouette: "You get one inventory of your skills, experience and network.",
     verb: "Map my assets",
     startPath: "/asset-mapping",
     outro: {
@@ -185,7 +193,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "workshop",
     eyebrow: "Workshop · Step 6",
     headline: "Your uniqueness in one phrase",
-    silhouette: "The AI drafts one phrase that only you could say, from your top talent. You sharpen it until it sounds like you.",
+    silhouette: "You get one phrase that only you could say, built from your top talent.",
     verb: "Name my uniqueness",
     startPath: "/ubb/uniqueness",
     outro: {
@@ -201,7 +209,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "workshop",
     eyebrow: "Workshop · Step 7",
     headline: "The tagline of your unique business",
-    silhouette: "One sentence for the people you serve: where they are, and where you take them.",
+    silhouette: "You get one sentence for the people you serve: where they are, and where you take them.",
     verb: "Write my tagline",
     startPath: "/ubb/promise",
     outro: {
@@ -213,30 +221,30 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     },
   },
 
-  // Real-world quests (WP-11, §14.2 J8–J12; J8 and J9 are the free session and FMF, formerly the Mastermind).
+  // Real-world quests (WP-11, §14.2 J8–J12; J8 is meeting Sasha first, J9 is FMF, formerly the Mastermind).
   // The task happens outside the game; «I did it» is the player's own word, recorded as a
   // victory with its 1–10 (src/components/game/QuestModule.tsx).
   {
     id: "webinar",
     place: "academy",
     eyebrow: "Academy · Step 8",
-    headline: "Join the free FMF session (Nov 4)",
-    silhouette: "One free live session with others on the same path. Come, and leave with one step to take.",
-    verb: "Join the free session",
+    headline: "Meet Sasha first",
+    silhouette: "You get a conversation with Sasha before you commit, and one step to take.",
+    verb: "Book a time with Sasha",
     startPath: "/game/journey/quest/webinar",
     quest: {
       journey: "J8",
-      doneWhen: "you were in the live session on Nov 4.",
-      task: "Join the free FMF session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
-      didIt: "I joined the session",
-      link: { to: "https://lu.ma/qpogt17o", label: "Open the session page" },
+      doneWhen: "you met Sasha.",
+      task: "Book a time with Sasha. Afterwards, come back and say you met.",
+      didIt: "I met Sasha",
+      link: { to: "https://cal.com/aleksandrkonstantinov/1-hour-co-working", label: "Book a time with Sasha" },
     },
     outro: {
-      done: "Done · You joined the free session",
-      badge: "Free Session",
+      done: "Done · You met Sasha",
+      badge: "Met Sasha",
       livesIn: { text: "It lives at Home, on the shelf of your victories.", to: "/game/me/overview" },
-      opened: "You were in the room. FMF is the next quest.",
-      fallbackResult: "The free FMF session",
+      opened: "You met Sasha. FMF is the next quest.",
+      fallbackResult: "Meeting Sasha",
     },
   },
   {
@@ -244,7 +252,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "fire-circle",
     eyebrow: "FMF · Step 9",
     headline: "FMF: Discover Founder-Market Fit in Three Days",
-    silhouette: "Three days in a circle with others who build, live on Monday and Wednesday. You leave with one real step to take this week.",
+    silhouette: "You get three days in a circle with others who build, and one real step for this week.",
     verb: "Join FMF",
     startPath: "/game/journey/quest/mastermind",
     quest: {
@@ -267,7 +275,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "academy",
     eyebrow: "Academy · Step 10",
     headline: "Twenty-one days of practice, done",
-    silhouette: "Practise for 21 days with others walking the same path. When the twenty-first day is behind you, come back and say so.",
+    silhouette: "You get 21 days of practice with others on the same path.",
     verb: "Practise my 21 days",
     startPath: "/game/journey/quest/mastery-practice",
     quest: {
@@ -289,7 +297,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "market",
     eyebrow: "Market · Step 11",
     headline: "Name your price to a real client",
-    silhouette: "Your price is part of the gift. You say it out loud to one real person who could buy.",
+    silhouette: "You get your price, said out loud to one real person who could buy.",
     verb: "Name my price",
     startPath: "/game/journey/quest/first-price",
     quest: {
@@ -317,7 +325,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     place: "market",
     eyebrow: "Market · Step 12",
     headline: "Receive your first payment for being you",
-    silhouette: "Someone pays you for your own offer. A neighbour counts the same as a stranger online.",
+    silhouette: "You get proof that someone pays you for being you.",
     verb: "Make my first sale",
     startPath: "/game/journey/quest/first-sale",
     quest: {

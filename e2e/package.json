@@ -1,0 +1,19 @@
+{
+  "name": "evolver-e2e",
+  "private": true,
+  "version": "0.0.0",
+  "description": "QA as code: Playwright + axe checks that run against a deployed preview URL. Standalone on purpose: the root lockfile is out of sync, and the suite needs none of the app's dependencies.",
+  "type": "module",
+  "scripts": {
+    "test": "playwright test",
+    "test:desktop": "playwright test --project=desktop",
+    "test:tablet": "playwright test --project=tablet",
+    "test:phone": "playwright test --project=phone",
+    "test:reduced-motion": "playwright test --project=reduced-motion",
+    "report": "node scripts/pr-comment.mjs"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.58.2"
+  }
+}

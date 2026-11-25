@@ -10,6 +10,7 @@ import {
   moduleText,
   type JourneyModuleDef,
 } from "@/data/journeyModules";
+import { moduleOpensText } from "@/data/moduleOpens";
 import { getVillagePlace, sceneObjectPosition } from "@/data/villagePlaces";
 import { placeSaveFromSheet, type PlaceStateName } from "@/lib/placeState";
 import { placeAlt, tr } from "@/lib/villageCopy";
@@ -20,8 +21,9 @@ import "./ModuleForm.css";
  * ModuleIntro — the Before screen of a Journey module (WP-5).
  * Design: docs/02-strategy/game_of_being_you.md §14.4.
  *
- *   place scene · eyebrow · headline = the module's Master Result · 1–2 line
- *   silhouette · ONE button whose label is the result as a verb.
+ *   place scene · eyebrow · headline = the module's Master Result · two lines (§25.6):
+ *   what you get (`silhouette`) and what it opens (`moduleOpensText`, read from the village
+ *   rules and the path order) · ONE button whose label is the result as a verb.
  *
  * While the step is not open yet the screen is faded (`closed` via placeState()) and shows
  * its «Opens when… Inside:…» line in place of the button. Copy lives in `JOURNEY_MODULES`
@@ -110,6 +112,7 @@ const ModuleIntro = ({ module, onStart, state: forced, ready = false, neverClose
           {moduleText(module, "headline", t)}
         </h1>
         <p className="mf__silhouette">{moduleText(module, "silhouette", t)}</p>
+        <p className="mf__opens">{moduleOpensText(module, t)}</p>
       </PlaceState>
     </section>
   );

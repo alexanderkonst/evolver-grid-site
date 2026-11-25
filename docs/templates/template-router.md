@@ -9,7 +9,7 @@
 - **What emerges:** artifacts of one shape across all agents; every lesson lands in one template and reaches every future use
 - **As a part of the whole:** the load-bearing joint of the architecture. Templates are the MODULE layer (methodology); the router is the `//` that connects any task to its module, so the methodology reaches the PROMPT layer (agents) without Sasha in the loop
 - **Siblings:** [README.md](./README.md) (full inventory, source of truth for what exists), [holonic-prism.md](./holonic-prism.md) (the prism every template stands on), `CLAUDE.md` §Templates first, Hark specialty `templates-first` (points to this file)
-- **Status · last reviewed:** v1.2 · 2026-11-19 (Result + Phase Shift Technology columns)
+- **Status · last reviewed:** v1.3 · 2026-11-25 (qa-pass row; Result + Phase Shift Technology columns since v1.2, 2026-11-19)
 
 ## Through the prism
 - **Essence:** a switch between "what is asked" and "the form that already knows how to do it".
@@ -36,6 +36,7 @@
 | Founder's business on half a page | [unique-business-canvas.md](./unique-business-canvas.md) | Your business on half a page | 158 It Descends into the Body |
 | Direction call / $555 session / recognition ritual | [session-script.md](./session-script.md) | A session that ends in clear direction | 125 The Social Physics of the Mirror |
 | @claude issue, agent spec, bug-fix PR or PR comment | [spec-handoff.md](./spec-handoff.md) | A spec any agent builds right the first time | Craft (nearest 115) |
+| QA of a screen or module against its spec / DoD: viewports, a11y, reduced motion, overlaps, regressions; what code asserts vs what an agent judges | [qa-pass.md](./qa-pass.md) (code in `e2e/`) | A screen checked at three widths, row by row | Craft (nearest 115) |
 | Building a whole product from a proven session (product → architecture → UI → code) | `docs/03-playbooks/integrated_product_building_workflow.md` (IPB) | A proven session turned into a product | 83 The Integrated Founder Stack (candidate) |
 | Audit of modules against the form | [module-form.md](./module-form.md) §9 + §12.6 | Every module checked against the form | 81 The Specificity Loop |
 | Reflection after a client session | [session-reflection.md](./session-reflection.md) | What the session really showed | Craft (candidate shift in template) |

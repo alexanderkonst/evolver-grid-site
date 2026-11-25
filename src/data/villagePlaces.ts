@@ -200,7 +200,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     name: "Café",
     line: "Meet people, professionally or simply.",
     to: "/game/meet",
-    // Open to guests: the Café holds the webinar (Nov 4) and the FMF invite, which a
+    // Open to guests: the Café holds the FMF invite, which a
     // visitor must be able to see before they have a character. The personal parts (create an
     // event, RSVPs) stay behind sign-in on their own routes.
     rule: {},
@@ -261,16 +261,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     name: "Academy",
     line: "Grow in what matters most.",
     to: "/game/learn",
-    rule: {
-      // Webinar Wed Nov 4, 9:00 Mexico City (src/pages/Mastermind.tsx, bridgeLink).
-      // The length is not in the code; 90 minutes assumed.
-      live: {
-        from: "2026-11-04T09:00:00-06:00",
-        until: "2026-11-04T10:30:00-06:00",
-        line: "Live now: Webinar, Wed Nov 4.",
-        key: "village.live.academy",
-      },
-    },
+    rule: {},
     image: "/game/village/academy.webp",
     alt: "A grand library under a dome at night: curved wooden bookshelves, an armillary sphere, scrolls and an open book, and a crystal dodecahedron among the stars in the skylight",
     focus: { x: 50, y: 25 },

@@ -171,14 +171,10 @@ describe("placeState: unlock order (§14.3)", () => {
 });
 
 describe("placeState: live", () => {
-  it("the Academy is live during the webinar, Wed Nov 4, 9:00 Mexico City", () => {
-    const during = saveWith([], { now: new Date("2026-11-04T15:30:00Z") });
-    expect(placeState(place("academy"), during)).toBe("live");
-    expect(placeLine(place("academy"), "live")).toBe("Live now: Webinar, Wed Nov 4.");
-    const after = saveWith([], { now: new Date("2026-11-04T17:00:00Z") });
-    expect(placeState(place("academy"), after)).toBe("open");
-    const before = saveWith([], { now: new Date("2026-11-04T14:59:00Z") });
-    expect(placeState(place("academy"), before)).toBe("open");
+  it("the Academy has no live window (the Nov 4 webinar is past and gone)", () => {
+    expect(place("academy").rule.live).toBeUndefined();
+    const onTheDay = saveWith([], { now: new Date("2026-11-04T15:30:00Z") });
+    expect(placeState(place("academy"), onTheDay)).toBe("open");
   });
 
   it("FMF is live Monday to Wednesday of each lunar cycle (Mexico City), e.g. Dec 7–9, 2026", () => {
@@ -356,9 +352,9 @@ describe("nextMove: one next move (§14.6)", () => {
 
   it("with the Journey done, a place that is live comes first, else the Quest Board", () => {
     const all = JOURNEY_MAIN.map((i) => i.id);
-    const during = move(all, { offerSaved: true, now: new Date("2026-11-04T15:30:00Z") });
+    const during = move(all, { offerSaved: true, now: new Date("2026-12-08T10:00:00-06:00") });
     expect(during?.kind).toBe("live");
-    expect(during?.place.key).toBe("academy");
+    expect(during?.place.key).toBe("fire-circle");
     const quiet = move(all, { offerSaved: true, now: TUESDAY });
     expect(quiet?.kind).toBe("quests");
     expect(quiet?.place.key).toBe("quest-board");
@@ -377,7 +373,7 @@ describe("nextMove: one next move (§14.6)", () => {
   });
 
   it("a live window does not push aside the next Journey step", () => {
-    const m = move(["find-top-talent"], { now: new Date("2026-11-04T15:30:00Z") });
+    const m = move(["find-top-talent"], { now: new Date("2026-12-08T10:00:00-06:00") });
     expect(m?.kind).toBe("step");
     expect(m?.step).toBe("discover-mission");
   });

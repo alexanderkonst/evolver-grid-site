@@ -37,7 +37,10 @@ const render = (birthday: string | null, extra: Record<string, unknown> = {}) =>
     </MemoryRouter>,
   );
 
-const texts = (html: string) => [...html.matchAll(/<text[^>]*>([^<]*)<\/text>/g)].map((m) => m[1]);
+// Trimmed: the centre texts end in a space SVG never draws; it gives axe word breaks in the dial's visible text (#460).
+const texts = (html: string) => [...html.matchAll(/<text[^>]*>([^<]*)<\/text>/g)].map((m) => m[1].trim());
+// The same two texts, untrimmed: the word break must stay, or axe label-in-name flags the dial again.
+const rawCentreTexts = (html: string) => [...html.matchAll(/<text[^>]*(?:bio-clock__address|bio-clock__word)[^>]*>([^<]*)<\/text>/g)].map((m) => m[1]);
 
 describe("engine words (spec «Words»)", () => {
   it("Waxing Gibbous reads Prepping, Sunday reads Threshold & Celebration", () => {
@@ -213,6 +216,12 @@ describe("three views, one tap cycles them (#385)", () => {
       v = nextView(v);
     }
     expect(seen).toEqual([1, 2, 3, 1]);
+  });
+
+  it("centre texts keep a trailing word break so the dial's visible text reads as words (#460, axe label-in-name)", () => {
+    const raw = rawCentreTexts(render(BIRTHDAY, { view: 1, onCycleView: () => {} }));
+    expect(raw).toHaveLength(4);
+    for (const s of raw) expect(s).toMatch(/\S $/);
   });
 
   it("view 1: the dial and its two addressed centre words, no card, no real control besides the dial", () => {

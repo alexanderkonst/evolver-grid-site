@@ -28,7 +28,9 @@ export const ACADEMY_WELCOME_MODULE: JourneyModuleDef = {
   place: "academy",
   eyebrow: "Academy · Lesson 1",
   headline: "Wake the potential you already carry",
-  silhouette: "A short welcome from the free course. You watch it, then you choose one thing to do this week.",
+  silhouette: "You get a short welcome from the free course, and one thing to do this week.",
+  // Not on the path, so nothing to read: the next episode of the course, named as the course names it.
+  opensNext: { place: "academy", label: COURSE_MODULES[1].episodes[0].title },
   verb: "Wake my potential",
   startPath: "/game/learn",
   outro: {
