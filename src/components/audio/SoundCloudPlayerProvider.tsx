@@ -56,7 +56,7 @@ const WIDGET_API_SRC = "https://w.soundcloud.com/player/api.js";
 
 // Default playlist — Sasha's findyourtoptalent.com SoundCloud playlist.
 const DEFAULT_PLAYLIST_URL =
-    "https://soundcloud.com/alexander-konstantinov-976475588/sets/findyourtoptalent-com-playlist";
+    "https://soundcloud.com/konstantinovaleksandr/sets/findyourtoptalent-com-playlist";
 
 /**
  * Music-allowed-route detection — should the player be active on
