@@ -1,4 +1,4 @@
-# Sovereign Founder Collective: conceptual architecture v0.3
+# Sovereign Founder Collective: conceptual architecture v0.4
 
 > *Draft · 2026-11-25 · Module 3. Asked by Sasha («Делай, начиная с концептуальной архитектуры»). Step 1 of: architecture → landing → each part's description of power and results. Terms: single source is [collective_terms_roadmap.md](./collective_terms_roadmap.md); the Unique Business method and sessions are Sasha's and are only linked here, never restated.*
 
@@ -13,7 +13,9 @@ Game (Top Talent → Mission → Assets)          ← unchanged, the door
         ↓
 Unique Business (Sasha's method, FMF)         ← the founder finds the business
         ↓
-COLLECTIVE (by invitation)
+COLLECTIVE: its own space in the game; opens at a working unique business;
+  Sasha grants access by hand; peers with a working business are invited straight in
+  (see collective_in_game_v0.1.md)
   ├─ 1 Founder Cockpit      run the business
   ├─ 2 AI harness           the business does more without hiring
   ├─ 3 Matchmaking          the right people meet
@@ -30,7 +32,7 @@ Terms: 10% rev share, steward now → member-governed entity (2027–28). No equ
 |---|---|---|---|---|---|
 | 0 | Door | The game: Top Talent, Mission, Assets reveals, then the Unique Business path | People arrive already knowing their gift | Uniqueness in one sentence, a Promise, a first offer | Live (game, /build/fmf, Sasha's playbook) |
 | 1 | Founder Cockpit | One screen to run a unique business: offers, clients, pulse, next move | The founder sees the whole business and the one next step | A business that is steered, not chased | /build/cockpit, /build/cockpit/dashboard, /build/cockpit/offers |
-| 2 | AI harness | The AI ladder (5 rungs). Rungs 1–3 open to all players; rungs 4–5 (own harness, AI company) are the collective's | Each founder runs a small company of agents | Own console of buttons + one routine that runs by itself | Rungs 1–2 built (mini-trainings); ladder 00-ladder.md; Your AI |
+| 2 | AI harness | The AI ladder (5 rungs). Rungs 1–3 open to all players; rungs 4–5 (own harness, AI company) for the collective is a proposal, Sasha decides | Each founder runs a small company of agents | Own console of buttons + one routine that runs by itself | Rungs 1–2 built (mini-trainings); ladder 00-ladder.md; Your AI |
 | 3 | Matchmaking | Who should meet whom: clients, partners, joint offers, mentors | Introductions that turn into money and work | Named introductions, joint offers, shared clients | matchmaking_engine.md (layers), /game/collaborate/matches, /game/collaborate/people, /genius-layer-matching, /village |
 | 4 | Scaling experts | A team of experts in growing a business (sales, marketing, finance, legal, ops) who serve the collective's founders | Founders get what a solo founder can't afford alone | A next stage of revenue with a named expert beside them | The team exists (Sasha, 2026-11-25); its page is to write |
 | 5 | Mini-hackathons | Short shared sprints (one day or a weekend): founders build one real piece together (landing, offer, funnel, AI routine) | Momentum and proof in a day, not a month | A shipped thing by the end of the day | Prior: Network School hackathon 2026-01-24 (logs); /bring-your-module |
@@ -41,9 +43,9 @@ Terms: 10% rev share, steward now → member-governed entity (2027–28). No equ
 | 10 | Media synergy | A shared media resource: each member's content amplifies the others (channels, cross-features, shared stories) | Reach of the whole collective, not one person | More eyes on each business | To describe |
 | 11 | Shared improvement budget | A common budget to improve the collective and its tools | The tools get better every cycle for everyone | Better cockpit, AI, matchmaking each moon | New. Source of the budget: open, Sasha decides (proposal: a share of the 10%) |
 | 12 | Internal collaborations (key) | Access to collaborations inside the collective: joint offers, shared clients, co-built products, referrals | The collective's main power: businesses that grow by working together | Collaborations a solo founder can't get anywhere else | Matchmaking engine, collaboration_taxonomy.md, collaboration_spectrum_holomap.md |
-| 13 | Mutual promotion | We show each member's landing and promote each other to new founders | Every member is introduced by the whole collective | New clients from the collective's audience | Karime's landing (/karima); other landings to come |
+| 13 | Mutual promotion | We show each member's landing and promote each other to new founders | Every member is introduced by the whole collective | New clients from the collective's audience | One member's landing is live on the site; others to come |
 | 14 | Train-the-trainer | Members train to run Sasha's method themselves (as Sasha teaches it, unchanged) | Growth stops depending on one person: exponential | The member can lead other founders through the method | Terms roadmap (founders who grow lead the next) |
-| 15 | Fund (later) | A fund with the Golden Age investment thesis, uniqueness as the primitive-substrate of its infrastructure | Capital for unique businesses, on terms that fit them | Access to capital (no equity: capped rev share or debt) | uniqueness_economy_thesis.md; fund not yet set up |
+| 15 | Fund (later) | A fund with the Golden Age investment thesis, uniqueness as the primitive-substrate of its infrastructure | Capital for unique businesses, on terms that fit them | Access to capital; instruments follow Sasha's line «I don't do equity, I do capped rev share agreements, or debt» (2026-11-04), fund terms not set | uniqueness_economy_thesis.md; fund not yet set up |
 
 ## How the parts feed each other
 
@@ -66,3 +68,5 @@ Terms: 10% rev share, steward now → member-governed entity (2027–28). No equ
 *v0.2 · 2026-11-25 · Sasha added: experts team exists; shared infrastructure, media synergy, shared improvement budget, access to internal collaborations («мега важно»).*
 
 *v0.3 · 2026-11-25 · Sasha added: the future fund (Golden Age thesis, uniqueness as the primitive-substrate of its infrastructure), mutual promotion of each member's landing, training to run the method ourselves for exponential growth.*
+
+*v0.4 · 2026-11-25 · Sasha decided: Collective is its own space in the game, opens at a working unique business; he grants access by hand for now and invites peers straight in. Member landing named neutrally; rungs 4–5 marked as proposal; fund instruments quoted from Sasha, terms open.*
