@@ -140,7 +140,7 @@ describe("BiologicClock v5: two rings from one engine", () => {
     // each word sits under its cycle's name in small caps (Fixes v6.2 item 1)
     expect(texts(html)).toEqual(["WAXING GIBBOUS", "Prepping", "SATURDAY", "Structure"]);
     expect(html).not.toMatch(/\d{1,2}:\d{2}/);
-    expect(html).toContain('aria-label="Prepping · Waxing Gibbous · Saturday · Structure"');
+    expect(html).toContain('aria-label="Waxing Gibbous, Prepping, Saturday, Structure"');
     const centre = html.slice(html.indexOf('data-ring="centre"'));
     expect(centre.match(/data-centre-line/g)).toHaveLength(2);
     expect(centre).toMatch(/fill:#fff4dc/); // the moon word: warm white
@@ -163,8 +163,10 @@ describe("BiologicClock v5: two rings from one engine", () => {
     expect(moon).toMatch(/bio-clock__name">Prepping</);
     const { lunar } = getAllCyclesV2(NOW, BIRTHDAY);
     const left = formatTimeLeft(lunar.daysRemainingInPhase);
-    // «next» has a time (item 4): the same time as the head line
-    expect(moon).toContain(`before Seeing · next Harvesting, in ${left}`);
+    // v6.3 item 2: «next» is said once, in the head line, with its time; the line below keeps only «before …»
+    expect(moon).toContain("before Seeing<");
+    expect(moon).not.toContain("next Harvesting");
+    expect(moon.match(/next/gi)).toHaveLength(1);
     expect(moon).toContain("Prep for harvest · Set up infrastructure · Get the help");
     expect(moon).toMatch(new RegExp(`bio-clock__time">Next: Full Moon in ${left}<`));
     expect(lunar.nextPhaseName).toBe("Full Moon");
@@ -239,7 +241,7 @@ describe("three views, one tap cycles them (#385)", () => {
   it("the dial itself is the control: role button, focusable, aria-label names the summary and the next view", () => {
     const v1 = render(BIRTHDAY, { view: 1, onCycleView: () => {} });
     expect(v1).toMatch(/<svg[^>]*role="button"[^>]*tabindex="0"/);
-    expect(v1).toContain('aria-label="Prepping · Waxing Gibbous · Saturday · Structure. Show the text: meaning, previous and next"');
+    expect(v1).toContain('aria-label="Waxing Gibbous, Prepping, Saturday, Structure. Show the text: meaning, previous and next"');
     expect(render(BIRTHDAY, { view: 2, onCycleView: () => {} })).toContain(". Show Year and day\"");
     expect(render(BIRTHDAY, { view: 3, onCycleView: () => {} })).toContain(". Back to the dial only\"");
   });
@@ -258,10 +260,10 @@ describe("three views, one tap cycles them (#385)", () => {
     expect(html).toContain('viewBox="0 0 200 200"');
   });
 
-  it("view 3: Day and Year rings outside, Moon and Week keep size and place; Year block with the day left", () => {
+  it("view 3: Day and Year rings outside, Moon and Week keep size and place; Day block with the day left", () => {
     const v2 = render(BIRTHDAY, { view: 2, onCycleView: () => {} });
     const v3 = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
-    expect(v3.match(/data-readout="(moon|week|year)"/g)).toEqual(['data-readout="moon"', 'data-readout="week"', 'data-readout="year"']);
+    expect(v3.match(/data-readout="(moon|week|year|day)"/g)).toEqual(['data-readout="moon"', 'data-readout="week"', 'data-readout="year"', 'data-readout="day"']);
     expect(v3.match(/data-ring="(year|moon|week|day)"/g)).toHaveLength(4);
     // the viewBox grows outward by the same pad on every side: the 0..200 inner geometry is untouched
     expect(v3).toContain('viewBox="-14 -14 228 228"');
@@ -275,8 +277,9 @@ describe("three views, one tap cycles them (#385)", () => {
     expect(v3).toContain("bio-clock__day-lived");
     expect(v3).toContain("bio-clock__day-ahead");
     expect(v3).not.toContain("bio-clock__day-lit");
-    // the Year block: the day left, gold, under it (Saturday 16:38 → 31% left)
-    const year = /data-readout="year".*?<\/section>/s.exec(v3)![0];
+    // the Day block (v6.3 item 3): its own «Day» label, the day left in gold under it (Saturday 16:38 → 31% left)
+    const year = /data-readout="day".*?<\/section>/s.exec(v3)![0];
+    expect(year).toMatch(/bio-clock__label">Day</);
     // item 6: the line starts with a dot in the Day ring's colour (gold)
     expect(year).toContain('<p class="bio-clock__today"><span class="bio-clock__today-dot" aria-hidden="true"></span> Today: 31% of the day left</p>');
   });
@@ -420,7 +423,7 @@ describe("view 3: Year and day", () => {
     expect(guest).not.toContain('href="/build/equilibrium"');
     expect(guest).not.toContain("<button");
     expect(guest).not.toContain("data-season=");
-    expect(guest).toContain("Today: "); // the day-left line still sits in the Year block
+    expect(guest).toContain("Today: "); // the day-left line sits in its own Day block (v6.3 item 3)
     const signedIn = render(null, { view: 3, onAskBirthday: () => {} });
     expect(signedIn).toContain("<button");
     expect(signedIn).toContain("Add your birthday to see your year");
@@ -468,9 +471,9 @@ describe("Fixes v6.2 (#434)", () => {
   it("item 9: adjacent label / word pairs are separated by a space, so a screen reader does not read «Harvestingwas»", () => {
     const html = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
     const readout = html.slice(html.indexOf("bio-clock__readout"));
-    expect(readout).not.toMatch(/<\/span><span/);
-    expect(readout).toMatch(/bio-clock__label">[^<]*<\/span> <span class="bio-clock__time"/);
-    expect(readout).toMatch(/bio-clock__name">[^<]*<\/span> <span class="bio-clock__around"/);
+    // v6.3 item 5: the rows are flex containers, which drop plain spaces, so every pair is split by a visually hidden «, »
+    expect(readout).toMatch(/bio-clock__label">[^<]*<\/span><span class="bio-clock__sr">, <\/span><span class="bio-clock__time"/);
+    expect(readout).toMatch(/bio-clock__name">[^<]*<\/span><span class="bio-clock__sr">, <\/span><span class="bio-clock__around"/);
     // text content: no two words glued together
     const text = readout.replace(/<[^>]+>/g, "|");
     expect(text).not.toMatch(/[a-z]\|[a-z]/);
@@ -482,5 +485,94 @@ describe("Fixes v6.2 (#434)", () => {
     expect(src).toContain("requestAnimationFrame");
     expect(src).toContain("already all in view");
     expect(readFileSync(new URL("../BiologicClock.css", import.meta.url), "utf8")).toContain("scroll-margin-block");
+  });
+});
+
+describe("Fixes v6.3 (#448)", () => {
+  const css = readFileSync(new URL("../BiologicClock.css", import.meta.url), "utf8");
+
+  it("item 1: the open card is fully opaque", () => {
+    const card = /\.bio-clock--card \.bio-clock__readout \{[^}]*\}/s.exec(css)![0];
+    expect(card).toMatch(/background: #070b16;/);
+    expect(card).not.toMatch(/rgba\(7, 11, 22, 0\.\d+\)\s*;?\s*border/);
+  });
+
+  it("item 2: «next» once — moon says it in the head only; the week (no head time) and the year (head is the birthday) keep theirs", () => {
+    const html = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
+    const moon = /data-readout="moon".*?<\/section>/s.exec(html)![0];
+    expect(moon).toMatch(/bio-clock__time">Next: Full Moon in /);
+    expect(moon).toMatch(/bio-clock__around">before Seeing</);
+    expect(moon.match(/next/gi)).toHaveLength(1);
+    expect(/data-readout="week".*?<\/section>/s.exec(html)![0]).toContain("before Beauty · next Threshold, tomorrow");
+    expect(/data-readout="year".*?<\/section>/s.exec(html)![0]).toContain("before Fruiting · next Seeding, in 44 days");
+  });
+
+  it("item 3: a guest's view 3 has no year header; the day line sits under its own «Day» label", () => {
+    const guest = render(null, { view: 3, onCycleView: () => {} });
+    expect(guest).not.toContain("Your year · From your birthday"); // the block header (the empty ring's hover title stays)
+    expect(guest).not.toContain("bio-clock__label\">Your year");
+    expect(guest).not.toContain('data-readout="year"');
+    const day = /data-readout="day".*?<\/section>/s.exec(guest)![0];
+    expect(day).toMatch(/bio-clock__label">Day</);
+    expect(day).toContain("Today: 31% of the day left");
+    // the empty year track is still on the dial
+    expect(guest).toContain("bio-clock__year--empty");
+  });
+
+  it("item 3: signed in with a birthday — year block unchanged, the day line is not inside it; signed in without one — invite in Year, day in Day", () => {
+    const html = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
+    const year = /data-readout="year".*?<\/section>/s.exec(html)![0];
+    expect(year).not.toContain("Today:");
+    expect(year).not.toContain("bio-clock__extra");
+    expect(/data-readout="day".*?<\/section>/s.exec(html)![0]).toContain("Today: 31% of the day left");
+    const noBirthday = render(null, { view: 3, onAskBirthday: () => {} });
+    expect(/data-readout="year".*?<\/section>/s.exec(noBirthday)![0]).toContain("Add your birthday to see your year");
+    expect(/data-readout="year".*?<\/section>/s.exec(noBirthday)![0]).not.toContain("Today:");
+    expect(/data-readout="day".*?<\/section>/s.exec(noBirthday)![0]).toContain("Today:");
+    // while the birthday loads: no year block, the day block stays
+    const loading = render(null, { view: 3, birthdayLoading: true, onAskBirthday: () => {} });
+    expect(loading).not.toContain('data-readout="year"');
+    expect(loading).toContain('data-readout="day"');
+  });
+
+  it("item 4: YEAR and DAY sit on their own rings at different angles, ≥ 11 px, with the ring stroke cut under the letters", () => {
+    const html = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
+    const turn = (name: string) => Number(new RegExp(`data-ring-label="${name}" data-label-turn="([\\d.]+)"`).exec(html)![1]);
+    const [day, year] = [turn("day"), turn("year")];
+    const apart = Math.abs(day - year);
+    expect(Math.min(apart, 1 - apart)).toBeGreaterThan(0.1); // not stacked at 12 o'clock
+    for (const t of [day, year]) expect(t >= 0.5 ? t : 1 - t).toBeGreaterThanOrEqual(0.5); // upper half: the text is upright
+    expect(/data-ring="day".*?(?=data-ring="moon")/s.exec(html)![0]).toContain('id="bc-label-day-');
+    expect(/data-ring="year".*?(?=data-ring="day")/s.exec(html)![0]).toContain('id="bc-label-year-');
+    // each label runs on its own ring's radius
+    expect(/id="bc-label-year-[^"]*" d="M[\d. -]+ A111 111/.exec(html)).not.toBeNull();
+    expect(/id="bc-label-day-[^"]*" d="M[\d. -]+ A102 102/.exec(html)).not.toBeNull();
+    // 11 viewBox units = 11 px (the 228-unit dial is drawn 228 px wide on the card)
+    expect(html.match(/bio-clock__ring-label [^"]*" style="font-size:(\d+(?:\.\d+)?)px"/g)!.every((m) => Number(/font-size:([\d.]+)px/.exec(m)![1]) >= 11)).toBe(true);
+    // the ring stroke leaves a gap under the label: the day arc is not one unbroken arc any more
+    const dayRing = /data-ring="day".*?(?=data-ring="moon")/s.exec(html)![0];
+    expect(dayRing.match(/ M/g)?.length ?? 0).toBeGreaterThanOrEqual(1);
+  });
+
+  it("item 4: the labels keep clear of their ring's own dot", () => {
+    for (const hour of [3, 9, 12, 15, 21]) {
+      const t = new Date(2026, 10, 21, hour, 0).getTime();
+      const html = renderToStaticMarkup(
+        <MemoryRouter>
+          <BiologicClockFace cycles={getAllCyclesV2(t, BIRTHDAY)} nowMs={t} birthday={BIRTHDAY} view={3} />
+        </MemoryRouter>,
+      );
+      const label = Number(/data-ring-label="day" data-label-turn="([\d.]+)"/.exec(html)![1]);
+      const dot = hour / 24;
+      const d = Math.abs(label - dot);
+      expect(Math.min(d, 1 - d)).toBeGreaterThan(0.045);
+    }
+  });
+
+  it("item 5: the centre words are hidden from the tree (the dial's name carries them); card rows separate their pieces", () => {
+    const html = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
+    expect(html).toMatch(/data-ring="centre" class="bio-clock__centre" aria-hidden="true"/);
+    expect(html).toContain('aria-label="Waxing Gibbous, Prepping, Saturday, Structure.');
+    expect(css).toMatch(/\.bio-clock__sr \{[^}]*clip/s);
   });
 });

@@ -99,6 +99,12 @@
 .bio-clock__ring-label--day { fill: rgb(var(--bc-gold)); }
 .bio-clock__ring-label--year { fill: rgb(var(--bc-silver)); }
 
+/* Visually hidden, still read: the separator between two pieces of a flex row (v6.3 item 5) */
+.bio-clock__sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
 /* Card: one grid per ring, thin dividers between blocks */
 .bio-clock__readout {
   flex: 1 1 280px; min-width: 0; max-width: 460px; display: flex; flex-direction: column; gap: 12px;
@@ -107,7 +113,7 @@
   text-shadow: 0 1px 2px rgba(7, 11, 22, 0.85); /* a quiet dark edge behind the text, for the textured map */
   scroll-margin-block: 16px; /* «scroll the whole card into view» leaves some air at the edge */
 }
-.bio-clock__block { --bc-ring: #fff; display: grid; gap: 4px; min-width: 0; }
+.bio-clock__block { --bc-ring: #fff; position: relative; display: grid; gap: 4px; min-width: 0; }
 .bio-clock__block + .bio-clock__block { padding-top: 12px; border-top: 1px solid rgba(235, 238, 242, 0.12); }
 .bio-clock__block p { margin: 0; }
 
@@ -164,7 +170,7 @@
 .bio-clock--card .bio-clock__readout {
   flex: none; width: min(340px, 100%); max-width: 100%; box-sizing: border-box;
   padding: 14px 16px; border-radius: 14px;
-  background: rgba(7, 11, 22, 0.96); border: 1px solid rgba(150, 112, 58, 0.45);
+  background: #070b16; border: 1px solid rgba(150, 112, 58, 0.45); /* fully opaque: nothing behind it shows through (v6.3 item 1) */
   max-height: calc(100svh - 220px); overflow-y: auto; overscroll-behavior: contain;
 }
 @media (max-width: 720px) {
