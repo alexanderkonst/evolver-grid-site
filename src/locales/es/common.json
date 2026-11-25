@@ -9638,5 +9638,36 @@
       "too_short": "Escribe al menos 3 caracteres, por favor.",
       "profanity": "¿Podrías decirlo de otra manera?"
     }
+  },
+  "yourAiInstrument": {
+    "open": "Abrir Tu IA",
+    "close": "Cerrar Tu IA",
+    "title": "Tu IA",
+    "powered": "Impulsada por Your AI OS",
+    "replay": "Repetir el recorrido",
+    "greeting": "Estoy en cada pantalla. Escríbeme o abre una app abajo.",
+    "placeholder": "Escribe a Tu IA…",
+    "send": "Enviar",
+    "thinking": "Tu IA está pensando…",
+    "turnError": "Tu IA no respondió esta vez.",
+    "retry": "Reintentar",
+    "limitNote": "Llegaste al límite gratuito de hoy de Tu IA. Se renueva mañana.",
+    "limitPlaceholder": "Se alcanzó el límite gratuito de hoy",
+    "nextSteps": "Próximos pasos sugeridos",
+    "console": "Consola",
+    "powerUpsTitle": "Potenciadores para negocios",
+    "locked": "Cerrado",
+    "powerUpsLine": "Se abre cuando se lancen los potenciadores. Dentro: tu IA puesta a trabajar en tu negocio.",
+    "tourLabel": "Tu IA, un recorrido corto",
+    "tourStep": "{{n}} de {{total}}",
+    "tourSkip": "Omitir",
+    "tourNext": "Siguiente",
+    "tourDone": "Listo",
+    "tour": {
+      "header": "Esta es Tu IA, impulsada por Your AI OS. Va contigo en cada pantalla.",
+      "conversation": "Está hecha para conocerte, y te conoce más de cerca mientras juegas.",
+      "console": "La Consola: cada app es un botón que hace algo poderoso.",
+      "powerUps": "Los potenciadores para tu negocio son opcionales, y llegan después."
+    }
   }
 }
