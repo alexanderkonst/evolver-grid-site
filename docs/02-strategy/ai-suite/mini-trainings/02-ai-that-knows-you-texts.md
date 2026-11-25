@@ -1,0 +1,98 @@
+# Mini-training 2 · AI That Knows You · Texts
+
+> Step 3 of the mini-training constructor: one text per micro-module (the «Read instead» copy under the video and the base of a 90 s video script). Spec: [02-ai-that-knows-you.md](./02-ai-that-knows-you.md) v0.1. Page copy lives in `src/lib/miniTraining/knowsYouCopy.ts`, copied from here unchanged; edit this file first.
+> Status: **draft v0.1** (2026-11-25), for Sasha's signature. No video production before his yes.
+> Sources: Workshop A session 2 (profile schema, «capa de no», «Perfil v1.0»), Workshop B («personalizar es hacerte conocer», «prompting como poner a alguien al corriente», «haz el roast → produce la siguiente versión», closing principles), Training 5 (hyper-personalization starts with self-understanding; a one-pager put into AI; two kinds of personalization). Nothing beyond them.
+
+## Opening
+
+In the last mini-training, AI got to know you through the game: your talents, your archetype, your mission. Here you take that knowledge with you. In about half an hour you'll write a one-page profile that makes any AI know you, and you'll learn three moves that make every answer better: name the goal, give the context, refine in cycles.
+
+Seven short steps. Each is one idea, a short video and a button. Watch the video first, then press the button. The question is already written; change it or say it by voice if you like.
+
+At the end your profile is saved on this device, ready to copy into any AI.
+
+## 1 · Making yourself known
+
+**Promise:** You see why a stranger AI gives average answers.
+**Buttons:** 1a «Give me advice for my week. Up to 5 lines, no emojis.» (sent alone, like a brand-new chat) · 1b «My mission: {mission}. My most important life area: {priority_area}. Now give me advice for my week. Up to 5 lines, no emojis.»
+
+You just asked the same thing twice. The first time, AI knew nothing about you, so it gave advice that fits almost anyone: rest, plan, prioritise. Not wrong. Just average.
+
+The second time it knew your mission and what matters most to you right now. Same question, same minute, and the advice turned toward your life.
+
+That's what personalizing really is: making yourself known. AI can only be as good as what it knows about you. And it starts with you: the clearer you are about yourself, the more precisely AI can meet you. In the next steps you'll put that clarity on one page, so you never have to start from a stranger again.
+
+## 2 · Bring it up to speed
+
+**Promise:** You stop hunting for clever words.
+**Button:** «Ask me 5 short questions, one at a time, that a new colleague would need to understand me and my work. Ask only the first question now and wait for my answer. After my fifth answer, tell me what you now know about me. Up to 5 lines, no emojis.» Answer in the box under its reply, by voice or text.
+
+Many people think good prompting is a magic formula: the right words in the right order. It isn't. A good prompt is what you'd tell a smart new colleague on their first day: who you are, what you're working on, what matters here, what you need back.
+
+So this time AI asked, and you answered, like a colleague being brought up to speed. Notice: you didn't need any clever words. You needed to talk about your own work, plainly.
+
+Look at what it knows about you now. That's the material for your profile.
+
+## 3 · The one-page profile
+
+**Promise:** You have your profile on one page.
+**Button:** «My talents: {top_talents}. My archetype: {archetype}. My mission: {mission}. My plan: {plan}. From everything in this chat and these lines, write my one-page AI profile with five short sections: identity and roles, 90-day goals, genius, how I like answers, my limits. Mark what you guessed. One page at most, up to 3 lines per section, no emojis.» Then **Save profile**.
+
+Here it is: you, on one page. Five parts. Who you are and the roles you play. Your goals for the next 90 days. Your genius, said concretely, not vaguely. How you like answers: tone, length, format, language. And your limits.
+
+Read it slowly. Where AI guessed, it marked it. Fix what isn't you: press Edit or the microphone and tell it. The words matter more than the polish. Then press Save profile.
+
+This one page is what you'll give any AI from now on. It's version 1.0. It will grow with you.
+
+## 4 · The layer of «no»
+
+**Promise:** You set your limits once.
+**Button:** «Ask me 3 questions, one at a time, to find what you must never do for me or with my data. Ask only the first question now and wait for my answer. After my third answer, add a «No» section to my profile and show the whole profile again. No emojis.» Answer in the box, then **Save profile**.
+
+A good colleague knows what to do. A trusted one also knows what never to do.
+
+Your profile now has a layer of «no»: what AI must never do for you, never assume, never touch. Maybe it's sharing what you tell it, deciding for you, or writing in a voice that isn't yours. You named it once, in your own words.
+
+That's what lets you hand over more without worry. Limits aren't a wall between you and AI. They're what make trust possible. Press Save profile so the «No» section stays with it.
+
+## 5 · Goal, context, cycles
+
+**Promise:** You have one habit for any AI, any year.
+**Button:** «Here is something I want: (say it). Before answering, tell me in 3 lines what goal and context you understood, and what's missing. No emojis.» Say what you want with the microphone; answer what's missing in the box.
+
+The tools will change every few months. Three principles will stay.
+
+Name the goal: what you actually want. Give the context: what matters here, what you already tried. Refine in cycles: the first answer is a draft, not a verdict.
+
+You just did all three. You said what you want. AI told you what it understood and what was missing. You filled the gap. That's the whole habit, and it works in any AI, any year.
+
+## 6 · Roast, then next version
+
+**Promise:** You stop accepting the first answer.
+**Buttons:** 6a «Roast my profile. Up to 5 lines, no emojis.» · 6b «Produce the next version of my profile, with what the roast found. Same one page, five short sections, no emojis.» Then **Save profile**.
+
+Clarity doesn't come in one step. It opens in layers.
+
+First you asked AI to roast your profile: to say honestly what is vague, missing or not quite true. It probably stung a little. Good. Then you asked for the next version. Put the two side by side. The second one is sharper, because the roast showed where to look.
+
+Roast, then next version. Use it on anything that matters: a plan, an email, an offer. Never stop at the first answer. Save the new version: it replaces the old one.
+
+## 7 · Take it anywhere
+
+**Promise:** Any AI knows you in 10 seconds.
+**Button:** **Copy** (the saved profile + «Read my profile. In 3 lines: what would you do differently for me now?») → paste into ChatGPT, Claude or Gemini. Then tap **It knew me**.
+
+Your profile is yours. It doesn't live inside one app.
+
+Some AIs remember you as you talk to them, across conversations. That's one kind of personalization. The other kind is stronger: you tell AI, on purpose, who you are, what you want and what your limits are. The two don't compete. But the second one goes with you.
+
+Copy your profile, open another AI, paste it, and read its answer. If it sounds like it knows you, you're done. Ten seconds, and a stranger becomes a colleague.
+
+## Closing
+
+Half an hour ago a new AI met you as a stranger. Now any AI can know you in ten seconds: your roles, your goals, your genius, how you like answers, and what it must never do.
+
+Your profile is saved on this device. Copy it into any AI you use. Once a month, read it again and update what changed: it's a living document.
+
+Next step: bring your business into the same conversation.

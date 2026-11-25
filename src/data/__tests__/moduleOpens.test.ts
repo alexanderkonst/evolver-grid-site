@@ -136,7 +136,7 @@ describe("the opens line is read from the registry, not typed per module", () =>
     );
     expect(moduleOpensText(MODULES.find((m) => m.id === "first-sale")!)).toBe("Opens: Town Hall.");
     expect(moduleOpensText(MODULES.find((m) => m.id === "tagline")!)).toBe(
-      "Opens: Market. Next on your path: Academy · Join the free FMF session (Nov 4).",
+      "Opens: Market. Next on your path: Academy · Meet Sasha first.",
     );
     // A place that already starts the step's name is not said twice.
     expect(moduleOpensText(MODULES.find((m) => m.id === "webinar")!)).toBe(

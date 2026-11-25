@@ -61,6 +61,7 @@ const titleRules: TitleRule[] = [
   // WP-15: the Your AI place (FamiliarPage), named as the village names it.
   { match: (path) => path === "/game/your-ai" || path.startsWith("/game/your-ai/"), title: "Your AI" },
   { match: (path) => path.startsWith("/mini-trainings/ai-as-a-mirror"), title: "Mini-training · AI as a Mirror" },
+  { match: (path) => path.startsWith("/mini-trainings/ai-that-knows-you"), title: "Mini-training · AI That Knows You" },
   { match: (path) => path.startsWith("/game/next-move"), title: "Next Move" },
   { match: (path) => path === "/game", title: "Game" },
   { match: (path) => path.startsWith("/resources/personality-tests"), title: "Personality Tests" },

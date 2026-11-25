@@ -3588,8 +3588,7 @@
       "town-hall": "Opens with your first sale."
     },
     "live": {
-      "fire-circle": "Live now: FMF, Monday to Wednesday.",
-      "academy": "Live now: Webinar, Wed Nov 4."
+      "fire-circle": "Live now: FMF, Monday to Wednesday."
     },
     "result": {
       "find-top-talent": "you'll see your top talent and keep your character.",
@@ -3605,7 +3604,7 @@
       "assess-qol": "all eight areas are answered and your level shows.",
       "map-assets": "your skills, experience and network sit in one inventory.",
       "build-business": "your uniqueness phrase and your tagline are both saved.",
-      "webinar": "you were in the live session on Nov 4.",
+      "webinar": "you met Sasha.",
       "mastermind": "you took part in FMF, Monday and Wednesday.",
       "mastery-practice": "your twenty-first day of practice is behind you.",
       "first-price": "one real client has heard your price.",
@@ -3668,12 +3667,12 @@
       },
       "webinar": {
         "eyebrow": "Academy · Step 8",
-        "headline": "Join the free FMF session (Nov 4)",
-        "silhouette": "You get one free live session with others on the same path, and one step to take.",
-        "verb": "Join the free session",
-        "task": "Join the free FMF session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
-        "didIt": "I joined the session",
-        "link": "Open the session page"
+        "headline": "Meet Sasha first",
+        "silhouette": "You get a conversation with Sasha before you commit, and one step to take.",
+        "verb": "Book a time with Sasha",
+        "task": "Book a time with Sasha. Afterwards, come back and say you met.",
+        "didIt": "I met Sasha",
+        "link": "Book a time with Sasha"
       },
       "mastermind": {
         "eyebrow": "FMF · Step 9",
@@ -8137,14 +8136,7 @@
     "emptyDescGuest": "Check back soon for upcoming community gatherings.",
     "createEvent": "Create Event",
     "featured": {
-      "liveSession": {
-        "when": "Wed Nov 4 · 9:00 CDMX",
-        "title": "Free FMF session",
-        "price": "Free · live session",
-        "cta": "Register on Luma"
-      },
       "mastermind": {
-        "when": "Mon Dec 14 + Wed Dec 16",
         "title": "FMF: Discover Founder-Market Fit in Three Days, Guaranteed",
         "price": "Monday + Wednesday live · $222",
         "cta": "See details"
@@ -9805,6 +9797,37 @@
       "too_long": "Please shorten it: 140 characters at most.",
       "too_short": "Please write at least 3 characters.",
       "profanity": "Could you put it another way?"
+    }
+  },
+  "yourAiInstrument": {
+    "open": "Open Your AI",
+    "close": "Close Your AI",
+    "title": "Your AI",
+    "powered": "Powered by Your AI OS",
+    "replay": "Replay the tour",
+    "greeting": "I'm on every screen. Write to me, or open an app below.",
+    "placeholder": "Write to Your AI…",
+    "send": "Send",
+    "thinking": "Your AI is thinking…",
+    "turnError": "Your AI didn't answer this time.",
+    "retry": "Retry",
+    "limitNote": "You've reached today's free Your AI limit. It resets tomorrow.",
+    "limitPlaceholder": "Today's free limit is reached",
+    "nextSteps": "Suggested next steps",
+    "console": "Console",
+    "powerUpsTitle": "Power-ups for business",
+    "locked": "Closed",
+    "powerUpsLine": "Opens when power-ups launch. Inside: your AI put to work on your business.",
+    "tourLabel": "Your AI, a short tour",
+    "tourStep": "{{n}} of {{total}}",
+    "tourSkip": "Skip",
+    "tourNext": "Next",
+    "tourDone": "Done",
+    "tour": {
+      "header": "This is Your AI, powered by Your AI OS. It goes with you on every screen.",
+      "conversation": "It is built to know you, and it knows you closer as you play.",
+      "console": "The Console: every app is a button that does something powerful.",
+      "powerUps": "Power-ups for your business are optional, and they come later."
     }
   }
 }

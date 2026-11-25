@@ -187,8 +187,7 @@
       "town-hall": "Se abre con tu primera venta."
     },
     "live": {
-      "fire-circle": "En vivo ahora: FMF, de lunes a miércoles.",
-      "academy": "En vivo ahora: webinar, mié 4 de nov."
+      "fire-circle": "En vivo ahora: FMF, de lunes a miércoles."
     },
     "result": {
       "find-top-talent": "verás tu talento principal y conservarás tu personaje.",
@@ -204,7 +203,7 @@
       "assess-qol": "las ocho áreas están respondidas y aparece tu nivel.",
       "map-assets": "tus habilidades, experiencia y red están en un solo inventario.",
       "build-business": "tu frase de singularidad y tu eslogan están guardados.",
-      "webinar": "estuviste en la sesión en vivo del 4 de nov.",
+      "webinar": "conociste a Sasha.",
       "mastermind": "participaste en FMF, lunes y miércoles.",
       "mastery-practice": "ya quedó atrás tu día veintiuno de práctica.",
       "first-price": "un cliente real ya escuchó tu precio.",
@@ -267,12 +266,12 @@
       },
       "webinar": {
         "eyebrow": "Academia · Paso 8",
-        "headline": "Únete a la sesión gratuita de FMF (4 de nov)",
-        "silhouette": "Obtienes una sesión gratuita en vivo con otras personas en el mismo camino, y un paso por dar.",
-        "verb": "Unirme a la sesión gratuita",
-        "task": "Únete a la sesión gratuita de FMF el miércoles 4 de nov. Después vuelve y di que estuviste.",
-        "didIt": "Estuve en la sesión",
-        "link": "Abrir la página de la sesión"
+        "headline": "Conoce primero a Sasha",
+        "silhouette": "Obtienes una conversación con Sasha antes de comprometerte, y un paso por dar.",
+        "verb": "Reservar un horario con Sasha",
+        "task": "Reserva un horario con Sasha. Después vuelve y di que se conocieron.",
+        "didIt": "Conocí a Sasha",
+        "link": "Reservar un horario con Sasha"
       },
       "mastermind": {
         "eyebrow": "FMF · Paso 9",
@@ -8059,14 +8058,7 @@
     "emptyDescGuest": "Vuelve pronto para ver los próximos encuentros de la comunidad.",
     "createEvent": "Crear evento",
     "featured": {
-      "liveSession": {
-        "when": "Mié 4 nov · 9:00 CDMX",
-        "title": "Sesión gratuita de FMF",
-        "price": "Gratis · sesión en vivo",
-        "cta": "Regístrate en Luma"
-      },
       "mastermind": {
-        "when": "Lun 14 dic + Mié 16 dic",
         "title": "FMF: Descubre tu Founder-Market Fit en tres días, garantizado",
         "price": "Lunes + miércoles en vivo · $222",
         "cta": "Ver detalles"
@@ -9778,6 +9770,37 @@
       "too_long": "Acórtala, por favor: 140 caracteres como máximo.",
       "too_short": "Escribe al menos 3 caracteres, por favor.",
       "profanity": "¿Podrías decirlo de otra manera?"
+    }
+  },
+  "yourAiInstrument": {
+    "open": "Abrir Tu IA",
+    "close": "Cerrar Tu IA",
+    "title": "Tu IA",
+    "powered": "Impulsada por Your AI OS",
+    "replay": "Repetir el recorrido",
+    "greeting": "Estoy en cada pantalla. Escríbeme o abre una app abajo.",
+    "placeholder": "Escribe a Tu IA…",
+    "send": "Enviar",
+    "thinking": "Tu IA está pensando…",
+    "turnError": "Tu IA no respondió esta vez.",
+    "retry": "Reintentar",
+    "limitNote": "Llegaste al límite gratuito de hoy de Tu IA. Se renueva mañana.",
+    "limitPlaceholder": "Se alcanzó el límite gratuito de hoy",
+    "nextSteps": "Próximos pasos sugeridos",
+    "console": "Consola",
+    "powerUpsTitle": "Potenciadores para negocios",
+    "locked": "Cerrado",
+    "powerUpsLine": "Se abre cuando se lancen los potenciadores. Dentro: tu IA puesta a trabajar en tu negocio.",
+    "tourLabel": "Tu IA, un recorrido corto",
+    "tourStep": "{{n}} de {{total}}",
+    "tourSkip": "Omitir",
+    "tourNext": "Siguiente",
+    "tourDone": "Listo",
+    "tour": {
+      "header": "Esta es Tu IA, impulsada por Your AI OS. Va contigo en cada pantalla.",
+      "conversation": "Está hecha para conocerte, y te conoce más de cerca mientras juegas.",
+      "console": "La Consola: cada app es un botón que hace algo poderoso.",
+      "powerUps": "Los potenciadores para tu negocio son opcionales, y llegan después."
     }
   }
 }

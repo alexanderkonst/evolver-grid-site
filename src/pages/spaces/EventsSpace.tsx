@@ -25,13 +25,10 @@ import {
   type Period,
 } from "@/lib/circles";
 import { circleErrorMessage, fetchCafeCircles, type Circle, type MyRsvp } from "@/lib/circlesApi";
-import { FMF_LIVE_SESSION_URL, FMF_PAGE_PATH, formatFmfDates, nextFmfDates } from "@/data/fmfSession";
+import { FMF_PAGE_PATH, formatFmfDates, nextFmfDates } from "@/data/fmfSession";
 
-/** The two real events of the FMF launch; their copy is `eventsSpace.featured.<id>.*`. */
-const FEATURED_EVENTS = [
-  { id: "liveSession", href: FMF_LIVE_SESSION_URL, external: true },
-  { id: "mastermind", href: FMF_PAGE_PATH, external: false },
-] as const;
+/** The one real event, FMF; its copy is `eventsSpace.featured.<id>.*` (its date is read from src/data/fmfSession.ts). */
+const FEATURED_EVENTS = [{ id: "mastermind", href: FMF_PAGE_PATH, external: false }] as const;
 
 type Faces = Record<string, { avatarUrl: string | null; name: string; userId: string }[]>;
 
@@ -226,7 +223,7 @@ const EventsSpace = () => {
             </div>
           )}
 
-          {/* Two real events, always shown (issue #215). The header holds the only Create Event button.
+          {/* The real event (FMF), always shown (issue #215). The header holds the only Create Event button.
               Card fill tokenized for Aurum (Day 91), fallback keeps lapis at white/85. */}
           <div className="grid gap-4 sm:grid-cols-2 mb-6">
             {FEATURED_EVENTS.map((event) => {
@@ -235,9 +232,7 @@ const EventsSpace = () => {
               const body = (
                 <>
                   <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                    {event.id === "mastermind"
-                      ? formatFmfDates(nextFmfDates())
-                      : t(`eventsSpace.featured.${event.id}.when`)}
+                    {formatFmfDates(nextFmfDates())}
                   </p>
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     {t(`eventsSpace.featured.${event.id}.title`)}

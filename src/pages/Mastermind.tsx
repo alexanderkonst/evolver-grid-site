@@ -9,9 +9,9 @@
  * replaced after Sasha's infographics — all text, price and the CTA target
  * live in the constants block so the swap touches nothing else.
  *
- * No payment provider is wired here. Until MASTERMIND_CTA_URL is set, the
- * CTA goes to the free Nov 4 live session registration (Luma, the same link
- * as the bridge line) and the price block says "Registration opens soon".
+ * The CTA goes to the Stripe payment link (MASTERMIND_CTA_URL). If that is ever emptied, the CTA
+ * falls back to the "meet me first" booking page (the same link as the bridge line) and the price
+ * block says "Registration opens soon".
  */
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 import { tr } from "@/lib/villageCopy";
 import {
   FMF_DATES,
-  FMF_LIVE_SESSION_URL as MASTERMIND_LIVE_SESSION_URL,
+  FMF_MEET_FIRST_URL,
   FMF_PAGE_PATH,
   FMF_TAGLINE,
   formatFmfDates,
@@ -38,11 +38,14 @@ const MASTERMIND_CIRCLE_KINDS: CircleKind[] = ["mastermind", "weekly_circle"];
 
 /* ─── Constants: copy, price, CTA (single source of truth) ─── */
 const MASTERMIND_PRICE = "$222";
-/** Set to the checkout URL once decided. Empty → free live-session registration. */
+/** Set to the checkout URL once decided. Empty → the "meet me first" booking page. */
 // Stripe payment link from Sasha, 2026-10-30 (made for the Founder-Market Fit Mastermind, now FMF; $222, live mode).
 const MASTERMIND_CTA_URL = "https://buy.stripe.com/14AcN5aIAbCr8idh1CdEs0I";
 
 const NEXT_FMF = nextFmfDates();
+/** The "Next dates" list: the next FMF and the two cycles after it. Only the later two are provisional. */
+const LISTED_CYCLES = 3;
+const UPCOMING_FMF = FMF_DATES.filter((d) => d.wednesday >= NEXT_FMF.wednesday).slice(0, LISTED_CYCLES);
 
 const MASTERMIND_COPY = {
   eyebrow: `FMF · ${FMF_TAGLINE}`,
@@ -62,6 +65,7 @@ const MASTERMIND_COPY = {
   datesLabel: "Next dates",
   datesNote: "One FMF per lunar cycle: it opens on the first Monday after the Last Quarter moon, when a new cycle begins. Mexico City time.",
   nextTag: "Next",
+  provisionalTag: "provisional",
   forLabel: "Who it's for",
   forWho: "Healers, coaches, builders, hosts and storytellers who carry a gift and have no sharp offer yet. Founders too.",
   flowLabel: "How it flows",
@@ -76,18 +80,18 @@ const MASTERMIND_COPY = {
   priceNote: "Small group · 2 live sessions · recording included.",
   ctaLabel: "Reserve my place",
   /** Shown on the CTA while MASTERMIND_CTA_URL is empty. */
-  ctaLabelPending: "Join the free live session",
+  ctaLabelPending: "Book a time with me",
   pendingNote: "Registration opens soon.",
   distinction:
     "This is the group (small group, 3 days, $222). Prefer 1:1? The Private Founder-Market Fit Session is 1:1, 2 hours, $555.",
   distinctionLink: "See the Private Session",
   bridgeLead: "Want to meet me first?",
-  bridgeLink: "Join the live session on Wed Nov 4, 9:00 CDMX",
+  bridgeLink: "Book a time with me",
   seoTitle: `FMF: ${FMF_TAGLINE} | Find Your Top Talent`,
   seoDescription: `${FMF_TAGLINE}. Next: ${formatFmfDates(NEXT_FMF)}. Two live 90-minute sessions plus a week of integration. Find where your uniqueness meets the market and leave with a clear offer for your first clients.`,
 } as const;
 
-const MASTERMIND_CTA_HREF = MASTERMIND_CTA_URL || MASTERMIND_LIVE_SESSION_URL;
+const MASTERMIND_CTA_HREF = MASTERMIND_CTA_URL || FMF_MEET_FIRST_URL;
 const CTA_IS_PENDING = !MASTERMIND_CTA_URL;
 const CTA_OPENS_NEW_TAB = true;
 
@@ -208,7 +212,7 @@ const Mastermind = () => {
             <section className="space-y-5 max-w-md mx-auto" aria-label={c.datesLabel} id="fmf-dates">
               <SectionLabel>{c.datesLabel}</SectionLabel>
               <ul className="space-y-2.5 text-left">
-                {FMF_DATES.filter((d) => d.wednesday >= NEXT_FMF.wednesday).map((d) => (
+                {UPCOMING_FMF.map((d) => (
                   <li key={d.monday} className="flex items-baseline gap-2.5">
                     <span className="text-sm bg-clip-text text-transparent" style={LABEL_TEXT_STYLE}>→</span>
                     <span
@@ -216,7 +220,14 @@ const Mastermind = () => {
                       style={{ color: "var(--skin-text-primary, #0a1628)" }}
                     >
                       {formatFmfDates(d)}
-                      {d.monday === NEXT_FMF.monday ? <strong className="font-semibold"> · {c.nextTag}</strong> : null}
+                      {d.monday === NEXT_FMF.monday ? (
+                        <strong className="font-semibold"> · {c.nextTag}</strong>
+                      ) : (
+                        <span className="text-xs italic text-muted-foreground" data-testid="fmf-provisional">
+                          {" "}
+                          · {c.provisionalTag}
+                        </span>
+                      )}
                     </span>
                   </li>
                 ))}
@@ -297,7 +308,7 @@ const Mastermind = () => {
             <p className="text-center text-sm italic leading-relaxed" style={BODY_SERIF}>
               {c.bridgeLead}{" "}
               <a
-                href={MASTERMIND_LIVE_SESSION_URL}
+                href={FMF_MEET_FIRST_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="underline underline-offset-4"

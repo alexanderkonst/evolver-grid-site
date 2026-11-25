@@ -221,30 +221,30 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
     },
   },
 
-  // Real-world quests (WP-11, §14.2 J8–J12; J8 and J9 are the free session and FMF, formerly the Mastermind).
+  // Real-world quests (WP-11, §14.2 J8–J12; J8 is meeting Sasha first, J9 is FMF, formerly the Mastermind).
   // The task happens outside the game; «I did it» is the player's own word, recorded as a
   // victory with its 1–10 (src/components/game/QuestModule.tsx).
   {
     id: "webinar",
     place: "academy",
     eyebrow: "Academy · Step 8",
-    headline: "Join the free FMF session (Nov 4)",
-    silhouette: "You get one free live session with others on the same path, and one step to take.",
-    verb: "Join the free session",
+    headline: "Meet Sasha first",
+    silhouette: "You get a conversation with Sasha before you commit, and one step to take.",
+    verb: "Book a time with Sasha",
     startPath: "/game/journey/quest/webinar",
     quest: {
       journey: "J8",
-      doneWhen: "you were in the live session on Nov 4.",
-      task: "Join the free FMF session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
-      didIt: "I joined the session",
-      link: { to: "https://lu.ma/qpogt17o", label: "Open the session page" },
+      doneWhen: "you met Sasha.",
+      task: "Book a time with Sasha. Afterwards, come back and say you met.",
+      didIt: "I met Sasha",
+      link: { to: "https://cal.com/aleksandrkonstantinov/1-hour-co-working", label: "Book a time with Sasha" },
     },
     outro: {
-      done: "Done · You joined the free session",
-      badge: "Free Session",
+      done: "Done · You met Sasha",
+      badge: "Met Sasha",
       livesIn: { text: "It lives at Home, on the shelf of your victories.", to: "/game/me/overview" },
-      opened: "You were in the room. FMF is the next quest.",
-      fallbackResult: "The free FMF session",
+      opened: "You met Sasha. FMF is the next quest.",
+      fallbackResult: "Meeting Sasha",
     },
   },
   {

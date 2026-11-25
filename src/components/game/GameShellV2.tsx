@@ -55,6 +55,7 @@ import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
 import MoonMedallion from "@/components/game/MoonMedallion";
+import YourAiInstrument from "@/components/game/YourAiInstrument";
 import { placeTagline } from "@/lib/villageCopy";
 import { displayName } from "@/lib/displayName";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
@@ -2399,6 +2400,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 </div>
             </div>
             <KeyboardShortcuts open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
+            {/* Your AI as a carried instrument (docs/specs/your-ai-instrument/sow.md): the existing
+                AI OS gate (T+M+A complete, or the AI OS ever visited) decides who carries it. */}
+            <YourAiInstrument enabled={tmaComplete || aiOsEverVisited} ownerId={user?.id ?? null} />
         </div>
     );
 };

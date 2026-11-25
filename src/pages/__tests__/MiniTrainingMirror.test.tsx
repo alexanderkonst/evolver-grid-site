@@ -88,6 +88,13 @@ describe("mini-training 1 page", () => {
     }
   });
 
+  it("closes with Your AI and a secondary link to mini-training 2", () => {
+    const html = render(profileWithGaps);
+    expect(html).toContain('href="/game/your-ai"');
+    expect(html).toContain('href="/mini-trainings/ai-that-knows-you"');
+    expect(html).toContain("Next: AI That Knows You");
+  });
+
   it("shows nothing but the title while loading", () => {
     const html = render({ status: "loading" });
     expect(html).not.toContain('data-testid="card-');
