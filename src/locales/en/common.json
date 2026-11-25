@@ -3581,7 +3581,8 @@
       "market": "Opens when your offer is saved. Inside: your shop, and the shops of other residents.",
       "town-hall": "Opens when your first sale is recorded. Inside: ventures built together, and your voice in the village.",
       "first-price": "Opens when your offer is saved. Inside: your first price, said to a real client.",
-      "first-sale": "Opens when your offer is saved. Inside: proof in the world that someone pays you for being you."
+      "first-sale": "Opens when your offer is saved. Inside: proof in the world that someone pays you for being you.",
+      "colors": "Opens when your Spectrum Reading is ready. Inside: your soul colors."
     },
     "closedShort": {
       "town-hall": "Opens with your first sale."

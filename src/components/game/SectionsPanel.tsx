@@ -1798,10 +1798,10 @@ const SectionsPanel = ({
                                 }}
                             >
                                 {sectionText}
-                                {/* Issue #250: a Founder Tool one stage ahead says in plain words
-                                    what opens it, like the «Done when» lines (no hover needed on
-                                    a phone). */}
-                                {isLocked && activeSpaceId === "build" && section.lockedHint && (
+                                {/* Issue #250, GoBY §25.5: a closed row says in plain words what opens it,
+                                    like the «Done when» lines: always in the row (no hover needed on a
+                                    phone, and a screen reader reads it with the row's name), in every space. */}
+                                {isLocked && section.lockedHint && (
                                     <span
                                         className="block mt-0.5 text-[13px] italic font-normal leading-snug text-white/75"
                                         style={{ fontFamily: "'Inter', sans-serif", letterSpacing: 0 }}

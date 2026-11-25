@@ -180,7 +180,8 @@
       "market": "Se abre cuando tu oferta está guardada. Dentro: tu puesto y los puestos de otros residentes.",
       "town-hall": "Se abre cuando se registra tu primera venta. Dentro: proyectos construidos en conjunto y tu voz en la aldea.",
       "first-price": "Se abre cuando tu oferta está guardada. Dentro: tu primer precio, dicho a un cliente real.",
-      "first-sale": "Se abre cuando tu oferta está guardada. Dentro: la prueba en el mundo de que alguien te paga por ser tú."
+      "first-sale": "Se abre cuando tu oferta está guardada. Dentro: la prueba en el mundo de que alguien te paga por ser tú.",
+      "colors": "Se abre cuando tu Spectrum Reading está listo. Dentro: tus colores del alma."
     },
     "closedShort": {
       "town-hall": "Se abre con tu primera venta."

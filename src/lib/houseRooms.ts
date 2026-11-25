@@ -1,3 +1,4 @@
+import type { TFunction } from "i18next";
 import { JOURNEY_MAIN, type JourneyItemId } from "@/data/journeySequence";
 import { moduleClosedLine, moduleIntroState } from "@/data/journeyModules";
 import {
@@ -81,6 +82,7 @@ const ROOMS: RoomDef[] = [
 export const COLORS_CLOSED = {
   event: "your Spectrum Reading is ready",
   inside: "your soul colors",
+  key: "village.closed.colors",
 } as const;
 
 const roomState = (def: RoomDef, save: PlaceSave): PlaceStateName => {
@@ -91,19 +93,19 @@ const roomState = (def: RoomDef, save: PlaceSave): PlaceStateName => {
   return "open";
 };
 
-const roomLine = (def: RoomDef, state: PlaceStateName): string => {
+const roomLine = (def: RoomDef, state: PlaceStateName, t?: TFunction): string => {
   if (state !== "closed") return "";
   if (def.id === "colors") {
-    return closedLine({ line: "", rule: { opens: "spectrum-reading", closed: COLORS_CLOSED } });
+    return closedLine({ line: "", rule: { opens: "spectrum-reading", closed: COLORS_CLOSED } }, t);
   }
-  return def.step ? moduleClosedLine(def.step) : "";
+  return def.step ? moduleClosedLine(def.step, t) : "";
 };
 
-/** The rooms of the house for this save, in order. */
-export const houseRooms = (save: PlaceSave): HouseRoom[] =>
+/** The rooms of the house for this save, in order; closed lines in the reader's language when `t` is given. */
+export const houseRooms = (save: PlaceSave, t?: TFunction): HouseRoom[] =>
   ROOMS.map((def) => {
     const state = roomState(def, save);
-    return { ...def, state, line: roomLine(def, state) };
+    return { ...def, state, line: roomLine(def, state, t) };
   });
 
 /** The first room that is the single next move, if any. */
@@ -134,10 +136,10 @@ export type HouseBadge = {
  * One badge per Journey step, no counts, no levels, no rarity (§14.12). A badge is earned
  * exactly when its step is done; the rest are faint outlines, closed ones with their line.
  */
-export const houseBadges = (save: PlaceSave): HouseBadge[] =>
+export const houseBadges = (save: PlaceSave, t?: TFunction): HouseBadge[] =>
   JOURNEY_MAIN.map((item) => {
     const state = moduleIntroState(item.id, save);
-    return { step: item.id, state, line: state === "closed" ? moduleClosedLine(item.id) : "" };
+    return { step: item.id, state, line: state === "closed" ? moduleClosedLine(item.id, t) : "" };
   });
 
 /**
