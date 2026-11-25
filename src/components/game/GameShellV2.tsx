@@ -1,4 +1,4 @@
-import { ReactNode, useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
+import { ReactNode, useState, useEffect, useRef, useCallback, useMemo, createContext, useContext } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate, useNavigationType, Outlet } from "react-router-dom";
@@ -753,6 +753,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
 
     // WP-4: the state of each village place, the rail's only source (same as /village).
     const { states: placeStates, ready: placesReady } = usePlaceStates();
+    // The instrument's glyph and arc show the quarters the player has lit (same source as the quarter signs).
+    const instrumentLit = useMemo(() => litQuarters(VILLAGE_PLACES, placesReady ? placeStates : []), [placeStates, placesReady]);
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
@@ -2400,9 +2402,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 </div>
             </div>
             <KeyboardShortcuts open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
-            {/* Your AI as a carried instrument (docs/specs/your-ai-instrument/sow.md): the existing
-                AI OS gate (T+M+A complete, or the AI OS ever visited) decides who carries it. */}
-            <YourAiInstrument enabled={tmaComplete || aiOsEverVisited} ownerId={user?.id ?? null} />
+            {/* The navigation instrument (docs/specs/navigation-instrument/architecture.md), with Your AI as its air
+                face (docs/specs/your-ai-instrument/sow.md): the existing AI OS gate (T+M+A complete, or the AI OS
+                ever visited) decides who carries it. */}
+            <YourAiInstrument enabled={tmaComplete || aiOsEverVisited} ownerId={user?.id ?? null} lit={instrumentLit} />
         </div>
     );
 };

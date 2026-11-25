@@ -9829,5 +9829,25 @@
       "console": "The Console: every app is a button that does something powerful.",
       "powerUps": "Power-ups for your business are optional, and they come later."
     }
+  },
+  "instrument": {
+    "label": "Your instrument",
+    "open": "Open your instrument",
+    "close": "Close your instrument",
+    "announceOpen": "Your instrument is open.",
+    "announceClose": "Your instrument is closed.",
+    "back": "Back to the instrument",
+    "bodies": "Bodies of your instrument",
+    "opensOnPath": "Opens on your path",
+    "body": {
+      "ether": "Ether",
+      "air": "Air",
+      "water": "Water",
+      "fire": "Fire",
+      "earth": "Earth"
+    },
+    "face": {
+      "air": "Your AI"
+    }
   }
 }

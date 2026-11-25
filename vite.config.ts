@@ -1,4 +1,6 @@
+/// <reference types="vitest" />
 import { defineConfig, type Plugin } from "vite";
+import { configDefaults } from "vitest/config";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import fs from "fs";
@@ -58,4 +60,6 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // `e2e/` holds Playwright specs: they run under `playwright test`, never under vitest.
+  test: { exclude: [...configDefaults.exclude, "e2e/**"] },
 }));

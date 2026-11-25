@@ -51,6 +51,8 @@ import { unseenKeys, useLeave } from "@/lib/motion";
 import { useSceneSrc } from "@/lib/sceneSrc";
 import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
 import IntroSequence from "@/components/game/IntroSequence";
+import YourAiInstrument from "@/components/game/YourAiInstrument";
+import { instrumentGate, readAiOsVisited } from "@/lib/instrument/state";
 import MoonDial from "@/components/game/MoonDial";
 import PlaceRoomsPane from "@/components/game/PlaceRoomsPane";
 import { placeLight, placeSignalKey, type PlaceLight } from "@/lib/placeLight";
@@ -802,6 +804,16 @@ const Village = () => {
         )}
       </main>
       {introOn ? <IntroSequence anchorSelector='[data-intro-anchor="start"]' onDone={endIntro} /> : null}
+      {/* The navigation instrument, carried onto the map (the map has no shell). Same gate as in the shell. */}
+      <YourAiInstrument
+        enabled={
+          !introOn &&
+          instrumentGate({ ever: readAiOsVisited(), topTalent: !!sheet.topTalent, mission: !!sheet.missionTitle, assets: sheet.assets.count > 0 })
+        }
+        ownerId={sheet.userId}
+        lit={quarterLit}
+        avoid=".vl-move__card"
+      />
     </div>
   );
 };

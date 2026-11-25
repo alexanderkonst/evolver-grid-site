@@ -25,6 +25,13 @@ describe("Your AI instrument: the period key", () => {
   it("toggles on a bare period outside text fields", () => {
     expect(isToggleKey(key())).toBe(true);
   });
+  it("toggles on a bare I, either case (the navigation instrument's key), outside text fields", () => {
+    expect(isToggleKey(key({ key: "i" }))).toBe(true);
+    expect(isToggleKey(key({ key: "I" }))).toBe(true);
+    expect(isToggleKey(key({ key: "i", target: { matches: () => true } as unknown as EventTarget }))).toBe(false);
+    expect(isToggleKey(key({ key: "i", metaKey: true }))).toBe(false);
+    expect(isToggleKey(key({ key: "o" }))).toBe(false);
+  });
   it("stays a period while typing, with a modifier, mid-composition, or when already handled", () => {
     expect(isToggleKey(key({ target: { matches: () => true } as unknown as EventTarget }))).toBe(false);
     expect(isToggleKey(key({ ctrlKey: true }))).toBe(false);

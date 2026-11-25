@@ -64,6 +64,9 @@ export async function openGuest(page: Page, route: string): Promise<void> {
     undefined,
     { timeout: 20_000 },
   );
+  // The rail and the map draw `data-place-state="loading"` while the save loads. The rail is on screen before
+  // its states are known, so «the nav exists» is not «settled»: wait until no place is still loading.
+  await page.waitForFunction(() => !document.querySelector('[data-place-state="loading"]'), undefined, { timeout: 20_000 });
 }
 
 /** Screenshot as evidence: saved under artifacts/screenshots/<project>/ and attached to the report. */
