@@ -326,6 +326,25 @@ export const nextMove = <P extends MovePlace>(places: readonly P[], save: PlaceS
   return null;
 };
 
+/**
+ * One glow (§25.4 step 1): only the place `nextMove` offers carries `next`, wherever it is drawn
+ * (village map, rail, top bar). A place whose own rule says `next` but which is not that move's
+ * place (a guest who must save first, a place that shares the step) reads `open`; the move's
+ * place reads `next` when it is open, and keeps `live` or `done` when it already is one.
+ * With no move (the save has not loaded) the states pass through untouched. Never opens a closed place.
+ */
+export const oneNextStates = (
+  places: readonly MovePlace[],
+  states: readonly PlaceStateName[],
+  move: Pick<NextMove, "place"> | null,
+): PlaceStateName[] =>
+  states.map((s, i) => {
+    if (!move) return s;
+    const isMove = places[i]?.key === move.place.key;
+    if (isMove) return s === "open" ? "next" : s;
+    return s === "next" ? "open" : s;
+  });
+
 /** Keys of the places that are not closed: the set the village remembers having seen open. */
 export const openPlaceKeys = (places: readonly MovePlace[], save: PlaceSave): string[] =>
   places.filter((p) => placeState(p, save) !== "closed").map((p) => p.key);

@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import type { VillagePlace } from "@/data/villagePlaces";
 import { journeyOptionalWord } from "@/lib/journeyLabels";
 import { placeRooms, QUEST_BOARD_KEY, type PlaceRoomRow } from "@/lib/placeRooms";
-import type { PlaceSave, PlaceStateName } from "@/lib/placeState";
+import type { NextMove, PlaceSave, PlaceStateName } from "@/lib/placeState";
 import { placeName, stateWordText, tr } from "@/lib/villageCopy";
 
 /**
@@ -17,6 +17,13 @@ import { placeName, stateWordText, tr } from "@/lib/villageCopy";
  * open on a wide screen) and when the player is looking at the quest order (also open on a
  * phone). A phone otherwise starts it closed behind one visible «Rooms» control.
  * Closed rooms are not links: `aria-disabled`, with the one line that says what opens them.
+ *
+ * One glow (§25.4 step 1): the row the player's next move leads to reads `next` (from the same
+ * `nextMove` as the map card and the rail chip); no other row does.
+ *
+ * No text sits under a control (§25.3, Hark pass on #457): the title and the Hide button share a
+ * fixed header row, and only the rows below it scroll. While the pane is closed it is not drawn,
+ * so the «Rooms» control that reopens it covers nothing.
  */
 
 type Props = {
@@ -25,6 +32,8 @@ type Props = {
   signedIn: boolean;
   /** Phone width: the pane is a bottom sheet and starts closed (except on the Quest Board). */
   mobile: boolean;
+  /** The one next move (`nextMove`); null until the save has loaded. */
+  move?: NextMove | null;
 };
 
 type Row = { id: string; name: string; line: string; state: PlaceStateName; to: string; no?: number; optional?: boolean };
@@ -56,11 +65,11 @@ const RoomRow = ({ row, t }: { row: Row; t: ReturnType<typeof useTranslation>["t
   );
 };
 
-const PlaceRoomsPane = ({ place, save, signedIn, mobile }: Props) => {
+const PlaceRoomsPane = ({ place, save, signedIn, mobile, move = null }: Props) => {
   const { t } = useTranslation();
   const questOrder = place.key === QUEST_BOARD_KEY;
   const [open, setOpen] = useState(!mobile || questOrder);
-  const view = placeRooms(place, save, { t, signedIn });
+  const view = placeRooms(place, save, { t, signedIn, move });
 
   const rooms: Row[] = view.rooms.map((r: PlaceRoomRow) => ({ ...r }));
   const journey: Row[] = (view.order?.journey ?? []).map((r) => ({
@@ -83,17 +92,20 @@ const PlaceRoomsPane = ({ place, save, signedIn, mobile }: Props) => {
   if (rooms.length === 0 && journey.length === 0) return null;
 
   const title = questOrder ? tr(t, "village.rooms.order", "Quest order") : tr(t, "village.rooms.title", "Rooms");
+  const hideLabel = tr(t, "village.rooms.hide", "Hide");
   return (
     <>
-      <button
-        type="button"
-        className="vl-mono vl-rooms__toggle"
-        aria-expanded={open}
-        aria-controls="vl-rooms"
-        onClick={() => setOpen((o) => !o)}
-      >
-        {open ? tr(t, "village.rooms.hide", "Hide") : title}
-      </button>
+      {open ? null : (
+        <button
+          type="button"
+          className="vl-mono vl-rooms__toggle"
+          aria-expanded={false}
+          aria-controls="vl-rooms"
+          onClick={() => setOpen(true)}
+        >
+          {title}
+        </button>
+      )}
       <aside
         id="vl-rooms"
         className={`vl-rooms${open ? " is-open" : ""}`}
@@ -106,24 +118,37 @@ const PlaceRoomsPane = ({ place, save, signedIn, mobile }: Props) => {
           else el.setAttribute("inert", "");
         }}
       >
-        <p className="vl-mono vl-rooms__title">{title}</p>
-        {rooms.length > 0 ? (
-          <ul className="vl-rooms__list">
-            {rooms.map((r) => <RoomRow key={r.id} row={r} t={t} />)}
-          </ul>
-        ) : null}
-        {journey.length > 0 ? (
-          <>
-            <p className="vl-mono vl-rooms__group">{tr(t, "village.rooms.journey", "The Journey")}</p>
-            <ol className="vl-rooms__list">
-              {journey.map((r) => <RoomRow key={r.id} row={r} t={t} />)}
-            </ol>
-            <p className="vl-mono vl-rooms__group">{tr(t, "village.rooms.world", "In the world")}</p>
+        <div className="vl-rooms__head">
+          <p className="vl-mono vl-rooms__title">{title}</p>
+          <button
+            type="button"
+            className="vl-mono vl-rooms__hide"
+            aria-expanded={open}
+            aria-controls="vl-rooms"
+            onClick={() => setOpen(false)}
+          >
+            {hideLabel}
+          </button>
+        </div>
+        <div className="vl-rooms__body">
+          {rooms.length > 0 ? (
             <ul className="vl-rooms__list">
-              {world.map((r) => <RoomRow key={r.id} row={r} t={t} />)}
+              {rooms.map((r) => <RoomRow key={r.id} row={r} t={t} />)}
             </ul>
-          </>
-        ) : null}
+          ) : null}
+          {journey.length > 0 ? (
+            <>
+              <p className="vl-mono vl-rooms__group">{tr(t, "village.rooms.journey", "The Journey")}</p>
+              <ol className="vl-rooms__list">
+                {journey.map((r) => <RoomRow key={r.id} row={r} t={t} />)}
+              </ol>
+              <p className="vl-mono vl-rooms__group">{tr(t, "village.rooms.world", "In the world")}</p>
+              <ul className="vl-rooms__list">
+                {world.map((r) => <RoomRow key={r.id} row={r} t={t} />)}
+              </ul>
+            </>
+          ) : null}
+        </div>
       </aside>
     </>
   );
