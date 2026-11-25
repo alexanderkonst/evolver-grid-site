@@ -196,6 +196,7 @@
   transition: color 0.6s ease;
 }
 .vl-corner:hover, .vl-corner:focus-visible { color: var(--vl-ink); }
+.vl-corner__icon { display: none; }
 
 .vl-list { display: none; }
 
@@ -457,7 +458,18 @@
   }
   .vl-pin__link { pointer-events: none; }
   .vl-dot { width: 18px; height: 18px; }
-  .vl-foot, .vl-corner { display: none; }
+  .vl-foot { display: none; }
+  /* Home on a phone: a «←» button in the top bar, fixed like the moon medallion (top-centre, 16px, 44 high)
+     and the language chip (top-right, 12px). Left edge, 44x44, so it clears both at 360px and wider. */
+  .vl-corner {
+    position: fixed; z-index: 50; top: 16px; bottom: auto; left: 12px;
+    box-sizing: border-box; width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center;
+    border: 1px solid var(--vl-hair); border-radius: 12px;
+    background: rgba(var(--scene-bg-rgb), 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    font-size: var(--vl-text-lead); letter-spacing: 0; text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb),0.8);
+  }
+  .vl-corner__full { display: none; }
+  .vl-corner__icon { display: inline; }
   .vl-move { position: static; padding: 24px 24px 0; }
   .vl-move__card { width: 100%; max-width: 520px; box-sizing: border-box; backdrop-filter: none; }
   .vl-list { display: block; padding: 8px 24px 72px; }

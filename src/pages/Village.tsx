@@ -627,7 +627,12 @@ const Village = () => {
                 : tr(t, "village.choosePlace", "Choose a place")}
             </p>
           </div>
-          <Link className="vl-mono vl-corner" to="/" aria-label={tr(t, "village.backTitleAria", "Back to title")}>{tr(t, "village.backTitle", "← Title")}</Link>
+          {/* Home on every width (GoBY §25.12): «← Title» in the corner from 768px; on a phone the same link
+              is a compact «←» button in the top bar, left of the moon medallion. The name is the aria-label. */}
+          <Link className="vl-mono vl-corner" to="/" aria-label={tr(t, "village.backTitleAria", "Back to title")}>
+            <span className="vl-corner__full">{tr(t, "village.backTitle", "← Title")}</span>
+            <span className="vl-corner__icon" aria-hidden="true">←</span>
+          </Link>
 
           {/* WP-6 (§14.6): what changed since the last visit, and the one next move. One hint, never a list. */}
           {changesLine || move ? (

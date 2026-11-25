@@ -95,13 +95,47 @@ test.describe("DoD 3 · where / next / home inside the first screen (3-second te
     await inViewport(page, "h1", "where: «The Digital Village»");
     await inViewport(page, ".vl-move__card a.vl-move__enter", "next move: ENTER on the card");
     await expect(page.locator(".vl-move__card .vl-move__result, .vl-move__card .vl-move__where").first()).toBeVisible();
-    if (info.project.name === "phone") {
-      // By design (Village.css: `.vl-corner { display: none }` under 768px) the phone village has no «← Title» link.
-      info.annotations.push({ type: "finding", description: "phone /village: home («← Title») is not shown; no other home control in the first screen" });
-    } else {
-      await inViewport(page, "a.vl-corner", "home: «← Title»");
-    }
+    // Home on every width (GoBY §25.12): «← Title» in the corner, a compact «←» in the top bar on a phone.
+    await inViewport(page, "a.vl-corner", "home: «← Title»");
     await shot(page, info, "village-first-screen");
+  });
+
+  // Decision (Hark, delegated by Sasha, 2026-11-25): phone /village has a way back to Title.
+  test("/village: home is a 44x44 «Back to title» link that nothing covers", async ({ page }, info) => {
+    await openGuest(page, "/village");
+    const home = page.getByRole("link", { name: "Back to title" });
+    await expect(home, "one home link with the name «Back to title»").toHaveCount(1);
+    await expect(home).toBeVisible();
+    await expect(home, "it goes to the title").toHaveAttribute("href", "/");
+    const b = await box(home);
+    expect(b.right - b.left, "target width").toBeGreaterThanOrEqual(44);
+    expect(b.bottom - b.top, "target height").toBeGreaterThanOrEqual(44);
+    expect(await coveredBy(home), "what covers home").toEqual([]);
+
+    if (info.project.name === "phone") {
+      // A compact «←» icon (no «Title» word) that clears the other top-bar controls.
+      await expect(home, "icon only, no word").toHaveText("←", { useInnerText: true });
+      const vp = page.viewportSize()!;
+      expect(vp.width, "this check is for the phone width").toBeLessThan(768);
+      const others: [string, import("@playwright/test").Locator][] = [
+        ["the language chip", page.getByRole("button", { name: "Language" })],
+        ["the moon medallion", page.getByRole("link", { name: "Back to village" })],
+      ];
+      for (const [name, loc] of others) {
+        if (!(await loc.count())) continue; // the chip is guest-only and loads after the session check
+        if (!(await loc.first().isVisible())) continue;
+        expect(intersects(b, inflate(await box(loc.first()), 4)), `home meets ${name}`).toBe(false);
+      }
+    } else {
+      await expect(home, "wide screens keep the word").toContainText(/title/i, { useInnerText: true });
+    }
+    await shot(page, info, "village-home");
+  });
+
+  // «Rooms» lives on a place, where home is «← Village»; the Title link must not sit under it or show there.
+  test("/village/reception: «Back to title» is not shown over the place", async ({ page }) => {
+    await openGuest(page, "/village/reception");
+    await expect(page.getByRole("link", { name: "Back to title" })).toBeHidden();
   });
 
   for (const place of ["reception", "quest-board"]) {
