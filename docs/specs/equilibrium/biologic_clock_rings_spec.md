@@ -119,6 +119,14 @@ Works: centre reads FULL MOON / Harvesting / TUESDAY / Action at a glance; «+ t
 4. YEAR / DAY sit stacked in a small pill at 12 o'clock and crowd the ring stroke (also on the desktop profile dial).
 5. Screen reader: adjacent spans join without spaces («FULL MOONHarvestingTUESDAYAction», «YOUR YEAR · FROM YOUR BIRTHDAY41 days to 4 Jan»), seen in the accessibility tree.
 
+## Fixes v6.3 (Sasha 2026-11-24 19:53 «Да», from the phone 390 observations above)
+1. Open card is fully opaque and never overlaps the page's own blocks: on phone it pushes «YOUR NEXT MOVE» (Entry Portal CTA) down instead of covering it; nothing shows through.
+2. «Next» once: keep the header «Next: <phase> in <time>»; the line below keeps «before <word>» and drops the repeated «· next <word>, in <time>» (use the same word as the header, one name per moment). Same for the week block («next Clarity, tomorrow» stays only if the header has no next).
+3. Guest (no birthday): view 3 shows no «YOUR YEAR · FROM YOUR BIRTHDAY» header; the day line gets its own label «TODAY» (or «DAY»). Signed in: year block unchanged, day line under its own «DAY» label, not under the year header.
+4. YEAR / DAY ring labels: one label per ring, placed on its own ring's arc (not stacked in one pill at 12 o'clock), clear of the ring stroke, ≥11 px.
+5. Accessibility text: visible words are separate (space or separator between spans), so a screen reader says «Full Moon, Harvesting, Tuesday, Action».
+Done when: at 390x844 guest, opening the card leaves «ENTER» and the Entry Portal title fully visible and unobscured on scroll; no duplicated «next»; view 3 for a guest has no year header.
+
 ## Done when
 A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 
