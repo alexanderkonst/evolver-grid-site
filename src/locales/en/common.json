@@ -9847,7 +9847,9 @@
       "earth": "Earth"
     },
     "face": {
-      "air": "Your AI"
+      "air": "Your AI",
+      "fire": "Growth",
+      "earth": "Work"
     }
   }
 }
