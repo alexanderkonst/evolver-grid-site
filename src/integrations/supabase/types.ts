@@ -435,6 +435,33 @@ export type Database = {
         }
         Relationships: []
       }
+      collective_invites: {
+        Row: {
+          code: string
+          created_at: string
+          created_by: string
+          expires_at: string
+          used_at: string | null
+          used_by: string | null
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          created_by: string
+          expires_at?: string
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          created_by?: string
+          expires_at?: string
+          used_at?: string | null
+          used_by?: string | null
+        }
+        Relationships: []
+      }
       collective_members: {
         Row: {
           invited_by: string | null
@@ -3813,6 +3840,7 @@ export type Database = {
       }
       can_message_player: { Args: { p_recipient: string }; Returns: boolean }
       can_see_player_deeds: { Args: { p_target: string }; Returns: boolean }
+      check_collective_invite: { Args: { p_code: string }; Returns: string }
       circle_face_visible: { Args: { p_user: string }; Returns: boolean }
       circle_going_faces: {
         Args: { p_event_ids: string[] }
@@ -4014,6 +4042,7 @@ export type Database = {
         Args: { p_username: string }
         Returns: boolean
       }
+      redeem_collective_invite: { Args: { p_code: string }; Returns: string }
       reserve_commercial_outbound_action: {
         Args: {
           p_action_type: string

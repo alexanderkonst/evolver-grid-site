@@ -58,6 +58,36 @@ export const COLLECTIVE_ADMIN = {
     es: "No se pudo actualizar la membresía.",
     ru: "Не удалось обновить членство.",
   },
+  inviteHeading: {
+    en: "Invite link",
+    es: "Enlace de invitación",
+    ru: "Ссылка-приглашение",
+  },
+  inviteHint: {
+    en: "One person, one link. It works once and expires in 30 days.",
+    es: "Una persona, un enlace. Funciona una vez y caduca en 30 días.",
+    ru: "Один человек, одна ссылка. Работает один раз, действует 30 дней.",
+  },
+  createInvite: { en: "Create invite link", es: "Crear enlace de invitación", ru: "Создать ссылку-приглашение" },
+  copy: { en: "Copy", es: "Copiar", ru: "Копировать" },
+  copied: { en: "Link copied.", es: "Enlace copiado.", ru: "Ссылка скопирована." },
+  copyFailed: {
+    en: "Couldn't copy. Select the link and copy it by hand.",
+    es: "No se pudo copiar. Selecciona el enlace y cópialo a mano.",
+    ru: "Не удалось скопировать. Выделите ссылку и скопируйте вручную.",
+  },
+  openInvites: { en: "Open invites", es: "Invitaciones abiertas", ru: "Открытые приглашения" },
+  noInvites: { en: "No open invites.", es: "No hay invitaciones abiertas.", ru: "Открытых приглашений нет." },
+  expiresIn: { en: "expires in", es: "caduca en", ru: "истекает через" },
+  daysShort: { en: "d", es: "d", ru: "дн." },
+  deleteInvite: { en: "Delete", es: "Eliminar", ru: "Удалить" },
+  inviteCreated: { en: "Invite link created.", es: "Enlace creado.", ru: "Ссылка создана." },
+  inviteDeleted: { en: "Invite deleted.", es: "Invitación eliminada.", ru: "Приглашение удалено." },
+  inviteFailed: {
+    en: "Couldn't update invites.",
+    es: "No se pudieron actualizar las invitaciones.",
+    ru: "Не удалось обновить приглашения.",
+  },
 } as const satisfies Record<string, Copy>;
 
 export function collectiveAdminText(key: keyof typeof COLLECTIVE_ADMIN, lang: string): string {

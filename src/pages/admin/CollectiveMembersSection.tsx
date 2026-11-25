@@ -12,6 +12,14 @@ import { useTranslation } from "react-i18next";
 import { toast as sonnerToast } from "sonner";
 import { collectiveAdminText } from "@/data/collectiveAdminCopy";
 import {
+  createCollectiveInvite,
+  daysLeft,
+  deleteCollectiveInvite,
+  inviteUrl,
+  listOpenInvites,
+  type OpenInvite,
+} from "@/lib/collectiveInvites";
+import {
   COLLECTIVE_SEARCH_MIN_QUERY as MIN_QUERY,
   grantCollectiveMembership,
   listCollectiveMemberIds,
@@ -74,6 +82,59 @@ export function CollectiveMembersSection({ players }: { players: FounderState[] 
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
   const [busyId, setBusyId] = useState<string | null>(null);
+
+  // Invite links (WP2)
+  const [invites, setInvites] = useState<OpenInvite[]>([]);
+  const [newCode, setNewCode] = useState<string | null>(null);
+  const [inviteBusy, setInviteBusy] = useState(false);
+
+  const loadInvites = useCallback(async () => {
+    try {
+      setInvites(await listOpenInvites());
+    } catch (e) {
+      console.error("collective invites load failed:", e);
+      sonnerToast.error(collectiveAdminText("inviteFailed", lang));
+    }
+  }, [lang]);
+
+  useEffect(() => {
+    void loadInvites();
+  }, [loadInvites]);
+
+  const createInvite = async () => {
+    setInviteBusy(true);
+    try {
+      setNewCode(await createCollectiveInvite());
+      sonnerToast.success(text("inviteCreated"));
+      await loadInvites();
+    } catch (e) {
+      console.error("collective invite create failed:", e);
+      sonnerToast.error(text("inviteFailed"));
+    } finally {
+      setInviteBusy(false);
+    }
+  };
+
+  const removeInvite = async (code: string) => {
+    try {
+      await deleteCollectiveInvite(code);
+      if (newCode === code) setNewCode(null);
+      sonnerToast.success(text("inviteDeleted"));
+      await loadInvites();
+    } catch (e) {
+      console.error("collective invite delete failed:", e);
+      sonnerToast.error(text("inviteFailed"));
+    }
+  };
+
+  const copyLink = async (code: string) => {
+    try {
+      await navigator.clipboard.writeText(inviteUrl(code));
+      sonnerToast.success(text("copied"));
+    } catch {
+      sonnerToast.error(text("copyFailed"));
+    }
+  };
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -195,6 +256,81 @@ export function CollectiveMembersSection({ players }: { players: FounderState[] 
           <ul className="space-y-1.5">{members.map(renderRow)}</ul>
         )}
       </div>
+
+      <h3 className="mt-6" style={{ ...titleStyle, fontSize: "18px" }}>
+        {text("inviteHeading")}
+      </h3>
+      <p className="mt-1" style={mutedStyle}>
+        {text("inviteHint")}
+      </p>
+      <button
+        type="button"
+        disabled={inviteBusy}
+        onClick={() => void createInvite()}
+        className="mt-3 rounded-full px-4 py-2 transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50"
+        style={pillStyle}
+      >
+        {inviteBusy ? text("working") : text("createInvite")}
+      </button>
+
+      {newCode && (
+        <div className="mt-3 flex items-center gap-2 rounded-xl px-3.5 py-2.5" style={rowStyle}>
+          <input
+            readOnly
+            value={inviteUrl(newCode)}
+            aria-label={text("inviteHeading")}
+            onFocus={(e) => e.currentTarget.select()}
+            className="min-w-0 flex-1 rounded-md px-2 py-1.5 outline-none"
+            style={{ ...inputStyle, fontSize: "13px" }}
+          />
+          <button
+            type="button"
+            onClick={() => void copyLink(newCode)}
+            className="flex-shrink-0 rounded-full px-3.5 py-1.5 transition-all duration-200"
+            style={pillStyle}
+          >
+            {text("copy")}
+          </button>
+        </div>
+      )}
+
+      <h4 className="mt-4" style={{ ...mutedStyle, fontWeight: 600 }}>
+        {text("openInvites")} ({invites.length})
+      </h4>
+      {invites.length === 0 ? (
+        <p className="mt-1 italic" style={mutedStyle}>
+          {text("noInvites")}
+        </p>
+      ) : (
+        <ul className="mt-2 space-y-1.5">
+          {invites.map((invite) => (
+            <li key={invite.code} className="flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-xl px-3.5 py-2" style={rowStyle}>
+              <span className="min-w-0 flex-1 truncate" style={{ ...inputStyle, background: "none", border: "none", fontSize: "13px" }}>
+                …{invite.code.slice(-4)}
+              </span>
+              <span className="flex-shrink-0" style={mutedStyle}>
+                {text("expiresIn")} {daysLeft(invite.expires_at)} {text("daysShort")}
+              </span>
+              <button
+                type="button"
+                onClick={() => void copyLink(invite.code)}
+                className="flex-shrink-0 rounded-full px-3 py-1"
+                style={pillStyle}
+              >
+                {text("copy")}
+              </button>
+              <button
+                type="button"
+                onClick={() => void removeInvite(invite.code)}
+                className="flex-shrink-0 rounded-full px-3 py-1"
+                style={pillStyle}
+              >
+                {text("deleteInvite")}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }

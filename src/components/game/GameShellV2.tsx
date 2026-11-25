@@ -58,6 +58,8 @@ import MoonMedallion from "@/components/game/MoonMedallion";
 import YourAiInstrument from "@/components/game/YourAiInstrument";
 import { placeTagline } from "@/lib/villageCopy";
 import { displayName } from "@/lib/displayName";
+import { fetchIsCollectiveMember } from "@/hooks/useCollectiveMembership";
+import { isCollectiveEntryPath } from "@/lib/collectiveInvites";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
 import { useToast } from "@/hooks/use-toast";
 
@@ -1186,9 +1188,19 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             location.pathname === "/game/coop" || // Town Hall shows its closed state, never a redirect (WP-12)
             location.pathname === "/game/settings";
         if (needsOnboarding && location.pathname.startsWith("/game") && !publicShellPaths) {
+            // Collective WP2 (Sasha S1, 2026-11-25): the one exception. A holder of the
+            // `collective_member` role may stay on /game/collective* instead of being sent to
+            // /start. Everyone else, and every other path, goes to /start exactly as before.
+            if (isCollectiveEntryPath(location.pathname) && user?.id) {
+                let live = true;
+                fetchIsCollectiveMember(user.id)
+                    .then((isMember) => { if (live && !isMember) navigate("/start"); })
+                    .catch(() => { if (live) navigate("/start"); });
+                return () => { live = false; };
+            }
             navigate("/start");
         }
-    }, [profile?.onboarding_stage, location.pathname, navigate]);
+    }, [profile?.onboarding_stage, location.pathname, navigate, user?.id]);
 
     // Day 48 (Sasha): localStorage persistence for sectionsPanelOpen
     // retired. Each page's default state is now computed from the

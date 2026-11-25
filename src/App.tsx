@@ -178,6 +178,7 @@ import GameHome from "./pages/GameHome";
 import QuestModule from "./components/game/QuestModule";
 import Today from "./pages/Today";
 import Auth from "./pages/Auth";
+import JoinCollective from "./pages/JoinCollective";
 import AuthCallback from "./pages/AuthCallback";
 import ResetPassword from "./pages/ResetPassword";
 import GeniusLayerMatching from "./pages/GeniusLayerMatching";
@@ -595,6 +596,8 @@ const App = () => (
                   <Route path="/auth" element={<Auth />} />
                   <Route path="/auth/callback" element={<AuthCallback />} />
                   <Route path="/auth/reset-password" element={<ResetPassword />} />
+                  {/* Collective WP2 (Sasha S1, 2026-11-25): a peer enters with a single-use invite link and skips the reveals. */}
+                  <Route path="/join/collective/:code" element={<JoinCollective />} />
                   <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
                   {/* /reveal — legacy redirect kept so any old shared
                       links resolve home. The PDF download + the in-app
