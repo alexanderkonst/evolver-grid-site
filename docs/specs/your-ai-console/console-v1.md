@@ -24,6 +24,9 @@ Three new prompts (1–3), two reused (4–5). New prompts live in `src/prompts/
 - **Language:** every prompt ends with «Answer in <player locale>» (en/es/ru).
 - **Laps:** chain history keeps the last 3 laps; older laps fold into one line each.
 
+## Button format (app store ready)
+Every Console button is a record, not hard-coded UI: `{id, label{en,es,ru}, result, prompt, card, tier: "free" | "paid", author, standard: "v0"}`. In v1 all five are `tier: "free"`, `author: "evolver"`; no store UI, no billing. The fields exist so the app store (Your AI tracker §22, part 10) and buttons by other authors need no rewrite. Quality standard v0: tracker §22.
+
 ## How it runs
 - **Prompt assembly:** `AI_OS_PROMPT` (`src/modules/familiar/aiOsSource.ts`, v6.0) + button prompt + player context + previous cards as JSON.
 - **Model call (decision for Sasha):** the only no-deploy path is `library-advisor`, and the roast found three faults in it: its system line is «a helpful guide for spiritual and wellness practices», so AI OS rides as user text and loses weight; it accepts guests with no sign-in; it has no daily cap or size limit, so a long chain is open spend. Recommended: one new edge function `your-ai-console` (signed-in only, AI OS v6.0 as the system prompt, the same per-player daily cap as `mini-training-chat`, cheapest gateway model). That is one Lovable deploy, so it needs his yes. Fallback if he says no: `library-advisor` behind the client gate, with the cap enforced client-side (weak).

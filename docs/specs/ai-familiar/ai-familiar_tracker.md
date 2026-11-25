@@ -436,3 +436,31 @@ Generative UI. Your AI proposes the next buttons; the player taps or types. **A 
 
 **The landing lives inside the game.** The first time the player receives the instrument (GoBY §25.10), a micro-onboarding: a smooth zoom, by scale and light, onto each group of the product in turn, one line each (the five lines above). Spec: `docs/specs/your-ai-instrument/sow.md`.
 
+
+## 22. What Your AI is made of: eleven parts (Sasha, 2026-11-25 13:54 MST)
+
+> «Он добавляет твоему ИИ мощи. Состоит из: Консоль с кнопками; Главный системный промпт; другая обвязка, которую я сам использую; панели; запись звонков (или совет их делать); файловая система (подключение гитхаба), сначала человек сам, а потом мы повторяем что делает условный Харк через коннектор; память из других ИИ; фаундер кокпит; набор предустановленных аппс; аппстор с платными и бесплатными кнопками (со стандартом качества, я могу своих наделать целый ряд); фазовая передача моего сетапа.» — Sasha
+
+**In English.** It adds power to your AI. It is made of: a Console with buttons; the main system prompt; the other harness I use myself; panels; call recording (or the advice to record calls); a file system (GitHub connection), first the person does it by hand, then we repeat through a connector what Hark-like assistants do; memory from other AIs; the Founder Cockpit; a set of preinstalled apps; an app store with paid and free buttons (with a quality standard; I can make a whole range of my own); phased hand-over of my setup.
+
+**What changed.** Your AI is no longer «chat + buttons»: it is Sasha's whole setup, handed over in phases. The Founder Cockpit is now a part of Your AI, not a separate product. New since §20–§21: panels, call recording, files via GitHub, memory import from other AIs (before, only profile export, ladder rung 2), and an app store with paid buttons (before, money came only from usage tiers, §21).
+
+**The map.** Each part lives in one place; this table only links. Status: есть = exists · частично = partly · нет = not yet. Phase = the rung of the mini-training ladder (`docs/02-strategy/ai-suite/mini-trainings/00-ladder.md`) that would hand the part over. **Phases below are Hark's proposal; the order of phases and all prices are Sasha's.**
+
+| # | Part | Status | Where it lives | Phase (proposed) |
+|---|---|---|---|---|
+| 1 | Console with buttons | частично: spec v1.1, build queued (#475) | `docs/specs/your-ai-console/console-v1.md` | 1 |
+| 2 | Main system prompt (AI OS v6.0) | есть | `src/modules/familiar/aiOsSource.ts`, `system-prompts/v6.0/` | 1 |
+| 3 | Other harness (player card, knowledge graph, Phase Shift Library) | частично: client-side card and library doc exist; graph retrieval not built | §20.2, §20.4 | 2 |
+| 4 | Panels | нет | not specced | 4 |
+| 5 | Call recording (or the advice to record) | нет | not specced | 3 |
+| 6 | File system: GitHub, by hand first, then via a connector | нет | not specced | 3 by hand, 5 by connector |
+| 7 | Memory from other AIs (import) | нет: only export exists | ladder rung 2 (export) | 2 |
+| 8 | Founder Cockpit | частично: Lunar spec, lenses code | `docs/specs/founder-cockpit-lunar/spec.md`, `src/lib/cockpitLenses.ts` | 3 |
+| 9 | Preinstalled apps | частично: `/ai-os` prompt suites + Console's five buttons | `src/modules/ai-os/`, Console spec | 1 |
+| 10 | App store: free and paid buttons, quality standard, authors | нет; button format laid in Console v1 | Console spec § Button format | 4 |
+| 11 | Phased hand-over of Sasha's setup | частично: ladder of five, rungs 1–2 written, 4–5 proposed | `docs/02-strategy/ai-suite/mini-trainings/00-ladder.md` | the frame for all |
+
+**Quality standard of a button, v0 (draft from Console v1 rules, for Sasha to edit).** (1) The label is the result (button law, 2026-11-19). (2) Runs on AI OS v6.0 plus the player's context; never invents a profile, asks one question when context is missing. (3) Output is a card with a fixed shape; a broken output gives one calm «try again» line. (4) Answers in the player's language. (5) Sends nothing outside the game. (6) Passes its own tests before it is listed. Paid or free and the author are fields of every button from day one.
+
+**Open for Sasha:** order of phases; prices of paid buttons and of phases; whether Founder Cockpit keeps its own name inside Your AI.
