@@ -15,9 +15,12 @@
 
 The parts listed in the architecture: Founder Cockpit, AI harness, matchmaking, scaling experts, mini-hackathons, rhythm, terms, shared infrastructure, media synergy, shared improvement budget, internal collaborations, mutual promotion, train-the-trainer, the fund later. Which of them show inside the space first is decided part by part, each by its use case.
 
+## Access
+
+For now Sasha gives access himself, by hand, on both ways in (Sasha 2026-11-25 13:18: «пока даю доступ я, потом решим когда дойдем до следующей фазы»). An automatic sign in the game is decided in the next phase.
+
 ## Open for Sasha
 
-- What counts as «a working unique business» for a player who comes through the game: his invitation, or a sign in the game (for example, regular income)?
 - Where Collective sits on the village map.
 
 ---
