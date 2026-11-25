@@ -1490,3 +1490,22 @@ Every transition feels smooth: the whole interface is an ancient mystical instru
 
 ### 25.13 How we refine it: subtraction
 Each navigation screen is refined with the [subtraction loop](../templates/subtraction-loop.md) (after Will Wright's many cut-down versions of The Sims): name the model in the player's head, show it to first-timers without explanation, mark friction, cut what does not build the model or move it into the world, measure before and after, repeat until the 25.12 test passes.
+
+### 25.14 Five quarters: the village through the five elements (Sasha, 2026-11-25 11:03–11:32 MST)
+Sasha: «крутейшая новость, что действительно всё мэпится на 5». Any complex system can be read through the lens of the five elements; the village is read this way.
+
+| Element | Platonic solid | Meaning | Places |
+|---|---|---|---|
+| Ether | Dodecahedron | the path | Entry Portal, Home (hero's path and quests inside), Quest Board |
+| Air | Octahedron | mind | Your AI (carried instrument, §25.10) |
+| Water | Icosahedron | cycles and connection | Café (where you meet), Co-working (where you collaborate), plus the time ring with the moon phase |
+| Fire | Tetrahedron | transformation, your own education | Academy, FMF |
+| Earth | Cube | structure | Workshop, Market, Town Hall |
+
+Rules:
+1. **An element is a quarter of the map, never a door.** The player taps Academy directly; fire shows as the quarter's colour and sign and as a face of the instrument. No extra click, no new menu.
+2. **Each solid lights at its step of the hero's path** (Sasha: «каждый из них активируется в какой-то момент пути героя - это факт»): a solid is a faint outline until the first place of its quarter opens. Order follows player path v1 after Sasha's review.
+3. **Carried vs in the world:** air (Your AI) and water's time ring travel with the player in the instrument; ether, fire, earth live in the world as signs of their quarters. Tapping a lit solid in the instrument leads back to its place in the world.
+4. **Places are named as places, actions as verbs (Sasha, 2026-11-25 11:32: «где люди коллаборируют? нужно название места»):** Café is where you MEET (route `/game/meet`), Co-working is where you COLLABORATE (route `/game/collaborate/matches`). Place names stay as they are.
+
+Not yet decided: whether the village map is visually regrouped into quarters, and the instrument's first reveal (game entry). Both need Sasha's explicit yes to that exact change. Phases 3, 6, 8 of epic #453 are redesigned against this section.
