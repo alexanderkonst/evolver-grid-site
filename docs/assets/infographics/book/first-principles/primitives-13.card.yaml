@@ -1,0 +1,20 @@
+id: primitives-13
+chapter: "3.1"
+number: 13
+of: 19
+title: Start With Who
+caption: A result can't be invented in a vacuum.
+skin: v4
+max_words: 43
+parity: {module: primitives_v4, fn: p13, index: 13}
+text:
+  eyebrow: "Business from first principles"
+  centre: Who
+  items:
+    - {num: "1", title: Who, sub: the relationship comes first}
+    - {num: "2", title: What change, sub: the result they actually get}
+    - {num: "3", title: How, sub: "the process, last"}
+  quote: "Customer development: what is it for, and when is it done?"
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p13)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 13)

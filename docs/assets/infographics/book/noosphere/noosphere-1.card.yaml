@@ -1,0 +1,22 @@
+id: noosphere-1
+chapter: "5"
+number: 1
+of: 3
+title: "Every Cell Has a Neighbor"
+caption: "The world already knows each piece. Nobody holds all six from one source."
+skin: v4
+max_words: 86
+parity: {module: primitives_v4, fn: n1, index: 1}
+text:
+  eyebrow: "Business from first principles  ·  the noosphere"
+  rows:
+    - {title: "Two humans", line: "Christensen: people hire a product to make progress"}
+    - {title: "Who first", line: "Blank: customer development, out of the building"}
+    - {title: "Myth, tribe", line: "Godin: Tribes; Campbell: the hero's journey"}
+    - {title: "Transition, promise", line: "Miller: the customer is the hero, the brand the guide"}
+    - {title: "Tagline", line: "Dunford: positioning; Ries and Trout"}
+    - {title: "Uniqueness", line: "Thiel: a secret few people agree with"}
+  quote: "New here: all six grown from the founder’s uniqueness."
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (n1)
+  - docs/assets/infographics/BOOK.md (The noosphere, card 1)

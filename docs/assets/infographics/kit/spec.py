@@ -48,7 +48,7 @@ def load(path):
 def missing(spec):
     """Required fields that are absent or empty, plus an unknown skin."""
     from kit import skins
-    bad = [k for k in REQUIRED if not spec.get(k)]
+    bad = [k for k in REQUIRED if not spec.get(k) and not (k == "caption" and spec.get(k) == "")]  # "" = the Book has none
     if spec.get("skin") and spec["skin"] not in skins.NAMES:
         bad.append(f"skin (unknown {spec['skin']!r})")
     for k in ("title", "caption"):

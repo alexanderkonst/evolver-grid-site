@@ -1,0 +1,20 @@
+# Rebuilt from the committed PNG (draft v6; the v6 script is not in the repo). Style source: engine-v4/laws_v4.py (l3).
+id: VI.03
+chapter: "3.3"
+number: 3
+of: 6
+title: Seen Change Gets Paid Fairly
+caption: Show clients what moved, in their own words. Never ask them to price it.
+skin: v4
+max_words: 32
+text:
+  eyebrow: "Coaching results · Fair exchange"
+  between_up: "their change, shown back"
+  between_down: "money · referral · gratitude"
+  left: guide
+  right: client
+sources:
+  - docs/assets/infographics/book/laws/VI.03.png
+  - docs/assets/infographics/BOOK.md (VI.03)
+  - docs/assets/infographics/engine-v4/laws_v4.py (style source: l3 exchange loop)
+  - docs/assets/infographics/kit/proof/laws-v4-l3.py (port idioms)

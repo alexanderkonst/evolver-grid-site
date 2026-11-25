@@ -1,0 +1,30 @@
+id: primitives-14
+chapter: "3.1"
+number: 14
+of: 19
+title: Two Dead Ends
+caption: "The usual way to find demand: guess segments, test, wait for a hit."
+skin: v4
+max_words: 48
+parity: {module: primitives_v4, fn: p14, index: 14}
+text:
+  eyebrow: "Business from first principles"
+  primitive: the primitive
+  left:
+    title: Manipulate
+    sub: cut corners
+    items:
+      - "—  manufactured need"
+      - "—  pressure and fear"
+      - "—  impulse buying"
+  right:
+    title: Grind
+    sub: brute force
+    items:
+      - "endless segments  —"
+      - "work like a machine  —"
+      - "a feature pile  —"
+  quote: Both skip the primitive.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p14)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 14)

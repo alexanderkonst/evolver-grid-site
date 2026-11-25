@@ -1,0 +1,18 @@
+id: primitives-11
+chapter: "3.1"
+number: 11
+of: 19
+title: Business and Product
+caption: Each founder has a unique business. Together they build one product.
+skin: v4
+max_words: 41
+parity: {module: primitives_v4, fn: p11, index: 11}
+text:
+  eyebrow: "Business from first principles"
+  founders: [founder A, founder B]
+  business: a unique business
+  product: the product
+  quote: "Investors buy a share of the product, not of the founders."
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p11)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 11)

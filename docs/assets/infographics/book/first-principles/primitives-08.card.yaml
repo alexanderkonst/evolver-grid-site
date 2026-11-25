@@ -1,0 +1,20 @@
+id: primitives-08
+chapter: "3.1"
+number: 8
+of: 19
+title: Human Signal First
+caption: AI needs a human signal. Without one, it gives low-signal output.
+skin: v4
+max_words: 50
+parity: {module: primitives_v4, fn: p08, index: 8}
+text:
+  eyebrow: "Business from first principles"
+  rows:
+    - {title: Human writes raw, sub: "the first signal, in their own words"}
+    - {title: AI amplifies, sub: "structure, range, polish"}
+    - {title: Human polishes, sub: to the next level}
+  none: No human signal
+  quote: At every stage of building a unique business.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p08)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 08)

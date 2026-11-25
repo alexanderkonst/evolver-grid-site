@@ -1,0 +1,19 @@
+id: primitives-06
+chapter: "3.1"
+number: 6
+of: 19
+title: Promise Becomes Tagline
+caption: The founder walked further. The promise takes others there.
+skin: v4
+max_words: 39
+parity: {module: primitives_v4, fn: p06, index: 6}
+text:
+  eyebrow: "Business from first principles"
+  founder: the founder
+  promise: {title: Transformational promise, sub: "the next steps of the path, offered"}
+  rays: [for whom, what change, how]
+  tagline: Tagline
+  quote: The whole business in one sentence.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p06)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 06)

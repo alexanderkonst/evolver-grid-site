@@ -1,0 +1,50 @@
+id: primitives-18
+chapter: "3.1"
+number: 18
+of: 19
+title: Ready to Receive
+caption: Every tradition that asked this found the same four things.
+skin: v4
+max_words: 159
+parity: {module: primitives_v4, fn: p18, index: 18}
+waive:   # legacy layout, ported pixel-for-pixel; fix by redesign, not by editing lint
+  min-font: "engine layout: source note is 15px"
+text:
+  eyebrow: "Business from first principles"
+  cells:
+    - title: Hunger
+      sub: the pull
+      line: You actually want it.
+      names:
+        - "Vedanta: mumukshutva"
+        - "Christian mystics: burning fervour"
+        - "Shamanism: the call"
+        - "Mezirow: disorienting dilemma"
+    - title: Emptiness
+      sub: the room
+      line: You stopped already knowing.
+      names:
+        - "Vedanta: vairagya"
+        - "Zen: beginner’s mind"
+        - "Tao Te Ching: the empty vessel"
+        - "Sufism: polishing the heart"
+    - title: Trust
+      sub: the opening
+      line: Safe enough to let it in.
+      names:
+        - "Yoga Sutra: shraddha"
+        - "Buddhism: saddha"
+        - "Rogers: conditions for change"
+        - "Siegel: window of tolerance"
+    - title: Capacity
+      sub: the vessel
+      line: Steady enough to hold it.
+      names:
+        - "Vedanta: the six virtues"
+        - "Yoga Sutra & Buddhism: energy, mindfulness, concentration"
+        - "Vygotsky: zone of proximal development"
+  quote: You are ready to receive when you want it, have made room for it, feel safe enough to let it in, and are steady enough to hold it.
+  note: "Synthesis across 20+ traditions and modern schools. ‘When the pupil is ready’ comes from Light on the Path (1885), not Buddha or Lao Tzu."
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p18)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 18)

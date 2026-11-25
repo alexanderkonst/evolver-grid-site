@@ -1,0 +1,21 @@
+# Rebuilt from the committed PNG (draft v6; the v6 script is not in the repo). Style source: engine-v4/laws_v4.py.
+id: III.02
+chapter: "3.2"
+number: 5
+of: 6
+title: Which Program to Offer
+caption: "Where is the person on their hero's journey?"
+skin: v4
+max_words: 40
+waive:   # the committed v6 PNG draws these two lines outside the 80px margin; rebuilt pixel-identical
+  margins: "v6 PNG layout: the quiz questions reach x=63 and x=1034"
+text:
+  eyebrow: "Choosing a program · The hero’s journey"
+  stages:
+    - {ask: "Still in the old world?", program: "The Crossing"}
+    - {ask: "Sees the new, not living it yet?", program: "The Vector"}
+    - {ask: "Living it, ready to build?", program: "Build"}
+sources:
+  - docs/assets/infographics/book/laws/III.02.png
+  - docs/assets/infographics/BOOK.md (III.02)
+  - docs/assets/infographics/engine-v4/laws_v4.py (style source: l5 three states)

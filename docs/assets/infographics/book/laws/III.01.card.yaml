@@ -1,0 +1,20 @@
+# Rebuilt from the committed PNG (draft v6; the v6 script is not in the repo). Style source: engine-v4/laws_v4.py.
+id: III.01
+chapter: "3.2"
+number: 4
+of: 6
+title: Three Readinesses Multiply
+caption: If any one is near zero, the whole is zero.
+skin: v4
+max_words: 35
+text:
+  eyebrow: "Choosing a client · Readiness"
+  scales: ["Contact with uniqueness", "Resolve", "Readiness to receive"]
+  low: "0"
+  high: "10"
+  not_yet: "not yet"
+  formula: "contact × resolve × readiness"
+sources:
+  - docs/assets/infographics/book/laws/III.01.png
+  - docs/assets/infographics/BOOK.md (III.01)
+  - docs/assets/infographics/engine-v4/laws_v4.py (style source: l1 sliders, l4 gates)
