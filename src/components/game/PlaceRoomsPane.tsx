@@ -35,8 +35,11 @@ const RoomRow = ({ row, t }: { row: Row; t: ReturnType<typeof useTranslation>["t
     <>
       <span className="vl-rooms__name">
         {row.no ? <span className="vl-rooms__no" aria-hidden="true">{row.no}</span> : null}
-        {row.name}
-        {row.optional ? <span className="vl-rooms__opt"> ({journeyOptionalWord(t)})</span> : null}
+        {/* One text item, so the space before «(optional)» is a real space, not flex gap. */}
+        <span className="vl-rooms__label">
+          {row.name}
+          {row.optional ? <>{" "}<span className="vl-rooms__opt">({journeyOptionalWord(t)})</span></> : null}
+        </span>
         {word ? <span className="vl-rooms__state">{word}</span> : null}
       </span>
       {row.line ? <span className="vl-rooms__line">{row.line}</span> : null}

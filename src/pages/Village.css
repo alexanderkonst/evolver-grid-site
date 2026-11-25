@@ -586,8 +586,9 @@
 .vl-rooms__toggle:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
 .vl-rooms {
   --vl-rooms-w: min(320px, 30vw);
-  position: absolute; z-index: 3; top: 0; right: 0; bottom: 0; width: var(--vl-rooms-w);
-  padding: clamp(72px, 12vh, 112px) 20px 28px; overflow-y: auto; overscroll-behavior: contain;
+  /* The pane ends above the floating «Chat with us» pill (--chat-clearance), so no row sits under it. */
+  position: absolute; z-index: 3; top: 0; right: 0; bottom: var(--chat-clearance, 72px); width: var(--vl-rooms-w);
+  padding: clamp(72px, 12vh, 112px) 20px 20px; border-bottom: 1px solid var(--vl-hair); overflow-y: auto; overscroll-behavior: contain;
   background: rgba(var(--scene-bg-rgb), 0.72); border-left: 1px solid var(--vl-hair);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   transform: translateX(100%); visibility: hidden;
@@ -606,6 +607,7 @@
 .vl-rooms__row a:hover, .vl-rooms__row a:focus-visible { background: rgba(var(--scene-ink-rgb), 0.06); outline: none; }
 .vl-rooms__name { display: flex; align-items: baseline; gap: 8px; font-size: var(--vl-text-lead); line-height: 1.25; color: var(--vl-ink); }
 .vl-rooms__no { font-family: var(--vl-mono); font-size: var(--vl-text-micro); color: var(--vl-ink-2); min-width: 1.4em; }
+.vl-rooms__label { min-width: 0; }
 .vl-rooms__opt { font-size: var(--vl-text-small); color: var(--vl-ink-2); font-style: italic; }
 .vl-rooms__state { margin-left: auto; font-family: var(--vl-mono); font-size: var(--vl-text-micro); letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-2); }
 .vl-rooms__row[data-room-state="next"] .vl-rooms__state { color: var(--open-accent); }
@@ -617,11 +619,11 @@
 @media (max-width: 767px) {
   .vl-rooms {
     --vl-rooms-w: 100%;
-    top: auto; left: 0; right: 0; width: auto; max-height: 50svh; padding: 20px 20px 28px;
+    top: auto; left: 0; right: 0; bottom: var(--chat-clearance, 72px); width: auto; max-height: 50svh; padding: 20px 20px 20px;
     border-left: 0; border-top: 1px solid var(--vl-hair); transform: translateY(100%);
   }
   /* The title and ENTER rise above the sheet, so ENTER is never covered. */
-  .vl-place:has(.vl-rooms.is-open) .vl-place__copy { right: 0; bottom: 50svh; padding-bottom: 16px; }
+  .vl-place:has(.vl-rooms.is-open) .vl-place__copy { right: 0; bottom: calc(50svh + var(--chat-clearance, 72px)); padding-bottom: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .vl-rooms, .vl-place__copy { transition: none; }

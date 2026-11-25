@@ -403,6 +403,17 @@ export const closedLine = (place: PlaceInput, t?: TFunction): string => {
   return tr(t, c.key, `Opens when ${trimDot(c.event)}. Inside: ${trimDot(c.inside)}.`);
 };
 
+/**
+ * A room's own closed line (§25.5): the place's «Opens when <event>» with the room's own result,
+ * «Opens when <event>. Inside: <that room's result>.». Empty when the place has no closed line.
+ * `key` is the room's own i18n key for the whole line; absent or untranslated = English.
+ */
+export const closedRoomLine = (place: PlaceInput, inside: string, t?: TFunction, key?: string): string => {
+  const c = place.rule.closed;
+  if (!c) return "";
+  return tr(t, key, `Opens when ${trimDot(c.event)}. Inside: ${trimDot(inside)}.`);
+};
+
 /** The line for the rail's lock tooltip: the closed line's short form when it has one, else the whole line. */
 export const closedShortLine = (place: PlaceInput, t?: TFunction): string => {
   const c = place.rule.closed;

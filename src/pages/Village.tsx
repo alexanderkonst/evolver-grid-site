@@ -67,9 +67,9 @@ import "./Village.css";
  * A closed place shows its faded scene and one line, «Opens when <real event>.
  * Inside: <result>.», with no ENTER. A guest sees Reception, Academy and Fire
  * Circle open and everything else closed; "I already live here" leads to /auth
- * (same `?redirect=` contract as RequireAuth). No barrier language. A newcomer standing at any
- * closed place gets the one action that opens it: «Find your top talent», or, with a
- * finished test on this device, «Save your character» (WP-7b: result first, account to save).
+ * (same `?redirect=` contract as RequireAuth). No barrier language. Anyone standing at a
+ * closed place gets one enabled «Your next move: <the real next step>», the move the map glows
+ * with (§25.4); with a finished test on this device it is «Keep your light lit» (WP-7b).
  *
  * The map is the game screen (WP-6, §14.6): one next-move card (place · step · what it
  * gives · ENTER, from `nextMove`), one «what changed» line and a one-time reveal on places
@@ -178,20 +178,27 @@ const useGuestResult = (): boolean => {
 };
 
 /**
- * Home, closed, for a signed-out visitor (WP-7b: result first, account only to save).
- * One primary action: no result yet → «Find your top talent» (Reception); a result but no
- * account → «Save your character» (the same save as after the test, TopTalentAuthGate).
- * «I already live here → sign in» stays beside it, quiet, for residents.
+ * A closed place's one enabled action (GoBY §25.4: the scene and the pane give one signal).
+ * It is the same next move the map's card glows with: «Your next move: <the real next step>»,
+ * leading where that card's ENTER leads. A guest holding a finished test on this device gets
+ * «Keep your light lit» (the save, WP-7b: result first, account to save) instead, which is
+ * that card's own move. A signed-out visitor also keeps «I already live here → sign in», quiet.
  */
-const NewcomerPath = ({
+const ClosedNextMove = ({
   hasResult,
+  label,
+  to,
   onGo,
   signInTo,
 }: {
   hasResult: boolean;
-  /** Leave for Reception with the village's own exit motion. */
+  /** «Your next move: <title>» for the move the map's card shows. */
+  label: string;
+  to: string;
+  /** Leave for `to` with the village's own exit motion. */
   onGo: (e: MouseEvent<HTMLElement>) => void;
-  signInTo: string;
+  /** Where a returning resident signs in; null for someone already signed in. */
+  signInTo: string | null;
 }) => {
   const { t } = useTranslation();
   return (
@@ -199,13 +206,15 @@ const NewcomerPath = ({
       {hasResult && readGuestTopTalentPayload() ? (
         <SaveCharacterCta buttonClassName="vl-enter vl-newcomer" formClassName="vl-save" />
       ) : (
-        <Link className="vl-enter vl-newcomer" to="/village/reception" onClick={onGo}>
-          {tr(t, "village.findTopTalent", "Find your top talent")}
+        <Link className="vl-enter vl-newcomer" to={to} onClick={onGo}>
+          {label}
         </Link>
       )}
-      <Link className="vl-mono vl-signin" to={signInTo}>
-        {tr(t, "village.signIn", "I already live here → sign in")}
-      </Link>
+      {signInTo ? (
+        <Link className="vl-mono vl-signin" to={signInTo}>
+          {tr(t, "village.signIn", "I already live here → sign in")}
+        </Link>
+      ) : null}
     </div>
   );
 };
@@ -742,15 +751,17 @@ const Village = () => {
                       startOpen={hasParticleInvite(lastPlace.key)}
                     />
                   )}
-                  {/* A closed place gives a newcomer the one step that opens it (every closed place
-                      waits on the top talent first): «Find your top talent», or «Save your character»
-                      with a result on this device. A returning resident can still sign in and come back. */}
-                  {signedIn === false && lastState === "closed" ? (
-                    <NewcomerPath
-                      key={guestResult ? "save" : "find"}
-                      hasResult={guestResult}
-                      onGo={(e) => leave(() => navigate("/village/reception"), e)}
-                      signInTo={`/auth?redirect=${encodeURIComponent(lastPlace.to)}`}
+                  {/* A closed place has no ENTER, so it gives one enabled move instead (§25.4): the
+                      same next move the map glows with. With a result on this device it is «Keep
+                      your light lit»; a returning resident can still sign in and come back. */}
+                  {lastState === "closed" && !lastPending && move && moveCopy && signedIn !== null ? (
+                    <ClosedNextMove
+                      key={guestResult ? "save" : "move"}
+                      hasResult={signedIn === false && guestResult}
+                      label={`${tr(t, "village.nextMove", "Your next move")}: ${moveCopy.title}`}
+                      to={move.to}
+                      onGo={(e) => leave(() => navigate(move.to), e)}
+                      signInTo={signedIn === false ? `/auth?redirect=${encodeURIComponent(lastPlace.to)}` : null}
                     />
                   ) : null}
                 </>
