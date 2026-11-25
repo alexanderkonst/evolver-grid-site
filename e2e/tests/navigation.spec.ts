@@ -79,15 +79,28 @@ test.describe("DoD 2 · map, rail chip and pane row name the same move", () => {
 test.describe("DoD 3 · where / next / home inside the first screen (3-second test)", () => {
   const FIRST_SCREEN_MS = Number(process.env.E2E_FIRST_SCREEN_MS ?? 3000);
 
+  // Poll inside the same budget: the place copy re-flows once when the save lands (the title moves, the
+  // element can be re-mounted for a frame), so a single read can hit a moment with no box. The test is
+  // «all three are inside the first screen within FIRST_SCREEN_MS», not «at the first instant».
   const inViewport = async (page: import("@playwright/test").Page, sel: string, what: string) => {
     const loc = page.locator(sel).first();
     await expect(loc, `${what} visible within ${FIRST_SCREEN_MS} ms`).toBeVisible({ timeout: FIRST_SCREEN_MS });
-    const b = await box(loc);
     const vp = page.viewportSize()!;
-    expect(b.left, `${what} inside the first screen (left)`).toBeGreaterThanOrEqual(0);
-    expect(b.top, `${what} inside the first screen (top)`).toBeGreaterThanOrEqual(0);
-    expect(b.right, `${what} inside the first screen (right)`).toBeLessThanOrEqual(vp.width);
-    expect(b.bottom, `${what} inside the first screen (bottom)`).toBeLessThanOrEqual(vp.height);
+    await expect
+      .poll(
+        async () => {
+          const b = await loc.boundingBox();
+          if (!b) return "no box yet";
+          const out: string[] = [];
+          if (b.x < 0) out.push(`left ${Math.round(b.x)}`);
+          if (b.y < 0) out.push(`top ${Math.round(b.y)}`);
+          if (b.x + b.width > vp.width) out.push(`right ${Math.round(b.x + b.width)} > ${vp.width}`);
+          if (b.y + b.height > vp.height) out.push(`bottom ${Math.round(b.y + b.height)} > ${vp.height}`);
+          return out.length ? out.join(", ") : "inside";
+        },
+        { message: `${what} inside the first screen`, timeout: FIRST_SCREEN_MS },
+      )
+      .toBe("inside");
   };
 
   test("/village answers where, next move, home", async ({ page }, info) => {

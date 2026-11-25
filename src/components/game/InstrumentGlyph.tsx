@@ -130,10 +130,17 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, carried, op
     },
     [ref],
   );
-  const [lift, setLift] = useState(0);
+  // The lift is written straight to the element (not through React state), so it lands in the same
+  // frame the card appears: no frame where the glyph sits on the card and no render lag.
   const liftRef = useRef(0);
   const openRef = useRef(open);
   openRef.current = open;
+
+  const applyLift = useCallback((px: number) => {
+    liftRef.current = px;
+    const el = buttonRef.current;
+    if (el) el.style.translate = px && !openRef.current ? `0 ${-px}px` : "";
+  }, []);
 
   // Home is the bottom-right corner. Where a screen keeps something there (the next-move card spans the
   // foot of the village on a phone), the glyph rises above it, so it never covers content or controls.
@@ -152,28 +159,52 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, carried, op
         .map((n) => n.getBoundingClientRect())
         .filter((a) => a.width > 0 && a.height > 0);
       const next = liftAbove(home, rects);
-      if (next !== liftRef.current) {
-        liftRef.current = next;
-        setLift(next);
-      }
+      if (next !== liftRef.current) applyLift(next);
     };
     const schedule = () => {
       if (!raf) raf = requestAnimationFrame(measure);
     };
-    schedule();
+    // The card arrives (the save loads) and grows without a scroll or a resize: watch for it. The
+    // observer callback measures at once, before the next paint; the frame is only for scroll and resize.
+    const touches = (n: Node) => n instanceof Element && (n.matches(avoid) || !!n.querySelector(avoid));
+    const ro = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(() => measure());
+    const watched = new Set<Element>();
+    const watch = () => {
+      document.querySelectorAll(avoid).forEach((n) => {
+        if (!watched.has(n)) {
+          watched.add(n);
+          ro?.observe(n);
+        }
+      });
+    };
+    const mo = new MutationObserver((records) => {
+      if (!records.some((m) => Array.from(m.addedNodes).some(touches) || Array.from(m.removedNodes).some(touches))) return;
+      watch();
+      measure();
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+    watch();
+    measure();
     window.addEventListener("scroll", schedule, { passive: true, capture: true });
     window.addEventListener("resize", schedule);
-    // The card appears, grows and moves without a scroll or a resize (the save loads, the moon card opens).
+    // A slow safety net for anything the observers cannot see (a class change that moves the card).
     const timer = window.setInterval(() => {
       if (!document.hidden) schedule();
-    }, 400);
+    }, 1000);
     return () => {
+      mo.disconnect();
+      ro?.disconnect();
       window.removeEventListener("scroll", schedule, true);
       window.removeEventListener("resize", schedule);
       window.clearInterval(timer);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [avoid]);
+  }, [avoid, applyLift]);
+
+  // Open drops the lift (the open instrument keeps the corner for its own panel); closing brings it back.
+  useEffect(() => {
+    applyLift(liftRef.current);
+  }, [open, applyLift]);
 
   const [moon, setMoon] = useState(() => getVillageSky().cycle);
   const frameRef = useRef<Frame>({ spin: 0, reduced, lit, carried, moon });
@@ -253,8 +284,6 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, carried, op
         width: GLYPH_PX,
         height: GLYPH_PX,
         touchAction: "manipulation",
-        // Lifted only while closed: the open instrument keeps the corner clear for its own panel.
-        translate: lift && !open ? `0 ${-lift}px` : undefined,
       }}
       className="fixed right-2 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+3.75rem)] z-[81] grid place-items-center rounded-full outline-none transition-transform duration-300 focus-visible:ring-2 focus-visible:ring-[#bcd7e6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e13] motion-safe:hover:scale-105 motion-safe:active:scale-95 sm:bottom-[5.5rem] sm:right-5"
     >
