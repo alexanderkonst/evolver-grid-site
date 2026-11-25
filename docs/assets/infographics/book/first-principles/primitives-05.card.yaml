@@ -1,0 +1,23 @@
+id: primitives-05
+chapter: "3.1"
+number: 5
+of: 19
+title: Tribe and Transition
+caption: Who the myth calls, and what they are walking through.
+skin: v4
+max_words: 51
+parity: {module: primitives_v4, fn: p05, index: 5}
+waive:   # legacy layout, ported pixel-for-pixel; fix by redesign, not by editing lint
+  margins: "engine layout: tribe rings reach the left edge"
+text:
+  eyebrow: "Business from first principles"
+  tribe: {title: Tribe, sub: people who polarize toward the myth}
+  a: A
+  b: B
+  transition: {title: Transition, sub: the passage they are in right now}
+  axis: time standing still
+  cost: {title: Cost of inaction, sub: what staying still costs them}
+  quote: No transition, no reason to move.
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p05)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 05)

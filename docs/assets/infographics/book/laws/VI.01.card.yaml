@@ -1,0 +1,21 @@
+# Rebuilt from the committed PNG (draft v6; the v6 script is not in the repo). Style source: engine-v4/laws_v4.py.
+id: VI.01
+chapter: "3.3"
+number: 1
+of: 6
+title: Their Own 0–10 Scale
+caption: "The client rates each of their goals: at the start, the middle and the end."
+skin: v4
+max_words: 57
+text:
+  eyebrow: "Coaching results · Measuring the shift"
+  goals:
+    - "Goal 1, in the client's own words"
+    - "Goal 2, in the client's own words"
+    - "Goal 3, in the client's own words"
+  readout: "start → now"
+  quote: "Their goals. Their words. Their numbers."
+sources:
+  - docs/assets/infographics/book/laws/VI.01.png
+  - docs/assets/infographics/BOOK.md (VI.01)
+  - docs/assets/infographics/engine-v4/laws_v4.py (style source: l1 goal sliders)

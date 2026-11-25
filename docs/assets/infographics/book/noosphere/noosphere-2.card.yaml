@@ -1,0 +1,25 @@
+id: noosphere-2
+chapter: "5"
+number: 2
+of: 3
+title: "The Founder, Replaced"
+caption: "Wasserman, Harvard: 212 US startups from the late 1990s and early 2000s."
+skin: v4
+max_words: 50
+parity: {module: primitives_v4, fn: n2, index: 2}
+text:
+  eyebrow: "Business from first principles  ·  the noosphere"
+  ticks:
+    - "25%"
+    - "50%"
+    - "75%"
+    - "100%"
+  data:
+    - {label: "founding", value: "", note: ""}
+    - {label: "year 3", value: "50%", note: "still CEO"}
+    - {label: "year 4", value: "40%", note: "still CEO"}
+    - {label: "at IPO", value: "25%", note: "led it, at most"}
+  quote: "Rich or king: few founders are both."
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (n2)
+  - docs/assets/infographics/BOOK.md (The noosphere, card 2)

@@ -1,0 +1,21 @@
+id: primitives-19
+chapter: "3.1"
+number: 19
+of: 19
+title: Find the Primitive
+caption: "A session plan: from one question to one sentence."
+skin: v4
+max_words: 61
+parity: {module: primitives_v4, fn: p19, index: 19}
+text:
+  eyebrow: Pitch session
+  steps:
+    - {title: Ask, sub: "what is business to you? why this story?"}
+    - {title: Primitives, sub: "two humans, process, change, exchange"}
+    - {title: DNA, sub: "which of the six cells are empty?"}
+    - {title: Signals, sub: where the co-founders meet}
+    - {title: Amplify, sub: "their words first, then AI"}
+    - {title: One sentence, sub: "for whom, what change, how"}
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p19)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 19)

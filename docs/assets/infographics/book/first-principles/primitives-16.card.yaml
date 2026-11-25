@@ -1,0 +1,21 @@
+id: primitives-16
+chapter: "3.1"
+number: 16
+of: 19
+title: The Interchangeable Founder
+caption: How the equity game sees the person running the company.
+skin: v4
+max_words: 60
+parity: {module: primitives_v4, fn: p16, index: 16}
+text:
+  eyebrow: "Business from first principles"
+  founder: founder
+  quadrants:
+    - {title: Burning, sub: read as a sign the founder will reach the result}
+    - {title: Replaceable, sub: anyone who ticks the same boxes will do}
+    - {title: Diluted, sub: "the founder's share, as far as possible"}
+    - {title: Not personal, sub: "just business: hard, high-status, burnout"}
+  quote: "A unique business can't swap its founder."
+sources:
+  - docs/assets/infographics/engine-v4/primitives_v4.py (p16, quadrants)
+  - docs/assets/infographics/BOOK.md (Business from first principles, card 16)
