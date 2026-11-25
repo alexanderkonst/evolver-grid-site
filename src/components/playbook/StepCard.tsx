@@ -661,7 +661,7 @@ const StepCard = ({ step }: StepCardProps) => {
           {t("stepCard.stepLabel", { number: step.number })}{" "}
           {step.number === 4 ? (
             <Link
-              to="/products/built"
+              to="/products/pmf"
               style={{
                 color: `color-mix(in srgb, ${step.neonHsl} 55%, var(--skin-text-primary, #0a1628) 45%)`,
                 textShadow: `0 0 14px rgba(${step.neonRgb}, 0.45), 0 0 3px rgba(${step.neonRgb}, 0.55), var(--skin-text-halo-soft, 0 1px 2px rgba(255,255,255,0.7))`,

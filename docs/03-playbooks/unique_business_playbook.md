@@ -145,7 +145,7 @@ Rows are shifts; columns are paths ordered from light to deep; each product is a
 
 **4. Price follows the depth of the shift,** not the volume of content. More hours, modules or pages never raise a price; a deeper, verified shift does. A cheaper path to the same shift is a better product, not a cheaper one. This is the 4 Levels of Value (v4.5) made concrete; bands in [shift-offer.md §7](../templates/shift-offer.md).
 
-**5. A meta-product.** One container where new technologies are born from live people. Sasha, of his own Mastermind: «Мастермайнд — мета-продукт. Там рождаются новые технологии, и цикл крутится на людях в живой реальности.» (The Mastermind is a meta-product. New technologies are born there, and the cycle turns on people in living reality.) It is a path on the map and, at the same time, the engine that adds new rows to it.
+**5. A meta-product.** One container where new technologies are born from live people. Sasha, of his own Mastermind (now FMF, 2026-11-24): «Мастермайнд — мета-продукт. Там рождаются новые технологии, и цикл крутится на людях в живой реальности.» (The Mastermind is a meta-product. New technologies are born there, and the cycle turns on people in living reality.) It is a path on the map and, at the same time, the engine that adds new rows to it.
 
 **6. The moat.** Steps can be copied; the vision they carry is born only with the founder. Open blueprints cost nothing (Principle 2) because what cannot be copied is the seeing that produces the next technology.
 

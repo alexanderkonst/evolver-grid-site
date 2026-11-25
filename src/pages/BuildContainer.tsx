@@ -1,5 +1,6 @@
 /**
- * /products/built — the BUILT container, in the moon/neon look shared with /products/vector.
+ * /products/pmf — PMF (formerly the BUILT container): "Early signal of Product-Market Fit in One
+ * Moon Cycle, Guaranteed". Moon/neon look shared with /products/vector.
  * Visual tokens and shared classes live in TheVector.css (scoped to `.vector-page`);
  * BuildContainer.css holds only what is specific to this page.
  * Copy source of truth: docs/04-products/the_build_container.md.
@@ -16,7 +17,7 @@ import "./TheVector.css";
 import "./BuildContainer.css";
 
 const WHATSAPP_URL = "https://wa.me/14157073432?text=" +
-  encodeURIComponent("Hi Aleksandr Konstantinov! The BUILT container lands for me, and I wanted to get in touch.");
+  encodeURIComponent("Hi Aleksandr Konstantinov! PMF lands for me, and I wanted to get in touch.");
 
 const WEEKS = [1, 2, 3, 4] as const;
 const GROUP_PRICE = "$1,111";
@@ -44,7 +45,7 @@ const BuildContainer = () => {
 
   return (
     <>
-      <SEO title={t("thebuild.seoTitle")} description={t("thebuild.seoDescription")} path="/products/built" />
+      <SEO title={t("thebuild.seoTitle")} description={t("thebuild.seoDescription")} path="/products/pmf" />
       <main className="product-landing vector-page build-page relative min-h-dvh font-sans">
         <div className="vector-sky" aria-hidden="true" />
         <div className="vector-inner relative max-w-2xl mx-auto px-5 md:px-6 py-16 space-y-14">

@@ -1,6 +1,8 @@
-# The BUILT Container — 1-Month (4-Week) Strategic Advisory, Group or Individual
+# PMF — Early signal of Product-Market Fit in One Moon Cycle, Guaranteed (formerly the BUILT Container) — Group or Individual
 
-> **Naming:** renamed **BUILD → BUILT** on July 12, 2026 (Day 122), Sasha's call. Past tense = done-state: the offer packaged, the business launched. Route: `/products/built`.
+> **Naming (2026-11-24, Sasha):** renamed **BUILT → PMF**, tagline "Early signal of Product-Market Fit in One Moon Cycle, Guaranteed"; the guarantee text is unchanged. Route: `/products/pmf` (`/products/built` and `/products/build` redirect). The history below keeps the name used at the time.
+
+> **Naming:** renamed **BUILD → BUILT** on July 12, 2026 (Day 122), Sasha's call. Past tense = done-state: the offer packaged, the business launched. Route then: `/products/built`.
 
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 > **Status:** v1.3 (2026-11-18). v1.0 — first offer ever sent July 10, 2026 (Day 120) to Nia Leak. This file holds the canonical offer copy as sent, its origin, and the copy laws it obeys.
@@ -70,7 +72,7 @@ Woven from harvested threshold language (Threshold Language Harvest, `marketing_
 
 ## Ladder position
 
-Free Top Talent reveal → $37 amplification → $555 Productize Yourself Session → **$1,111 BUILT container, group (this) · $4,444 individually with Sasha (this)** → Level-4 anchor offer (to be designed, money-week anchor rule).
+Free Top Talent reveal → $37 amplification → $555 Productize Yourself Session → **$1,111 PMF (formerly BUILT), group (this) · $4,444 individually with Sasha (this)** → Level-4 anchor offer (to be designed, money-week anchor rule).
 
 
 ---

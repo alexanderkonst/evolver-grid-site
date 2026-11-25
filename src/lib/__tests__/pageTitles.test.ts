@@ -34,7 +34,7 @@ describe("getPageTitle", () => {
   it("names every Journey place in the tab as the village names it (WP-15)", () => {
     expect(getPageTitle("/game/me/overview")).toBe("Home");
     expect(getPageTitle("/game/your-ai")).toBe("Your AI");
-    expect(getPageTitle("/build/mastermind")).toBe("Mastermind");
+    expect(getPageTitle("/build/fmf")).toBe("FMF");
   });
 
   it("returns Playbook for /playbook", () => {

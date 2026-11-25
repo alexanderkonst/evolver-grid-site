@@ -136,8 +136,8 @@
         "alt": "Una larga sala abovedada de coworking: escritorios de madera con lámparas de latón y laptops, pinturas de geometría sagrada en las paredes, luces colgantes y una ventana a la noche estrellada"
       },
       "fire-circle": {
-        "name": "Mastermind",
-        "line": "Tu círculo Mastermind.",
+        "name": "FMF",
+        "line": "Tu círculo FMF.",
         "alt": "Una sala con cúpula y un cuenco de fuego de latón en el centro, asientos estampados en círculo a su alrededor, altas columnas blancas, cristales y velas, y un óculo luminoso arriba"
       },
       "academy": {
@@ -176,7 +176,7 @@
       "first-sale": "Se abre cuando tu oferta está guardada. Dentro: la prueba en el mundo de que alguien te paga por ser tú."
     },
     "live": {
-      "fire-circle": "En vivo ahora: Mastermind, 9–10 de nov.",
+      "fire-circle": "En vivo ahora: FMF, de lunes a miércoles.",
       "academy": "En vivo ahora: webinar, mié 4 de nov."
     },
     "result": {
@@ -194,7 +194,7 @@
       "map-assets": "tus habilidades, experiencia y red están en un solo inventario.",
       "build-business": "tu frase de singularidad y tu eslogan están guardados.",
       "webinar": "estuviste en la sesión en vivo del 4 de nov.",
-      "mastermind": "participaste en el Mastermind, 9–10 de nov.",
+      "mastermind": "participaste en FMF, lunes y miércoles.",
       "mastery-practice": "ya quedó atrás tu día veintiuno de práctica.",
       "first-price": "un cliente real ya escuchó tu precio.",
       "first-sale": "una persona real te pagó por tu oferta."
@@ -248,21 +248,21 @@
       },
       "webinar": {
         "eyebrow": "Academia · Paso 8",
-        "headline": "Únete a la sesión gratuita de Mastermind (4 de nov)",
+        "headline": "Únete a la sesión gratuita de FMF (4 de nov)",
         "silhouette": "Una sesión gratuita en vivo con otras personas en el mismo camino. Ven y vete con un paso por dar.",
         "verb": "Unirme a la sesión gratuita",
-        "task": "Únete a la sesión gratuita de Mastermind el miércoles 4 de nov. Después vuelve y di que estuviste.",
+        "task": "Únete a la sesión gratuita de FMF el miércoles 4 de nov. Después vuelve y di que estuviste.",
         "didIt": "Estuve en la sesión",
         "link": "Abrir la página de la sesión"
       },
       "mastermind": {
-        "eyebrow": "Mastermind · Paso 9",
-        "headline": "Mastermind 9–10 de nov",
-        "silhouette": "Dos días en círculo con otras personas que construyen. Te vas con un paso real por dar esta semana.",
-        "verb": "Unirme al Mastermind",
-        "task": "Únete al Mastermind el 9–10 de nov. Cuando pasen los dos días, vuelve y di que estuviste.",
-        "didIt": "Estuve en el Mastermind",
-        "link": "Abrir la página del Mastermind"
+        "eyebrow": "FMF · Paso 9",
+        "headline": "FMF: descubre tu Founder-Market Fit en tres días",
+        "silhouette": "Tres días en círculo con otras personas que construyen, en vivo lunes y miércoles. Te vas con un paso real por dar esta semana.",
+        "verb": "Unirme a FMF",
+        "task": "Únete a FMF en sus próximas fechas (lunes y miércoles, al inicio de un ciclo lunar). Cuando terminen las dos sesiones, vuelve y di que estuviste.",
+        "didIt": "Estuve en FMF",
+        "link": "Abrir la página de FMF"
       },
       "mastery-practice": {
         "eyebrow": "Academia · Paso 10",
@@ -2117,7 +2117,7 @@
         "label": "Entrar a la cabina"
       },
       "founderMastermind": {
-        "label": "Founder Mastermind"
+        "label": "FMF"
       },
       "playbook": {
         "label": "Playbook"
@@ -6225,8 +6225,8 @@
       },
       "step4": {
         "step": "Paso 4",
-        "title": "BUILT: Construye tu producto, empaquétalo, define la estrategia de distribución, elige tu modelo de negocio",
-        "duration": "3 semanas, junto a otros emprendedores de impacto consciente",
+        "title": "PMF: Construye tu producto, empaquétalo, define la estrategia de distribución, elige tu modelo de negocio",
+        "duration": "Un ciclo lunar, junto a otros emprendedores de impacto consciente",
         "price": "$1,111"
       },
       "step5": {
@@ -6437,8 +6437,8 @@
     "leaveWithConvergence": "Consigue todo esto en una sola sesión, en vez de comprar fragmentos a coaches y consultores durante años.",
     "leaveWithDisclaimer": "Una sesión de trabajo de 2 horas que produce la sección principal de la landing page para tu negocio.",
     "priceAttribution": "Private Founder-Market Fit Session · 1:1 · 2 horas",
-    "offerDistinction": "Private = 1:1 conmigo. ¿Prefieres en grupo? El Founder-Market Fit Discovery Mastermind es un grupo pequeño, 2 sesiones, $222.",
-    "offerDistinctionLink": "Ver el Mastermind grupal →",
+    "offerDistinction": "Private = 1:1 conmigo. ¿Prefieres en grupo? FMF es el grupo: Descubre tu Founder-Market Fit en tres días, garantizado. Grupo pequeño, en vivo lunes y miércoles, $222.",
+    "offerDistinctionLink": "Ver FMF (grupo) →",
     "priceCompareHeading": "Junto a qué se sostienen estos $555.",
     "priceCompare1": "Un fin de semana de retiro cuesta más que esto, y no entrega el avance en claridad que buscas.",
     "priceCompare2": "Lo que te llevas es tuyo: tu don en palabras que puedes decir de un solo aliento, listo para compartir.",
@@ -7917,14 +7917,14 @@
     "featured": {
       "liveSession": {
         "when": "Mié 4 nov · 9:00 CDMX",
-        "title": "Sesión gratuita del Mastermind",
+        "title": "Sesión gratuita de FMF",
         "price": "Gratis · sesión en vivo",
         "cta": "Regístrate en Luma"
       },
       "mastermind": {
-        "when": "9–10 nov",
-        "title": "Founder-Market-Fit Mastermind",
-        "price": "2 sesiones en vivo · $222",
+        "when": "Lun 14 dic + Mié 16 dic",
+        "title": "FMF: Descubre tu Founder-Market Fit en tres días, garantizado",
+        "price": "Lunes + miércoles en vivo · $222",
         "cta": "Ver detalles"
       }
     }
@@ -8068,7 +8068,7 @@
     },
     "zog": {
       "name": "Descubrimiento de la Zona de Genialidad",
-      "badge": "$37 en el sitio · $222–333 individual · $1,000 taller para equipos",
+      "badge": "$37 en el sitio · $333 individual · $1,000 taller para equipos",
       "line": "Ves tu principal talento innato con un nuevo nivel de claridad y lo nombras con palabras exactas.",
       "body": "Ves tu principal talento innato con más claridad que antes, lo nombras con precisión y obtienes una nueva claridad sobre cómo monetizarlo. Esa claridad acelera el crecimiento de tu maestría en tu propio camino.",
       "cta": "Ver el programa",
@@ -8076,10 +8076,11 @@
     },
     "fmf": {
       "name": "Founder-Market Fit",
-      "badge": "Private Session: 1:1, 2 horas, $555 · Mastermind grupal: grupo pequeño, 2 sesiones, $222",
+      "badge": "Private Session: 1:1, 2 horas, $555 · FMF (grupo): 3 días, en vivo lunes + miércoles, $222",
       "line": "Antes se llamaba Productize Yourself. En 2 horas encuentras tu founder-market fit.",
       "body": "Juntos nombramos el valor que creas simplemente siendo tú, tu cliente ideal, su dolor, la promesa transformacional, el contorno del producto y tu propuesta única de valor en una sola frase.",
-      "cta": "Reservar la Private Session"
+      "cta": "Reservar la Private Session",
+      "cta2": "Ver FMF (grupo)"
     },
     "pmfCore": {
       "name": "Núcleo de product-market fit",
@@ -8089,16 +8090,17 @@
       "cta": "Qué pasa en la sesión"
     },
     "pmf": {
-      "name": "Product-Market Fit",
-      "badge": "$5,555 individual · $1,111 en grupo · o $5,555 a partir de tus primeros $55,555 de ingresos",
-      "line": "Un producto escalable construido en un mes.",
-      "body": "En un mes construimos la estrategia de marketing y ventas, el MVP, la prueba beta y la primera venta."
+      "name": "PMF",
+      "badge": "$1,111 en grupo · $4,444 individual",
+      "line": "Primera señal de Product-Market Fit en un ciclo lunar, garantizado.",
+      "body": "En un ciclo lunar construimos la estrategia de marketing y ventas, el MVP, la prueba beta y la primera venta.",
+      "cta": "Ver PMF"
     },
     "evolution": {
       "name": "Entrepreneur's Evolution",
-      "badge": "$2,222 individual",
+      "badge": "$2,222 individual · $444 por persona en grupo (desde 5)",
       "line": "Acompañamiento en el viaje del héroe: un programa de 2 meses.",
-      "body": "Ocho sesiones semanales en línea de hora y media, más acompañamiento por chat. Estructura y acelera la transición profesional, para que construir tu propia marca (un negocio único) tome meses y no años.",
+      "body": "Ocho sesiones semanales en línea de 75 minutos, más acompañamiento por chat. Estructura y acelera la transición profesional, para que construir tu propia marca (un negocio único) tome meses y no años.",
       "cta": "Ver el programa"
     },
     "vector": {
@@ -8206,9 +8208,9 @@
     }
   },
   "thebuild": {
-    "seoTitle": "El Contenedor BUILT: un mes hasta un negocio en marcha",
+    "seoTitle": "PMF: Primera señal de Product-Market Fit en un ciclo lunar, garantizado",
     "seoDescription": "En un mes: de «¿cuál es mi oferta única?» a vender tu oferta insignia empaquetada a personas reales. Asesoría estratégica privada, desde $1,111.",
-    "eyebrow": "El Contenedor BUILT · 1 mes",
+    "eyebrow": "PMF · Primera señal de Product-Market Fit en un ciclo lunar, garantizado",
     "h1": "En un mes pasas de «¿cuál es mi oferta única?» a vender tu oferta insignia empaquetada a personas reales.",
     "sauce": "El ingrediente secreto eres tú :) Y avanzamos rápido y con cuidado gracias a este combo: mi experiencia vivida + los flujos de IA que viste en nuestra sesión + mi acompañamiento.",
     "w1Label": "Semana 1",
@@ -8236,7 +8238,7 @@
     "cta": "Escribir a Aleksandr Konstantinov por WhatsApp",
     "routerBefore": "¿Aún no hiciste la sesión Founder-Market Fit?",
     "routerLink": "Empieza ahí",
-    "routerAfter": ": el BUILT continúa justo donde ella termina.",
+    "routerAfter": ": PMF continúa justo donde ella termina.",
     "storiesEyebrow": "Personas reales, caminos reales",
     "storyFounder": "Uno es fundador de una startup. Llegó con un equipo ya formado y demasiadas direcciones de producto intentadas a la vez, con prisa. Lo dijo sin rodeos: “tomo hipótesis al azar y construyo un producto al azar que no es del todo mío”. Encontramos su una dirección y su gente: ejecutivos que adoptan IA. Ahora hace exactamente eso. Un cliente de asesoría pagado, un proyecto de consultoría encima de eso, más acuerdos en marcha. Hace dos semanas me dijo: “establecimos un corredor estratégico para construir un negocio que nunca había tenido. Siento una confianza muy grande”.",
     "storyCoach": "La otra es coach de liderazgo para mujeres, con varias modalidades de sanación. Lleva conmigo un par de años. En cada conversación gana más claridad sobre su cliente ideal, y entonces llega exactamente ese tipo de negocio. Ese es el punto entero: se abre más oportunidad cuanto más se abre la claridad. Su negocio crece, no a base de más esfuerzo forzado.",
@@ -8390,7 +8392,7 @@
     "outNoteBefore": "Для совместной работы над твоим конкретным бизнесом смотри продукт ",
     "outFmfLink": "Founder-Market Fit",
     "outNoteMid": ", а если он уже найден, продукт ",
-    "outBuiltLink": "BUILT",
+    "outBuiltLink": "PMF",
     "outNoteAfter": ".",
     "out1": "УТП, оффер, позиционирование",
     "out2": "рынок, клиенты, цены, продукт",
@@ -8441,7 +8443,7 @@
     "myPartLabel": "Mi parte",
     "myPartBody": "Yo me encargo de todo: la sesión, los materiales, el Zoom, la grabación. Después recibes la grabación y se queda con tu comunidad como un activo. Tras el taller, hago seguimiento personal a quien quiera ir más lejos.",
     "economicsLabel": "La economía",
-    "economicsBody": "Ganas un tercio de las primeras tres compras que cualquiera de tus miembros haga conmigo, desde el perfil de $37 hasta la sesión de $555 y el contenedor de $1,111. Eso es hasta $568 por persona. Registro cada compra de tu comunidad y te envío un resumen simple más el pago cada mes, por el método que prefieras. Puedes verlo todo, en cualquier momento.",
+    "economicsBody": "Ganas un tercio de las primeras tres compras que cualquiera de tus miembros haga conmigo, desde el perfil de $37 hasta la sesión de $555 y el contenedor PMF de $1,111. Eso es hasta $568 por persona. Registro cada compra de tu comunidad y te envío un resumen simple más el pago cada mes, por el método que prefieras. Puedes verlo todo, en cualquier momento.",
     "noSellingLabel": "Sin ventas en la sala",
     "noSellingBody": "El taller es puro valor. En los últimos minutos digo una sola frase sobre cómo profundizar, y lo declaro abiertamente desde el inicio. La confianza con tu gente queda intacta. Ese es todo el punto del diseño.",
     "highlight1": "Todo a favor.",
@@ -9148,10 +9150,10 @@
         "cta": "Ver Private Founder-Market Fit Session"
       },
       "built": {
-        "name": "BUILT",
-        "meta": "3 semanas · $1,111",
+        "name": "PMF",
+        "meta": "1 ciclo lunar · $1,111 en grupo · $4,444 1:1",
         "desc": "Construye el producto, empaquétalo y elige el modelo de negocio, junto a otros fundadores haciendo lo mismo.",
-        "cta": "Ver BUILT"
+        "cta": "Ver PMF"
       }
     },
     "close": {
@@ -9175,7 +9177,7 @@
       "heading": "Esto es lo que realmente es.",
       "para1": "Encuentro el patrón que sostiene todo lo que has construido y le doy palabras exactas. Una frase que lo contiene todo. Quienes escuchan su frase por primera vez suelen quedarse callados un segundo. Después preguntan cuánto cuesta.",
       "para2": "El diagnóstico es gratis. Todo. El quiz te muestra tu capítulo. La Llamada de Dirección nombra tu transición y la dirección que sigue, 45 minutos, sin costo, y te diré con franqueza si no soy la persona indicada para esto.",
-      "para3": "El trabajo pagado empieza donde el software y una llamada gratuita honestamente terminan: convertir la frase en un negocio. Dos horas para integrar tus proyectos “sin relación” en una sola dirección clara, $555. Tres semanas para construir la oferta y tener las primeras diez conversaciones reales, $1,111."
+      "para3": "El trabajo pagado empieza donde el software y una llamada gratuita honestamente terminan: convertir la frase en un negocio. Dos horas para integrar tus proyectos “sin relación” en una sola dirección clara, $555. Un ciclo lunar (PMF) para construir la oferta y tener las primeras diez conversaciones reales, $1,111 en grupo."
     },
     "whoFor": {
       "eyebrow": "Para quién es esto",
@@ -9466,7 +9468,7 @@
         "quest-board": "Elige tu próxima misión.",
         "cafe": "Conoce gente, por trabajo o simplemente.",
         "coworking": "Encuentra socios para el trabajo.",
-        "fire-circle": "Únete a tu círculo de Mastermind.",
+        "fire-circle": "Únete a tu círculo FMF.",
         "academy": "Crece en lo que más importa.",
         "workshop": "Crea tu oferta.",
         "market": "Abre tu tienda.",

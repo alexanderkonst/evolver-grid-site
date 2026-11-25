@@ -25,12 +25,12 @@ import {
   type Period,
 } from "@/lib/circles";
 import { circleErrorMessage, fetchCafeCircles, type Circle, type MyRsvp } from "@/lib/circlesApi";
-import { MASTERMIND_LIVE_SESSION_URL, MASTERMIND_PAGE_PATH } from "@/data/mastermindSession";
+import { FMF_LIVE_SESSION_URL, FMF_PAGE_PATH, formatFmfDates, nextFmfDates } from "@/data/fmfSession";
 
-/** The two real events of the Mastermind launch; their copy is `eventsSpace.featured.<id>.*`. */
+/** The two real events of the FMF launch; their copy is `eventsSpace.featured.<id>.*`. */
 const FEATURED_EVENTS = [
-  { id: "liveSession", href: MASTERMIND_LIVE_SESSION_URL, external: true },
-  { id: "mastermind", href: MASTERMIND_PAGE_PATH, external: false },
+  { id: "liveSession", href: FMF_LIVE_SESSION_URL, external: true },
+  { id: "mastermind", href: FMF_PAGE_PATH, external: false },
 ] as const;
 
 type Faces = Record<string, { avatarUrl: string | null; name: string; userId: string }[]>;
@@ -231,7 +231,9 @@ const EventsSpace = () => {
               const body = (
                 <>
                   <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                    {t(`eventsSpace.featured.${event.id}.when`)}
+                    {event.id === "mastermind"
+                      ? formatFmfDates(nextFmfDates())
+                      : t(`eventsSpace.featured.${event.id}.when`)}
                   </p>
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     {t(`eventsSpace.featured.${event.id}.title`)}

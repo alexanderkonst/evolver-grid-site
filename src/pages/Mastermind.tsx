@@ -1,6 +1,8 @@
 /**
- * /mastermind — public landing for the Founder-Market Fit Discovery
- * Mastermind (Nov 9–10, 2026).
+ * /build/fmf — public landing for FMF: "Discover Founder-Market Fit in Three Days, Guaranteed"
+ * (renamed from the Founder-Market Fit Discovery Mastermind, Sasha 2026-11-24).
+ * One FMF per lunar cycle: live on the first Monday on/after the new moon and the Wednesday
+ * after it. Dates: src/data/fmfSession.ts. /build/mastermind and /mastermind redirect here.
  *
  * Layout mirrors /ignite (parchment field, GameShellV2 with hideLogo,
  * Cormorant headline, house CTA grammar). Copy below is a DRAFT and will be
@@ -20,7 +22,14 @@ import geniusLogo from "@/assets/ignite-logo.png";
 import { Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
 import { tr } from "@/lib/villageCopy";
-import { MASTERMIND_LIVE_SESSION_URL } from "@/data/mastermindSession";
+import {
+  FMF_DATES,
+  FMF_LIVE_SESSION_URL as MASTERMIND_LIVE_SESSION_URL,
+  FMF_PAGE_PATH,
+  FMF_TAGLINE,
+  formatFmfDates,
+  nextFmfDates,
+} from "@/data/fmfSession";
 import KindCircles from "@/components/circles/KindCircles";
 import type { CircleKind } from "@/lib/circles";
 import type { CSSProperties } from "react";
@@ -31,24 +40,29 @@ const MASTERMIND_CIRCLE_KINDS: CircleKind[] = ["mastermind", "weekly_circle"];
 /* ─── Constants: copy, price, CTA (single source of truth) ─── */
 const MASTERMIND_PRICE = "$222";
 /** Set to the checkout URL once decided. Empty → free live-session registration. */
-// Stripe payment link from Sasha, 2026-10-30 (Founder-Market Fit Mastermind, $222, live mode).
+// Stripe payment link from Sasha, 2026-10-30 (made for the Founder-Market Fit Mastermind, now FMF; $222, live mode).
 const MASTERMIND_CTA_URL = "https://buy.stripe.com/14AcN5aIAbCr8idh1CdEs0I";
 
+const NEXT_FMF = nextFmfDates();
+
 const MASTERMIND_COPY = {
-  eyebrow: "Founder-Market Fit Discovery Mastermind · Nov 9–10",
+  eyebrow: `FMF · ${FMF_TAGLINE}`,
   // Slogan headline removed (Sasha 2026-10-30 22:43); `title` is the name, used for og:title only.
-  title: "Founder-Market Fit Discovery Mastermind",
+  title: `FMF: ${FMF_TAGLINE}`,
   /** The product/method name, for the event schema and anywhere a name (not a promise) is needed. */
-  productName: "Founder-Market Fit Discovery Mastermind",
+  productName: "FMF",
   promise:
-    "Two live sessions in a small group. You find where your gift meets the people who need it, and leave with a clear offer for your first clients.",
+    "Three days in a small group, live on Monday and Wednesday. You find where your gift meets the people who need it, and leave with a clear offer for your first clients.",
   formatLabel: "Format",
   format: [
-    "Small group, 2 sessions, $222",
-    "2 × 90 min live (Nov 9 and Nov 10)",
+    "Small group, 3 days, $222",
+    "2 × 90 min live: Monday and Wednesday",
     "7 days of integration in the group",
     "Recording of both sessions included.",
   ],
+  datesLabel: "Next dates",
+  datesNote: "One FMF per lunar cycle: it opens on the first Monday after the new moon. Mexico City time.",
+  nextTag: "Next",
   forLabel: "Who it's for",
   forWho: "Healers, coaches, builders, hosts and storytellers who carry a gift and have no sharp offer yet. Founders too.",
   flowLabel: "How it flows",
@@ -59,20 +73,19 @@ const MASTERMIND_COPY = {
     { name: "Action", text: "Offer and first contacts." },
     { name: "Integration", text: "One week in the group." },
   ],
-  priceLabel: "Early bird · group",
+  priceLabel: "Group",
   priceNote: "Small group · 2 live sessions · recording included.",
   ctaLabel: "Reserve my place",
   /** Shown on the CTA while MASTERMIND_CTA_URL is empty. */
   ctaLabelPending: "Join the free live session",
   pendingNote: "Registration opens soon.",
   distinction:
-    "This is the group (small group, 2 sessions, $222). Prefer 1:1? The Private Founder-Market Fit Session is 1:1, 2 hours, $555.",
+    "This is the group (small group, 3 days, $222). Prefer 1:1? The Private Founder-Market Fit Session is 1:1, 2 hours, $555.",
   distinctionLink: "See the Private Session",
   bridgeLead: "Want to meet me first?",
   bridgeLink: "Join the live session on Wed Nov 4, 9:00 CDMX",
-  seoTitle: "Founder-Market Fit Discovery Mastermind — Nov 9–10 | Find Your Top Talent",
-  seoDescription:
-    "Two live 90-minute sessions (Nov 9 and 10) plus a week of integration. Find where your uniqueness meets the market and leave with a clear offer for your first clients.",
+  seoTitle: `FMF: ${FMF_TAGLINE} | Find Your Top Talent`,
+  seoDescription: `${FMF_TAGLINE}. Next: ${formatFmfDates(NEXT_FMF)}. Two live 90-minute sessions plus a week of integration. Find where your uniqueness meets the market and leave with a clear offer for your first clients.`,
 } as const;
 
 const MASTERMIND_CTA_HREF = MASTERMIND_CTA_URL || MASTERMIND_LIVE_SESSION_URL;
@@ -110,15 +123,15 @@ const Mastermind = () => {
       <SEO
         title={c.seoTitle}
         description={c.seoDescription}
-        path="/mastermind"
+        path={FMF_PAGE_PATH}
         ogTitle={c.title}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Event",
           name: c.productName,
           description: c.promise,
-          startDate: "2026-11-09",
-          endDate: "2026-11-10",
+          startDate: NEXT_FMF.monday,
+          endDate: NEXT_FMF.wednesday,
           eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
           organizer: { "@type": "Person", name: "Aleksandr Konstantinov" },
           offers: {
@@ -192,6 +205,30 @@ const Mastermind = () => {
 
             <Ornament />
 
+            {/* DATES: one FMF per lunar cycle (src/data/fmfSession.ts) */}
+            <section className="space-y-5 max-w-md mx-auto" aria-label={c.datesLabel} id="fmf-dates">
+              <SectionLabel>{c.datesLabel}</SectionLabel>
+              <ul className="space-y-2.5 text-left">
+                {FMF_DATES.filter((d) => d.wednesday >= NEXT_FMF.wednesday).map((d) => (
+                  <li key={d.monday} className="flex items-baseline gap-2.5">
+                    <span className="text-sm bg-clip-text text-transparent" style={LABEL_TEXT_STYLE}>→</span>
+                    <span
+                      className="text-sm sm:text-base leading-relaxed"
+                      style={{ color: "var(--skin-text-primary, #0a1628)" }}
+                    >
+                      {formatFmfDates(d)}
+                      {d.monday === NEXT_FMF.monday ? <strong className="font-semibold"> · {c.nextTag}</strong> : null}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm text-center leading-relaxed" style={BODY_SERIF}>
+                {c.datesNote}
+              </p>
+            </section>
+
+            <Ornament />
+
             {/* FLOW */}
             <section className="space-y-5 max-w-md mx-auto" aria-label={c.flowLabel}>
               <SectionLabel>{c.flowLabel}</SectionLabel>
@@ -254,8 +291,8 @@ const Mastermind = () => {
               .
             </p>
 
-            {/* Circles hosted by villagers: the Café's Mastermind and Weekly circles (circles spec §9.1). Renders nothing until one exists. */}
-            <KindCircles kinds={MASTERMIND_CIRCLE_KINDS} heading="Mastermind circles in the Café" />
+            {/* Circles hosted by villagers: the Café's mastermind-kind and Weekly circles (circles spec §9.1). Renders nothing until one exists. */}
+            <KindCircles kinds={MASTERMIND_CIRCLE_KINDS} heading="Peer circles in the Café" />
 
             {/* BRIDGE */}
             <p className="text-center text-sm italic leading-relaxed" style={BODY_SERIF}>

@@ -695,8 +695,12 @@ const App = () => (
                   <Route path="/ignite" element={<IgniteSession />} />
                   {/* Oct 23 (Sasha): Mastermind lives in the BUILD space so the rail + pane 2
                       render. /mastermind stays alive for old email/Luma links. */}
-                  <Route path="/build/mastermind" element={<Mastermind />} />
-                  <Route path="/mastermind" element={<Navigate to="/build/mastermind" replace />} />
+                  {/* 2026-11-24 (Sasha): the Mastermind is now FMF. /build/fmf is canonical;
+                      /build/mastermind, /mastermind and /fmf stay alive as redirects. */}
+                  <Route path="/build/fmf" element={<Mastermind />} />
+                  <Route path="/build/mastermind" element={<Navigate to="/build/fmf" replace />} />
+                  <Route path="/mastermind" element={<Navigate to="/build/fmf" replace />} />
+                  <Route path="/fmf" element={<Navigate to="/build/fmf" replace />} />
                   <Route path="/products" element={<ProductsPage />} />
                   {/* Day 130: Client Evolution Portal (Practitioner Node) landing — public. */}
                   <Route path="/products/evolution-portal" element={<EvolutionPortal />} />
@@ -705,13 +709,15 @@ const App = () => (
                   <Route path="/products/evolution-portal/karime" element={<EvolutionPortalKarime />} />
                   <Route path="/products/evolution-protocol" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/product/evolution-portal" element={<Navigate to="/products/evolution-portal" replace />} />
-                  <Route path="/products/built" element={<BuildContainer />} />
+                  {/* 2026-11-24 (Sasha): BUILT is now PMF. /products/built and /products/build redirect. */}
+                  <Route path="/products/pmf" element={<BuildContainer />} />
+                  <Route path="/products/built" element={<Navigate to="/products/pmf" replace />} />
                   <Route path="/products/crossing" element={<TheCrossing />} />
                   <Route path="/products/vector" element={<TheVector />} />
                   <Route path="/products/founder-read" element={<FounderRead />} />
                   <Route path="/products/pmf-core" element={<PmfCore />} />
                   <Route path="/communities" element={<CommunityWebinar />} />
-                  <Route path="/products/build" element={<Navigate to="/products/built" replace />} />
+                  <Route path="/products/build" element={<Navigate to="/products/pmf" replace />} />
                   {/* Day 133: plain-language data promise + legal companions. */}
                   <Route path="/data" element={<YourDataPlainly />} />
                   <Route path="/privacy" element={<PrivacyPolicy />} />

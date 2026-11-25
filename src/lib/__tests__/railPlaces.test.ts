@@ -12,7 +12,7 @@ describe("rail places", () => {
       "Your AI",
       "Café",
       "Co-working",
-      "Mastermind",
+      "FMF",
       "Academy",
       "Workshop",
       "Market",
@@ -37,7 +37,7 @@ describe("rail places", () => {
 
   it("lets the path decide for places that share a pane", () => {
     expect(activePlaceKey("/zone-of-genius/entry", "journey")).toBe("reception");
-    expect(activePlaceKey("/build/mastermind", "build")).toBe("fire-circle");
+    expect(activePlaceKey("/build/fmf", "build")).toBe("fire-circle");
     expect(activePlaceKey("/game/coop", "build")).toBe("town-hall");
   });
 

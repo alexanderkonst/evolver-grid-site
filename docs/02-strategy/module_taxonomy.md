@@ -161,7 +161,7 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 | **Trust/Legal** | Terms of Service | 0.9 | MVP | `/terms` |
 | **BUILD** | Evolution Portal (Practitioner Node) | 0.7 | Alpha | `/products/evolution-portal` |
 | **BUILD** | Evolution Portal — Karime variant | 0.5 | PoC (private, noindex) | `/products/evolution-portal/karime` |
-| **BUILD** | Build Container | 0.5 | PoC | `/products/built` |
+| **BUILD** | PMF (formerly Build Container / BUILT) | 0.5 | PoC | `/products/pmf` |
 | **Standalone** | Destiny | 0.5 | PoC — now public (auth requirement removed) | `/destiny` |
 | **BUY & SELL** | The Originals (v1, founder list) | 0.5 | PoC — precursor to Originals Index v2 | `/the-originals` |
 | **ME (seed)** | Quiz | 0.1 | **Specified, no code** — `docs/specs/quiz/quiz_product_spec.md` | — |
@@ -598,17 +598,17 @@ Concept  Prototype  PoC   Alpha   MVP  Commercial
 
 > Legacy `/products/evolution-protocol` and `/product/evolution-portal` redirect to the canonical path.
 
-#### Module: Build Container — v0.5 (NEW, added v3.3)
+#### Module: PMF (formerly Build Container / BUILT) — v0.5 (NEW, added v3.3; renamed 2026-11-24)
 
 | Field | Value |
 |-------|-------|
 | Version | **0.5** (PoC) |
 | Master Result | Idea with nowhere to live → contained BUILD-space product surface |
-| Start | `/products/built` |
+| Start | `/products/pmf` |
 | End | Container configured |
 | Dependencies | None |
 
-> Legacy `/products/build` redirects to `/products/built`.
+> Legacy `/products/build` and `/products/built` redirect to `/products/pmf` (2026-11-24).
 
 ---
 

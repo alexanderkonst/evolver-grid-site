@@ -273,7 +273,7 @@ const TitleScreen = () => {
   const items: MenuItem[] = [
     { key: "new", label: "New Game", hint: "Discover your Uniqueness", to: "/village/reception" },
     { key: "load", label: "Load Game", hint: "Continue your journey", to: loadTo },
-    { key: "multi", label: "Multiplayer", hint: "Mastermind & co-creation", to: "/build/mastermind" },
+    { key: "multi", label: "Multiplayer", hint: "FMF & co-creation", to: "/build/fmf" },
     // Sasha, 2026-11-02: ABOUT opens the Investor Room; TUTORIAL is gone from the menu.
     { key: "about", label: "About", hint: "The story · Investor Room", to: INVESTOR_HREF },
   ];

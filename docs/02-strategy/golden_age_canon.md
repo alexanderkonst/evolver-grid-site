@@ -143,7 +143,7 @@ Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [pr
 | Four glyphs, professionally drawn | notebook | B2-19 | Symbol set (double helix "6.3", Y-shape, polyhedron in circle, U-loop) `[?]`. |
 | Artifacts / products / clients | live, partial | `/my-artifacts`, `/game/marketplace/my-products` · B2-09 | Player inventory. |
 | Social network (profiles, filters, messaging) | live, partial | `/community/people`, `/:username` · B2-02 | See profiles, filter useful people; messaging is notebook only. |
-| Café · Co-working · Mastermind · Market | live | `/game/meet`, `/game/collaborate/*`, `/build/mastermind`, `/game/marketplace/*`; GoBY §13.1 | Meet, partner, circle, sell. |
+| Café · Co-working · FMF (formerly Mastermind) · Market | live | `/game/meet`, `/game/collaborate/*`, `/build/fmf`, `/game/marketplace/*`; GoBY §13.1 | Meet, partner, circle, sell. |
 | Town Hall / Venture Co-op | spec | GoBY J13 | Residents' income and voice. |
 | Gift Path progress line · Share card · Oracle Reading | spec | GoBY §20, §14.12a, §14.5 | Progress line, share, deep reveal. |
 | Lead magnets = free game levels | spec | GoBY §6 · B1-22 | Free parts of the game as entry. |

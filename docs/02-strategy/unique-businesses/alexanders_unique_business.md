@@ -2,6 +2,8 @@
 
 # Alexander's Unique Business
 
+> **Names (Sasha, 2026-11-24):** the business-creation Mastermind is now **FMF**, "Discover Founder-Market Fit in Three Days, Guaranteed" (`/build/fmf`); the BUILT / BUILD container is now **PMF**, "Early signal of Product-Market Fit in One Moon Cycle, Guaranteed" (`/products/pmf`). Old routes redirect. Older entries below keep the names used at the time. Canonical names, prices and FMF dates: [product_brief.md §0](../../04-products/product_brief.md).
+
 > *© 2026 Alexander Konstantinov · [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)*
 
 > *April 3, 2026 · v8.0 — Declaration Phase*

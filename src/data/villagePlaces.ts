@@ -14,6 +14,10 @@
 
 import type { PlaceInput, PlaceRule } from "@/lib/placeState";
 import { getRegistryModule } from "@/data/modules";
+import { FMF_PAGE_PATH, fmfLiveWindows } from "@/data/fmfSession";
+
+/** FMF live windows, one per lunar cycle (src/data/fmfSession.ts). */
+const FMF_WINDOWS = fmfLiveWindows();
 
 /** Start route of a module, read from the module registry (src/data/modules.ts), the one source of module data. */
 const moduleRoute = (slug: string): string => {
@@ -158,7 +162,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
     name: "Café",
     line: "Meet people, professionally or simply.",
     to: "/game/meet",
-    // Open to guests: the Café holds the webinar (Nov 4) and the Mastermind invite, which a
+    // Open to guests: the Café holds the webinar (Nov 4) and the FMF invite, which a
     // visitor must be able to see before they have a character. The personal parts (create an
     // event, RSVPs) stay behind sign-in on their own routes.
     rule: {},
@@ -192,16 +196,16 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   },
   {
     key: "fire-circle",
-    name: "Mastermind",
-    line: "Your Mastermind circle.",
-    to: "/build/mastermind",
+    name: "FMF",
+    line: "Your FMF circle.",
+    to: FMF_PAGE_PATH,
     rule: {
-      // Mastermind sessions on Nov 9 and Nov 10 (src/pages/Mastermind.tsx). The session
-      // times are not in the code, so the window is the two days, Mexico City time.
+      // FMF (formerly the Mastermind), one per lunar cycle: Monday to Wednesday, Mexico City
+      // (src/data/fmfSession.ts). Session times are not in the code, so each window is the three days.
       live: {
-        from: "2026-11-09T00:00:00-06:00",
-        until: "2026-11-11T00:00:00-06:00",
-        line: "Live now: Mastermind, Nov 9–10.",
+        ...FMF_WINDOWS[0],
+        also: FMF_WINDOWS.slice(1),
+        line: "Live now: FMF, Monday to Wednesday.",
         key: "village.live.fire-circle",
       },
     },

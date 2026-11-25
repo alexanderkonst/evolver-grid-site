@@ -49,7 +49,7 @@ const statesOf = (save: ReturnType<typeof saveWith>) =>
   Object.fromEntries(VILLAGE_PLACES.map((p) => [p.key, placeState(p, save)])) as Record<VillagePlaceKey, PlaceStateName>;
 
 describe("placeState: unlock order (§14.3)", () => {
-  it("a guest sees Reception next, Academy, Café, Mastermind and Your AI open, everything else closed", () => {
+  it("a guest sees Reception next, Academy, Café, FMF and Your AI open, everything else closed", () => {
     const s = statesOf(saveWith([]));
     expect(s.reception).toBe("next");
     expect(s.academy).toBe("open");
@@ -180,10 +180,15 @@ describe("placeState: live", () => {
     expect(placeState(place("academy"), before)).toBe("open");
   });
 
-  it("the Mastermind is live on the Mastermind days, Nov 9 and 10", () => {
-    expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-09T18:00:00Z") }))).toBe("live");
-    expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-10T18:00:00Z") }))).toBe("live");
-    expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-11T07:00:00Z") }))).toBe("open");
+  it("FMF is live Monday to Wednesday of each lunar cycle (Mexico City), e.g. Dec 14–16, 2026", () => {
+    const at = (iso: string) => placeState(place("fire-circle"), saveWith([], { now: new Date(iso) }));
+    expect(at("2026-12-13T23:59:00-06:00")).toBe("open");
+    expect(at("2026-12-14T10:00:00-06:00")).toBe("live");
+    expect(at("2026-12-15T10:00:00-06:00")).toBe("live");
+    expect(at("2026-12-16T22:00:00-06:00")).toBe("live");
+    expect(at("2026-12-17T00:00:00-06:00")).toBe("open");
+    // a later cycle, through `also`
+    expect(at("2027-03-08T10:00:00-06:00")).toBe("live");
   });
 });
 
@@ -205,7 +210,7 @@ describe("closed lines come from data (§14.3)", () => {
     }
   });
 
-  it("only Reception, Academy, Mastermind, Café and Your AI are open for a guest", () => {
+  it("only Reception, Academy, FMF, Café and Your AI are open for a guest", () => {
     const open = VILLAGE_PLACES.filter((p) => !p.rule.opens).map((p) => p.key);
     expect(open.sort()).toEqual(["academy", "cafe", "fire-circle", "oracle", "reception"]);
   });

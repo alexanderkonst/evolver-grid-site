@@ -361,9 +361,9 @@ const HomeLandingPage = () => {
               </div>
             </a>
 
-            {/* BUILT */}
+            {/* PMF (formerly BUILT) */}
             <a
-              href="/products/built"
+              href="/products/pmf"
               className="liquid-glass rounded-2xl px-4 py-3.5 flex items-center justify-between gap-3 transition-transform hover:scale-[1.01] active:scale-[0.99]"
             >
               <div className="min-w-0">

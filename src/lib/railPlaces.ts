@@ -54,7 +54,7 @@ const under = (pathname: string, base: string) => pathname === base || pathname.
  */
 export const activePlaceKey = (pathname: string, paneId: string | undefined): VillagePlaceKey | null => {
   if (under(pathname, "/zone-of-genius")) return "reception";
-  if (under(pathname, "/build/mastermind")) return "fire-circle";
+  if (under(pathname, "/build/fmf")) return "fire-circle";
   if (under(pathname, "/game/coop")) return "town-hall";
   return paneId ? PLACE_BY_PANE[paneId] ?? null : null;
 };

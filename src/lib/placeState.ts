@@ -74,6 +74,8 @@ export type PlaceLive = {
   line: string;
   /** i18n key of `line`. Absent = English only. */
   key?: string;
+  /** More windows with the same line (a recurring event, e.g. FMF once per lunar cycle). */
+  also?: { from: string; until: string }[];
 };
 
 export type PlaceRule = {
@@ -353,7 +355,7 @@ export const whatChangedLine = <P extends MovePlace>(fresh: readonly P[], t?: TF
 export const isLiveNow = (live: PlaceLive | undefined, now: Date): boolean => {
   if (!live) return false;
   const t = now.getTime();
-  return t >= Date.parse(live.from) && t < Date.parse(live.until);
+  return [live, ...(live.also ?? [])].some((w) => t >= Date.parse(w.from) && t < Date.parse(w.until));
 };
 
 const isMet = (save: PlaceSave, req: PlaceRequirement) => save.met[req] === true;

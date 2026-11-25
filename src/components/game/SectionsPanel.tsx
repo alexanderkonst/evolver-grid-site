@@ -358,7 +358,7 @@ const SPACE_SECTIONS: SpaceSections = {
             },
             { id: "founder-cockpit", label: "Founder Cockpit", path: "/build/cockpit" },
             { id: "founder-cockpit-dashboard", label: "Enter the Cockpit", path: "/build/cockpit/dashboard" },
-            { id: "founder-mastermind", label: "Founder Mastermind", path: "/build/mastermind" },
+            { id: "founder-mastermind", label: "FMF", path: "/build/fmf" },
             { id: "build-header-incubation", label: "Unique Startup Incubation", path: "", isHeader: true },
             { id: "build-playbook",   label: "Playbook",                                path: "/playbook" },
             { id: "build-path",       label: "Roadmap",                                 path: "/path" },

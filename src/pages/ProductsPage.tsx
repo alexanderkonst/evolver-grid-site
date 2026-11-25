@@ -32,9 +32,15 @@ const CARDS: ProductCardDef[] = [
       { href: "https://nas.com/founder-academy/sessions/zone-of-genius-live-session", external: true, ctaKey: "cta2" },
     ],
   },
-  { key: "fmf", links: [{ href: "/ignite", external: false, ctaKey: "cta" }] },
+  {
+    key: "fmf",
+    links: [
+      { href: "/ignite", external: false, ctaKey: "cta" },
+      { href: "/build/fmf", external: false, ctaKey: "cta2" },
+    ],
+  },
   { key: "pmfCore", links: [{ href: "/products/pmf-core", external: false, ctaKey: "cta" }] },
-  { key: "pmf", links: [] },
+  { key: "pmf", links: [{ href: "/products/pmf", external: false, ctaKey: "cta" }] },
   { key: "evolution", links: [{ href: "/products/crossing", external: false, ctaKey: "cta" }] },
   { key: "vector", links: [{ href: "/products/vector", external: false, ctaKey: "cta" }] },
   { key: "collective", links: [] },

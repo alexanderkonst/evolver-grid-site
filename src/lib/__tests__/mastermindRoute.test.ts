@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, it, vi } from "vitest";
 import { pathUsesLayoutShell } from "@/lib/shellRoutes";
 import { getPageTitle } from "@/lib/pageTitles";
 
-describe("Mastermind route regression tests", () => {
+describe("FMF (formerly Mastermind) route regression tests", () => {
   let SPACE_SECTIONS: typeof import("@/components/game/SectionsPanel").SPACE_SECTIONS;
 
   beforeAll(async () => {
@@ -18,19 +18,19 @@ describe("Mastermind route regression tests", () => {
     SPACE_SECTIONS = module.SPACE_SECTIONS;
   });
 
-  it("lists /build/mastermind in shell routes", () => {
-    expect(pathUsesLayoutShell("/build/mastermind")).toBe(true);
+  it("lists /build/fmf in shell routes", () => {
+    expect(pathUsesLayoutShell("/build/fmf")).toBe(true);
   });
 
-  it("gives /build/mastermind the place name 'Mastermind' as its tab title (WP-15)", () => {
-    expect(getPageTitle("/build/mastermind")).toBe("Mastermind");
+  it("gives /build/fmf the place name 'FMF' as its tab title (WP-15)", () => {
+    expect(getPageTitle("/build/fmf")).toBe("FMF");
   });
 
-  it("contains a section in BUILD space with path /build/mastermind labeled 'Founder Mastermind'", () => {
+  it("contains a section in BUILD space with path /build/fmf labeled 'FMF'", () => {
     const buildSections = SPACE_SECTIONS.build.sections;
-    const mastermindSection = buildSections.find((section) => section.path === "/build/mastermind");
+    const mastermindSection = buildSections.find((section) => section.path === "/build/fmf");
 
     expect(mastermindSection).toBeDefined();
-    expect(mastermindSection?.label).toBe("Founder Mastermind");
+    expect(mastermindSection?.label).toBe("FMF");
   });
 });

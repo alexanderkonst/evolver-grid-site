@@ -2,6 +2,8 @@
 
 # THE GAME OF BEING YOU — Game Blueprint
 
+> **Names (Sasha, 2026-11-24):** the business-creation Mastermind is now **FMF**, "Discover Founder-Market Fit in Three Days, Guaranteed" (`/build/fmf`); the BUILT / BUILD container is now **PMF**, "Early signal of Product-Market Fit in One Moon Cycle, Guaranteed" (`/products/pmf`). Old routes redirect. Older entries below keep the names used at the time. Canonical names, prices and FMF dates: [product_brief.md §0](../04-products/product_brief.md).
+
 > Master design doc for the game that findyourtoptalent.com becomes. The game is the blueprint: every product, page and funnel is a part of the game.
 > *Created: 2026-10-26 (Day 225). Owner: Aleksandr Konstantinov. Keeper: Evolver (Hark).*
 > Related: [game_multiplayer.md](./game_multiplayer.md) (Multiplayer: Meet, how players meet), [game_spaces.md](./game_spaces.md) (what you can do in each space), [module_taxonomy.md](./module_taxonomy.md), [../05-reference/brandbook.md](../05-reference/brandbook.md).

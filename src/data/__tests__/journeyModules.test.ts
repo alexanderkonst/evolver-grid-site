@@ -67,11 +67,11 @@ describe("journey modules (WP-5 module form)", () => {
     for (const id of QUEST_STEP_IDS) expect(getJourneyChoice(id), id).toBeDefined();
   });
 
-  it("J8 sends the player to the Luma page and J9 to the Mastermind page", () => {
+  it("J8 sends the player to the Luma page and J9 to the FMF page", () => {
     expect(getJourneyModule("webinar")?.quest?.link?.to).toBe("https://lu.ma/qpogt17o");
-    expect(getJourneyModule("mastermind")?.quest?.link?.to).toBe("/build/mastermind");
-    expect(getJourneyModule("webinar")?.headline).toBe("Join the free Mastermind session (Nov 4)");
-    expect(getJourneyModule("mastermind")?.headline).toBe("Mastermind Nov 9–10");
+    expect(getJourneyModule("mastermind")?.quest?.link?.to).toBe("/build/fmf");
+    expect(getJourneyModule("webinar")?.headline).toBe("Join the free FMF session (Nov 4)");
+    expect(getJourneyModule("mastermind")?.headline).toBe("FMF: Discover Founder-Market Fit in Three Days");
   });
 
   it("the button is the result as a verb, never «Continue»", () => {

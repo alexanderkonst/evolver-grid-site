@@ -71,8 +71,8 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/holomap", title: "Morphogenetic Holo Map" },
   { match: (path) => path === "/founders", title: "The Originals — Founders" },
   { match: (path) => path === "/ignite", title: "Private Founder-Market Fit Session" },
-  // WP-15: the tab reads the place name, as the village labels it (Mastermind, §14.13).
-  { match: (path) => path === "/build/mastermind", title: "Mastermind" },
+  // WP-15: the tab reads the place name, as the village labels it (FMF, formerly Mastermind, §14.13).
+  { match: (path) => path === "/build/fmf", title: "FMF" },
   { match: (path) => path === "/quiz", title: "Where Are You" },
   { match: (path) => path === "/quiz2", title: "Top Talent Diagnostic" },
 ];

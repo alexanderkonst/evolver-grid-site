@@ -333,8 +333,8 @@
     "leaveWithConvergence": "Get all of it in a single sitting, instead of buying fragments from coaches and consultants over years.",
     "leaveWithDisclaimer": "A 2-hour working session that produces the hero section of the landing page for your business.",
     "priceAttribution": "Private Founder-Market Fit Session · 1:1 · 2 hours",
-    "offerDistinction": "Private = 1:1 with me. Prefer a group? The Founder-Market Fit Discovery Mastermind is a small group, 2 sessions, $222.",
-    "offerDistinctionLink": "See the group Mastermind →",
+    "offerDistinction": "Private = 1:1 with me. Prefer a group? FMF is the group: Discover Founder-Market Fit in Three Days, Guaranteed. Small group, live on Monday and Wednesday, $222.",
+    "offerDistinctionLink": "See FMF (group) →",
     "priceCompareHeading": "What $555 stands next to.",
     "priceCompare1": "One retreat weekend costs more than this, and doesn't deliver the breakthrough in clarity you want.",
     "priceCompare2": "What you leave with stays yours: your gift in words you can say in one breath, ready to share.",
@@ -773,7 +773,7 @@
         "label": "Enter the Cockpit"
       },
       "founderMastermind": {
-        "label": "Founder Mastermind"
+        "label": "FMF"
       },
       "playbook": {
         "label": "Playbook"
@@ -3056,8 +3056,8 @@
       },
       "step4": {
         "step": "Step 4",
-        "title": "BUILT: Build Your Product, Package It, Strategize Distribution, Pick Your Business Model",
-        "duration": "3 weeks, alongside other conscious impact entrepreneurs",
+        "title": "PMF: Build Your Product, Package It, Strategize Distribution, Pick Your Business Model",
+        "duration": "One moon cycle, alongside other conscious impact entrepreneurs",
         "price": "$1,111"
       },
       "step5": {
@@ -3534,8 +3534,8 @@
         "alt": "A long arched hall for co-working: wooden desks with brass lamps and laptops, sacred-geometry paintings on the walls, string lights, and a window onto the starry night"
       },
       "fire-circle": {
-        "name": "Mastermind",
-        "line": "Your Mastermind circle.",
+        "name": "FMF",
+        "line": "Your FMF circle.",
         "alt": "A domed hall with a brass fire bowl at its center, patterned seats in a circle around it, tall white columns, crystals and candles, and a glowing oculus above"
       },
       "academy": {
@@ -3574,7 +3574,7 @@
       "first-sale": "Opens when your offer is saved. Inside: proof in the world that someone pays you for being you."
     },
     "live": {
-      "fire-circle": "Live now: Mastermind, Nov 9–10.",
+      "fire-circle": "Live now: FMF, Monday to Wednesday.",
       "academy": "Live now: Webinar, Wed Nov 4."
     },
     "result": {
@@ -3592,7 +3592,7 @@
       "map-assets": "your skills, experience and network sit in one inventory.",
       "build-business": "your uniqueness phrase and your tagline are both saved.",
       "webinar": "you were in the live session on Nov 4.",
-      "mastermind": "you took part in the Mastermind, Nov 9–10.",
+      "mastermind": "you took part in FMF, Monday and Wednesday.",
       "mastery-practice": "your twenty-first day of practice is behind you.",
       "first-price": "one real client has heard your price.",
       "first-sale": "a real person has paid you for your offer."
@@ -3646,21 +3646,21 @@
       },
       "webinar": {
         "eyebrow": "Academy · Step 8",
-        "headline": "Join the free Mastermind session (Nov 4)",
+        "headline": "Join the free FMF session (Nov 4)",
         "silhouette": "One free live session with others on the same path. Come, and leave with one step to take.",
         "verb": "Join the free session",
-        "task": "Join the free Mastermind session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
+        "task": "Join the free FMF session on Wednesday, Nov 4. Afterwards, come back and say you were there.",
         "didIt": "I joined the session",
         "link": "Open the session page"
       },
       "mastermind": {
-        "eyebrow": "Mastermind · Step 9",
-        "headline": "Mastermind Nov 9–10",
-        "silhouette": "Two days in a circle with others who build. You leave with one real step to take this week.",
-        "verb": "Join the Mastermind",
-        "task": "Join the Mastermind on Nov 9–10. When the two days are over, come back and say you were there.",
-        "didIt": "I joined the Mastermind",
-        "link": "Open the Mastermind page"
+        "eyebrow": "FMF · Step 9",
+        "headline": "FMF: Discover Founder-Market Fit in Three Days",
+        "silhouette": "Three days in a circle with others who build, live on Monday and Wednesday. You leave with one real step to take this week.",
+        "verb": "Join FMF",
+        "task": "Join FMF on its next dates (Monday and Wednesday, at the start of a moon cycle). When both sessions are over, come back and say you were there.",
+        "didIt": "I joined FMF",
+        "link": "Open the FMF page"
       },
       "mastery-practice": {
         "eyebrow": "Academy · Step 10",
@@ -7992,14 +7992,14 @@
     "featured": {
       "liveSession": {
         "when": "Wed Nov 4 · 9:00 CDMX",
-        "title": "Free Mastermind session",
+        "title": "Free FMF session",
         "price": "Free · live session",
         "cta": "Register on Luma"
       },
       "mastermind": {
-        "when": "Nov 9–10",
-        "title": "Founder-Market-Fit Mastermind",
-        "price": "2 live sessions · $222",
+        "when": "Mon Dec 14 + Wed Dec 16",
+        "title": "FMF: Discover Founder-Market Fit in Three Days, Guaranteed",
+        "price": "Monday + Wednesday live · $222",
         "cta": "See details"
       }
     }
@@ -8145,7 +8145,7 @@
     },
     "zog": {
       "name": "Zone of Genius Discovery",
-      "badge": "$37 online · $222–333 one-on-one · $1,000 team workshop",
+      "badge": "$37 online · $333 one-on-one · $1,000 team workshop",
       "line": "Your innate talent, named precisely, plus a path to monetizing it.",
       "body": "You see your main innate talent more clearly than before, name it precisely, and get a new clarity about how to monetize it. That clarity speeds up the growth of your mastery on your own path.",
       "cta": "See the program",
@@ -8153,10 +8153,11 @@
     },
     "fmf": {
       "name": "Founder-Market Fit",
-      "badge": "Private Session: 1:1, 2 hours, $555 · Group Mastermind: small group, 2 sessions, $222",
+      "badge": "Private Session: 1:1, 2 hours, $555 · FMF (group): 3 days, live Monday + Wednesday, $222",
       "line": "Your founder-market fit in 2 hours, down to one sentence.",
       "body": "Together we name the value you create simply by being yourself, your ideal client, their pain, the transformational promise, the outline of the product, and your unique selling proposition in one sentence.",
-      "cta": "Book the Private Session"
+      "cta": "Book the Private Session",
+      "cta2": "See FMF (group)"
     },
     "pmfCore": {
       "name": "Product-Market Fit Core",
@@ -8166,16 +8167,17 @@
       "cta": "See what happens"
     },
     "pmf": {
-      "name": "Product-Market Fit",
-      "badge": "$5,555 one-on-one · $1,111 in a group · or $5,555 from your first $55,555 of revenue",
-      "line": "A scalable product from strategy to first sale in a month.",
-      "body": "In a month we build the marketing and sales strategy, the MVP, the beta test, and the first sale."
+      "name": "PMF",
+      "badge": "$1,111 in a group · $4,444 one-on-one",
+      "line": "Early signal of Product-Market Fit in One Moon Cycle, Guaranteed.",
+      "body": "In one moon cycle we build the marketing and sales strategy, the MVP, the beta test, and the first sale.",
+      "cta": "See PMF"
     },
     "evolution": {
       "name": "Entrepreneur's Evolution",
-      "badge": "$2,222 one-on-one",
+      "badge": "$2,222 one-on-one · $444 per person in a group (from 5)",
       "line": "A guided career transition in months, not years.",
-      "body": "Eight weekly online sessions of an hour and a half, plus support in chat. It structures and speeds up the career transition, so building your own brand (a unique business) takes months, not years.",
+      "body": "Eight weekly online sessions of 75 minutes, plus support in chat. It structures and speeds up the career transition, so building your own brand (a unique business) takes months, not years.",
       "cta": "See the program"
     },
     "vector": {
@@ -8283,9 +8285,9 @@
     }
   },
   "thebuild": {
-    "seoTitle": "The BUILT Container: One Month to a Running Business",
+    "seoTitle": "PMF: Early signal of Product-Market Fit in One Moon Cycle, Guaranteed",
     "seoDescription": "In one month, you go from 'what is my unique offer?' to selling your packaged signature offer to real people. Private strategic advisory, from $1,111.",
-    "eyebrow": "The BUILT Container · 1 month",
+    "eyebrow": "PMF · Early signal of Product-Market Fit in One Moon Cycle, Guaranteed",
     "h1": "In one month, you go from “what is my unique offer?” to selling your packaged signature offer to real people.",
     "sauce": "The secret sauce is you :) And how we move swiftly yet with care is this combo: my lived experience + the AI workflows you saw in our session + my guidance.",
     "w1Label": "Week 1",
@@ -8313,7 +8315,7 @@
     "cta": "Message Aleksandr Konstantinov on WhatsApp",
     "routerBefore": "Haven't done the Founder-Market Fit Session yet?",
     "routerLink": "Start there",
-    "routerAfter": ": the BUILT picks up where it leaves off.",
+    "routerAfter": ": PMF picks up where it leaves off.",
     "storiesEyebrow": "What changed for them",
     "storyFounder": "One is a startup founder. He came in with a team already built and too many product directions tried at once, hastily. He said it plainly: “I take random hypotheses and build a random product that isn't fully mine.” We found his one direction and his people: executives adopting AI. He's doing exactly that now. A paid advisory client, a consulting project on top of it, more deals in motion. Two weeks ago he told me: “we set a strategic corridor for building a business which I never had before. I feel very big confidence.”",
     "storyCoach": "The other is a coach working in leadership for women, using several healing modalities. She's been with me a couple of years. Every conversation, she gets clearer on her ideal client, and then more business comes exactly like that. That's the whole point: more opportunity opens as more clarity opens. Her business is growing, not through hustling more.",
@@ -8467,7 +8469,7 @@
     "outNoteBefore": "Для совместной работы над твоим конкретным бизнесом смотри продукт ",
     "outFmfLink": "Founder-Market Fit",
     "outNoteMid": ", а если он уже найден, продукт ",
-    "outBuiltLink": "BUILT",
+    "outBuiltLink": "PMF",
     "outNoteAfter": ".",
     "out1": "УТП, оффер, позиционирование",
     "out2": "рынок, клиенты, цены, продукт",
@@ -8518,7 +8520,7 @@
     "myPartLabel": "My part",
     "myPartBody": "I run everything: the session, the materials, the Zoom, the recording. You get the recording afterwards and it stays with your community as an asset. After the workshop I personally follow up with anyone who wants to go further.",
     "economicsLabel": "The economics",
-    "economicsBody": "You earn one third of the first three purchases any of your members makes with me, from the $37 profile to the $555 session to the $1,111 container. That is up to $568 per person. I track every purchase from your community and send you a simple tally plus payment monthly, any method you like. You can see everything, anytime.",
+    "economicsBody": "You earn one third of the first three purchases any of your members makes with me, from the $37 profile to the $555 session to the $1,111 PMF container. That is up to $568 per person. I track every purchase from your community and send you a simple tally plus payment monthly, any method you like. You can see everything, anytime.",
     "noSellingLabel": "No selling in the room",
     "noSellingBody": "The workshop is pure value. In the last few minutes I say one sentence about how to go deeper, and I declare that upfront at the start. Your trust with your people stays whole. That is the whole point of the design.",
     "highlight1": "All upside.",
@@ -9225,10 +9227,10 @@
         "cta": "See the Private Founder-Market Fit Session"
       },
       "built": {
-        "name": "BUILT",
-        "meta": "3 weeks · $1,111",
+        "name": "PMF",
+        "meta": "1 moon cycle · $1,111 group · $4,444 1:1",
         "desc": "Build the product, package it, and pick the business model, alongside other founders doing the same.",
-        "cta": "See BUILT"
+        "cta": "See PMF"
       }
     },
     "close": {
@@ -9252,7 +9254,7 @@
       "heading": "Here is what this actually is.",
       "para1": "I find the pattern underneath everything you've built and give it exact words. One sentence that holds all of it. People who hear their sentence for the first time usually go quiet for a second. Then they ask what it costs.",
       "para2": "The diagnosis is free. All of it. The quiz shows you your chapter. The Direction Call names your transition and the direction that follows, 45 minutes, no charge, and I'll tell you plainly if I'm not the right person for it.",
-      "para3": "The paid work starts where software and a free call honestly stop: turning the sentence into a business. Two hours to integrate your “unrelated” projects into one laser-focused direction, $555. Three weeks to build the offer and have the first ten real conversations, $1,111."
+      "para3": "The paid work starts where software and a free call honestly stop: turning the sentence into a business. Two hours to integrate your “unrelated” projects into one laser-focused direction, $555. One moon cycle (PMF) to build the offer and have the first ten real conversations, $1,111 in a group."
     },
     "whoFor": {
       "eyebrow": "Who this is for",
@@ -9493,7 +9495,7 @@
         "quest-board": "Pick your next quest.",
         "cafe": "Meet people, professionally or simply.",
         "coworking": "Find partners for the work.",
-        "fire-circle": "Join your Mastermind circle.",
+        "fire-circle": "Join your FMF circle.",
         "academy": "Grow in what matters most.",
         "workshop": "Craft your offer.",
         "market": "Open your shop.",
