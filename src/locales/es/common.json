@@ -294,7 +294,132 @@
     },
     "welcomeBack": "Te damos la bienvenida de nuevo",
     "yourTalent": "Tu talento principal: {{name}}",
-    "continue": "Continuar"
+    "continue": "Continuar",
+    "room": {
+      "me-overview": {
+        "name": "Personaje",
+        "result": "tu cristal, tu misión y tu archivo de guardado",
+        "closed": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: tu cristal, tu misión y tu archivo de guardado."
+      },
+      "equilibrium": {
+        "name": "Equilibrium",
+        "result": "tu reloj corporal",
+        "closed": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: tu reloj corporal."
+      },
+      "my-artifacts": {
+        "name": "Mis Artefactos",
+        "result": "todo lo que has guardado",
+        "closed": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: todo lo que has guardado."
+      },
+      "settings": {
+        "name": "Ajustes",
+        "result": "tu idioma, tu tema y tu privacidad",
+        "closed": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: tu idioma, tu tema y tu privacidad."
+      },
+      "browse": {
+        "name": "Ver eventos",
+        "result": "los eventos que pasan en la aldea"
+      },
+      "my-rsvps": {
+        "name": "Mis inscripciones",
+        "result": "los eventos a los que dijiste que sí"
+      },
+      "create": {
+        "name": "Crear evento",
+        "result": "un evento tuyo, con tu gente"
+      },
+      "genius-match": {
+        "name": "Buscar colaboradores",
+        "result": "personas cuyos dones encajan con tu trabajo",
+        "closed": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: personas cuyos dones encajan con tu trabajo."
+      },
+      "connections": {
+        "name": "Conexiones",
+        "result": "las personas con las que estás conectado",
+        "closed": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: las personas con las que estás conectado."
+      },
+      "people": {
+        "name": "Directorio de Personas",
+        "result": "cada residente, encontrado por su don",
+        "closed": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: cada residente, encontrado por su don."
+      },
+      "messages": {
+        "name": "Mensajes",
+        "result": "tus conversaciones con socios",
+        "closed": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: tus conversaciones con socios."
+      },
+      "academy": {
+        "name": "Academia",
+        "result": "los cursos de la Academia"
+      },
+      "dormant-potential": {
+        "name": "Tu Potencial que se Despliega",
+        "result": "un curso que despierta tu potencial dormido"
+      },
+      "consciousness-meets-science": {
+        "name": "La conciencia se encuentra con la ciencia",
+        "result": "un curso donde la conciencia se encuentra con la ciencia"
+      },
+      "ubb-canvas": {
+        "name": "Lienzo",
+        "result": "tu negocio en un lienzo: singularidad, mito, tribu, dolor, promesa",
+        "closed": "Se abre cuando tu misión está guardada. Dentro: tu negocio en un lienzo: singularidad, mito, tribu, dolor, promesa."
+      },
+      "ubb-session": {
+        "name": "Diseño de la 1.ª sesión",
+        "result": "tu primera sesión de pago, diseñada",
+        "closed": "Se abre cuando tu misión está guardada. Dentro: tu primera sesión de pago, diseñada."
+      },
+      "ubb-marketing": {
+        "name": "Marketing",
+        "result": "tu creencia central, tu empaque y una compra sin fricción",
+        "closed": "Se abre cuando tu misión está guardada. Dentro: tu creencia central, tu empaque y una compra sin fricción."
+      },
+      "ubb-distribution": {
+        "name": "Distribución",
+        "result": "cómo tu oferta llega a la gente, se entrega y se difunde",
+        "closed": "Se abre cuando tu misión está guardada. Dentro: cómo tu oferta llega a la gente, se entrega y se difunde."
+      },
+      "ubb-communications": {
+        "name": "Comunicaciones",
+        "result": "tus canales, tu diapasón y tu DM de oro",
+        "closed": "Se abre cuando tu misión está guardada. Dentro: tus canales, tu diapasón y tu DM de oro."
+      },
+      "ubb-landing-page": {
+        "name": "Página de aterrizaje",
+        "result": "una página que lleva tu oferta",
+        "closed": "Se abre cuando tu misión está guardada. Dentro: una página que lleva tu oferta."
+      },
+      "overview": {
+        "name": "Resumen",
+        "result": "tu puesto y los puestos de otros residentes",
+        "closed": "Se abre cuando tu oferta está guardada. Dentro: tu puesto y los puestos de otros residentes."
+      },
+      "my-products": {
+        "name": "Mis productos",
+        "result": "los productos que vendes",
+        "closed": "Se abre cuando tu oferta está guardada. Dentro: los productos que vendes."
+      },
+      "discover-mission": {
+        "closed": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: sabrás qué te toca hacer en el mundo."
+      },
+      "assess-qol": {
+        "closed": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: conocerás tu nivel real, privado para ti."
+      },
+      "map-assets": {
+        "closed": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: tendrás el inventario de todo con lo que puedes construir."
+      },
+      "build-business": {
+        "closed": "Se abre cuando tu misión está guardada. Dentro: tendrás tu singularidad en una frase y luego tu eslogan."
+      }
+    },
+    "rooms": {
+      "title": "Salas",
+      "order": "Orden de misiones",
+      "hide": "Ocultar",
+      "journey": "El Camino",
+      "world": "En el mundo"
+    }
   },
   "courseCms": {
     "lead": "Deja de elegir entre tu cabeza y tu corazón. En 15 videos cortos verás cómo lo que sientes por dentro y lo que la ciencia encuentra por fuera cuentan una misma historia.",

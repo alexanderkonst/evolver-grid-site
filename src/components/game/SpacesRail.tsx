@@ -128,12 +128,15 @@ const PlaceIcon = ({ place, size, skin }: { place: VillagePlace; size: number; s
 const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean }) => {
     if (state === "next") {
         return (
+            // The one glowing next move (§25.4 step 1): the same mark on the map, here and in pane 2.
+            // It breathes; with reduced motion it holds still (`rail-next-glow`, src/index.css).
             <span
                 aria-hidden="true"
-                className="absolute rounded-full"
+                data-next-move="true"
+                className="rail-next-glow absolute rounded-full"
                 style={{
-                    width: 7,
-                    height: 7,
+                    width: 8,
+                    height: 8,
                     top: compact ? 6 : 10,
                     right: compact ? 6 : 12,
                     background: "var(--open-accent)",
@@ -179,7 +182,8 @@ const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean
 const stateWord = (place: VillagePlace, state: PlaceStateName, t: TFunction): string => {
     if (state === "closed") return closedLine(place, t);
     if (state === "live") return placeLine(place, state, t, true);
-    if (state === "next" || state === "done") return stateWordText(state, t) ?? "";
+    if (state === "next") return tr(t, "village.nextMove", "Your next move");
+    if (state === "done") return stateWordText(state, t) ?? "";
     return "";
 };
 

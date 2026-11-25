@@ -8067,6 +8067,16 @@ form.liquid-glass input:-webkit-autofill:active {
 
 /* Village place icons (Sasha 2026-11-02): photoreal building icons in the rail,
    framed the same everywhere: moon-stone border, ochre inner line, soft moon glow. */
+/* The one glowing next move on the rail (GoBY §25.4 step 1): a soft breathing halo on its mark. */
+@keyframes rail-next-breathe {
+  from { box-shadow: 0 0 6px 1px var(--open-accent); }
+  to { box-shadow: 0 0 14px 4px var(--open-accent); }
+}
+.rail-next-glow { animation: rail-next-breathe 2.8s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) {
+  .rail-next-glow { animation: none; }
+}
+
 .village-place-icon {
   /* Grammar check 2026-11-22: the frame was the brightest thing in the icon (2px cream + bronze
      line + halo) and fought the object's own topaz light. One thin line in the skin's accent now;

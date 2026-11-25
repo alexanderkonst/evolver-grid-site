@@ -1,9 +1,9 @@
 import type { TFunction } from "i18next";
 import { PLACE_ROOMS } from "@/data/placeRooms";
 import type { VillagePlace } from "@/data/villagePlaces";
-import { QUEST_STEP_IDS, getJourneyModule, questTaskText } from "@/data/journeyModules";
+import { QUEST_STEP_IDS, moduleClosedLine } from "@/data/journeyModules";
 import { journeyResultText, journeyRows, questRows, type JourneyRow, type QuestRow } from "@/lib/questBoard";
-import { closedLine, closedRoomLine, placeState, type PlaceSave, type PlaceStateName } from "@/lib/placeState";
+import { closedLine, closedRoomLine, placeState, type NextMove, type PlaceSave, type PlaceStateName } from "@/lib/placeState";
 import { tr } from "@/lib/villageCopy";
 
 /**
@@ -32,15 +32,44 @@ export type PlaceRoomsView = {
 
 export const QUEST_BOARD_KEY = "quest-board";
 
+/**
+ * One glow in the pane (§25.4 step 1): of all the rows of a place, only the one the player's
+ * next move leads to reads `next`; any other row the save calls `next` reads `open`. The move's row
+ * is the Journey step (`move.step`) or the quest the board offers; a live or quests move lights the
+ * row whose route is `move.to`. A move at another place lights nothing here. Closed rows stay closed.
+ */
+const oneNextRow = <R extends { id: string; state: PlaceStateName; to: string }>(
+  rows: R[],
+  place: Pick<VillagePlace, "key">,
+  move: Pick<NextMove, "kind" | "place" | "step" | "to"> | null | undefined,
+  questId: string | null = null,
+): R[] => {
+  if (!move) return rows;
+  const here = move.place.key === place.key;
+  const isMove = (r: R) =>
+    here && (move.kind === "step" ? r.id === move.step : questId ? r.id === questId : r.to === move.to);
+  return rows.map((r) => {
+    if (r.state === "closed" || r.state === "done") return r;
+    if (isMove(r)) return r.state === "open" ? { ...r, state: "next" as const } : r;
+    return r.state === "next" ? { ...r, state: "open" as const } : r;
+  });
+};
+
 /** Every room of a place, or the quest order for the Quest Board, in the reader's language when `t` is given. */
 export const placeRooms = (
   place: Pick<VillagePlace, "key" | "rule" | "name" | "line" | "to">,
   save: PlaceSave,
-  opts: { t?: TFunction; signedIn?: boolean } = {},
+  opts: { t?: TFunction; signedIn?: boolean; move?: NextMove | null } = {},
 ): PlaceRoomsView => {
-  const { t, signedIn = false } = opts;
+  const { t, signedIn = false, move = null } = opts;
   if (place.key === QUEST_BOARD_KEY) {
-    return { rooms: [], order: { journey: journeyRows(save, t), world: questRows(save, t) } };
+    // On the board a «quests» move is the first open real-world quest.
+    const world = questRows(save, t);
+    const firstQuest = move?.kind === "quests" ? world.find((r) => r.state === "open" || r.state === "next")?.id ?? null : null;
+    return {
+      rooms: [],
+      order: { journey: oneNextRow(journeyRows(save, t), place, move), world: oneNextRow(world, place, move, firstQuest) },
+    };
   }
 
   // A room is closed when its place is: «Opens when <what opens the place>. Inside: <that room's own result>.» (§25.5).
@@ -67,7 +96,8 @@ export const placeRooms = (
     }
     const qr = (QUEST_STEP_IDS as readonly string[]).includes(req) ? quests.find((r) => r.id === req) : undefined;
     if (qr) {
-      rooms.push({ id: qr.id, name: qr.title, line: placeClosed ? lockOf(questTaskText(getJourneyModule(qr.id), t), `village.room.${qr.id}.closed`) : qr.line, state: placeClosed ? "closed" : qr.state, to: qr.to });
+      // A closed place's quest says what the quest itself says when closed (its module line, translated), not its long task.
+      rooms.push({ id: qr.id, name: qr.title, line: placeClosed ? moduleClosedLine(qr.id, t) || lockOf(qr.line, `village.room.${qr.id}.closed`) : qr.line, state: placeClosed ? "closed" : qr.state, to: qr.to });
     }
   }
 
@@ -99,5 +129,5 @@ export const placeRooms = (
     });
   }
 
-  return { rooms, order: null };
+  return { rooms: oneNextRow(rooms, place, move), order: null };
 };

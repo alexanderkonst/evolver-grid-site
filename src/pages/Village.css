@@ -361,6 +361,8 @@
 .vl-newcomer { border-color: var(--open-accent); cursor: pointer; appearance: none; border-radius: 0; }
 .vl-newcomer:hover, .vl-newcomer:focus-visible { background: var(--open-accent); }
 .vl-newcomer:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 3px; }
+/* What the next move gives (§25.6): the same result line as its quest row, under the link. */
+.vl-newcomer__gives { margin: 14px auto 0; max-width: 34ch; text-wrap: balance; font-style: italic; font-weight: 300; font-size: var(--vl-text-lead); line-height: 1.3; color: var(--vl-ink-2); }
 /* The save card (TopTalentAuthGate, inline) brings its own light surface and dark text. */
 .vl-save {
   width: 100%; max-width: 520px; margin: clamp(20px, 3vh, 32px) auto 0; box-sizing: border-box;
@@ -588,12 +590,25 @@
   --vl-rooms-w: min(320px, 30vw);
   /* The pane ends above the floating «Chat with us» pill (--chat-clearance), so no row sits under it. */
   position: absolute; z-index: 3; top: 0; right: 0; bottom: var(--chat-clearance, 72px); width: var(--vl-rooms-w);
-  padding: clamp(72px, 12vh, 112px) 20px 20px; border-bottom: 1px solid var(--vl-hair); overflow-y: auto; overscroll-behavior: contain;
+  display: flex; flex-direction: column; border-bottom: 1px solid var(--vl-hair);
   background: rgba(var(--scene-bg-rgb), 0.72); border-left: 1px solid var(--vl-hair);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
   transform: translateX(100%); visibility: hidden;
   transition: transform var(--motion-base) var(--motion-ease), visibility 0s linear var(--motion-base);
 }
+/* The title and Hide share one fixed row; only the rows under it scroll, so no text ever passes under a control. */
+.vl-rooms__head {
+  flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: clamp(20px, 4vh, 48px) 8px 8px 20px; border-bottom: 1px solid var(--vl-hair);
+}
+.vl-rooms__head .vl-rooms__title { margin: 0; }
+.vl-rooms__hide {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; background: none; border: 0;
+  color: var(--vl-link-ink); cursor: pointer; font-size: var(--vl-text-label); letter-spacing: 0.2em; text-transform: uppercase;
+}
+.vl-rooms__hide:hover, .vl-rooms__hide:focus-visible { color: var(--vl-ink); outline: none; }
+.vl-rooms__hide:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
+.vl-rooms__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 14px 20px 20px; }
 .vl-rooms.is-open { transform: none; visibility: visible; transition-delay: 0s; }
 /* The scene's title and ENTER make room instead of sliding under the pane. */
 .vl-place:has(.vl-rooms.is-open) .vl-place__copy { right: min(320px, 30vw); }
@@ -612,6 +627,15 @@
 .vl-rooms__state { margin-left: auto; font-family: var(--vl-mono); font-size: var(--vl-text-micro); letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-2); }
 .vl-rooms__row[data-room-state="next"] .vl-rooms__state { color: var(--open-accent); }
 .vl-rooms__row[data-room-state="live"] .vl-rooms__state { color: var(--live-accent); }
+/* The one glowing next move (§25.4 step 1): an accent bar and a soft breathing glow on the row; the word «Next» says it too. */
+.vl-rooms__row[data-room-state="next"] a {
+  box-shadow: inset 2px 0 0 var(--open-accent), 0 0 18px -6px var(--open-accent); padding-left: 10px;
+  animation: vl-rooms-next 3.2s ease-in-out infinite alternate;
+}
+@keyframes vl-rooms-next {
+  from { box-shadow: inset 2px 0 0 var(--open-accent), 0 0 8px -6px var(--open-accent); }
+  to { box-shadow: inset 2px 0 0 var(--open-accent), 0 0 20px -4px var(--open-accent); }
+}
 .vl-rooms__line { display: block; margin-top: 2px; font-style: italic; font-size: var(--vl-text-body); line-height: 1.35; color: var(--vl-ink-2); }
 .vl-rooms__row.is-closed .vl-rooms__name { color: var(--vl-lock-ink); }
 .vl-rooms__row.is-closed a { cursor: default; }
@@ -619,12 +643,14 @@
 @media (max-width: 767px) {
   .vl-rooms {
     --vl-rooms-w: 100%;
-    top: auto; left: 0; right: 0; bottom: var(--chat-clearance, 72px); width: auto; max-height: 50svh; padding: 20px 20px 20px;
+    top: auto; left: 0; right: 0; bottom: var(--chat-clearance, 72px); width: auto; max-height: 50svh;
     border-left: 0; border-top: 1px solid var(--vl-hair); transform: translateY(100%);
   }
   /* The title and ENTER rise above the sheet, so ENTER is never covered. */
+  .vl-rooms__head { padding-top: 8px; }
   .vl-place:has(.vl-rooms.is-open) .vl-place__copy { right: 0; bottom: calc(50svh + var(--chat-clearance, 72px)); padding-bottom: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .vl-rooms, .vl-place__copy { transition: none; }
+  .vl-rooms__row[data-room-state="next"] a { animation: none; }
 }

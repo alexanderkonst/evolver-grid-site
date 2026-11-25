@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
@@ -30,6 +30,7 @@ import {
   houseLit,
   nextMove,
   nextMoveCopy,
+  oneNextStates,
   placeLine,
   placeSaveFromSheet,
   placeState,
@@ -187,6 +188,7 @@ const useGuestResult = (): boolean => {
 const ClosedNextMove = ({
   hasResult,
   label,
+  gives,
   to,
   onGo,
   signInTo,
@@ -194,6 +196,8 @@ const ClosedNextMove = ({
   hasResult: boolean;
   /** «Your next move: <title>» for the move the map's card shows. */
   label: string;
+  /** What the move gives: the result line of its quest row (§25.6). Empty when the card shows none. */
+  gives: string;
   to: string;
   /** Leave for `to` with the village's own exit motion. */
   onGo: (e: MouseEvent<HTMLElement>) => void;
@@ -201,15 +205,17 @@ const ClosedNextMove = ({
   signInTo: string | null;
 }) => {
   const { t } = useTranslation();
+  const givesId = useId();
   return (
     <div className="vl-newcomer-path">
       {hasResult && readGuestTopTalentPayload() ? (
         <SaveCharacterCta buttonClassName="vl-enter vl-newcomer" formClassName="vl-save" />
       ) : (
-        <Link className="vl-enter vl-newcomer" to={to} onClick={onGo}>
+        <Link className="vl-enter vl-newcomer" to={to} onClick={onGo} aria-describedby={gives ? givesId : undefined}>
           {label}
         </Link>
       )}
+      {gives ? <p id={givesId} className="vl-newcomer__gives">{gives}</p> : null}
       {signInTo ? (
         <Link className="vl-mono vl-signin" to={signInTo}>
           {tr(t, "village.signIn", "I already live here → sign in")}
@@ -355,12 +361,13 @@ const Village = () => {
   const save = placeSaveFromSheet(sheet, now, { "guest-result": signedIn === false && guestResult });
   // The talent they saw, read from the same local result (nothing is sent anywhere).
   const guestTalent = signedIn === false && guestResult ? readGuestTalentName() : null;
-  const states: PlaceStateName[] = VILLAGE_PLACES.map((p) => placeState(p, save));
-  const shown: PlaceStateName[] = states.map((s) => (!ready && s === "closed" ? "open" : s));
   // One next move and what changed since the last visit (WP-6, §14.6). Both wait for the save;
   // the move also waits for the session, so a guest never sees Reception flash before Save.
   const move = ready && signedIn !== null ? nextMove(VILLAGE_PLACES, save) : null;
   const moveCopy = move ? nextMoveCopy(move, t) : null;
+  // §25.4 step 1: one glow. Only the move's place reads `next`, the same as the rail and the pane row.
+  const states: PlaceStateName[] = oneNextStates(VILLAGE_PLACES, VILLAGE_PLACES.map((p) => placeState(p, save)), move);
+  const shown: PlaceStateName[] = states.map((s) => (!ready && s === "closed" ? "open" : s));
   const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
   const changesLine = whatChangedLine(changes.fresh, t);
   const isNew = (p: VillagePlace) => changes.fresh.includes(p);
@@ -690,7 +697,7 @@ const Village = () => {
           >
             <Link className="vl-mono vl-back" to="/village">{tr(t, "village.backVillage", "← Village")}</Link>
             {/* §25.3: the scene and the second pane stand together; keyed by place, so every entry opens it afresh. */}
-            <PlaceRoomsPane key={lastPlace.key} place={lastPlace} save={save} signedIn={signedIn === true} mobile={mobile} />
+            <PlaceRoomsPane key={lastPlace.key} place={lastPlace} save={save} signedIn={signedIn === true} mobile={mobile} move={move} />
             <PlaceState
               state={lastState}
               className="vl-place__state"
@@ -751,20 +758,25 @@ const Village = () => {
                       startOpen={hasParticleInvite(lastPlace.key)}
                     />
                   )}
-                  {/* A closed place has no ENTER, so it gives one enabled move instead (§25.4): the
-                      same next move the map glows with. With a result on this device it is «Keep
-                      your light lit»; a returning resident can still sign in and come back. */}
-                  {lastState === "closed" && !lastPending && move && moveCopy && signedIn !== null ? (
-                    <ClosedNextMove
-                      key={guestResult ? "save" : "move"}
-                      hasResult={signedIn === false && guestResult}
-                      label={`${tr(t, "village.nextMove", "Your next move")}: ${moveCopy.title}`}
-                      to={move.to}
-                      onGo={(e) => leave(() => navigate(move.to), e)}
-                      signInTo={signedIn === false ? `/auth?redirect=${encodeURIComponent(lastPlace.to)}` : null}
-                    />
-                  ) : null}
                 </>
+              }
+              afterEnabled={
+                // A closed place has no ENTER, so it gives one enabled move instead (§25.4): the
+                // same next move the map glows with. It sits outside the closed (aria-disabled)
+                // group, so it reads enabled; and it says what it gives (§25.6), as its quest row does.
+                // With a result on this device it is «Keep your light lit»; a returning resident can
+                // still sign in and come back.
+                lastState === "closed" && !lastPending && move && moveCopy && signedIn !== null ? (
+                  <ClosedNextMove
+                    key={guestResult ? "save" : "move"}
+                    hasResult={signedIn === false && guestResult}
+                    label={`${tr(t, "village.nextMove", "Your next move")}: ${moveCopy.title}`}
+                    gives={moveCopy.result}
+                    to={move.to}
+                    onGo={(e) => leave(() => navigate(move.to), e)}
+                    signInTo={signedIn === false ? `/auth?redirect=${encodeURIComponent(lastPlace.to)}` : null}
+                  />
+                ) : undefined
               }
             >
               <h2>{placeName(lastPlace, t)}</h2>

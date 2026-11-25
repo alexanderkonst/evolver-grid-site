@@ -3692,6 +3692,131 @@
         "task": "Sell your offer to one real person and receive the payment. Come back and say you did: no money moves here, and we take your word.",
         "didIt": "I made my first sale"
       }
+    },
+    "room": {
+      "me-overview": {
+        "name": "Character",
+        "result": "your crystal, mission and save file",
+        "closed": "Opens when your top talent is saved to your account. Inside: your crystal, mission and save file."
+      },
+      "equilibrium": {
+        "name": "Equilibrium",
+        "result": "your body clock",
+        "closed": "Opens when your top talent is saved to your account. Inside: your body clock."
+      },
+      "my-artifacts": {
+        "name": "My Artifacts",
+        "result": "everything you have saved",
+        "closed": "Opens when your top talent is saved to your account. Inside: everything you have saved."
+      },
+      "settings": {
+        "name": "Settings",
+        "result": "your language, skin and privacy",
+        "closed": "Opens when your top talent is saved to your account. Inside: your language, skin and privacy."
+      },
+      "browse": {
+        "name": "Browse Events",
+        "result": "the events happening in the village"
+      },
+      "my-rsvps": {
+        "name": "My RSVPs",
+        "result": "the events you said yes to"
+      },
+      "create": {
+        "name": "Create Event",
+        "result": "an event of your own, with your people"
+      },
+      "genius-match": {
+        "name": "Find Collaborators",
+        "result": "people whose gifts fit your work",
+        "closed": "Opens when your top talent, mission and assets are saved. Inside: people whose gifts fit your work."
+      },
+      "connections": {
+        "name": "Connections",
+        "result": "the people you are connected with",
+        "closed": "Opens when your top talent, mission and assets are saved. Inside: the people you are connected with."
+      },
+      "people": {
+        "name": "People Directory",
+        "result": "every resident, found by their gift",
+        "closed": "Opens when your top talent, mission and assets are saved. Inside: every resident, found by their gift."
+      },
+      "messages": {
+        "name": "Messages",
+        "result": "your conversations with partners",
+        "closed": "Opens when your top talent, mission and assets are saved. Inside: your conversations with partners."
+      },
+      "academy": {
+        "name": "Academy",
+        "result": "the courses of the Academy"
+      },
+      "dormant-potential": {
+        "name": "Your Unfolding Potential",
+        "result": "a course that wakes your dormant potential"
+      },
+      "consciousness-meets-science": {
+        "name": "Consciousness Meets Science",
+        "result": "a course where consciousness meets science"
+      },
+      "ubb-canvas": {
+        "name": "Canvas",
+        "result": "your business on one canvas: uniqueness, myth, tribe, pain, promise",
+        "closed": "Opens when your mission is saved. Inside: your business on one canvas: uniqueness, myth, tribe, pain, promise."
+      },
+      "ubb-session": {
+        "name": "1st Session Design",
+        "result": "your first paid session, designed",
+        "closed": "Opens when your mission is saved. Inside: your first paid session, designed."
+      },
+      "ubb-marketing": {
+        "name": "Marketing",
+        "result": "your core belief, your packaging and a frictionless purchase",
+        "closed": "Opens when your mission is saved. Inside: your core belief, your packaging and a frictionless purchase."
+      },
+      "ubb-distribution": {
+        "name": "Distribution",
+        "result": "how your offer reaches people, is delivered and spreads",
+        "closed": "Opens when your mission is saved. Inside: how your offer reaches people, is delivered and spreads."
+      },
+      "ubb-communications": {
+        "name": "Communications",
+        "result": "your channels, your tuning fork and your golden DM",
+        "closed": "Opens when your mission is saved. Inside: your channels, your tuning fork and your golden DM."
+      },
+      "ubb-landing-page": {
+        "name": "Landing Page",
+        "result": "a landing page that carries your offer",
+        "closed": "Opens when your mission is saved. Inside: a landing page that carries your offer."
+      },
+      "overview": {
+        "name": "Overview",
+        "result": "your shop, and the shops of other residents",
+        "closed": "Opens when your offer is saved. Inside: your shop, and the shops of other residents."
+      },
+      "my-products": {
+        "name": "My Products",
+        "result": "the products you sell",
+        "closed": "Opens when your offer is saved. Inside: the products you sell."
+      },
+      "discover-mission": {
+        "closed": "Opens when your top talent is saved to your account. Inside: you'll know what is yours to do in the world."
+      },
+      "assess-qol": {
+        "closed": "Opens when your top talent is saved to your account. Inside: you'll know your real level, private to you."
+      },
+      "map-assets": {
+        "closed": "Opens when your top talent is saved to your account. Inside: you'll hold the inventory of everything you can build with."
+      },
+      "build-business": {
+        "closed": "Opens when your mission is saved. Inside: you'll have your uniqueness in one phrase, then your tagline."
+      }
+    },
+    "rooms": {
+      "title": "Rooms",
+      "order": "Quest order",
+      "hide": "Hide",
+      "journey": "The Journey",
+      "world": "In the world"
     }
   },
   "chatLauncher": {
