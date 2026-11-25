@@ -328,6 +328,8 @@ const Village = () => {
     }
   }, []);
   const mobile = useIsMobile();
+  // px the open clock card runs past the map on a phone; the frame leaves this much room so the card pushes «Your next move» down
+  const [clockPush, setClockPush] = useState(0);
   const signedIn = useSignedIn();
   const sheet = useCharacterSheet();
   // W2: the one player name (Reception's «Welcome back, <name>»); null for a guest.
@@ -506,7 +508,13 @@ const Village = () => {
           {/* --vl-zx/--vl-zy: the place the map zooms toward when it fades out (WP-15). */}
           <div
             className="vl-frame"
-            style={{ ...MAP_STAGE, "--vl-zx": `${lastPlace?.x ?? 50}%`, "--vl-zy": `${lastPlace?.y ?? 50}%` } as CSSProperties}
+            style={{
+              ...MAP_STAGE,
+              "--vl-zx": `${lastPlace?.x ?? 50}%`,
+              "--vl-zy": `${lastPlace?.y ?? 50}%`,
+              // phone: the open clock card runs below the map; this space makes it push «Your next move» down, never cover it
+              ...(clockPush > 0 ? { marginBottom: clockPush } : null),
+            } as CSSProperties}
           >
             <div className="vl-cover">
              <div className="vl-zoom">
@@ -588,7 +596,7 @@ const Village = () => {
             <SkyMoon sky={sky} />
             {/* The biological clock (#385): a compact watch in the map's top-right corner; its card
                 (views 2–3, with the player's Moon Focus) drops down over the map. */}
-            <MoonDial className="vl-watch" />
+            <MoonDial className="vl-watch" onPush={setClockPush} />
           </div>
 
           <div className="vl-foot vl-intro">
