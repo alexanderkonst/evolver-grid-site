@@ -579,7 +579,8 @@
 
 /* ---------- Second pane of a place: every room at once, or the quest order (GoBY §25.3) ---------- */
 .vl-rooms__toggle {
-  position: absolute; z-index: 4; top: clamp(20px, 4vh, 48px); right: clamp(20px, 4vw, 64px);
+  /* Left of the global language chip (fixed, 12px from the corner, ~66px wide), never under it: a tap on «Rooms» must not open the language menu. */
+  position: absolute; z-index: 4; top: clamp(20px, 4vh, 48px); right: max(clamp(20px, 4vw, 64px), 92px);
   display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; background: none; border: 0;
   color: var(--vl-link-ink); cursor: pointer; text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb),0.8);
   font-size: var(--vl-text-label); letter-spacing: 0.2em; text-transform: uppercase;
@@ -588,8 +589,10 @@
 .vl-rooms__toggle:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
 .vl-rooms {
   --vl-rooms-w: min(320px, 30vw);
-  /* The pane ends above the floating «Chat with us» pill (--chat-clearance), so no row sits under it. */
-  position: absolute; z-index: 3; top: 0; right: 0; bottom: var(--chat-clearance, 72px); width: var(--vl-rooms-w);
+  /* The pane ends above the floating «Chat with us» pill: its clearance plus a gap, so a line cut at the
+     pane's edge never touches the pill (qa-pass: overlaps). */
+  --vl-rooms-bottom: calc(var(--chat-clearance, 72px) + var(--vl-space-4));
+  position: absolute; z-index: 3; top: 0; right: 0; bottom: var(--vl-rooms-bottom); width: var(--vl-rooms-w);
   display: flex; flex-direction: column; border-bottom: 1px solid var(--vl-hair);
   background: rgba(var(--scene-bg-rgb), 0.72); border-left: 1px solid var(--vl-hair);
   -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
@@ -599,7 +602,8 @@
 /* The title and Hide share one fixed row; only the rows under it scroll, so no text ever passes under a control. */
 .vl-rooms__head {
   flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px;
-  padding: clamp(20px, 4vh, 48px) 8px 8px 20px; border-bottom: 1px solid var(--vl-hair);
+  /* The row starts below the global language chip (fixed top-right, 12px + 44px tall), so Hide is never under it. */
+  padding: 64px 8px 8px 20px; border-bottom: 1px solid var(--vl-hair);
 }
 .vl-rooms__head .vl-rooms__title { margin: 0; }
 .vl-rooms__hide {
@@ -608,7 +612,12 @@
 }
 .vl-rooms__hide:hover, .vl-rooms__hide:focus-visible { color: var(--vl-ink); outline: none; }
 .vl-rooms__hide:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
-.vl-rooms__body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 14px 20px 20px; }
+.vl-rooms__body {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 14px 20px 32px;
+  /* A line that runs past the bottom edge fades out instead of being chopped (the last rows stay fully readable at the end of the scroll). */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+}
 .vl-rooms.is-open { transform: none; visibility: visible; transition-delay: 0s; }
 /* The scene's title and ENTER make room instead of sliding under the pane. */
 .vl-place:has(.vl-rooms.is-open) .vl-place__copy { right: min(320px, 30vw); }
@@ -643,12 +652,12 @@
 @media (max-width: 767px) {
   .vl-rooms {
     --vl-rooms-w: 100%;
-    top: auto; left: 0; right: 0; bottom: var(--chat-clearance, 72px); width: auto; max-height: 50svh;
+    top: auto; left: 0; right: 0; bottom: var(--vl-rooms-bottom); width: auto; max-height: 50svh;
     border-left: 0; border-top: 1px solid var(--vl-hair); transform: translateY(100%);
   }
   /* The title and ENTER rise above the sheet, so ENTER is never covered. */
   .vl-rooms__head { padding-top: 8px; }
-  .vl-place:has(.vl-rooms.is-open) .vl-place__copy { right: 0; bottom: calc(50svh + var(--chat-clearance, 72px)); padding-bottom: 16px; }
+  .vl-place:has(.vl-rooms.is-open) .vl-place__copy { right: 0; bottom: calc(50svh + var(--vl-rooms-bottom)); padding-bottom: 16px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .vl-rooms, .vl-place__copy { transition: none; }
