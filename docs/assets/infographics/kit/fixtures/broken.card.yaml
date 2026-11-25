@@ -1,0 +1,13 @@
+# Deliberately broken: lint must FAIL on it (kit/test_kit.py and CI check that). Never render into a book.
+id: broken-fixture
+chapter: "0"
+title: Broken on Purpose
+caption: A fixture that breaks the rules.
+skin: v4
+text:
+  overflow: "Supercalifragilisticexpialidocious_unbreakable_word_that_cannot_wrap"
+  second_accent: "a second neon element"
+  off_palette: "off palette red"
+  too_small: "tiny text"
+sources:
+  - none (test fixture)

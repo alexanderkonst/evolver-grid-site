@@ -1,0 +1,21 @@
+# Proof card 1: ported from engine-v4/ideal_client.py::k2 (card 02 of 9). Same pixels, text lives here.
+id: ideal-client-02
+chapter: "3.2"
+number: 2
+of: 9
+title: Similar, and Different
+caption: Two corners make them like you. One corner makes them want to buy.
+skin: v4
+# Legacy density: engine-v4 cards run 36-86 words. New cards stay at the skin default (25).
+max_words: 35
+parity: {module: ideal_client, fn: k2, index: 2}   # compare.py renders this engine-v4 call and diffs
+text:
+  eyebrow: "Ideal client · The triangle"
+  nodes:
+    top:   {title: Identity,  sub: similar}
+    right: {title: Myth,      sub: similar}
+    left:  {title: Threshold, sub: the difference}
+  quote: "The difference: they stand where you once stood."
+sources:
+  - docs/assets/infographics/engine-v4/ideal_client.py (k2)
+  - docs/assets/infographics/BOOK.md (Find Your Ideal Client, card 02)
