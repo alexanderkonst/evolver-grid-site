@@ -1,4 +1,4 @@
-import { ReactNode, useState, useEffect, useRef, createContext, useContext } from "react";
+import { ReactNode, useState, useEffect, useRef, useCallback, createContext, useContext } from "react";
 import { createPortal } from "react-dom";
 import { useTranslation } from "react-i18next";
 import { Link, useLocation, useNavigate, useNavigationType, Outlet } from "react-router-dom";
@@ -42,7 +42,9 @@ import SpacesRail from "./SpacesRail";
 import SectionsPanel, { SPACE_SECTIONS, STATIC_LABEL_KEYS } from "./SectionsPanel";
 import { useJourneyProgress } from "@/hooks/useJourneyProgress";
 import { usePlaceStates } from "@/hooks/usePlaceStates";
-import { activePlaceKey, PANE_BY_PLACE, RAIL_PLACES } from "@/lib/railPlaces";
+import { activePlaceKey, isHomePath, PANE_BY_PLACE, RAIL_PLACES } from "@/lib/railPlaces";
+import { litQuarters } from "@/lib/quarters";
+import { VILLAGE_PLACES } from "@/data/villagePlaces";
 import { useLinkedQuizResult } from "@/hooks/useLinkedQuizResult";
 import {
     QUIZ_RESULT_EVENT,
@@ -53,6 +55,7 @@ import KeyboardShortcuts from "@/components/KeyboardShortcuts";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
 import MoonMedallion from "@/components/game/MoonMedallion";
+import YourAiInstrument from "@/components/game/YourAiInstrument";
 import { placeTagline } from "@/lib/villageCopy";
 import { displayName } from "@/lib/displayName";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
@@ -649,12 +652,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // /equilibrium (legacy redirect) and /preview/equilibrium-v2.
         if (typeof window === 'undefined') return true;
         const p = window.location.pathname;
-        const isLandingPage = p === '/' || p.startsWith('/game/journey');
+        // Issue #443 wave 3 (item 2): /game/journey is the Quest Board now, a place like the others, and
+        // opens pane 2 by default. Only the title door («/») starts with it closed.
+        const isLandingPage = p === '/';
         const isIgnitePage = p === '/ignite' || isProductLandingRoute(p);
-        const isEquilibriumPage =
-            p === '/build/equilibrium' ||
-            p === '/equilibrium' ||
-            p === '/preview/equilibrium-v2';
+        // Issue #443 (A4): Equilibrium no longer starts with pane 2 closed. It is a Home
+        // route now (railPlaces `isHomePath`), and a closed pane 2 drew the rail's collapse
+        // chevron and pane 2's expand chevron side by side. The player can still close it.
         // Day 82 v5 (Sasha 2026-05-24): Karime's offering surfaces
         // default to fully-collapsed nav (pane 2 closed AND pane 1 in
         // compact mode) so the visitor lands on the editorial card with
@@ -670,7 +674,9 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // user can still toggle it open. Covers all /admin/* sub-pages
         // (content, genius-offers, mission-participants, mission-sync).
         const isAdminPage = p === '/admin' || p.startsWith('/admin/');
-        return !isLandingPage && !isIgnitePage && !isEquilibriumPage && !isKarimePage && !isAdminPage;
+        // Issue #443 (A9): /holomap sits in the shell but has no pane-2 sections; start closed.
+        const isHolomapPage = p === '/holomap';
+        return !isLandingPage && !isIgnitePage && !isKarimePage && !isAdminPage && !isHolomapPage;
     });
 
     // Auth is a focused account surface inside the persistent shell: pane 2 has no
@@ -680,6 +686,19 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         if (!isAuthRoute) return;
         setSectionsPanelOpen(false);
     }, [isAuthRoute]);
+    // Issue #443 wave 3 (item 6): a place whose pane has no rows for this player starts with pane 2
+    // closed (one expand control), and opens again when the player walks to a place that has rows.
+    // Only the pane's own auto-close is undone; a pane the player closed stays closed.
+    const paneAutoClosedRef = useRef(false);
+    const handlePaneEmptyChange = useCallback((empty: boolean) => {
+        if (empty) {
+            paneAutoClosedRef.current = true;
+            setSectionsPanelOpen(false);
+        } else if (paneAutoClosedRef.current) {
+            paneAutoClosedRef.current = false;
+            setSectionsPanelOpen(true);
+        }
+    }, []);
     const [mobileView, setMobileView] = useState<"navigation" | "content">(() => {
         // Day 53 (Sasha 2026-04-27): mobile landing now defaults to CONTENT
         // (the hero), not navigation. Hiding the hero behind a nav list
@@ -694,6 +713,24 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // Issue #270: below `md` the phone drawer opens on the rail alone (it is 176px of rail plus
     // a sub-panel squeezed into what is left). A visible "Sections" toggle opens the sub-panel;
     // ⌘B is not the only way. From `md` up both panes show, as before.
+    // Issue #443 wave 3 (item 9): the shell draws the desktop layout (`hidden lg:flex`) and the phone
+    // layout (`lg:hidden`) side by side and hid one with CSS, so the page was mounted TWICE: two h1s,
+    // two copies of every region, every effect and fetch run twice. The page now mounts in the layout
+    // that is showing. `lg` = 1024px, the same breakpoint the two wrappers use. No matchMedia (a test
+    // renderer) reads as desktop.
+    const [isDesktopLayout, setIsDesktopLayout] = useState<boolean>(() =>
+        typeof window === "undefined" || typeof window.matchMedia !== "function"
+            ? true
+            : window.matchMedia("(min-width: 1024px)").matches,
+    );
+    useEffect(() => {
+        if (typeof window.matchMedia !== "function") return;
+        const mql = window.matchMedia("(min-width: 1024px)");
+        const onChange = () => setIsDesktopLayout(mql.matches);
+        onChange();
+        mql.addEventListener("change", onChange);
+        return () => mql.removeEventListener("change", onChange);
+    }, []);
     const isNarrow = useIsMobile();
     const [drawerSectionsOpen, setDrawerSectionsOpen] = useState(
         () => typeof window === "undefined" || window.innerWidth >= 768,
@@ -715,7 +752,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     const { progress: journeyProgress } = useJourneyProgress();
 
     // WP-4: the state of each village place, the rail's only source (same as /village).
-    const { states: placeStates } = usePlaceStates();
+    const { states: placeStates, ready: placesReady } = usePlaceStates();
 
     const getSpaceFromPath = (pathname: string): string | undefined => {
         // Day 52 (Sasha 2026-04-26): /ubb (Unique Business Builder)
@@ -824,6 +861,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         // activeSpaceId stayed on the default "next-move" space — which
         // has no pane-2 content — and Sasha got pane 1 + pane 3 only,
         // no contextual nav. Same shape of fix as the Day 64 QoL entry.
+        // Issue #443 A3: Equilibrium, saved artifacts and Settings are Home (the place the rail
+        // lights and pane 2 names), so pane 2 lists Home's rows, not the Forge's or the Journey's.
+        if (isHomePath(location.pathname)) {
+            setActiveSpaceId("grow");
+            return;
+        }
+
         const buildSharedPaths = ["/playbook", "/path", "/dashboard", "/ignite"];
         const isBuildSharedPath = isProductLandingRoute(location.pathname) || buildSharedPaths.some(
             (p) => location.pathname === p || location.pathname.startsWith(p + "/"),
@@ -861,7 +905,20 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
 
     // The place the player stands in: the path decides first, the pane second.
     const activePlace = activePlaceKey(location.pathname, activeSpaceId);
+    // GoBY §25.3: pane 2 opens when the player ENTERS a place, from another place. A first load keeps
+    // the route's own default (closed on the title door, /ignite, Karime, admin, /holomap), and a pane
+    // the player closed stays closed while they move inside one place. Derived during render so the
+    // pane's own «no rows for this player» close (SectionsPanel `onEmptyChange`, an effect) still wins.
+    const [stoodInPlace, setStoodInPlace] = useState(activePlace);
+    if (activePlace && activePlace !== stoodInPlace) {
+        setStoodInPlace(activePlace);
+        if (stoodInPlace && !isAuthRoute) setSectionsPanelOpen(true);
+    }
     const activePlaceData = RAIL_PLACES.find((p) => p.key === activePlace);
+    // §25.14: the sign in pane 2's header is lit with the rest of its quarter (nothing lit until the save loads).
+    const activeQuarterLit = activePlaceData
+        ? litQuarters(VILLAGE_PLACES, placesReady ? placeStates : [])[activePlaceData.element]
+        : false;
     // W2: the one player name for the rail and the place line; null for a guest.
     // Issue #419: until the game_profiles row exists, the name given at signup (auth metadata) stands in.
     const playerName = displayName({
@@ -1354,6 +1411,12 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         setSectionsPanelOpen(prev => !prev);
     };
 
+    // Issue #443 wave 3 (item 1): one quiet seam. With pane 2 closed, the sections-expand strip IS
+    // the seam; a second strip (rail minimize) beside it drew two parallel columns. The rail
+    // strip stays while pane 2 is open, on routes without an expand strip (auth), and whenever
+    // the rail is minimized (it is the only way back to the full rail).
+    const showRailSeam = sectionsPanelOpen || railMinimized || isAuthRoute;
+
     // Phone drawer: Esc, a route change (rail logo, Settings, Log in) or opening the chat
     // popover closes it. The backdrop button and place/section picks close it directly.
     useEffect(() => {
@@ -1418,6 +1481,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // suppression, so it's inert (false) rather than deleted, in case a
     // future route mounts its own full-bleed background again.
     const isImmersiveDarkRoute = false;
+    // Issue #443 wave 3 (item 5): the Quest Board opens on a full-bleed banner. The 16px (pt-4)
+    // that every other route keeps above its content left an empty strip above the banner on desktop
+    // and a band between the top bar and the banner on a phone.
+    const isFullBleedHeroRoute = path === "/game/journey";
     // Day 75 (Sasha 2026-05-20): Equilibrium gets a clean static backdrop
     // instead of the Mux cosmic-sunset video. The video was doing ~70% of
     // the chroma work and reading as "yellow on yellow" — Sasha's call:
@@ -1584,6 +1651,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 <SpacesRail
                     activePlace={activePlace}
                     placeStates={placeStates}
+                    placesLoading={!placesReady}
                     onSpaceSelect={handleSpaceSelect}
                     compact={railMinimized}
                     className={cn(
@@ -1631,6 +1699,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     treatment reverted. Restored pre-Day-84 flat w-5
                     column with chevron, matching the sections-panel
                     toggle's visual register. */}
+                {showRailSeam && (
                 <button
                     onClick={toggleRailMinimize}
                     data-seam="rail"
@@ -1678,6 +1747,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         }}
                     />
                 </button>
+                )}
 
                 {/* Panel 2: Sections with transition.
                     Day 52 (Sasha 2026-04-27): `relative` removed.
@@ -1714,6 +1784,15 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     [data-pane="2"] directly. */}
                 <div
                     data-pane="2"
+                    // Issue #443 wave 3 (item 2): a closed pane is clipped to 0 width, but its controls
+                    // were still in the tab order and the accessibility tree next to the expand control.
+                    aria-hidden={sectionsPanelOpen ? undefined : true}
+                    ref={(el) => {
+                        // React 18 has no `inert` prop; the attribute keeps focus and taps out of a closed pane.
+                        if (!el) return;
+                        if (sectionsPanelOpen) el.removeAttribute("inert");
+                        else el.setAttribute("inert", "");
+                    }}
                     className={cn(
                         "transition-all duration-[var(--motion-fast)] ease-[var(--motion-ease)] h-dvh overflow-hidden z-30 min-w-0 transform-gpu",
                         isAiOsRoute ? "shrink-0" : "sticky top-0",
@@ -1723,9 +1802,13 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     <SectionsPanel
                         activeSpaceId={activeSpaceId}
                         placeName={activePlaceData?.name}
+                        placeElement={activePlaceData?.element}
+                        placeQuarterLit={activeQuarterLit}
                         placeLine={activePlaceLine}
                         onSectionSelect={handleSectionSelect}
-                        onClose={toggleSectionsPanel}
+                        // Open pane → the hide control; closed pane → none (the expand strip is the only control).
+                        onClose={sectionsPanelOpen ? toggleSectionsPanel : undefined}
+                        onEmptyChange={handlePaneEmptyChange}
                         className="h-full w-[260px]"
                         pageOwnsBackground={pageOwnsBackground}
                         publicProfilePath={publicProfilePath}
@@ -1856,7 +1939,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         // horizontal strip above #ignite-page's own dark HLS
                         // background. Mirror the mobile-only `isImmersiveDarkRoute`
                         // suppression here.
-                        (pageOwnsBackground || isImmersiveDarkRoute) ? "" : "pt-4"
+                        (pageOwnsBackground || isImmersiveDarkRoute || isFullBleedHeroRoute) ? "" : "pt-4"
                     )}
                 >
                     {/* Pane-3 wash — moved here from the shell-wide
@@ -1886,7 +1969,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         pass it. Re-add this block if a future shell variant wants
                         a home glyph back. */}
                     <div className="page-transition-enter">
-                        {children ?? <Outlet />}
+                        {isDesktopLayout ? (children ?? <Outlet />) : null}
                     </div>
                 </main>
             </div>
@@ -1936,6 +2019,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     <SpacesRail
                         activePlace={activePlace}
                         placeStates={placeStates}
+                        placesLoading={!placesReady}
                         onSpaceSelect={handleSpaceSelect}
                         pageOwnsBackground={pageOwnsBackground}
                         userName={playerName ?? undefined}
@@ -1993,6 +2077,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             placeName={activePlaceData?.name}
+                        placeElement={activePlaceData?.element}
+                        placeQuarterLit={activeQuarterLit}
                             placeLine={activePlaceLine}
                             onSectionSelect={handleSectionSelect}
                             className="w-full h-full"
@@ -2262,7 +2348,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                             // full intrinsic height; the absolute parent clips
                             // that overflow and mobile users cannot scroll.
                             "mobile-content-scroll flex-1 min-h-0 overflow-y-auto overflow-x-hidden scrollbar-hide relative [&::-webkit-scrollbar]:hidden",
-                            (pageOwnsBackground || isImmersiveDarkRoute) ? "" : "pt-4"
+                            (pageOwnsBackground || isImmersiveDarkRoute || isFullBleedHeroRoute) ? "" : "pt-4"
                         )}
                         style={{
                             // Room under the last line for the floating chat button (4rem).
@@ -2308,12 +2394,15 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         }}
                     >
                         <div className="page-transition-enter">
-                            {children ?? <Outlet />}
+                            {isDesktopLayout ? null : (children ?? <Outlet />)}
                         </div>
                     </main>
                 </div>
             </div>
             <KeyboardShortcuts open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
+            {/* Your AI as a carried instrument (docs/specs/your-ai-instrument/sow.md): the existing
+                AI OS gate (T+M+A complete, or the AI OS ever visited) decides who carries it. */}
+            <YourAiInstrument enabled={tmaComplete || aiOsEverVisited} ownerId={user?.id ?? null} />
         </div>
     );
 };

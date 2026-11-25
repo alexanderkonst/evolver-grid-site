@@ -12,7 +12,7 @@ import { placeName, placeTagline, tr } from "@/lib/villageCopy";
  *   open    condition met, module not done
  *   next    open, and the single next move on the Journey
  *   done    its module reached the Outro / its result is saved
- *   live    something is happening there now (webinar, Mastermind)
+ *   live    something is happening there now (FMF)
  *
  * The state is read from real events in the save file, never from points or XP.
  * Journey order and requirements come from `JOURNEY_MAIN` (src/data/journeySequence.ts);
@@ -64,16 +64,25 @@ export type PlaceClosedLine = {
   inside: string;
   /** i18n key of the whole line («Opens when …. Inside: ….»). Absent = English only. */
   key?: string;
+  /**
+   * A one-clause form for the rail's lock tooltip, where the long line is too much
+   * («Opens with your first sale.»). Absent = the rail shows the whole line.
+   */
+  short?: string;
+  /** i18n key of `short`. Absent = English only. */
+  shortKey?: string;
 };
 
 /** A window in which something happens at the place. ISO timestamps with offset. */
 export type PlaceLive = {
   from: string;
   until: string;
-  /** «Live now: Webinar, Wed Nov 4.» */
+  /** «Live now: FMF, Monday to Wednesday.» */
   line: string;
   /** i18n key of `line`. Absent = English only. */
   key?: string;
+  /** More windows with the same line (a recurring event, e.g. FMF once per lunar cycle). */
+  also?: { from: string; until: string }[];
 };
 
 export type PlaceRule = {
@@ -124,7 +133,7 @@ export type PlaceSaveSource = {
 };
 
 /** The Journey steps that make a person matchable: talent, mission, assets (§14.13). */
-const TRIAD_STEPS: JourneyItemId[] = ["find-top-talent", "discover-mission", "map-assets"];
+export const TRIAD_STEPS: JourneyItemId[] = ["find-top-talent", "discover-mission", "map-assets"];
 
 /**
  * Turn the character sheet into a PlaceSave. Journey steps come straight from the
@@ -317,6 +326,25 @@ export const nextMove = <P extends MovePlace>(places: readonly P[], save: PlaceS
   return null;
 };
 
+/**
+ * One glow (§25.4 step 1): only the place `nextMove` offers carries `next`, wherever it is drawn
+ * (village map, rail, top bar). A place whose own rule says `next` but which is not that move's
+ * place (a guest who must save first, a place that shares the step) reads `open`; the move's
+ * place reads `next` when it is open, and keeps `live` or `done` when it already is one.
+ * With no move (the save has not loaded) the states pass through untouched. Never opens a closed place.
+ */
+export const oneNextStates = (
+  places: readonly MovePlace[],
+  states: readonly PlaceStateName[],
+  move: Pick<NextMove, "place"> | null,
+): PlaceStateName[] =>
+  states.map((s, i) => {
+    if (!move) return s;
+    const isMove = places[i]?.key === move.place.key;
+    if (isMove) return s === "open" ? "next" : s;
+    return s === "next" ? "open" : s;
+  });
+
 /** Keys of the places that are not closed: the set the village remembers having seen open. */
 export const openPlaceKeys = (places: readonly MovePlace[], save: PlaceSave): string[] =>
   places.filter((p) => placeState(p, save) !== "closed").map((p) => p.key);
@@ -353,7 +381,7 @@ export const whatChangedLine = <P extends MovePlace>(fresh: readonly P[], t?: TF
 export const isLiveNow = (live: PlaceLive | undefined, now: Date): boolean => {
   if (!live) return false;
   const t = now.getTime();
-  return t >= Date.parse(live.from) && t < Date.parse(live.until);
+  return [live, ...(live.also ?? [])].some((w) => t >= Date.parse(w.from) && t < Date.parse(w.until));
 };
 
 const isMet = (save: PlaceSave, req: PlaceRequirement) => save.met[req] === true;
@@ -392,6 +420,24 @@ export const closedLine = (place: PlaceInput, t?: TFunction): string => {
   const c = place.rule.closed;
   if (!c) return "";
   return tr(t, c.key, `Opens when ${trimDot(c.event)}. Inside: ${trimDot(c.inside)}.`);
+};
+
+/**
+ * A room's own closed line (§25.5): the place's «Opens when <event>» with the room's own result,
+ * «Opens when <event>. Inside: <that room's result>.». Empty when the place has no closed line.
+ * `key` is the room's own i18n key for the whole line; absent or untranslated = English.
+ */
+export const closedRoomLine = (place: PlaceInput, inside: string, t?: TFunction, key?: string): string => {
+  const c = place.rule.closed;
+  if (!c) return "";
+  return tr(t, key, `Opens when ${trimDot(c.event)}. Inside: ${trimDot(inside)}.`);
+};
+
+/** The line for the rail's lock tooltip: the closed line's short form when it has one, else the whole line. */
+export const closedShortLine = (place: PlaceInput, t?: TFunction): string => {
+  const c = place.rule.closed;
+  if (!c?.short) return closedLine(place, t);
+  return tr(t, c.shortKey, c.short);
 };
 
 /** The one line to show for a place in a given state. */

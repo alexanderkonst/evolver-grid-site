@@ -19,11 +19,11 @@ import SkeletonCard from "@/components/ui/SkeletonCard";
 import EmptyState from "@/components/ui/EmptyState";
 import { useToast } from "@/hooks/use-toast";
 import { useSessionUserId } from "@/hooks/useSessionUserId";
-import { supabase } from "@/integrations/supabase/client";
 import { formatDate, formatTime } from "@/i18n/format";
 import { splitCircleLinks, stripCircleLinks } from "@/lib/circles";
 import {
   buildThreads,
+  fetchMessagePartners,
   fetchMyMessages,
   INBOX_PATH,
   isMissingTableError,
@@ -74,21 +74,21 @@ const Messages = () => {
 
   const loadPeople = useCallback(
     async (ids: string[]) => {
-      const missing = ids.filter(Boolean);
-      if (missing.length === 0) return;
-      const { data } = await supabase
-        .from("game_profiles")
-        .select("user_id, first_name, last_name, avatar_url")
-        .in("user_id", missing);
-      setPeople((prev) => {
-        const next = { ...prev };
-        (data || []).forEach((row) => {
-          if (!row.user_id) return;
-          const name = `${row.first_name || ""} ${row.last_name || ""}`.trim();
-          next[row.user_id] = { name: name || fallbackName, avatarUrl: row.avatar_url };
+      if (ids.filter(Boolean).length === 0) return;
+      try {
+        // game_profiles is owner-readable only; partners' public names come through an RPC (#421).
+        const partners = await fetchMessagePartners(ids);
+        setPeople((prev) => {
+          const next = { ...prev };
+          partners.forEach((p) => {
+            next[p.userId] = { name: p.name || fallbackName, avatarUrl: p.avatarUrl };
+          });
+          return next;
         });
-        return next;
-      });
+      } catch (err) {
+        // RPC not deployed yet (or a hidden profile): keep the fallback name, never break the inbox.
+        console.warn("[Messages] partner names unavailable", err);
+      }
     },
     [fallbackName],
   );

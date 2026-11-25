@@ -262,7 +262,7 @@ export const PLAYBOOK_STEPS: PlaybookStep[] = [
   {
     number: 4,
     slug: "product",
-    appName: "BUILT",
+    appName: "PMF",
     subtitle: "Build your First Unique Product",
     transformationalResult: "My first product exists — I can hand it to someone.",
     neonHsl: "hsl(180, 85%, 55%)",

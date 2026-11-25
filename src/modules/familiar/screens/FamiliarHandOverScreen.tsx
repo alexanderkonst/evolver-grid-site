@@ -6,7 +6,7 @@
  * Spec: docs/specs/ai-familiar/ai-familiar_tracker.md §1.3.
  */
 import { useId, useState } from "react";
-import { PlaceBackLink } from "@/components/game/VillagePlaceHeader";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import AskMyAiButton from "../AskMyAiButton";
 import ChatAppPicker from "../ChatAppPicker";
@@ -32,17 +32,17 @@ const FamiliarHandOverScreen = ({ state, onNext }: Props) => {
   };
 
   return (
-    <>
-    <PlaceBackLink />
     <section className="mf mf--outro" aria-labelledby={headingId}>
+      <Link className="mf__back" to="/village">
+        {t("village.backVillage", { defaultValue: "← Village" })}
+      </Link>
       <div className="mf__stage" data-place-state="open">
-        {/* Seam 2/4 (S-07, L-01): one place name in the village title voice, then one line. */}
-        <h1 id={headingId} className="mf__title">{t("familiar.handover.eyebrow", { defaultValue: "Your AI" })}</h1>
-        <p className="mf__silhouette">
+        <p className="mf__eyebrow">{t("familiar.handover.eyebrow", { defaultValue: "Your AI" })}</p>
+        <h1 id={headingId} className="mf__result" style={{ maxWidth: "24ch" }}>
           {t("familiar.handover.line", {
             defaultValue: "Your AI: your prompt, carried into the chat you already use.",
           })}
-        </p>
+        </h1>
 
         <div className="mt-6 flex w-full justify-center">
           <GiftChips gifts={state.gifts} />
@@ -59,7 +59,6 @@ const FamiliarHandOverScreen = ({ state, onNext }: Props) => {
         )}
       </div>
     </section>
-    </>
   );
 };
 

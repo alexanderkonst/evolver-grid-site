@@ -74,6 +74,9 @@ When a module is built or rebuilt, run the four playbooks with a **roast gate af
 - **Verification:** build, types, console → **AI self-test before human** (recorded walkthrough as proof) → functional tests → edge cases → founder walkthrough.
 
 ## 9. Polishing an existing module
+
+First check per screen: the **3-second test** ([GoBY §25.12](../02-strategy/game_of_being_you.md#25-navigation-sasha-2026-11-24)).
+
 1. **Spec fidelity audit first:** list every element on screen, compare with the spec: in code but not in spec → flag for removal; in spec but not in code → flag for addition (a Spec Drift Report).
 2. **Quick roast:** does the flow deliver the Master Result? unnecessary screens? text repeated? buttons say what I **get**, not what I do? one next action per screen? the most important thing most visible? dead props?
 3. Fix list with file:line → build check.

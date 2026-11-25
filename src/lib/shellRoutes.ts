@@ -70,7 +70,7 @@ const HOLDOUT_PREFIX: string[] = [
 ];
 
 /** Public offer pages that share Ignite's journey shell. */
-const PRODUCT_LANDING_ROUTES = ["/products", "/products/crossing", "/products/vector", "/products/built"];
+const PRODUCT_LANDING_ROUTES = ["/products", "/products/crossing", "/products/vector", "/products/pmf"];
 
 export const isProductLandingRoute = (pathname: string): boolean =>
     PRODUCT_LANDING_ROUTES.includes(pathname);
@@ -89,7 +89,7 @@ const SHELL_EXACT = new Set<string>([
     "/home",
     "/home2",
     "/ignite",
-    "/build/mastermind",
+    "/build/fmf",
     ...PRODUCT_LANDING_ROUTES,
     "/path",
     "/dashboard",
@@ -117,6 +117,7 @@ const SHELL_EXACT = new Set<string>([
     "/build/cockpit/offers",
     "/game/test-nav",
     "/game/next-move-v2",   // DailyLoopV2 — sibling of /game/next-move; distinct path so listed explicitly
+    "/holomap",             // Issue #443 (A9): the instrument sits inside the game shell, back link goes to the Village
     "/sasha",               // Founder public profile — belongs to ME while retaining its shareable root slug
 ]);
 
@@ -162,6 +163,7 @@ const HIDE_LOGO_EXACT = new Set<string>([
     "/build/cockpit/dashboard",
     "/build/cockpit/offers",
     "/preview/equilibrium-v2",
+    "/holomap",
     "/game/me/quality-of-life",
     "/game/me/mission",
 ]);

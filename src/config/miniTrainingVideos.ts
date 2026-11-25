@@ -16,4 +16,6 @@ export const MINI_TRAINING_VIDEOS: Record<string, Record<number, string>> = {
     7: "lijw7X_w-_g",
     8: "SD4a3t9lYJE",
   },
+  // AI That Knows You: no videos yet (texts await Sasha's signature).
+  "ai-that-knows-you": {},
 };

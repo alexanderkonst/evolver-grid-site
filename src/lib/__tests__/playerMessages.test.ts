@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 
 vi.mock("@/integrations/supabase/client", () => ({ supabase: {} }));
 
-import { buildThreads, otherParty, threadPath, type PlayerMessage } from "../playerMessages";
+import { buildThreads, otherParty, partnerFromRow, threadPath, type PlayerMessage } from "../playerMessages";
 
 const ME = "me";
 const msg = (id: string, from: string, to: string, at: string, read: string | null = null): PlayerMessage => ({
@@ -49,5 +49,21 @@ describe("playerMessages", () => {
 
   it("points a thread at the in-game messages route", () => {
     expect(threadPath("ann")).toBe("/game/collaborate/messages/ann");
+  });
+
+  it("builds a partner's display name and avatar from an RPC row", () => {
+    expect(
+      partnerFromRow({ user_id: "ada", first_name: "Ada", last_name: "QA-A test", avatar_url: null }),
+    ).toEqual({ userId: "ada", name: "Ada QA-A test", avatarUrl: null });
+    expect(partnerFromRow({ user_id: "bo", first_name: "Bo", last_name: null, avatar_url: "u.png" })).toEqual({
+      userId: "bo",
+      name: "Bo",
+      avatarUrl: "u.png",
+    });
+  });
+
+  it("returns an empty name (so the caller falls back) when the profile has none, and skips rows without an id", () => {
+    expect(partnerFromRow({ user_id: "x", first_name: null, last_name: " ", avatar_url: null })?.name).toBe("");
+    expect(partnerFromRow({ user_id: null, first_name: "Z", last_name: null, avatar_url: null })).toBeNull();
   });
 });

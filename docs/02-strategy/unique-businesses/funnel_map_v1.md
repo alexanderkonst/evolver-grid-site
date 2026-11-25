@@ -19,9 +19,9 @@
 | 5 | I answer through my story in 1–2 sentences | Sasha | Not found in the funnel docs | none | The 1–2 sentence story not written |
 | 6 | The person reacts somehow | Sasha → CRM | CRM and Offer Ledger in the private ledger, filled via Pulse | live | — |
 | 7 | I invite them to a free transformational webinar | Sasha | First run: free live session Wed 2026-11-04 (Luma `qpogt17o`). Webinar Engine v1 written ([§ Business Case](./alexanders_unique_business.md)): flow, 3+3 message cap, host kit | partial | No next date; no standing webinar page (`/webinar` does not exist); whether the Nov 4 run happened and its numbers are not in my records |
-| 8 | At the webinar I sell the two-day FMF workshop | Sasha | [/build/mastermind](https://findyourtoptalent.com/build/mastermind) ($222, group); [/ignite](https://findyourtoptalent.com/ignite) ($555, 2 h, 1:1) | partial | Mastermind page still shows the past dates Nov 9–10, 2026; Stripe link is Sasha's (Stripe is off-limits to Hark) |
-| 9 | At the FMF workshop I sell BUILT TO PMF | Sasha | Container BUILD: $1,111 group / $4,444 1:1, 4 weeks; guarantee written in [product_brief.md](../../04-products/product_brief.md) §0.4 | partial | Two routes for one product: `/products/build` and `/products/built` (product_brief §0.6 #1) |
-| 10 | After BUILT TO PMF I invite them into the sovereign founder collective | Sasha | Concept: [sovereign_founder_collective.md](../sovereign_founder_collective.md); product_brief §0.1 #6: 10% of revenue to a shared treasury, v0.3 | none (no page) | No page; terms conflict (see §3) |
+| 8 | At the webinar I sell FMF ("Discover Founder-Market Fit in Three Days, Guaranteed"; formerly the Mastermind) | Sasha | [/build/fmf](https://findyourtoptalent.com/build/fmf) ($222, group, live Monday + Wednesday once per lunar cycle; dates in [product_brief.md](../../04-products/product_brief.md) §0.7); [/ignite](https://findyourtoptalent.com/ignite) ($555, 2 h, 1:1) | partial | Dates published 2026-11-24 (next: Mon Dec 14 + Wed Dec 16, 2026); Stripe link is Sasha's (Stripe is off-limits to Hark); FMF guarantee terms not written yet |
+| 9 | At FMF I sell PMF ("Early signal of Product-Market Fit in One Moon Cycle, Guaranteed"; formerly BUILT) | Sasha | PMF: $1,111 group / $4,444 1:1, one moon cycle; guarantee written in [product_brief.md](../../04-products/product_brief.md) §0.4 | partial | One route `/products/pmf`; `/products/build` and `/products/built` redirect (2026-11-24) |
+| 10 | After PMF I invite them into the sovereign founder collective | Sasha | Concept: [sovereign_founder_collective.md](../sovereign_founder_collective.md); product_brief §0.1 #6: 10% of revenue to a shared treasury, v0.3 | none (no page) | No page; terms conflict (see §3) |
 | 11 | I offer to run this program for their clients | Sasha | product_brief §0.1 #7: rev share 50/50, v0.5 | none (no page) | No page or one-pager |
 | 12 | I offer training to get a licence to run the program themselves | Sasha | [/license](https://findyourtoptalent.com/license) exists, but it states how to use the method free and paid (the Three Terms), not the licence-training offer | partial | Licence share differs across docs (see §3); no training offer |
 
@@ -53,7 +53,7 @@ Also outside §8.6: the cold door [/quiz](https://findyourtoptalent.com/quiz) (h
 
 | ID | Gap | Step | Whose move |
 |---|---|---|---|
-| G1 | Next webinar: date, standing page, Mastermind page with fresh dates | 7–8 | Sasha sets the date; Hark builds the pages (platform fix) |
+| G1 | Next webinar: date, standing page; FMF page dates published 2026-11-24 | 7–8 | Sasha sets the date; Hark builds the pages (platform fix) |
 | G2 | Words for steps 3–5: hook, consent line, 1–2 sentence story | 3–5 | Sasha writes; Hark drafts only on request |
 | G3 | Acceptance ~25% under the 35% floor | 1 | Read after the self-naming test ends 2026-12-02 |
 | G4 | One route for BUILD | 9 | Hark (platform fix), after Sasha picks the name |

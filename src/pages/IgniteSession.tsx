@@ -457,7 +457,7 @@ const IgniteSession = () => {
             </p>
             <p className="text-xs" style={{ color: "var(--skin-text-muted-soft, rgba(26,30,58,0.6))" }}>
               {t('ignite.offerDistinction')}{" "}
-              <a href="/build/mastermind" className="underline underline-offset-2">
+              <a href="/build/fmf" className="underline underline-offset-2">
                 {t('ignite.offerDistinctionLink')}
               </a>
             </p>

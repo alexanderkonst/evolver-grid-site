@@ -134,7 +134,7 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                     style={TITLE_STYLE}
                 >
                     <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                        {course.title}
+                        {t(`course.titles.${course.slug}`, { defaultValue: course.title })}
                     </span>
                 </h1>
                 <p className="text-base sm:text-lg italic max-w-2xl" style={BODY_STYLE}>

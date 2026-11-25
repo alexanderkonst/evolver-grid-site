@@ -135,39 +135,15 @@ const MyArtifactsPage = () => {
   return (
     <GameShellV2>
       <div
-        className="min-h-screen bg-[#0a0e1a] text-white"
+        className="min-h-screen bg-[#08090c] text-white"
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
-        {/* Ambient background */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
-          <div
-            className="absolute -top-20 -left-20 w-[700px] h-[700px] rounded-full opacity-[0.04]"
-            style={{
-              background:
-                "radial-gradient(circle, #8460ea 0%, transparent 70%)",
-            }}
-          />
-          <div
-            className="absolute -bottom-40 -right-20 w-[600px] h-[600px] rounded-full opacity-[0.03]"
-            style={{
-              background:
-                "radial-gradient(circle, #6894d0 0%, transparent 70%)",
-            }}
-          />
-        </div>
-
         <div className="relative z-10 max-w-[860px] mx-auto px-5 pt-10 pb-20">
           {/* Back link */}
           <button
             type="button"
             onClick={() => navigate("/")}
-            className="inline-flex items-center gap-2 py-1.5 px-3 rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-medium transition-all duration-300 hover:scale-[1.02] mb-8 focus-visible:ring-2 focus-visible:ring-white/40 outline-none"
-            style={{
-              backgroundImage:
-                "linear-gradient(135deg, rgba(231,233,229,0.08), rgba(231,233,229,0.02))",
-              border: "1px solid rgba(231,233,229,0.18)",
-              color: "rgba(231,233,229,0.75)",
-            }}
+            className="inline-flex items-center gap-2 min-h-[44px] py-1.5 px-4 rounded-md border border-white/25 font-mono text-[11px] font-light uppercase tracking-[0.2em] text-white/70 transition-colors hover:border-white/60 hover:text-white mb-8 focus-visible:ring-1 focus-visible:ring-white/60 outline-none"
           >
             <ArrowLeft className="w-3 h-3" aria-hidden="true" />
             <span>{t("myArtifacts.back")}</span>
@@ -175,13 +151,12 @@ const MyArtifactsPage = () => {
 
           {/* Header */}
           <div
-            className="text-[10px] uppercase tracking-[0.32em] mb-4"
-            style={{ color: "rgba(132,96,234,0.85)" }}
+            className="font-mono text-[11px] font-light uppercase tracking-[0.2em] mb-4 text-white/60"
           >
             {t("myArtifacts.eyebrow")}
           </div>
           <h1
-            className="text-3xl sm:text-4xl font-medium leading-[1.15] mb-3"
+            className="text-2xl sm:text-3xl font-medium uppercase tracking-[0.18em] leading-[1.25] mb-3"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
               color: "rgba(231,233,229,0.98)",
@@ -205,7 +180,7 @@ const MyArtifactsPage = () => {
                     key={n}
                     className="rounded-2xl overflow-hidden animate-pulse motion-reduce:animate-none"
                     style={{
-                      background: "linear-gradient(180deg, rgba(15,25,45,0.65), rgba(20,15,40,0.55))",
+                      background: "rgba(10, 12, 16, 0.6)",
                       border: "1px solid rgba(231,233,229,0.08)",
                     }}
                   >
@@ -229,7 +204,7 @@ const MyArtifactsPage = () => {
               className="rounded-2xl p-10 text-center"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(15,25,45,0.65), rgba(20,15,40,0.55))",
+                  "rgba(10, 12, 16, 0.6)",
                 border: "1px solid rgba(231,233,229,0.08)",
               }}
             >
@@ -251,14 +226,7 @@ const MyArtifactsPage = () => {
               <button
                 type="button"
                 onClick={() => navigate("/")}
-                className="px-6 py-3 rounded-full text-xs font-semibold uppercase tracking-[0.22em] transition-all hover:scale-[1.03]"
-                style={{
-                  color: "rgba(231,233,229,0.98)",
-                  backgroundImage:
-                    "linear-gradient(135deg, rgba(132,96,234,0.9), rgba(41,84,159,0.9))",
-                  border: "1px solid rgba(231,233,229,0.4)",
-                  boxShadow: "0 20px 60px -18px rgba(132,96,234,0.7)",
-                }}
+                className="min-h-[44px] px-6 py-3 rounded-md border border-white/40 font-mono text-xs font-light uppercase tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/5"
               >
                 {t("myArtifacts.empty.cta")}
               </button>
@@ -276,10 +244,10 @@ const MyArtifactsPage = () => {
                     className="rounded-2xl overflow-hidden"
                     style={{
                       background:
-                        "linear-gradient(180deg, rgba(15,25,45,0.65), rgba(20,15,40,0.55))",
+                        "rgba(10, 12, 16, 0.6)",
                       border: "1px solid rgba(231,233,229,0.08)",
                       boxShadow:
-                        "0 24px 80px -32px rgba(132,96,234,0.25), inset 0 1px 1px rgba(255,255,255,0.04)",
+                        "none",
                       backdropFilter: "blur(14px)",
                     }}
                   >
@@ -290,7 +258,7 @@ const MyArtifactsPage = () => {
                       <div>
                         <div
                           className="text-[10px] uppercase tracking-[0.28em] mb-1"
-                          style={{ color: "rgba(132,96,234,0.85)" }}
+                          style={{ color: "rgba(231,233,229,0.6)" }}
                         >
                           {t("myArtifacts.step", { number: stepNumber })}
                         </div>

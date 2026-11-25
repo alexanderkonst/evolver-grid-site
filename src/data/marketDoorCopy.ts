@@ -27,9 +27,10 @@ export const MARKET_DOOR = {
     ru: "За 2 часа — фраза, на которой держится твой бизнес.",
   },
   productsPmfLine: {
-    en: "From your gift to strangers who pay for it, again and again: a scalable product in a\u00a0month.",
-    es: "De tu don a desconocidos que pagan por él, una y otra vez: un producto escalable en un mes.",
-    ru: "От твоего дара к незнакомым людям, которые платят за него снова и снова: масштабируемый продукт за месяц.",
+    // PMF (formerly BUILT), Sasha 2026-11-24: the tagline is the line.
+    en: "Early signal of Product-Market Fit in One Moon Cycle, Guaranteed.",
+    es: "Primera señal de Product-Market Fit en un ciclo lunar, garantizado.",
+    ru: "Первый сигнал Product-Market Fit за один лунный цикл, с гарантией.",
   },
 } satisfies Record<string, Copy>;
 

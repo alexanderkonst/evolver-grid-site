@@ -2,8 +2,13 @@ import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 import { FROM_NOTIFICATIONS } from "../_shared/senders.ts";
 
-// Instant email to Sasha for every /bring-your-module submission (issue #404).
-// Same provider and pattern as send-waitlist-email: Resend, RESEND_API_KEY, FROM_NOTIFICATIONS.
+// Instant signal to Sasha for every /bring-your-module submission (issues #404, #462).
+// Primary channel: Telegram, through the bot the project already has.
+//   Secrets (already set for equilibrium-telegram-bot / equilibrium-telegram, nothing new):
+//   TELEGRAM_BOT_TOKEN, and chat id from TELEGRAM_FOUNDER_CHAT_ID or else TELEGRAM_CHAT_ID.
+// Secondary channel: Resend email (RESEND_API_KEY, FROM_NOTIFICATIONS), best effort, runs after
+//   Telegram. It currently fails while the sender domain is unverified; that is logged, not fatal.
+// Response: { success: true, telegram, email }. 500 only when both channels fail.
 // No DB access: the form inserts the row itself, this only notifies.
 
 const corsHeaders = {
@@ -37,6 +42,65 @@ const hostnameOf = (projectUrl: string): string => {
   }
 };
 
+// Telegram caps a message at 4096 chars; stay under with room to spare.
+const TELEGRAM_MAX_CHARS = 3900;
+
+/** Never throws: returns false and logs on any failure. */
+const sendTelegram = async (text: string): Promise<boolean> => {
+  try {
+    const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
+    const chatId = Deno.env.get("TELEGRAM_FOUNDER_CHAT_ID") || Deno.env.get("TELEGRAM_CHAT_ID");
+    if (!token || !chatId) throw new Error("TELEGRAM_BOT_TOKEN or chat id (TELEGRAM_FOUNDER_CHAT_ID / TELEGRAM_CHAT_ID) is not set");
+
+    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text }),
+    });
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(`Telegram API error: ${JSON.stringify(errorData)}`);
+    }
+    return true;
+  } catch (error) {
+    console.error("notify-partner-submission: Telegram failed:", error);
+    return false;
+  }
+};
+
+/** Best effort. Never throws: returns false and logs on any failure. */
+const sendEmail = async (
+  { subject, text, replyTo }: { subject: string; text: string; replyTo: string },
+): Promise<boolean> => {
+  try {
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    if (!RESEND_API_KEY) throw new Error("RESEND_API_KEY is not set");
+
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: FROM_NOTIFICATIONS,
+        to: [NOTIFY_TO],
+        reply_to: replyTo,
+        subject,
+        text,
+      }),
+    });
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(`Resend API error: ${JSON.stringify(errorData)}`);
+    }
+    return true;
+  } catch (error) {
+    console.error("notify-partner-submission: email failed:", error);
+    return false;
+  }
+};
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -60,9 +124,21 @@ const handler = async (req: Request): Promise<Response> => {
     const host = hostnameOf(projectUrl);
     if (!host) return json({ error: "Invalid project link" }, 400);
 
+    const received = `${new Date().toISOString().replace("T", " ").replace(/\.\d+Z$/, "")} UTC`;
+
+    // Telegram: plain text, no parse_mode, so user text cannot break formatting.
+    const telegramText = [
+      `New partner: ${host}`,
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Project link: ${projectUrl}`,
+      `Note: ${note || "(empty)"}`,
+      `Received: ${received}`,
+    ].join("\n").slice(0, TELEGRAM_MAX_CHARS);
+
     // Header injection guard: the subject only ever carries a validated hostname.
     const subject = `New partner: ${host}`;
-    const text = [
+    const emailText = [
       "New partner submission (/bring-your-module)",
       "",
       `Name: ${name}`,
@@ -70,33 +146,17 @@ const handler = async (req: Request): Promise<Response> => {
       `Project link: ${projectUrl}`,
       `Note: ${note || "(empty)"}`,
       "",
-      `Received: ${new Date().toISOString().replace("T", " ").replace(/\.\d+Z$/, "")} UTC`,
+      `Received: ${received}`,
     ].join("\n");
 
-    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-    if (!RESEND_API_KEY) throw new Error("RESEND_API_KEY is not set");
+    const telegram = await sendTelegram(telegramText);
+    const emailSent = await sendEmail({ subject, text: emailText, replyTo: email });
 
-    const emailResponse = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: FROM_NOTIFICATIONS,
-        to: [NOTIFY_TO],
-        reply_to: email,
-        subject,
-        text,
-      }),
-    });
-
-    if (!emailResponse.ok) {
-      const errorData = await emailResponse.json().catch(() => ({}));
-      throw new Error(`Resend API error: ${JSON.stringify(errorData)}`);
+    if (!telegram && !emailSent) {
+      return json({ error: "Both notification channels failed" }, 500);
     }
 
-    return json({ success: true });
+    return json({ success: true, telegram, email: emailSent });
   } catch (error: any) {
     console.error("Error in notify-partner-submission function:", error);
     return json({ error: error?.message ?? "Unknown error" }, 500);

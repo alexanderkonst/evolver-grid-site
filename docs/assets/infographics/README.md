@@ -17,6 +17,10 @@ Requires: `pip install matplotlib pillow numpy scipy` (+ `rembg[cpu] onnxruntime
 
 The cash-flow card is kept out of this public repo for now; it lives in evolver-private-ledger/infographics/.
 
+## Kit: vocabulary, skins, card spec, lint (kit/)
+
+The v4 "lunar" engine ([engine-v4/](engine-v4/README.md)) is the latest style. `kit/` turns it into a small drawing vocabulary with three skins (`v4` default, `grayscale`, `moonworld`), a per-card spec (`<card>.card.yaml` beside `<card>.py` and `<card>.png`: id, chapter, title, caption, skin, all on-card text, sources), a lint that reads what a card drew (fit, 25 words, palette, one accent, margins, 16 px, footer, spec fields), `book_sync --check` against BOOK.md and the reader data, and one contact sheet per batch. New cards are specs; old cards migrate only when edited. Format, rules and commands: [kit/README.md](kit/README.md). `fyt_style.py` is now a shim onto the kit; old scripts run unchanged.
+
 ## Moon world (public)
 
 Public infographics and the small brand mark live in the moon world of The Game of Being You (Sasha, 2026-10-27). Taken from the live game's Lunar skin (`src/styles/theme-tokens.css`, `[data-skin="lunar"]` in `src/index.css`, `src/lib/gameFonts.ts`). The grayscale house style above stays for internal cards until Sasha says otherwise.

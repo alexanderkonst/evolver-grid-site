@@ -1,4 +1,4 @@
-import { memo, useEffect, useId, useState } from "react";
+import { memo, useEffect, useId, useRef, useState } from "react";
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -15,10 +15,12 @@ import {
     UserRound,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { closedLine, placeLine, type PlaceStateName } from "@/lib/placeState";
+import { closedLine, closedShortLine, placeLine, type PlaceStateName } from "@/lib/placeState";
 import { placeName, stateWordText, tr } from "@/lib/villageCopy";
-import { PANE_BY_PLACE, RAIL_PLACES, tourIdFor } from "@/lib/railPlaces";
-import type { VillagePlace, VillagePlaceKey } from "@/data/villagePlaces";
+import { PANE_BY_PLACE, RAIL_PLACES, railState, tourIdFor } from "@/lib/railPlaces";
+import { litQuarters } from "@/lib/quarters";
+import QuarterSign from "@/components/game/QuarterSign";
+import { VILLAGE_PLACES, type VillagePlace, type VillagePlaceKey } from "@/data/villagePlaces";
 import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import { supabase } from "@/integrations/supabase/client";
 import {
@@ -95,8 +97,8 @@ import MoonMedallion from "@/components/game/MoonMedallion";
  *
  * Each place gets a painted gold-engraving icon of its object, lit by the player's topaz
  * (icon grammar v1.2, Sasha 2026-11-22; replaces the photoreal buildings of 2026-11-02),
- * framed in CSS (`.village-place-icon`, src/index.css): one thin line in the skin accent,
- * so the object's own light stays the brightest thing; 34px (30 compact), files cache-busted by ?v. Closed places dim through --lock-filter, so an unlit icon needs no file.
+ * drawn on a transparent ground with no frame, so the object sits straight in the rail's circle
+ * (Sasha 2026-11-25); 44px (40 compact), files 48/96 px, cache-busted by ?v. Closed places dim through --lock-filter, so an unlit icon needs no file.
  * The crystal in the icons is the dodecahedron (Sasha 2026-11-22). The state still reads from the shared lock / open / live tokens
  * (src/styles/theme-tokens.css), so every skin renders every state.
  */
@@ -105,9 +107,9 @@ import MoonMedallion from "@/components/game/MoonMedallion";
 // their own folders; every other skin falls back to the root set.
 const ICON_SKIN_DIR: Partial<Record<Skin, string>> = { aurum: "aurum/", lunar: "lunar/", dao: "dao/" };
 const placeIconSrc = (key: VillagePlaceKey, skin?: Skin) =>
-    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}.webp?v=5`;
+    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}.webp?v=6`;
 const placeIconSrc2x = (key: VillagePlaceKey, skin?: Skin) =>
-    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}@2x.webp?v=5`;
+    `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}@2x.webp?v=6`;
 
 const PlaceIcon = ({ place, size, skin }: { place: VillagePlace; size: number; skin?: Skin }) => (
     <span className="village-place-icon flex-shrink-0" style={{ width: size, height: size }}>
@@ -128,12 +130,15 @@ const PlaceIcon = ({ place, size, skin }: { place: VillagePlace; size: number; s
 const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean }) => {
     if (state === "next") {
         return (
+            // The one glowing next move (§25.4 step 1): the same mark on the map, here and in pane 2.
+            // It breathes; with reduced motion it holds still (`rail-next-glow`, src/index.css).
             <span
                 aria-hidden="true"
-                className="absolute rounded-full"
+                data-next-move="true"
+                className="rail-next-glow absolute rounded-full"
                 style={{
-                    width: 7,
-                    height: 7,
+                    width: 8,
+                    height: 8,
                     top: compact ? 6 : 10,
                     right: compact ? 6 : 12,
                     background: "var(--open-accent)",
@@ -179,7 +184,8 @@ const StateMark = ({ state, compact }: { state: PlaceStateName; compact: boolean
 const stateWord = (place: VillagePlace, state: PlaceStateName, t: TFunction): string => {
     if (state === "closed") return closedLine(place, t);
     if (state === "live") return placeLine(place, state, t, true);
-    if (state === "next" || state === "done") return stateWordText(state, t) ?? "";
+    if (state === "next") return tr(t, "village.nextMove", "Your next move");
+    if (state === "done") return stateWordText(state, t) ?? "";
     return "";
 };
 
@@ -187,10 +193,16 @@ interface SpacesRailProps {
     /** The place the player is standing in (src/lib/railPlaces.ts `activePlaceKey`). */
     activePlace?: VillagePlaceKey | null;
     /**
-     * The state of each place, in `VILLAGE_PLACES` order (src/hooks/usePlaceStates.ts).
+     * The state of each place, in `VILLAGE_PLACES` order (src/hooks/usePlaceStates.ts), which is
+     * not the rail's order once places are grouped by quarter: read it with `railState`.
      * Absent = every place reads open, which is what a rail rendered before the save loads shows.
      */
     placeStates?: PlaceStateName[];
+    /**
+     * The save has not loaded yet (issue #443 A1): every place is drawn in one neutral, dimmed
+     * loading state, not entered, and settles once to open or locked when the save arrives.
+     */
+    placesLoading?: boolean;
     /** Called with the pane-2 space id of the place just entered. */
     onSpaceSelect?: (spaceId: string) => void;
     /**
@@ -241,6 +253,7 @@ interface SpacesRailProps {
 const SpacesRail = ({
     activePlace = null,
     placeStates,
+    placesLoading = false,
     onSpaceSelect,
     compact: compactRequested = false,
     drawer = false,
@@ -259,6 +272,36 @@ const SpacesRail = ({
     const { hasSoulColors, ringGradient, glowColor } = useSoulColors(soulColors, soulColorSeed);
     const location = useLocation();
     const navigate = useNavigate();
+    // Issue #443 wave 3 (item 4): a closed place says what opens it on hover, on focus and on tap.
+    // `tipOpen` is the place whose line is showing; `tappedRef` marks that it was opened by a tap
+    // (a touch screen has no hover, and Radix closes its card on the click that follows the tap),
+    // so only an outside press, Escape or a few seconds close it.
+    const [tipOpen, setTipOpen] = useState<string | null>(null);
+    const tappedRef = useRef<string | null>(null);
+    const closeTip = () => {
+        tappedRef.current = null;
+        setTipOpen(null);
+    };
+    useEffect(() => {
+        if (!tipOpen || tappedRef.current !== tipOpen) return;
+        const key = tipOpen;
+        const timer = window.setTimeout(closeTip, 4500);
+        const onPointerDown = (e: PointerEvent) => {
+            const el = e.target instanceof Element ? e.target.closest("[data-place]") : null;
+            if (el?.getAttribute("data-place") === key && el.closest("nav")) return;
+            closeTip();
+        };
+        const onKeyDown = (e: KeyboardEvent) => {
+            if (e.key === "Escape") closeTip();
+        };
+        document.addEventListener("pointerdown", onPointerDown, true);
+        document.addEventListener("keydown", onKeyDown);
+        return () => {
+            window.clearTimeout(timer);
+            document.removeEventListener("pointerdown", onPointerDown, true);
+            document.removeEventListener("keydown", onKeyDown);
+        };
+    }, [tipOpen]);
     const { skin, setSkin } = useSkin();
     const isNS = skin === "network-school";
     const isDao = skin === "daouniverse";
@@ -361,6 +404,12 @@ const SpacesRail = ({
         return () => window.clearTimeout(id);
     }, [compactRequested]);
     const compact = compactLayout;
+    // §25.14 earned light: a quarter's solid is lit once the first place of its quarter is open.
+    // While the save loads nothing is lit, so a sign only ever goes from outline to lit.
+    const quarterLit = litQuarters(
+        VILLAGE_PLACES,
+        placesLoading ? [] : placeStates ?? VILLAGE_PLACES.map(() => "open" as const),
+    );
 
     return (
         <div
@@ -773,18 +822,33 @@ const SpacesRail = ({
                     aria-label={tr(t, "village.railAria", "Village")}
                     className={compact ? "flex flex-col gap-[6px] p-[8px]" : drawer ? "flex flex-col gap-1 px-2 pt-3 pb-3" : "flex flex-col gap-1 px-3 pt-3 pb-3"}
                 >
-                {RAIL_PLACES.map((place, i) => {
-                    const state: PlaceStateName = placeStates?.[i] ?? "open";
-                    const closed = state === "closed";
+                {RAIL_PLACES.map((place) => {
+                    // While the save loads the state is unknown: draw it neutral (no lock, no mark),
+                    // never «open», so nothing flips from lit to grey after the page paints.
+                    const loading = placesLoading;
+                    const rawState: PlaceStateName = loading ? "open" : railState(placeStates, place.key) ?? "open";
                     const active = place.key === activePlace;
-                    const line = placeLine(place, state, t, true);
+                    const state: PlaceStateName = rawState === "closed" && active ? "open" : rawState;
+                    // The place the player stands in is current, never locked: a guest on the Quest
+                    // Board, a signed-in player on Home or in the Workshop before it «opens». Full
+                    // opacity, the marker, no aria-disabled. (Issue #443 wave 3, item 3.)
+                    const closed = rawState === "closed" && !active;
+                    // The lock tooltip uses the short form when a place has one («Opens with your first sale.»).
+                    const line = closed ? closedShortLine(place, t) : placeLine(place, state, t, true);
                     const name = placeName(place, t);
                     // The state word ("Opens when…", Next, Done, live line) is the description,
                     // not the name: the button is named by the place alone.
                     const describedBy = stateWord(place, state, t) ? `${uid}-state-${place.key}` : undefined;
 
                     const handleClick = () => {
-                        if (closed) return;
+                        if (closed) {
+                            // «aria-disabled», not `disabled`: the chip keeps focus and takes the tap.
+                            tappedRef.current = place.key;
+                            setTipOpen(place.key);
+                            return;
+                        }
+                        if (loading && !active) return;
+                        tappedRef.current = null;
                         onSpaceSelect?.(PANE_BY_PLACE[place.key]);
                         navigate(place.to);
                     };
@@ -795,9 +859,10 @@ const SpacesRail = ({
                             type="button"
                             data-tour-id={tourIdFor(place.key)}
                             data-place={place.key}
-                            data-place-state={state}
+                            data-place-state={loading ? "loading" : rawState}
                             aria-current={active ? "page" : undefined}
-                            aria-disabled={closed ? true : undefined}
+                            aria-disabled={closed || (loading && !active) ? true : undefined}
+                            aria-busy={loading ? true : undefined}
                             onClick={handleClick}
                             className={cn(
                                 "transition-all duration-300 relative group",
@@ -834,7 +899,7 @@ const SpacesRail = ({
                             // Native title is the plain fallback where the label column is
                             // hidden (mobile). In compact and closed the hover card below
                             // carries the same line.
-                            title={!closed && !compact ? line : undefined}
+                            title={!closed && !loading && !compact ? line : undefined}
                             aria-label={name}
                             aria-describedby={describedBy}
                         >
@@ -843,11 +908,17 @@ const SpacesRail = ({
                                     "relative flex flex-1 min-w-0 items-center transition-[filter,opacity] duration-500",
                                     drawer ? "gap-2.5 justify-start" : "gap-3 justify-center lg:justify-start",
                                     // Issue #270: icon over a short text label (see .rail-cell-label).
-                                    compact && "flex-col !gap-[3px] justify-center"
+                                    compact && "rail-cell-inner flex-col !gap-[3px] justify-center"
                                 )}
-                                style={closed ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" } : undefined}
+                                style={
+                                    closed
+                                        ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" }
+                                        : loading && !active
+                                            ? { opacity: "var(--lock-dim)" }
+                                            : undefined
+                                }
                             >
-                                <PlaceIcon place={place} size={compact ? 30 : 34} skin={skin} />
+                                <PlaceIcon place={place} size={compact ? 40 : 44} skin={skin} />
                                 {!compact && (
                                     <span
                                         className={cn(
@@ -882,7 +953,20 @@ const SpacesRail = ({
                                 )}
                             </span>
 
-                            <StateMark state={state} compact={compact} />
+                            {/* §25.14: the quarter's sign, one per place. A sign, not a door: it takes no tap. */}
+                            <QuarterSign
+                                element={place.element}
+                                lit={quarterLit[place.element]}
+                                size={compact ? 14 : 16}
+                                className={
+                                    compact
+                                        ? "absolute left-[3px] top-[3px]"
+                                        : drawer
+                                            ? ""
+                                            : "absolute left-1 top-1 lg:static"
+                                }
+                            />
+                            {!loading && <StateMark state={state} compact={compact} />}
                             <span id={describedBy} className="sr-only">{stateWord(place, state, t)}</span>
 
                             {/* Active-state gold pip, hidden in compact (its left-edge
@@ -895,9 +979,40 @@ const SpacesRail = ({
 
                     // Hover card: closed places say what opens them; in compact every
                     // place shows its name (and its line when it has something to say).
+                    // The phone drawer has no hover and no room beside the chip: a tap shows the line under it.
+                    if (drawer && closed) {
+                        return (
+                            <div key={place.key}>
+                                {chipButton}
+                                {tipOpen === place.key && (
+                                    <p
+                                        role="status"
+                                        className="px-3 pb-1 pt-0.5 text-[13px] italic leading-snug"
+                                        style={{
+                                            fontFamily: "'Cormorant Garamond', serif",
+                                            fontWeight: 500,
+                                            color: "rgba(var(--scene-ink-rgb), 0.92)",
+                                        }}
+                                    >
+                                        {line}
+                                    </p>
+                                )}
+                            </div>
+                        );
+                    }
+
                     if (closed || compact) {
                         return (
-                            <Tooltip key={place.key}>
+                            <Tooltip
+                                key={place.key}
+                                open={tipOpen === place.key}
+                                onOpenChange={(open) => {
+                                    if (open) {
+                                        if (tappedRef.current !== place.key) tappedRef.current = null;
+                                        setTipOpen(place.key);
+                                    } else if (tappedRef.current !== place.key) setTipOpen((cur) => (cur === place.key ? null : cur));
+                                }}
+                            >
                                 <TooltipTrigger asChild>
                                     {chipButton}
                                 </TooltipTrigger>
@@ -1242,6 +1357,7 @@ const areEqual = (prev: SpacesRailProps, next: SpacesRailProps) => {
     if (prev.compact !== next.compact) return false;
     if (prev.drawer !== next.drawer) return false;
     if (prev.activePlace !== next.activePlace) return false;
+    if (prev.placesLoading !== next.placesLoading) return false;
     if (prev.onSpaceSelect !== next.onSpaceSelect) return false;
     if (prev.className !== next.className) return false;
     if (prev.pageOwnsBackground !== next.pageOwnsBackground) return false;

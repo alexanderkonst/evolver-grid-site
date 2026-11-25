@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { VILLAGE_PLACES } from "@/data/villagePlaces";
-import { activePlaceKey, PANE_BY_PLACE, RAIL_PLACES, tourIdFor } from "../railPlaces";
+import { activePlaceKey, isHomePath, PANE_BY_PLACE, RAIL_PLACES, tourIdFor } from "../railPlaces";
 
 // WP-4 (issue #161, item 1): the rail is the 11 places of the village map.
 describe("rail places", () => {
@@ -12,7 +12,7 @@ describe("rail places", () => {
       "Your AI",
       "Café",
       "Co-working",
-      "Mastermind",
+      "FMF",
       "Academy",
       "Workshop",
       "Market",
@@ -37,8 +37,20 @@ describe("rail places", () => {
 
   it("lets the path decide for places that share a pane", () => {
     expect(activePlaceKey("/zone-of-genius/entry", "journey")).toBe("reception");
-    expect(activePlaceKey("/build/mastermind", "build")).toBe("fire-circle");
+    expect(activePlaceKey("/build/fmf", "build")).toBe("fire-circle");
     expect(activePlaceKey("/game/coop", "build")).toBe("town-hall");
+  });
+
+  it("puts Equilibrium, saved artifacts and Settings in Home, and the Cockpit in the Workshop (#443 A3)", () => {
+    expect(activePlaceKey("/build/equilibrium", "build")).toBe("house");
+    expect(activePlaceKey("/my-artifacts", "journey")).toBe("house");
+    expect(activePlaceKey("/game/settings", "journey")).toBe("house");
+    expect(activePlaceKey("/settings", undefined)).toBe("house");
+    expect(activePlaceKey("/build/cockpit", "build")).toBe("workshop");
+    expect(activePlaceKey("/build/cockpit/dashboard", "build")).toBe("workshop");
+    expect(isHomePath("/build/equilibrium/anything")).toBe(true);
+    expect(isHomePath("/build/equilibrium-x")).toBe(false);
+    expect(isHomePath("/ubb")).toBe(false);
   });
 
   it("keeps the onboarding tour's old space ids pointing at exactly one chip each", () => {

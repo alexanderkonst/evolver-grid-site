@@ -41,7 +41,7 @@ export const BOOK_TITLE = "The Book of Psychoactive Infographics";
 export const BOOK_CHAPTERS: BookChapter[] = [
   {
     number: "1",
-    title: "Activate Your Dormant Potential",
+    title: "Your Unfolding Potential",
     depth: 1,
     note: "the course's main infographic",
     coming: true,

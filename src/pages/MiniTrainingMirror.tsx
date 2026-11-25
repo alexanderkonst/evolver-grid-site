@@ -1,15 +1,18 @@
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { CheckCircle2, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import PromptButtonCard from "@/components/mini-training/PromptButtonCard";
+import Conversation from "@/components/mini-training/Conversation";
+import Paragraphs from "@/components/mini-training/Paragraphs";
 import { useMirrorProfile } from "@/hooks/useMirrorProfile";
 import { ZOG_ENTRY_PATH } from "@/lib/shellRoutes";
 
 /** Where the conversation continues after the mini-training: Your AI. */
 const YOUR_AI_PATH = "/game/your-ai";
+/** Rung 2 of the AI ladder: make any AI know you. */
+const NEXT_TRAINING_PATH = "/mini-trainings/ai-that-knows-you";
 import { MIRROR_CLOSING, MIRROR_MODULE_COPY, MIRROR_OPENING } from "@/lib/miniTraining/mirrorCopy";
 import {
   MAX_LINE_TAPS,
@@ -45,23 +48,6 @@ import { videoEmbedUrl } from "@/lib/miniTraining/video";
  */
 
 const TRAINING = "ai-as-a-mirror";
-
-/** `*word*` in the copy marks an italic. */
-const Rich = ({ text }: { text: string }) => (
-  <>
-    {text.split(/\*([^*]+)\*/g).map((part, i) => (i % 2 === 1 ? <em key={i}>{part}</em> : <Fragment key={i}>{part}</Fragment>))}
-  </>
-);
-
-const Paragraphs = ({ items }: { items: string[] }) => (
-  <div className="space-y-3 text-base leading-relaxed text-foreground">
-    {items.map((p, i) => (
-      <p key={i}>
-        <Rich text={p} />
-      </p>
-    ))}
-  </div>
-);
 
 const MiniTrainingMirror = () => {
   const loaded = useMirrorProfile();
@@ -188,6 +174,28 @@ const Training = ({ userId, profile }: { userId: string; profile: MirrorProfile 
                 ) : null}
               </h2>
 
+              {embed ? (
+                <div className="aspect-video w-full overflow-hidden rounded-lg border border-border" data-testid={`video-${module.n}`}>
+                  <iframe
+                    src={embed}
+                    title={`${module.title}, short video`}
+                    className="h-full w-full"
+                    loading="lazy"
+                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+              ) : null}
+
+              <Collapsible className="mt-3 mb-6">
+                <CollapsibleTrigger className="group inline-flex items-center gap-1 text-sm font-medium text-foreground underline-offset-2 hover:underline">
+                  Read instead
+                  <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" aria-hidden />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-3">
+                  <Paragraphs items={module.paragraphs} />
+                </CollapsibleContent>
+              </Collapsible>
               <div className="space-y-3">
                 {module.n === 6 ? (
                   <LinePicker lines={lines} picked={pickedLine} onPick={setPickedLine} taps={state.lineTaps} />
@@ -252,28 +260,6 @@ const Training = ({ userId, profile }: { userId: string; profile: MirrorProfile 
                 })}
               </div>
 
-              {embed ? (
-                <div className="mt-4 aspect-video w-full overflow-hidden rounded-lg border border-border" data-testid={`video-${module.n}`}>
-                  <iframe
-                    src={embed}
-                    title={`${module.title}, short video`}
-                    className="h-full w-full"
-                    loading="lazy"
-                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              ) : null}
-
-              <Collapsible className="mt-4">
-                <CollapsibleTrigger className="group inline-flex items-center gap-1 text-sm font-medium text-foreground underline-offset-2 hover:underline">
-                  Read instead
-                  <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" aria-hidden />
-                </CollapsibleTrigger>
-                <CollapsibleContent className="mt-3">
-                  <Paragraphs items={module.paragraphs} />
-                </CollapsibleContent>
-              </Collapsible>
             </section>
           );
         })}
@@ -287,10 +273,14 @@ const Training = ({ userId, profile }: { userId: string; profile: MirrorProfile 
             <p className="whitespace-pre-wrap text-sm leading-relaxed text-foreground">{state.plan.text}</p>
           </div>
         ) : null}
-        <div className="mt-6">
+        <div className="mt-6 flex flex-wrap items-center gap-4">
           <Button asChild data-testid="mirror-next">
             <Link to={YOUR_AI_PATH}>Keep talking in Your AI</Link>
           </Button>
+          {/* Spec #8: once rung 2 exists, one more line. */}
+          <Link to={NEXT_TRAINING_PATH} className="text-sm font-medium underline underline-offset-2" data-testid="mirror-next-training">
+            Next: AI That Knows You
+          </Link>
         </div>
       </section>
     </>
@@ -345,113 +335,5 @@ const SavePlan = ({ saved, hasOther, onSave }: { saved: boolean; hasOther: boole
     </span>
   </div>
 );
-
-type SpeechRec = {
-  lang: string;
-  continuous: boolean;
-  interimResults: boolean;
-  onresult: ((e: { results: ArrayLike<{ 0: { transcript: string } }> }) => void) | null;
-  onend: (() => void) | null;
-  onerror: (() => void) | null;
-  start: () => void;
-  stop: () => void;
-};
-
-const speechCtor = (): (new () => SpeechRec) | null => {
-  if (typeof window === "undefined") return null;
-  const w = window as unknown as { SpeechRecognition?: new () => SpeechRec; webkitSpeechRecognition?: new () => SpeechRec };
-  return w.SpeechRecognition ?? w.webkitSpeechRecognition ?? null;
-};
-
-/** #5 and #8: the AI asks back, the player answers here by voice or text. */
-const Conversation = ({
-  messages,
-  canReply,
-  sending,
-  onReply,
-}: {
-  messages: ThreadMessage[];
-  canReply: boolean;
-  sending: boolean;
-  onReply: (text: string) => void | Promise<void>;
-}) => {
-  const [text, setText] = useState("");
-  const [listening, setListening] = useState(false);
-  const recRef = useRef<{ stop: () => void } | null>(null);
-  const Ctor = speechCtor();
-
-  const toggleMic = () => {
-    if (listening) {
-      recRef.current?.stop();
-      setListening(false);
-      return;
-    }
-    if (!Ctor) return;
-    const rec = new Ctor();
-    rec.lang = (typeof navigator !== "undefined" && navigator.language) || "en-US";
-    rec.continuous = true;
-    rec.interimResults = true;
-    const base = text.trim();
-    rec.onresult = (e) => {
-      let spoken = "";
-      for (let i = 0; i < e.results.length; i++) spoken += e.results[i][0].transcript;
-      setText([base, spoken.trim()].filter(Boolean).join(" "));
-    };
-    rec.onend = () => setListening(false);
-    rec.onerror = () => setListening(false);
-    recRef.current = rec;
-    try {
-      rec.start();
-      setListening(true);
-    } catch {
-      setListening(false);
-    }
-  };
-
-  const submit = async () => {
-    const value = text.trim();
-    if (!value) return;
-    if (listening) {
-      recRef.current?.stop();
-      setListening(false);
-    }
-    setText("");
-    await onReply(value);
-  };
-
-  return (
-    <div className="mt-3 space-y-2" data-testid="conversation">
-      {messages.map((m, i) => (
-        <div
-          key={i}
-          className={`rounded-md border p-3 text-sm leading-relaxed ${m.role === "ai" ? "border-border bg-background" : "border-transparent bg-muted/60"}`}
-        >
-          <p className="mb-1 text-xs uppercase tracking-wide text-muted-foreground">{m.role === "ai" ? "AI" : "You"}</p>
-          <p className="whitespace-pre-wrap text-foreground">{m.text}</p>
-        </div>
-      ))}
-      {canReply ? (
-        <div className="space-y-2">
-          <Textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            rows={2}
-            placeholder="Answer it here, or press the microphone and say it."
-            aria-label="Your answer to AI"
-            className="text-sm"
-          />
-          <div className="flex flex-wrap gap-2">
-            <Button type="button" size="sm" onClick={submit} disabled={sending || text.trim().length === 0}>
-              {sending ? "Sending" : "Answer"}
-            </Button>
-            <Button type="button" size="sm" variant={listening ? "default" : "outline"} onClick={toggleMic} disabled={!Ctor} aria-pressed={listening}>
-              {listening ? "Stop" : "Microphone"}
-            </Button>
-          </div>
-        </div>
-      ) : null}
-    </div>
-  );
-};
 
 export default MiniTrainingMirror;

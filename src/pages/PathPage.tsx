@@ -33,7 +33,7 @@ type LadderRow = {
   durationKey: string;
   priceKey: string;
   priceDetailKey?: string;
-  /** Day 133: Step 4's title links out to its product page (BUILT). */
+  /** Day 133: Step 4's title links out to its product page (PMF, formerly BUILT). */
   titleLinkTo?: string;
 };
 
@@ -60,7 +60,7 @@ const LADDER: LadderRow[] = [
     titleKey: "pathPage.ladder.step4.title",
     durationKey: "pathPage.ladder.step4.duration",
     priceKey: "pathPage.ladder.step4.price",
-    titleLinkTo: "/products/built",
+    titleLinkTo: "/products/pmf",
   },
   {
     id: "step5",

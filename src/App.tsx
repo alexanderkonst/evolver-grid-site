@@ -87,6 +87,7 @@ const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 // Your AI (village place `oracle`): carries the 5,400-word AI OS prompt, so it loads on demand.
 const FamiliarPage = lazy(() => import("./modules/familiar/FamiliarPage"));
 const MiniTrainingMirror = lazy(() => import("./pages/MiniTrainingMirror"));
+const MiniTrainingKnowsYou = lazy(() => import("./pages/MiniTrainingKnowsYou"));
 const Mastermind = lazy(() => import("./pages/Mastermind"));
 const BringYourModule = lazy(() => import("./pages/BringYourModule"));
 const EvolutionPortal = lazy(() => import("./pages/EvolutionPortal"));
@@ -511,11 +512,14 @@ const GlobalChrome = () => {
   // guests — language choice matters most on this cold entry, and it kept
   // vanishing for logged-in testers.
   const isQuiz = /\/quiz(2)?(\/|$)/.test(location.pathname);
+  // #460: inside the game (village and /game/*; the router basename already strips /ru, /es and skins)
+  // the chip's accessible name carries its visible code. The title screen at `/` is left as it was.
+  const isInGame = /^\/(village|game)(\/|$)/.test(location.pathname);
 
   return (
     <>
       {!isHeroQuiz && <SiteLogo />}
-      {!isHeroQuiz && !isYouPage && !isAlexanderPage && !isKarimeIntroduction && <GlobalLanguageSwitcher always={isQuiz} />}
+      {!isHeroQuiz && !isYouPage && !isAlexanderPage && !isKarimeIntroduction && <GlobalLanguageSwitcher always={isQuiz} inGame={isInGame} />}
 
       <TitleManager />
       <ScrollRestoration />
@@ -647,6 +651,8 @@ const App = () => (
                   <Route path="/game/your-ai" element={<GameShellV2><FamiliarPage /></GameShellV2>} />
                   {/* Mini-training 1 (issue #392): route only, linked from nowhere public (not in the sitemap or any nav) until announced. */}
                   <Route path="/mini-trainings/ai-as-a-mirror" element={<GameShellV2><MiniTrainingMirror /></GameShellV2>} />
+                  {/* Mini-training 2: route only; the one link to it is the «Next» line at the end of mini-training 1. */}
+                  <Route path="/mini-trainings/ai-that-knows-you" element={<GameShellV2><MiniTrainingKnowsYou /></GameShellV2>} />
                   <Route path="/ai-os/auth" element={<Navigate to="/ai-os" replace />} />
                   {/* Day 54+ (Sasha 2026-04-28): /ai-os/pricing renamed to
                       /ai-os/work-with-us. The page no longer leads with
@@ -695,8 +701,12 @@ const App = () => (
                   <Route path="/ignite" element={<IgniteSession />} />
                   {/* Oct 23 (Sasha): Mastermind lives in the BUILD space so the rail + pane 2
                       render. /mastermind stays alive for old email/Luma links. */}
-                  <Route path="/build/mastermind" element={<Mastermind />} />
-                  <Route path="/mastermind" element={<Navigate to="/build/mastermind" replace />} />
+                  {/* 2026-11-24 (Sasha): the Mastermind is now FMF. /build/fmf is canonical;
+                      /build/mastermind, /mastermind and /fmf stay alive as redirects. */}
+                  <Route path="/build/fmf" element={<Mastermind />} />
+                  <Route path="/build/mastermind" element={<Navigate to="/build/fmf" replace />} />
+                  <Route path="/mastermind" element={<Navigate to="/build/fmf" replace />} />
+                  <Route path="/fmf" element={<Navigate to="/build/fmf" replace />} />
                   <Route path="/products" element={<ProductsPage />} />
                   {/* Day 130: Client Evolution Portal (Practitioner Node) landing — public. */}
                   <Route path="/products/evolution-portal" element={<EvolutionPortal />} />
@@ -705,13 +715,15 @@ const App = () => (
                   <Route path="/products/evolution-portal/karime" element={<EvolutionPortalKarime />} />
                   <Route path="/products/evolution-protocol" element={<Navigate to="/products/evolution-portal" replace />} />
                   <Route path="/product/evolution-portal" element={<Navigate to="/products/evolution-portal" replace />} />
-                  <Route path="/products/built" element={<BuildContainer />} />
+                  {/* 2026-11-24 (Sasha): BUILT is now PMF. /products/built and /products/build redirect. */}
+                  <Route path="/products/pmf" element={<BuildContainer />} />
+                  <Route path="/products/built" element={<Navigate to="/products/pmf" replace />} />
                   <Route path="/products/crossing" element={<TheCrossing />} />
                   <Route path="/products/vector" element={<TheVector />} />
                   <Route path="/products/founder-read" element={<FounderRead />} />
                   <Route path="/products/pmf-core" element={<PmfCore />} />
                   <Route path="/communities" element={<CommunityWebinar />} />
-                  <Route path="/products/build" element={<Navigate to="/products/built" replace />} />
+                  <Route path="/products/build" element={<Navigate to="/products/pmf" replace />} />
                   {/* Day 133: plain-language data promise + legal companions. */}
                   <Route path="/data" element={<YourDataPlainly />} />
                   <Route path="/privacy" element={<PrivacyPolicy />} />

@@ -7,7 +7,6 @@
  */
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { PlaceBackLink } from "@/components/game/VillagePlaceHeader";
 import GiftChips from "../GiftChips";
 import PossibilityMap from "../PossibilityMap";
 import type { FamiliarState } from "../types";
@@ -21,9 +20,10 @@ const FamiliarOutroScreen = ({ state }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <>
-    <PlaceBackLink />
     <section className="mf mf--outro" aria-label={t("familiar.outro.aria", { defaultValue: "Your AI is ready" })}>
+      <Link className="mf__back" to="/village">
+        {t("village.backVillage", { defaultValue: "← Village" })}
+      </Link>
       <div className="mf__stage" data-place-state="done">
         <p className="mf__eyebrow">{t("familiar.outro.eyebrow", { defaultValue: "Done · Your AI is ready" })}</p>
 
@@ -61,7 +61,6 @@ const FamiliarOutroScreen = ({ state }: Props) => {
         </p>
       </div>
     </section>
-    </>
   );
 };
 

@@ -1,10 +1,17 @@
-import { memo, useId, type ReactNode } from "react";
+import { memo, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 import { MoonOrb } from "./MoonOrb";
 
 /**
  * Canonical visual for v2 cycle sections (boxes 4-7):
- *   • Rainbow arc (red→violet) — fill % = display-aligned position
+ *
+ * Issue #443 (village master style): monochrome. The arc is one stroke in the page's foreground
+ * (track at low alpha, fill at full), the orbs are thin-ring discs tinted from the foreground,
+ * and the emoji glyphs keep their meaning but render grey (`grayscale`). The prism rainbow of
+ * the 2026-05 design wall is retired from this page; `litGradient` stays on the segment data
+ * for any consumer that wants it. The notes below describe the layout, which is unchanged.
+ *
+ *   • Arc — fill % = display-aligned position
  *   • Row of orbs underneath (variable count: 8 lunar / 7 week / 12 zodiac / 8 solar)
  *   • Current orb glows in its own identity color (NOT arc-position color)
  *   • Three-pill stack below: prev / current / next, current elevated and rainbow-glowed
@@ -117,7 +124,6 @@ const CycleEnergyBarBase = ({
   activePillSubLabel,
   className,
 }: CycleEnergyBarProps) => {
-  const gradId = `eq-arc-grad-${useId().replace(/:/g, "")}`;
 
   // Sasha 2026-05-19: bar fill is ANCHORED to the current orb's
   // display-order position, not raw cycle progress. Reading it: "how
@@ -144,52 +150,31 @@ const CycleEnergyBarBase = ({
         <svg
           viewBox="0 0 200 50"
           preserveAspectRatio="none"
-          className="block w-full h-12 sm:h-14"
+          className="block w-full h-12 sm:h-14 text-foreground"
           aria-hidden="true"
         >
-          <defs>
-            <linearGradient
-              id={gradId}
-              x1="0"
-              y1="0"
-              x2="200"
-              y2="0"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop offset="0%" stopColor="#f97316" />
-              <stop offset="14%" stopColor="#f59e0b" />
-              <stop offset="28%" stopColor="#facc15" />
-              <stop offset="42%" stopColor="#84cc16" />
-              <stop offset="57%" stopColor="#22d3ee" />
-              <stop offset="71%" stopColor="#3b82f6" />
-              <stop offset="85%" stopColor="#a855f7" />
-              <stop offset="100%" stopColor="#d946ef" />
-            </linearGradient>
-          </defs>
-
           {/* Background arc (clear glass track) */}
           <path
             d="M 10 40 Q 100 -10 190 40"
             fill="none"
-            stroke="rgba(255,255,255,0.35)"
-            strokeWidth="5"
+            stroke="currentColor"
+            strokeOpacity="0.2"
+            strokeWidth="2"
             strokeLinecap="round"
           />
 
-          {/* Filled portion — rainbow gradient. dashLength now anchored to
+          {/* Filled portion — one stroke. dashLength now anchored to
               the current orb's display position (see fillPosition above). */}
           <path
             d="M 10 40 Q 100 -10 190 40"
             fill="none"
-            stroke={`url(#${gradId})`}
-            strokeWidth="5"
+            stroke="currentColor"
+            strokeOpacity="0.85"
+            strokeWidth="2"
             strokeLinecap="round"
             pathLength="100"
             strokeDasharray={`${dashLength} 100`}
-            style={{
-              filter: "drop-shadow(0 0 6px rgba(255,255,255,0.4))",
-              transition: "stroke-dasharray 400ms ease-out",
-            }}
+            style={{ transition: "stroke-dasharray 400ms ease-out" }}
           />
         </svg>
 
@@ -201,34 +186,15 @@ const CycleEnergyBarBase = ({
             const isLit = i <= currentIndex;
             const isLandmark = seg.isLandmark;
 
-            // Liquid-glass background:
-            // • lit + has gradient  → render the gradient
-            // • lit, no gradient    → glassy white (legacy look)
-            // • unlit (after cur)   → cool gray (cycle not reached)
-            const background = !isLit
-              ? "linear-gradient(135deg, rgba(180,184,196,0.45), rgba(160,165,180,0.55))"
-              : seg.litGradient
-                ? `linear-gradient(135deg, ${seg.litGradient.from}, ${seg.litGradient.to})`
-                : isCurrent
-                  ? "rgba(255,255,255,0.95)"
-                  : "rgba(255,255,255,0.65)";
-
-            const boxShadow = isCurrent
-              ? [
-                  "inset 0 0 14px 2px rgba(255,255,255,0.55)",
-                  "inset 0 1px 0 0 rgba(255,255,255,0.9)",
-                  "0 0 0 2px rgba(255,255,255,0.85)",
-                  "0 4px 14px rgba(0,0,0,0.10)",
-                ].join(", ")
+            // Village register: a thin ring and a foreground tint, no gradient, no glow.
+            // current → full ring · lit → soft ring · unlit → faint ring.
+            const orbTone = isCurrent
+              ? "border-foreground bg-foreground/20"
               : isLit
-                ? [
-                    "inset 0 0 8px 1px rgba(255,255,255,0.35)",
-                    "inset 0 1px 0 0 rgba(255,255,255,0.7)",
-                    "0 2px 6px rgba(0,0,0,0.06)",
-                  ].join(", ")
+                ? "border-foreground/40 bg-foreground/10"
                 : isLandmark
-                  ? "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.04)"
-                  : "inset 0 1px 0 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.04)";
+                  ? "border-foreground/25 bg-foreground/5"
+                  : "border-foreground/15 bg-transparent";
 
             return (
               <div key={i} className="flex flex-col items-center gap-1">
@@ -236,17 +202,12 @@ const CycleEnergyBarBase = ({
                   role="img"
                   aria-label={`${seg.label}${isCurrent ? " — current" : ""}`}
                   className={cn(
-                    "relative flex items-center justify-center rounded-full",
-                    "overflow-hidden",  // glow contained
-                    "transition-all duration-300",
+                    "relative flex items-center justify-center rounded-full border",
+                    "overflow-hidden",
+                    "transition-colors duration-300",
                     "w-9 h-9 sm:w-11 sm:h-11",
+                    orbTone,
                   )}
-                  style={{
-                    background,
-                    backdropFilter: "blur(8px)",
-                    border: "1px solid rgba(255,255,255,0.55)",
-                    boxShadow,
-                  }}
                 >
                   {seg.moonPhaseIndex !== undefined ? (
                     // Real photographic moon with phase-correct illumination
@@ -261,15 +222,11 @@ const CycleEnergyBarBase = ({
                     </div>
                   ) : (
                     <span
+                      // `grayscale`: the glyph keeps its meaning, the colour goes (issue #443).
                       className={cn(
-                        "text-sm sm:text-base leading-none select-none",
-                        !isLit && "opacity-60",
+                        "text-sm sm:text-base leading-none select-none grayscale",
+                        !isLit && "opacity-50",
                       )}
-                      style={{
-                        textShadow: isLit
-                          ? "0 0 6px rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.15)"
-                          : "0 1px 2px rgba(0,0,0,0.1)",
-                      }}
                     >
                       {seg.icon}
                     </span>
@@ -279,12 +236,12 @@ const CycleEnergyBarBase = ({
                 {seg.caption && (
                   <span
                     className={cn(
-                      "eq-text-halo select-none text-[10px] font-semibold uppercase tracking-wider transition",
+                      "select-none font-mono text-[10px] font-light uppercase tracking-[0.2em] transition",
                       isCurrent
-                        ? "text-[#0a1628]"
+                        ? "text-foreground"
                         : isLit
-                          ? "text-[#0a1628]/70"
-                          : "text-[#0a1628]/40",
+                          ? "text-foreground/70"
+                          : "text-foreground/40",
                     )}
                   >
                     {seg.caption}
@@ -311,7 +268,7 @@ const CycleEnergyBarBase = ({
 
         {/* Time-to-next-phase sub-label (sits flush under active pill) */}
         {activePillSubLabel && (
-          <div className="-mt-1 px-3 text-center text-[11px] font-medium uppercase tracking-wider text-[#0a1628]/75 eq-text-halo">
+          <div className="-mt-1 px-3 text-center font-mono text-[11px] font-light uppercase tracking-[0.2em] text-muted-foreground">
             {activePillSubLabel}
           </div>
         )}
@@ -334,16 +291,9 @@ const DimPill = ({
   children: ReactNode;
   phasePosition?: "PREVIOUS" | "UPCOMING";
 }) => (
-  <div
-    className="eq-text-halo rounded-full px-6 py-1.5 text-center text-xs font-medium text-[#0a1628]/55"
-    style={{
-      background: "rgba(255,255,255,0.30)",
-      backdropFilter: "blur(4px)",
-      border: "1px solid rgba(255,255,255,0.30)",
-    }}
-  >
+  <div className="rounded-md border border-foreground/15 px-6 py-1.5 text-center text-xs text-muted-foreground">
     {phasePosition && (
-      <span className="mr-1.5 text-[9px] font-bold uppercase tracking-[0.14em] text-[#0a1628]/55">
+      <span className="mr-1.5 font-mono text-[9px] font-light uppercase tracking-[0.2em] text-muted-foreground">
         {phasePosition}:
       </span>
     )}
@@ -382,34 +332,24 @@ const ActivePill = ({
   }
 
   return (
-    <div
-      className="eq-text-halo rounded-2xl px-5 py-3 text-center text-[#0a1628]"
-      style={{
-        background:
-          "linear-gradient(135deg, rgba(252,231,197,0.94) 0%, rgba(212,212,255,0.94) 50%, rgba(224,197,252,0.94) 100%)",
-        backdropFilter: "blur(8px)",
-        border: "1px solid rgba(255,255,255,0.75)",
-        boxShadow:
-          "0 0 24px rgba(212,180,255,0.50), inset 0 1px 0 0 rgba(255,255,255,0.90), 0 4px 14px rgba(0,0,0,0.08)",
-      }}
-    >
+    <div className="rounded-md border border-foreground/40 px-5 py-3 text-center text-foreground">
       <div className="flex items-baseline justify-center gap-2">
         {emoji && (
           <span
             role="img"
             aria-label={emojiTooltip ?? emoji}
             title={emojiTooltip}
-            className="select-none text-lg leading-none"
+            className="select-none text-lg leading-none grayscale"
           >
             {emoji}
           </span>
         )}
-        <span className="font-serif text-lg font-semibold sm:text-xl">
+        <span className="font-serif text-lg font-medium uppercase tracking-[0.14em] sm:text-xl">
           {name}
         </span>
       </div>
       {description && (
-        <div className="mt-1 text-sm font-normal text-[#0a1628]/80">
+        <div className="mt-1 text-sm font-normal text-muted-foreground">
           {description}
         </div>
       )}

@@ -22,33 +22,32 @@ import { markJourneyVisited } from "@/lib/journeyVisits";
 
 const REVENUE_TIMELINE = [
   { day: 0, date: "Mar 4", total: 0, label: "Day 0" },
-  { day: 4, date: "Mar 7", total: 277, label: "S. ($277 rev share)" },
-  { day: 30, date: "Apr 2", total: 327, label: "O. $50 gift" },
-  { day: 34, date: "Apr 6", total: 438, label: "K. $111 gratitude" },
-  { day: 36, date: "Apr 8", total: 954, label: "O. $516 gift" },
-  { day: 40, date: "Apr 12", total: 1154, label: "K. $200 in-kind" },
-  { day: 41, date: "Apr 13", total: 1654, label: "O. $500 in-kind" },
-  { day: 44, date: "Apr 18", total: 1654, label: "Ki. joins — 7th founder" },
-  { day: 46, date: "Apr 20", total: 1973, label: "O. $319 in-kind (5 gifts)" },
-  { day: 51, date: "Apr 25", total: 1973, label: "Codification — commercial-decentralization model + Specificity Loop shipped, repo publicly fork-ready" },
-  { day: 53, date: "Apr 27", total: 1973, label: "Your AI empirical-rating telemetry + UBB founder-doc bulk seed (16/18) + .env hygiene closure" },
-  { day: 54, date: "Apr 28", total: 1973, label: "Your AI elevated to its own Space (process / substrate / being); MIT scoped to Your AI scaffold; admin operator-console + magic-link delivery" },
-  { day: 58, date: "May 2", total: 1973, label: "Top Talent surface deep restructure: free reveal rebuilt with Top Shadow promoted, ME space restructured to 10 canonical subpages, /activate retired in favor of in-shell Start Here, deep profile schema merged into single Lovable call, second-person voice + no-jargon rule baked into prompts, full editorial PDF rewrite, AAC audio shipped, Aleksandr calibration baked with Sasha's actual data — apparatus now coheres as a transmission" },
-  { day: 85, date: "May 27", total: 1973, label: "Collaboration rate named as the North Star metric; the triad and two-tribe strategy locked" },
-  { day: 87, date: "May 29", total: 1973, label: "Planetary OS one-pager shipped at /1-pager: the whole project on one shareable page" },
-  { day: 106, date: "Jun 18", total: 2528, label: "N. $555 cash session" },
-  { day: 114, date: "Jun 26", total: 2548, label: "Ro. $20 gratitude" },
-  { day: 125, date: "Jul 7", total: 2648, label: "O. $100 in-kind (Claude Max subscription)" },
-  { day: 142, date: "Jul 24", total: 2705, label: "$57 cash contribution" },
-  { day: 146, date: "Aug 5", total: 3705, label: "G. $1,000 — first program container (The Crossing), half paid before session 1" },
-  { day: 176, date: "Sep 6", total: 4705, label: "G. final $1,000 — The Crossing fully paid at $2,000" },
-  { day: 180, date: "Sep 10", total: 4721, label: "K. 300 MXN donation (≈$16)" },
-  { day: 202, date: "Oct 2", total: 4775, label: "K. 1,000 MXN donation (≈$54)" },
-  { day: 216, date: "Oct 16", total: 4784, label: "B. ≈$9 in-kind (barter)" },
-  { day: 223, date: "Oct 23", total: 4786, label: "B. ≈$2 in-kind (barter)" },
-  { day: 233, date: "Nov 2", total: 5036, label: "G. $250 extra session (held Oct 28, received Nov 2)" },
-  { day: 241, date: "Nov 10", total: 5436, label: "G. $400 pitch session" },
-  { day: 255, date: "Nov 24", total: 6536, label: "First success-based mentorship payment ($1,100) — current as of Nov 24, 2026" },
+  { day: 30, date: "Apr 2", total: 50, label: "O. $50 gift" },
+  { day: 34, date: "Apr 6", total: 161, label: "K. $111 gratitude" },
+  { day: 36, date: "Apr 8", total: 677, label: "O. $516 gift" },
+  { day: 40, date: "Apr 12", total: 877, label: "K. $200 in-kind" },
+  { day: 41, date: "Apr 13", total: 1377, label: "O. $500 in-kind" },
+  { day: 44, date: "Apr 18", total: 1377, label: "Ki. joins — 7th founder" },
+  { day: 46, date: "Apr 20", total: 1696, label: "O. $319 in-kind (5 gifts)" },
+  { day: 51, date: "Apr 25", total: 1696, label: "Codification — commercial-decentralization model + Specificity Loop shipped, repo publicly fork-ready" },
+  { day: 53, date: "Apr 27", total: 1696, label: "Your AI empirical-rating telemetry + UBB founder-doc bulk seed (16/18) + .env hygiene closure" },
+  { day: 54, date: "Apr 28", total: 1696, label: "Your AI elevated to its own Space (process / substrate / being); MIT scoped to Your AI scaffold; admin operator-console + magic-link delivery" },
+  { day: 58, date: "May 2", total: 1696, label: "Top Talent surface deep restructure: free reveal rebuilt with Top Shadow promoted, ME space restructured to 10 canonical subpages, /activate retired in favor of in-shell Start Here, deep profile schema merged into single Lovable call, second-person voice + no-jargon rule baked into prompts, full editorial PDF rewrite, AAC audio shipped, Aleksandr calibration baked with Sasha's actual data — apparatus now coheres as a transmission" },
+  { day: 85, date: "May 27", total: 1696, label: "Collaboration rate named as the North Star metric; the triad and two-tribe strategy locked" },
+  { day: 87, date: "May 29", total: 1696, label: "Planetary OS one-pager shipped at /1-pager: the whole project on one shareable page" },
+  { day: 106, date: "Jun 18", total: 2251, label: "N. $555 cash session" },
+  { day: 114, date: "Jun 26", total: 2271, label: "Ro. $20 gratitude" },
+  { day: 125, date: "Jul 7", total: 2371, label: "O. $100 in-kind (Claude Max subscription)" },
+  { day: 142, date: "Jul 24", total: 2428, label: "$57 cash contribution" },
+  { day: 146, date: "Aug 5", total: 3428, label: "G. $1,000 — first program container (The Crossing), half paid before session 1" },
+  { day: 176, date: "Sep 6", total: 4428, label: "G. final $1,000 — The Crossing fully paid at $2,000" },
+  { day: 180, date: "Sep 10", total: 4444, label: "K. 300 MXN donation (≈$16)" },
+  { day: 202, date: "Oct 2", total: 4498, label: "K. 1,000 MXN donation (≈$54)" },
+  { day: 216, date: "Oct 16", total: 4507, label: "B. ≈$9 in-kind (barter)" },
+  { day: 223, date: "Oct 23", total: 4509, label: "B. ≈$2 in-kind (barter)" },
+  { day: 233, date: "Nov 2", total: 4759, label: "G. $250 extra session (held Oct 28, received Nov 2)" },
+  { day: 241, date: "Nov 10", total: 5159, label: "G. $400 pitch session" },
+  { day: 255, date: "Nov 24", total: 6814, label: "First success-based mentorship payment ($1,100) and a new Unique Business container — current as of Nov 24, 2026" },
 ];
 
 // ─── KPI Data ───────────────────────────────────────────────────────────────
@@ -56,11 +55,11 @@ const REVENUE_TIMELINE = [
 const KPIS = [
   {
     labelKey: "ventureDashboard.kpi.totalRevenue",
-    value: "$6,259",
-    subline: "$5,129 cash · $1,130 in-kind",
-    trend: "+$1,100",
+    value: "$6,814",
+    subline: "$5,684 cash · $1,130 in-kind",
+    trend: "+$1,655",
     trendLabel: "Nov 24",
-    detail: "Tracked relationship revenue: $6,536 ($6,259 + $277 rev share, pending)",
+    detail: "",
     stamp: "as of 2026-11-24 · source: CRM",
     gold: true,
   },
@@ -96,13 +95,13 @@ const REVENUE_BREAKDOWN = [
   { name: "K.", cash: 0, inKind: 200, revShare: 0, type: "In-kind ($200) · Apr 12", status: "received", color: "#7a5108" },
   { name: "K.", cash: 16, inKind: 0, revShare: 0, type: "Cash ($16) · Sep 10", status: "received", color: "#7a5108" },
   { name: "K.", cash: 54, inKind: 0, revShare: 0, type: "Cash (≈$54) · Oct 2", status: "received", color: "#7a5108" },
-  { name: "S.", cash: 0, inKind: 0, revShare: 277, type: "Rev share", status: "pending", color: "#b8860b" },
   { name: "N.", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555)", status: "received", color: "#d4af37" },
   { name: "Ro.", cash: 20, inKind: 0, revShare: 0, type: "Cash ($20)", status: "received", color: "#c99322" },
   { name: "R.", cash: 57, inKind: 0, revShare: 0, type: "Cash ($57)", status: "received", color: "#e0ac42" },
   { name: "G.", cash: 2650, inKind: 0, revShare: 0, type: "Program container ($2,000) + sessions ($250 · $400)", status: "received", color: "#f0c250" },
   { name: "B.", cash: 0, inKind: 11, revShare: 0, type: "In-kind barter (≈$11) · Oct 16/23", status: "received", color: "#c99322" },
   { name: "Mentorship", cash: 1100, inKind: 0, revShare: 0, type: "First success-based mentorship payment ($1,100) · Nov 24", status: "received", color: "#d4af37" },
+  { name: "Unique Business container", cash: 555, inKind: 0, revShare: 0, type: "Cash ($555) · Nov 24", status: "received", color: "#e0ac42" },
 ];
 
 // ─── Timeline ───────────────────────────────────────────────────────────────
@@ -110,7 +109,7 @@ const REVENUE_BREAKDOWN = [
 const TIMELINE = [
   { day: 1, date: "Mar 4", name: "Aleksandr", type: "Client Zero", desc: "Built the methodology by applying it to himself first." },
   { day: 2, date: "Mar 5", name: "O.", type: "Gratitude ($566)", desc: "Complete business blueprint. Later sent $566 in gratitude gifts — without being asked." },
-  { day: 4, date: "Mar 7", name: "S.", type: "Rev Share ($277)", desc: "Business blueprint created. Revenue share agreement. 3 follow-up sessions delivered." },
+  { day: 4, date: "Mar 7", name: "S.", type: "Blueprint", desc: "Business blueprint created. 3 follow-up sessions delivered." },
   { day: 9, date: "Mar 12", name: "Al.", type: "Value Exchange", desc: "Complete blueprint in 2.5 hours — fastest session yet." },
   { day: 12, date: "Mar 15", name: "Sa.", type: "Rev Share (TBD)", desc: "6 sessions. Core identity, story, and audience crystallized." },
   { day: 34, date: "Apr 6", name: "K.", type: "Gratitude ($111)", desc: "Client + referral partner. Introduced 2 new contacts organically." },
@@ -126,6 +125,7 @@ const TIMELINE = [
   { day: 176, date: "Sep 6", name: "G.", type: "Container complete ($1,000 final)", desc: "The Crossing fully paid at $2,000 and delivered. First program container to run end to end." },
   { day: 177, date: "Sep 7", name: "D.", type: "First cold reply", desc: "The first cold conversation opened by a mirror message: the profile was surfaced by a high-precision query, the stuck point named without a pitch, and the reply came the same day." },
   { day: 255, date: "Nov 24", name: "Mentorship", type: "Success-based ($1,100)", desc: "First success-based mentorship payment: a mentee's first sale paid the fee." },
+  { day: 255, date: "Nov 24", name: "Unique Business", type: "Program container ($555)", desc: "A new Unique Business container sold." },
 ];
 
 // ─── Radar ──────────────────────────────────────────────────────────────────
@@ -229,6 +229,9 @@ const VentureDashboard = () => {
   const totalInKind = REVENUE_BREAKDOWN.reduce((s, r) => s + r.inKind, 0);
   const totalRevShare = REVENUE_BREAKDOWN.reduce((s, r) => s + r.revShare, 0);
   const totalAll = totalCash + totalInKind + totalRevShare;
+  // Headline total = received revenue (cash + in-kind), matching the KPI
+  // card ($6,814 as of 2026-11-24). Pending rev share is shown separately.
+  const totalReceived = totalCash + totalInKind;
 
   // Day 65 wave 4 (Sasha 2026-05-15): cross-device visit tracking
   // via shared helper. See src/lib/journeyVisits.ts.
@@ -526,14 +529,14 @@ const VentureDashboard = () => {
                 <span className="text-[10px] uppercase tracking-[0.18em]" style={textMuted}>{t('ventureDashboard.revenue.breakdown.total')}</span>
                 <span className="text-2xl font-medium" style={numerals}>
                   <span className="bg-clip-text text-transparent" style={GOLD_TEXT_STYLE}>
-                    {formatCurrencyCompact(totalAll)}
+                    {formatCurrencyCompact(totalReceived)}
                   </span>
                 </span>
               </div>
               <div className="flex items-center gap-4 text-[9px]" style={textMutedSoft}>
                 <span>{t('ventureDashboard.revenue.breakdown.cashAmount', { amount: totalCash })}</span>
                 <span>{t('ventureDashboard.revenue.breakdown.inKindAmount', { amount: totalInKind })}</span>
-                <span>{t('ventureDashboard.revenue.breakdown.revShareAmount', { amount: totalRevShare })}</span>
+                {totalRevShare > 0 && <span>{t('ventureDashboard.revenue.breakdown.revShareAmount', { amount: totalRevShare })}</span>}
               </div>
             </div>
           </div>

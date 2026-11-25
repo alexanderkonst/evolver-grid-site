@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { MapPin, Search, Sparkles, Target } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
+import { ModulePageHeader } from "@/components/game/VillagePlaceHeader";
 import WriteButton from "@/components/game/WriteButton";
 import { Button } from "@/components/ui/button";
-import { ModulePageHeader, PlaceBackLink } from "@/components/game/VillagePlaceHeader";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 import {
   Select,
@@ -294,12 +294,10 @@ const PeopleDirectory = () => {
 
   return (
     <GameShellV2>
-      <PlaceBackLink />
-      <div className="px-4 pt-2 pb-10 sm:px-6 lg:px-8">
+      <div className="px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl">
-          <div className="mb-2">
-            <ModulePageHeader title={t("peopleDir.title")} line={t("peopleDir.subtitle")} />
-          </div>
+          {/* Issue #443 (A10), Seam 2/4: the shared back control and one h1 every place carries (WP-15). */}
+          <ModulePageHeader title={t("peopleDir.title")} line={t("peopleDir.subtitle")} />
 
           <div className="relative mb-3">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />

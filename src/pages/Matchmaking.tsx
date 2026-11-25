@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ModulePageHeader, PlaceBackLink } from "@/components/game/VillagePlaceHeader";
+import { ModulePageHeader } from "@/components/game/VillagePlaceHeader";
 import { useTranslation } from "react-i18next";
 import { MapPin, Users, Languages } from "lucide-react";
 import { toast } from "sonner";
@@ -421,7 +421,7 @@ const Matchmaking = () => {
   const [interestedUserIds, setInterestedUserIds] = useState<Set<string>>(new Set());
   const [mutualUserIds, setMutualUserIds] = useState<Set<string>>(new Set());
 
-  // Seam 2/4 (S-04): the one shared skeleton, in the village's night (src/components/ui/bokeh-skeleton.tsx).
+  // Seam 2/4: the one shared dark skeleton (src/components/ui/bokeh-skeleton.tsx), not a light slab.
   const Skeleton = ({ className }: { className?: string }) => <BokehSkeleton className={`rounded-2xl ${className || ""}`} />;
 
   // Day 80 (Sasha 2026-05-23): close Pane 2 on mount. The COLLABORATE
@@ -965,11 +965,10 @@ const Matchmaking = () => {
 
   return (
     <GameShellV2>
-      <PlaceBackLink />
-      <div className="px-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:px-8 max-w-3xl mx-auto">
-        {/* Seam 2/4 (S-07, L-01): one header. «← Village» above, then the village title voice and one
-            line. The sub-sidebar already names the place, so the mono place-name row is gone, and
-            the headline loses its gold gradient: one ink, the same face as every module. */}
+      <div className="p-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:p-8 max-w-3xl mx-auto">
+        {/* Seam 2/4: one header. «← Village», then the village title voice and one line. The
+            sub-sidebar already names the place, so there is no mono place-name row, and the
+            headline loses its gold gradient: one ink, the same face as every module. */}
         <ModulePageHeader
           title={`${t('matchmaking.headlineBefore')} ${t('matchmaking.headlineCollaborators')} ${t('matchmaking.headlineAnd')} ${t('matchmaking.headlineCoFounders')}`}
           line={t('matchmaking.subtitle')}

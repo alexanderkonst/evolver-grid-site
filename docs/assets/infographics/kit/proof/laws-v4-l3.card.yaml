@@ -1,0 +1,19 @@
+# Proof card 2: ported from engine-v4/laws_v4.py::l3 (card 03 of 6). Same pixels, text lives here.
+# Not in BOOK.md: this is the 2026-11-17 text; the Book's VI.03 carries newer copy. book_sync skips it.
+id: laws-v4-l3
+chapter: "3.3"
+number: 3
+of: 6
+title: Seen Value Restores the Exchange
+caption: When people see what they received, they balance the exchange themselves. Unseen value distorts it.
+skin: v4
+max_words: 47          # legacy density, see ideal-client-02
+parity: {module: laws_v4, fn: l3, index: 3}
+text:
+  between_up: "the shift, seen and named"
+  between_down: "money · a gift · a referral · gratitude"
+  left: guide
+  right: client
+  quote: "Never ask them to price it. Show them what moved."
+sources:
+  - docs/assets/infographics/engine-v4/laws_v4.py (l3)

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
-import { ModulePageHeader, PlaceBackLink } from "@/components/game/VillagePlaceHeader";
+import { ModulePageHeader } from "@/components/game/VillagePlaceHeader";
 import { Button } from "@/components/ui/button";
 import SkeletonCard from "@/components/ui/SkeletonCard";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -24,13 +24,10 @@ import {
   type Period,
 } from "@/lib/circles";
 import { circleErrorMessage, fetchCafeCircles, type Circle, type MyRsvp } from "@/lib/circlesApi";
-import { MASTERMIND_LIVE_SESSION_URL, MASTERMIND_PAGE_PATH } from "@/data/mastermindSession";
+import { FMF_PAGE_PATH, formatFmfDates, nextFmfDates } from "@/data/fmfSession";
 
-/** The two real events of the Mastermind launch; their copy is `eventsSpace.featured.<id>.*`. */
-const FEATURED_EVENTS = [
-  { id: "liveSession", href: MASTERMIND_LIVE_SESSION_URL, external: true },
-  { id: "mastermind", href: MASTERMIND_PAGE_PATH, external: false },
-] as const;
+/** The one real event, FMF; its copy is `eventsSpace.featured.<id>.*` (its date is read from src/data/fmfSession.ts). */
+const FEATURED_EVENTS = [{ id: "mastermind", href: FMF_PAGE_PATH, external: false }] as const;
 
 type Faces = Record<string, { avatarUrl: string | null; name: string; userId: string }[]>;
 
@@ -81,10 +78,8 @@ const EventsSpace = () => {
   return (
     <GameShellV2>
       <ErrorBoundary>
-        {/* Same back link as every place (WP-15), for guests and players alike. */}
-        <PlaceBackLink />
-        <div className="px-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:px-8 max-w-4xl mx-auto">
-          {/* Header: S1. One place name and one line; no icon, no second title. */}
+        <div className="p-6 pb-[calc(var(--chat-clearance)+1.5rem)] lg:p-8 max-w-4xl mx-auto">
+          {/* Same back control and one h1 as every place (WP-15, Seam 2/4); guests and players alike. */}
           <ModulePageHeader
             title={CAFE.title}
             line={CAFE.subtitle}
@@ -98,7 +93,9 @@ const EventsSpace = () => {
           />
 
           {/* Upcoming | Past: writes ?period=past */}
-          <div role="tablist" aria-label="Period" className="inline-flex rounded-lg border border-border p-0.5 mb-6">
+          {/* Village register (issue #443 wave 3, item 8): the selected tab is a dark surface with a gold
+              underline and off-white text, never a white pill. Mono caps like every other village label. */}
+          <div role="tablist" aria-label="Period" className="inline-flex border-b border-foreground/20 mb-6">
             {(["upcoming", "past"] as const).map((p) => (
               <button
                 key={p}
@@ -106,8 +103,10 @@ const EventsSpace = () => {
                 role="tab"
                 aria-selected={period === p}
                 onClick={() => setPeriod(p)}
-                className={`px-3 py-1 text-sm rounded-md transition-colors ${
-                  period === p ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
+                className={`-mb-px min-h-[44px] px-4 border-b-2 font-mono text-xs font-light uppercase tracking-[0.2em] transition-colors focus-visible:outline-none focus-visible:text-foreground ${
+                  period === p
+                    ? "border-[color:var(--select-accent)] bg-foreground/[0.06] text-foreground"
+                    : "border-transparent text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {p === "upcoming" ? CAFE.upcoming : CAFE.past}
@@ -215,7 +214,7 @@ const EventsSpace = () => {
             </div>
           )}
 
-          {/* Two real events, always shown (issue #215). The header holds the only Create Event button.
+          {/* The real event (FMF), always shown (issue #215). The header holds the only Create Event button.
               Card fill tokenized for Aurum (Day 91), fallback keeps lapis at white/85. */}
           <div className="grid gap-4 sm:grid-cols-2 mb-6">
             {FEATURED_EVENTS.map((event) => {
@@ -224,7 +223,7 @@ const EventsSpace = () => {
               const body = (
                 <>
                   <p className="text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                    {t(`eventsSpace.featured.${event.id}.when`)}
+                    {formatFmfDates(nextFmfDates())}
                   </p>
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     {t(`eventsSpace.featured.${event.id}.title`)}

@@ -1,0 +1,30 @@
+# Move to .github/workflows/infographics.yml (kept here because the Claude GitHub App cannot write workflow files).
+name: infographics
+on:
+  pull_request:
+    paths:
+      - "docs/assets/infographics/**"
+      - ".github/workflows/infographics.yml"
+permissions:
+  contents: read
+jobs:
+  kit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow numpy pyyaml matplotlib scipy
+      - name: Kit self-test (rules, fixtures, parity with engine-v4, old fyt_style scripts)
+        run: python3 -m unittest discover -s docs/assets/infographics/kit -p "test_*.py" -v
+      - name: Render touched cards, lint, book_sync, contact sheet
+        run: python3 docs/assets/infographics/kit/ci.py --base "origin/${{ github.base_ref }}"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: infographics-contact-sheet
+          path: docs/assets/infographics/kit/out/contact-sheet.png
+          if-no-files-found: ignore

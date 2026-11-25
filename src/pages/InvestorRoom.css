@@ -174,3 +174,12 @@
   .ir-reveal { opacity: 1; transform: none; transition: none; }
   .ir-btn { transition: none; }
 }
+
+/* Version note under the hero lede (Sasha 2026-11-24): readable, quieter than the lede. */
+.ir-mono.ir-version {
+  margin-top: 1.25rem;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  color: var(--ir-ink-2);
+}

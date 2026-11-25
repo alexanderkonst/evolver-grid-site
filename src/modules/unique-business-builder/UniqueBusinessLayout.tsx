@@ -20,7 +20,7 @@
  *   - "Back to Canvas" link
  */
 
-import VillagePlaceHeader, { PlaceBackLink } from "@/components/game/VillagePlaceHeader";
+import VillagePlaceHeader from "@/components/game/VillagePlaceHeader";
 import { Outlet } from "react-router-dom";
 import { UniqueBusinessProvider } from "./UniqueBusinessContext";
 import { ImproveReviewDrawer } from "./components/ImproveReviewDrawer";
@@ -35,9 +35,8 @@ export default function UniqueBusinessLayout() {
           comfort, py-4 keeps the hero off the shell's pt-4. Inner screens
           set their own max-width (CanvasOverview: full-width grid;
           GenericArtifactScreen: max-w-2xl; Compound: max-w-4xl). */}
-      <PlaceBackLink />
       <div className="px-6 py-4">
-        <VillagePlaceHeader place="workshop" />
+        <VillagePlaceHeader place="workshop" titleAs="label" />
         <Outlet />
       </div>
       <ImproveReviewDrawer />

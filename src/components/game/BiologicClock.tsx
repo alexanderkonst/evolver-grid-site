@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import {
@@ -7,6 +6,7 @@ import {
   PLANETARY_DAYS,
   SOLAR_HOLONIC,
   SOLAR_HOLONIC_ORDER,
+  phaseWord,
   type AllCyclesV2,
 } from "@/lib/equilibrium-cycles";
 import { useCycles } from "@/modules/equilibrium/hooks/useCycles";
@@ -16,15 +16,16 @@ import BirthdayPrompt from "@/modules/equilibrium/components/BirthdayPrompt";
 import "./BiologicClock.css";
 
 /**
- * BiologicClock v6 — the player's own clock (docs/specs/equilibrium/biologic_clock_rings_spec.md;
- * issues #381, #385, #405). Two concentric rings, outside in: Moon (8 phases, New Moon at the top)
+ * BiologicClock v6.2 — the player's own clock (docs/specs/equilibrium/biologic_clock_rings_spec.md;
+ * issues #381, #385, #405, #434). Two concentric rings, outside in: Moon (8 phases, New Moon at the top)
  * and Week (7 days, Monday at the top), both clockwise. Three views, one tap on the dial cycles
  * them: 1 dial only (default) → 2 dial + card → 3 + two thin rings OUTSIDE (Day gold, then Year
  * silver) → back to 1. Moon and Week never move or resize; the dial grows outward.
  *
  * One grammar on every ring: the current phase is one large glowing symbol, what is lived is dim,
- * what is ahead is bright. Centre: two addressed words (small moon + phase word in the moon colour,
- * small planet + day word in the day's chakra colour). The card is one grid per ring: label with
+ * what is ahead is bright. Centre: two addressed words, each under its cycle's name in small caps
+ * (`FULL MOON` over «Harvesting» in the moon colour, `TUESDAY` over «Action» in the day's chakra
+ * colour), with the small moon / planet beside the word. The card is one grid per ring: label with
  * address and time left, current symbol + word with `was … · next …`, one meaning sentence.
  * It shows cycles only: no progress, scores, streaks, actions, clock time or Do now.
  *
@@ -55,7 +56,9 @@ const LIVED = 0.35; // what is already lived
 const AHEAD = 0.85; // what is still ahead
 const CENTRE_FONT = 13; // viewBox units; the dial is never below 200 px, so words stay >= 12 px
 const CENTRE_FONT_MIN = 12;
+const CENTRE_LABEL_FONT = 11; // the small caps address over each centre word; never below 11 px on a 200 px dial
 const CENTRE_ICON_R = 5.5;
+const RING_LABEL_FONT = 11; // «DAY» / «YEAR» on the two outer rings (view 3); the dial is 1 unit = 1 px at 200 px, so never below 11 px
 
 const PLANET_URL = (planet: string) => `/assets/equilibrium/planets/${planet.toLowerCase()}.png`;
 
@@ -63,6 +66,37 @@ const PLANET_URL = (planet: string) => `/assets/equilibrium/planets/${planet.toL
 const WEEK_COLOURS = ["#5b4fc4", "#c9483c", "#3f84d0", "#9a62d6", "#e48a3c", "#e8c447", "#4fb06e"] as const;
 const MOON_GLOW = "#fff4dc"; // warm white
 const SUN_GLOW = "#ff9a3c";
+const NIGHT = "#070b16";
+
+// ── Contrast: text in a chakra colour must reach WCAG AA (4.5:1) on the dark map / card ──
+const hexToRgb = (hex: string): [number, number, number] =>
+  [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16)) as [number, number, number];
+const channel = (v: number) => {
+  const c = v / 255;
+  return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+};
+const luminance = (hex: string) => {
+  const [r, g, b] = hexToRgb(hex);
+  return 0.2126 * channel(r) + 0.7152 * channel(g) + 0.0722 * channel(b);
+};
+/** WCAG contrast ratio of two #rrggbb colours. */
+export const contrastRatio = (a: string, b: string): number => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+const toHex = (rgb: number[]) => `#${rgb.map((v) => Math.round(v).toString(16).padStart(2, "0")).join("")}`;
+/** The colour itself when it already reads on the night background, else the nearest lighter mix towards white. */
+export const readableOnDark = (hex: string, min = 4.5): string => {
+  let mix = 0;
+  let out = hex;
+  while (contrastRatio(out, NIGHT) < min && mix < 1) {
+    mix += 0.04;
+    out = toHex(hexToRgb(hex).map((v) => v + (255 - v) * mix));
+  }
+  return out;
+};
+/** The same seven colours for WORDS: the chakra colour where it reads (AA on the night), else lightened. Tracks and glows keep the pure colour. */
+export const WEEK_TEXT_COLOURS: readonly string[] = WEEK_COLOURS.map((c) => readableOnDark(c));
 
 /** 1 dial only · 2 dial + text · 3 + Year and day. */
 export type ClockView = 1 | 2 | 3;
@@ -152,8 +186,8 @@ const dayFraction = (nowMs: number): number => {
 };
 
 // ── Words, straight from the engine ──
-/** «Prepping · Prep for harvest · …» → «Prepping»; «Threshold & Celebration» → «Threshold». */
-export const phaseWord = (energy: string): string => energy.split(" · ")[0].trim().split(/\s+/)[0];
+/** «Prepping · Prep for harvest · …» → «Prepping»; «Threshold & Celebration» → «Threshold». One word per moment: the engine's (the village caption takes it from there too). */
+export { phaseWord };
 /** The rest of a moon energy string: «Prep for harvest · Set up infrastructure · Get the help». */
 export const moonMeaning = (energy: string): string => energy.split(" · ").slice(1).join(" · ");
 
@@ -254,18 +288,104 @@ const PlanetSymbol = ({ planet, size }: { planet: string; size: number }) => {
   return planet === "Sun" ? <span className="bio-clock__sun" style={{ width: size, height: size }}>{img}</span> : img;
 };
 
-/** One centre line: a small symbol and its word, centred as a group (the word's width is estimated). */
+/**
+ * One centre line: its cycle's name in small caps (`FULL MOON`, `TUESDAY`), and under it a small
+ * symbol and the meaning word, centred as a group (the word's width is estimated). Both in the
+ * ring's colour: the address is what lets a newcomer link each word to its ring without a legend.
+ *
+ * The trailing space in each of the two texts is collapsed by SVG and never drawn. It gives the dial's
+ * visible text word breaks («full moon harvesting wednesday clarity») so axe's label-in-name check
+ * (WCAG 2.5.3) finds it inside the dial's accessible name; without it axe reads
+ * «full moonharvestingwednesdayclarity» and flags the dial (#460).
+ */
 const CentreLine = ({
-  y, word, colour, fontSize, symbol,
-}: { y: number; word: string; colour: string; fontSize: number; symbol: (cx: number, cy: number) => ReactNode }) => {
+  y, address, word, colour, fontSize, symbol,
+}: {
+  y: number; address: string; word: string; colour: string; fontSize: number; symbol: (cx: number, cy: number) => ReactNode;
+}) => {
   const width = word.length * fontSize * 0.55;
   const total = CENTRE_ICON_R * 2 + 3 + width;
   const start = C - total / 2;
   return (
     <g data-centre-line>
+      <text
+        className="bio-clock__address"
+        data-centre-address
+        x={C}
+        y={f(y - fontSize - 2)}
+        textAnchor="middle"
+        style={{ fontSize: `${CENTRE_LABEL_FONT}px`, fill: colour }}
+      >
+        {`${address.toUpperCase()} `}
+      </text>
       {symbol(start + CENTRE_ICON_R, y - fontSize * 0.34)}
       <text className="bio-clock__word" x={f(start + CENTRE_ICON_R * 2 + 3)} y={f(y)} textAnchor="start" style={{ fontSize: `${fontSize}px`, fill: colour }}>
-        {word}
+        {`${word} `}
+      </text>
+    </g>
+  );
+};
+
+/** Half the room a «DAY» / «YEAR» label takes on its ring, in turns: the ring stroke is left out under the letters. */
+const LABEL_GAP = 0.045;
+
+/** Turn `t` wrapped into 0..1. */
+const wrapTurn = (t: number) => ((t % 1) + 1) % 1;
+
+/** The `[from, to]` gap(s) in 0..1 a label centred at `turn` leaves in its ring; two pieces when it straddles the top. */
+const labelGaps = (turn: number, half = LABEL_GAP): Array<[number, number]> => {
+  const lo = turn - half;
+  const hi = turn + half;
+  if (lo < 0) return [[0, hi], [1 + lo, 1]];
+  if (hi > 1) return [[lo, 1], [0, hi - 1]];
+  return [[lo, hi]];
+};
+
+/** A ring arc `a0..a1` with the label gaps cut out (one path, up to three pieces). */
+const arcWithGaps = (r: number, a0: number, a1: number, gaps: Array<[number, number]>): string => {
+  let pieces: Array<[number, number]> = [[a0, a1]];
+  for (const [g0, g1] of gaps) {
+    pieces = pieces.flatMap(([p0, p1]): Array<[number, number]> => {
+      if (g1 <= p0 || g0 >= p1) return [[p0, p1]];
+      const out: Array<[number, number]> = [];
+      if (g0 > p0) out.push([p0, g0]);
+      if (g1 < p1) out.push([g1, p1]);
+      return out;
+    });
+  }
+  return pieces.map(([p0, p1]) => arcPath(r, p0, p1)).filter(Boolean).join(" ");
+};
+
+/** Shortest distance between two turns, 0..0.5. */
+const turnDistance = (a: number, b: number) => {
+  const d = Math.abs(wrapTurn(a) - wrapTurn(b));
+  return Math.min(d, 1 - d);
+};
+
+/**
+ * Where a ring's label sits: the first of its upper-half `candidates` (upright text) that keeps clear of
+ * the ring's own moving dot and of the labels already placed, so the two labels never stack and a dot
+ * never runs under a word.
+ */
+const pickLabelTurn = (candidates: number[], dot: number | null, taken: number[]): number =>
+  candidates.find(
+    (c) => (dot === null || turnDistance(c, dot) > LABEL_GAP * 1.6) && taken.every((t) => turnDistance(c, t) > LABEL_GAP * 2.6),
+  ) ?? candidates[0];
+
+/**
+ * A small caps label that sits on its own ring's arc (view 3: «DAY», «YEAR») at `turn`, upright, at
+ * least 11 px; the ring stroke is cut out under the letters (the caller leaves a gap), so nothing
+ * touches the word.
+ */
+const RingLabel = ({ id, r, turn, text, className }: { id: string; r: number; turn: number; text: string; className: string }) => {
+  const span = 0.09; // turns either side of the label centre: room for the text, never a visible arc
+  const [x0, y0] = polar(r, turn - span);
+  const [x1, y1] = polar(r, turn + span);
+  return (
+    <g data-ring-label={text.toLowerCase()} data-label-turn={turn.toFixed(3)} aria-hidden="true">
+      <path id={id} d={`M${f(x0)} ${f(y0)} A${r} ${r} 0 0 1 ${f(x1)} ${f(y1)}`} fill="none" stroke="none" />
+      <text className={`bio-clock__ring-label ${className}`} style={{ fontSize: `${RING_LABEL_FONT}px` }} dy={f(RING_LABEL_FONT * 0.36)}>
+        <textPath href={`#${id}`} startOffset="50%" textAnchor="middle">{text}</textPath>
       </text>
     </g>
   );
@@ -292,33 +412,39 @@ export interface BiologicClockFaceProps {
   className?: string;
 }
 
+/** A visually hidden separator between two pieces of a flex row (see `.bio-clock__sr`): read as a pause, never seen. */
+const Sep = () => <span className="bio-clock__sr">{", "}</span>;
+
 /** One block of the card: label with address + time left, current symbol + word + was/next, meaning. */
 const Block = ({
   ring, colour, label, timeLeft, symbol, word, around, meaning, children,
 }: {
-  ring: "moon" | "week" | "year";
+  ring: "moon" | "week" | "year" | "day";
   colour: string;
   label: string;
   timeLeft?: string;
   symbol: ReactNode;
   word: string;
   around?: string;
-  meaning: ReactNode;
+  meaning?: ReactNode;
   children?: ReactNode;
 }) => (
   <section className="bio-clock__block" data-readout={ring} style={{ "--bc-ring": colour } as CSSProperties}>
+    {/* The rows are flex containers, which drop plain whitespace between their items, so a bare {" "} left
+        «MOON · FULL MOON» and «Next: …» (or «Harvesting» and «before …») to be read as one word. <Sep /> is a
+        visually hidden «, » that stays in the accessibility tree. */}
     <div className="bio-clock__head">
       <span className="bio-clock__label">{label}</span>
-      {timeLeft ? <span className="bio-clock__time">{timeLeft}</span> : null}
+      {timeLeft ? <><Sep /><span className="bio-clock__time">{timeLeft}</span></> : null}
     </div>
     {word ? (
       <div className="bio-clock__now">
         <span className="bio-clock__symbol" aria-hidden="true">{symbol}</span>
         <span className="bio-clock__name">{word}</span>
-        {around ? <span className="bio-clock__around">{around}</span> : null}
+        {around ? <><Sep /><span className="bio-clock__around">{around}</span></> : null}
       </div>
     ) : null}
-    <p className="bio-clock__meaning">{meaning}</p>
+    {meaning ? <p className="bio-clock__meaning">{meaning}</p> : null}
     {children ? <div className="bio-clock__extra">{children}</div> : null}
   </section>
 );
@@ -330,14 +456,26 @@ export const BiologicClockFace = ({
   const fmt = makeFmt(t);
   const uid = useId().replace(/:/g, "");
 
-  // When the card opens or grows (a tap on the dial), bring it into view: on the profile it runs
-  // below the fold. Not on first mount, so a remembered view never moves the page.
+  // When the card opens or grows (a tap on the dial), bring the WHOLE card into view: on the profile
+  // it runs below the fold, and view 3 adds a block and widens the dial. One frame after the render,
+  // so the final layout is measured; a card that fits is aligned to the bottom edge (the last line
+  // shows), one taller than the screen to its top (the label shows). Not on first mount, so a
+  // remembered view never moves the page.
   const readoutRef = useRef<HTMLDivElement>(null);
   const lastView = useRef(view);
   useEffect(() => {
     if (lastView.current === view) return;
     lastView.current = view;
-    if (view >= 2) readoutRef.current?.scrollIntoView?.({ block: "nearest", behavior: "smooth" });
+    if (view < 2 || typeof window === "undefined") return;
+    const id = window.requestAnimationFrame(() => {
+      const el = readoutRef.current;
+      if (!el?.scrollIntoView) return;
+      const rect = el.getBoundingClientRect();
+      const screen = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.top >= 0 && rect.bottom <= screen) return; // already all in view
+      el.scrollIntoView({ block: rect.height <= screen ? "end" : "start", behavior: "smooth" });
+    });
+    return () => window.cancelAnimationFrame(id);
   }, [view]);
 
   const { solar, lunar, dayOfWeek } = cycles;
@@ -360,23 +498,54 @@ export const BiologicClockFace = ({
   const moonWord = phaseWord(lunar.phase.energy);
   const dayWord = phaseWord(dayOfWeek.day.energy);
   const timeLeftDays = Math.max(0, (lunar.phaseEndMs - nowMs) / 86_400_000);
-  const moonEnds = fmt("village.clock.moonIn", "{{phase}} in {{time}}", {
-    phase: lunar.nextPhaseName,
-    time: formatTimeLeft(timeLeftDays),
-  });
-  const wasNext = (prev: string, next: string) => fmt("village.clock.wasNext", "was {{prev}} · next {{next}}", { prev, next });
+  const moonTime = formatTimeLeft(timeLeftDays);
+  const moonEnds = fmt("village.clock.moonIn", "Next: {{phase}} in {{time}}", { phase: lunar.nextPhaseName, time: moonTime });
+  /**
+   * «before Prepping · next Celebrating, tomorrow»: «next» always carries its time when it is known.
+   * `next` null: the block's header already says «Next: …» (the Moon block), so the line keeps only
+   * «before Prepping» — one name per moment (v6.3 item 2).
+   */
+  const aroundText = (prev: string, next: string | null, when?: string) =>
+    next === null
+      ? fmt("village.clock.before", "before {{prev}}", { prev })
+      : when
+        ? fmt("village.clock.beforeNextWhen", "before {{prev}} · next {{next}}, {{when}}", { prev, next, when })
+        : fmt("village.clock.beforeNext", "before {{prev}} · next {{next}}", { prev, next });
+  const weekWhen = fmt("village.clock.tomorrow", "tomorrow"); // the next day always starts tomorrow
 
   // ── Centre words: the same size and weight, each carrying its ring's symbol and colour ──
   const longest = Math.max(moonWord.length, dayWord.length);
   const centreFont = Math.max(CENTRE_FONT_MIN, Math.min(CENTRE_FONT, 66 / (longest * 0.55)));
-  const weekColour = WEEK_COLOURS[weekNow];
+  const weekColour = WEEK_COLOURS[weekNow]; // tracks and glows: the pure chakra colour
+  const weekText = WEEK_TEXT_COLOURS[weekNow]; // words: the same colour, lightened only as far as AA needs
 
-  const summary = [moonWord, lunar.phase.name, dayOfWeek.day.name, dayWord].join(" · ");
+  // «Waxing Gibbous, Prepping, Saturday, Structure»: commas, so a screen reader pauses between the four words
+  const summary = [lunar.phase.name, moonWord, dayOfWeek.day.name, dayWord].join(", ");
   const yearName = hasBirthday ? season(seasonNow).name : "";
   const yearInvite = fmt("village.clock.yearEmpty", "Add your birthday to see your year");
   const yearAddress = fmt("village.clock.yearFrom", "Your year, from your birthday");
   const birthdayIn = hasBirthday ? daysToBirthday(birthday as string, nowMs) : null;
   const dayLeftPct = Math.round((1 - dayP) * 100);
+  // time to the next season of the year: the last one ends on the birthday itself
+  const seasonDays = hasBirthday
+    ? seasonNow === 3 && birthdayIn
+      ? birthdayIn.days
+      : Math.max(1, Math.round(((seasonNow + 1) / 4 - yearP) * 365.25))
+    : 0;
+  const yearWhen = seasonDays <= 1 ? fmt("village.clock.tomorrow", "tomorrow") : fmt("village.clock.inDays", "in {{days}} days", { days: seasonDays });
+  /** «Today: 60% of the day left», led by a dot in the Day ring's colour (gold), so the line points at its ring. */
+  const dayLeftLine = (
+    <p className="bio-clock__today">
+      <span className="bio-clock__today-dot" aria-hidden="true" />{" "}
+      {fmt("village.clock.dayLeft", "Today: {{pct}}% of the day left", { pct: dayLeftPct })}
+    </p>
+  );
+
+  // View 3 ring labels: each on its own ring, at its own angle, with a gap in the ring stroke under the letters
+  const dayLabelTurn = pickLabelTurn([0.125, 0.875, 0], dayP, []);
+  const yearLabelTurn = pickLabelTurn([0.875, 0.125, 0], hasBirthday ? yearP : null, [dayLabelTurn]);
+  const dayGaps = labelGaps(dayLabelTurn);
+  const yearGaps = labelGaps(yearLabelTurn);
 
   const nextLabel = view === 1
     ? fmt("village.clock.toText", "Show the text: meaning, previous and next")
@@ -439,23 +608,24 @@ export const BiologicClockFace = ({
         {/* ── Year (view 3, outermost): four seasons from the birthday; lived dim, ahead bright ── */}
         {expanded && (
           <g className="bio-clock__ring" data-ring="year">
-            {!birthdayLoading && <title>{hasBirthday ? `${yearAddress}: ${yearName}` : yearInvite}</title>}
+            {!birthdayLoading && <title>{hasBirthday ? `${yearAddress}: ${yearName}` : onAskBirthday ? yearInvite : yearAddress}</title>}
             {hasBirthday ? (
               SOLAR_HOLONIC_ORDER.map((_, q) => (
                 <path
                   key={q}
                   data-season={q}
                   className={`bio-clock__year is-${seasonSeg(q)}`}
-                  d={arcPath(RING.year, q / 4 + 0.008, (q + 1) / 4 - 0.008)}
+                  d={arcWithGaps(RING.year, q / 4 + 0.008, (q + 1) / 4 - 0.008, yearGaps)}
                 />
               ))
             ) : (
-              <circle className="bio-clock__year bio-clock__year--empty" cx={C} cy={C} r={RING.year} />
+              <path className="bio-clock__year bio-clock__year--empty" d={arcWithGaps(RING.year, 0, 1, yearGaps)} />
             )}
             {hasBirthday && (() => {
               const [x, y] = polar(RING.year, yearP);
               return <circle className="bio-clock__year-dot" cx={f(x)} cy={f(y)} r="3.4" />;
             })()}
+            <RingLabel id={`bc-label-year-${uid}`} r={RING.year} turn={yearLabelTurn} text={fmt("village.clock.yearRing", "Year").toUpperCase()} className="bio-clock__ring-label--year" />
           </g>
         )}
 
@@ -463,12 +633,13 @@ export const BiologicClockFace = ({
         {expanded && (
           <g className="bio-clock__ring" data-ring="day">
             <title>{fmt("village.clock.dayPart", "Part of the day")}</title>
-            <path className="bio-clock__day-lived" d={arcPath(RING.day, 0, dayP)} />
-            <path className="bio-clock__day-ahead" d={arcPath(RING.day, dayP, 1)} />
+            <path className="bio-clock__day-lived" d={arcWithGaps(RING.day, 0, dayP, dayGaps)} />
+            <path className="bio-clock__day-ahead" d={arcWithGaps(RING.day, dayP, 1, dayGaps)} />
             {(() => {
               const [x, y] = polar(RING.day, dayP);
               return <circle className="bio-clock__day-dot" cx={f(x)} cy={f(y)} r="3" />;
             })()}
+            <RingLabel id={`bc-label-day-${uid}`} r={RING.day} turn={dayLabelTurn} text={fmt("village.clock.dayRing", "Day").toUpperCase()} className="bio-clock__ring-label--day" />
           </g>
         )}
 
@@ -522,23 +693,33 @@ export const BiologicClockFace = ({
         </g>
 
         {/* ── Centre: two addressed words, each with its ring's symbol and colour ── */}
-        <g data-ring="centre" className="bio-clock__centre">
+        <g data-ring="centre" className="bio-clock__centre" aria-hidden="true">
           <CentreLine
-            y={C - 3}
+            y={C - 6}
+            address={lunar.phase.name}
             word={moonWord}
             colour={MOON_GLOW}
             fontSize={centreFont}
             symbol={(cx, cy) => <MoonAt x={cx} y={cy} r={CENTRE_ICON_R} phaseIndex={moonNow} />}
           />
           <CentreLine
-            y={C + centreFont + 1}
+            y={C + 24}
+            address={dayOfWeek.day.name}
             word={dayWord}
-            colour={weekColour}
+            colour={weekText}
             fontSize={centreFont}
             symbol={(cx, cy) => <PlanetAt x={cx} y={cy} r={CENTRE_ICON_R} planet={dayOfWeek.day.planet} uid={uid} />}
           />
         </g>
       </svg>
+      {view === 1 && onCycleView && (
+        // The cue that the dial is a control: a small «+ tap» chip (>= 24 px target) under it. The dial is
+        // the one real control for keyboards and screen readers, so the chip stays out of both.
+        <button type="button" className="bio-clock__cue" data-cue tabIndex={-1} aria-hidden="true" onClick={onCycleView}>
+          <span className="bio-clock__cue-plus">+</span>{" "}
+          <span>{fmt("village.clock.tap", "tap")}</span>
+        </button>
+      )}
       </div>
 
       {showText && (
@@ -550,7 +731,7 @@ export const BiologicClockFace = ({
           timeLeft={moonEnds}
           symbol={<MoonSymbol phaseIndex={moonNow} size={26} />}
           word={moonWord}
-          around={wasNext(phaseWord(moonPhase(moonNow - 1).energy), phaseWord(moonPhase(moonNow + 1).energy))}
+          around={aroundText(phaseWord(moonPhase(moonNow - 1).energy), null)}
           meaning={moonMeaning(lunar.phase.energy)}
         >
           {children}
@@ -558,15 +739,17 @@ export const BiologicClockFace = ({
 
         <Block
           ring="week"
-          colour={weekColour}
+          colour={weekText}
           label={`${fmt("village.clock.week", "Week")} · ${dayOfWeek.day.name}, ${dayOfWeek.day.planet}`}
           symbol={<PlanetSymbol planet={dayOfWeek.day.planet} size={26} />}
           word={dayWord}
-          around={wasNext(phaseWord(weekDay(weekNow - 1).energy), phaseWord(weekDay(weekNow + 1).energy))}
+          around={aroundText(phaseWord(weekDay(weekNow - 1).energy), phaseWord(weekDay(weekNow + 1).energy), weekWhen)}
           meaning={dayOfWeek.day.description}
         />
 
-        {expanded && (hasBirthday || !birthdayLoading) && (
+        {/* Year: only for a player who has a birthday, or a signed-in one who can add it. A guest has no year, so no
+            «YOUR YEAR» header over nothing (v6.3 item 3); the empty year track on the dial still shows. */}
+        {expanded && (hasBirthday || (!birthdayLoading && !!onAskBirthday)) && (
           hasBirthday ? (
             <Block
               ring="year"
@@ -575,11 +758,9 @@ export const BiologicClockFace = ({
               timeLeft={birthdayIn ? fmt("village.clock.toBirthday", "{{days}} days to {{date}}", { days: birthdayIn.days, date: birthdayIn.label }) : undefined}
               symbol={<span className="bio-clock__year-mark" />}
               word={yearName}
-              around={wasNext(season(seasonNow - 1).name, season(seasonNow + 1).name)}
+              around={aroundText(season(seasonNow - 1).name, season(seasonNow + 1).name, yearWhen)}
               meaning={season(seasonNow).essence}
-            >
-              <p className="bio-clock__today">{fmt("village.clock.dayLeft", "Today: {{pct}}% of the day left", { pct: dayLeftPct })}</p>
-            </Block>
+            />
           ) : (
             <Block
               ring="year"
@@ -588,16 +769,23 @@ export const BiologicClockFace = ({
               symbol={<span className="bio-clock__year-mark" />}
               word=""
               meaning={
-                onAskBirthday ? (
-                  <button type="button" className="bio-clock__link" onClick={onAskBirthday}>{yearInvite}</button>
-                ) : (
-                  <Link to="/build/equilibrium" className="bio-clock__link">{yearInvite}</Link>
-                )
+                <button type="button" className="bio-clock__link" onClick={onAskBirthday}>{yearInvite}</button>
               }
-            >
-              <p className="bio-clock__today">{fmt("village.clock.dayLeft", "Today: {{pct}}% of the day left", { pct: dayLeftPct })}</p>
-            </Block>
+            />
           )
+        )}
+
+        {/* Day: its own block under its own label (the same «DAY» as the gold ring), never under the year header. */}
+        {expanded && (
+          <Block
+            ring="day"
+            colour="rgb(242, 196, 107)"
+            label={fmt("village.clock.dayRing", "Day")}
+            symbol={null}
+            word=""
+          >
+            {dayLeftLine}
+          </Block>
         )}
       </div>
       )}

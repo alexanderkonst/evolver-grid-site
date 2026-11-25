@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GuestSaveCard from "@/components/game/GuestSaveCard";
 import ModuleIntro from "@/components/game/ModuleIntro";
 import ModuleOutro from "@/components/game/ModuleOutro";
@@ -31,6 +32,7 @@ type Props = {
 };
 
 const AcademyModule = ({ guest, onDone }: Props) => {
+  const { t } = useTranslation();
   const victory = useJourneyVictory(ACADEMY_WELCOME_ID);
   const [stage, setStage] = useState<Stage>("pending");
 
@@ -65,7 +67,7 @@ const AcademyModule = ({ guest, onDone }: Props) => {
       <div className="p-4 pb-24 sm:p-6 lg:p-10 lg:pb-12 max-w-4xl mx-auto">
         <header className="mb-6 text-center">
           <p className="text-[10.5px] mb-2" style={EYEBROW_STYLE}>
-            {COURSE_TITLE} · {ACADEMY_WELCOME_MODULE.eyebrow}
+            {t("course.titles.activate-your-dormant-potential", { defaultValue: COURSE_TITLE })} · {ACADEMY_WELCOME_MODULE.eyebrow}
           </p>
           <h1 className="text-3xl sm:text-4xl font-semibold tracking-tight leading-[1.1]" style={TITLE_STYLE}>
             {ACADEMY_WELCOME_EPISODE.title}

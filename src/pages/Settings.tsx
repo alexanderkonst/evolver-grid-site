@@ -15,7 +15,6 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { cn } from "@/lib/utils";
 import { isAdminEmail } from "@/lib/isAdmin";
-import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 
 /**
  * Settings — unified settings page at /game/settings.
@@ -669,6 +668,14 @@ const DataExportTab = () => {
     );
 };
 
+/** The four tabs, in order. Appearance returned with the first-class themes (Day 91); Export is the profile PDF. */
+const SETTINGS_TABS = [
+    { value: "profile", Icon: User, label: "settings.tabProfile" },
+    { value: "notifications", Icon: Bell, label: "settings.tabNotifications" },
+    { value: "export", Icon: Download, label: "settings.tabExport" },
+    { value: "appearance", Icon: Palette, label: "settings.tabAppearance" },
+] as const;
+
 const Settings = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
@@ -715,18 +722,11 @@ const Settings = () => {
                             type="button"
                             onClick={() => navigate(-1)}
                             className={cn(
-                                "inline-flex items-center gap-2 min-h-[44px] py-1.5 px-4 rounded-full",
-                                "text-[10px] sm:text-[11px] uppercase tracking-[0.22em] font-medium",
-                                "transition-all duration-300 hover:scale-[1.02]",
-                                "focus-visible:ring-2 focus-visible:ring-[#d4af37]/40 outline-none",
+                                "inline-flex items-center gap-2 min-h-[44px] py-1.5 px-4 rounded-md border border-foreground/30",
+                                "font-mono text-[11px] font-light uppercase tracking-[0.2em] text-muted-foreground",
+                                "transition-colors hover:border-foreground hover:text-foreground",
+                                "focus-visible:ring-1 focus-visible:ring-foreground outline-none",
                             )}
-                            style={{
-                                backgroundImage:
-                                    "linear-gradient(135deg, rgba(26,30,58,0.08), rgba(26,30,58,0.02))",
-                                border:
-                                    "1px solid var(--skin-rule-strong, rgba(26,30,58,0.2))",
-                                color: "var(--skin-link-secondary, rgba(26,30,58,0.85))",
-                            }}
                             aria-label={t("settings.back")}
                         >
                             <ArrowLeft className="w-3 h-3" aria-hidden="true" />
@@ -740,38 +740,15 @@ const Settings = () => {
                         added gold accent on "settings" and an Ornament
                         divider before the tabs so the rhythm matches
                         MethodologyLandingPage / MeGate. */}
+                    {/* Village register (issue #443): letter-spaced serif caps, one quiet line, a hairline. */}
                     <header className="text-center mb-8">
-                        <h1
-                            className="text-3xl sm:text-4xl md:text-5xl font-semibold leading-[1.1] tracking-[-0.018em] mb-4 sm:mb-5"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                color: "var(--skin-text-primary, #0a1628)",
-                                textShadow:
-                                    "var(--skin-text-halo-strong, 0 0 22px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.8), 0 2px 12px rgba(26,30,58,0.15))",
-                            }}
-                        >
-                            {t("settings.heroTitleBefore")}{" "}
-                            <span
-                                className="bg-clip-text text-transparent"
-                                style={GOLD_TEXT_STYLE}
-                            >
-                                {t("settings.heroTitleGold")}
-                            </span>
+                        <h1 className="mb-4 font-serif text-2xl font-medium uppercase tracking-[0.18em] text-foreground sm:text-3xl">
+                            {t("settings.heroTitleBefore")} {t("settings.heroTitleGold")}
                         </h1>
-                        <p
-                            className="text-lg sm:text-xl md:text-2xl leading-[1.32] tracking-[-0.005em] italic"
-                            style={{
-                                fontFamily: "'Cormorant Garamond', serif",
-                                fontWeight: 500,
-                                color: "var(--skin-text-muted, rgba(26,30,58,0.7))",
-                                textShadow:
-                                    "var(--skin-text-halo-subtle, 0 0 18px rgba(255,255,255,0.55), 0 1px 2px rgba(255,255,255,0.75))",
-                            }}
-                        >
+                        <p className="text-base italic text-muted-foreground sm:text-lg">
                             {t("settings.heroSubtitle")}
                         </p>
-
-                        <Ornament className="my-5 sm:my-6" />
+                        <div aria-hidden="true" className="mx-auto mt-6 h-px w-24 bg-border" />
                     </header>
 
                     {/* Expired / invalid email-confirmation link. */}
@@ -793,111 +770,24 @@ const Settings = () => {
                             Day 109 (Sasha 2026-06-28): mobile grid now wraps
                             four visible tabs into two rows to prevent label
                             collision. */}
-                        <TabsList
-                            className="mb-6 h-auto p-1.5 rounded-[1.5rem] grid w-full grid-cols-2 gap-1.5"
-                            style={{
-                                background: "hsla(228, 30%, 18%, 0.06)",
-                                border: "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
-                            }}
-                        >
-                            <TabsTrigger
-                                value="profile"
-                                className={cn(
-                                    "gap-2 rounded-full min-h-[48px] px-4 py-2 transition-all",
-                                    "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
-                                    "data-[state=inactive]:text-muted-foreground",
-                                )}
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontWeight: 600,
-                                    fontSize: "0.82rem",
-                                    letterSpacing: "0.08em",
-                                    textTransform: "uppercase",
-                                    color:
-                                        activeTab === "profile"
-                                            ? "var(--skin-tab-active-ink, #7a5108)"
-                                            : undefined,
-                                }}
-                            >
-                                <User className="w-3.5 h-3.5 flex-shrink-0" />
-                                {t("settings.tabProfile")}
-                            </TabsTrigger>
-                            <TabsTrigger
-                                value="notifications"
-                                className={cn(
-                                    "gap-2 rounded-full min-h-[48px] px-4 py-2 transition-all",
-                                    "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
-                                    "data-[state=inactive]:text-muted-foreground",
-                                )}
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontWeight: 600,
-                                    fontSize: "0.82rem",
-                                    letterSpacing: "0.08em",
-                                    textTransform: "uppercase",
-                                    color:
-                                        activeTab === "notifications"
-                                            ? "var(--skin-tab-active-ink, #7a5108)"
-                                            : undefined,
-                                }}
-                            >
-                                <Bell className="w-3.5 h-3.5 flex-shrink-0" />
-                                {t("settings.tabNotifications")}
-                            </TabsTrigger>
-                            {/* Day 79 (Sasha 2026-05-15): Export tab — entry
-                                point for the unified Personal Profile PDF
-                                (Top Talent + Mission + Assets + QoL in one
-                                document). Future data exports (CSV, JSON,
-                                etc.) plug in as additional cards within the
-                                DataExportTab — no new tabs needed. */}
-                            <TabsTrigger
-                                value="export"
-                                className={cn(
-                                    "gap-2 rounded-full min-h-[48px] px-4 py-2 transition-all",
-                                    "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
-                                    "data-[state=inactive]:text-muted-foreground",
-                                )}
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontWeight: 600,
-                                    fontSize: "0.82rem",
-                                    letterSpacing: "0.08em",
-                                    textTransform: "uppercase",
-                                    color:
-                                        activeTab === "export"
-                                            ? "var(--skin-tab-active-ink, #7a5108)"
-                                            : undefined,
-                                }}
-                            >
-                                <Download className="w-3.5 h-3.5 flex-shrink-0" />
-                                {t("settings.tabExport")}
-                            </TabsTrigger>
-                            {/* Day 78 (Sasha 2026-05-22): Appearance trigger
-                                hidden pending a production-ready chooser.
-                                Day 91 (Sasha 2026-06-09): RE-ENABLED with
-                                the first-class Lapis/Aurum themes. */}
-                            <TabsTrigger
-                                value="appearance"
-                                className={cn(
-                                    "gap-2 rounded-full min-h-[48px] px-4 py-2 transition-all",
-                                    "data-[state=active]:bg-[var(--skin-tab-active-bg,#fff)] data-[state=active]:shadow-sm",
-                                    "data-[state=inactive]:text-muted-foreground",
-                                )}
-                                style={{
-                                    fontFamily: "'Cormorant Garamond', serif",
-                                    fontWeight: 600,
-                                    fontSize: "0.82rem",
-                                    letterSpacing: "0.08em",
-                                    textTransform: "uppercase",
-                                    color:
-                                        activeTab === "appearance"
-                                            ? "var(--skin-tab-active-ink, #7a5108)"
-                                            : undefined,
-                                }}
-                            >
-                                <Palette className="w-3.5 h-3.5 flex-shrink-0" />
-                                {t("settings.tabAppearance")}
-                            </TabsTrigger>
+                        {/* Village register (issue #443): thin-border mono tabs, the active one
+                            outlined in full ink. No grey pill, no gold, no sans. */}
+                        <TabsList className="mb-6 grid h-auto w-full grid-cols-2 gap-1.5 rounded-none bg-transparent p-0 sm:grid-cols-4">
+                            {SETTINGS_TABS.map(({ value, Icon, label }) => (
+                                <TabsTrigger
+                                    key={value}
+                                    value={value}
+                                    className={cn(
+                                        "min-h-[48px] gap-2 rounded-md border border-foreground/20 bg-transparent px-3 py-2 shadow-none",
+                                        "font-mono text-[11px] font-light uppercase tracking-[0.2em] text-muted-foreground transition-colors",
+                                        "hover:border-foreground/50 hover:text-foreground",
+                                        "data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none",
+                                    )}
+                                >
+                                    <Icon className="h-3.5 w-3.5 flex-shrink-0" aria-hidden="true" />
+                                    {t(label)}
+                                </TabsTrigger>
+                            ))}
                         </TabsList>
                         <TabsContent value="profile">
                             <ProfileSettingsSection />

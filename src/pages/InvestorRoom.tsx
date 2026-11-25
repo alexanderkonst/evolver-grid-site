@@ -27,6 +27,8 @@ const COPY = {
     title: "The Digital Village",
     line: "A game where founders discover their uniqueness, find their people, and build the business only they can build.",
     scrollHint: "Scroll",
+    // Sasha, 2026-11-24: say plainly that this page is a version in progress.
+    versionNote: "Work in progress: the next version of this page is expected by December 8, 2026.",
     sceneAlt: "A moonlit map of the Digital Village: small lit places scattered along a winding path",
   },
   thesis: {
@@ -79,7 +81,7 @@ const COPY = {
       },
       {
         label: "The lab",
-        body: "170+ technologies already written down. The question is never what to sell, only which shift gets its path first. The steps can be copied; the vision they carry is born only here. Price follows the depth of the shift, not the volume of content: game, course, Direction Call, $555 session, Mastermind.",
+        body: "170+ technologies already written down. The question is never what to sell, only which shift gets its path first. The steps can be copied; the vision they carry is born only here. Price follows the depth of the shift, not the volume of content: game, course, Direction Call, $555 session, FMF, PMF.",
       },
       {
         label: "One test for every product",
@@ -87,7 +89,7 @@ const COPY = {
       },
       {
         label: "How it compounds",
-        body: "Product map = technologies × paths. The Mastermind is the meta-product where new technologies are born from live reality. The game is the shop window of paths: each module is a template with a named shift, and the 1–10 rating at its end shows whether the player reached B.",
+        body: "Product map = technologies × paths. FMF is the meta-product where new technologies are born from live reality. The game is the shop window of paths: each module is a template with a named shift, and the 1–10 rating at its end shows whether the player reached B.",
       },
     ],
   },
@@ -100,7 +102,7 @@ const COPY = {
       { place: "Home", step: "Say your uniqueness in one sentence", scene: "house" },
       { place: "Workshop", step: "Receive the tagline of your business", scene: "workshop" },
       { place: "Academy", step: "Learn how the path of uniqueness works", scene: "academy" },
-      { place: "Fire Circle", step: "Sit in the mastermind", scene: "fire-circle" },
+      { place: "Fire Circle", step: "Sit in FMF, three days in a circle", scene: "fire-circle" },
       { place: "Academy", step: "Complete the 21-day mastery practice", scene: "academy" },
       { place: "Market", step: "Name your price to a client, for the first time", scene: "market" },
       { place: "Town Hall", step: "Make your first sale: the first real «yes» from the world", scene: "town-hall" },
@@ -110,7 +112,7 @@ const COPY = {
     kicker: "Live numbers",
     note: "Player counts are read live. Revenue as of November 24, 2026. No names, no personal data.",
     traction: [
-      { value: "$6,259", label: "paid to us since April 2026" },
+      { value: "$6,814", label: "paid to us since April 2026" },
       { value: "11", label: "founders working with us now" },
       { value: "60%", label: "of paying clients bought again" },
     ],
@@ -275,6 +277,7 @@ const InvestorRoom = () => {
             <p className="ir-mono">{COPY.hero.kicker}</p>
             <h1 id="ir-hero-h">{COPY.hero.title}</h1>
             <p className="ir-lede">{COPY.hero.line}</p>
+            <p className="ir-mono ir-version">{COPY.hero.versionNote}</p>
           </div>
           <p className="ir-mono ir-hint" aria-hidden="true">{COPY.hero.scrollHint}</p>
         </section>

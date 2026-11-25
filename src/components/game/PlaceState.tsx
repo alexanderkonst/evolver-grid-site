@@ -41,6 +41,13 @@ type PlaceStateProps = {
   action?: ReactNode;
   /** Rendered last, in every state (e.g. a way to sign in). */
   after?: ReactNode;
+  /**
+   * Live controls on a closed place (the one enabled «Your next move», §25.4). `aria-disabled` on a
+   * container reaches every control inside it in the accessibility tree, so when this is given the
+   * closed semantics move from the root onto an inner group around the faded content, and these
+   * controls sit beside that group, not under it. Ignored while the place is not closed.
+   */
+  afterEnabled?: ReactNode;
   /** Show the state word (Next / Done / Live). Default true. */
   tag?: boolean;
   /**
@@ -82,13 +89,16 @@ export const PlaceState = ({
   line,
   action,
   after,
+  afterEnabled,
   tag = true,
   disabled,
   children,
 }: PlaceStateProps) => {
   const closed = state === "closed";
   const isDisabled = disabled ?? closed;
-  const content = (
+  // Live controls on a closed place cannot sit under `aria-disabled`; the group below carries it instead.
+  const split = isDisabled && afterEnabled != null;
+  const inner = (
     <>
       {children}
       {line ? <p className="ps-line">{line}</p> : null}
@@ -97,13 +107,19 @@ export const PlaceState = ({
       {after}
     </>
   );
+  const content = (
+    <>
+      {split ? <div role="group" aria-disabled="true" className="ps-closed">{inner}</div> : inner}
+      {split ? afterEnabled : null}
+    </>
+  );
   return (
     <Tag
       className={cn("ps", className)}
       style={style}
       data-place-state={state}
-      aria-disabled={isDisabled ? true : undefined}
-      role={isDisabled && Tag === "div" ? "group" : undefined}
+      aria-disabled={isDisabled && !split ? true : undefined}
+      role={isDisabled && !split && Tag === "div" ? "group" : undefined}
     >
       {scene != null ? <div className="ps-fade ps-scene">{scene}</div> : null}
       {bodyClassName ? <div className={bodyClassName}>{content}</div> : content}

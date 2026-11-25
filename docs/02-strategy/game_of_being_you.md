@@ -2,6 +2,8 @@
 
 # THE GAME OF BEING YOU — Game Blueprint
 
+> **Names (Sasha, 2026-11-24):** the business-creation Mastermind is now **FMF**, "Discover Founder-Market Fit in Three Days, Guaranteed" (`/build/fmf`); the BUILT / BUILD container is now **PMF**, "Early signal of Product-Market Fit in One Moon Cycle, Guaranteed" (`/products/pmf`). Old routes redirect. Older entries below keep the names used at the time. Canonical names, prices and FMF dates: [product_brief.md §0](../04-products/product_brief.md).
+
 > Master design doc for the game that findyourtoptalent.com becomes. The game is the blueprint: every product, page and funnel is a part of the game.
 > *Created: 2026-10-26 (Day 225). Owner: Aleksandr Konstantinov. Keeper: Evolver (Hark).*
 > Related: [game_multiplayer.md](./game_multiplayer.md) (Multiplayer: Meet, how players meet), [game_spaces.md](./game_spaces.md) (what you can do in each space), [module_taxonomy.md](./module_taxonomy.md), [../05-reference/brandbook.md](../05-reference/brandbook.md).
@@ -45,6 +47,7 @@
 - [22. Strategy 2026-11-02: the reveal-activation loop and the living…](#22-strategy-2026-11-02-the-reveal-activation-loop-and-the-living-village)
 - [23. The Player One path](#23-the-player-one-path-sasha-2026-11-02)
 - [24. Mechanics from iconic games and real-life games](#24-mechanics-from-iconic-games-and-real-life-games-sashas-verdicts-2026-11-21)
+- [25. Navigation](#25-navigation-sasha-2026-11-24)
 
 ---
 
@@ -1424,3 +1427,86 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 
 ### 24.5 Rejected
 Density gate before the next village (FB-1) · village book night (JM-4) · 6-week seasons · secret identity · villains and battles · points and levels as score · internal currency · votes · crisis simulations · ranking people · "raid" vocabulary.
+
+## 25. Navigation (Sasha, 2026-11-24; approved for build 2026-11-25 00:07 MST: «в спеку, и затем в работу»)
+
+Build: epic [#453](https://github.com/alexanderkonst/evolver-grid-site/issues/453).
+
+Source: the navigation synthesis of 40+ cult games ([synthesis v0](./research/navigation/synthesis.md)) and Sasha's verdicts on it, 2026-11-24 22:32 and 23:12 MST. This section is the source of truth for navigation; the UI rules that follow from it live in [ui_playbook Part X](../03-playbooks/ui_playbook.md).
+
+### 25.1 Principle
+One world, one home, and on every screen three answers: **where am I, where next, how do I get home.** The same grammar holds at four scales: world (village map) → place (scene with rooms) → module (Intro → one button → Outro) → moment (any screen). Much of this grammar was already in place before the research (village map, module form, lock rule); the research confirms it.
+
+### 25.2 Where am I: both answers
+- **Place in the village:** where I am in the game location. It makes moving simple.
+- **Step on the path:** where I am on my hero's journey (§14.2).
+
+### 25.3 One map, several views
+- Village = the full map. Rail = the same map folded (§14.1.2).
+- **The second pane stays, and so does the scene: both.** The place opens as one scene with its rooms, and the second pane shows all rooms and the order of quests at once, so the player takes in every option in one glance. It appears at the right moments and is open when the player looks at the order of quests (= steps of the hero's journey = moving from module to module). Using it must be obvious instantly.
+
+### 25.4 Where next: a bearing, not a route (the balance)
+Sasha: the game must feel like a game, not fully simple and not fully obvious; the sweet spot natural to people. Evidence: turn-by-turn guidance erodes the player's own mental map (GPS research), yet a vague signal loses players (Peacocke et al. 2018: a drawn path or rotating minimap beat a compass or light beam). So, a ladder of help, from least to most:
+1. **Always:** one next move glows; the whole map stays open and every open place can be entered. The player chooses.
+2. **Before entering:** the Intro pitch (25.6).
+3. **Only when lost:** a clear, drawn line to the next move, shown when the player asks («Where next?») or after clear signs of being lost (several entries into places that don't move them forward, or a long pause on one screen). Never by default.
+Discovery stays the game: rooms reveal what is inside only when you enter.
+
+### 25.5 Closed is visible, with one line
+Every closed place, room, quest, module and star says one line: **«Opens when <real event>. Inside: <result>.»** (§14.3, §14.1.5; in code since #354, `PlaceState`). Use it everywhere, including the second pane and the path view.
+
+### 25.6 Pitch before entering
+The Intro says two things in one line each: **what you get** (the transformational result; button law) and **what it opens** next. Not a lore mission briefing; closer to «what this item gives you», with one line of «why it matters on your path».
+
+### 25.7 Home that changes on return
+Your House answers «what changed since you were here» in at most 3 real lines (places opened, artifacts made or changed, village events that touch you); nothing when nothing changed. Task: #451.
+
+### 25.8 Progress shows as light; one private number
+The world fills with light as you live (§14.11): done places light up, the paths between them glow, the sky moves toward dawn. Real game-design lineage: progress shown in the world itself (Okami and Gris restore colour, Journey's ascent). Numbers: none public (§14.1.7); one private number, your real QoL level (§13.2). This «both» is what we already ship.
+
+### 25.9 The path as a constellation
+Your House shows the path as a constellation, not a ladder: walked steps lit, the next step glowing, closed steps faint with their 25.5 line; several next steps can be open at once (Civ's tech tree has lasted 30 years; Civ VII's linear Legacy Paths were criticised as «rails»). Sketch v0: `docs/assets/navigation/constellation_v0.png`. Built on player path v1 only after Sasha reviews it.
+
+### 25.10 Your AI: an instrument you carry
+Your AI is not a place on the map: it is used during play, so it opens natively and smoothly from anywhere, like the Pip-Boy (Fallout). Design and build run as their own project.
+
+Decisions (Sasha, 2026-11-24 23:46 MST, on brief v1):
+- **The object:** a clear octahedron of air and sky, the element of air: clarity. Reference: `docs/assets/your-ai/octahedron_reference.png`.
+- **How it opens:** option A. The instrument rises over the living world; the world stays visible, dimmed, behind it; the same gesture closes it and the player is exactly where they were. The exact look is still to be designed.
+- **Inside:** never «Take your AI» to an outside app. A Hark-like interface inside the game, sold the way Hark is sold. Phase 1 runs on a model through Lovable's AI gateway; phase 2 through direct APIs with usage tiers (5x / 10x / 20x / custom). Apps (= buttons = results) are free and paid: free ones come preinstalled (the suites and buttons AI OS already has), paid ones are added.
+- **The `oracle` place becomes a quest:** activate your AI; it names itself and grows into a companion that knows the player ever closer (§19 of the Your AI tracker: one note in the chord, not a copy or «digital twin», Sasha agreed 2026-11-25). An interactive course on it, power-ups, and access to the Console.
+- **When it appears:** after the player's profile is created, without the quality-of-life test. The QoL test moves into the Academy as one of the first steps, after the first course, «Your Unfolding Potential» (renamed from «Activate Your Dormant Potential», same day).
+- **First receipt = its own landing** (Sasha, 2026-11-25): the first time the instrument appears, a micro-onboarding zooms by scale and light onto each group of the product in turn, one line each. What Your AI is and how it is sold: Your AI tracker §21. Build spec: `docs/specs/your-ai-instrument/sow.md`.
+
+### 25.11 Smoothness
+Every transition feels smooth: the whole interface is an ancient mystical instrument (§5; motion respects reduced-motion).
+
+### 25.12 The 3-second test (acceptance test of navigation)
+**A first-time player on any screen answers in 3 seconds, without help: where am I, my one next move and what it gives, how to get home.** Operationalized:
+1. **Every navigation or screen spec** (@claude issue, [spec-handoff](../templates/spec-handoff.md)) carries it in its Definition of Done.
+2. **Every module audit** ([module-form](../templates/module-form.md) §9) checks it per screen.
+3. **Live test with real first-timers** (San Pancho village, 5 people per round): show a screen for 3 seconds, hide it, ask the three questions; a screen passes when 4 of 5 answer all three. Results logged here per screen.
+4. **Hark's QA loop** runs it on every new screen before reporting it done.
+
+### 25.13 How we refine it: subtraction
+Each navigation screen is refined with the [subtraction loop](../templates/subtraction-loop.md) (after Will Wright's many cut-down versions of The Sims): name the model in the player's head, show it to first-timers without explanation, mark friction, cut what does not build the model or move it into the world, measure before and after, repeat until the 25.12 test passes.
+
+### 25.14 Five quarters: the village through the five elements (Sasha, 2026-11-25 11:03–11:32 MST)
+Sasha: «крутейшая новость, что действительно всё мэпится на 5». Any complex system can be read through the lens of the five elements; the village is read this way.
+
+| Element | Platonic solid | Meaning | Places |
+|---|---|---|---|
+| Ether | Dodecahedron | the path | Entry Portal, Home (hero's path and quests inside), Quest Board |
+| Air | Octahedron | mind | Your AI (carried instrument, §25.10) |
+| Water | Icosahedron | cycles and connection | Café (where you meet), Co-working (where you collaborate), plus the time ring with the moon phase |
+| Fire | Tetrahedron | transformation, your own education | Academy, FMF |
+| Earth | Cube | structure | Workshop, Market, Town Hall |
+
+Rules:
+1. **An element is a quarter of the map, never a door.** The player taps Academy directly; fire shows as the quarter's colour and sign and as a face of the instrument. No extra click, no new menu.
+2. **Each solid lights at its step of the hero's path** (Sasha: «каждый из них активируется в какой-то момент пути героя - это факт»): a solid is a faint outline until the first place of its quarter opens. Order follows player path v1 after Sasha's review.
+3. **Carried vs in the world:** air (Your AI) and water's time ring travel with the player in the instrument; ether, fire, earth live in the world as signs of their quarters. Tapping a lit solid in the instrument leads back to its place in the world.
+4. **Places are named as places, actions as verbs (Sasha, 2026-11-25 11:32: «где люди коллаборируют? нужно название места»):** Café is where you MEET (route `/game/meet`), Co-working is where you COLLABORATE (route `/game/collaborate/matches`). Place names stay as they are.
+5. **One world (Sasha, 2026-11-25 12:18 MST: «делай»; source, 2026-11-24: «весь проект интегрируется … в одно — игру, соц сеть, цифровой двойник поселений, магазин итд»):** the game, the social network, the digital twin of settlements and the store live in one world; anything new is built as a place inside a quarter, never as a separate site or app.
+
+Not yet decided: whether the village map is visually regrouped into quarters, and the instrument's first reveal (game entry). Both need Sasha's explicit yes to that exact change. Phases 3, 6, 8 of epic #453 are redesigned against this section.

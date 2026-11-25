@@ -15,7 +15,7 @@ describe("WP-15: the chat launcher tucks into the corner on the Journey screens"
       "/game/marketplace",
       "/ubb",
       "/ubb/offer",
-      "/build/mastermind",
+      "/build/fmf",
     ]) {
       expect(isGameScreenPath(path), path).toBe(true);
     }

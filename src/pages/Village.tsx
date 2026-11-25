@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState, type CSSProperties, type MouseEvent } from "react";
+import { useCallback, useEffect, useId, useRef, useState, type CSSProperties, type MouseEvent } from "react";
 import { Link, Navigate, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { supabase } from "@/integrations/supabase/client";
@@ -30,6 +30,7 @@ import {
   houseLit,
   nextMove,
   nextMoveCopy,
+  oneNextStates,
   placeLine,
   placeSaveFromSheet,
   placeState,
@@ -38,6 +39,8 @@ import {
 } from "@/lib/placeState";
 import { journeyOptionalWord } from "@/lib/journeyLabels";
 import { placeAlt, placeName, placeTagline, tr } from "@/lib/villageCopy";
+import { litQuarters } from "@/lib/quarters";
+import QuarterSign from "@/components/game/QuarterSign";
 import { displayName } from "@/lib/displayName";
 import { hasGuestTopTalentResult, readGuestTalentName, readGuestTopTalentPayload } from "@/lib/firstVisit";
 import SaveCharacterCta from "@/components/game/SaveCharacterCta";
@@ -49,6 +52,7 @@ import { useSceneSrc } from "@/lib/sceneSrc";
 import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
 import IntroSequence from "@/components/game/IntroSequence";
 import MoonDial from "@/components/game/MoonDial";
+import PlaceRoomsPane from "@/components/game/PlaceRoomsPane";
 import { placeLight, placeSignalKey, type PlaceLight } from "@/lib/placeLight";
 import "./Village.css";
 
@@ -66,9 +70,9 @@ import "./Village.css";
  * A closed place shows its faded scene and one line, «Opens when <real event>.
  * Inside: <result>.», with no ENTER. A guest sees Reception, Academy and Fire
  * Circle open and everything else closed; "I already live here" leads to /auth
- * (same `?redirect=` contract as RequireAuth). No barrier language. A newcomer standing at any
- * closed place gets the one action that opens it: «Find your top talent», or, with a
- * finished test on this device, «Save your character» (WP-7b: result first, account to save).
+ * (same `?redirect=` contract as RequireAuth). No barrier language. Anyone standing at a
+ * closed place gets one enabled «Your next move: <the real next step>», the move the map glows
+ * with (§25.4); with a finished test on this device it is «Keep your light lit» (WP-7b).
  *
  * The map is the game screen (WP-6, §14.6): one next-move card (place · step · what it
  * gives · ENTER, from `nextMove`), one «what changed» line and a one-time reveal on places
@@ -177,34 +181,48 @@ const useGuestResult = (): boolean => {
 };
 
 /**
- * Home, closed, for a signed-out visitor (WP-7b: result first, account only to save).
- * One primary action: no result yet → «Find your top talent» (Reception); a result but no
- * account → «Save your character» (the same save as after the test, TopTalentAuthGate).
- * «I already live here → sign in» stays beside it, quiet, for residents.
+ * A closed place's one enabled action (GoBY §25.4: the scene and the pane give one signal).
+ * It is the same next move the map's card glows with: «Your next move: <the real next step>»,
+ * leading where that card's ENTER leads. A guest holding a finished test on this device gets
+ * «Keep your light lit» (the save, WP-7b: result first, account to save) instead, which is
+ * that card's own move. A signed-out visitor also keeps «I already live here → sign in», quiet.
  */
-const NewcomerPath = ({
+const ClosedNextMove = ({
   hasResult,
+  label,
+  gives,
+  to,
   onGo,
   signInTo,
 }: {
   hasResult: boolean;
-  /** Leave for Reception with the village's own exit motion. */
+  /** «Your next move: <title>» for the move the map's card shows. */
+  label: string;
+  /** What the move gives: the result line of its quest row (§25.6). Empty when the card shows none. */
+  gives: string;
+  to: string;
+  /** Leave for `to` with the village's own exit motion. */
   onGo: (e: MouseEvent<HTMLElement>) => void;
-  signInTo: string;
+  /** Where a returning resident signs in; null for someone already signed in. */
+  signInTo: string | null;
 }) => {
   const { t } = useTranslation();
+  const givesId = useId();
   return (
     <div className="vl-newcomer-path">
       {hasResult && readGuestTopTalentPayload() ? (
         <SaveCharacterCta buttonClassName="vl-enter vl-newcomer" formClassName="vl-save" />
       ) : (
-        <Link className="vl-enter vl-newcomer" to="/village/reception" onClick={onGo}>
-          {tr(t, "village.findTopTalent", "Find your top talent")}
+        <Link className="vl-enter vl-newcomer" to={to} onClick={onGo} aria-describedby={gives ? givesId : undefined}>
+          {label}
         </Link>
       )}
-      <Link className="vl-mono vl-signin" to={signInTo}>
-        {tr(t, "village.signIn", "I already live here → sign in")}
-      </Link>
+      {gives ? <p id={givesId} className="vl-newcomer__gives">{gives}</p> : null}
+      {signInTo ? (
+        <Link className="vl-mono vl-signin" to={signInTo}>
+          {tr(t, "village.signIn", "I already live here → sign in")}
+        </Link>
+      ) : null}
     </div>
   );
 };
@@ -328,6 +346,8 @@ const Village = () => {
     }
   }, []);
   const mobile = useIsMobile();
+  // px the open clock card runs past the map on a phone; the frame leaves this much room so the card pushes «Your next move» down
+  const [clockPush, setClockPush] = useState(0);
   const signedIn = useSignedIn();
   const sheet = useCharacterSheet();
   // W2: the one player name (Reception's «Welcome back, <name>»); null for a guest.
@@ -343,12 +363,15 @@ const Village = () => {
   const save = placeSaveFromSheet(sheet, now, { "guest-result": signedIn === false && guestResult });
   // The talent they saw, read from the same local result (nothing is sent anywhere).
   const guestTalent = signedIn === false && guestResult ? readGuestTalentName() : null;
-  const states: PlaceStateName[] = VILLAGE_PLACES.map((p) => placeState(p, save));
-  const shown: PlaceStateName[] = states.map((s) => (!ready && s === "closed" ? "open" : s));
   // One next move and what changed since the last visit (WP-6, §14.6). Both wait for the save;
   // the move also waits for the session, so a guest never sees Reception flash before Save.
   const move = ready && signedIn !== null ? nextMove(VILLAGE_PLACES, save) : null;
   const moveCopy = move ? nextMoveCopy(move, t) : null;
+  // §25.4 step 1: one glow. Only the move's place reads `next`, the same as the rail and the pane row.
+  const states: PlaceStateName[] = oneNextStates(VILLAGE_PLACES, VILLAGE_PLACES.map((p) => placeState(p, save)), move);
+  const shown: PlaceStateName[] = states.map((s) => (!ready && s === "closed" ? "open" : s));
+  // §25.14 earned light: a quarter's solid is lit once its first place is open. Nothing is lit until the save loads.
+  const quarterLit = litQuarters(VILLAGE_PLACES, ready ? shown : []);
   const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
   const changesLine = whatChangedLine(changes.fresh, t);
   const isNew = (p: VillagePlace) => changes.fresh.includes(p);
@@ -506,7 +529,13 @@ const Village = () => {
           {/* --vl-zx/--vl-zy: the place the map zooms toward when it fades out (WP-15). */}
           <div
             className="vl-frame"
-            style={{ ...MAP_STAGE, "--vl-zx": `${lastPlace?.x ?? 50}%`, "--vl-zy": `${lastPlace?.y ?? 50}%` } as CSSProperties}
+            style={{
+              ...MAP_STAGE,
+              "--vl-zx": `${lastPlace?.x ?? 50}%`,
+              "--vl-zy": `${lastPlace?.y ?? 50}%`,
+              // phone: the open clock card runs below the map; this space makes it push «Your next move» down, never cover it
+              ...(clockPush > 0 ? { marginBottom: clockPush } : null),
+            } as CSSProperties}
           >
             <div className="vl-cover">
              <div className="vl-zoom">
@@ -555,6 +584,7 @@ const Village = () => {
                           >
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{placeName(p, t)}</span>
+                            <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" />
                             <PlaceStateTag state={shown[i]} text={gatedText(p)} />
                           </a>
                         ) : (
@@ -569,6 +599,7 @@ const Village = () => {
                           >
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{placeName(p, t)}</span>
+                            <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" />
                             <PlaceStateTag state={shown[i]} />
                             {signal(i)}
                             {isNew(p) ? <NewTag /> : null}
@@ -588,7 +619,7 @@ const Village = () => {
             <SkyMoon sky={sky} />
             {/* The biological clock (#385): a compact watch in the map's top-right corner; its card
                 (views 2–3, with the player's Moon Focus) drops down over the map. */}
-            <MoonDial className="vl-watch" />
+            <MoonDial className="vl-watch" onPush={setClockPush} />
           </div>
 
           <div className="vl-foot vl-intro">
@@ -602,7 +633,12 @@ const Village = () => {
                 : tr(t, "village.choosePlace", "Choose a place")}
             </p>
           </div>
-          <Link className="vl-mono vl-corner" to="/" aria-label={tr(t, "village.backTitleAria", "Back to title")}>{tr(t, "village.backTitle", "← Title")}</Link>
+          {/* Home on every width (GoBY §25.12): «← Title» in the corner from 768px; on a phone the same link
+              is a compact «←» button in the top bar, left of the moon medallion. The name is the aria-label. */}
+          <Link className="vl-mono vl-corner" to="/" aria-label={tr(t, "village.backTitleAria", "Back to title")}>
+            <span className="vl-corner__full">{tr(t, "village.backTitle", "← Title")}</span>
+            <span className="vl-corner__icon" aria-hidden="true">←</span>
+          </Link>
 
           {/* WP-6 (§14.6): what changed since the last visit, and the one next move. One hint, never a list. */}
           {changesLine || move ? (
@@ -645,13 +681,13 @@ const Village = () => {
                   {shown[i] === "closed" ? (
                     // Issue #270: closed means aria-disabled and no navigation; the line says what opens it.
                     <a role="link" aria-disabled="true" tabIndex={0} className="is-locked">
-                      <span className="vl-list__name">{placeName(p, t)}</span>
+                      <span className="vl-list__name">{placeName(p, t)}{mobile ? <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" /> : null}</span>
                       <PlaceStateTag state={shown[i]} text={gatedText(p)} />
                       <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true, playerName)}</span>
                     </a>
                   ) : (
                     <Link to={pinTo(p)}>
-                      <span className="vl-list__name">{placeName(p, t)}</span>
+                      <span className="vl-list__name">{placeName(p, t)}{mobile ? <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" /> : null}</span>
                       <PlaceStateTag state={shown[i]} />
                       {signal(i)}
                       {isNew(p) ? <NewTag /> : null}
@@ -671,6 +707,8 @@ const Village = () => {
             aria-label={placeName(lastPlace, t)}
           >
             <Link className="vl-mono vl-back" to="/village">{tr(t, "village.backVillage", "← Village")}</Link>
+            {/* §25.3: the scene and the second pane stand together; keyed by place, so every entry opens it afresh. */}
+            <PlaceRoomsPane key={lastPlace.key} place={lastPlace} save={save} signedIn={signedIn === true} mobile={mobile} move={move} />
             <PlaceState
               state={lastState}
               className="vl-place__state"
@@ -731,18 +769,25 @@ const Village = () => {
                       startOpen={hasParticleInvite(lastPlace.key)}
                     />
                   )}
-                  {/* A closed place gives a newcomer the one step that opens it (every closed place
-                      waits on the top talent first): «Find your top talent», or «Save your character»
-                      with a result on this device. A returning resident can still sign in and come back. */}
-                  {signedIn === false && lastState === "closed" ? (
-                    <NewcomerPath
-                      key={guestResult ? "save" : "find"}
-                      hasResult={guestResult}
-                      onGo={(e) => leave(() => navigate("/village/reception"), e)}
-                      signInTo={`/auth?redirect=${encodeURIComponent(lastPlace.to)}`}
-                    />
-                  ) : null}
                 </>
+              }
+              afterEnabled={
+                // A closed place has no ENTER, so it gives one enabled move instead (§25.4): the
+                // same next move the map glows with. It sits outside the closed (aria-disabled)
+                // group, so it reads enabled; and it says what it gives (§25.6), as its quest row does.
+                // With a result on this device it is «Keep your light lit»; a returning resident can
+                // still sign in and come back.
+                lastState === "closed" && !lastPending && move && moveCopy && signedIn !== null ? (
+                  <ClosedNextMove
+                    key={guestResult ? "save" : "move"}
+                    hasResult={signedIn === false && guestResult}
+                    label={`${tr(t, "village.nextMove", "Your next move")}: ${moveCopy.title}`}
+                    gives={moveCopy.result}
+                    to={move.to}
+                    onGo={(e) => leave(() => navigate(move.to), e)}
+                    signInTo={signedIn === false ? `/auth?redirect=${encodeURIComponent(lastPlace.to)}` : null}
+                  />
+                ) : undefined
               }
             >
               <h2>{placeName(lastPlace, t)}</h2>

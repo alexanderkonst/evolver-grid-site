@@ -1,6 +1,7 @@
 import { Fragment, useState, useEffect, useRef, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import { ChevronDown, Lock } from "lucide-react";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -278,19 +279,119 @@ export const LIGHT_TINT = [0.18, 0.13, 0.09, 0.06]; // Card bg opacity per found
 
 // ─── Founder Card ─────────────────────────────────────────────────────────────
 
-export const FounderCard = ({
-  founder,
-  index,
-  isExpanded,
-  onToggle,
-  lightMode,
-}: {
+type FounderCardProps = {
   founder: FounderCanvas;
   index: number;
   isExpanded: boolean;
   onToggle: () => void;
   lightMode?: boolean;
-}) => {
+};
+
+/**
+ * The card inside the game shell (`lightMode`) is in the village register (issue #443): dark
+ * monochrome, thin border, letter-spaced mono labels, no gradient, no per-founder colour, no
+ * emoji. The public /founders page keeps its own coloured card (DarkFounderCard).
+ */
+const MONO_LABEL = "font-mono text-[10px] font-light uppercase tracking-[0.2em] text-muted-foreground";
+
+const VillageFounderCard = ({ founder: f, isExpanded, onToggle }: FounderCardProps) => {
+  const { t } = useTranslation();
+  const isLocked = !f.consentGiven;
+  const panelId = `founder-${f.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  const canvas = [
+    { key: "uniqueness", label: t('foundersShowcase.canvasUniquenessLabel'), content: f.uniqueness },
+    { key: "tribe", label: t('foundersShowcase.canvasTribeLabel'), content: f.tribe },
+    { key: "pain", label: t('foundersShowcase.canvasPainLabel'), content: f.pain },
+  ];
+  return (
+    <article className="rounded-md border border-border">
+      <button
+        type="button"
+        onClick={onToggle}
+        aria-expanded={isExpanded}
+        aria-controls={panelId}
+        className="flex w-full items-start gap-4 p-5 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-foreground md:p-6"
+      >
+        <span aria-hidden="true" className="mt-1 font-serif text-2xl leading-none text-foreground">{f.sigil}</span>
+        <span className="min-w-0 flex-1 space-y-2">
+          <span className="flex flex-wrap items-center gap-3">
+            <span className="font-serif text-lg font-medium uppercase tracking-[0.18em] text-foreground">{f.name}</span>
+            <span className="rounded-sm border border-border px-2 py-0.5 font-mono text-[10px] font-light uppercase tracking-[0.2em] text-muted-foreground">{f.archetype}</span>
+            {f.status === "in-progress" && (
+              <span className="rounded-sm border border-border px-2 py-0.5 font-mono text-[10px] font-light uppercase tracking-[0.2em] text-muted-foreground">
+                {t('foundersShowcase.inProgressBadge')}
+              </span>
+            )}
+            {isLocked && <Lock aria-hidden="true" className="h-3.5 w-3.5 text-muted-foreground" />}
+          </span>
+          <span className="block text-sm italic text-muted-foreground">{f.tagline}</span>
+          <span className={`block ${MONO_LABEL}`}>{f.sessionNumber} · {f.date}</span>
+          <span className="block border-l border-border pl-4 font-serif text-base italic leading-relaxed text-foreground">
+            “{f.myth.line}”
+          </span>
+        </span>
+        <ChevronDown
+          aria-hidden="true"
+          className={`mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {isExpanded && (
+        <div id={panelId} className="space-y-4 border-t border-border p-5 md:p-6">
+          {isLocked ? (
+            <div className="space-y-2 py-8 text-center">
+              <Lock aria-hidden="true" className="mx-auto h-6 w-6 text-muted-foreground" />
+              <p className="text-sm text-muted-foreground">
+                {t('foundersShowcase.lockedConsentBefore')}{" "}
+                <span className="text-foreground">{f.name}</span>{" "}
+                {t('foundersShowcase.lockedConsentAfter')}
+              </p>
+              <p className="text-xs text-muted-foreground">{t('foundersShowcase.lockedMythIllustration')}</p>
+            </div>
+          ) : (
+            <>
+              <section className="space-y-3 rounded-md border border-border p-5">
+                <p className={MONO_LABEL}>{t('foundersShowcase.mythLabel')}</p>
+                <div>
+                  <span className={MONO_LABEL}>{t('foundersShowcase.mythLieLabel')}</span>
+                  <p className="mt-0.5 text-sm leading-relaxed text-muted-foreground">{f.myth.lie}</p>
+                </div>
+                <div className="h-px bg-border" />
+                <div>
+                  <span className={MONO_LABEL}>{t('foundersShowcase.mythTruthLabel')}</span>
+                  <p className="mt-0.5 text-sm leading-relaxed text-foreground">{f.myth.truth}</p>
+                </div>
+              </section>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                {canvas.map((item) => (
+                  <section key={item.key} className="rounded-md border border-border p-5">
+                    <p className={`mb-2 ${MONO_LABEL}`}>{item.label}</p>
+                    <p className="text-sm leading-relaxed text-muted-foreground">{item.content}</p>
+                  </section>
+                ))}
+                <section className="rounded-md border border-border p-5 md:col-span-2">
+                  <p className={`mb-2 ${MONO_LABEL}`}>{t('foundersShowcase.promiseLabel')}</p>
+                  <p className="text-sm leading-relaxed text-foreground">{f.promise}</p>
+                </section>
+              </div>
+            </>
+          )}
+        </div>
+      )}
+    </article>
+  );
+};
+
+export const FounderCard = (props: FounderCardProps) =>
+  props.lightMode ? <VillageFounderCard {...props} /> : <DarkFounderCard {...props} />;
+
+const DarkFounderCard = ({
+  founder,
+  index,
+  isExpanded,
+  onToggle,
+  lightMode,
+}: FounderCardProps) => {
   const { t } = useTranslation();
   const { ref, visible } = useReveal();
   const f = founder;
@@ -342,7 +443,7 @@ export const FounderCard = ({
           style={{
             background: lightMode
               ? `rgba(255,255,255,0.95)`
-              : "var(--scene-paper, #0e0d0b)",
+              : "#0e1528",
           }}
         >
           {/* Internal aurora */}
@@ -420,8 +521,8 @@ export const FounderCard = ({
                     </span>
                   )}
                 </div>
-                <p className={`text-sm italic ${lightMode ? 'text-[#2c3150]/50' : 'text-white/60'}`}>{f.tagline}</p>
-                <div className={`text-[10px] mt-1.5 font-mono ${lightMode ? 'text-[#2c3150]/30' : 'text-white/45'}`}>
+                <p className={`text-sm italic ${lightMode ? 'text-[#2c3150]/50' : 'text-white/35'}`}>{f.tagline}</p>
+                <div className={`text-[10px] mt-1.5 font-mono ${lightMode ? 'text-[#2c3150]/30' : 'text-white/15'}`}>
                   {f.sessionNumber} · {f.date}
                 </div>
               </div>

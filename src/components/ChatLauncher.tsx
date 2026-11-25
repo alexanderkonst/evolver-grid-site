@@ -11,7 +11,7 @@ import {
 export const OPEN_CHAT_EVENT = "fytt:open-chat";
 
 /**
- * The Journey screens (WP-15): title, village, every /game place, Workshop, Mastermind.
+ * The Journey screens (WP-15): title, village, every /game place, Workshop, FMF.
  * `/` is the title screen (and, with `?path=`, the pre-game landing: the same corner rule is harmless there).
  */
 export const isGameScreenPath = (pathname: string): boolean =>
@@ -22,7 +22,7 @@ export const isGameScreenPath = (pathname: string): boolean =>
   pathname.startsWith("/game/") ||
   pathname === "/ubb" ||
   pathname.startsWith("/ubb/") ||
-  pathname === "/build/mastermind";
+  pathname === "/build/fmf";
 
 const MESSAGE =
   "Hi, I landed on your website and wanted to get in touch.";

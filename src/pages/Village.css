@@ -170,6 +170,10 @@
   color: var(--vl-ink-2); padding: 4px 9px; background: rgba(var(--scene-bg-rgb),0.4);
   text-shadow: 0 0 10px rgba(var(--scene-shadow-rgb),0.9); transition: color 0.6s ease, background-color 0.6s ease;
 }
+/* GoBY §25.14 quarter sign: a small solid on the same dark chip as the name, so its colour is read
+   against the night scene. Static: no glow animation, so reduced motion needs no override. */
+.vl-sign { box-sizing: content-box; padding: 4px; border-radius: 50%; background: rgba(var(--scene-bg-rgb),0.62); }
+.vl-list__name .vl-sign { display: inline-block; vertical-align: -3px; margin-left: 12px; padding: 0; background: none; }
 .vl-pin.is-active .vl-dot::before {
   opacity: 1; transform: scale(1.35); background: var(--scene-dot-active);
   box-shadow: 0 0 10px 2px rgba(var(--scene-glow-hot-rgb),0.9), 0 0 34px 8px rgba(var(--scene-glow-warm-rgb),0.4);
@@ -196,6 +200,7 @@
   transition: color 0.6s ease;
 }
 .vl-corner:hover, .vl-corner:focus-visible { color: var(--vl-ink); }
+.vl-corner__icon { display: none; }
 
 .vl-list { display: none; }
 
@@ -361,10 +366,12 @@
 .vl-newcomer { border-color: var(--open-accent); cursor: pointer; appearance: none; border-radius: 0; }
 .vl-newcomer:hover, .vl-newcomer:focus-visible { background: var(--open-accent); }
 .vl-newcomer:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 3px; }
+/* What the next move gives (§25.6): the same result line as its quest row, under the link. */
+.vl-newcomer__gives { margin: 14px auto 0; max-width: 34ch; text-wrap: balance; font-style: italic; font-weight: 300; font-size: var(--vl-text-lead); line-height: 1.3; color: var(--vl-ink-2); }
 /* The save card (TopTalentAuthGate, inline) brings its own light surface and dark text. */
 .vl-save {
   width: 100%; max-width: 520px; margin: clamp(20px, 3vh, 32px) auto 0; box-sizing: border-box;
-  max-height: 62svh; overflow-y: auto; text-shadow: none; text-align: center;
+  max-height: 50svh; overflow-y: auto; text-shadow: none; text-align: center;
 }
 
 /* ---------- Particles: what earlier players left at the place (WP-17) ---------- */
@@ -455,7 +462,18 @@
   }
   .vl-pin__link { pointer-events: none; }
   .vl-dot { width: 18px; height: 18px; }
-  .vl-foot, .vl-corner { display: none; }
+  .vl-foot { display: none; }
+  /* Home on a phone: a «←» button in the top bar, fixed like the moon medallion (top-centre, 16px, 44 high)
+     and the language chip (top-right, 12px). Left edge, 44x44, so it clears both at 360px and wider. */
+  .vl-corner {
+    position: fixed; z-index: 50; top: 16px; bottom: auto; left: 12px;
+    box-sizing: border-box; width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center;
+    border: 1px solid var(--vl-hair); border-radius: 12px;
+    background: rgba(var(--scene-bg-rgb), 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    font-size: var(--vl-text-lead); letter-spacing: 0; text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb),0.8);
+  }
+  .vl-corner__full { display: none; }
+  .vl-corner__icon { display: inline; }
   .vl-move { position: static; padding: 24px 24px 0; }
   .vl-move__card { width: 100%; max-width: 520px; box-sizing: border-box; backdrop-filter: none; }
   .vl-list { display: block; padding: 8px 24px 72px; }
@@ -573,4 +591,91 @@
 @media (prefers-reduced-motion: reduce) {
   .vl-window { transition: none; }
   .vl-light--bright .vl-window { animation: none; }
+}
+
+/* ---------- Second pane of a place: every room at once, or the quest order (GoBY §25.3) ---------- */
+.vl-rooms__toggle {
+  /* Left of the global language chip (fixed, 12px from the corner, ~66px wide), never under it: a tap on «Rooms» must not open the language menu. */
+  position: absolute; z-index: 4; top: clamp(20px, 4vh, 48px); right: max(clamp(20px, 4vw, 64px), 92px);
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; background: none; border: 0;
+  color: var(--vl-link-ink); cursor: pointer; text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb),0.8);
+  font-size: var(--vl-text-label); letter-spacing: 0.2em; text-transform: uppercase;
+}
+.vl-rooms__toggle:hover, .vl-rooms__toggle:focus-visible { color: var(--vl-ink); outline: none; }
+.vl-rooms__toggle:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
+.vl-rooms {
+  --vl-rooms-w: min(320px, 30vw);
+  /* The pane ends above the floating «Chat with us» pill: its clearance plus a gap, so a line cut at the
+     pane's edge never touches the pill (qa-pass: overlaps). */
+  --vl-rooms-bottom: calc(var(--chat-clearance, 72px) + var(--vl-space-4));
+  position: absolute; z-index: 3; top: 0; right: 0; bottom: var(--vl-rooms-bottom); width: var(--vl-rooms-w);
+  display: flex; flex-direction: column; border-bottom: 1px solid var(--vl-hair);
+  background: rgba(var(--scene-bg-rgb), 0.72); border-left: 1px solid var(--vl-hair);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  transform: translateX(100%); visibility: hidden;
+  transition: transform var(--motion-base) var(--motion-ease), visibility 0s linear var(--motion-base);
+}
+/* The title and Hide share one fixed row; only the rows under it scroll, so no text ever passes under a control. */
+.vl-rooms__head {
+  flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  /* The row starts below the global language chip (fixed top-right, 12px + 44px tall), so Hide is never under it. */
+  padding: 64px 8px 8px 20px; border-bottom: 1px solid var(--vl-hair);
+}
+.vl-rooms__head .vl-rooms__title { margin: 0; }
+.vl-rooms__hide {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; background: none; border: 0;
+  color: var(--vl-link-ink); cursor: pointer; font-size: var(--vl-text-label); letter-spacing: 0.2em; text-transform: uppercase;
+}
+.vl-rooms__hide:hover, .vl-rooms__hide:focus-visible { color: var(--vl-ink); outline: none; }
+.vl-rooms__hide:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
+.vl-rooms__body {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 14px 20px 32px;
+  /* A line that runs past the bottom edge fades out instead of being chopped (the last rows stay fully readable at the end of the scroll). */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent);
+}
+.vl-rooms.is-open { transform: none; visibility: visible; transition-delay: 0s; }
+/* The scene's title and ENTER make room instead of sliding under the pane. */
+.vl-place:has(.vl-rooms.is-open) .vl-place__copy { right: min(320px, 30vw); }
+.vl-place__copy { transition: right var(--motion-base) var(--motion-ease), bottom var(--motion-base) var(--motion-ease); }
+.vl-rooms__title, .vl-rooms__group {
+  font-size: var(--vl-text-micro); letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-2); margin: 0 0 10px;
+}
+.vl-rooms__group { margin-top: 22px; }
+.vl-rooms__list { list-style: none; margin: 0; padding: 0; }
+.vl-rooms__row a { display: block; padding: 10px 0; border-top: 1px solid var(--vl-hair); min-height: 44px; }
+.vl-rooms__row a:hover, .vl-rooms__row a:focus-visible { background: rgba(var(--scene-ink-rgb), 0.06); outline: none; }
+.vl-rooms__name { display: flex; align-items: baseline; gap: 8px; font-size: var(--vl-text-lead); line-height: 1.25; color: var(--vl-ink); }
+.vl-rooms__no { font-family: var(--vl-mono); font-size: var(--vl-text-micro); color: var(--vl-ink-2); min-width: 1.4em; }
+.vl-rooms__label { min-width: 0; }
+.vl-rooms__opt { font-size: var(--vl-text-small); color: var(--vl-ink-2); font-style: italic; }
+.vl-rooms__state { margin-left: auto; font-family: var(--vl-mono); font-size: var(--vl-text-micro); letter-spacing: 0.2em; text-transform: uppercase; color: var(--vl-ink-2); }
+.vl-rooms__row[data-room-state="next"] .vl-rooms__state { color: var(--open-accent); }
+.vl-rooms__row[data-room-state="live"] .vl-rooms__state { color: var(--live-accent); }
+/* The one glowing next move (§25.4 step 1): an accent bar and a soft breathing glow on the row; the word «Next» says it too. */
+.vl-rooms__row[data-room-state="next"] a {
+  box-shadow: inset 2px 0 0 var(--open-accent), 0 0 18px -6px var(--open-accent); padding-left: 10px;
+  animation: vl-rooms-next 3.2s ease-in-out infinite alternate;
+}
+@keyframes vl-rooms-next {
+  from { box-shadow: inset 2px 0 0 var(--open-accent), 0 0 8px -6px var(--open-accent); }
+  to { box-shadow: inset 2px 0 0 var(--open-accent), 0 0 20px -4px var(--open-accent); }
+}
+.vl-rooms__line { display: block; margin-top: 2px; font-style: italic; font-size: var(--vl-text-body); line-height: 1.35; color: var(--vl-ink-2); }
+.vl-rooms__row.is-closed .vl-rooms__name { color: var(--vl-lock-ink); }
+.vl-rooms__row.is-closed a { cursor: default; }
+/* Phone: a bottom sheet over the scene; the Rooms control stays in the corner. */
+@media (max-width: 767px) {
+  .vl-rooms {
+    --vl-rooms-w: 100%;
+    top: auto; left: 0; right: 0; bottom: var(--vl-rooms-bottom); width: auto; max-height: 50svh;
+    border-left: 0; border-top: 1px solid var(--vl-hair); transform: translateY(100%);
+  }
+  /* The title and ENTER rise above the sheet, so ENTER is never covered. */
+  .vl-rooms__head { padding-top: 8px; }
+  .vl-place:has(.vl-rooms.is-open) .vl-place__copy { right: 0; bottom: calc(50svh + var(--vl-rooms-bottom)); padding-bottom: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vl-rooms, .vl-place__copy { transition: none; }
+  .vl-rooms__row[data-room-state="next"] a { animation: none; }
 }

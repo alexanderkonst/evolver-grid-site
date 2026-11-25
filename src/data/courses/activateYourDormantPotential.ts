@@ -18,7 +18,8 @@ export type { CourseEpisode, CourseModule, CoursePractice } from "./types";
 
 export const COURSE_SLUG = "activate-your-dormant-potential";
 export const COURSE_PATH = `/grow/${COURSE_SLUG}`;
-export const COURSE_TITLE = "Activate Your Dormant Potential";
+// Renamed from «Activate Your Dormant Potential» (Sasha, 2026-11-24). Slug and path stay, so saves and links keep working.
+export const COURSE_TITLE = "Your Unfolding Potential";
 
 export const COURSE_MODULES: CourseModule[] = [
     {
@@ -121,13 +122,13 @@ export const COURSE_PRACTICES: CoursePractice[] = [
         id: "five-breaths",
         duration: "1 min",
         title: "Experience 5 Breaths",
-        soundcloudUrl: "https://soundcloud.com/alexander-konstantinov-976475588/quest-4-experience-5-breaths",
+        soundcloudUrl: "https://soundcloud.com/konstantinovaleksandr/quest-4-experience-5-breaths",
     },
     {
         id: "symmetric-breaths",
         duration: "5 min",
         title: "29 Symmetric Breaths",
-        soundcloudUrl: "https://soundcloud.com/alexander-konstantinov-976475588/29-symmetric-breaths",
+        soundcloudUrl: "https://soundcloud.com/konstantinovaleksandr/29-symmetric-breaths",
     },
 ];
 

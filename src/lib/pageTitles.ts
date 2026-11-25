@@ -45,7 +45,7 @@ const titleRules: TitleRule[] = [
 
   // Other surfaces.
   { match: (path) => path === "/library" || path.startsWith("/library/"), title: "Library" },
-  { match: (path) => path === "/grow/activate-your-dormant-potential", title: "Activate Your Dormant Potential" },
+  { match: (path) => path === "/grow/activate-your-dormant-potential", title: "Your Unfolding Potential" },
   { match: (path) => path === "/grow/consciousness-meets-science", title: "Consciousness Meets Science" },
   { match: (path) => path === "/contact", title: "Contact" },
   { match: (path) => path === "/start", title: "Onboarding" },
@@ -61,6 +61,7 @@ const titleRules: TitleRule[] = [
   // WP-15: the Your AI place (FamiliarPage), named as the village names it.
   { match: (path) => path === "/game/your-ai" || path.startsWith("/game/your-ai/"), title: "Your AI" },
   { match: (path) => path.startsWith("/mini-trainings/ai-as-a-mirror"), title: "Mini-training · AI as a Mirror" },
+  { match: (path) => path.startsWith("/mini-trainings/ai-that-knows-you"), title: "Mini-training · AI That Knows You" },
   { match: (path) => path.startsWith("/game/next-move"), title: "Next Move" },
   { match: (path) => path === "/game", title: "Game" },
   { match: (path) => path.startsWith("/resources/personality-tests"), title: "Personality Tests" },
@@ -71,8 +72,8 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/holomap", title: "Morphogenetic Holo Map" },
   { match: (path) => path === "/founders", title: "The Originals — Founders" },
   { match: (path) => path === "/ignite", title: "Private Founder-Market Fit Session" },
-  // WP-15: the tab reads the place name, as the village labels it (Mastermind, §14.13).
-  { match: (path) => path === "/build/mastermind", title: "Mastermind" },
+  // WP-15: the tab reads the place name, as the village labels it (FMF, formerly Mastermind, §14.13).
+  { match: (path) => path === "/build/fmf", title: "FMF" },
   { match: (path) => path === "/quiz", title: "Where Are You" },
   { match: (path) => path === "/quiz2", title: "Top Talent Diagnostic" },
 ];

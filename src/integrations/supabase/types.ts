@@ -3855,6 +3855,16 @@ export type Database = {
         }
         Returns: string
       }
+      get_message_partners: {
+        Args: { p_user_ids: string[] }
+        Returns: {
+          avatar_url: string
+          first_name: string
+          last_name: string
+          user_id: string
+          username: string
+        }[]
+      }
       get_public_profile_by_username: {
         Args: { p_username: string }
         Returns: {

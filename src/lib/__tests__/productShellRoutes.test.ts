@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { isProductLandingRoute, pathHidesLogo, pathUsesLayoutShell } from "../shellRoutes";
 
 describe("public product shell routes", () => {
-  it.each(["/products", "/products/crossing", "/products/vector", "/products/built"])("supplies the persistent shell without duplicate branding on %s", path => {
+  it.each(["/products", "/products/crossing", "/products/vector", "/products/pmf"])("supplies the persistent shell without duplicate branding on %s", path => {
     expect(isProductLandingRoute(path)).toBe(true);
     expect(pathUsesLayoutShell(path)).toBe(true);
     expect(pathHidesLogo(path)).toBe(true);
@@ -17,5 +17,14 @@ describe("public product shell routes", () => {
   it("preserves Ignite and the quiz holdout", () => {
     expect(pathUsesLayoutShell("/ignite")).toBe(true);
     expect(pathUsesLayoutShell("/quiz")).toBe(false);
+  });
+});
+
+// Issue #443 (A9): the Holo Map is inside the game shell.
+describe("holomap shell (issue #443)", () => {
+  it("gets the layout shell and hides the logo tile", async () => {
+    const { pathUsesLayoutShell, pathHidesLogo } = await import("../shellRoutes");
+    expect(pathUsesLayoutShell("/holomap")).toBe(true);
+    expect(pathHidesLogo("/holomap")).toBe(true);
   });
 });

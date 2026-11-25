@@ -8,6 +8,7 @@ import { PlaceState } from "@/components/game/PlaceState";
 import {
   awaitingSave,
   closedLine,
+  closedShortLine,
   emptyPlaceSave,
   gatedByUnsavedTalent,
   houseLit,
@@ -49,7 +50,7 @@ const statesOf = (save: ReturnType<typeof saveWith>) =>
   Object.fromEntries(VILLAGE_PLACES.map((p) => [p.key, placeState(p, save)])) as Record<VillagePlaceKey, PlaceStateName>;
 
 describe("placeState: unlock order (§14.3)", () => {
-  it("a guest sees Reception next, Academy, Café, Mastermind and Your AI open, everything else closed", () => {
+  it("a guest sees Reception next, Academy, Café, FMF and Your AI open, everything else closed", () => {
     const s = statesOf(saveWith([]));
     expect(s.reception).toBe("next");
     expect(s.academy).toBe("open");
@@ -170,20 +171,21 @@ describe("placeState: unlock order (§14.3)", () => {
 });
 
 describe("placeState: live", () => {
-  it("the Academy is live during the webinar, Wed Nov 4, 9:00 Mexico City", () => {
-    const during = saveWith([], { now: new Date("2026-11-04T15:30:00Z") });
-    expect(placeState(place("academy"), during)).toBe("live");
-    expect(placeLine(place("academy"), "live")).toBe("Live now: Webinar, Wed Nov 4.");
-    const after = saveWith([], { now: new Date("2026-11-04T17:00:00Z") });
-    expect(placeState(place("academy"), after)).toBe("open");
-    const before = saveWith([], { now: new Date("2026-11-04T14:59:00Z") });
-    expect(placeState(place("academy"), before)).toBe("open");
+  it("the Academy has no live window (the Nov 4 webinar is past and gone)", () => {
+    expect(place("academy").rule.live).toBeUndefined();
+    const onTheDay = saveWith([], { now: new Date("2026-11-04T15:30:00Z") });
+    expect(placeState(place("academy"), onTheDay)).toBe("open");
   });
 
-  it("the Mastermind is live on the Mastermind days, Nov 9 and 10", () => {
-    expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-09T18:00:00Z") }))).toBe("live");
-    expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-10T18:00:00Z") }))).toBe("live");
-    expect(placeState(place("fire-circle"), saveWith([], { now: new Date("2026-11-11T07:00:00Z") }))).toBe("open");
+  it("FMF is live Monday to Wednesday of each lunar cycle (Mexico City), e.g. Dec 7–9, 2026", () => {
+    const at = (iso: string) => placeState(place("fire-circle"), saveWith([], { now: new Date(iso) }));
+    expect(at("2026-12-06T23:59:00-06:00")).toBe("open");
+    expect(at("2026-12-07T10:00:00-06:00")).toBe("live");
+    expect(at("2026-12-08T10:00:00-06:00")).toBe("live");
+    expect(at("2026-12-09T22:00:00-06:00")).toBe("live");
+    expect(at("2026-12-10T00:00:00-06:00")).toBe("open");
+    // a later cycle, through `also`
+    expect(at("2027-03-29T10:00:00-06:00")).toBe("live");
   });
 });
 
@@ -198,6 +200,13 @@ describe("closed lines come from data (§14.3)", () => {
     expect(placeLine(place("town-hall"), "closed")).toMatch(/^Opens when your first sale is recorded\. Inside: .+\.$/);
   });
 
+  it("the rail's lock tooltip says «Opens with your first sale.» for Town Hall, and the whole line elsewhere (#443 A2)", () => {
+    expect(closedShortLine(place("town-hall"))).toBe("Opens with your first sale.");
+    expect(closedShortLine(place("workshop"))).toBe(closedLine(place("workshop")));
+    // the long line is untouched: the map and the top bar still read it
+    expect(closedLine(place("town-hall"))).toMatch(/^Opens when your first sale is recorded\./);
+  });
+
   it("every place that can be closed has a line, and always-open places have none", () => {
     for (const p of VILLAGE_PLACES) {
       if (p.rule.opens) expect(closedLine(p), p.key).toMatch(/^Opens when .+\. Inside: .+\.$/);
@@ -205,7 +214,7 @@ describe("closed lines come from data (§14.3)", () => {
     }
   });
 
-  it("only Reception, Academy, Mastermind, Café and Your AI are open for a guest", () => {
+  it("only Reception, Academy, FMF, Café and Your AI are open for a guest", () => {
     const open = VILLAGE_PLACES.filter((p) => !p.rule.opens).map((p) => p.key);
     expect(open.sort()).toEqual(["academy", "cafe", "fire-circle", "oracle", "reception"]);
   });
@@ -343,9 +352,9 @@ describe("nextMove: one next move (§14.6)", () => {
 
   it("with the Journey done, a place that is live comes first, else the Quest Board", () => {
     const all = JOURNEY_MAIN.map((i) => i.id);
-    const during = move(all, { offerSaved: true, now: new Date("2026-11-04T15:30:00Z") });
+    const during = move(all, { offerSaved: true, now: new Date("2026-12-08T10:00:00-06:00") });
     expect(during?.kind).toBe("live");
-    expect(during?.place.key).toBe("academy");
+    expect(during?.place.key).toBe("fire-circle");
     const quiet = move(all, { offerSaved: true, now: TUESDAY });
     expect(quiet?.kind).toBe("quests");
     expect(quiet?.place.key).toBe("quest-board");
@@ -364,7 +373,7 @@ describe("nextMove: one next move (§14.6)", () => {
   });
 
   it("a live window does not push aside the next Journey step", () => {
-    const m = move(["find-top-talent"], { now: new Date("2026-11-04T15:30:00Z") });
+    const m = move(["find-top-talent"], { now: new Date("2026-12-08T10:00:00-06:00") });
     expect(m?.kind).toBe("step");
     expect(m?.step).toBe("discover-mission");
   });

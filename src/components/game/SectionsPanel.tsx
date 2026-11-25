@@ -23,6 +23,8 @@ import { useJourneyProgress, type JourneyProgress } from "@/hooks/useJourneyProg
 import { useLinkedQuizResult, type LinkedQuizResult } from "@/hooks/useLinkedQuizResult";
 import { useEntryPath } from "@/contexts/EntryPathContext";
 import { useSkin } from "@/contexts/SkinContext";
+import QuarterSign from "@/components/game/QuarterSign";
+import type { ElementKey } from "@/data/villagePlaces";
 import { useUnreadMessages } from "@/hooks/useUnreadMessages";
 import {
     TooltipProvider,
@@ -358,7 +360,7 @@ const SPACE_SECTIONS: SpaceSections = {
             },
             { id: "founder-cockpit", label: "Founder Cockpit", path: "/build/cockpit" },
             { id: "founder-cockpit-dashboard", label: "Enter the Cockpit", path: "/build/cockpit/dashboard" },
-            { id: "founder-mastermind", label: "Founder Mastermind", path: "/build/mastermind" },
+            { id: "founder-mastermind", label: "FMF", path: "/build/fmf" },
             { id: "build-header-incubation", label: "Unique Startup Incubation", path: "", isHeader: true },
             { id: "build-playbook",   label: "Playbook",                                path: "/playbook" },
             { id: "build-path",       label: "Roadmap",                                 path: "/path" },
@@ -508,10 +510,21 @@ interface SectionsPanelProps {
     activeSpaceId: string;
     /** Name of the village place the player stands in; the pane header (WP-4). */
     placeName?: string;
+    /** The place's quarter (§25.14); its sign sits beside the name. Absent = no sign. */
+    placeElement?: ElementKey;
+    /** The quarter's solid is lit: its first place is open. */
+    placeQuarterLit?: boolean;
     /** That place's one line from the village map; the pane subtitle. */
     placeLine?: string;
     onSectionSelect?: (path: string) => void;
     onClose?: () => void;
+    /**
+     * Issue #443 wave 3 (item 6): told whether this pane has any rows for the player. A place
+     * with none (a guest in the Workshop or the Fire Circle) leaves the pane to start closed
+     * instead of an open column holding only its header. Not called as "empty" while the save
+     * that stages the rows is still loading.
+     */
+    onEmptyChange?: (empty: boolean) => void;
     className?: string;
     /**
      * When the parent page renders its own full-screen background (e.g.
@@ -590,7 +603,7 @@ const buildLearnSections = (): Section[] => {
     // Free entry course (public). Same path in both scopes: the page is not auth-gated.
     const dormantPotentialRow: Section = {
         id: "activate-your-dormant-potential",
-        label: "Activate Your Dormant Potential",
+        label: "Your Unfolding Potential",
         path: COURSE_PATH,
     };
 
@@ -810,9 +823,12 @@ const buildJourneySections = (
 const SectionsPanel = ({
     activeSpaceId,
     placeName,
+    placeElement,
+    placeQuarterLit = false,
     placeLine,
     onSectionSelect,
     onClose,
+    onEmptyChange,
     className,
     pageOwnsBackground = false,
     publicProfilePath = "/game/me/profile",
@@ -1131,6 +1147,16 @@ const SectionsPanel = ({
         }
     }, [location.pathname]);
 
+    // Issue #443 wave 3 (item 6): report whether the pane has rows. The Workshop's rows are staged
+    // by the save, so while it loads the pane is not "empty", only unknown.
+    const paneEmpty =
+        !!spaceData &&
+        spaceData.sections.length === 0 &&
+        !(activeSpaceId === "build" && sheet.isLoading);
+    useEffect(() => {
+        onEmptyChange?.(paneEmpty);
+    }, [paneEmpty, activeSpaceId, onEmptyChange]);
+
     // Early return AFTER all hooks (Rules of Hooks compliance)
     if (!spaceData) return null;
 
@@ -1274,6 +1300,9 @@ const SectionsPanel = ({
                         }}
                     >
                         {placeName ?? spaceData.title}
+                        {placeElement && (
+                            <QuarterSign element={placeElement} lit={placeQuarterLit} size={16} className="ml-2 align-[-3px]" />
+                        )}
                     </div>
                     {/* The place's one line from the village map, under its name. A real block
                         (issue #354), so name and line never read as one run-together string. */}
@@ -1295,6 +1324,9 @@ const SectionsPanel = ({
                 )}
             </div>
 
+            {/* Issue #443 A3: a pane with no rows (a guest or a new player in the Workshop, where
+                nothing is staged yet) shows its header only, not an empty «THE FORGE path» box. */}
+            {spaceData.sections.length > 0 && (
             <ScrollArea className="flex-1">
             {/* Day 50 (Sasha): TooltipProvider wraps the pane so locked
                 section rows can render the same dark-glass + gold-hairline
@@ -1766,10 +1798,10 @@ const SectionsPanel = ({
                                 }}
                             >
                                 {sectionText}
-                                {/* Issue #250: a Founder Tool one stage ahead says in plain words
-                                    what opens it, like the «Done when» lines (no hover needed on
-                                    a phone). */}
-                                {isLocked && activeSpaceId === "build" && section.lockedHint && (
+                                {/* Issue #250, GoBY §25.5: a closed row says in plain words what opens it,
+                                    like the «Done when» lines: always in the row (no hover needed on a
+                                    phone, and a screen reader reads it with the row's name), in every space. */}
+                                {isLocked && section.lockedHint && (
                                     <span
                                         className="block mt-0.5 text-[13px] italic font-normal leading-snug text-white/75"
                                         style={{ fontFamily: "'Inter', sans-serif", letterSpacing: 0 }}
@@ -2071,14 +2103,25 @@ const SectionsPanel = ({
             </nav>
             </TooltipProvider>
             </ScrollArea>
+            )}
         </div>
     );
 };
 
 const areEqual = (prev: SectionsPanelProps, next: SectionsPanelProps) => (
     prev.activeSpaceId === next.activeSpaceId &&
+    // Issue #443 A3: the header names the place, and two places can share one pane
+    // (Workshop and Mastermind, Home and the Cockpit's neighbours). A memo that ignored these
+    // kept the first place's name on screen after the player walked to the second.
+    prev.placeName === next.placeName &&
+    prev.placeElement === next.placeElement &&
+    prev.placeQuarterLit === next.placeQuarterLit &&
+    prev.placeLine === next.placeLine &&
+    prev.pageOwnsBackground === next.pageOwnsBackground &&
+    prev.publicProfilePath === next.publicProfilePath &&
     prev.onSectionSelect === next.onSectionSelect &&
     prev.onClose === next.onClose &&
+    prev.onEmptyChange === next.onEmptyChange &&
     prev.className === next.className
 );
 

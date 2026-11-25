@@ -312,7 +312,7 @@ const TheVector = () => {
               {t("vector.outNoteBefore")}
               <Link to="/ignite" className="vector-link">{t("vector.outFmfLink")}</Link>
               {t("vector.outNoteMid")}
-              <Link to="/products/built" className="vector-link">{t("vector.outBuiltLink")}</Link>
+              <Link to="/products/pmf" className="vector-link">{t("vector.outBuiltLink")}</Link>
               {t("vector.outNoteAfter")}
             </p>
           </section>
