@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import GameShellV2 from "@/components/game/GameShellV2";
 import PlaceState from "@/components/game/PlaceState";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -44,6 +45,7 @@ const TownHallNumber = () => {
 const SHEET_WAIT_MS = 4000;
 
 const TownHall = () => {
+  const { t } = useTranslation();
   const sheet = useCharacterSheet();
   const place = getVillagePlace("town-hall");
   const [gaveUp, setGaveUp] = useState(false);
@@ -81,7 +83,7 @@ const TownHall = () => {
             style={{ objectPosition: sceneObjectPosition(place) }}
           />
         }
-        line={closed ? placeLine(place, "closed") : undefined}
+        line={closed ? placeLine(place, "closed", t) : undefined}
         action={
           <Link className="mf__go" to="/village">
             Back to the village <span aria-hidden="true">→</span>

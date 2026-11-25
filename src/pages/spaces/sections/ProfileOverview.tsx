@@ -88,10 +88,10 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
         () => placeSaveFromSheet({ chain: sheet.chain, offerSaved: sheet.offerSaved }),
         [sheet.chain, sheet.offerSaved],
     );
-    const rooms = useMemo(() => houseRooms(save), [save]);
+    const rooms = useMemo(() => houseRooms(save, t), [save, t]);
     // #375: one locked block (the next one) and one quiet line for the rest.
     const lockedFold = useMemo(() => lockedRoomFold(rooms), [rooms]);
-    const badges = useMemo(() => houseBadges(save), [save]);
+    const badges = useMemo(() => houseBadges(save, t), [save, t]);
 
     // The next room starts open, and the shelf: the two things a returning player looks for.
     const [open, setOpen] = useState<Set<HouseRoomId>>(() => {

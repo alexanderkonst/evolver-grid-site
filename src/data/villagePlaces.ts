@@ -315,7 +315,7 @@ export const ORACLE_READING: PlaceInput = {
   line: "Your deeper reveal.",
   rule: {
     opens: "find-top-talent",
-    closed: { event: "your top talent is saved", inside: "how to turn it into income" },
+    closed: { event: "your top talent is saved", inside: "how to turn it into income", key: "rail.journey.activation.lockedHint" },
     steps: ["deeper-access"],
   },
 };
