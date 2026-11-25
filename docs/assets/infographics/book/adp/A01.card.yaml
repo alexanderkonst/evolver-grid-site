@@ -1,0 +1,14 @@
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+id: A01
+chapter: "1"
+number: 1
+of: 10
+title: "Activate Your Dormant Potential"
+caption: "Five paths, one cycle. Growth is waking what is already inside you."
+skin: v4
+text:
+  eyebrow: Growth
+sources:
+  - docs/08-content/activate_your_dormant_potential_transcripts.md (course; F01E02, F01E03, F01E04)
+  - src/data/courses/activateYourDormantPotential.ts
+  - issue #487 (title and line verbatim)
