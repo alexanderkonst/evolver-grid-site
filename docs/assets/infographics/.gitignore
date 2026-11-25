@@ -1,0 +1,5 @@
+__pycache__/
+# engine-v4 / kit scratch output (created when engine-v4 modules are imported)
+out/
+out-v4/
+kit/out/
