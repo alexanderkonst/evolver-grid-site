@@ -671,6 +671,16 @@ const Village = () => {
               ))}
             </ul>
           </nav>
+
+          {/* Issue #450: the village is drawn after a real place. LFDA art. 148 VII allows depicting works
+              visible from public places if the source is always cited; this line is that citation. */}
+          <p className="vl-credit">
+            {tr(t, "village.creditPre", "Drawn after Villas Paradise, San Pancho")}
+            {" · "}
+            <a href="https://www.villasparadise.com" target="_blank" rel="noopener">
+              villasparadise.com
+            </a>
+          </p>
         </section>
 
         {lastPlace && (

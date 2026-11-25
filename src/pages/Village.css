@@ -199,6 +199,19 @@
 
 .vl-list { display: none; }
 
+/* Issue #450: the credit for the real place the village is drawn after. One quiet line on the
+   bottom edge, below the hint; link ink and shadow are the same tokens as «← Title», so it reads
+   in every skin. Absolute on desktop (moves no layout); in the flow at the end of the page on a phone. */
+.vl-credit {
+  position: absolute; z-index: 2; left: 0; right: 0; bottom: 6px; margin: 0; padding: 0 24px;
+  text-align: center; font-family: var(--vl-mono); font-weight: 300; font-size: var(--vl-text-micro);
+  line-height: 16px; letter-spacing: 0.06em; color: var(--vl-link-ink);
+  text-shadow: 0 1px 16px rgba(var(--scene-shadow-rgb),0.8);
+}
+.vl-credit a { text-decoration: underline; text-underline-offset: 3px; transition: color 0.6s ease; }
+.vl-credit a:hover, .vl-credit a:focus-visible { color: var(--vl-ink); }
+.vl-credit a:focus-visible { outline: 1px solid var(--vl-accent); outline-offset: 2px; }
+
 /* ---------- Place ---------- */
 .vl-place { position: fixed; inset: 0; z-index: 3; background: var(--vl-bg); }
 .vl-place__img {
@@ -458,7 +471,9 @@
   .vl-foot, .vl-corner { display: none; }
   .vl-move { position: static; padding: 24px 24px 0; }
   .vl-move__card { width: 100%; max-width: 520px; box-sizing: border-box; backdrop-filter: none; }
-  .vl-list { display: block; padding: 8px 24px 72px; }
+  .vl-list { display: block; padding: 8px 24px 24px; }
+  .vl-credit { position: static; padding: 0 24px 40px; text-wrap: balance; }
+  .vl-credit a { display: inline-block; padding: 14px 0; margin: -14px 0; } /* a 44px tap target that adds no height */
   .vl-list ul { list-style: none; margin: 0 auto; padding: 0; max-width: 520px; }
   .vl-list li { margin: 0; border-bottom: 1px solid var(--vl-hair); }
   .vl-list a { display: block; padding: 18px 0 18px; outline: none; }
@@ -488,7 +503,7 @@
   .vl-sky-veil { transition: none; }
   .vl-dot::after { display: none; }
   .vl-intro { animation: none; opacity: 1; }
-  .vl-dot::before, .vl-pin__name, .vl-enter, .vl-back, .vl-corner, .vl-signin { transition: none; }
+  .vl-dot::before, .vl-pin__name, .vl-enter, .vl-back, .vl-corner, .vl-signin, .vl-credit a { transition: none; }
   .vl-mote { transition: none; }
   .vl-mote__body { animation: none; opacity: 1; }
 }
