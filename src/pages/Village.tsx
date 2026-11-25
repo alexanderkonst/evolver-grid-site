@@ -671,6 +671,14 @@ const Village = () => {
               ))}
             </ul>
           </nav>
+
+          {/* Issue #450: the village is drawn after a real place. LFDA art. 148 VII asks that the source
+              always be cited. The smallest readable text on the screen; it never competes with the map. */}
+          <p className="vl-credit">
+            <a href="https://www.villasparadise.com" target="_blank" rel="noopener">
+              Drawn after Villas Paradise, San Pancho · <span className="vl-credit__site">villasparadise.com</span>
+            </a>
+          </p>
         </section>
 
         {lastPlace && (

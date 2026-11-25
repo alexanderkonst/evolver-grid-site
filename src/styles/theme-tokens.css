@@ -135,6 +135,7 @@
      step; it does not write a px size of its own. Sizes inside clamp() stay fluid headings.
      The type steps are the sizes the screens already used, snapped to seven. Nothing here
      is a colour; colour is --scene-* / --vl-*. */
+  --vl-text-credit: 10px;   /* the smallest readable text on a screen: the village's credit line (#450) */
   --vl-text-micro: 11px;    /* chips, tags, a closed place's «Not open yet» */
   --vl-text-label: 12px;    /* mono eyebrows, back links, buttons */
   --vl-text-small: 14px;    /* a line under a name, captions */
