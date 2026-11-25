@@ -51,6 +51,12 @@ export type PromptButtonCardProps = {
   children?: ReactNode;
   /** The prompt asks the person to say something themselves (an empty mission): shown beside the mic. */
   micHint?: string | null;
+  /**
+   * A gap in the prompt the person fills before Send (e.g. «(say it)»). While it is on the card
+   * Send waits, with `fillReason` as the hint; the microphone writes into the gap.
+   */
+  fillToken?: string | null;
+  fillReason?: string | null;
   testId?: string;
 };
 
@@ -64,6 +70,8 @@ const PromptButtonCard = ({
   title,
   children,
   micHint = null,
+  fillToken = null,
+  fillReason = null,
   testId,
 }: PromptButtonCardProps) => {
   const [text, setText] = useState(prompt);
@@ -73,6 +81,7 @@ const PromptButtonCard = ({
   const [listening, setListening] = useState(false);
   const recognitionRef = useRef<Recognition | null>(null);
   const baseRef = useRef("");
+  const afterRef = useRef("");
   const micSupported = recognitionCtor() !== null;
 
   // The prompt follows the profile (and #6's tapped line) until the person has edited it.
@@ -108,12 +117,15 @@ const PromptButtonCard = ({
     rec.lang = (typeof navigator !== "undefined" && navigator.language) || "en-US";
     rec.continuous = true;
     rec.interimResults = true;
-    baseRef.current = text.trim();
+    // With a gap on the card, the spoken words go into the gap; otherwise they are added at the end.
+    const gapAt = fillToken ? text.indexOf(fillToken) : -1;
+    baseRef.current = gapAt >= 0 ? text.slice(0, gapAt).trimEnd() : text.trim();
+    afterRef.current = gapAt >= 0 ? text.slice(gapAt + (fillToken?.length ?? 0)) : "";
     setEditing(true);
     rec.onresult = (e) => {
       let spoken = "";
       for (let i = 0; i < e.results.length; i++) spoken += e.results[i][0].transcript;
-      const joined = [baseRef.current, spoken.trim()].filter(Boolean).join(" ");
+      const joined = [baseRef.current, spoken.trim()].filter(Boolean).join(" ") + afterRef.current;
       setText(joined);
       setEdited(true);
     };
@@ -156,7 +168,9 @@ const PromptButtonCard = ({
     void onSend(text.trim());
   };
 
-  const blocked = sending || !!sendDisabledReason || text.trim().length === 0;
+  const gapOpen = !!fillToken && text.includes(fillToken);
+  const reason = sendDisabledReason ?? (gapOpen ? fillReason ?? "Fill the gap first." : null);
+  const blocked = sending || !!reason || text.trim().length === 0;
 
   return (
     <section
@@ -212,7 +226,7 @@ const PromptButtonCard = ({
         ) : null}
       </div>
 
-      {sendDisabledReason ? <p className="mt-2 text-xs text-muted-foreground">{sendDisabledReason}</p> : null}
+      {reason ? <p className="mt-2 text-xs text-muted-foreground">{reason}</p> : null}
 
       {answer ? (
         <div className="mt-4 rounded-md border border-border bg-background p-3" aria-live="polite">
