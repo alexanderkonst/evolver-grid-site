@@ -9,6 +9,7 @@ import GameShellV2 from "@/components/game/GameShellV2";
 import ProfileSettingsSection from "@/components/settings/ProfileSettingsSection";
 import AuthLinkErrorNotice from "@/components/settings/AuthLinkErrorNotice";
 import VillagePresenceSettings from "@/components/settings/VillagePresenceSettings";
+import InstrumentSoundSetting from "@/components/settings/InstrumentSoundSetting";
 import LanguageSwitcher from "@/i18n/LanguageSwitcher";
 import { useSkin, type Skin } from "@/contexts/SkinContext";
 import { useToast } from "@/hooks/use-toast";
@@ -793,6 +794,8 @@ const Settings = () => {
                             <ProfileSettingsSection />
                             {/* Village presence (WP-21): the two switches for the lights. */}
                             <VillagePresenceSettings />
+                            {/* Navigation instrument (WP2): the one mute for its tones. */}
+                            <InstrumentSoundSetting />
                             {/* Language — the logged-in home for switching locale
                                 (the floating switcher is guest-only). */}
                             <div className="mt-6 flex items-center justify-between gap-4 rounded-xl border border-border/60 bg-card/50 p-4">

@@ -25,6 +25,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronLeft, Lock, RotateCcw, Send, X } from "lucide-react";
 import AirOctahedron from "@/components/game/AirOctahedron";
 import InstrumentGlyph from "@/components/game/InstrumentGlyph";
+import InstrumentRitual from "@/components/game/InstrumentRitual";
 import { QuarterSign } from "@/components/game/QuarterSign";
 import { type YourAiButton } from "@/data/yourAiCatalog";
 import { VILLAGE_ELEMENTS, type ElementKey } from "@/data/villagePlaces";
@@ -641,6 +642,8 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
           if (!raised) openInstrument();
         }}
       />
+      {/* The body-lit ritual (WP2) and the breath on open and close: queued, plays at a calm moment, never over a module form. */}
+      <InstrumentRitual enabled={enabled} ownerId={ownerId} lit={lit} raised={raised} />
       {/* One short line on open and on close, for screen readers. */}
       <p role="status" aria-live="polite" className="sr-only" data-testid="instrument-announce">
         {announce}
