@@ -150,6 +150,22 @@ Everything is a holon. This is its deepest nature.
 >
 > *Может быть они помогают интегрировать, но затем происходит Си-До переход по фазе.»* (typed, November 24, 2026, 23:58 MST, as written)
 
+### 17.4 The Limit Point Is a Ball; the Ray Cuts It in Half; Yin-Yang
+
+> Asked (November 25, 2026, 00:00 MST): simultaneous in which sense: black and white hole together, not one after the other, since inside the limit point there is no time yet to tell earlier from later?
+
+> *«именно. точка предельгая по геметрии шар.*
+>
+> *исходящий и входящий - одновременны в пределе. Но собой создают разницу потенциалов так как предельная точка шар. А значит луч огибает шар и встречает себя мгновенно “разрезая" себя пополам как мочи конфету шарообразную.*
+>
+> *И получается из просто воли луч=вектор=радиус=ось=измерение=прото-дистанция.*
+>
+> *А так как прото-дистанция создалась, то и прото-разница потенциала проявилась, или просто различение само, и вся система закрутилась.*
+>
+> *По сути, это yin yang символ.*
+>
+> *Он показывает двойственное деление, и также первое прото-закручивание.»* (typed, November 25, 2026, 00:18 MST, as written)
+
 **Honesty marker:** recognition, held as given, awaiting its articulation. Sits beside §16 (the diameter of the limit point, two holes in one), §11.1, §13 (pulse before ray) and §15.1 (the point without directions). Not yet reconciled with them.
 
 ---
@@ -1423,6 +1439,7 @@ Asking "which came first, creation or evolution?" is like asking "which came fir
 ---
 
 *Universal Ontology v3.0*
+*Updated: November 25, 2026 (§17.4 The Limit Point Is a Ball: outgoing and incoming simultaneous in the limit; the ray goes around the ball and cuts it in half; ray = vector = radius = axis = dimension = proto-distance; proto-difference of potential, the system winds; yin-yang as dual division and first proto-winding; recorded verbatim with dates)*
 *Updated: November 24, 2026, late (§17 The November 24 Recognition, Late: the two ends of the diameter are simultaneous; the act of self-relation and pulse happens inside the limit point; ray, light, vector, impulse, pulse as one invariant; not settled by words; the Si–Do phase transition; recorded verbatim with dates)*
 *Updated: November 24, 2026 (§16 The November 24 Recognition: the torus winds as a consequence of the black-white hole, the system of two light cones as the two ends of the diameter of the limit point, two rays and a potential difference giving the second vector that winds the proto-system and starts time; recorded verbatim)*
 *Updated: October 12, 2026 (v3: body reordered by current seeing, spine first; earlier tellings kept as dated layers with honesty markers; Open Edges 4 to 8 added for the four tensions found in the knowledge-graph reading and the Pulse question; section numbers unchanged)*
