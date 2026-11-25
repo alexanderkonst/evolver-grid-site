@@ -9928,5 +9928,124 @@
     "changes": {
       "label": "This cycle"
     }
+  },
+  "collective": {
+    "seoDescription": "Founders who build a business out of who they are, and build it alongside each other.",
+    "hero": {
+      "eyebrow": "By invitation",
+      "title": "Sovereign Founder Collective",
+      "lede": "Founders who build a business out of who they are, and build it alongside each other.",
+      "line": "Membership opens once your unique business works.",
+      "cta": "Start with your top talent",
+      "free": "Free."
+    },
+    "origin": {
+      "title": "It didn't start from zero",
+      "lede": "The collective grew out of years of work with founders, one person at a time.",
+      "figures": [
+        {
+          "value": "~100",
+          "label": "people in transformational work with Aleksandr"
+        },
+        {
+          "value": "~80",
+          "label": "took the uniqueness test with him"
+        },
+        {
+          "value": "33",
+          "label": "founders in founder and mystical containers"
+        },
+        {
+          "value": "~20",
+          "label": "clients of unique business sessions"
+        },
+        {
+          "value": "~13",
+          "label": "founders in the Fire circle"
+        }
+      ],
+      "figuresLabel": "Figures",
+      "footnote": "~ marks an estimate. The circles overlap, so we don't add them up."
+    },
+    "what": {
+      "title": "What it is",
+      "body": "A small circle of founders, each building a unique business: one only they could run, because it grows out of their own gift. Same method, same rhythm, and each other."
+    },
+    "inside": {
+      "title": "What you get inside",
+      "resultLabel": "Result",
+      "status": {
+        "live": "Live",
+        "coming": "Coming",
+        "liveInGame": "Live in the game",
+        "firstSteps": "First steps live"
+      },
+      "cards": [
+        {
+          "name": "Collaborations",
+          "gives": "joint offers, shared clients, co-built products, referrals.",
+          "result": "work a solo founder can't get alone."
+        },
+        {
+          "name": "Introductions",
+          "gives": "the right people meet: clients, partners, mentors.",
+          "result": "introductions that turn into work."
+        },
+        {
+          "name": "Founder Cockpit",
+          "gives": "one screen to run your business: offers, clients, the one next move.",
+          "result": "a business that is steered, not chased."
+        },
+        {
+          "name": "Your AI",
+          "gives": "a ladder from AI as a mirror to your own AI company.",
+          "result": "the business does more without hiring."
+        },
+        {
+          "name": "Shared rhythm",
+          "gives": "the lunar month. Quiet weeks to gather and plan, strong weeks to lead and harvest.",
+          "result": "one beat, no meetings for meetings' sake."
+        },
+        {
+          "name": "Mutual promotion",
+          "gives": "each member's page shown here, each member introduced by the others.",
+          "result": "new clients from the collective's audience."
+        },
+        {
+          "name": "Scaling experts",
+          "gives": "sales, marketing, finance, legal, operations.",
+          "result": "the next stage of revenue with an expert beside you."
+        },
+        {
+          "name": "Mini-hackathons",
+          "gives": "one day or a weekend; founders ship one real piece together (landing, offer, funnel, AI routine).",
+          "result": "a shipped thing by evening."
+        }
+      ]
+    },
+    "path": {
+      "title": "The path in",
+      "steps": [
+        "Find your top talent in the game. Free.",
+        "Walk the path: uniqueness, promise, first offer, landing, first clients.",
+        "When your unique business works, Aleksandr invites you in."
+      ]
+    },
+    "terms": {
+      "title": "Terms",
+      "items": [
+        "10% revenue share, only once your business earns. No equity, ever.",
+        "Today Aleksandr holds it as steward of the collective; it partly funds the shared tools.",
+        "Over 2027–2028 his roles pass step by step to members.",
+        "Later the 10% moves to an entity the members govern and nobody can sell."
+      ],
+      "motto": "The gift is free, the system is paid, the name is permanent."
+    },
+    "closing": {
+      "lede": "Your business, built from who you are. With people who build the same way.",
+      "cta": "Start with your top talent",
+      "ask": "Already a founder on the path? Ask Aleksandr for an invitation.",
+      "footer": "Sovereign Founder Collective · by invitation"
+    }
   }
 }

@@ -25,6 +25,7 @@ const TransitionQuizPage = lazy(() => import("./modules/transition-quiz/Transiti
 const TransitionQuizResultPage = lazy(() => import("./modules/transition-quiz/TransitionQuizResultPage"));
 import ProposalForWeGoodOvaHere from "./pages/ProposalForWeGoodOvaHere";
 import CockpitLanding from "./pages/CockpitLanding";
+import CollectiveLanding from "./pages/CollectiveLanding";
 import CockpitDashboard from "./pages/CockpitDashboard";
 import CockpitOffersBoard from "./pages/CockpitOffersBoard";
 import PreviewBanner from "@/components/skin/PreviewBanner";
@@ -582,6 +583,8 @@ const App = () => (
                   <Route path="/home2" element={<HomeLandingPage />} />
                   <Route path="/hero" element={<HeroQuiz />} />
                   <Route path="/build/cockpit" element={<CockpitLanding />} />
+                  {/* Issue #489: public Sovereign Founder Collective landing (copy v2), no auth, no shell. */}
+                  <Route path="/collective" element={<CollectiveLanding />} />
                   {/* Cockpit dashboard: any signed-in user. Founder-only data (the owner's
                       CRM/pulse snapshots, offers, AI lenses) is gated inside the page;
                       the offers board below stays admin-only. */}
