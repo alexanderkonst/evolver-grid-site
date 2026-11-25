@@ -9820,7 +9820,9 @@
       "earth": "Tierra"
     },
     "face": {
-      "air": "Tu IA"
+      "air": "Tu IA",
+      "fire": "Crecimiento",
+      "earth": "Trabajo"
     }
   },
   "yourAiConsole": {
