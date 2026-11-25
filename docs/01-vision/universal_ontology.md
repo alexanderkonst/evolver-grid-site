@@ -98,6 +98,30 @@ Everything is a holon. This is its deepest nature.
 
 ---
 
+## 16. THE NOVEMBER 24 RECOGNITION: Two Holes in One, the Diameter, the Match Strike
+
+> *November 24, 2026. Sasha's own words, recorded verbatim in dialogue during the formalization (Step 121). Recorded as a dated addendum; existing sections stand untouched. Formal readings live in the formalization record, not here.*
+
+> Asked: when the pulse makes the diameter, do the two holes stay in one point or move apart to the two ends? Is the torus already in the Source before the first ray, or does it start with it?
+
+> *«конечно тор закручивается как следствие черно-белой дыры или как мы это называем.*
+>
+> *То есть системы из двух световых конусов.*
+>
+> *Они и есть два конца диаметра предельной точки.*
+>
+> *Все предельно ясно не*
+>
+> *Мы просто сводим и схлопываем теперь наши находки вовнутрь этой точки, и она себя производит. Два в одном.*
+>
+> *А дальше же очень просто: два луча, разница потенциалов так как первое расстояние было создано, и появляется второй вектор, закручивающий эту прото-систему, и начинающий отсчет времени, которое я определял.*
+>
+> *как спичка зажигается.»* (typed, as written)
+
+**Honesty marker:** recognition, held as given, awaiting its articulation. Sits beside §11.1 (Source as two holes in one; the torus seed), Open Edge 1 (ray gives the axis, inversion the doubling), §13 (pulse before ray) and §15.3 (time). Not yet reconciled with them.
+
+---
+
 ## 15. THE NOVEMBER 23 RECOGNITIONS: The Point Without Directions, Time's Two Ends, the Ocean of Light
 
 > *November 23, 2026. Sasha's own words, recorded verbatim in dialogue during the formalization (Steps 104–106). Recorded as a dated addendum; existing sections stand untouched. Formal readings live in the formalization record, not here.*
@@ -1343,6 +1367,7 @@ Asking "which came first, creation or evolution?" is like asking "which came fir
 ---
 
 *Universal Ontology v3.0*
+*Updated: November 24, 2026 (§16 The November 24 Recognition: the torus winds as a consequence of the black-white hole, the system of two light cones as the two ends of the diameter of the limit point, two rays and a potential difference giving the second vector that winds the proto-system and starts time; recorded verbatim)*
 *Updated: October 12, 2026 (v3: body reordered by current seeing, spine first; earlier tellings kept as dated layers with honesty markers; Open Edges 4 to 8 added for the four tensions found in the knowledge-graph reading and the Pulse question; section numbers unchanged)*
 *Updated: October 12, 2026 (§14 The October 12 Recognition: Source and Spin as the two faces of the great being; open edge on where Pulse sits)*
 *Updated: July 26, 2026 (§11.3a The Stella Octangula, Exactly: the dissection identity, two wholes not two halves, the breathing core, cube as hull, sequence not direction, spin as gradient response)*
