@@ -45,6 +45,7 @@ import { useFounderStates, type FounderState } from "./useFounderStates";
 import { FounderDetailDrawer } from "./FounderDetailDrawer";
 import { BulkEmailComposer } from "./BulkEmailComposer";
 import { SentCampaignsSection } from "./SentCampaignsSection";
+import { CollectiveMembersSection } from "./CollectiveMembersSection";
 import { Clipboard, Mail, Loader2, RefreshCw, Search } from "lucide-react";
 import { PremiumLoader } from "@/components/ui/PremiumLoader";
 import { useToast } from "@/hooks/use-toast";
@@ -2007,6 +2008,8 @@ function AdminPageInner() {
           <SentCampaignsSection refreshKey={campaignRefreshKey} />
           <Ornament className="my-2" />
           <EntitlementGrantsSection />
+          <Ornament className="my-2" />
+          <CollectiveMembersSection players={founders} />
           <Ornament className="my-2" />
           <FunnelKpisSection founders={founders} />
           <Ornament className="my-2" />

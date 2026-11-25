@@ -435,6 +435,36 @@ export type Database = {
         }
         Relationships: []
       }
+      collective_members: {
+        Row: {
+          invited_by: string | null
+          joined_at: string
+          offers: string | null
+          seeks: string | null
+          site_url: string | null
+          uniqueness_line: string | null
+          user_id: string
+        }
+        Insert: {
+          invited_by?: string | null
+          joined_at?: string
+          offers?: string | null
+          seeks?: string | null
+          site_url?: string | null
+          uniqueness_line?: string | null
+          user_id: string
+        }
+        Update: {
+          invited_by?: string | null
+          joined_at?: string
+          offers?: string | null
+          seeks?: string | null
+          site_url?: string | null
+          uniqueness_line?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       commercial_outbound_actions: {
         Row: {
           action_type: string
@@ -3841,6 +3871,15 @@ export type Database = {
           token: string
         }[]
       }
+      collective_public_counts: {
+        Args: never
+        Returns: {
+          core_members: number
+          mission_found: number
+          players_started: number
+          top_talent_found: number
+        }[]
+      }
       deed_first_name: { Args: { p_name: string }; Returns: string }
       eq_complete_task: { Args: { p_task_id: string }; Returns: undefined }
       eq_promote_do_now: {
@@ -4027,7 +4066,7 @@ export type Database = {
       }
     }
     Enums: {
-      app_role: "admin" | "user"
+      app_role: "admin" | "user" | "collective_member"
       entitlement_tier:
         | "tasting"
         | "builder"
@@ -4163,7 +4202,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "user"],
+      app_role: ["admin", "user", "collective_member"],
       entitlement_tier: [
         "tasting",
         "builder",
