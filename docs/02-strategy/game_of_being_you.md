@@ -1428,12 +1428,14 @@ Rule for every mechanic: a counter, streak or number only where it mirrors a rea
 ### 24.5 Rejected
 Density gate before the next village (FB-1) · village book night (JM-4) · 6-week seasons · secret identity · villains and battles · points and levels as score · internal currency · votes · crisis simulations · ranking people · "raid" vocabulary.
 
-## 25. Navigation (Sasha, 2026-11-24)
+## 25. Navigation (Sasha, 2026-11-24; approved for build 2026-11-25 00:07 MST: «в спеку, и затем в работу»)
+
+Build: epic [#453](https://github.com/alexanderkonst/evolver-grid-site/issues/453).
 
 Source: the navigation synthesis of 40+ cult games ([synthesis v0](./research/navigation/synthesis.md)) and Sasha's verdicts on it, 2026-11-24 22:32 and 23:12 MST. This section is the source of truth for navigation; the UI rules that follow from it live in [ui_playbook Part X](../03-playbooks/ui_playbook.md).
 
 ### 25.1 Principle
-One world, one home, and on every screen three answers: **where am I, where next, how do I get home.** The same grammar holds at four scales: world (village map) → place (scene with rooms) → module (Intro → one button → Outro) → moment (any screen). Sasha: this is what we had already chosen intuitively; the research confirms it.
+One world, one home, and on every screen three answers: **where am I, where next, how do I get home.** The same grammar holds at four scales: world (village map) → place (scene with rooms) → module (Intro → one button → Outro) → moment (any screen). Much of this grammar was already in place before the research (village map, module form, lock rule); the research confirms it.
 
 ### 25.2 Where am I: both answers
 - **Place in the village:** where I am in the game location. It makes moving simple.
@@ -1484,3 +1486,6 @@ Every transition feels smooth: the whole interface is an ancient mystical instru
 2. **Every module audit** ([module-form](../templates/module-form.md) §9) checks it per screen.
 3. **Live test with real first-timers** (San Pancho village, 5 people per round): show a screen for 3 seconds, hide it, ask the three questions; a screen passes when 4 of 5 answer all three. Results logged here per screen.
 4. **Hark's QA loop** runs it on every new screen before reporting it done.
+
+### 25.13 How we refine it: subtraction
+Each navigation screen is refined with the [subtraction loop](../templates/subtraction-loop.md) (after Will Wright's many cut-down versions of The Sims): name the model in the player's head, show it to first-timers without explanation, mark friction, cut what does not build the model or move it into the world, measure before and after, repeat until the 25.12 test passes.
