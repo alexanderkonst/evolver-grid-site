@@ -9941,5 +9941,17 @@
     "changes": {
       "label": "This cycle"
     }
+  },
+  "etherFace": {
+    "title": "Path",
+    "label": "Your next move",
+    "go": "Show me the way",
+    "none": "Nothing to point to yet."
+  },
+  "inkLine": {
+    "offer": "Lost? Show me the way",
+    "offerLabel": "Show your next move with a line.",
+    "dismiss": "Not now",
+    "announce": "A line points to {{place}}."
   }
 }

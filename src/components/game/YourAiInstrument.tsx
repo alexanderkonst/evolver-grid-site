@@ -25,6 +25,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronLeft, Lock, RotateCcw, Send, X } from "lucide-react";
 import AirOctahedron from "@/components/game/AirOctahedron";
 import InstrumentGlyph from "@/components/game/InstrumentGlyph";
+import InkGuide, { nextInkNonce, type InkRequest } from "@/components/game/InkLine";
 import InstrumentRitual from "@/components/game/InstrumentRitual";
 import { QuarterSign } from "@/components/game/QuarterSign";
 import { type YourAiButton } from "@/data/yourAiCatalog";
@@ -500,6 +501,7 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
   const [rise, setRise] = useState({ dx: 0, dy: 0 });
   const [announce, setAnnounce] = useState("");
   const [arcRadius, setArcRadius] = useState(ARC_RADIUS_MAX);
+  const [inkRequest, setInkRequest] = useState<InkRequest | null>(null);
 
   const glyphRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -606,6 +608,12 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
     [closeInstrument, navigate],
   );
 
+  // The ether face: close the instrument, then one ink line to the glowing place (`InkLine.tsx`).
+  const showWay = useCallback(() => {
+    closeInstrument();
+    setInkRequest({ nonce: nextInkNonce() });
+  }, [closeInstrument]);
+
   if (!enabled || model.state === "hidden" || typeof document === "undefined") return null;
 
   const bodies = VILLAGE_ELEMENTS.filter((e) => e.key !== "air");
@@ -642,6 +650,8 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
           if (!raised) openInstrument();
         }}
       />
+      {/* The ink line (WP5): never shown by default; drawn on the ether face's choice, offered when the player seems lost. */}
+      <InkGuide raised={raised} reduced={reduced} request={inkRequest} />
       {/* The body-lit ritual (WP2) and the breath on open and close: queued, plays at a calm moment, never over a module form. */}
       <InstrumentRitual enabled={enabled} ownerId={ownerId} lit={lit} raised={raised} />
       {/* One short line on open and on close, for screen readers. */}
@@ -749,6 +759,7 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
                 active={shown && inFace}
                 onBack={() => dispatch({ type: "back" })}
                 onClose={closeInstrument}
+                onShowWay={showWay}
                 onNavigate={goTo}
               />
             </div>
