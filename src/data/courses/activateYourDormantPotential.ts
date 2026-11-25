@@ -122,13 +122,13 @@ export const COURSE_PRACTICES: CoursePractice[] = [
         id: "five-breaths",
         duration: "1 min",
         title: "Experience 5 Breaths",
-        soundcloudUrl: "https://soundcloud.com/alexander-konstantinov-976475588/quest-4-experience-5-breaths",
+        soundcloudUrl: "https://soundcloud.com/konstantinovaleksandr/quest-4-experience-5-breaths",
     },
     {
         id: "symmetric-breaths",
         duration: "5 min",
         title: "29 Symmetric Breaths",
-        soundcloudUrl: "https://soundcloud.com/alexander-konstantinov-976475588/29-symmetric-breaths",
+        soundcloudUrl: "https://soundcloud.com/konstantinovaleksandr/29-symmetric-breaths",
     },
 ];
 
