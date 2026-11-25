@@ -5,11 +5,14 @@
  * the FMF page (src/pages/Mastermind.tsx), the Café event cards (src/pages/spaces/EventsSpace.tsx)
  * and the village place's live windows (src/data/villagePlaces.ts).
  *
- * Dates rule (Sasha, 2026-11-24): one FMF per Equilibrium lunar cycle. The cycle starts at the
- * astronomical new moon (America/Mexico_City). FMF meets live on the first Monday on or after
- * the new moon, and on the Wednesday after it (three days: Mon, Tue, Wed).
- * New-moon instants computed with PyEphem (Meeus-grade), weekdays checked in code
- * (src/lib/__tests__/fmfDates.test.ts). Extend the list before 2027-05.
+ * Dates rule (Sasha, 2026-11-24, re-based the same day on the Equilibrium user manual,
+ * docs/04-products/equilibrium_user_manual.md): one FMF per Equilibrium lunar cycle. A new cycle
+ * begins at Planning = the astronomical Last Quarter moon, right after Celebrating closes
+ * (America/Mexico_City). FMF meets live on the first Monday on or after the Last Quarter, and on the
+ * Wednesday after it (three days: Mon, Tue, Wed).
+ * Last Quarter instants computed with PyEphem and cross-checked with Skyfield + JPL DE421 (same minute);
+ * weekdays and the app's own lunar math (getLunarState: Planning opens at the stated instant) checked
+ * in src/lib/__tests__/fmfDates.test.ts. Extend the list before 2027-05.
  */
 
 /** Free live session, Wed Nov 4, 9:00 Mexico City time. */
@@ -26,26 +29,26 @@ export const FMF_NAME = "FMF";
 export const FMF_TAGLINE = "Discover Founder-Market Fit in Three Days, Guaranteed";
 
 export type FmfDates = {
-  /** New moon, Mexico City local time (UTC-06:00, no DST since 2022). */
-  newMoon: string;
-  /** First live day: the first Monday on/after the new moon (YYYY-MM-DD, Mexico City). */
+  /** Last Quarter moon = start of Planning (new Equilibrium cycle), Mexico City local time (UTC-06:00, no DST since 2022). */
+  lastQuarter: string;
+  /** First live day: the first Monday on/after the Last Quarter (YYYY-MM-DD, Mexico City). */
   monday: string;
   /** Second live day: the Wednesday after it. */
   wednesday: string;
 };
 
 export const FMF_DATES: readonly FmfDates[] = [
-  { newMoon: "2026-12-08T18:51:00-06:00", monday: "2026-12-14", wednesday: "2026-12-16" },
-  { newMoon: "2027-01-07T14:24:00-06:00", monday: "2027-01-11", wednesday: "2027-01-13" },
-  { newMoon: "2027-02-06T09:56:00-06:00", monday: "2027-02-08", wednesday: "2027-02-10" },
-  { newMoon: "2027-03-08T03:29:00-06:00", monday: "2027-03-08", wednesday: "2027-03-10" },
-  { newMoon: "2027-04-06T17:51:00-06:00", monday: "2027-04-12", wednesday: "2027-04-14" },
-  { newMoon: "2027-05-06T04:58:00-06:00", monday: "2027-05-10", wednesday: "2027-05-12" },
+  { lastQuarter: "2026-12-01T00:08-06:00", monday: "2026-12-07", wednesday: "2026-12-09" },
+  { lastQuarter: "2026-12-30T12:59-06:00", monday: "2027-01-04", wednesday: "2027-01-06" },
+  { lastQuarter: "2027-01-29T04:55-06:00", monday: "2027-02-01", wednesday: "2027-02-03" },
+  { lastQuarter: "2027-02-27T23:16-06:00", monday: "2027-03-01", wednesday: "2027-03-03" },
+  { lastQuarter: "2027-03-29T18:53-06:00", monday: "2027-03-29", wednesday: "2027-03-31" },
+  { lastQuarter: "2027-04-28T14:17-06:00", monday: "2027-05-03", wednesday: "2027-05-05" },
 ];
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-/** "Mon Dec 14 + Wed Dec 16, 2026", read straight from the date strings (no timezone shift). */
+/** "Mon Dec 7 + Wed Dec 9, 2026", read straight from the date strings (no timezone shift). */
 export const formatFmfDates = (d: FmfDates): string => {
   const [y1, m1, d1] = d.monday.split("-").map(Number);
   const [y2, m2, d2] = d.wednesday.split("-").map(Number);

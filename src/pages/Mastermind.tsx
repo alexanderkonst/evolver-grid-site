@@ -1,8 +1,8 @@
 /**
  * /build/fmf — public landing for FMF: "Discover Founder-Market Fit in Three Days, Guaranteed"
  * (renamed from the Founder-Market Fit Discovery Mastermind, Sasha 2026-11-24).
- * One FMF per lunar cycle: live on the first Monday on/after the new moon and the Wednesday
- * after it. Dates: src/data/fmfSession.ts. /build/mastermind and /mastermind redirect here.
+ * One FMF per lunar cycle: live on the first Monday on/after the Last Quarter moon (Planning, the
+ * start of a new Equilibrium cycle) and the Wednesday after it. Dates: src/data/fmfSession.ts. /build/mastermind and /mastermind redirect here.
  *
  * Layout mirrors /ignite (parchment field, GameShellV2 with hideLogo,
  * Cormorant headline, house CTA grammar). Copy below is a DRAFT and will be
@@ -60,7 +60,7 @@ const MASTERMIND_COPY = {
     "Recording of both sessions included.",
   ],
   datesLabel: "Next dates",
-  datesNote: "One FMF per lunar cycle: it opens on the first Monday after the new moon. Mexico City time.",
+  datesNote: "One FMF per lunar cycle: it opens on the first Monday after the Last Quarter moon, when a new cycle begins. Mexico City time.",
   nextTag: "Next",
   forLabel: "Who it's for",
   forWho: "Healers, coaches, builders, hosts and storytellers who carry a gift and have no sharp offer yet. Founders too.",

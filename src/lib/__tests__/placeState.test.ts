@@ -181,15 +181,15 @@ describe("placeState: live", () => {
     expect(placeState(place("academy"), before)).toBe("open");
   });
 
-  it("FMF is live Monday to Wednesday of each lunar cycle (Mexico City), e.g. Dec 14–16, 2026", () => {
+  it("FMF is live Monday to Wednesday of each lunar cycle (Mexico City), e.g. Dec 7–9, 2026", () => {
     const at = (iso: string) => placeState(place("fire-circle"), saveWith([], { now: new Date(iso) }));
-    expect(at("2026-12-13T23:59:00-06:00")).toBe("open");
-    expect(at("2026-12-14T10:00:00-06:00")).toBe("live");
-    expect(at("2026-12-15T10:00:00-06:00")).toBe("live");
-    expect(at("2026-12-16T22:00:00-06:00")).toBe("live");
-    expect(at("2026-12-17T00:00:00-06:00")).toBe("open");
+    expect(at("2026-12-06T23:59:00-06:00")).toBe("open");
+    expect(at("2026-12-07T10:00:00-06:00")).toBe("live");
+    expect(at("2026-12-08T10:00:00-06:00")).toBe("live");
+    expect(at("2026-12-09T22:00:00-06:00")).toBe("live");
+    expect(at("2026-12-10T00:00:00-06:00")).toBe("open");
     // a later cycle, through `also`
-    expect(at("2027-03-08T10:00:00-06:00")).toBe("live");
+    expect(at("2027-03-29T10:00:00-06:00")).toBe("live");
   });
 });
 
