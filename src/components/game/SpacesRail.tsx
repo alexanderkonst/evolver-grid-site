@@ -1,4 +1,4 @@
-import { memo, useEffect, useId, useRef, useState } from "react";
+import { memo, useEffect, useId, useRef, useState, type CSSProperties } from "react";
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -108,6 +108,13 @@ const placeIconSrc = (key: VillagePlaceKey, skin?: Skin) =>
     `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}.webp?v=5`;
 const placeIconSrc2x = (key: VillagePlaceKey, skin?: Skin) =>
     `/game/village/icons/${(skin && ICON_SKIN_DIR[skin]) || ""}${key}@2x.webp?v=5`;
+
+// A closed place fades its art, not its words (#452). Lunar sets the word tokens to «no fade»;
+// every other skin falls back to the lock tokens, so its closed names fade as they always did.
+const lockWordStyle: CSSProperties = {
+    filter: "var(--lock-word-filter, var(--lock-filter))",
+    opacity: "var(--lock-word-dim, var(--lock-dim))",
+};
 
 const PlaceIcon = ({ place, size, skin }: { place: VillagePlace; size: number; skin?: Skin }) => (
     <span className="village-place-icon flex-shrink-0" style={{ width: size, height: size }}>
@@ -898,14 +905,26 @@ const SpacesRail = ({
                                     compact && "flex-col !gap-[3px] justify-center"
                                 )}
                                 style={
-                                    closed
-                                        ? { filter: "var(--lock-filter)", opacity: "var(--lock-dim)" }
-                                        : loading && !active
-                                            ? { opacity: "var(--lock-dim)" }
-                                            : undefined
+                                    // Closed fades the art, not the words (#452): the icon takes the
+                                    // art tokens below, the name its own word tokens. Skins that set
+                                    // neither fall back to --lock-filter / --lock-dim, as before.
+                                    !closed && loading && !active
+                                        ? { opacity: "var(--lock-dim)" }
+                                        : undefined
                                 }
                             >
-                                <PlaceIcon place={place} size={compact ? 30 : 34} skin={skin} />
+                                <span
+                                    className="flex shrink-0 transition-[filter,opacity] duration-500"
+                                    style={
+                                        closed
+                                            ? { filter: "var(--lock-art-filter, var(--lock-filter))", opacity: "var(--lock-art-dim, var(--lock-dim))" }
+                                            : !loading
+                                                ? { filter: "var(--open-art-filter, none)" }
+                                                : undefined
+                                    }
+                                >
+                                    <PlaceIcon place={place} size={compact ? 30 : 34} skin={skin} />
+                                </span>
                                 {!compact && (
                                     <span
                                         className={cn(
@@ -921,7 +940,7 @@ const SpacesRail = ({
                                             textTransform: "uppercase",
                                         }}
                                     >
-                                        {name}
+                                        <span style={closed ? lockWordStyle : undefined}>{name}</span>
                                     </span>
                                 )}
                                 {/* Issue #270: a tooltip needs hover, and a phone has none. In the collapsed
@@ -935,7 +954,7 @@ const SpacesRail = ({
                                             fontWeight: active ? 700 : 600,
                                         }}
                                     >
-                                        {name}
+                                        <span style={closed ? lockWordStyle : undefined}>{name}</span>
                                     </span>
                                 )}
                             </span>

@@ -150,10 +150,13 @@
   opacity: var(--place-glow);
 }
 /* closed: a dark silhouette, windows unlit. Multiply darkens the buildings. */
+[data-skin="lunar"] .vl-pin[data-place-state="closed"] {
+  --vl-aura: calc(max(100vw, 100svh * var(--vl-ratio, 1)) * 0.17); /* wide enough to cover the whole building (#452) */
+}
 [data-skin="lunar"] .vl-pin[data-place-state="closed"]::before {
   background: radial-gradient(closest-side,
-    rgba(3, 6, 10, 0.86) 0%,
-    rgba(3, 6, 10, 0.6) 62%,
+    rgba(3, 6, 10, 0.96) 0%,
+    rgba(3, 6, 10, 0.86) 60%,
     transparent 100%);
   mix-blend-mode: multiply;
   opacity: var(--place-shade);
@@ -235,10 +238,11 @@
 
 /* A place scene (/village/:place): WP-3's PlaceState is `.vl-place__state`, and
    `data-place-state` lives on it, so the whole scene takes the state. Closed also
-   gets PlaceState's own fade (`--lock-filter`, `--lock-dim`) on the scene wrapper;
-   the extra dimming here only deepens the silhouette. */
+   gets PlaceState's own fade (`--lock-art-filter`, `--lock-art-dim`: brightness 0.55,
+   dim 0.45) on the scene wrapper, which alone makes the dark silhouette (#452); no
+   second darkening is stacked on the image. */
 [data-skin="lunar"] .vl-place__state[data-place-state="closed"] .vl-place__img {
-  filter: var(--scene-filter) brightness(0.65);
+  filter: var(--scene-filter);
 }
 [data-skin="lunar"] .vl-place__state[data-place-state="closed"]::before {
   background-size: 3px 3px;

@@ -15,8 +15,8 @@
 
 /* closed: desaturated, dimmed, still */
 .ps[data-place-state="closed"] .ps-fade {
-  filter: var(--lock-filter);
-  opacity: var(--lock-dim);
+  filter: var(--lock-art-filter, var(--lock-filter));
+  opacity: var(--lock-art-dim, var(--lock-dim));
 }
 .ps[data-place-state="closed"] .ps-fade,
 .ps[data-place-state="closed"] .ps-fade *,

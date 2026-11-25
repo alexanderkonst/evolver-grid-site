@@ -220,6 +220,11 @@
 [data-place-state="done"]   { --place-saturation: 1; --place-glow: 0.7;  --place-shade: 0; }
 [data-place-state="live"]   { --place-saturation: 1; --place-glow: 1;    --place-shade: 0; }
 
+/* Lunar (#452): open is light, closed is no light. A stronger moonlight on an open place so the two
+   differ by glow, not by opacity; `next` keeps its one accent ring on top (lunar-world.css). */
+[data-skin="lunar"] [data-place-state="open"] { --place-glow: 0.95; }
+[data-skin="lunar"] [data-place-state="next"] { --place-glow: 1; }
+
 /* Raised panel (auth card, dialogs): every non-lapis skin builds it from its own paper colour. */
 :root[data-skin]:not([data-skin="lapis"]) {
   --text-ink: var(--skin-text-primary);
@@ -575,6 +580,21 @@
      also over the lightest art (worked out: ~6.8:1 over white; default skin ~5.4:1). */
   --lock-label-alpha: 0.8;
   --lock-label-bg-alpha: 0.8;
+
+  /* Closed vs open must read as light vs no light, not as a faded copy (#452).
+     Lunar is already monochrome, so grayscale does nothing and opacity alone left
+     «faded» and «open» alike. Art (scene, icon, marker) and words are now separate:
+       art    closed = a dark silhouette: brightness 0.55 + dim 0.45, no glow;
+              open   = soft moonlight (--open-art-filter on icons, --place-glow aura on the map)
+       words  closed = never dimmed: a closed name keeps its open ink, and clears AA
+              (4.5:1) on its background (rail name ~6:1, map and list labels ~6.8:1).
+     Consumers read these with a fallback to --lock-filter / --lock-dim, so every other
+     skin, and the intro (which reads --lock-filter directly), render exactly as before. */
+  --lock-art-filter: grayscale(1) brightness(0.55) contrast(1.05);
+  --lock-art-dim: 0.45;
+  --lock-word-filter: none;
+  --lock-word-dim: 1;
+  --open-art-filter: drop-shadow(0 0 5px rgba(var(--moonlight-glow-rgb), 0.5));
   --label-ink-bg: linear-gradient(135deg, var(--moonlight-bright) 0%, var(--moonlight) 55%, var(--moonlight-accent) 100%);
   --label-ink-glow: none;
 

@@ -95,7 +95,7 @@ const Navigation = () => {
                   onMouseLeave={() => setTip((cur) => (cur === place.key ? null : cur))}
                   onFocus={() => setTip(place.key)}
                   onBlur={() => setTip((cur) => (cur === place.key ? null : cur))}
-                  style={{ color: "var(--text-muted)", filter: "var(--lock-filter)", opacity: "var(--lock-dim)", cursor: "default" }}
+                  style={{ color: "var(--text-muted)", filter: "var(--lock-word-filter, var(--lock-filter))", opacity: "var(--lock-word-dim, var(--lock-dim))", cursor: "default" }}
                 >
                   {place.name}
                   <span className="sr-only">. {line}</span>
