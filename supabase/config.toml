@@ -201,5 +201,9 @@ verify_jwt = true
 [functions.mini-training-chat]
 verify_jwt = true
 
+# Your AI Console v1 (docs/specs/your-ai-console/console-v1.md): signed-in only.
+[functions.your-ai-console]
+verify_jwt = true
+
 [functions.notify-partner-submission]
 verify_jwt = false
