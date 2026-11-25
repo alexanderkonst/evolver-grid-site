@@ -22,7 +22,7 @@ npx playwright show-report artifacts/html-report
 | `phone` | 390 × 844 |
 | `reduced-motion` | 1440 × 900 with `prefers-reduced-motion: reduce` |
 
-Screenshots land in `artifacts/screenshots/<project>/`. A preview behind Vercel Deployment Protection needs `VERCEL_AUTOMATION_BYPASS_SECRET`.
+Screenshots land in `artifacts/screenshots/<project>/`. A preview behind Vercel Deployment Protection needs `VERCEL_AUTOMATION_BYPASS_SECRET`. `global-setup.ts` checks this first: if the preview answers with Vercel's login redirect, the run stops once and names the cause (instead of every spec timing out), and with the secret it stores the bypass cookie for all specs.
 
 ## Specs
 

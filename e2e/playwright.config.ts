@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import { BYPASS_STATE } from "./global-setup";
 
 /**
  * QA as code (docs/templates/qa-pass.md).
@@ -31,12 +32,14 @@ export default defineConfig({
     ["json", { outputFile: "artifacts/report.json" }],
     ["html", { outputFolder: "artifacts/html-report", open: "never" }],
   ],
+  // Preflight (global-setup.ts): fails the whole run once, naming the cause, if the preview sits behind
+  // Vercel login; with the bypass secret it stores the bypass cookie that every spec then uses.
+  globalSetup: "./global-setup.ts",
   use: {
     baseURL,
     trace: "retain-on-failure",
-    extraHTTPHeaders: bypass
-      ? { "x-vercel-protection-bypass": bypass, "x-vercel-set-bypass-cookie": "true" }
-      : undefined,
+    // The cookie, not a header on every request: a header would also reach Supabase and other third parties.
+    storageState: bypass ? BYPASS_STATE : undefined,
   },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },

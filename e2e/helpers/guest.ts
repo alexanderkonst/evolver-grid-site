@@ -55,6 +55,9 @@ export { expect };
 export async function openGuest(page: Page, route: string): Promise<void> {
   const res = await page.goto(route, { waitUntil: "load" });
   expect(res?.status(), `${route} should answer 200 (401 = Vercel Deployment Protection: set VERCEL_AUTOMATION_BYPASS_SECRET)`).toBeLessThan(400);
+  // A followed redirect to Vercel's login answers 200; say so instead of timing out below.
+  const base = new URL(String(test.info().project.use.baseURL));
+  expect(new URL(page.url()).host, `${route} ended on ${page.url()}, not on the preview (Vercel Deployment Protection? see global-setup.ts)`).toBe(base.host);
   // The next-move card or the place title is the first honest sign the screen has its data.
   await page.waitForFunction(
     () => !!document.querySelector(".vl-move__card, .vl-place.is-on h2, nav[aria-label='Village']"),

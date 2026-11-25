@@ -59,7 +59,16 @@ const table = [
 ].join("\n");
 
 const stats = report.stats ?? {};
-const verdict = (stats.unexpected ?? 0) === 0 ? "✅ all checks passed" : `❌ ${stats.unexpected} check(s) failed`;
+// A run that never started (preflight failed, config error) has zero tests and an `errors` list: not green.
+const runErrors = (report.errors ?? []).map((e) => (e.message ?? "").replace(/\u001b\[[0-9;]*m/g, "").split("\n").filter(Boolean).join(" ").slice(0, 600));
+const ran = (stats.expected ?? 0) + (stats.unexpected ?? 0) + (stats.flaky ?? 0);
+const verdict = runErrors.length
+  ? "❌ the run did not start"
+  : (stats.unexpected ?? 0) > 0
+    ? `❌ ${stats.unexpected} check(s) failed`
+    : ran === 0
+      ? "❌ no check ran"
+      : "✅ all checks passed";
 const lines = [
   MARKER,
   `### QA pass · ${verdict}`,
@@ -70,6 +79,7 @@ const lines = [
   "",
   `${stats.expected ?? 0} passed · ${stats.unexpected ?? 0} failed · ${stats.skipped ?? 0} skipped · ${stats.flaky ?? 0} flaky`,
 ];
+if (runErrors.length) lines.push("", "**Why:**", "", ...runErrors.map((m) => `> ${m}`));
 if (failures.length) lines.push("", "<details open><summary>Failures</summary>", "", ...failures, "", "</details>");
 if (fixmes.size) lines.push("", `Tracked, not yet fixed: ${[...fixmes].map((t) => `«${t}»`).join(", ")}`);
 lines.push(
