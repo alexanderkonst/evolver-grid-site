@@ -9848,6 +9848,19 @@
     },
     "face": {
       "air": "Your AI"
+    },
+    "ritual": {
+      "line": {
+        "ether": "Ether is lit. The Entry Portal is open to you.",
+        "water": "Water is lit. The Café is open to you.",
+        "fire": "Fire is lit. The Academy and FMF are open to you.",
+        "earth": "Earth is lit. The Workshop is open to you."
+      }
+    },
+    "sound": {
+      "label": "Instrument sound",
+      "hint": "Soft tones when a body of your instrument lights, and a breath when it opens. Quiet by default.",
+      "ariaLabel": "Instrument sound"
     }
   }
 }

@@ -9821,6 +9821,19 @@
     },
     "face": {
       "air": "Tu IA"
+    },
+    "ritual": {
+      "line": {
+        "ether": "El Éter se enciende. El Portal de entrada está abierto para ti.",
+        "water": "El Agua se enciende. El Café está abierto para ti.",
+        "fire": "El Fuego se enciende. La Academia y FMF están abiertos para ti.",
+        "earth": "La Tierra se enciende. El Taller está abierto para ti."
+      }
+    },
+    "sound": {
+      "label": "Sonido del instrumento",
+      "hint": "Tonos suaves cuando se enciende un cuerpo de tu instrumento y un soplo al abrirlo. Volumen bajo por defecto.",
+      "ariaLabel": "Sonido del instrumento"
     }
   }
 }
