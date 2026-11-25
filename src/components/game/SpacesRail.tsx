@@ -899,7 +899,7 @@ const SpacesRail = ({
                                     "relative flex flex-1 min-w-0 items-center transition-[filter,opacity] duration-500",
                                     drawer ? "gap-2.5 justify-start" : "gap-3 justify-center lg:justify-start",
                                     // Issue #270: icon over a short text label (see .rail-cell-label).
-                                    compact && "flex-col !gap-[3px] justify-center"
+                                    compact && "rail-cell-inner flex-col !gap-[3px] justify-center"
                                 )}
                                 style={
                                     closed
