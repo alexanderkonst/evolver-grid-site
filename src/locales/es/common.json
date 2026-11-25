@@ -187,8 +187,7 @@
       "town-hall": "Se abre con tu primera venta."
     },
     "live": {
-      "fire-circle": "En vivo ahora: FMF, de lunes a miércoles.",
-      "academy": "En vivo ahora: webinar, mié 4 de nov."
+      "fire-circle": "En vivo ahora: FMF, de lunes a miércoles."
     },
     "result": {
       "find-top-talent": "verás tu talento principal y conservarás tu personaje.",
@@ -204,7 +203,7 @@
       "assess-qol": "las ocho áreas están respondidas y aparece tu nivel.",
       "map-assets": "tus habilidades, experiencia y red están en un solo inventario.",
       "build-business": "tu frase de singularidad y tu eslogan están guardados.",
-      "webinar": "estuviste en la sesión en vivo del 4 de nov.",
+      "webinar": "conociste a Sasha.",
       "mastermind": "participaste en FMF, lunes y miércoles.",
       "mastery-practice": "ya quedó atrás tu día veintiuno de práctica.",
       "first-price": "un cliente real ya escuchó tu precio.",
@@ -259,12 +258,12 @@
       },
       "webinar": {
         "eyebrow": "Academia · Paso 8",
-        "headline": "Únete a la sesión gratuita de FMF (4 de nov)",
-        "silhouette": "Una sesión gratuita en vivo con otras personas en el mismo camino. Ven y vete con un paso por dar.",
-        "verb": "Unirme a la sesión gratuita",
-        "task": "Únete a la sesión gratuita de FMF el miércoles 4 de nov. Después vuelve y di que estuviste.",
-        "didIt": "Estuve en la sesión",
-        "link": "Abrir la página de la sesión"
+        "headline": "Conoce primero a Sasha",
+        "silhouette": "Una conversación con Sasha antes de comprometerte. Ven y vete con un paso por dar.",
+        "verb": "Reservar un horario con Sasha",
+        "task": "Reserva un horario con Sasha. Después vuelve y di que se conocieron.",
+        "didIt": "Conocí a Sasha",
+        "link": "Reservar un horario con Sasha"
       },
       "mastermind": {
         "eyebrow": "FMF · Paso 9",
@@ -8051,14 +8050,7 @@
     "emptyDescGuest": "Vuelve pronto para ver los próximos encuentros de la comunidad.",
     "createEvent": "Crear evento",
     "featured": {
-      "liveSession": {
-        "when": "Mié 4 nov · 9:00 CDMX",
-        "title": "Sesión gratuita de FMF",
-        "price": "Gratis · sesión en vivo",
-        "cta": "Regístrate en Luma"
-      },
       "mastermind": {
-        "when": "Lun 14 dic + Mié 16 dic",
         "title": "FMF: Descubre tu Founder-Market Fit en tres días, garantizado",
         "price": "Lunes + miércoles en vivo · $222",
         "cta": "Ver detalles"

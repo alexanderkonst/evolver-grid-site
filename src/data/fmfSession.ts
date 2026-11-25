@@ -1,8 +1,8 @@
 /**
  * FMF (renamed from the Founder-Market Fit Discovery Mastermind, Sasha 2026-11-24):
  * "Discover Founder-Market Fit in Three Days, Guaranteed".
- * Single source for the FMF dates, the page path and the free live-session link, read by
- * the FMF page (src/pages/Mastermind.tsx), the Café event cards (src/pages/spaces/EventsSpace.tsx)
+ * Single source for the FMF dates, the page path and the "meet me first" booking link, read by
+ * the FMF page (src/pages/Mastermind.tsx), the Café event card (src/pages/spaces/EventsSpace.tsx)
  * and the village place's live windows (src/data/villagePlaces.ts).
  *
  * Dates rule (Sasha, 2026-11-24, re-based the same day on the Equilibrium user manual,
@@ -15,10 +15,8 @@
  * in src/lib/__tests__/fmfDates.test.ts. Extend the list before 2027-05.
  */
 
-/** Free live session, Wed Nov 4, 9:00 Mexico City time. */
-export const FMF_LIVE_SESSION_URL = "https://lu.ma/qpogt17o";
-/** @deprecated old name, kept so older imports keep working. */
-export const MASTERMIND_LIVE_SESSION_URL = FMF_LIVE_SESSION_URL;
+/** Generic booking page to meet Sasha first (undated). */
+export const FMF_MEET_FIRST_URL = "https://cal.com/aleksandrkonstantinov/1-hour-co-working";
 
 /** The FMF page. /build/mastermind and /mastermind redirect here. */
 export const FMF_PAGE_PATH = "/build/fmf";
