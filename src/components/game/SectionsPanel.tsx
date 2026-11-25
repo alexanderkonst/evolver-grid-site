@@ -512,6 +512,13 @@ interface SectionsPanelProps {
     placeLine?: string;
     onSectionSelect?: (path: string) => void;
     onClose?: () => void;
+    /**
+     * Issue #443 wave 3 (item 6): told whether this pane has any rows for the player. A place
+     * with none (a guest in the Workshop or the Fire Circle) leaves the pane to start closed
+     * instead of an open column holding only its header. Not called as "empty" while the save
+     * that stages the rows is still loading.
+     */
+    onEmptyChange?: (empty: boolean) => void;
     className?: string;
     /**
      * When the parent page renders its own full-screen background (e.g.
@@ -813,6 +820,7 @@ const SectionsPanel = ({
     placeLine,
     onSectionSelect,
     onClose,
+    onEmptyChange,
     className,
     pageOwnsBackground = false,
     publicProfilePath = "/game/me/profile",
@@ -1131,6 +1139,16 @@ const SectionsPanel = ({
         }
     }, [location.pathname]);
 
+    // Issue #443 wave 3 (item 6): report whether the pane has rows. The Workshop's rows are staged
+    // by the save, so while it loads the pane is not "empty", only unknown.
+    const paneEmpty =
+        !!spaceData &&
+        spaceData.sections.length === 0 &&
+        !(activeSpaceId === "build" && sheet.isLoading);
+    useEffect(() => {
+        onEmptyChange?.(paneEmpty);
+    }, [paneEmpty, activeSpaceId, onEmptyChange]);
+
     // Early return AFTER all hooks (Rules of Hooks compliance)
     if (!spaceData) return null;
 
@@ -1295,6 +1313,9 @@ const SectionsPanel = ({
                 )}
             </div>
 
+            {/* Issue #443 A3: a pane with no rows (a guest or a new player in the Workshop, where
+                nothing is staged yet) shows its header only, not an empty «THE FORGE path» box. */}
+            {spaceData.sections.length > 0 && (
             <ScrollArea className="flex-1">
             {/* Day 50 (Sasha): TooltipProvider wraps the pane so locked
                 section rows can render the same dark-glass + gold-hairline
@@ -2071,14 +2092,23 @@ const SectionsPanel = ({
             </nav>
             </TooltipProvider>
             </ScrollArea>
+            )}
         </div>
     );
 };
 
 const areEqual = (prev: SectionsPanelProps, next: SectionsPanelProps) => (
     prev.activeSpaceId === next.activeSpaceId &&
+    // Issue #443 A3: the header names the place, and two places can share one pane
+    // (Workshop and Mastermind, Home and the Cockpit's neighbours). A memo that ignored these
+    // kept the first place's name on screen after the player walked to the second.
+    prev.placeName === next.placeName &&
+    prev.placeLine === next.placeLine &&
+    prev.pageOwnsBackground === next.pageOwnsBackground &&
+    prev.publicProfilePath === next.publicProfilePath &&
     prev.onSectionSelect === next.onSectionSelect &&
     prev.onClose === next.onClose &&
+    prev.onEmptyChange === next.onEmptyChange &&
     prev.className === next.className
 );
 

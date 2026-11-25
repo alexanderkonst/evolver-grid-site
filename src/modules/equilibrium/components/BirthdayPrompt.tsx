@@ -148,28 +148,23 @@ export const BirthdayPrompt = ({
         !fullViewport && "lg:left-[540px]",
         "z-[100] flex items-center justify-center p-4",
       )}
-      style={{
-        background: "rgba(10, 22, 40, 0.55)",
-        backdropFilter: "blur(8px)",
-        WebkitBackdropFilter: "blur(8px)",
-      }}
+      // Issue #443 (A5): a solid scrim, no backdrop-filter. A blurred layer is the one
+      // thing that can stay painted after the portal unmounts ("Not now" left the blur up).
+      style={{ background: "rgba(5, 6, 8, 0.86)" }}
       role="dialog"
       aria-modal="true"
       aria-labelledby="bd-prompt-title"
     >
       <div
-        className="liquid-glass-strong w-full max-w-sm rounded-3xl p-8 text-center"
-        style={{
-          background: "rgba(255,255,255,0.55)",
-        }}
+        className="w-full max-w-sm rounded-md border border-white/15 bg-[#0b0c0f] p-8 text-center text-white/90"
       >
         <h2
           id="bd-prompt-title"
-          className="eq-text-halo mb-2 font-serif text-2xl font-semibold text-[#0a1628]"
+          className="mb-3 font-serif text-lg font-medium uppercase tracking-[0.22em] text-white/90"
         >
           When were you born?
         </h2>
-        <p className="eq-text-halo mb-6 text-sm text-[#0a1628]/95">
+        <p className="mb-6 text-sm text-white/60">
           Your birthday anchors your personal solar cycle. Stored privately —
           never shown.
         </p>
@@ -191,15 +186,11 @@ export const BirthdayPrompt = ({
           aria-invalid={showInvalid}
           aria-describedby={showInvalid ? "bd-prompt-hint" : undefined}
           autoFocus
-          className="mb-2 w-full rounded-xl border border-[#0a1628]/15 bg-white/85 px-4 py-3 text-center text-base text-[#0a1628] outline-none focus:border-[#0a1628]/40"
-          style={{
-            boxShadow:
-              "inset 0 2px 4px rgba(10,22,40,0.08), inset 0 -1px 0 rgba(255,255,255,0.8)",
-          }}
+          className="mb-2 w-full rounded-md border border-white/20 bg-transparent px-4 py-3 text-center font-mono text-base text-white outline-none placeholder:text-white/30 focus:border-white/60"
         />
         <p
           id="bd-prompt-hint"
-          className="eq-text-halo mb-2 min-h-[1.25rem] text-xs text-[#0a1628]/80"
+          className="mb-2 min-h-[1.25rem] text-xs text-white/50"
           role={showInvalid ? "alert" : undefined}
         >
           {showInvalid
@@ -211,7 +202,7 @@ export const BirthdayPrompt = ({
           type="button"
           onClick={save}
           disabled={!parsed || saving}
-          className="liquid-glass-dark mt-2 w-full rounded-full px-6 py-3 font-semibold text-white transition hover:scale-[1.02] active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+          className="mt-2 w-full rounded-md border border-white/40 bg-transparent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-white transition-colors hover:border-white hover:bg-white/5 disabled:cursor-not-allowed disabled:opacity-40"
         >
           {saving ? "Saving…" : "Continue"}
         </button>
@@ -219,7 +210,7 @@ export const BirthdayPrompt = ({
           <button
             type="button"
             onClick={onDismiss}
-            className="eq-text-halo mt-3 text-sm text-[#0a1628]/80 underline underline-offset-4"
+            className="mt-3 min-h-[44px] font-mono text-xs uppercase tracking-[0.2em] text-white/50 transition-colors hover:text-white"
           >
             Not now
           </button>

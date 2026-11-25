@@ -19,3 +19,12 @@ describe("public product shell routes", () => {
     expect(pathUsesLayoutShell("/quiz")).toBe(false);
   });
 });
+
+// Issue #443 (A9): the Holo Map is inside the game shell.
+describe("holomap shell (issue #443)", () => {
+  it("gets the layout shell and hides the logo tile", async () => {
+    const { pathUsesLayoutShell, pathHidesLogo } = await import("../shellRoutes");
+    expect(pathUsesLayoutShell("/holomap")).toBe(true);
+    expect(pathHidesLogo("/holomap")).toBe(true);
+  });
+});

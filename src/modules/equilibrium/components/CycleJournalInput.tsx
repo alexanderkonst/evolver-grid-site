@@ -22,11 +22,8 @@ import { MAX_ENTRY_CHARS } from "../hooks/useCycleEntries";
  *   • Resources only: optional tag chips. Never required, never blocking.
  */
 
-const INSET_SURFACE: React.CSSProperties = {
-  background: "rgba(255,255,255,0.35)",
-  boxShadow:
-    "inset 0 2px 4px rgba(10,22,40,0.08), inset 0 -1px 0 rgba(255,255,255,0.6), 0 1px 2px rgba(10,22,40,0.04)",
-};
+/** Village register (issue #443): a thin ring and a foreground tint, never a light inset slab. */
+const INSET_SURFACE = "border border-foreground/20 bg-foreground/5";
 
 /** How many saved lines show before "Show N more". */
 const VISIBLE_DEFAULT = 6;
@@ -92,8 +89,7 @@ export const CycleJournalInput = ({
 
       {/* ── Field ─────────────────────────────────────────────── */}
       <div
-        className="flex items-end gap-2 rounded-2xl px-3 py-2 focus-within:ring-2 focus-within:ring-[#a080c0]/50"
-        style={INSET_SURFACE}
+        className={cn("flex items-end gap-2 rounded-md px-3 py-2 focus-within:border-foreground/60", INSET_SURFACE)}
       >
         <textarea
           ref={fieldRef}

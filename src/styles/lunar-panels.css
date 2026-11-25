@@ -107,13 +107,13 @@ html[data-skin="lunar"] [data-sections-panel][style] {
 }
 
 /* ── 3. Seams ─────────────────────────────────────────────────────────────
-   Panel 1 | panel 2: the hinge of a folding tablet. The 20px control column becomes a
-   brushed moonstone barrel between two engraved lips: an ochre hairline where it meets the
-   rail, a moonlight hairline where it meets the sections pane, a dark groove inside each.
-   Fine knuckle joints every 120px give it structure; a thread of moonlight breathes slowly
-   along its axis. The same control language dresses the collapsed-pane-2 strip and the
-   phone drawer's «Sections» strip. (Specificity beats the gold-literal rule in index.css
-   that painted this column a flat 14% moonlight grey: the mismatched divider.) */
+   Issue #443 wave 3 (Hark's visual pass): ONE quiet vertical hairline, nothing else.
+   The earlier "folding tablet hinge" drew knuckle ticks every 120px and a breathing thread of
+   light down the whole 20px control column; with pane 2 closed the two columns (rail minimize
+   + sections expand) each carried the stripes. Retired: the column is now a flat dark strip
+   with a single moonlight hairline on its right edge, and the chevron. The sections pane's own
+   right-edge spine is the same hairline, no animation. (Specificity beats the gold-literal rule
+   in index.css that painted this column a flat grey.) */
 html[data-skin="lunar"] button[data-seam][style] {
   position: relative;
   isolation: isolate;
@@ -121,57 +121,19 @@ html[data-skin="lunar"] button[data-seam][style] {
   border-left: 0 !important;
   background:
     linear-gradient(90deg,
-      rgba(var(--seam-ochre), 0.42) 0 1px,
-      rgba(var(--seam-deep), 0.85) 1px 2px,
-      transparent 2px calc(100% - 2px),
-      rgba(var(--seam-deep), 0.85) calc(100% - 2px) calc(100% - 1px),
-      rgba(var(--seam-moon), 0.24) calc(100% - 1px) 100%),
-    linear-gradient(90deg,
-      rgba(0, 0, 0, 0.42) 0%,
-      rgba(var(--seam-moon), 0.030) 30%,
-      rgba(var(--seam-moon), 0.065) 50%,
-      rgba(var(--seam-moon), 0.030) 70%,
-      rgba(0, 0, 0, 0.36) 100%),
-    linear-gradient(90deg, #080b10 0%, #0b1119 100%) !important;
+      transparent calc(100% - 1px),
+      rgba(var(--seam-moon), 0.16) calc(100% - 1px) 100%),
+    #080b10 !important;
   box-shadow: none !important;
   transition: filter var(--motion-fast, 200ms) ease;
 }
 html[data-skin="lunar"] button[data-seam][style]:hover {
   filter: brightness(1.35);
 }
-/* knuckles + the axis line */
-html[data-skin="lunar"] button[data-seam]::before {
-  content: "";
-  position: absolute;
-  inset: 0 4px;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, transparent calc(50% - 0.5px), rgba(var(--seam-moon), 0.06) calc(50% - 0.5px) calc(50% + 0.5px), transparent calc(50% + 0.5px)),
-    repeating-linear-gradient(180deg,
-      transparent 0 118px,
-      rgba(var(--seam-deep), 0.9) 118px 119px,
-      rgba(var(--seam-moon), 0.11) 119px 120px);
-}
-/* the breathing thread of light */
+/* no knuckles, no breathing thread */
+html[data-skin="lunar"] button[data-seam]::before,
 html[data-skin="lunar"] button[data-seam]::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: calc(50% - 1px);
-  width: 2px;
-  z-index: -1;
-  pointer-events: none;
-  background: linear-gradient(180deg,
-    transparent 0%,
-    rgba(var(--seam-moon), 0.0) 20%,
-    rgba(var(--seam-moon), 0.55) 50%,
-    rgba(var(--seam-moon), 0.0) 80%,
-    transparent 100%) 0 -60% / 100% 45% no-repeat;
-  filter: blur(0.4px);
-  opacity: 0.55;
-  animation: lunar-seam-breathe 18s ease-in-out infinite;
+  content: none;
 }
 html[data-skin="lunar"] button[data-seam] > svg,
 html[data-skin="lunar"] button[data-seam] > span {
@@ -179,44 +141,11 @@ html[data-skin="lunar"] button[data-seam] > span {
   z-index: 1;
 }
 
-/* Panel 2 | panel 3: the same language at hairline scale (groove, moonlight, ochre) on
-   SectionsPanel's own right-edge spine, with the thread of light out of phase. */
+/* Panel 2 | panel 3: the same hairline on SectionsPanel's own right-edge spine. */
 html[data-skin="lunar"] [data-sections-panel] > span[aria-hidden="true"][style] {
-  width: 3px !important;
+  width: 1px !important;
   overflow: hidden;
-  background:
-    linear-gradient(90deg,
-      rgba(var(--seam-deep), 0.7) 0 1px,
-      rgba(var(--seam-moon), 0.20) 1px 2px,
-      rgba(var(--seam-ochre), 0.30) 2px 3px) !important;
-}
-html[data-skin="lunar"] [data-sections-panel] > span[aria-hidden="true"][style]::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    transparent 0%,
-    rgba(var(--seam-moon), 0.0) 20%,
-    rgba(var(--seam-moon), 0.5) 50%,
-    rgba(var(--seam-moon), 0.0) 80%,
-    transparent 100%) 0 -60% / 100% 45% no-repeat;
-  opacity: 0.5;
-  animation: lunar-seam-breathe 18s ease-in-out -9s infinite;
-}
-
-@keyframes lunar-seam-breathe {
-  0%   { background-position: 0 -60%;  opacity: 0.25; }
-  50%  {                               opacity: 0.7;  }
-  100% { background-position: 0 160%; opacity: 0.25; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html[data-skin="lunar"] button[data-seam]::after,
-  html[data-skin="lunar"] [data-sections-panel] > span[aria-hidden="true"][style]::after {
-    animation: none;
-    background-position: 0 42%;
-    opacity: 0.22;
-  }
+  background: rgba(var(--seam-moon), 0.16) !important;
 }
 
 /* ── 4. Pane 3: fill the desk ─────────────────────────────────────────────

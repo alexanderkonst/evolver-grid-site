@@ -18,7 +18,6 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import GameShellV2 from "../components/game/GameShellV2";
 import SEO from "@/components/SEO";
-import geniusLogo from "@/assets/ignite-logo.png";
 import { Ornament } from "@/lib/landingDesign";
 import { cn } from "@/lib/utils";
 import { tr } from "@/lib/villageCopy";
@@ -161,7 +160,7 @@ const Mastermind = () => {
             </Link>
             {/* HERO */}
             <header className="text-center space-y-6 pb-2">
-              <img src={geniusLogo} alt="" className="skin-emblem w-[140px] h-auto mx-auto opacity-80" />
+              {/* Issue #443 (A6): no second «YOU» emblem here; the shell's rail and top bar already carry it. */}
               {/* Sasha 2026-10-30 22:43: slogan headline removed, no replacement; the name is the h1. */}
               <h1
                 className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.28em] bg-clip-text text-transparent"

@@ -7,8 +7,10 @@ import { placeSaveFromSheet, placeState, type PlaceStateName } from "@/lib/place
  * The state of every village place, read from the player's save: the one source the map
  * (`/village`), the rail and the top bar share, so the three never disagree (WP-4).
  *
- * Until the save has loaded, a place that will turn out closed is reported open, so a
- * returning player never sees the rail fade and brighten again (same rule as Village.tsx).
+ * Until the save has loaded, `ready` is false and `states` reads every closed place as open
+ * (so a consumer that ignores `ready` never shows a lock that then lifts). The rail and the top
+ * bar go further (issue #443 A1): while `!ready` they draw a neutral loading state, not «open»,
+ * then settle once to open or locked, so no place flips from lit to grey after the page paints.
  * `states` follows `VILLAGE_PLACES` order.
  */
 export const usePlaceStates = (): { states: PlaceStateName[]; ready: boolean } => {

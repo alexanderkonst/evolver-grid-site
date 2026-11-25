@@ -64,6 +64,13 @@ export type PlaceClosedLine = {
   inside: string;
   /** i18n key of the whole line («Opens when …. Inside: ….»). Absent = English only. */
   key?: string;
+  /**
+   * A one-clause form for the rail's lock tooltip, where the long line is too much
+   * («Opens with your first sale.»). Absent = the rail shows the whole line.
+   */
+  short?: string;
+  /** i18n key of `short`. Absent = English only. */
+  shortKey?: string;
 };
 
 /** A window in which something happens at the place. ISO timestamps with offset. */
@@ -394,6 +401,13 @@ export const closedLine = (place: PlaceInput, t?: TFunction): string => {
   const c = place.rule.closed;
   if (!c) return "";
   return tr(t, c.key, `Opens when ${trimDot(c.event)}. Inside: ${trimDot(c.inside)}.`);
+};
+
+/** The line for the rail's lock tooltip: the closed line's short form when it has one, else the whole line. */
+export const closedShortLine = (place: PlaceInput, t?: TFunction): string => {
+  const c = place.rule.closed;
+  if (!c?.short) return closedLine(place, t);
+  return tr(t, c.shortKey, c.short);
 };
 
 /** The one line to show for a place in a given state. */

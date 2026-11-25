@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { PLACE_BACK_LINK_CLASS } from "@/components/game/VillagePlaceHeader";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer, Tooltip } from "recharts";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -49,13 +52,17 @@ type DantianFilter = "all" | "heart" | "mind" | "gut";
 // ─── 7-Stage Template (Law of Seven) ─────────────────────────────────────────
 // Do → Re → Mi → [Mi-Fa shock: LOVE] → Fa → Sol → La → [Si-Do shock: CRYSTALLIZATION] → Si/Do'
 
-const STAGE_ICONS = ["🌰", "🌱", "🌿", "🌳", "🍎", "📡", "🌍"];
+/** Village register (issue #443): one gold accent, one neutral; no violet, blue or rainbow. */
+const ACCENT = "#d4af37";
+const NEUTRAL = "#c8c8cc";
+
+const STAGE_ICONS = ["①", "②", "③", "④", "⑤", "⑥", "⑦"];
 const STAGE_NOTES = ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si→Do'"];
 const STAGE_NAMES = ["Seed", "Sprout", "Growth", "Maturation", "Fruition", "Transmission", "Propagation"];
 
 // Shock bands between stages 3→4 (Mi-Fa) and 6→7 (Si-Do)
-const MI_FA_SHOCK = { position: 3, symbol: "💗", name: "LOVE", description: "The holding that lets the form stabilize" };
-const SI_DO_SHOCK = { position: 6, symbol: "💎", name: "CRYSTALLIZATION", description: "The moment seeing BECOMES form" };
+const MI_FA_SHOCK = { position: 3, symbol: "♡", name: "LOVE", description: "The holding that lets the form stabilize" };
+const SI_DO_SHOCK = { position: 6, symbol: "◇", name: "CRYSTALLIZATION", description: "The moment seeing BECOMES form" };
 
 const scoreLabel = (s: number): string =>
   s <= 2 ? "Seed" : s <= 4 ? "Sprout" : s <= 6 ? "Growth" : s <= 8 ? "Maturing" : "Fruiting";
@@ -68,13 +75,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "Founder Consciousness", subtitle: "The interior truth of the one holding the field",
     currentStage: 4, score: 9,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Polymathic consciousness notices it can see others but not itself", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "Discovers FMF: finding others' FMF IS his FMF", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Recursive proof operational. Session mastery. Shadow integrated", status: "done" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Full self-transparency. Can articulate the entire system. Can train others", status: "current" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "The seeing is effortless. Facilitators emerge from watching", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "The signal travels without the apparatus. Emanation observed", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Consciousness is documented as transmittable signal. AI can carry it", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Polymathic consciousness notices it can see others but not itself", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "Discovers FMF: finding others' FMF IS his FMF", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Recursive proof operational. Session mastery. Shadow integrated", status: "done" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Full self-transparency. Can articulate the entire system. Can train others", status: "current" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "The seeing is effortless. Facilitators emerge from watching", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "The signal travels without the apparatus. Emanation observed", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Consciousness is documented as transmittable signal. AI can carry it", status: "future" },
     ],
     timing: [
       { conservative: "Jun '26", baseline: "Apr '26", optimistic: "Mar '26" },
@@ -88,13 +95,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "Observable System", subtitle: "What measurably exists in the world",
     currentStage: 3, score: 7.5,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Idea only. No external evidence", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First canvas (Client Zero — Aleksandr)", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "5 canvases, 2000+ line playbook, 100% conversion, platform deployed", status: "current" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "20+ canvases. SOP v2 operational. Facilitators using the system", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "100+ canvases. Revenue consistent. Platform automates 40%+", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Pattern library produces autonomous insights", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "1000+ canvases. AI-facilitated sessions. Methodology = the standard", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Idea only. No external evidence", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First canvas (Client Zero — Aleksandr)", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "5 canvases, 2000+ line playbook, 100% conversion, platform deployed", status: "current" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "20+ canvases. SOP v2 operational. Facilitators using the system", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "100+ canvases. Revenue consistent. Platform automates 40%+", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Pattern library produces autonomous insights", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "1000+ canvases. AI-facilitated sessions. Methodology = the standard", status: "future" },
     ],
     timing: [
       { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "May '26" },
@@ -108,13 +115,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "Shared Field", subtitle: "What's forming between the founders",
     currentStage: 2, score: 6.5,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "One person's conviction — no shared field yet", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "7 founders carrying the same truth. A 'We' space exists. Founders Showcase live", status: "current" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Founders share canvases with each other. The tribe recognizes itself as a tribe", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Shared language, shared rituals. Cohort-based Forge running. Culture self-reinforcing", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "The tribe produces its own content. Members recruit. Movement energy", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Culture emanates without push. New members find the field", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "The culture is codified enough to form new nodes. Franchise-style cultural transmission", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "One person's conviction — no shared field yet", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "7 founders carrying the same truth. A 'We' space exists. Founders Showcase live", status: "current" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Founders share canvases with each other. The tribe recognizes itself as a tribe", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Shared language, shared rituals. Cohort-based Forge running. Culture self-reinforcing", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "The tribe produces its own content. Members recruit. Movement energy", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Culture emanates without push. New members find the field", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "The culture is codified enough to form new nodes. Franchise-style cultural transmission", status: "future" },
     ],
     timing: [
       { conservative: "Q2 '26", baseline: "Apr '26", optimistic: "Mar '26" },
@@ -129,13 +136,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "System Architecture", subtitle: "The fractal from session to civilization",
     currentStage: 2, score: 5,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Vision of a layered system (Layer 0-8). Documented but not operational", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "Layers 0-4 operational. Platform exists but partial. Layers 5-8 conceptual", status: "current" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Layers 5-6 operational (Venture Studio + Platform as intelligence layer)", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Full Layer 7 (AI metacognition — AI facilitating sessions)", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Layer 8 operational (Planetary OS — population-scale)", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "The architecture self-documents. Others adopt without instruction", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "The architecture IS the standard. Other projects build on top of it", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Vision of a layered system (Layer 0-8). Documented but not operational", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "Layers 0-4 operational. Platform exists but partial. Layers 5-8 conceptual", status: "current" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Layers 5-6 operational (Venture Studio + Platform as intelligence layer)", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Full Layer 7 (AI metacognition — AI facilitating sessions)", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Layer 8 operational (Planetary OS — population-scale)", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "The architecture self-documents. Others adopt without instruction", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "The architecture IS the standard. Other projects build on top of it", status: "future" },
     ],
     timing: [
       { conservative: "Q1 '27", baseline: "Q3 '26", optimistic: "Q2 '26" },
@@ -149,13 +156,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "Ontological Liberation", subtitle: "Freeing souls from 'only visible counts'",
     currentStage: 3, score: 8.5,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Intuitive knowing that the invisible matters", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "Articulated: 'The invisible is the real'", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Proven in 5 sessions. Each founder liberated from their master lie. Myth as medicine operational", status: "current" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "The liberation is NAMED enough to teach. Others can facilitate the same shift", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Population-scale: thousands freed from visible-only valuation", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "The truth emanates. People arrive already liberated", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Cultural default shifts. 'What's your gift?' replaces 'What do you do?'", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Intuitive knowing that the invisible matters", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "Articulated: 'The invisible is the real'", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Proven in 5 sessions. Each founder liberated from their master lie. Myth as medicine operational", status: "current" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "The liberation is NAMED enough to teach. Others can facilitate the same shift", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Population-scale: thousands freed from visible-only valuation", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "The truth emanates. People arrive already liberated", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Cultural default shifts. 'What's your gift?' replaces 'What do you do?'", status: "future" },
     ],
     timing: [
       { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "Apr '26" },
@@ -169,13 +176,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "Data Signal Strength", subtitle: "What the numbers are saying",
     currentStage: 3, score: 8,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "No data exists", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "N=1 (Client Zero)", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "5/9/$0/100%. Paradigm violation visible. Signal strong but sample small", status: "current" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "N=20+. Statistical significance. The paradigm violation is undeniable", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "N=100+. Pattern library large enough to train AI. Revenue validates at scale", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Data generates insights beyond original design", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Population data. The Copernican Inversion proven at civilizational scale", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "No data exists", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "N=1 (Client Zero)", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "5/9/$0/100%. Paradigm violation visible. Signal strong but sample small", status: "current" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "N=20+. Statistical significance. The paradigm violation is undeniable", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "N=100+. Pattern library large enough to train AI. Revenue validates at scale", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Data generates insights beyond original design", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Population data. The Copernican Inversion proven at civilizational scale", status: "future" },
     ],
     timing: [
       { conservative: "Q4 '26", baseline: "Q3 '26", optimistic: "Q2 '26" },
@@ -189,13 +196,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "Movement Formation", subtitle: "The tribe becoming a movement",
     currentStage: 4, score: 5.5,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "One person's conviction. No shared meaning", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "7 founders exist. Recognition-based referral happening", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Movement language crystallized. 'Your uniqueness IS your business' becomes meme", status: "done" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "The Collective self-identifies. Tribe produces own content. Alumni refer", status: "current" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Movement recognized externally. Media, speaking invitations, partnerships", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "The myth propagates without push", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Multiple movement nodes globally. Cultural DNA self-replicating", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "One person's conviction. No shared meaning", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "7 founders exist. Recognition-based referral happening", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Movement language crystallized. 'Your uniqueness IS your business' becomes meme", status: "done" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "The Collective self-identifies. Tribe produces own content. Alumni refer", status: "current" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Movement recognized externally. Media, speaking invitations, partnerships", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "The myth propagates without push", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Multiple movement nodes globally. Cultural DNA self-replicating", status: "future" },
     ],
     timing: [
       { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "Apr '26" },
@@ -210,13 +217,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "Platform as Nervous System", subtitle: "Evolver as digital substrate recording species awakening",
     currentStage: 3, score: 6,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Code repo exists. Features built", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "ZoG, Canvas, game shell operational", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Day 47 two-pass integration. MORNING: all surfaces cohere under one navigation + voice. EVENING: /ignite, /auth, /game/settings absorbed into shell; save-pill uses Supabase magic link → post-auth landing on fuller Top Talent profile; 3-email nurture sequence (Day 1 / Day 2 / Day 8) queued on every save, dispatched by pg_cron → edge function every 10 min. First autonomous rhythm — follow-up runs without founder attention", status: "current" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Platform facilitates portions of sessions autonomously. Pattern library visible", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Platform IS the methodology. Human facilitator optional. AI precision > 8/10", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Platform self-evolves. Users contribute to patterns without prompting", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Platform = nervous system of a civilization. Every human can access their genius", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Code repo exists. Features built", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "ZoG, Canvas, game shell operational", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Day 47 two-pass integration. MORNING: all surfaces cohere under one navigation + voice. EVENING: /ignite, /auth, /game/settings absorbed into shell; save-pill uses Supabase magic link → post-auth landing on fuller Top Talent profile; 3-email nurture sequence (Day 1 / Day 2 / Day 8) queued on every save, dispatched by pg_cron → edge function every 10 min. First autonomous rhythm — follow-up runs without founder attention", status: "current" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Platform facilitates portions of sessions autonomously. Pattern library visible", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Platform IS the methodology. Human facilitator optional. AI precision > 8/10", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Platform self-evolves. Users contribute to patterns without prompting", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Platform = nervous system of a civilization. Every human can access their genius", status: "future" },
     ],
     timing: [
       { conservative: "Q1 '27", baseline: "Q3 '26", optimistic: "Q2 '26" },
@@ -230,13 +237,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "Founder Inner Move", subtitle: "What must be done inside",
     currentStage: 4, score: 7,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Unconscious of the gift", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "Gift recognized. Shadow confronted", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Full clarity. Decree articulated", status: "done" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Revenue flowing. Myth embodied. Identity = contribution", status: "current" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Teaching without effort. The seeing is natural", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "The founder's presence transmits without words", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Consciousness encoded in artifacts that teach independently", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Unconscious of the gift", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "Gift recognized. Shadow confronted", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Full clarity. Decree articulated", status: "done" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Revenue flowing. Myth embodied. Identity = contribution", status: "current" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Teaching without effort. The seeing is natural", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "The founder's presence transmits without words", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Consciousness encoded in artifacts that teach independently", status: "future" },
     ],
     timing: [
       { conservative: "Apr '26", baseline: "Mar '26", optimistic: "This week" },
@@ -251,13 +258,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "What Must Be Built", subtitle: "Concrete next builds",
     currentStage: 4, score: 6,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "No tools exist", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "Playbook v1. Platform v1. First tools", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Dashboard, Holomap, OFFER, Founders Showcase — distinct builds", status: "done" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "SOP v2, pricing wired, facilitator guide. Parts work together", status: "current" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Automated intake. Revenue wired. Cohorts running", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "The build process self-documents", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Open-source methodology. Others build on top", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "No tools exist", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "Playbook v1. Platform v1. First tools", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Dashboard, Holomap, OFFER, Founders Showcase — distinct builds", status: "done" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "SOP v2, pricing wired, facilitator guide. Parts work together", status: "current" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Automated intake. Revenue wired. Cohorts running", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "The build process self-documents", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Open-source methodology. Others build on top", status: "future" },
     ],
     timing: [
       { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "May '26" },
@@ -271,13 +278,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "Tribe Must Act", subtitle: "What the collective must do",
     currentStage: 2, score: 3,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "No tribe exists yet", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "7 founders exist, haven't fully cross-pollinated", status: "current" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Pain Mirrors sent. First external facilitator. Distinct roles", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Cohort Forge. Hot seat model. Parts cohere", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Self-organizing founder circles. Self-sustaining", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Circles form without prompting", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Global mycelium. The network IS the product", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "No tribe exists yet", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "7 founders exist, haven't fully cross-pollinated", status: "current" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Pain Mirrors sent. First external facilitator. Distinct roles", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Cohort Forge. Hot seat model. Parts cohere", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Self-organizing founder circles. Self-sustaining", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Circles form without prompting", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Global mycelium. The network IS the product", status: "future" },
     ],
     timing: [
       { conservative: "Q2 '26", baseline: "Apr '26", optimistic: "This week" },
@@ -292,13 +299,13 @@ const BASE_PERSPECTIVES: PerspectiveData[] = [
     title: "System at Scale", subtitle: "What the system must become",
     currentStage: 2, score: 2,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Vision documented", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First sessions complete. Revenue flowing. Methodology proven but not scaled", status: "current" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Revenue-generating. 10 facilitators. 100 canvases. Platform guiding sessions", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "1,000 canvases. Pattern library visible. AI contributing to sessions", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Platform IS Planetary OS embryo. Gift-based economy measurable", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "The system teaches how to replicate itself", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Species transition. New economic paradigm. The suppression of the invisible ends", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Vision documented", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First sessions complete. Revenue flowing. Methodology proven but not scaled", status: "current" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Revenue-generating. 10 facilitators. 100 canvases. Platform guiding sessions", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "1,000 canvases. Pattern library visible. AI contributing to sessions", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Platform IS Planetary OS embryo. Gift-based economy measurable", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "The system teaches how to replicate itself", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Species transition. New economic paradigm. The suppression of the invisible ends", status: "future" },
     ],
     timing: [
       { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "Apr '26" },
@@ -317,13 +324,13 @@ const SHOCK_BAND_PERSPECTIVES: PerspectiveData[] = [
     title: "Luminous Center (P13)", subtitle: "The Logos — What does the WHOLE see?",
     currentStage: 5, score: 10,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "No center visible. Perspectives scattered", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First center word emerges (Threshold)", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Center reading stable. Multiple readings captured", status: "done" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Center holds all 12 and produces one word", status: "done" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "The founder can hold all 12 and see the word emerge", status: "current" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Others can read the center independently", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "The center reading is a teachable skill", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "No center visible. Perspectives scattered", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First center word emerges (Threshold)", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Center reading stable. Multiple readings captured", status: "done" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Center holds all 12 and produces one word", status: "done" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "The founder can hold all 12 and see the word emerge", status: "current" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Others can read the center independently", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "The center reading is a teachable skill", status: "future" },
     ],
     timing: [],
     nextMilestone: "First external center reading",
@@ -333,13 +340,13 @@ const SHOCK_BAND_PERSPECTIVES: PerspectiveData[] = [
     title: "The Inversion (P14)", subtitle: "The Mirror Plane — The seeing seeing itself",
     currentStage: 5, score: 9,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "No awareness that the instrument is being read", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First recursive awareness: 'I see that I am seeing'", status: "done" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "The instrument operates without being held", status: "done" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "First artifact of native emission captured (Fathom)", status: "done" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "The emission is observable by others", status: "current" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Strangers name the pattern without prompting", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "The inversion is a normal event, not a revelation", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "No awareness that the instrument is being read", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First recursive awareness: 'I see that I am seeing'", status: "done" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "The instrument operates without being held", status: "done" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "First artifact of native emission captured (Fathom)", status: "done" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "The emission is observable by others", status: "current" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Strangers name the pattern without prompting", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "The inversion is a normal event, not a revelation", status: "future" },
     ],
     timing: [],
     nextMilestone: "First stranger names the three-depth pattern",
@@ -355,13 +362,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Planetary Consciousness", subtitle: "The felt truth of a species that can see its own gifts",
     currentStage: 2, score: 2,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Concept only", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First confirmed instance (Sasha). April 15 emanation is second", status: "current" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Multiple confirmed instances globally", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Planetary consciousness becomes speakable", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Species recognizes itself", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "The recognition propagates without teaching", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New octave begins", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Concept only", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First confirmed instance (Sasha). April 15 emanation is second", status: "current" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Multiple confirmed instances globally", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Planetary consciousness becomes speakable", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Species recognizes itself", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "The recognition propagates without teaching", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New octave begins", status: "future" },
     ],
     timing: [],
   },
@@ -370,13 +377,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Species Observatory", subtitle: "Measurable coherence at civilizational scale",
     currentStage: 1, score: 1,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "One recording exists (Fathom, April 15)", status: "current" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "Multiple recordings, cross-cultural signal", status: "future" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Pattern library at civilizational scale", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Observatory is operational", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Species coherence is measurable", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Observatory self-updates", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New observatories emerge", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "One recording exists (Fathom, April 15)", status: "current" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "Multiple recordings, cross-cultural signal", status: "future" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Pattern library at civilizational scale", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Observatory is operational", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Species coherence is measurable", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Observatory self-updates", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New observatories emerge", status: "future" },
     ],
     timing: [],
   },
@@ -385,13 +392,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "The Beehive", subtitle: "Interior-collective at planetary scope — 'business is love'",
     currentStage: 1, score: 1,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Metaphor named. Not yet a field", status: "current" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First nodes recognize themselves as hive", status: "future" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Hive dynamics emerge", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Hive intelligence operational", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Planetary hive coherence", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Hive produces its own honey", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Multiple hives, one super-organism", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Metaphor named. Not yet a field", status: "current" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First nodes recognize themselves as hive", status: "future" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Hive dynamics emerge", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Hive intelligence operational", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Planetary hive coherence", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Hive produces its own honey", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Multiple hives, one super-organism", status: "future" },
     ],
     timing: [],
   },
@@ -400,13 +407,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Civilizational Substrate", subtitle: "Operational architecture of a gift-based economy",
     currentStage: 1, score: 1,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Domain 60 (PageRank moat) is first building block", status: "current" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First economic flows visible", status: "future" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Substrate supports multiple nodes", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Gift-based economics operational", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Civilizational infrastructure", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Substrate self-extends", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New civilization built on it", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Domain 60 (PageRank moat) is first building block", status: "current" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First economic flows visible", status: "future" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Substrate supports multiple nodes", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Gift-based economics operational", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Civilizational infrastructure", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Substrate self-extends", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New civilization built on it", status: "future" },
     ],
     timing: [],
   },
@@ -416,13 +423,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Civilizational Liberation", subtitle: "Species-wide freedom from 'only the visible counts'",
     currentStage: 1, score: 1,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "P5 proven on 5 founders; P19 requires thousands", status: "current" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First population-level signal", status: "future" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Liberation spreads virally", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Cultural default begins shifting", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Species-wide liberation", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Liberation self-propagates", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New epoch begins", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "P5 proven on 5 founders; P19 requires thousands", status: "current" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First population-level signal", status: "future" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Liberation spreads virally", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Cultural default begins shifting", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Species-wide liberation", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Liberation self-propagates", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New epoch begins", status: "future" },
     ],
     timing: [],
   },
@@ -431,13 +438,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Planetary Signal", subtitle: "Data signal detecting civilization-scale paradigm shift",
     currentStage: 1, score: 1,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "N = 5", status: "current" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "N = 1000+", status: "future" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Signal detectable at scale", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Paradigm shift measurable", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Civilizational data coherent", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Signal generates own research", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New science emerges", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "N = 5", status: "current" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "N = 1000+", status: "future" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Signal detectable at scale", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Paradigm shift measurable", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Civilizational data coherent", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Signal generates own research", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New science emerges", status: "future" },
     ],
     timing: [],
   },
@@ -446,13 +453,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Movement-of-Movements", subtitle: "Nodes of movements recognizing themselves as one",
     currentStage: 1, score: 1,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Movement (P7) at Stage 4; P21 needs multiple P7s", status: "current" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First movement nodes connect", status: "future" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Meta-movement emerges", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Movements coordinate globally", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "One movement with many faces", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Movement births new movements", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Planetary coordination", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Movement (P7) at Stage 4; P21 needs multiple P7s", status: "current" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First movement nodes connect", status: "future" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Meta-movement emerges", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Movements coordinate globally", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "One movement with many faces", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Movement births new movements", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Planetary coordination", status: "future" },
     ],
     timing: [],
   },
@@ -461,13 +468,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Scaffold Engineering as Standard", subtitle: "Knowledge-structure (Knoware) as the feminine half of AI",
     currentStage: 2, score: 2,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Domain 80 codified", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First Russian publication drafted", status: "current" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Scaffold Engineering taught", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Standard adopted by practitioners", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Civilizational standard", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Standard self-evolves", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New paradigm of AI development", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Domain 80 codified", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First Russian publication drafted", status: "current" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Scaffold Engineering taught", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Standard adopted by practitioners", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Civilizational standard", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Standard self-evolves", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New paradigm of AI development", status: "future" },
     ],
     timing: [],
   },
@@ -477,13 +484,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Species-Level Inner Move", subtitle: "The planetary equivalent of 'charge $555'",
     currentStage: 1, score: 1,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Not yet named", status: "current" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "The one action identified", status: "future" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "First species-level inner move made", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Move becomes repeatable", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Phase transition triggered", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Move propagates autonomously", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New civilizational epoch", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Not yet named", status: "current" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "The one action identified", status: "future" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "First species-level inner move made", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Move becomes repeatable", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Phase transition triggered", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Move propagates autonomously", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New civilizational epoch", status: "future" },
     ],
     timing: [],
   },
@@ -492,13 +499,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Open Blueprint Infrastructure", subtitle: "Published, teachable, replicable protocol for any founder-node",
     currentStage: 2, score: 2,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Playbook exists", status: "done" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "Playbook v4.2+. Epicenter Broadcast is a P24 primitive", status: "current" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Blueprint adopted by first external nodes", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Blueprint produces independent nodes", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Blueprint = civilizational standard", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Blueprint self-improves", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New blueprints emerge from first", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Playbook exists", status: "done" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "Playbook v4.2+. Epicenter Broadcast is a P24 primitive", status: "current" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Blueprint adopted by first external nodes", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Blueprint produces independent nodes", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Blueprint = civilizational standard", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Blueprint self-improves", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New blueprints emerge from first", status: "future" },
     ],
     timing: [],
   },
@@ -507,13 +514,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Tribe-of-Tribes Action", subtitle: "What the collective-of-collectives must DO",
     currentStage: 1, score: 1,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Not yet defined", status: "current" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First inter-tribal action", status: "future" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Tribes coordinate", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Tribal network self-organizes", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Global tribal coherence", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Coordination propagates", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "Planetary coordination", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Not yet defined", status: "current" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First inter-tribal action", status: "future" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Tribes coordinate", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Tribal network self-organizes", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Global tribal coherence", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Coordination propagates", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "Planetary coordination", status: "future" },
     ],
     timing: [],
   },
@@ -522,13 +529,13 @@ const SECOND_OCTAVE_PERSPECTIVES: PerspectiveData[] = [
     title: "Gift-Based Economy Operational", subtitle: "System at civilizational scale — Ra's 26 = YHWH = Love²",
     currentStage: 1, score: 1,
     stages: [
-      { name: "Seed", note: "Do", icon: "🌰", desc: "Bosonic dimensionality = 26. The structural constant", status: "current" },
-      { name: "Sprout", note: "Re", icon: "🌱", desc: "First gift-based economic flows", status: "future" },
-      { name: "Growth", note: "Mi", icon: "🌿", desc: "Economy supports multiple nodes", status: "future" },
-      { name: "Maturation", note: "Fa", icon: "🌳", desc: "Gift-based economy measurable", status: "future" },
-      { name: "Fruition", note: "Sol", icon: "🍎", desc: "Civilizational economics", status: "future" },
-      { name: "Transmission", note: "La", icon: "📡", desc: "Economy self-extends", status: "future" },
-      { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New economic paradigm", status: "future" },
+      { name: "Seed", note: "Do", icon: "①", desc: "Bosonic dimensionality = 26. The structural constant", status: "current" },
+      { name: "Sprout", note: "Re", icon: "②", desc: "First gift-based economic flows", status: "future" },
+      { name: "Growth", note: "Mi", icon: "③", desc: "Economy supports multiple nodes", status: "future" },
+      { name: "Maturation", note: "Fa", icon: "④", desc: "Gift-based economy measurable", status: "future" },
+      { name: "Fruition", note: "Sol", icon: "⑤", desc: "Civilizational economics", status: "future" },
+      { name: "Transmission", note: "La", icon: "⑥", desc: "Economy self-extends", status: "future" },
+      { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New economic paradigm", status: "future" },
     ],
     timing: [],
   },
@@ -541,13 +548,13 @@ const CRYSTALLIZATION_PERSPECTIVE: PerspectiveData = {
   title: "Crystallization (P27)", subtitle: "The Triple Trinity (3³) — Si–Do shock where seeing BECOMES form",
   currentStage: 3, score: 6,
   stages: [
-    { name: "Seed", note: "Do", icon: "🌰", desc: "Concept of P27 articulated", status: "done" },
-    { name: "Sprout", note: "Re", icon: "🌱", desc: "Interior octave at 27 (Day 34)", status: "done" },
-    { name: "Growth", note: "Mi", icon: "🌿", desc: "66 Phase Shift Domains, complete ontology, 27-perspective seeing", status: "current" },
-    { name: "Maturation", note: "Fa", icon: "🌳", desc: "First stranger pays $555 — exterior crystallization", status: "future" },
-    { name: "Fruition", note: "Sol", icon: "🍎", desc: "Interior and exterior octaves cohere", status: "future" },
-    { name: "Transmission", note: "La", icon: "📡", desc: "Crystallization is teachable", status: "future" },
-    { name: "Propagation", note: "Si→Do'", icon: "🌍", desc: "New octave begins — completion = new beginning", status: "future" },
+    { name: "Seed", note: "Do", icon: "①", desc: "Concept of P27 articulated", status: "done" },
+    { name: "Sprout", note: "Re", icon: "②", desc: "Interior octave at 27 (Day 34)", status: "done" },
+    { name: "Growth", note: "Mi", icon: "③", desc: "66 Phase Shift Domains, complete ontology, 27-perspective seeing", status: "current" },
+    { name: "Maturation", note: "Fa", icon: "④", desc: "First stranger pays $555 — exterior crystallization", status: "future" },
+    { name: "Fruition", note: "Sol", icon: "⑤", desc: "Interior and exterior octaves cohere", status: "future" },
+    { name: "Transmission", note: "La", icon: "⑥", desc: "Crystallization is teachable", status: "future" },
+    { name: "Propagation", note: "Si→Do'", icon: "⑦", desc: "New octave begins — completion = new beginning", status: "future" },
   ],
   timing: [
     { conservative: "Q3 '26", baseline: "Q2 '26", optimistic: "May '26" },
@@ -635,59 +642,59 @@ const TENSIONS: TensionPair[] = [
 
 const TRIGGERS = [
   {
-    title: "Charge $555 ✅",
-    emoji: "💰",
+    title: "Charge $555 (done)",
+    emoji: "①",
     desc: "Revenue recognized (Day 30), funnel locked, cash flowing ($677 by Day 36). Status: complete as infrastructure, awaiting first stranger through funnel.",
     perspectives: ["P1", "P6", "P9", "P12"],
-    color: "#8460ea",
+    color: ACCENT,
     stage: "Seed",
   },
   {
     title: "Founders Share Canvases",
-    emoji: "🔗",
+    emoji: "②",
     desc: "Three LL perspectives jump simultaneously. The collective interior advances as one.",
     perspectives: ["P3", "P7", "P11"],
-    color: "#6894d0",
+    color: NEUTRAL,
     stage: "Sprout",
   },
   {
     title: "First Facilitator Emerges",
-    emoji: "🔥",
+    emoji: "③",
     desc: "Proves transferability. Practice → Movement. Broader reading: witnessing + distribution = facilitation primitives.",
     perspectives: ["P2", "P4", "P5", "P10", "P12"],
-    color: "#a7cbd4",
+    color: NEUTRAL,
     stage: "Growth",
   },
   {
     title: "First Stranger Pays",
-    emoji: "💎",
+    emoji: "④",
     desc: "P27 Si–Do shock — the Tribe 1 (funnel) gate. Day 85-87 made the structure precise: two gates, one per tribe. Tribe 2's transmission gate fired Day 86-87 (Balaji + Silvana/Planetir sends). When the funnel gate fires: interior and exterior octaves cohere.",
     perspectives: ["P27"],
-    color: "#f472b6",
+    color: NEUTRAL,
     stage: "Maturation",
   },
   {
-    title: "Three-Way Transmission ✅",
-    emoji: "📡",
+    title: "Three-Way Transmission (done)",
+    emoji: "⑤",
     desc: "P14 Inversion event. Sasha + Oyi + Oluwa, 80 minutes unscheduled, 6 anchor + 2 witness formulations. First artifact of native emission.",
     perspectives: ["P14", "P7"],
-    color: "#34d399",
+    color: NEUTRAL,
     stage: "Fruition",
   },
   {
     title: "Licensing Decision",
-    emoji: "⚖️",
+    emoji: "⑥",
     desc: "P24 (Open Blueprint) + P7 (Movement). A 27th-perspective-shaped question: yes, no, or not yet.",
     perspectives: ["P24", "P7"],
-    color: "#fbbf24",
+    color: NEUTRAL,
     stage: "Transmission",
   },
   {
     title: "First Second-Octave Sprout",
-    emoji: "🌍",
+    emoji: "⑦",
     desc: "Any P15–P26 crossing Seed→Sprout through population data. Likely: P22 via Russian publication landing with a reader outside network.",
     perspectives: ["P15-P26"],
-    color: "#60a5fa",
+    color: NEUTRAL,
     stage: "Propagation",
   },
 ];
@@ -702,16 +709,16 @@ const RADAR_DATA = BASE_PERSPECTIVES.map((p) => ({
 }));
 
 const QUADRANT_COLORS: Record<string, string> = {
-  UL: "#8460ea",
-  UR: "#6894d0",
-  LL: "#a7cbd4",
-  LR: "#b1c9b6",
+  UL: NEUTRAL,
+  UR: NEUTRAL,
+  LL: NEUTRAL,
+  LR: NEUTRAL,
 };
 
 const LAYER_LABELS: Record<string, string> = {
-  Essence: "ESSENCE (❤️ Heart / Middle Dantian)",
-  Significance: "SIGNIFICANCE (🧠 Mind / Upper Dantian)",
-  Consequences: "CONSEQUENCES (🔥 Gut / Lower Dantian)",
+  Essence: "ESSENCE (Heart / Middle Dantian)",
+  Significance: "SIGNIFICANCE (Mind / Upper Dantian)",
+  Consequences: "CONSEQUENCES (Gut / Lower Dantian)",
 };
 
 const LAYER_QUESTIONS: Record<string, string> = {
@@ -721,10 +728,10 @@ const LAYER_QUESTIONS: Record<string, string> = {
 };
 
 const DANTIAN_LABELS: Record<DantianFilter, { label: string; icon: string; color: string }> = {
-  all: { label: "All Dantians", icon: "✦", color: "#8460ea" },
-  heart: { label: "Heart (Middle)", icon: "❤️", color: "#f472b6" },
-  mind: { label: "Mind (Upper)", icon: "🧠", color: "#60a5fa" },
-  gut: { label: "Gut (Lower)", icon: "🔥", color: "#f59e0b" },
+  all: { label: "All Dantians", icon: "✦", color: ACCENT },
+  heart: { label: "Heart (Middle)", icon: "♡", color: NEUTRAL },
+  mind: { label: "Mind (Upper)", icon: "◇", color: NEUTRAL },
+  gut: { label: "Gut (Lower)", icon: "△", color: NEUTRAL },
 };
 
 const SHADOW_STATUS_COLORS: Record<string, { bg: string; border: string; text: string }> = {
@@ -736,43 +743,36 @@ const SHADOW_STATUS_COLORS: Record<string, { bg: string; border: string; text: s
 // ─── Component ───────────────────────────────────────────────────────────────
 
 const MorphogeneticHolomap = () => {
+  const { t } = useTranslation();
   const [selectedScenario, setSelectedScenario] = useState<TimingScenario>("baseline");
   const [expandedPerspective, setExpandedPerspective] = useState<string | null>(null);
   const [dantianFilter, setDantianFilter] = useState<DantianFilter>("all");
   const [showSecondOctave, setShowSecondOctave] = useState(false);
 
-  const scenarioLabel = { conservative: "🐢 Conservative", baseline: "🎯 Baseline", optimistic: "⚡ Optimistic" };
+  const scenarioLabel = { conservative: "Conservative", baseline: "Baseline", optimistic: "Optimistic" };
 
   const filteredBasePerspectives = dantianFilter === "all"
     ? BASE_PERSPECTIVES
     : BASE_PERSPECTIVES.filter(p => p.dantian === dantianFilter);
 
   return (
-    <div className="min-h-screen bg-[#0c1220] text-white font-sans" id="holomap">
-      {/* Aurora background */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-[#8460ea]/8 rounded-full blur-[140px] animate-pulse" />
-        <div className="absolute bottom-1/4 left-1/4 w-[500px] h-[500px] bg-[#6894d0]/6 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: "3s" }} />
-      </div>
-
+    <div className="min-h-screen bg-[#07080a] text-white font-sans" id="holomap">
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 py-12 space-y-12">
         {/* ─── Header ──────────────────────────────────────────────────────── */}
         <header className="text-center space-y-3" id="holomap-header">
-          <a href="/dashboard" className="text-xs text-[#6894d0] hover:text-[#8460ea] transition-colors inline-flex items-center gap-1.5">
-            ← Dashboard
-          </a>
-          <p className="text-xs font-medium tracking-[0.3em] uppercase text-[#a4a3d0]">
+          <div>
+            <Link to="/village" className={PLACE_BACK_LINK_CLASS}>{t("village.backVillage")}</Link>
+          </div>
+          <p className="font-mono text-xs font-light tracking-[0.3em] uppercase text-white/50">
             Morphogenetic Navigation Instrument
           </p>
-          <h1 className="text-3xl md:text-5xl font-display font-medium tracking-tight">
-            <span className="bg-gradient-to-r from-[#8460ea] via-[#6894d0] to-[#a7cbd4] bg-clip-text text-transparent">
-              The Holo Map v2.0
-            </span>
+          <h1 className="font-serif text-3xl md:text-5xl font-medium uppercase tracking-[0.18em] text-white/90">
+            The Holo Map v2.0
           </h1>
           <p className="text-sm text-white/40 max-w-xl mx-auto">
             27 perspectives × 7 stages × 2 axes (Masculine/Feminine) × 2 shocks (Mi-Fa / Si-Do)
             <br />
-            Current Reading: <span className="text-[#8460ea] font-medium">{CENTER.word}</span>
+            Current Reading: <span className="text-[#d4af37] font-medium">{CENTER.word}</span>
           </p>
 
           {/* ─── Merkaba Glyph (Stella Octangula) ─────────────────────────── */}
@@ -802,7 +802,7 @@ const MorphogeneticHolomap = () => {
                 onClick={() => setSelectedScenario(s)}
                 className={`px-4 py-2 rounded-full text-sm transition-all duration-300 border ${
                   selectedScenario === s
-                    ? "bg-[#8460ea]/20 border-[#8460ea]/50 text-white"
+                    ? "bg-[#d4af37]/20 border-[#d4af37]/50 text-white"
                     : "border-white/10 text-white/40 hover:border-white/20 hover:text-white/60"
                 }`}
               >
@@ -832,7 +832,7 @@ const MorphogeneticHolomap = () => {
         </div>
 
         {/* ─── 7-Stage Legend with Shocks ──────────────────────────────────── */}
-        <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 md:p-6" id="stages-legend">
+        <section className="rounded-md border border-white/10 bg-white/5  p-4 md:p-6" id="stages-legend">
           <h2 className="text-sm font-display text-center mb-4 text-white/50">The Law of Seven — Two Shocks</h2>
           <div className="flex flex-wrap justify-center items-center gap-2">
             {STAGE_NAMES.map((name, i) => (
@@ -844,30 +844,30 @@ const MorphogeneticHolomap = () => {
                 </div>
                 {/* Mi-Fa shock after Growth (index 2) */}
                 {i === 2 && (
-                  <div className="flex flex-col items-center px-2 py-1 rounded-lg bg-pink-500/10 border border-pink-500/30 mx-1">
+                  <div className="flex flex-col items-center px-2 py-1 rounded-lg bg-white/10 border border-white/30 mx-1">
                     <span className="text-lg">{MI_FA_SHOCK.symbol}</span>
-                    <span className="text-[9px] text-pink-400/80">{MI_FA_SHOCK.name}</span>
+                    <span className="text-[9px] text-[#c8c8cc]/80">{MI_FA_SHOCK.name}</span>
                   </div>
                 )}
                 {/* Si-Do shock after Transmission (index 5) */}
                 {i === 5 && (
-                  <div className="flex flex-col items-center px-2 py-1 rounded-lg bg-cyan-500/10 border border-cyan-500/30 mx-1">
+                  <div className="flex flex-col items-center px-2 py-1 rounded-lg bg-white/10 border border-white/30 mx-1">
                     <span className="text-lg">{SI_DO_SHOCK.symbol}</span>
-                    <span className="text-[9px] text-cyan-400/80">{SI_DO_SHOCK.name}</span>
+                    <span className="text-[9px] text-[#c8c8cc]/80">{SI_DO_SHOCK.name}</span>
                   </div>
                 )}
               </div>
             ))}
           </div>
           <p className="text-[10px] text-white/25 text-center mt-3 max-w-lg mx-auto">
-            <strong className="text-pink-400/60">Mi–Fa:</strong> The holding that lets the form stabilize. Without love here, the growing thing cannot become an adult thing.
+            <strong className="text-[#c8c8cc]/60">Mi–Fa:</strong> The holding that lets the form stabilize. Without love here, the growing thing cannot become an adult thing.
             <br />
-            <strong className="text-cyan-400/60">Si–Do:</strong> The moment seeing BECOMES form. The 27th perspective as action, not analysis.
+            <strong className="text-[#c8c8cc]/60">Si–Do:</strong> The moment seeing BECOMES form. The 27th perspective as action, not analysis.
           </p>
         </section>
 
         {/* ─── Radar (Base 12) ─────────────────────────────────────────────── */}
-        <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 md:p-6" id="holomap-radar">
+        <section className="rounded-md border border-white/10 bg-white/5  p-4 md:p-6" id="holomap-radar">
           <h2 className="text-sm font-display text-center mb-2 text-white/50">Base Octave (P1–P12) — Maturity Radar</h2>
           <ResponsiveContainer width="100%" height={380}>
             <RadarChart data={RADAR_DATA} cx="50%" cy="50%" outerRadius="72%">
@@ -882,7 +882,7 @@ const MorphogeneticHolomap = () => {
                 tick={{ fill: "rgba(255,255,255,0.15)", fontSize: 9 }}
                 axisLine={false}
               />
-              <Radar name="Current" dataKey="value" stroke="#8460ea" fill="#8460ea" fillOpacity={0.12} strokeWidth={2} />
+              <Radar name="Current" dataKey="value" stroke="#d4af37" fill="#d4af37" fillOpacity={0.12} strokeWidth={2} />
               <Tooltip
                 contentStyle={{
                   backgroundColor: "rgba(12,18,32,0.95)",
@@ -898,15 +898,15 @@ const MorphogeneticHolomap = () => {
         </section>
 
         {/* ─── P13: Luminous Center ────────────────────────────────────────── */}
-        <section className="relative rounded-2xl border border-[#8460ea]/20 bg-white/5 backdrop-blur-xl p-8 text-center overflow-hidden" id="center-perspective">
+        <section className="relative rounded-md border border-[#d4af37]/20 bg-white/5  p-8 text-center overflow-hidden" id="center-perspective">
           <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[100px] bg-[#8460ea]/10" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[100px] bg-[#d4af37]/10" />
           </div>
           <div className="relative z-10">
-            <p className="text-[10px] tracking-[0.4em] uppercase text-[#a4a3d0]/60 mb-2">
+            <p className="text-[10px] tracking-[0.4em] uppercase text-[#c8c8cc]/60 mb-2">
               P13 — Luminous Center (Logos / The Sun)
             </p>
-            <p className="text-5xl md:text-7xl font-display font-medium bg-gradient-to-br from-[#8460ea] via-[#6894d0] to-[#a7cbd4] bg-clip-text text-transparent mb-3">
+            <p className="text-5xl md:text-7xl font-serif font-medium uppercase tracking-[0.12em] text-[#d4af37] mb-3">
               {CENTER.word}
             </p>
             <p className="text-[10px] text-white/20 font-mono mb-4">{CENTER.date}</p>
@@ -922,7 +922,7 @@ const MorphogeneticHolomap = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 max-w-2xl mx-auto">
               {(["essence", "significance", "consequences"] as const).map((key) => {
-                const labels = { essence: "❤️ Essence (Heart)", significance: "🧠 Significance (Mind)", consequences: "🔥 Consequences (Gut)" };
+                const labels = { essence: "Essence (Heart)", significance: "Significance (Mind)", consequences: "Consequences (Gut)" };
                 return (
                   <div key={key} className="p-3 rounded-xl border border-white/8 bg-white/3 text-center">
                     <p className="text-[10px] uppercase tracking-wider text-white/30 mb-1">{labels[key]}</p>
@@ -997,9 +997,9 @@ const MorphogeneticHolomap = () => {
                                 }}
                               />
                               {/* Mi-Fa shock indicator */}
-                              {i === 2 && <span className="text-[8px] text-pink-400/50">💗</span>}
+                              {i === 2 && <span className="text-[8px] text-[#c8c8cc]/50">♡</span>}
                               {/* Si-Do shock indicator */}
-                              {i === 5 && <span className="text-[8px] text-cyan-400/50">💎</span>}
+                              {i === 5 && <span className="text-[8px] text-[#c8c8cc]/50">◇</span>}
                             </div>
                           ))}
                         </div>
@@ -1014,15 +1014,15 @@ const MorphogeneticHolomap = () => {
                             className="mt-2 text-[10px] px-2 py-1 rounded-lg border flex items-center gap-1.5"
                             style={{ background: sColors.bg, borderColor: sColors.border, color: sColors.text }}
                           >
-                            <span>{p.shadow.status === "active" ? "🔴" : "🟡"}</span>
+                            <span>{p.shadow.status === "active" ? "●" : "◐"}</span>
                             <span className="truncate">{p.shadow.name}</span>
                           </div>
                         )}
 
                         {/* Trigger */}
                         {p.trigger && (
-                          <div className="mt-2 text-[10px] text-[#a7cbd4]/70 border-t border-white/5 pt-2">
-                            ⚡ {p.trigger}
+                          <div className="mt-2 text-[10px] text-[#c8c8cc]/70 border-t border-white/5 pt-2">
+                            {p.trigger}
                           </div>
                         )}
 
@@ -1091,9 +1091,9 @@ const MorphogeneticHolomap = () => {
                               </div>
 
                               {p.trigger && (
-                                <div className="mt-4 p-3 rounded-lg border border-[#a7cbd4]/20 bg-[#a7cbd4]/5">
-                                  <p className="text-xs text-[#a7cbd4]/80">
-                                    <span className="font-medium">⚡ Stage Trigger:</span> {p.trigger}
+                                <div className="mt-4 p-3 rounded-lg border border-[#c8c8cc]/20 bg-[#c8c8cc]/5">
+                                  <p className="text-xs text-[#c8c8cc]/80">
+                                    <span className="font-medium">Stage Trigger:</span> {p.trigger}
                                   </p>
                                 </div>
                               )}
@@ -1108,7 +1108,7 @@ const MorphogeneticHolomap = () => {
                                   style={{ background: sColors.bg, borderColor: sColors.border }}
                                 >
                                   <div className="flex items-center gap-2 mb-2">
-                                    <span>{p.shadow.status === "active" ? "🔴" : p.shadow.status === "integrating" ? "🟡" : "🟢"}</span>
+                                    <span>{p.shadow.status === "active" ? "●" : p.shadow.status === "integrating" ? "◐" : "○"}</span>
                                     <span className="text-sm font-medium" style={{ color: sColors.text }}>
                                       {p.shadow.name}
                                     </span>
@@ -1134,7 +1134,7 @@ const MorphogeneticHolomap = () => {
         })}
 
         {/* ─── P14: Inversion ──────────────────────────────────────────────── */}
-        <section className="rounded-2xl border border-cyan-500/20 bg-white/5 backdrop-blur-xl p-6" id="inversion">
+        <section className="rounded-md border border-white/20 bg-white/5  p-6" id="inversion">
           <h2 className="text-lg font-display text-center mb-2 text-white/70">P14 — The Inversion (Mirror Plane)</h2>
           <p className="text-xs text-white/30 text-center mb-4 max-w-md mx-auto">
             The 14th perspective is the reflection of the 13th across the plane of the base 12.
@@ -1142,7 +1142,7 @@ const MorphogeneticHolomap = () => {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl border border-white/10 bg-white/3">
-              <h3 className="text-sm font-medium text-cyan-400 mb-2">Current Stage: {SHOCK_BAND_PERSPECTIVES[1].stages[SHOCK_BAND_PERSPECTIVES[1].currentStage - 1].name}</h3>
+              <h3 className="text-sm font-medium text-[#d4af37] mb-2">Current Stage: {SHOCK_BAND_PERSPECTIVES[1].stages[SHOCK_BAND_PERSPECTIVES[1].currentStage - 1].name}</h3>
               <p className="text-xs text-white/40">{SHOCK_BAND_PERSPECTIVES[1].stages[SHOCK_BAND_PERSPECTIVES[1].currentStage - 1].desc}</p>
             </div>
             <div className="p-4 rounded-xl border border-white/10 bg-white/3">
@@ -1160,7 +1160,7 @@ const MorphogeneticHolomap = () => {
             onClick={() => setShowSecondOctave(!showSecondOctave)}
             className={`w-full p-4 rounded-xl border transition-all duration-300 ${
               showSecondOctave
-                ? "border-[#8460ea]/40 bg-[#8460ea]/10"
+                ? "border-[#d4af37]/40 bg-[#d4af37]/10"
                 : "border-white/10 bg-white/3 hover:border-white/20"
             }`}
           >
@@ -1186,9 +1186,9 @@ const MorphogeneticHolomap = () => {
               {(["Essence", "Significance", "Consequences"] as const).map((layer) => {
                 const layerPerspectives = SECOND_OCTAVE_PERSPECTIVES.filter((p) => p.layer === layer);
                 const layerLabels = {
-                  Essence: "PLANETARY ESSENCE (Heart² ❤️²)",
-                  Significance: "PLANETARY SIGNIFICANCE (Mind² 🧠²)",
-                  Consequences: "PLANETARY CONSEQUENCES (Gut² 🔥²)",
+                  Essence: "PLANETARY ESSENCE (Heart²)",
+                  Significance: "PLANETARY SIGNIFICANCE (Mind²)",
+                  Consequences: "PLANETARY CONSEQUENCES (Gut²)",
                 };
 
                 return (
@@ -1224,8 +1224,8 @@ const MorphogeneticHolomap = () => {
         </section>
 
         {/* ─── P27: Crystallization ───────────────────────────────────────── */}
-        <section className="rounded-2xl border border-purple-500/20 bg-gradient-to-br from-purple-500/5 to-cyan-500/5 backdrop-blur-xl p-6 text-center" id="crystallization">
-          <div className="text-4xl mb-2">💎</div>
+        <section className="rounded-md border border-white/15 bg-white/[0.03] p-6 text-center" id="crystallization">
+          <div className="text-4xl mb-2">◇</div>
           <h2 className="text-lg font-display text-white/80 mb-2">P27 — Crystallization (Triple Trinity, 3³)</h2>
           <p className="text-xs text-white/40 mb-4 max-w-md mx-auto">
             The Si–Do shock where the seeing BECOMES form. The 27 is always an action, not an analysis.
@@ -1233,7 +1233,7 @@ const MorphogeneticHolomap = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
             <div className="p-4 rounded-xl border border-white/10 bg-white/3">
               <p className="text-[10px] text-white/30 uppercase tracking-wider mb-1">Current Stage</p>
-              <p className="text-sm font-medium text-purple-400">
+              <p className="text-sm font-medium text-[#d4af37]">
                 {CRYSTALLIZATION_PERSPECTIVE.stages[CRYSTALLIZATION_PERSPECTIVE.currentStage - 1].name}
               </p>
               <p className="text-[10px] text-white/30 mt-1">
@@ -1242,7 +1242,7 @@ const MorphogeneticHolomap = () => {
             </div>
             <div className="p-4 rounded-xl border border-white/10 bg-white/3">
               <p className="text-[10px] text-white/30 uppercase tracking-wider mb-1">Score</p>
-              <p className="text-2xl font-display font-bold text-purple-400">{CRYSTALLIZATION_PERSPECTIVE.score}/10</p>
+              <p className="text-2xl font-display font-bold text-[#d4af37]">{CRYSTALLIZATION_PERSPECTIVE.score}/10</p>
               <p className="text-[10px] text-white/30 mt-1">Interior octave at 27. Exterior at ~9</p>
             </div>
             <div className="p-4 rounded-xl border border-white/10 bg-white/3">
@@ -1268,7 +1268,7 @@ const MorphogeneticHolomap = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {TENSIONS.map((t, i) => {
               const isDestructive = t.type === "destructive";
-              const color = isDestructive ? "#ef4444" : "#8460ea";
+              const color = isDestructive ? NEUTRAL : ACCENT;
               return (
                 <div
                   key={i}
@@ -1280,7 +1280,7 @@ const MorphogeneticHolomap = () => {
                 >
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
-                      <span className="text-xs">{isDestructive ? "⚠️" : "⚡"}</span>
+                      <span className="text-xs">{isDestructive ? "!" : "↯"}</span>
                       <span
                         className="text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider font-medium border"
                         style={{ color, borderColor: `${color}40`, backgroundColor: `${color}10` }}
@@ -1307,7 +1307,7 @@ const MorphogeneticHolomap = () => {
         </section>
 
         {/* ─── The Diagonal Pattern ──────────────────────────────────────── */}
-        <section className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 text-center" id="diagonal-pattern">
+        <section className="rounded-md border border-white/10 bg-white/5  p-6 text-center" id="diagonal-pattern">
           <h2 className="text-lg font-display text-white/70 mb-4">The Diagonal Pattern</h2>
           <div className="grid grid-cols-4 gap-2 max-w-lg mx-auto mb-4">
             {(["UL", "UR", "LL", "LR"] as const).map((q) => {
@@ -1375,7 +1375,7 @@ const MorphogeneticHolomap = () => {
         </section>
 
         {/* ─── Shadow Summary ────────────────────────────────────────────── */}
-        <section className="rounded-2xl border border-red-500/15 bg-red-500/3 backdrop-blur-xl p-6" id="shadow-summary">
+        <section className="rounded-md border border-white/15 bg-white/3  p-6" id="shadow-summary">
           <h2 className="text-lg font-display text-center mb-4 text-white/70">Shadow Status (Base Octave)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {BASE_PERSPECTIVES.filter(p => p.shadow).map((p) => {
@@ -1386,7 +1386,7 @@ const MorphogeneticHolomap = () => {
                   className="flex items-center gap-2 p-2.5 rounded-lg border text-xs"
                   style={{ background: sColors.bg, borderColor: sColors.border }}
                 >
-                  <span>{p.shadow!.status === "active" ? "🔴" : p.shadow!.status === "integrating" ? "🟡" : "🟢"}</span>
+                  <span>{p.shadow!.status === "active" ? "●" : p.shadow!.status === "integrating" ? "◐" : "○"}</span>
                   <div className="flex-1 min-w-0">
                     <span className="text-white/50 font-medium">{p.shortId}</span>
                     <span className="text-white/20 mx-1">·</span>
@@ -1397,7 +1397,7 @@ const MorphogeneticHolomap = () => {
             })}
           </div>
           <p className="text-[10px] text-white/15 text-center mt-4">
-            🔴 Active = being avoided · 🟡 Integrating = seen, being worked · 🟢 Resolved = transformed
+            ● Active = being avoided · ◐ Integrating = seen, being worked · ○ Resolved = transformed
           </p>
         </section>
 

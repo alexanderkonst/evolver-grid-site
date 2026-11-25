@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Sparkles } from "lucide-react";
+import { Users } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/hooks/use-toast";
 import { useVillagePresencePrefs } from "@/hooks/useVillagePresence";
@@ -33,9 +33,11 @@ const VillagePresenceSettings = () => {
   };
 
   const row = "flex items-center justify-between gap-4 rounded-xl p-4";
+  // Issue #443 wave 3 (item 7): the rows are part of the card, not slabs on it. No fill of their own
+  // (a gold tint over the dark card read as lighter grey); a hairline from the card's own token.
   const rowStyle = {
-    background: "rgba(212, 175, 55, 0.06)",
-    border: "0.5px solid rgba(212, 175, 55, 0.30)",
+    background: "transparent",
+    border: "1px solid var(--skin-hairline, hsla(228, 30%, 18%, 0.10))",
   };
   const labelStyle = {
     fontFamily: "'Cormorant Garamond', serif",
@@ -57,7 +59,7 @@ const VillagePresenceSettings = () => {
       }}
     >
       <div className="flex items-start gap-3">
-        <Sparkles className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "hsl(40 70% 45%)" }} aria-hidden="true" />
+        <Users className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: "var(--select-accent)" }} aria-hidden="true" />
         <div>
           <h2
             className="text-xl leading-tight"

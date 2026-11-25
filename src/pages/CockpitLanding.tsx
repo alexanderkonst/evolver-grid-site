@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import SEO from "@/components/SEO";
 import "./CockpitLanding.css";
@@ -64,8 +64,6 @@ const designRules = [
 
 export default function CockpitLanding() {
   const rootRef = useRef<HTMLElement>(null);
-  const heroCtaRef = useRef<HTMLDivElement>(null);
-  const [heroCtaVisible, setHeroCtaVisible] = useState(true);
 
   // Smooth in-page anchors, off under reduced motion. Scoped to this page.
   useEffect(() => {
@@ -76,17 +74,6 @@ export default function CockpitLanding() {
     return () => {
       html.style.scrollBehavior = prev;
     };
-  }, []);
-
-  // One call to action at a time: the nav button appears only once the hero CTA is out of view.
-  useEffect(() => {
-    const el = heroCtaRef.current;
-    if (!el || typeof IntersectionObserver === "undefined") return;
-    const observer = new IntersectionObserver(([entry]) => setHeroCtaVisible(entry.isIntersecting), {
-      rootMargin: "-52px 0px 0px 0px",
-    });
-    observer.observe(el);
-    return () => observer.disconnect();
   }, []);
 
   // Scroll reveal. Content is visible without JS; the class that hides
@@ -127,24 +114,7 @@ export default function CockpitLanding() {
         <link rel="preload" as="image" href={`${IMG}/cashflow.webp`} type="image/webp" {...{ fetchpriority: "high" }} />
       </Helmet>
 
-      <nav className="fc-nav" aria-label="Founder Cockpit">
-        <div className="fc-nav-name">Founder Cockpit</div>
-        <div className="fc-nav-links">
-          <a className="fc-nav-link" href="#source">Source</a>
-          <a className="fc-nav-link" href="#flow">Flow</a>
-          <a className="fc-nav-link" href="#loop">Loop</a>
-          <a
-            className={`fc-btn fc-btn-sm fc-nav-cta${heroCtaVisible ? " fc-nav-cta-hidden" : ""}`}
-            href={TELEGRAM}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-hidden={heroCtaVisible}
-            tabIndex={heroCtaVisible ? -1 : undefined}
-          >
-            REQUEST EARLY ACCESS
-          </a>
-        </div>
-      </nav>
+      {/* Issue #443 (A7): no local top bar here. The shell above already is the page's top bar. */}
 
       {/* Hero */}
       <section className="fc-sec fc-hero">
@@ -158,7 +128,7 @@ export default function CockpitLanding() {
           <p className="fc-lede" data-reveal style={{ "--d": "120ms" } as React.CSSProperties}>
             A management system for the evolution of unique businesses.
           </p>
-          <div ref={heroCtaRef} className="fc-cta" data-reveal style={{ "--d": "180ms" } as React.CSSProperties}>
+          <div className="fc-cta" data-reveal style={{ "--d": "180ms" } as React.CSSProperties}>
             <a className="fc-btn" href={TELEGRAM} target="_blank" rel="noopener noreferrer">REQUEST EARLY ACCESS</a>
             <span className="fc-cta-note">For founders who build from who they are.</span>
           </div>

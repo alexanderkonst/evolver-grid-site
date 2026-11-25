@@ -175,6 +175,9 @@
       "first-price": "Se abre cuando tu oferta está guardada. Dentro: tu primer precio, dicho a un cliente real.",
       "first-sale": "Se abre cuando tu oferta está guardada. Dentro: la prueba en el mundo de que alguien te paga por ser tú."
     },
+    "closedShort": {
+      "town-hall": "Se abre con tu primera venta."
+    },
     "live": {
       "fire-circle": "En vivo ahora: FMF, de lunes a miércoles.",
       "academy": "En vivo ahora: webinar, mié 4 de nov."

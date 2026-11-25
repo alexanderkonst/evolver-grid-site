@@ -48,11 +48,23 @@ export const tourIdFor = (key: VillagePlaceKey): string =>
 const under = (pathname: string, base: string) => pathname === base || pathname.startsWith(`${base}/`);
 
 /**
+ * Routes that live in the player's own cabinet, whatever pane they were first built under
+ * (issue #443 A3, Sasha/Hark 2026-11-24): Equilibrium (the body clock), the saved artifacts and
+ * Settings are Home. `/settings` redirects to `/game/settings`; both are listed so the place
+ * is right on the frame before the redirect lands. `/build/cockpit` is NOT here: it stays in the Workshop.
+ */
+const HOME_PATHS = ["/build/equilibrium", "/my-artifacts", "/game/settings", "/settings"] as const;
+
+/** True for a route that belongs to Home although its module is built elsewhere. */
+export const isHomePath = (pathname: string): boolean => HOME_PATHS.some((base) => under(pathname, base));
+
+/**
  * Which place the player is standing in. A few routes belong to a place that shares its
  * pane with another (Reception and Fire Circle sit in panes the Quest Board and the
  * Workshop also use), so the path decides first and the pane second.
  */
 export const activePlaceKey = (pathname: string, paneId: string | undefined): VillagePlaceKey | null => {
+  if (isHomePath(pathname)) return "house";
   if (under(pathname, "/zone-of-genius")) return "reception";
   if (under(pathname, "/build/fmf")) return "fire-circle";
   if (under(pathname, "/game/coop")) return "town-hall";
