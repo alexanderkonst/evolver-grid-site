@@ -7926,6 +7926,9 @@
     }
   },
   "characterSheet": {
+    "since": {
+      "title": "Desde tu última visita"
+    },
     "lockedFold": "Aún sin abrir: {{rooms}}.",
     "eyebrow": "Casa",
     "playerFallback": "Jugador",
@@ -9831,6 +9834,9 @@
         "fire": "El Fuego se enciende. La Academia y FMF están abiertos para ti.",
         "earth": "La Tierra se enciende. El Taller está abierto para ti."
       }
+    },
+    "glint": {
+      "label": "Cambió desde tu última visita"
     },
     "sound": {
       "label": "Sonido del instrumento",

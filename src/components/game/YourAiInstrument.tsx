@@ -18,7 +18,7 @@
  * documented OOM / stacking-context hazard (see SpacesRail.tsx), and this component lives in the shell
  * on every screen.
  */
-import { useCallback, useEffect, useId, useReducer, useRef, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useReducer, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -48,7 +48,9 @@ import {
 } from "@/lib/yourAiInstrument";
 import ConsolePanel from "@/components/game/console/ConsolePanel";
 import { getFace, hasFace, registerFace, type FaceProps } from "@/lib/instrument/faces";
+import { hasGlint, parseGlints, type Glints } from "@/lib/instrument/glint";
 import { instrumentModel, instrumentReduce, isRaised } from "@/lib/instrument/state";
+import { useGlints } from "@/hooks/useGlints";
 
 /** The crystal raised in the middle of the screen, CSS px. */
 const AIR_PX = 128;
@@ -508,6 +510,18 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
   const wasRaisedRef = useRef(false);
 
   const moveMs = reduced ? OPEN_REDUCED_MS : OPEN_MS;
+
+  // WP6: a glint marks a body whose face changed (written in Your House); opening that face clears it.
+  // Only a body the player can open shows one, and never air (its face is Your AI).
+  const [storedGlints, clearGlintOf] = useGlints(ownerId);
+  const glintKey = VILLAGE_ELEMENTS.filter((e) => e.key !== "air" && lit[e.key] && hasFace(e.key) && hasGlint(storedGlints, e.key))
+    .map((e) => e.key)
+    .join(",");
+  // Stable between renders, so the glyph repaints only when a glint actually appears or goes.
+  const glints = useMemo<Glints>(() => parseGlints(Object.fromEntries(glintKey.split(",").filter(Boolean).map((k) => [k, true]))), [glintKey]);
+  useEffect(() => {
+    if (model.state === "face" && model.face) clearGlintOf(model.face);
+  }, [model.state, model.face, clearGlintOf]);
   if (model.face) lastFaceRef.current = model.face;
 
   // The same gate #458 has (anyone with a profile) decides who carries it.
@@ -632,6 +646,7 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
       <InstrumentGlyph
         ref={glyphRef}
         lit={lit}
+        glints={glints}
         carried={!mounted}
         open={raised}
         reduced={reduced}
@@ -705,10 +720,21 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
                 const openable = isLit && hasFace(b.key);
                 const content = (
                   <>
-                    <span aria-hidden="true" className="block">
+                    <span aria-hidden="true" className="relative block">
                       <QuarterSign element={b.key} lit={isLit} size={40} />
+                      {glints[b.key] && (
+                        // A static marker; it only breathes when motion is allowed. No text, never a feed.
+                        <span
+                          data-testid={`instrument-glint-${b.key}`}
+                          className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full motion-safe:animate-pulse"
+                          style={{ backgroundColor: ACCENT, boxShadow: `0 0 0 2px ${PANEL}` }}
+                        />
+                      )}
                     </span>
-                    <span className={label} style={labelStyle}>{t(`instrument.body.${b.key}`)}</span>
+                    <span className={label} style={labelStyle}>
+                      {t(`instrument.body.${b.key}`)}
+                      {glints[b.key] && <span className="sr-only">{`: ${t("instrument.glint.label")}`}</span>}
+                    </span>
                     {!isLit && (
                       <span className="max-w-[5.5rem] rounded-lg px-1.5 py-0.5 text-center text-[11px] leading-snug" style={{ ...labelStyle, color: MUTED }}>
                         {t("instrument.opensOnPath")}
