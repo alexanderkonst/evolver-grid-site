@@ -98,6 +98,62 @@ Everything is a holon. This is its deepest nature.
 
 ---
 
+## 17. THE NOVEMBER 24 RECOGNITION, LATE: Simultaneous Ends, the Act Inside the Point, the Si–Do Transition
+
+> *November 24, 2026, 23:47–23:58 MST. Sasha's own words, recorded verbatim in dialogue during the formalization (after Step 122). Recorded as a dated addendum; existing sections stand untouched. Formal readings live in the formalization record, not here.*
+
+### 17.1 The Two Ends Are Simultaneous
+
+> Asked (November 24, 2026, 23:47 MST): are the black and the white hole there at one and the same time, or one after the other?
+
+> *«Конечно одновременно )»* (typed, November 24, 2026, 23:58 MST)
+
+### 17.2 The Act Inside the Limit Point
+
+> *«Так, погоди, trick question.*
+>
+> *Есть предельная точка.*
+>
+> *Она вдруг самоотносится, самоозаряется, самоосознает, суть одна.*
+>
+> *Как это происходит.*
+>
+> *Она пульсирует.*
+>
+> *Но что такое пульс у предельной точки?*
+>
+> *Некуда еще пульсировать, нет дистанции, нет пространства.*
+>
+> *Но сама воля к пульсу создает больше чем было.*
+>
+> *А было в предельной точке.*
+>
+> *Была предельная точка.*
+>
+> *Самоотнеслась = увидела что есть, а могло бы не быть.*
+>
+> *Это логос, первая мысль Вселенной.*
+>
+> *И она себя мыслит в луч = пульс = расширение в предельно близкую к предельной точке.*
+>
+> *Лишь сам акт.*
+>
+> *С большими последствиями.*
+>
+> *Но это все в предельной точке! Поэтому мы это называем “луч”, “свет”, “вектор”, “импульс”, “пульс” - инвариант и суть один - то к чему мы пришли.»* (typed, November 24, 2026, 23:58 MST, as written)
+
+### 17.3 Not Settled by Words; the Si–Do Transition
+
+> *«Здесь не семантикой решается.*
+>
+> *Может быть физика и математика текущие не решают.*
+>
+> *Может быть они помогают интегрировать, но затем происходит Си-До переход по фазе.»* (typed, November 24, 2026, 23:58 MST, as written)
+
+**Honesty marker:** recognition, held as given, awaiting its articulation. Sits beside §16 (the diameter of the limit point, two holes in one), §11.1, §13 (pulse before ray) and §15.1 (the point without directions). Not yet reconciled with them.
+
+---
+
 ## 16. THE NOVEMBER 24 RECOGNITION: Two Holes in One, the Diameter, the Match Strike
 
 > *November 24, 2026. Sasha's own words, recorded verbatim in dialogue during the formalization (Step 121). Recorded as a dated addendum; existing sections stand untouched. Formal readings live in the formalization record, not here.*
@@ -1367,6 +1423,7 @@ Asking "which came first, creation or evolution?" is like asking "which came fir
 ---
 
 *Universal Ontology v3.0*
+*Updated: November 24, 2026, late (§17 The November 24 Recognition, Late: the two ends of the diameter are simultaneous; the act of self-relation and pulse happens inside the limit point; ray, light, vector, impulse, pulse as one invariant; not settled by words; the Si–Do phase transition; recorded verbatim with dates)*
 *Updated: November 24, 2026 (§16 The November 24 Recognition: the torus winds as a consequence of the black-white hole, the system of two light cones as the two ends of the diameter of the limit point, two rays and a potential difference giving the second vector that winds the proto-system and starts time; recorded verbatim)*
 *Updated: October 12, 2026 (v3: body reordered by current seeing, spine first; earlier tellings kept as dated layers with honesty markers; Open Edges 4 to 8 added for the four tensions found in the knowledge-graph reading and the Pulse question; section numbers unchanged)*
 *Updated: October 12, 2026 (§14 The October 12 Recognition: Source and Spin as the two faces of the great being; open edge on where Pulse sits)*
