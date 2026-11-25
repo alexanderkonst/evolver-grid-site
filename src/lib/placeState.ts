@@ -133,7 +133,7 @@ export type PlaceSaveSource = {
 };
 
 /** The Journey steps that make a person matchable: talent, mission, assets (§14.13). */
-const TRIAD_STEPS: JourneyItemId[] = ["find-top-talent", "discover-mission", "map-assets"];
+export const TRIAD_STEPS: JourneyItemId[] = ["find-top-talent", "discover-mission", "map-assets"];
 
 /**
  * Turn the character sheet into a PlaceSave. Journey steps come straight from the
