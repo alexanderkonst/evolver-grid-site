@@ -9798,5 +9798,36 @@
       "too_short": "Please write at least 3 characters.",
       "profanity": "Could you put it another way?"
     }
+  },
+  "yourAiInstrument": {
+    "open": "Open Your AI",
+    "close": "Close Your AI",
+    "title": "Your AI",
+    "powered": "Powered by Your AI OS",
+    "replay": "Replay the tour",
+    "greeting": "I'm on every screen. Write to me, or open an app below.",
+    "placeholder": "Write to Your AI…",
+    "send": "Send",
+    "thinking": "Your AI is thinking…",
+    "turnError": "Your AI didn't answer this time.",
+    "retry": "Retry",
+    "limitNote": "You've reached today's free Your AI limit. It resets tomorrow.",
+    "limitPlaceholder": "Today's free limit is reached",
+    "nextSteps": "Suggested next steps",
+    "console": "Console",
+    "powerUpsTitle": "Power-ups for business",
+    "locked": "Closed",
+    "powerUpsLine": "Opens when power-ups launch. Inside: your AI put to work on your business.",
+    "tourLabel": "Your AI, a short tour",
+    "tourStep": "{{n}} of {{total}}",
+    "tourSkip": "Skip",
+    "tourNext": "Next",
+    "tourDone": "Done",
+    "tour": {
+      "header": "This is Your AI, powered by Your AI OS. It goes with you on every screen.",
+      "conversation": "It is built to know you, and it knows you closer as you play.",
+      "console": "The Console: every app is a button that does something powerful.",
+      "powerUps": "Power-ups for your business are optional, and they come later."
+    }
   }
 }
