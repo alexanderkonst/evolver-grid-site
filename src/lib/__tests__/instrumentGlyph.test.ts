@@ -77,21 +77,24 @@ describe("moon on the ring", () => {
 describe("faces registry", () => {
   const Dummy = (() => null) as unknown as (p: FaceProps) => null;
 
-  it("has one slot per element, in village order, and the other four are empty until a face registers", () => {
+  it("has one slot per element, in village order, and the slots without a face are empty until one registers", () => {
     expect(Object.keys(FACES)).toEqual(VILLAGE_ELEMENTS.map((e) => e.key));
     expect(Object.keys(FACES)).toEqual(["ether", "air", "water", "fire", "earth"]);
-    for (const k of ["ether", "water", "fire", "earth"] as const) {
+    // Water is filled by WP3 (`faces.ts` registers WaterFace); fire, earth and ether wait for their own work packages.
+    for (const k of ["ether", "fire", "earth"] as const) {
       expect(hasFace(k)).toBe(false);
       expect(getFace(k)).toBeNull();
     }
+    expect(hasFace("water")).toBe(true);
   });
 
   it("registering a face fills only that slot", () => {
+    const registered = FACES.water.component;
     registerFace("water", Dummy);
     expect(getFace("water")).toBe(Dummy);
     expect(hasFace("water")).toBe(true);
     expect(hasFace("fire")).toBe(false);
-    FACES.water.component = null;
+    FACES.water.component = registered;
   });
 });
 
