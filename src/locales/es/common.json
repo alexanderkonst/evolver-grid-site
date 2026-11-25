@@ -36,6 +36,13 @@
     }
   },
   "village": {
+    "quarter": {
+      "ether": { "name": "Barrio del éter" },
+      "air": { "name": "Barrio del aire" },
+      "water": { "name": "Barrio del agua" },
+      "fire": { "name": "Barrio del fuego" },
+      "earth": { "name": "Barrio de la tierra" }
+    },
     "backTitleAria": "Volver al título",
     "enterPlace": "Entrar a {{place}}",
     "title": "La Aldea Digital",

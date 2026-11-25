@@ -43,6 +43,8 @@ import SectionsPanel, { SPACE_SECTIONS, STATIC_LABEL_KEYS } from "./SectionsPane
 import { useJourneyProgress } from "@/hooks/useJourneyProgress";
 import { usePlaceStates } from "@/hooks/usePlaceStates";
 import { activePlaceKey, isHomePath, PANE_BY_PLACE, RAIL_PLACES } from "@/lib/railPlaces";
+import { litQuarters } from "@/lib/quarters";
+import { VILLAGE_PLACES } from "@/data/villagePlaces";
 import { useLinkedQuizResult } from "@/hooks/useLinkedQuizResult";
 import {
     QUIZ_RESULT_EVENT,
@@ -912,6 +914,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
         if (stoodInPlace && !isAuthRoute) setSectionsPanelOpen(true);
     }
     const activePlaceData = RAIL_PLACES.find((p) => p.key === activePlace);
+    // §25.14: the sign in pane 2's header is lit with the rest of its quarter (nothing lit until the save loads).
+    const activeQuarterLit = activePlaceData
+        ? litQuarters(VILLAGE_PLACES, placesReady ? placeStates : [])[activePlaceData.element]
+        : false;
     // W2: the one player name for the rail and the place line; null for a guest.
     // Issue #419: until the game_profiles row exists, the name given at signup (auth metadata) stands in.
     const playerName = displayName({
@@ -1795,6 +1801,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                     <SectionsPanel
                         activeSpaceId={activeSpaceId}
                         placeName={activePlaceData?.name}
+                        placeElement={activePlaceData?.element}
+                        placeQuarterLit={activeQuarterLit}
                         placeLine={activePlaceLine}
                         onSectionSelect={handleSectionSelect}
                         // Open pane → the hide control; closed pane → none (the expand strip is the only control).
@@ -2068,6 +2076,8 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                         <SectionsPanel
                             activeSpaceId={activeSpaceId}
                             placeName={activePlaceData?.name}
+                        placeElement={activePlaceData?.element}
+                        placeQuarterLit={activeQuarterLit}
                             placeLine={activePlaceLine}
                             onSectionSelect={handleSectionSelect}
                             className="w-full h-full"

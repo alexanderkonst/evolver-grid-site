@@ -39,6 +39,8 @@ import {
 } from "@/lib/placeState";
 import { journeyOptionalWord } from "@/lib/journeyLabels";
 import { placeAlt, placeName, placeTagline, tr } from "@/lib/villageCopy";
+import { litQuarters } from "@/lib/quarters";
+import QuarterSign from "@/components/game/QuarterSign";
 import { displayName } from "@/lib/displayName";
 import { hasGuestTopTalentResult, readGuestTalentName, readGuestTopTalentPayload } from "@/lib/firstVisit";
 import SaveCharacterCta from "@/components/game/SaveCharacterCta";
@@ -368,6 +370,8 @@ const Village = () => {
   // §25.4 step 1: one glow. Only the move's place reads `next`, the same as the rail and the pane row.
   const states: PlaceStateName[] = oneNextStates(VILLAGE_PLACES, VILLAGE_PLACES.map((p) => placeState(p, save)), move);
   const shown: PlaceStateName[] = states.map((s) => (!ready && s === "closed" ? "open" : s));
+  // §25.14 earned light: a quarter's solid is lit once its first place is open. Nothing is lit until the save loads.
+  const quarterLit = litQuarters(VILLAGE_PLACES, ready ? shown : []);
   const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
   const changesLine = whatChangedLine(changes.fresh, t);
   const isNew = (p: VillagePlace) => changes.fresh.includes(p);
@@ -580,6 +584,7 @@ const Village = () => {
                           >
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{placeName(p, t)}</span>
+                            <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" />
                             <PlaceStateTag state={shown[i]} text={gatedText(p)} />
                           </a>
                         ) : (
@@ -594,6 +599,7 @@ const Village = () => {
                           >
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{placeName(p, t)}</span>
+                            <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" />
                             <PlaceStateTag state={shown[i]} />
                             {signal(i)}
                             {isNew(p) ? <NewTag /> : null}
@@ -670,13 +676,13 @@ const Village = () => {
                   {shown[i] === "closed" ? (
                     // Issue #270: closed means aria-disabled and no navigation; the line says what opens it.
                     <a role="link" aria-disabled="true" tabIndex={0} className="is-locked">
-                      <span className="vl-list__name">{placeName(p, t)}</span>
+                      <span className="vl-list__name">{placeName(p, t)}{mobile ? <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" /> : null}</span>
                       <PlaceStateTag state={shown[i]} text={gatedText(p)} />
                       <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true, playerName)}</span>
                     </a>
                   ) : (
                     <Link to={pinTo(p)}>
-                      <span className="vl-list__name">{placeName(p, t)}</span>
+                      <span className="vl-list__name">{placeName(p, t)}{mobile ? <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" /> : null}</span>
                       <PlaceStateTag state={shown[i]} />
                       {signal(i)}
                       {isNew(p) ? <NewTag /> : null}

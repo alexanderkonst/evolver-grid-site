@@ -36,6 +36,13 @@
     }
   },
   "village": {
+    "quarter": {
+      "ether": { "name": "Квартал эфира" },
+      "air": { "name": "Квартал воздуха" },
+      "water": { "name": "Квартал воды" },
+      "fire": { "name": "Квартал огня" },
+      "earth": { "name": "Квартал земли" }
+    },
     "backTitleAria": "Назад к заставке",
     "enterPlace": "Войти: {{place}}",
     "title": "Цифровая деревня",
