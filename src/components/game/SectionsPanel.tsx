@@ -597,7 +597,7 @@ const buildLearnSections = (): Section[] => {
     // Free entry course (public). Same path in both scopes: the page is not auth-gated.
     const dormantPotentialRow: Section = {
         id: "activate-your-dormant-potential",
-        label: "Activate Your Dormant Potential",
+        label: "Your Unfolding Potential",
         path: COURSE_PATH,
     };
 

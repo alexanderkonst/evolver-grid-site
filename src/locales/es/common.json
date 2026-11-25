@@ -3977,7 +3977,7 @@
         "modules": {
           "library": "Biblioteca de Prácticas",
           "paths": "Caminos de Crecimiento",
-          "dormantPotential": "Activa tu potencial dormido",
+          "dormantPotential": "Tu Potencial que se Despliega",
           "consciousnessMeetsScience": "La conciencia se encuentra con la ciencia"
         }
       },
@@ -9394,6 +9394,9 @@
     }
   },
   "course": {
+    "titles": {
+      "activate-your-dormant-potential": "Tu Potencial que se Despliega"
+    },
     "eyebrow": "Minicurso gratuito",
     "tagline": "Cómo dominar tu espíritu, mente, emociones, cuerpo y genio único.",
     "episodeOf": "Episodio {{current}} de {{total}}",
