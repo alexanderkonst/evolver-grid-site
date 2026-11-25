@@ -1,161 +1,81 @@
-# Collective: full build spec and delegation plan v0.1
+# Collective: build spec and delegation plan v0.2
 
-Status: draft v0.1, 2026-11-25 (Hark), for Sasha's review. Asked by Sasha: «сделай полную спецификацию по построению ВСЕГО ЧТО НУЖНО ПОСТРОИТЬ с прицелом на делегирование агентам»; «онбоардинг для модулей - думаю тоже часть».
-Sources: [collective_architecture_v0.1.md](../../02-strategy/collective/collective_architecture_v0.1.md) (v0.4, 16 parts) · [collective_in_game_v0.1.md](../../02-strategy/collective/collective_in_game_v0.1.md) (v0.5, space and rooms) · [collective_terms_roadmap.md](../../02-strategy/collective/collective_terms_roadmap.md). Template: [spec-handoff](../../templates/spec-handoff.md). Delegation mechanics: same as [navigation-instrument/sow.md](../navigation-instrument/sow.md) §«Delegation mechanics».
+Status: draft v0.2, 2026-11-25 (Hark), rewritten after Sasha's roast «да» the same day. Replaces v0.1 (5c9aaed), which built 13 packages for members who don't exist yet.
+Sources: [collective_architecture_v0.1.md](../../02-strategy/collective/collective_architecture_v0.1.md) (v0.4) · [collective_in_game_v0.1.md](../../02-strategy/collective/collective_in_game_v0.1.md) (v0.5) · [collective_terms_roadmap.md](../../02-strategy/collective/collective_terms_roadmap.md) · [active-intro_product_spec.md](../match-mechanic/active-intro_product_spec.md) · template [spec-handoff.md](../../templates/spec-handoff.md) · delegation mechanics from [navigation-instrument/sow.md](../navigation-instrument/sow.md).
 
 ## TLDR
 
-Collective is its own space in the game (/game/collective). It opens to members only; Sasha makes a person a member by hand or by an invite link for peers. Inside: rooms, one per part of the architecture that has a use case. Each room has its own short onboarding. Outside, every player sees one shelf of members' landings in the Market.
-Work is split into **Wave 0 (Sasha's content, no code)** and **13 work packages (WP)** in three waves. Each WP = one @claude issue = one branch = one PR; Hark opens the PR, reviews against the DoD and merges on green.
+The Collective already exists de facto: Sasha has touched hundreds of people through sessions, Fire circles, containers, transformational work and the game. v0.2 starts from that truth instead of an empty space.
+
+1. **Circles (public, counters only).** The Collective shows itself as concentric circles of people Sasha's work has reached, each with a count. No names anywhere public.
+2. **Core (members-only space).** Founders with a working unique business, granted by Sasha by hand or by his invite link. Inside: Members and Collaborations. Collaborations run on the existing active-intro mechanic, not a new system.
+3. **Metric.** Collaborations started and intros made per moon.
+
+Everything else (map place, Market shelf, Experts, Hackathons, AI room, members' landings, money in the game) waits until the core is alive.
 
 ## Hard lines (every WP)
 
-- No change to the title screen, intro, the Top Talent / Mission / Assets reveals, how a player enters the game, the themes, the Workshop (/ubb), Sasha's method, sessions or /playbook. The one exception is WP2's invite path, which needs Sasha's yes to that exact change.
-- Town Hall is not part of this build.
-- The fund (architecture part 15) is not shown anywhere until it exists.
-- en / es / ru strings for every new text; 390 px clean; reduced motion honoured; no new dependency; no 3D library.
-- New tables have RLS. A migration or edge-function deploy goes through Lovable and costs credits: Hark batches them and asks Sasha first.
-- Public repo: no client or member names in code, fixtures or docs. Test data uses «member 1», «member 2».
+- No change to the title screen, intro, the Top Talent / Mission / Assets reveals, entry, themes, Workshop (/ubb), Sasha's method, sessions, /playbook. Exception: the WP2 invite path, only with Sasha's yes (S1).
+- Town Hall is not part of this build. The fund is not shown.
+- Counters tell the truth: an approximate number is labeled approximate («~80»); a live number comes from the database. Wording is «people reached», never «members», for the outer circles.
+- No names, emails or money of real people in code, fixtures or docs. Test data: «member 1», «member 2». The circle lists live in the private ledger.
+- en / es / ru strings; 390 px clean; reduced motion; no new dependency.
+- New tables have RLS. Migrations and edge deploys go through Lovable (credits): Hark batches them and asks Sasha first.
 
-## Map: architecture part → what gets built
+## The circles (content, from Sasha 2026-11-25)
 
-| # | Part | Built as | WP | Wave |
-|---|---|---|---|---|
-| 0 | Door | Nothing new (game as is) | — | — |
-| 1 | Founder Cockpit | «My business» room links to the live cockpit | WP7 | 2 |
-| 2 | AI harness | «AI» room: next rung; rungs 4–5 if Sasha says members-only | WP13 | 3 |
-| 3 | Matchmaking | Inside «Collaborations»: matches among members first | WP6 | 2 |
-| 4 | Scaling experts | «Experts» room | WP11 | 3 |
-| 5 | Mini-hackathons | «Hackathons» room + date on the clock + shipped things in the deeds feed | WP12 | 3 |
-| 6 | Rhythm | Collective dates on the moon ring (inside WP12) | WP12 | 3 |
-| 7 | Terms | «Terms» room: one line of terms, own rev-share record | WP8 | 2 |
-| 8 | Landing | Public page: separate track (landing v2 draft), not in this spec | — | — |
-| 9 | Shared infrastructure | The game itself | — | — |
-| 10 | Media synergy | Not built (not described yet) | — | later |
-| 11 | Shared improvement budget | Inside «Terms»: what the budget improves this moon (text from Sasha) | WP8 | 2 |
-| 12 | Internal collaborations (key) | «Collaborations» room | WP6 | 2 |
-| 13 | Mutual promotion | «Members» room + Market shelf for all players | WP5, WP9 | 2 |
-| 14 | Train-the-trainer | Not built (Sasha's method; Sasha sets the form) | — | later |
-| 15 | Fund | Not built, not shown | — | later |
-| — | Module onboarding | Welcome into Collective + first-visit intro per room | WP10 | 2 |
+| Circle | Who | Count | Source |
+|---|---|---|---|
+| Core | Founders with a working unique business, members of the space | live | `collective_members` |
+| Fire circle | Did FMF with Sasha | ~13 (Sasha's estimate, to confirm) | private ledger |
+| Uniqueness found on the platform | Players who completed the Top Talent reveal | live | count of completed ZoG snapshots (exact table/column to confirm in WP0) |
+| Clients | Past clients of Sasha's sessions | ~20 | private ledger |
+| Self-test | Took the test with Sasha without a session | ~80 | private ledger |
+| Containers | Founder and mystical containers with Sasha | 33 | private ledger |
+| Transformational work | One-on-one or group transformational work | ~100 | private ledger |
+| Orbit | Received Sasha's work for free, stayed around | unknown, shown only when estimated | — |
 
-## Wave 0: content only Sasha can give (no code)
+Circles may overlap; the page says «people reached» per circle and never sums them into one inflated total (or, if a total is shown, it is the deduplicated count from the private ledger).
 
-Each item unblocks a WP. Hark asks for them in one message, not one by one.
+## Wave 0: from Sasha (two things to start, the rest later)
 
-| ID | What | Unblocks |
-|---|---|---|
-| S1 | Yes to the invite path: an invited peer lands straight in Collective, skipping the reveals | WP2 |
-| S2 | Yes to the map place (Earth quarter) and art for it (or a placeholder) | WP3 |
-| S3 | The one line of terms as members will read it | WP8 |
-| S4 | Shared budget: source and what it improves this moon | WP8 |
-| S5 | Expert roster: name, what each scales, booking link | WP11 |
-| S6 | First hackathon: date and theme | WP12 |
-| S7 | Rungs 4–5: members-only or open | WP13 |
-| S8 | First members (kept in the private ledger, never in this repo) | go-live |
+- **S1** Yes to the peer invite path: a peer with Sasha's link enters straight into the Collective and fills a short profile instead of the reveals.
+- **S2** First 3 to 5 core members (names stay in the private ledger), and a confirm/correct of the circle counts above.
 
-## Data model (all new, Supabase, RLS on)
+Later, only when their WP comes: terms line, map place and art, expert roster, hackathon date, AI rungs 4–5.
 
-| Table | Columns | Who reads / writes |
-|---|---|---|
-| `user_roles` (exists) | add role value `collective_member` | Read: the user and admins. Write: admins only (Sasha), via `has_role()` |
-| `collective_members` | user_id (pk), joined_at, invited_by, landing_url, uniqueness_line, status (active/paused) | Read: members and, for landing_url + uniqueness_line + name only, any signed-in player (Market shelf). Write: the member (own landing_url, uniqueness_line), admins (status) |
-| `collective_invites` | code (pk), created_by, created_at, expires_at, used_by, used_at, note | Admins only; redeem through a security-definer function |
-| `collective_collabs` | id, author_id, kind (joint-offer / shared-client / co-product / referral), title, offer, need, status (open/closed), created_at | Members read all; author writes own |
-| `collective_collab_joins` | collab_id, user_id, note, created_at | Members read; a member writes own |
-| `collective_revshare_entries` | id, user_id, month, revenue, share (10% computed), note, created_at | The member reads and writes own; admins read all |
-| `collective_experts` | id, name, scales, booking_url, sort | Members read; admins write (Wave 3) |
-| `collective_events` | id, kind (hackathon), title, theme, starts_at, ends_at, join_url | Members read; admins write (Wave 3) |
-| `collective_event_joins`, `collective_shipped` | event_id, user_id, (shipped: title, url) | Members read; own write (Wave 3) |
+## Data model (new, RLS on)
 
-Terms line, budget text, AI rung visibility: a config file `src/data/collective.ts` (Sasha edits text there through Hark), no table.
+- `user_roles`: new value `collective_member` (table exists; confirm enum/shape in WP1).
+- `collective_members`: user_id, joined_at, invited_by, short profile: uniqueness_line, offers, seeks, site_url.
+- `collective_invites`: code, created_by, used_by, expires_at (30 days), single use.
+- `collective_circles` (or config in `src/data/collective.ts`): circle key, label en/es/ru, count, is_approximate, source (`live` | `manual`). Manual counts set by admin only.
+- No revenue or money table. Terms stay a text line; money stays in the private ledger.
 
-## Wave 1: membership (foundation)
+## Work packages
 
-**WP1 · Membership and admin toggle.**
-- Migration: role value, `collective_members`, RLS, helper `is_collective_member(uid)`.
-- Hook `useCollectiveMember()` → `{ isMember, member }`.
-- Admin screen (existing admin area, admin email only): find a player, make member / pause. Sets role + row.
-- DoD: 1 · RLS test: non-member cannot read members-only columns; 2 · admin toggle creates role and row; 3 · hook unit tests; 4 · non-admin cannot reach the toggle.
+### Wave 1: membership
+- **WP0 (Hark, no code):** verify in repo: `user_roles` shape, `has_role()`, the admin area, the completed-reveal source for the live count, the entry guard WP2 must pass. Write findings into this file before opening WP1.
+- **WP1 Membership.** `collective_member` role, admin toggle to grant/revoke, `collective_members` row with short profile. DoD: admin grants «member 1», the flag reads true, RLS blocks non-members.
+- **WP2 Invite link** `/join/collective/:code` (needs S1). Single use, 30 days. New user: sign up → short profile (4 fields) → Collective. Existing player: profile → Collective. DoD: code used twice fails; expired fails; reveals untouched for normal entry.
 
-**WP2 · Invite link for peers.** (needs S1)
-- Admin creates a link (/join/collective/:code), single use, expires in 30 days.
-- Visitor: sign up or sign in → `redeem_collective_invite(code)` → member → lands on /game/collective with the welcome (WP10).
-- The guard that sends new players into the reveals lets a member through to /game/collective only. Players without a member role see no change.
-- DoD: 1 · used or expired code shows a plain message; 2 · redeem is atomic (two tabs, one wins); 3 · Playwright: invited new account lands in Collective; 4 · Playwright: an uninvited new account still enters the game exactly as before.
+### Wave 2: the core space
+- **WP3 Space** `/game/collective`, members only; non-members see the closed sign «Opens by invitation, when your unique business works.» One welcome screen on first visit (what this is, the one first action: offer a collaboration or ask for an intro); one «why» line in each room header. Link «My business» → existing cockpit (route to confirm in WP0).
+- **WP4 Members.** Cards: uniqueness line, offers, seeks, site link, «Ask for intro» button using the active-intro flow. DoD: intro request reaches the other member through the existing active-intro channel.
+- **WP5 Collaborations.** Post a collaboration (what, who's needed), join it; matches inside the Collective reuse the match mechanic. No new matching system. DoD: post, join, counter of collaborations started this moon.
+- **WP6 Circles page.** Public (outside the members-only space): the circles with counts, live ones from the database, manual ones from admin. DoD: live counts update; approximate ones show «~»; no names.
 
-## Wave 2: the space and its first rooms
+### Later (open only when the core shows life: first collaborations started)
+Market shelf of members' sites · map place in Earth (after the navigation instrument releases `villagePlaces.ts`) · members' landings as their own package · Experts · Hackathons on the moon ring + deeds feed · AI room (rungs 4–5) · terms line · Media · train-the-trainer.
 
-**WP3 · Place on the village map.** (needs S2; `villagePlaces.ts` is shared with the navigation instrument: one writer per wave, append-only)
-- New place `collective`, element earth, route /game/collective, `opens: "collective-member"`.
-- Closed sign for everyone else: «Opens by invitation, when your unique business works.» (en/es/ru).
-- DoD: 1 · non-member sees it closed with the sign; 2 · member sees it open; 3 · no overlap at 390 px; 4 · other places unchanged (snapshot).
+## Metric
 
-**WP4 · The Collective space shell.**
-- Route /game/collective (RequireAuth + member guard). Non-member: a calm page with what Collective is and «by invitation».
-- One screen, a section per room, in this order: Members, Collaborations, My business, Terms; rooms from Wave 3 appear only when their content exists (config flag).
-- DoD: 1 · guard tests; 2 · empty states for every room; 3 · 390 px, reduced motion, axe clean.
+Per moon: collaborations started, intros requested, intros accepted. Shown to Sasha in the moon report; not shown to players in v0.2.
 
-**WP5 · Members room (mutual promotion).**
-- List of active members: name, uniqueness line, landing link. A member edits own landing_url and uniqueness_line.
-- «Share» on a member: copies a short text + the landing link.
-- DoD: 1 · own edit only; 2 · invalid URL rejected; 3 · share text in three languages.
+## Go-live
 
-**WP6 · Collaborations room (key).**
-- Post: kind, title, what I offer, what I need. Join: a note; the author gets it through the existing messages (`player_messages`).
-- «Matches» strip on top: members ranked by the existing matchmaking engine, members first.
-- Close own post.
-- DoD: 1 · post, join, close flow in Playwright; 2 · join creates one message to the author; 3 · only members see posts; 4 · matches list never shows non-members inside this room.
+WP0 → WP1–WP2 (one Lovable migration batch, Sasha's yes) → WP3–WP6 → publish (free) → Sasha grants first members (S2).
 
-**WP7 · My business room.**
-- One card: «Open your cockpit» → /build/cockpit, with the count of the member's offers if the cockpit already exposes it. No change to the cockpit.
-- DoD: 1 · link correct; 2 · works with zero offers.
+## Delegation
 
-**WP8 · Terms room.** (needs S3, S4)
-- The one line of terms from `src/data/collective.ts`.
-- Own rev-share record: month + revenue → 10% shown; a list of own entries. Self-reported; no payment flow.
-- «Shared budget this moon»: text from config; hidden while empty.
-- DoD: 1 · 10% computed and rounded the same in all three locales; 2 · only own entries visible; 3 · budget block hidden when config is empty.
-
-**WP9 · Market shelf for all players.**
-- In /game/marketplace: a shelf «Founders of the Collective»: active members with landing_url set. Visible to any signed-in player. No other Market change.
-- DoD: 1 · non-member player sees the shelf; 2 · paused members hidden; 3 · shelf hidden when empty.
-
-**WP10 · Onboarding for Collective and its rooms.**
-- Welcome on first entry (three steps, skippable): «You're in the Collective» (one line what it is) → set your landing and uniqueness line (WP5 form) → one first action: post or join a collaboration.
-- Every room, on first visit: one line what the room is for + one first action button. Seen state stored in the player's save; never shown twice.
-- Pattern reuses the existing progressive onboarding approach ([progressive_onboarding_spec.md](../progressive-onboarding/progressive_onboarding_spec.md)); no new framework.
-- DoD: 1 · welcome shows once; 2 · each room intro shows once and is skippable; 3 · never shown to non-members; 4 · reduced-motion variant.
-
-## Wave 3: rooms that wait on Sasha's content
-
-**WP11 · Experts room.** (needs S5) Table `collective_experts`; cards: name, what they scale, «Book» → booking_url. DoD: list from table; hidden while empty.
-
-**WP12 · Hackathons room + rhythm.** (needs S6) Table `collective_events`; next hackathon: date, theme, «Join»; the date appears on the moon ring of the four-ring clock for members; after the event, a member adds what they shipped (title + link) and it appears in the deeds feed (A16). DoD: join flow; date on the clock only for members; shipped item in the feed.
-
-**WP13 · AI room.** (needs S7) Shows the member's next rung of the AI ladder (rungs 1–2 live: /mini-trainings/ai-as-a-mirror, /mini-trainings/ai-that-knows-you). If Sasha says members-only, rungs 4–5 are listed here when built. DoD: correct next rung from the player's progress.
-
-## Not built in this spec
-
-Media synergy (10), train-the-trainer (14), fund (15), the public landing (8, separate track), automatic membership by a sign in the game (next phase; Sasha grants by hand now).
-
-## Order and parallelism
-
-```
-Wave 0  Sasha: S1–S8 (one message)
-Wave 1  WP1 → WP2                         (WP2 after S1)
-Wave 2  WP3 · WP4 → WP5 · WP6 · WP7 · WP8 · WP9 · WP10   (after WP1; WP3 after nav-instrument waves touching villagePlaces.ts)
-Wave 3  WP11 · WP12 · WP13                (each after its S-item)
-Go-live Lovable: migrations deploy (credits, Sasha's yes) → publish (free) → Sasha grants first members (S8)
-```
-
-File lock per wave: WP3 owns `villagePlaces.ts`; WP4 owns `src/pages/collective/CollectiveSpace.tsx` and the room order; WP5–WP10 each own their room component under `src/components/collective/`; `src/data/collective.ts` and locale files are append-only.
-
-## Agents and review
-
-- Builder: Claude through @claude issues in evolver-grid-site, one issue per WP, body = the WP text above + hard lines + DoD.
-- Hark: opens issues per wave, opens PRs, reviews (spec-handoff §7 + hard lines), merges on green with every DoD row evidenced, drives to the end with a driver task, reports to Sasha in meaning after each wave.
-- Sasha: Wave 0 content and the three gates: invite path (S1), migrations deploy (credits), publish of Collective to members.
-
----
-*v0.1 · 2026-11-25 · first full spec.*
+One WP = one @claude issue = one branch = one PR. Hark opens the issue per wave, reviews against spec-handoff §7 and the hard lines, merges on green with DoD evidenced, reports in meaning after each wave. One writer per file per wave. No issue opens before Sasha's yes to start building.
