@@ -10007,7 +10007,8 @@
       ]
     },
     "public": {
-      "title": "Nuestro negocio, en público",
+      "title": "Nuestro negocio de negocios",
+      "founders": "Fundadores en el colectivo: {{count}}",
       "sub": "Mientras Aleksandr está en el centro, así es como le fue de verdad. Los nuevos hitos aparecen aquí a medida que ocurren.",
       "viewsLabel": "Elige una vista",
       "views": { "short": "Breve", "key": "Hitos clave", "full": "Cronología completa" },
