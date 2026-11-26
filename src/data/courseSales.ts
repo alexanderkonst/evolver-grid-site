@@ -24,7 +24,7 @@
  * is a Telegram message to Aleksandr; the live group uses the existing waitlist
  * (WaitlistModal → send-waitlist-email).
  */
-import type { CourseModule } from "@/data/courses/types";
+import type { CourseConfig, CourseModule } from "@/data/courses/types";
 import { CONSCIOUSNESS_MEETS_SCIENCE, CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
 import { ACTIVATE_YOUR_DORMANT_POTENTIAL, COURSE_PATH as ADP_COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { ACTIVATION_OF_INNER_VISION, AIV_COURSE_PATH } from "@/data/courses/activationOfInnerVision";
@@ -96,6 +96,8 @@ export interface CourseSalesData {
      * on the kit (docs/assets/infographics/…) is not published and stays unset here.
      */
     teaser?: { src: string; alt: string };
+    /** Version, changelog, level and category from the course data. Omitted for entries with no course data (live/recorded sessions). */
+    versioning?: Pick<CourseConfig, "version" | "updatedAt" | "changelog" | "level" | "category">;
     cta: CourseSalesCta;
     seoDescription: string;
 }
@@ -116,6 +118,10 @@ export const COURSE_LANDING_COPY = {
     about: "About this mini-training",
 } as const;
 
+const versioningOf = ({ version, updatedAt, changelog, level, category }: CourseConfig) => ({
+    version, updatedAt, changelog, level, category,
+});
+
 const countEpisodes = (modules: CourseModule[], publishedOnly: boolean) =>
     modules.reduce(
         (n, m) => n + m.episodes.filter((e) => !publishedOnly || !e.youtubeId.startsWith("TBD")).length,
@@ -130,6 +136,7 @@ const aivPublished = countEpisodes(ACTIVATION_OF_INNER_VISION.modules, true);
 export const COURSE_SALES: CourseSalesData[] = [
     {
         ...fromRegistry(CONSCIOUSNESS_MEETS_SCIENCE.slug),
+        versioning: versioningOf(CONSCIOUSNESS_MEETS_SCIENCE),
         eyebrow: "Free mini-course",
         lead: `How inner experience and modern science co-reveal the nature of reality. In ${cmsVideos} short videos, see how what you feel inside and what science finds outside tell one story.`,
         forWhom: [
@@ -147,6 +154,7 @@ export const COURSE_SALES: CourseSalesData[] = [
     },
     {
         ...fromRegistry(ACTIVATE_YOUR_DORMANT_POTENTIAL.slug),
+        versioning: versioningOf(ACTIVATE_YOUR_DORMANT_POTENTIAL),
         eyebrow: "Free mini-training",
         lead: "How to master your spirit, mind, emotions, body and unique genius: the five paths of growth, one short video at a time.",
         forWhom: [
@@ -222,6 +230,7 @@ export const COURSE_SALES: CourseSalesData[] = [
     },
     {
         ...fromRegistry(ACTIVATION_OF_INNER_VISION.slug),
+        versioning: versioningOf(ACTIVATION_OF_INNER_VISION),
         eyebrow: "Advanced micro-course · after Integral Mystery School",
         lead: `${aivVideos} short videos on the 27-perspective instrument: two axes, twelve dimensions, the Logos, the octave of seeing the seer, and the 27th, where seeing becomes an act.`,
         forWhom: [

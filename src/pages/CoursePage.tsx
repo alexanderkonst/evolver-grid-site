@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import type { CourseConfig } from "@/data/courses/types";
 import { COURSE_LANDING_COPY, courseLandingPath } from "@/data/courseSales";
+import CourseVersionInfo from "@/components/CourseVersionInfo";
 import { supabase } from "@/integrations/supabase/client";
 import {
     flattenEpisodes,
@@ -139,6 +140,7 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                         {t(`course.titles.${course.slug}`, { defaultValue: course.title })}
                     </span>
                 </h1>
+                <CourseVersionInfo course={course} />
                 <p className="text-base sm:text-lg italic max-w-2xl" style={BODY_STYLE}>
                     {t(course.taglineKey)}
                 </p>
