@@ -9912,18 +9912,28 @@
       "nextMove": "Next move"
     }
   },
+  "moonPhase": {
+    "0": "New Moon",
+    "1": "Growing Crescent",
+    "2": "Growing Half",
+    "3": "Almost Full",
+    "4": "Full Moon",
+    "5": "Past Full",
+    "6": "Fading Half",
+    "7": "Fading Crescent"
+  },
   "waterFace": {
     "title": "Time",
     "close": "Close your instrument",
     "phase": {
       "0": "New Moon",
-      "1": "Waxing Crescent",
-      "2": "First Quarter",
-      "3": "Waxing Gibbous",
+      "1": "Growing Crescent",
+      "2": "Growing Half",
+      "3": "Almost Full",
       "4": "Full Moon",
-      "5": "Waning Gibbous",
-      "6": "Last Quarter",
-      "7": "Waning Crescent"
+      "5": "Past Full",
+      "6": "Fading Half",
+      "7": "Fading Crescent"
     },
     "moon": {
       "label": "The moon",

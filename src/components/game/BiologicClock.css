@@ -1,4 +1,8 @@
-/* BiologicClock v6.2 (spec: docs/specs/equilibrium/biologic_clock_rings_spec.md, «Improvements v6» and
+/* BiologicClock v7 (Rings v7, issue #532): segmented rings with butt caps, stroke growing with the radius, Moon segments as bright as
+   the phase is lit, «Light flow» gradient on the full-width (ahead) bands, lived = thin flat line, one dark disc behind the dial.
+   Geometry and colours live in the component; this file only holds the quiet rules (no stroke colours here, so forced-colors can win).
+   The v6.2 notes below still describe the views, the centre and the card.
+   BiologicClock v6.2 (spec: docs/specs/equilibrium/biologic_clock_rings_spec.md, «Improvements v6» and
    «Fixes v6.2»; issues #381, #385, #405, #434). Two rings, Moon outside and Week inside; they keep size and place in
    every view. View 3 adds two thin rings OUTSIDE (Day gold, then Year silver) and the dial grows
    outward. The dial itself is the control (role button); the card (views 2–3) sits beside / below
@@ -11,8 +15,7 @@
 .bio-clock {
   --bc-silver: 217, 209, 180;
   --bc-gold: 242, 196, 107;
-  --bc-lived: 0.35;
-  --bc-ahead: 0.85;
+  --bc-glyph-lived: 0.45; /* a small moon / planet on a lived segment */
   --bc-size: 300px;
   --bc-grow: 1; /* view 3: the viewBox is 228 wide, so the dial is 1.14× and Moon / Week stay the same size */
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
@@ -20,7 +23,7 @@
   font-family: var(--vl-serif, "Cormorant Garamond", Georgia, serif);
   color: var(--vl-ink, rgba(235, 238, 242, 0.92));
 }
-.bio-clock[data-view="3"] { --bc-grow: 1.14; }
+.bio-clock[data-view="3"] { --bc-grow: 1.38; } /* viewBox 276 wide: 1.38× keeps Moon and Week the same size as in views 1–2 */
 @media (max-width: 720px) { .bio-clock { --bc-size: min(340px, 100%); } }
 
 /* The watch: the dial, which is itself the control */
@@ -52,39 +55,17 @@
 /* The ring is for keyboard focus only: a mouse click must leave no frame behind (it did, after a click) */
 .bio-clock__dial:focus:not(:focus-visible) { outline: none; box-shadow: none; }
 .bio-clock__dial:focus-visible { outline: 2px solid rgb(var(--bc-silver)); outline-offset: 4px; border-radius: 50%; }
-.bio-clock__night { fill: #070b16; fill-opacity: 0.55; }
+.bio-clock__night { fill: rgba(6, 9, 20, 0.9); } /* one full concentric disc behind the dial */
 
-/* Rings: thin tracks, the same grammar for every ring */
-.bio-clock__track-lived, .bio-clock__track-ahead, .bio-clock__seg, .bio-clock__year, .bio-clock__day-lived, .bio-clock__day-ahead {
-  fill: none; stroke-linecap: round;
-}
+/* Rings: segments, butt caps. Lived = thin flat line (width and opacity set in the component), ahead = full band. */
+.bio-clock__arc-lived, .bio-clock__arc-ahead, .bio-clock__year--empty { fill: none; stroke-linecap: butt; }
 
-/* Moon: lived part of the track dim, the part still ahead bright; orbs the same */
-.bio-clock__track-lived { stroke: rgb(var(--bc-silver)); stroke-opacity: var(--bc-lived); }
-.bio-clock__track-ahead { stroke: rgb(var(--bc-silver)); stroke-opacity: var(--bc-ahead); }
-.bio-clock__moon.is-lived, .bio-clock__planet.is-lived { opacity: var(--bc-lived); }
-.bio-clock__moon.is-ahead, .bio-clock__planet.is-ahead { opacity: var(--bc-ahead); }
-.bio-clock__moon.is-now, .bio-clock__planet.is-today { opacity: 1; }
+/* Small moons and planets: lived ones at 45%, the rest full, the current one full */
+.bio-clock__moon.is-lived, .bio-clock__planet.is-lived { opacity: var(--bc-glyph-lived); }
+.bio-clock__moon.is-ahead, .bio-clock__planet.is-ahead, .bio-clock__moon.is-now, .bio-clock__planet.is-today { opacity: 1; }
 
-/* Week: seven chakra segments; lived days dim, days ahead bright, today full and thicker */
-.bio-clock__seg { stroke: var(--bc-seg); }
-.bio-clock__seg.is-lived { stroke-opacity: var(--bc-lived); }
-.bio-clock__seg.is-ahead { stroke-opacity: var(--bc-ahead); }
-.bio-clock__seg.is-today { stroke-opacity: 1; }
-
-/* Year (view 3, outermost, silver): four seasons from the birthday */
-.bio-clock__year { stroke: rgb(var(--bc-silver)); stroke-width: 2.4; }
-.bio-clock__year.is-lived { stroke-opacity: var(--bc-lived); }
-.bio-clock__year.is-ahead { stroke-opacity: var(--bc-ahead); }
-.bio-clock__year.is-now { stroke-opacity: 1; stroke-width: 3.2; }
-.bio-clock__year--empty { stroke-opacity: 0.4; stroke-dasharray: 1 4; }
-.bio-clock__year-dot { fill: #fff; stroke: rgba(7, 11, 22, 0.8); stroke-width: 0.8; filter: drop-shadow(0 0 3px rgba(var(--bc-silver), 0.9)); }
-
-/* Day (view 3, gold, between the Moon and the Year): lived part dim, what is left bright; midnight at the top */
-.bio-clock__day-lived, .bio-clock__day-ahead { stroke: rgb(var(--bc-gold)); stroke-width: 1.6; }
-.bio-clock__day-lived { stroke-opacity: var(--bc-lived); }
-.bio-clock__day-ahead { stroke-opacity: var(--bc-ahead); }
-.bio-clock__day-dot { fill: rgb(var(--bc-gold)); filter: drop-shadow(0 0 3px rgba(var(--bc-gold), 0.95)); }
+/* Year (view 3, outermost, silver): an empty year (no birthday) is a dotted track */
+.bio-clock__year--empty { stroke: rgb(var(--bc-silver)); stroke-opacity: 0.4; stroke-dasharray: 1 4; }
 
 /* Centre: two addressed words, same size and weight; the colour comes from the ring (inline) */
 .bio-clock__word {
@@ -183,7 +164,7 @@
 
 @media (forced-colors: active) {
   .bio-clock__night { fill: Canvas; }
-  .bio-clock__track-lived, .bio-clock__track-ahead, .bio-clock__year, .bio-clock__day-lived, .bio-clock__day-ahead { stroke: CanvasText; }
+  .bio-clock__arc-lived, .bio-clock__arc-ahead, .bio-clock__year--empty { stroke: CanvasText; }
   .bio-clock__word, .bio-clock__address, .bio-clock__ring-label { fill: CanvasText !important; stroke: none; }
   .bio-clock__cue { color: ButtonText; background: ButtonFace; border-color: ButtonText; }
 }

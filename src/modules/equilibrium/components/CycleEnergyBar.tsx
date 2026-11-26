@@ -1,5 +1,6 @@
 import { memo, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { moonPhaseName } from "@/lib/moonPhaseNames";
 import { MoonOrb } from "./MoonOrb";
 
 /**
@@ -200,7 +201,7 @@ const CycleEnergyBarBase = ({
               <div key={i} className="flex flex-col items-center gap-1">
                 <div
                   role="img"
-                  aria-label={`${seg.label}${isCurrent ? " — current" : ""}`}
+                  aria-label={`${seg.moonPhaseIndex !== undefined ? moonPhaseName(seg.moonPhaseIndex) : seg.label}${isCurrent ? " — current" : ""}`}
                   className={cn(
                     "relative flex items-center justify-center rounded-full border",
                     "overflow-hidden",

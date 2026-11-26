@@ -52,6 +52,7 @@ import {
 } from "./phasePlan";
 import { SECTION_IDS } from "./types";
 import { EQ_INFO_COPY } from "./equilibriumCopy";
+import { moonPhaseName } from "@/lib/moonPhaseNames";
 
 /**
  * Equilibrium v2 — "Biologic Watch"
@@ -370,7 +371,7 @@ export const EquilibriumV2Page = () => {
                 // — the eyebrow umbrella is retired since the element
                 // now lives where the user reads the current state.
                 activePillEmoji={cycles.lunar.holonicPhase.elementEmoji}
-                activePillEmojiTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
+                activePillEmojiTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${moonPhaseName(cycles.lunar.phase.name)}`}
                 activePillSubLabel={formatPhaseEndsAt(
                   cycles.lunar.phaseEndMs,
                   cycles.lunar.daysRemainingInPhase,

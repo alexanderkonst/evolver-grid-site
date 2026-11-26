@@ -3,9 +3,10 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it, vi } from "vitest";
 import { getAllCyclesV2, MOON_PHASES, PLANETARY_DAYS } from "@/lib/equilibrium-cycles";
+import { MOON_PHASE_DISPLAY_EN, moonPhaseName } from "@/lib/moonPhaseNames";
 import {
-  BiologicClockFace, LEGACY_EXPANDED_KEY, VIEW_KEY, WEEK_TEXT_COLOURS, contrastRatio, daysToBirthday, formatTimeLeft, isActivationKey, loadView, moonMeaning,
-  nextView, phaseWord, readableOnDark, saveView,
+  BiologicClockFace, LEGACY_EXPANDED_KEY, MOON_ILLUMINATION, MOON_SEGMENT_COLOURS, VIEW_KEY, WEEK_TEXT_COLOURS, contrastRatio, daysToBirthday, formatTimeLeft,
+  isActivationKey, loadView, mixHex, moonMeaning, nextView, phaseWord, readableOnDark, ringStroke, saveView,
   type ClockView,
 } from "../BiologicClock";
 
@@ -43,7 +44,7 @@ const texts = (html: string) => [...html.matchAll(/<text[^>]*>([^<]*)<\/text>/g)
 const rawCentreTexts = (html: string) => [...html.matchAll(/<text[^>]*(?:bio-clock__address|bio-clock__word)[^>]*>([^<]*)<\/text>/g)].map((m) => m[1]);
 
 describe("engine words (spec «Words»)", () => {
-  it("Waxing Gibbous reads Prepping, Sunday reads Threshold & Celebration", () => {
+  it("Phase 3 (engine name Waxing Gibbous, shown as Almost Full) reads Prepping, Sunday reads Threshold & Celebration", () => {
     expect(MOON_PHASES[3].energy).toBe("Prepping · Prep for harvest · Set up infrastructure · Get the help");
     const sunday = PLANETARY_DAYS[6];
     expect(sunday.name).toBe("Sunday");
@@ -86,7 +87,7 @@ describe("BiologicClock v5: two rings from one engine", () => {
     expect(html).not.toContain("bio-clock__readout");
   });
 
-  it("moon: eight moons, lived dim, ahead bright, now (Waxing Gibbous = 3) one large symbol", () => {
+  it("moon: eight moons, lived dim, ahead full, now (Almost Full = 3) one large symbol", () => {
     const html = render(BIRTHDAY);
     expect(html.match(/data-moon-segment=/g)).toHaveLength(8);
     expect(html).toMatch(/data-moon-segment="3" class="bio-clock__moon is-now"/);
@@ -101,20 +102,120 @@ describe("BiologicClock v5: two rings from one engine", () => {
     const now = /data-moon-segment="3"[^>]*>.*?<\/g><\/g>/s.exec(html)![0];
     expect(now).toMatch(/width="33\.69/);
     expect(/data-moon-segment="2"[^>]*>.*?<\/g><\/g>/s.exec(html)![0]).toMatch(/width="13\.04/);
-    // today's planet (Saturn, ×1.7): 15.5 × 1.7 × 2 = 52.70; Mars 12.00
+    // today's planet (Saturn, ×1.7): 15.5 × 1.7 × 2 = 52.70; Mars 5.5 × 2 = 11.00 (fits the 10-wide Week stroke)
     expect(html).toMatch(/saturn\.png"[^>]* width="52\.70"/);
-    expect(html).toMatch(/mars\.png"[^>]* width="12\.00"/);
+    expect(html).toMatch(/mars\.png"[^>]* width="11\.00"/);
   });
 
-  it("moon track: a dim lived arc from the top to lunar.progress, a bright ahead arc from there on", () => {
+  it("Rings v7 items 1–2: Moon = 8 segments at r 84 / stroke 15, Week = 7 at r 56 / stroke 10, butt caps, 0.004-turn gaps", () => {
+    const html = render(BIRTHDAY);
+    const moon = /data-ring="moon".*?(?=data-ring="week")/s.exec(html)![0];
+    const week = /data-ring="week".*?(?=data-ring="centre")/s.exec(html)![0];
+    expect(moon.match(/data-moon-arc=/g)).toHaveLength(8);
+    expect(week.match(/data-week-track=/g)).toHaveLength(7);
+    expect(ringStroke(84)).toBe(15);
+    expect(ringStroke(56)).toBeCloseTo(10, 10);
+    expect(ringStroke(103)).toBeCloseTo((15 * 103) / 84, 10);
+    // ahead bands are full width; every arc path sits on its ring radius
+    expect(moon).toMatch(/class="bio-clock__arc-ahead"[^>]*stroke-width="15\.00"/);
+    expect(week).toMatch(/class="bio-clock__arc-ahead"[^>]*stroke-width="10\.00"/);
+    const arcPaths = (ring: string) => [...ring.matchAll(/class="bio-clock__arc-(?:lived|ahead)" d="([^"]*)"/g)].map((m) => m[1]);
+    expect(arcPaths(moon).length).toBeGreaterThanOrEqual(8);
+    expect(arcPaths(week).length).toBeGreaterThanOrEqual(7);
+    for (const d of arcPaths(moon)) expect(d).toMatch(/A84 84 /);
+    for (const d of arcPaths(week)) expect(d).toMatch(/A56 56 /);
+    // the first segment starts one gap (0.004 turn) after the top: a point on r 84 at angle 0.004 × 2π from 12 o'clock
+    const a = 0.004 * 2 * Math.PI - Math.PI / 2;
+    expect(moon).toContain(`M${(100 + 84 * Math.cos(a)).toFixed(2)} ${(100 + 84 * Math.sin(a)).toFixed(2)} A84 84 `);
+    // square ends, never round
+    const css = readFileSync(new URL("../BiologicClock.css", import.meta.url), "utf8");
+    expect(css).toMatch(/\.bio-clock__arc-lived[^{]*\{[^}]*stroke-linecap: butt/);
+    expect(css).not.toContain("stroke-linecap: round");
+    // no old track classes
+    expect(html).not.toContain("bio-clock__track-lived");
+    expect(html).not.toContain("bio-clock__track-ahead");
+  });
+
+  it("Rings v7 item 3: Moon segment colour = phase illumination, #343640 → #fff1d6", () => {
+    expect(MOON_ILLUMINATION).toEqual([0.03, 0.25, 0.5, 0.8, 1, 0.8, 0.5, 0.25]);
+    expect(MOON_SEGMENT_COLOURS).toHaveLength(8);
+    expect(MOON_SEGMENT_COLOURS[4]).toBe("#fff1d6"); // full moon: cream
+    expect(mixHex("#343640", "#fff1d6", 0)).toBe("#343640");
+    MOON_ILLUMINATION.forEach((k, i) => expect(MOON_SEGMENT_COLOURS[i]).toBe(mixHex("#343640", "#fff1d6", k)));
+    // the new moon is nearly the dark end, brighter phases are strictly brighter, mirrored phases match
+    expect(contrastRatio(MOON_SEGMENT_COLOURS[0], "#343640")).toBeLessThan(1.2);
+    expect(contrastRatio(MOON_SEGMENT_COLOURS[1], "#343640")).toBeLessThan(contrastRatio(MOON_SEGMENT_COLOURS[2], "#343640"));
+    expect(contrastRatio(MOON_SEGMENT_COLOURS[2], "#343640")).toBeLessThan(contrastRatio(MOON_SEGMENT_COLOURS[3], "#343640"));
+    expect(contrastRatio(MOON_SEGMENT_COLOURS[3], "#343640")).toBeLessThan(contrastRatio(MOON_SEGMENT_COLOURS[4], "#343640"));
+    expect(MOON_SEGMENT_COLOURS[5]).toBe(MOON_SEGMENT_COLOURS[3]);
+    expect(MOON_SEGMENT_COLOURS[6]).toBe(MOON_SEGMENT_COLOURS[2]);
+    expect(MOON_SEGMENT_COLOURS[7]).toBe(MOON_SEGMENT_COLOURS[1]);
+  });
+
+  it("Rings v7 item 4: ahead = full band, lived = the same colour at 30% width and opacity .85, the current segment splits at now", () => {
     const { lunar } = getAllCyclesV2(NOW, BIRTHDAY);
     const html = render(BIRTHDAY);
-    expect(html).toMatch(/class="bio-clock__track-lived"[^>]* d="M100\.00 20\.00 A80 80 /);
-    expect(html).toMatch(/class="bio-clock__track-ahead"[^>]* d="M\d/);
-    expect(html).not.toContain("bio-clock__track-lit");
+    const arc = (i: number) => new RegExp(`data-moon-arc="${i}".*?</g>`, "s").exec(html)![0];
+    // segments 0–2 are lived: one thin path, no full band; 4–7 are ahead: one full band, no thin line
+    for (const i of [0, 1, 2]) {
+      expect(arc(i)).toContain("bio-clock__arc-lived");
+      expect(arc(i)).not.toContain("bio-clock__arc-ahead");
+    }
+    for (const i of [4, 5, 6, 7]) {
+      expect(arc(i)).toContain("bio-clock__arc-ahead");
+      expect(arc(i)).not.toContain("bio-clock__arc-lived");
+    }
+    // the current one (3) has both, split at lunar.progress
+    expect(arc(3)).toContain("bio-clock__arc-lived");
+    expect(arc(3)).toContain("bio-clock__arc-ahead");
     const a = lunar.progress * 2 * Math.PI - Math.PI / 2;
-    const [x, y] = [100 + 80 * Math.cos(a), 100 + 80 * Math.sin(a)].map((n) => n.toFixed(2));
-    expect(html).toContain(`${x} ${y}"`);
+    const split = `${(100 + 84 * Math.cos(a)).toFixed(2)} ${(100 + 84 * Math.sin(a)).toFixed(2)}`;
+    expect(arc(3).split(split).length - 1).toBe(2); // the lived path ends and the ahead path starts on the same point
+    // thin line: 30% of 15 = 4.50, flat colour, opacity .85, the colour of its own segment
+    expect(arc(0)).toMatch(/class="bio-clock__arc-lived"[^>]*stroke="#[0-9a-f]{6}"[^>]*stroke-width="4\.50"[^>]*stroke-opacity="0\.85"/);
+    expect(arc(0)).toContain(`stroke="${MOON_SEGMENT_COLOURS[0]}"`);
+    // week: Monday–Friday lived (thin), Saturday split, Sunday ahead; thin = 30% of 10 = 3.00
+    const day = (i: number) => new RegExp(`data-week-track="${i}".*?</g>`, "s").exec(html)![0];
+    for (const i of [0, 1, 2, 3, 4]) expect(day(i)).not.toContain("bio-clock__arc-ahead");
+    expect(day(5)).toContain("bio-clock__arc-lived");
+    expect(day(5)).toContain("bio-clock__arc-ahead");
+    expect(day(6)).not.toContain("bio-clock__arc-lived");
+    expect(day(0)).toMatch(/stroke-width="3\.00" stroke-opacity="0\.85"/);
+  });
+
+  it("Rings v7 item 8: «Light flow» — each ahead band is stroked with a gradient: 35% of the previous colour at the start, its own in the middle, 35% of the next at the end", () => {
+    const html = render(BIRTHDAY);
+    const arc = (i: number) => new RegExp(`data-moon-arc="${i}".*?</g>`, "s").exec(html)![0];
+    const own = MOON_SEGMENT_COLOURS[5];
+    const seg = arc(5);
+    expect(seg).toMatch(/<linearGradient id="bc-flow-moon-[^"]*-5" gradientUnits="userSpaceOnUse" x1="[\d.-]+" y1="[\d.-]+" x2="[\d.-]+" y2="[\d.-]+">/);
+    expect(seg).toContain(`<stop offset="0" stop-color="${mixHex(own, MOON_SEGMENT_COLOURS[4], 0.35)}"`);
+    expect(seg).toContain(`<stop offset="0.5" stop-color="${own}"`);
+    expect(seg).toContain(`<stop offset="1" stop-color="${mixHex(own, MOON_SEGMENT_COLOURS[6], 0.35)}"`);
+    expect(seg).toMatch(/class="bio-clock__arc-ahead"[^>]*stroke="url\(#bc-flow-moon-[^"]*-5\)"/);
+    // the gradient runs from the segment's start point to its end point (r 84, 0.004 turn in from each side)
+    const p0 = [100 + 84 * Math.cos((5 / 8 + 0.004) * 2 * Math.PI - Math.PI / 2), 100 + 84 * Math.sin((5 / 8 + 0.004) * 2 * Math.PI - Math.PI / 2)].map((n) => n.toFixed(2));
+    expect(seg).toContain(`x1="${p0[0]}" y1="${p0[1]}"`);
+    // it wraps: the last segment flows into the first, the first comes from the last
+    expect(arc(7)).toContain(`stop-color="${mixHex(MOON_SEGMENT_COLOURS[7], MOON_SEGMENT_COLOURS[0], 0.35)}"`);
+    expect(arc(0)).not.toContain("<linearGradient"); // lived: flat thin line, no gradient
+    expect(arc(0)).not.toContain("url(#");
+    // week: Sunday (ahead) flows from Saturday's yellow towards Monday's indigo
+    const sunday = new RegExp(`data-week-track="6".*?</g>`, "s").exec(html)![0];
+    expect(sunday).toContain(`stop-color="${mixHex("#4fb06e", "#e8c447", 0.35)}"`);
+    expect(sunday).toContain(`stop-color="${mixHex("#4fb06e", "#5b4fc4", 0.35)}"`);
+    // no glow, shadow or rim on the rings themselves
+    const bands = (/data-ring="moon".*?(?=data-moon-segment="0")/s.exec(html)![0] + /data-week-track="0".*?(?=data-week-segment="0")/s.exec(html)![0]);
+    expect(bands).not.toMatch(/filter|drop-shadow|feGaussianBlur|<circle/);
+  });
+
+  it("Rings v7 item 6: one full dark disc behind the dial, concentric, dial radius", () => {
+    const v1 = render(BIRTHDAY);
+    expect(v1.match(/class="bio-clock__night"/g)).toHaveLength(1);
+    expect(v1).toContain('<circle class="bio-clock__night" cx="100" cy="100" r="100"');
+    expect(render(BIRTHDAY, { view: 3 })).toContain('<circle class="bio-clock__night" cx="100" cy="100" r="138"');
+    const css = readFileSync(new URL("../BiologicClock.css", import.meta.url), "utf8");
+    expect(css).toMatch(/\.bio-clock__night \{[^}]*rgba\(6, 9, 20, 0\.9\)/);
   });
 
   it("week: seven planet photos Monday→Sunday, Saturday today, Saturn drawn larger", () => {
@@ -133,17 +234,19 @@ describe("BiologicClock v5: two rings from one engine", () => {
 
   it("week track: chakra colours per day", () => {
     const html = render(BIRTHDAY);
-    for (const c of ["#5b4fc4", "#c9483c", "#3f84d0", "#9a62d6", "#e48a3c", "#e8c447", "#4fb06e"]) {
-      expect(html).toContain(`--bc-seg:${c}`);
-    }
+    ["#5b4fc4", "#c9483c", "#3f84d0", "#9a62d6", "#e48a3c", "#e8c447", "#4fb06e"].forEach((c, i) => {
+      const seg = new RegExp(`data-week-track="${i}".*?</g>`, "s").exec(html)![0];
+      // lived days (Mon–Fri) are a flat thin line of the colour, today and ahead carry it as the middle of the gradient
+      expect(seg).toContain(i <= 4 ? `stroke="${c}"` : `stop-color="${c}"`);
+    });
   });
 
   it("centre: two addressed words (moon + phase word in moon colour, planet + day word in the chakra colour), same size, no clock time", () => {
     const html = render(BIRTHDAY);
     // each word sits under its cycle's name in small caps (Fixes v6.2 item 1)
-    expect(texts(html)).toEqual(["WAXING GIBBOUS", "Prepping", "SATURDAY", "Structure"]);
+    expect(texts(html)).toEqual(["ALMOST FULL", "Prepping", "SATURDAY", "Structure"]);
     expect(html).not.toMatch(/\d{1,2}:\d{2}/);
-    expect(html).toContain('aria-label="Waxing Gibbous, Prepping, Saturday, Structure"');
+    expect(html).toContain('aria-label="Almost Full, Prepping, Saturday, Structure"');
     const centre = html.slice(html.indexOf('data-ring="centre"'));
     expect(centre.match(/data-centre-line/g)).toHaveLength(2);
     expect(centre).toMatch(/fill:#fff4dc/); // the moon word: warm white
@@ -162,7 +265,7 @@ describe("BiologicClock v5: two rings from one engine", () => {
   it("card: one grid per ring — label with address and time left, symbol + word + was/next, meaning", () => {
     const html = render(BIRTHDAY, { view: 2 });
     const moon = /data-readout="moon".*?<\/section>/s.exec(html)![0];
-    expect(moon).toMatch(/bio-clock__label">Moon · Waxing Gibbous</);
+    expect(moon).toMatch(/bio-clock__label">Moon · Almost Full</);
     expect(moon).toMatch(/bio-clock__name">Prepping</);
     const { lunar } = getAllCyclesV2(NOW, BIRTHDAY);
     const left = formatTimeLeft(lunar.daysRemainingInPhase);
@@ -194,7 +297,7 @@ describe("BiologicClock v5: two rings from one engine", () => {
     expect(week).toContain("Week · Sunday, Sun");
     expect(week).toContain("bio-clock__sun"); // the Sun image is masked round
     expect(week).toContain("Between weeks: vision, ceremony, sharing with community.");
-    expect(texts(html)).toEqual(["WAXING GIBBOUS", "Prepping", "SUNDAY", "Threshold"]);
+    expect(texts(html)).toEqual(["ALMOST FULL", "Prepping", "SUNDAY", "Threshold"]);
     // the Sun on the dial: a circular mask (disc 88% of the image) and our own glow
     const dial = html.slice(0, html.indexOf("bio-clock__readout"));
     expect(dial).toContain('data-sun-mask="true"');
@@ -226,7 +329,7 @@ describe("three views, one tap cycles them (#385)", () => {
 
   it("view 1: the dial and its two addressed centre words, no card, no real control besides the dial", () => {
     const html = render(BIRTHDAY, { view: 1, onCycleView: () => {} });
-    expect(texts(html)).toEqual(["WAXING GIBBOUS", "Prepping", "SATURDAY", "Structure"]);
+    expect(texts(html)).toEqual(["ALMOST FULL", "Prepping", "SATURDAY", "Structure"]);
     expect(html).not.toContain("bio-clock__readout");
     expect(html).not.toContain("bio-clock__more");
   });
@@ -250,7 +353,7 @@ describe("three views, one tap cycles them (#385)", () => {
   it("the dial itself is the control: role button, focusable, aria-label names the summary and the next view", () => {
     const v1 = render(BIRTHDAY, { view: 1, onCycleView: () => {} });
     expect(v1).toMatch(/<svg[^>]*role="button"[^>]*tabindex="0"/);
-    expect(v1).toContain('aria-label="Waxing Gibbous, Prepping, Saturday, Structure. Show the text: meaning, previous and next"');
+    expect(v1).toContain('aria-label="Almost Full, Prepping, Saturday, Structure. Show the text: meaning, previous and next"');
     expect(render(BIRTHDAY, { view: 2, onCycleView: () => {} })).toContain(". Show Year and day\"");
     expect(render(BIRTHDAY, { view: 3, onCycleView: () => {} })).toContain(". Back to the dial only\"");
   });
@@ -275,17 +378,21 @@ describe("three views, one tap cycles them (#385)", () => {
     expect(v3.match(/data-readout="(moon|week|year|day)"/g)).toEqual(['data-readout="moon"', 'data-readout="week"', 'data-readout="year"', 'data-readout="day"']);
     expect(v3.match(/data-ring="(year|moon|week|day)"/g)).toHaveLength(4);
     // the viewBox grows outward by the same pad on every side: the 0..200 inner geometry is untouched
-    expect(v3).toContain('viewBox="-14 -14 228 228"');
+    expect(v3).toContain('viewBox="-38 -38 276 276"');
     const ring = (html: string, name: string) => new RegExp(`data-ring="${name}".*?(?=data-ring=)`, "s").exec(html)![0];
     expect(ring(v3, "moon").replace(/<title>.*?<\/title>/, "")).toBe(ring(v2, "moon").replace(/<title>.*?<\/title>/, ""));
     expect(/data-ring="week".*?(?=data-ring="day"|data-ring="centre")/s.exec(v3)![0]).toBe(/data-ring="week".*?(?=data-ring="centre")/s.exec(v2)![0]);
-    // Day (gold) at r 102, Year (silver) at r 111: both outside the Moon ring (r 80 + the 15.5 current moon)
-    expect(ring(v3, "day")).toMatch(/A102 102/);
-    expect(/data-ring="year".*?(?=data-ring="day")/s.exec(v3)![0]).toMatch(/A111 111/);
-    // day arc: lived dim then what is left bright
-    expect(v3).toContain("bio-clock__day-lived");
-    expect(v3).toContain("bio-clock__day-ahead");
-    expect(v3).not.toContain("bio-clock__day-lit");
+    // Day (gold) at r 103, Year (silver) at r 126, strokes 15·r/84: each clears the ring inside it, and the Year edge fits the dark disc (r 138)
+    expect(ring(v3, "day")).toMatch(/A103 103/);
+    expect(/data-ring="year".*?(?=data-ring="day")/s.exec(v3)![0]).toMatch(/A126 126/);
+    expect(103 - ringStroke(103) / 2).toBeGreaterThan(84 + 15 / 2); // Day inner edge > Moon outer edge
+    expect(126 - ringStroke(126) / 2).toBeGreaterThan(103 + ringStroke(103) / 2); // Year inner edge > Day outer edge
+    expect(126 + ringStroke(126) / 2).toBeLessThanOrEqual(138);
+    // day arc: lived = thin line, what is left = full band (same rule as the Moon and Week)
+    const dayRing = ring(v3, "day");
+    expect(dayRing).toContain("bio-clock__arc-lived");
+    expect(dayRing).toContain("bio-clock__arc-ahead");
+    expect(dayRing).toMatch(new RegExp(`class="bio-clock__arc-ahead"[^>]*stroke-width="${ringStroke(103).toFixed(2)}"`));
     // the Day block (v6.3 item 3): its own «Day» label, the day left in gold under it (Saturday 16:38 → 31% left)
     const year = /data-readout="day".*?<\/section>/s.exec(v3)![0];
     expect(year).toMatch(/bio-clock__label">Day</);
@@ -399,7 +506,7 @@ describe("view 3: Year and day", () => {
       'data-ring="year"', 'data-ring="day"', 'data-ring="moon"', 'data-ring="week"',
     ]);
     expect(html.match(/data-season=/g)).toHaveLength(4);
-    expect(html).toMatch(/data-season="3" class="bio-clock__year is-now"/);
+    expect(html).toMatch(/class="bio-clock__year is-now" data-season="3"/);
     expect(html.match(/bio-clock__year is-lived/g)).toHaveLength(3);
     expect(html).not.toMatch(/\d{1,2}:\d{2}/);
   });
@@ -464,7 +571,7 @@ describe("Fixes v6.2 (#434)", () => {
     expect(WEEK_TEXT_COLOURS[0]).not.toBe("#5b4fc4");
     expect(readableOnDark("#e8c447")).toBe("#e8c447"); // already reads
     // the track keeps the pure chakra colour; only the words are lightened
-    expect(render(BIRTHDAY)).toContain("--bc-seg:#5b4fc4");
+    expect(render(BIRTHDAY)).toContain('stroke="#5b4fc4"'); // Monday, lived on a Saturday: the thin line keeps the pure colour
     const monday = new Date(2026, 10, 23, 10, 0).getTime();
     const html = renderToStaticMarkup(
       <MemoryRouter>
@@ -554,9 +661,9 @@ describe("Fixes v6.3 (#448)", () => {
     expect(/data-ring="day".*?(?=data-ring="moon")/s.exec(html)![0]).toContain('id="bc-label-day-');
     expect(/data-ring="year".*?(?=data-ring="day")/s.exec(html)![0]).toContain('id="bc-label-year-');
     // each label runs on its own ring's radius
-    expect(/id="bc-label-year-[^"]*" d="M[\d. -]+ A111 111/.exec(html)).not.toBeNull();
-    expect(/id="bc-label-day-[^"]*" d="M[\d. -]+ A102 102/.exec(html)).not.toBeNull();
-    // 11 viewBox units = 11 px (the 228-unit dial is drawn 228 px wide on the card)
+    expect(/id="bc-label-year-[^"]*" d="M[\d. -]+ A126 126/.exec(html)).not.toBeNull();
+    expect(/id="bc-label-day-[^"]*" d="M[\d. -]+ A103 103/.exec(html)).not.toBeNull();
+    // 11 viewBox units = 11 px at 1 unit = 1 px (the 276-unit dial is drawn 1.38× so Moon and Week keep their size)
     expect(html.match(/bio-clock__ring-label [^"]*" style="font-size:(\d+(?:\.\d+)?)px"/g)!.every((m) => Number(/font-size:([\d.]+)px/.exec(m)![1]) >= 11)).toBe(true);
     // the ring stroke leaves a gap under the label: the day arc is not one unbroken arc any more
     const dayRing = /data-ring="day".*?(?=data-ring="moon")/s.exec(html)![0];
@@ -581,7 +688,7 @@ describe("Fixes v6.3 (#448)", () => {
   it("item 5: the centre words are hidden from the tree (the dial's name carries them); card rows separate their pieces", () => {
     const html = render(BIRTHDAY, { view: 3, onCycleView: () => {} });
     expect(html).toMatch(/data-ring="centre" class="bio-clock__centre" aria-hidden="true"/);
-    expect(html).toContain('aria-label="Waxing Gibbous, Prepping, Saturday, Structure.');
+    expect(html).toContain('aria-label="Almost Full, Prepping, Saturday, Structure.');
     expect(css).toMatch(/\.bio-clock__sr \{[^}]*clip/s);
   });
 });
