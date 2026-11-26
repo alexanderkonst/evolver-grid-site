@@ -195,7 +195,7 @@ describe("closed lines come from data (§14.3)", () => {
       "Opens when your top talent is saved to your account. Inside: your crystal, mission and save file.",
     );
     expect(closedLine(place("workshop"))).toBe(
-      "Opens when your mission is saved. Inside: your offer, built from your top talent.",
+      "Opens when your mission is saved. Inside: the founders' collective and the tools to build your business.",
     );
     expect(placeLine(place("town-hall"), "closed")).toMatch(/^Opens when your first sale is recorded\. Inside: .+\.$/);
   });
@@ -399,7 +399,7 @@ describe("whatChanged: what is new since the last visit (§14.6)", () => {
     const before: VillagePlaceKey[] = [...guestOpen, "house", "quest-board", "oracle"];
     const r = whatChanged(VILLAGE_PLACES, seen(...before), saveWith(["find-top-talent", "discover-mission"]));
     expect(r.fresh.map((p) => p.key)).toEqual(["workshop"]);
-    expect(r.line).toBe("The Workshop is open.");
+    expect(r.line).toBe("The Collective is open.");
   });
 
   it("Assets saved: Co-working is new", () => {

@@ -22,8 +22,8 @@ const titleRules: TitleRule[] = [
   { match: (path) => path === "/build/cockpit/dashboard", title: "Founder Cockpit" },
   { match: (path) => path === "/build/cockpit/offers", title: "Offers Board" },
   { match: (path) => path === "/build/cockpit", title: "Founder Cockpit" },
-  { match: (path) => path === "/ubb" || path.startsWith("/ubb/"), title: "Workshop" },
-  { match: (path) => path === "/game/build" || path.startsWith("/game/build/"), title: "Workshop" },
+  { match: (path) => path === "/ubb" || path.startsWith("/ubb/"), title: "Collective" },
+  { match: (path) => path === "/game/build" || path.startsWith("/game/build/"), title: "Collective" },
   // Game vocabulary (Sasha 2026-10-26, issue #129): labels only. Specific
   // /game/learn/* pages come before the generic Training rule.
   { match: (path) => path === "/game/journey" || path.startsWith("/game/journey/"), title: "Quest Board" },

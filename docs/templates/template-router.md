@@ -55,4 +55,6 @@
 | Simplify a screen or interface by testing and cutting until it gets out of the way | [subtraction-loop.md](./subtraction-loop.md) | An interface a first-timer gets in seconds | 115 Articulation Is the Mechanism of Growth (candidate) |
 | Anything else / a new template | [meta-template.md](./meta-template.md), then [README.md](./README.md) | A new form for a new kind of work | Craft (nearest 115) |
 
+**Trace line (Meta-Template v3, 2026-11-26):** every artifact made by a template carries `Template: <name> vN · Version: vX.Y · Shift check: yes / no / unknown`, and every finished work ends with «Template change: …» or «none» ([meta-template.md](./meta-template.md) Core v3).
+
 Every report to Sasha shows the result with one clickable link, never only "done" ([improvement-loop.md](./improvement-loop.md) §3).

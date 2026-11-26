@@ -21,7 +21,7 @@ export const WHAT_YOU_CAN_DO: Record<Exclude<VillagePlaceKey, typeof MAP_HOME>, 
   coworking: "Find partners for the work.",
   "fire-circle": "Join your FMF circle.",
   academy: "Grow in what matters most.",
-  workshop: "Craft your offer.",
+  workshop: "Founders building unique businesses together.",
   market: "Open your shop.",
   "town-hall": "Build ventures together.",
 };

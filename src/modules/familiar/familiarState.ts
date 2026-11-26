@@ -48,10 +48,10 @@ export function buildGifts(src: FamiliarSources): GiftState[] {
       key: "knowsYourWork",
       lit: pieces > 0,
       label: "Knows your work",
-      detail: pieces > 0 ? `${pieces} of ${WORKSHOP_TOTAL} Workshop pieces` : undefined,
+      detail: pieces > 0 ? `${pieces} of ${WORKSHOP_TOTAL} Collective pieces` : undefined,
       detailKey: pieces > 0 ? "work" : undefined,
       params: pieces > 0 ? { n: pieces, total: WORKSHOP_TOTAL } : undefined,
-      opensWhen: pieces > 0 ? undefined : "Opens in the Workshop",
+      opensWhen: pieces > 0 ? undefined : "Opens in the Collective",
       opensWhenKey: pieces > 0 ? undefined : "opensWorkshop",
     },
   ];

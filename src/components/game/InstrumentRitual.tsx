@@ -41,7 +41,8 @@ import { useLitSeen } from "@/lib/instrument/litSeenStore";
 
 /** The player lands, then it plays: a short rest, also long enough for a signed-in save to merge. */
 const SETTLE_MS = 1200;
-const GLYPH_SELECTOR = '[data-testid="instrument-glyph-canvas"]';
+// The glyph's drawing (InstrumentGlyph.tsx); #502 renamed it from `-canvas` and this lookup went stale.
+const GLYPH_SELECTOR = '[data-testid="instrument-glyph-svg"]';
 
 const PANEL = "#0b0e13";
 const INK = "#e8eef2";

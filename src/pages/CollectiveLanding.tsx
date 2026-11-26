@@ -1,7 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
+import { formatCurrency } from "@/i18n/format";
+import { REVENUE_TIMELINE } from "@/data/ventureTimeline";
 import "./CollectiveLanding.css";
 
 /**
@@ -11,38 +13,35 @@ import "./CollectiveLanding.css";
  * through to "no shell" in lib/shellRoutes.ts).
  *
  * Copy source (single, verbatim): docs/02-strategy/collective/collective_landing_v2.md
- * Sections 1-7 in that order. English lives in src/locales/en/common.json under
+ * Sections 1-8 in that order. English lives in src/locales/en/common.json under
  * `collective.*`; es/ru mirror its keys. Do not add copy here that is not in that file.
+ *
+ * Section 5 ("Our business, in public") reads src/data/ventureTimeline.ts, the same
+ * data /dashboard uses. Milestone text is data (English); the chrome around it is i18n.
  *
  * Template followed: docs/templates/module-form.md (§12 Landing and Final screen copy law).
  */
 
 const ZOG_ENTRY = "/zone-of-genius/entry";
 const PATH_PAGE = "/path";
-
-type Tone = "live" | "coming";
+const DASHBOARD_PAGE = "/dashboard";
 
 type CardCopy = { name: string; gives: string; result: string };
 type FigureCopy = { value: string; label: string };
 
-// One entry per card, same order as `collective.inside.cards`.
-// Live = solid tag, Coming = outlined tag. Labels come from the copy file.
-const CARD_STATUS: { tone: Tone; key: "live" | "coming" | "liveInGame" | "firstSteps" }[] = [
-  { tone: "coming", key: "coming" },        // 1 Collaborations
-  { tone: "live", key: "liveInGame" },      // 2 Introductions
-  { tone: "live", key: "live" },            // 3 Founder Cockpit
-  { tone: "live", key: "firstSteps" },      // 4 Your AI
-  { tone: "live", key: "live" },            // 5 Shared rhythm
-  { tone: "coming", key: "coming" },        // 6 Mutual promotion
-  { tone: "coming", key: "coming" },        // 7 Scaling experts
-  { tone: "coming", key: "coming" },        // 8 Mini-hackathons
-];
+type PublicView = "short" | "key" | "full";
+const PUBLIC_VIEWS: PublicView[] = ["short", "key", "full"];
+
+// Same data as /dashboard. Newest last; the latest entry carries the running total.
+const LATEST = REVENUE_TIMELINE[REVENUE_TIMELINE.length - 1];
+const KEY_MILESTONES = REVENUE_TIMELINE.filter((m) => m.key);
 
 const delay = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 export default function CollectiveLanding() {
   const { t } = useTranslation();
   const rootRef = useRef<HTMLElement>(null);
+  const [view, setView] = useState<PublicView>("short");
 
   const figures = t("collective.origin.figures", { returnObjects: true }) as FigureCopy[];
   const cards = t("collective.inside.cards", { returnObjects: true }) as CardCopy[];
@@ -128,31 +127,79 @@ export default function CollectiveLanding() {
         <div className="cl-wrap">
           <h2 id="cl-inside" data-reveal>{t("collective.inside.title")}</h2>
           <ol className="cl-cards">
-            {cards.map((card, i) => {
-              const status = CARD_STATUS[i];
-              return (
-                <li
-                  key={card.name}
-                  className={`cl-card${i === 0 ? " cl-card-heart" : ""}`}
-                  data-reveal
-                  style={delay((i % 3) * 80)}
-                >
-                  <span className={`cl-tag cl-tag-${status.tone}`}>
-                    {t(`collective.inside.status.${status.key}`)}
-                  </span>
-                  <h3>{card.name}</h3>
-                  <p className="cl-gives">{card.gives}</p>
-                  <p className="cl-result">
-                    <b>{t("collective.inside.resultLabel")}:</b> {card.result}
-                  </p>
-                </li>
-              );
-            })}
+            {cards.map((card, i) => (
+              <li
+                key={card.name}
+                className={`cl-card${i === 0 ? " cl-card-heart" : ""}`}
+                data-reveal
+                style={delay((i % 3) * 80)}
+              >
+                <h3>{card.name}</h3>
+                <p className="cl-gives">{card.gives}</p>
+                <p className="cl-result">
+                  <b>{t("collective.inside.resultLabel")}:</b> {card.result}
+                </p>
+              </li>
+            ))}
           </ol>
         </div>
       </section>
 
-      {/* 5. The path in */}
+      {/* 5. Our business, in public */}
+      <section className="cl-sec" aria-labelledby="cl-public">
+        <div className="cl-wrap cl-narrow">
+          <h2 id="cl-public" data-reveal>{t("collective.public.title")}</h2>
+          <p className="cl-lede cl-sub" data-reveal>{t("collective.public.sub")}</p>
+
+          <div
+            className="cl-views"
+            role="group"
+            aria-label={t("collective.public.viewsLabel")}
+            data-reveal
+          >
+            {PUBLIC_VIEWS.map((v) => (
+              <button
+                key={v}
+                type="button"
+                className="cl-view-btn"
+                aria-pressed={view === v}
+                onClick={() => setView(v)}
+              >
+                {t(`collective.public.views.${v}`)}
+              </button>
+            ))}
+          </div>
+
+          {view === "short" && (
+            <p className="cl-pub-short" data-testid="cl-public-short">
+              {t("collective.public.short", {
+                days: LATEST.day,
+                total: formatCurrency(LATEST.total, "USD", { maximumFractionDigits: 0 }),
+              })}
+              <span className="cl-pub-latest">
+                <b>{t("collective.public.latest")}:</b> {LATEST.label}
+              </span>
+            </p>
+          )}
+
+          {view !== "short" && (
+            <ol className="cl-pub-list" data-testid={`cl-public-${view}`}>
+              {(view === "key" ? KEY_MILESTONES : REVENUE_TIMELINE).map((m) => (
+                <li key={`${m.day}-${m.label}`}>
+                  <span className="cl-pub-day">{t("collective.public.day", { day: m.day })}</span>
+                  <span className="cl-pub-text">{m.label}</span>
+                </li>
+              ))}
+            </ol>
+          )}
+
+          <p className="cl-pub-link" data-reveal>
+            <Link className="cl-step-link" to={DASHBOARD_PAGE}>{t("collective.public.link")}</Link>
+          </p>
+        </div>
+      </section>
+
+      {/* 6. The path in */}
       <section className="cl-sec" aria-labelledby="cl-path">
         <div className="cl-wrap cl-narrow">
           <h2 id="cl-path" data-reveal>{t("collective.path.title")}</h2>
@@ -171,7 +218,7 @@ export default function CollectiveLanding() {
         </div>
       </section>
 
-      {/* 6. Terms */}
+      {/* 7. Terms */}
       <section className="cl-sec" aria-labelledby="cl-terms">
         <div className="cl-wrap cl-narrow">
           <h2 id="cl-terms" data-reveal>{t("collective.terms.title")}</h2>
@@ -184,7 +231,7 @@ export default function CollectiveLanding() {
         </div>
       </section>
 
-      {/* 7. Closing */}
+      {/* 8. Closing */}
       <section className="cl-sec cl-close">
         <div className="cl-wrap">
           <p className="cl-lede cl-close-lede" data-reveal>{t("collective.closing.lede")}</p>
