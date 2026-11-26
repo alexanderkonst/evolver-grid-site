@@ -6,13 +6,13 @@
 ## Meta-description
 - Level / parent: L2 · Content & Transmission · parent: [meta-template.md](./meta-template.md); extends [course-from-source.md](./course-from-source.md) (steps 9–10: wizard, Academy)
 - Lens(es): **Ideal Forms** (one result, one icon, one tagline) · **Causal** (the loop: teaser → course → infographic → game)
-- Shift carried: **candidate PST 187, awaiting Sasha's words** (see Invariant) · **before:** a course is content you consume and then leave · **after:** a course is an app with a result; its infographic both pulls people in and seals the integration, and its end is an invitation into the game · **check:** someone who finished a course enters the game on their own, and someone who saw a teaser starts the course
+- Shift carried: **PST 187 The Packaged Shift** (Sasha's yes, 2026-11-25) · **before:** a course is content you consume and then leave · **after:** a course is an app with a result; its infographic both pulls people in and seals the integration, and its end is an invitation into the game · **check:** someone who finished a course enters the game on their own, and someone who saw a teaser starts the course
 - What emerges: a shelf of result-apps, each one a door into the game
 - As a part of the whole: the Meta-Template sees a transmission that keeps moving: what was received is condensed, and the condensed form becomes the next person's door
 - Siblings / repeats: [infographic.md](./infographic.md) (the cards), [course-from-source.md](./course-from-source.md) (building the course), PST 8 One Acorn, Every Magnification
 - Status · applied in · last reviewed: v0.1 (one button) · Potential, Crossing, Vision (courses exist), Nature, Your AI (to create) · 2026-11-25
 
-## Invariant (draft v2, for Sasha)
+## Invariant (PST 187)
 **One unit: a packaged shift, before → after.** It can be shown (an icon, a teaser, a closing card), walked (a course) or pressed (a button). The end of one person's shift, condensed into one image, is the door for the next person.
 
 ## App store for AI and the button console
