@@ -139,6 +139,33 @@ Verdict: thicker is right but not enough alone. The split «lived / ahead» is c
 7. Card now pushes «YOUR NEXT MOVE» and ENTER below the fold on phone (trade-off of v6.3). Keep card short: drop «before …» lines on phone, or the card closes on scroll.
 8. The header line «Full moon. Harvesting.» repeats the dial centre; one of them is enough.
 
+## Rings v7: segmented rings, phase brightness, neutral phase names (Sasha 2026-11-26 12:45 MST «да, делай»; 12:46 «маленькие луны пусть остаются»)
+
+Mockups: [final dial](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v8-final.png) · [phone, real 200 px](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v8-phone.png) · [A vs B](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v8.png) (B chosen). Replaces the ring styling of v6–v6.3; the views, toggle, card and engine stay as they are. The 8-point roast above is NOT part of this change except where repeated here.
+
+1. **Segmented rings.** Moon ring = 8 segments (one per phase), Week ring = 7 segments (one per day, chakra colour). Small gaps between segments: 0.004 of a turn at each end (~1.4°). Square (butt) caps, no round caps.
+2. **Width grows with radius** (Sasha asked for Apple Watch geometry; Activity rings are actually equal width, so we scale by radius instead). In the 200-unit viewBox: Moon radius 84, stroke 15; Week radius 56, stroke 15×56/84 = 10. Year and Day rings (view 3) follow the same rule: stroke = 15 × r/84.
+3. **Moon segment brightness = how lit that phase is.** Colour is a mix from #343640 (dark) to #fff1d6 (cream) by illumination: New 0.03, Growing Crescent 0.25, Growing Half 0.5, Almost Full 0.8, Full 1.0, Past Full 0.8, Fading Half 0.5, Fading Crescent 0.25.
+4. **Lived vs ahead (variant B).** Ahead = full-width solid segment, opacity 1. Lived = the same colour as a thin line, 30% of the stroke width, opacity 0.85, centred on the ring radius. The current segment is split at "now": lived part thin, rest full. Same rule on the Week ring and on Year/Day rings.
+5. **Small symbols stay.** Small moon-phase glyph centred on each Moon segment (lived ones at 45% opacity); current phase as the big MoonOrb with glow. Week ring: small planet on each day, current day big with glow. Reuse MoonOrb and the planet assets.
+6. **Dark backing:** one full concentric dark disc behind the dial (rgba(6,9,20,.9)), radius = dial radius.
+7. **Neutral phase names** everywhere the user reads them (clock, card, Equilibrium pages, transitions, harvest, Telegram/eyebrow copy in the frontend), en/ru/es locales:
+   | old | en | ru | es |
+   |---|---|---|---|
+   | New Moon | New Moon | Новолуние | Luna nueva |
+   | Waxing Crescent | Growing Crescent | Растущий серп | Creciente fina |
+   | First Quarter | Growing Half | Растущая половина | Media creciente |
+   | Waxing Gibbous | Almost Full | Почти полная | Casi llena |
+   | Full Moon | Full Moon | Полнолуние | Luna llena |
+   | Waning Gibbous | Past Full | После полнолуния | Recién llena |
+   | Last Quarter | Fading Half | Убывающая половина | Media menguante |
+   | Waning Crescent | Fading Crescent | Убывающий серп | Menguante fina |
+   Display strings only: keep internal keys, ids, stored values and astronomy comments. Do not touch supabase/functions in this change (edge deploys cost Lovable credits); list any user-facing old names left there in the PR.
+8. Out of scope (ideas, not approved): breathing glow on "now", a soft "click" at phase/day change.
+
+Done when: on /village and /game/me/overview at 390 and 1280 the dial matches the final mockup; no "Gibbous"/"Waxing"/"Waning"/"First Quarter"/"Last Quarter" in user-facing UI text; tests green.
+
+
 ## Done when
 A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 
