@@ -1,0 +1,29 @@
+# Founder-Market Fit Discovery series, card 09/14. Issue #529; template docs/templates/infographic.md.
+id: fmf-09
+chapter: '3.4'
+number: 9
+of: 14
+title: The Seven Artifacts
+caption: Change the uniqueness, and everything downstream changes automatically. The production sequence is the methodology.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  nodes:
+  - - Uniqueness
+    - the seed
+  - - Shadow
+    - the recursive trap
+  - - Myth
+    - the worldview
+  - - Tribe
+    - the self-selecting audience
+  - - Pain
+    - the 5-layer slice
+  - - Promise
+    - point A to point B
+  - - Value ladder
+    - ascending containers
+sources:
+- 'docs/10-workshops/founder_market_fit_masterclass_2026-10-24.md (deck transcription: section 7, pp. 11-12)'
+- 'Sasha''s masterclass ''Founder Market Fit Discovery'', 2026-10-24 (slides + handwritten notes), wording per issue #529'
+- docs/templates/infographic.md

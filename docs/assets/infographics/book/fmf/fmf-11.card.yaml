@@ -1,0 +1,28 @@
+# Founder-Market Fit Discovery series, card 11/14. Issue #529; template docs/templates/infographic.md.
+id: fmf-11
+chapter: '3.4'
+number: 11
+of: 14
+title: The Living Venture Flywheel
+caption: Do and be, in turn. The next move feels simple and alive.
+skin: v4
+max_words: 30
+text:
+  eyebrow: Founder-market fit
+  points:
+  - - DO
+    - Uniqueness gets articulated
+  - - BE
+    - Professional clarity focuses
+  - - DO
+    - Strategy focalizes
+  - - BE
+    - Fit grows
+  - - DO
+    - Action becomes a question of courage
+  - - BE
+    - Cash flow reveals new information
+sources:
+- 'docs/10-workshops/founder_market_fit_masterclass_2026-10-24.md (deck transcription: section 13, p. 19)'
+- 'Sasha''s masterclass ''Founder Market Fit Discovery'', 2026-10-24 (slides + handwritten notes), wording per issue #529'
+- docs/templates/infographic.md

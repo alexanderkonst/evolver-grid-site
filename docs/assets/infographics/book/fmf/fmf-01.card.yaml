@@ -1,0 +1,21 @@
+# Founder-Market Fit Discovery series, card 01/14. Issue #529; template docs/templates/infographic.md.
+id: fmf-01
+chapter: '3.4'
+number: 1
+of: 14
+title: Gamified Professional Success
+caption: Success by doing what you love, and multiplayer co-creation with others of the Golden Age.
+skin: v4
+max_words: 40
+text:
+  eyebrow: Founder-market fit
+  button: New Game
+  steps:
+  - Describe your talents, resources, craft
+  - Turn them into a unique business
+  - Enter multiplayer collaborations
+  - Work, play, grow together
+sources:
+- 'docs/10-workshops/founder_market_fit_masterclass_2026-10-24.md (deck transcription: section 1, pp. 1-2)'
+- 'Sasha''s masterclass ''Founder Market Fit Discovery'', 2026-10-24 (slides + handwritten notes), wording per issue #529'
+- docs/templates/infographic.md

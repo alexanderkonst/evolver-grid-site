@@ -1,0 +1,25 @@
+# Founder-Market Fit Discovery series, card 12/14. Issue #529; template docs/templates/infographic.md.
+id: fmf-12
+chapter: '3.4'
+number: 12
+of: 14
+title: Six Traps (1/2)
+caption: Traps and their exits.
+skin: v4
+max_words: 45
+text:
+  eyebrow: Founder-market fit
+  rows:
+  - trap: Blurry self-presentation
+    tag: ''
+    exit: One precise phrase about your uniqueness and who it creates value for.
+  - trap: Someone else's role
+    tag: '"a CEO must…"'
+    exit: Build around your genius, hand other roles to people and agents.
+  - trap: Multitalent, scattered
+    tag: ''
+    exit: One essence that links the talents, one focus per cycle.
+sources:
+- 'docs/10-workshops/founder_market_fit_masterclass_2026-10-24.md (deck transcription: section 3, p. 4)'
+- 'Sasha''s masterclass ''Founder Market Fit Discovery'', 2026-10-24 (slides + handwritten notes), wording per issue #529'
+- docs/templates/infographic.md

@@ -1,0 +1,19 @@
+# Founder-Market Fit Discovery series, card 10/14. Issue #529; template docs/templates/infographic.md.
+id: fmf-10
+chapter: '3.4'
+number: 10
+of: 14
+title: Clarity, Strategy, Action
+caption: Clarity, then strategy as riverbanks that focus the lens, then execution.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  nodes:
+  - Clarity
+  - Strategy / direction
+  - Action
+  center: Hero's journey = business
+sources:
+- 'docs/10-workshops/founder_market_fit_masterclass_2026-10-24.md (deck transcription: sections 10 and 12)'
+- 'Sasha''s masterclass ''Founder Market Fit Discovery'', 2026-10-24 (slides + handwritten notes), wording per issue #529'
+- docs/templates/infographic.md

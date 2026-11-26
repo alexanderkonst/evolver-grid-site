@@ -1,0 +1,18 @@
+# Founder-Market Fit Discovery series, card 02/14. Issue #529; template docs/templates/infographic.md.
+id: fmf-02
+chapter: '3.4'
+number: 2
+of: 14
+title: The Mirror Principle
+caption: Income grows exactly as much as you grow.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  inner: Inner
+  outer: Outer
+  left: I grow
+  right: My business grows
+sources:
+- 'docs/10-workshops/founder_market_fit_masterclass_2026-10-24.md (deck transcription: section 5, pp. 6-8)'
+- 'Sasha''s masterclass ''Founder Market Fit Discovery'', 2026-10-24 (slides + handwritten notes), wording per issue #529'
+- docs/templates/infographic.md

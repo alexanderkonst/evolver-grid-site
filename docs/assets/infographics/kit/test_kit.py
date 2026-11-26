@@ -2,6 +2,7 @@
 import os
 import subprocess
 import sys
+import shutil
 import tempfile
 import unittest
 
@@ -343,6 +344,25 @@ class BookBuild(unittest.TestCase):
         book_build.build(self.paths, say=out.append)
         self.assertIn("rendered 1 of 2 card(s)", "\n".join(out))
         self.assertEqual(book_build.check(self.paths, say=lambda *_: None), 0)
+
+
+    def test_a_series_contact_sheet_is_not_an_orphan_but_a_stray_card_png_is(self):
+        self.write(["ideal-client-02", "laws-v4-l3"])
+        book_build.build(self.paths, say=lambda *_: None)
+        sheet = os.path.join(self.paths.book, "proof", "sheet.png")
+        stray = os.path.join(self.paths.book, "proof", "stray.png")
+        try:
+            shutil.copyfile(os.path.join(self.paths.book, "sheet.png"), sheet)   # book/<series>/sheet.png, as book/fmf/
+            out = []
+            self.assertEqual(book_build.check(self.paths, skip_lint=True, say=out.append), 0, out)
+            shutil.copyfile(sheet, stray)
+            out = []
+            self.assertNotEqual(book_build.check(self.paths, skip_lint=True, say=out.append), 0)
+            self.assertIn("proof/stray.png is not in book.yaml", "\n".join(out))
+        finally:
+            for f in (sheet, stray):
+                if os.path.exists(f):
+                    os.remove(f)
 
 
 class CaptionSize(unittest.TestCase):

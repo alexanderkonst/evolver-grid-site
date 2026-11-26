@@ -1,0 +1,25 @@
+# Founder-Market Fit Discovery series, card 07/14. Issue #529; template docs/templates/infographic.md.
+id: fmf-07
+chapter: '3.4'
+number: 7
+of: 14
+title: The Key Is Its Articulation
+caption: Tests help you articulate strengths. Excitement shows the way.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  funnel:
+  - Skills
+  - Competencies
+  - Talents
+  - Zone of genius
+  - Uniqueness
+  rings:
+  - OK
+  - Good
+  - Great
+  - Genius
+sources:
+- 'docs/10-workshops/founder_market_fit_masterclass_2026-10-24.md (deck transcription: section 9, p. 15)'
+- 'Sasha''s masterclass ''Founder Market Fit Discovery'', 2026-10-24 (slides + handwritten notes), wording per issue #529'
+- docs/templates/infographic.md
