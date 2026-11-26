@@ -69,7 +69,7 @@ describe("DoD 1 · a face never shows a closed place's content", () => {
     const save = saveWith(["discover-mission"]);
     expect(earthFaceItems(save).map((i) => i.place.key)).toEqual(["workshop"]);
     const html = renderToStaticMarkup(<EarthFaceView save={save} {...handlers} />);
-    expect(html).toContain("Workshop");
+    expect(html).toContain("Collective");
     for (const key of ["market", "town-hall"]) {
       expect(html).not.toContain(byKey(key).name);
       expect(html).not.toContain(byKey(key).line);

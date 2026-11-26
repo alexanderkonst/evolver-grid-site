@@ -37,15 +37,15 @@
   },
   "villagePlaces": {
     "workshop": {
-      "title": "Workshop",
+      "title": "Collective",
       "description": "Shape your unique business, one artifact at a time."
     },
     "market": {
       "title": "Market",
       "description": "Where founders show what they offer.",
-      "empty": "Your stall opens once your offer is ready in the Workshop."
+      "empty": "Your stall opens once your offer is ready in the Collective."
     },
-    "openWorkshop": "Open Workshop"
+    "openWorkshop": "Open the Collective"
   },
   "market": {
     "stall": {
@@ -3554,10 +3554,10 @@
         "alt": "A grand library under a dome at night: curved wooden bookshelves, an armillary sphere, scrolls and an open book, and a crystal dodecahedron among the stars in the skylight"
       },
       "workshop": {
-        "name": "Workshop",
-        "line": "Craft your offer.",
-        "alt": "A workshop under neon-edged arches: a 3D printer, a laser cutter, a large-format printer and a robotic arm, with a luminous crystal dodecahedron floating at the center",
-        "opened": "The Workshop is open."
+        "name": "Collective",
+        "line": "Founders building unique businesses together.",
+        "alt": "A white domed courtyard at night on a hillside above the sea: a ring of low benches and cushions around a table, lantern-lit doorways all around, and a crystal dodecahedron among the stars",
+        "opened": "The Collective is open."
       },
       "market": {
         "name": "Market",
@@ -3577,7 +3577,7 @@
       "quest-board": "Opens when your top talent is saved to your account. Inside: your next quest.",
       "cafe": "Opens when your mission is saved. Inside: people to meet, professionally or simply.",
       "coworking": "Opens when your top talent, mission and assets are saved. Inside: partners for the work.",
-      "workshop": "Opens when your mission is saved. Inside: your offer, built from your top talent.",
+      "workshop": "Opens when your mission is saved. Inside: the founders' collective and the tools to build your business.",
       "market": "Opens when your offer is saved. Inside: your shop, and the shops of other residents.",
       "town-hall": "Opens when your first sale is recorded. Inside: ventures built together, and your voice in the village.",
       "first-price": "Opens when your offer is saved. Inside: your first price, said to a real client.",
@@ -3654,13 +3654,13 @@
         "verb": "Map my assets"
       },
       "uniqueness-phrase": {
-        "eyebrow": "Workshop · Step 6",
+        "eyebrow": "Collective · Step 6",
         "headline": "Your uniqueness in one phrase",
         "silhouette": "You get one phrase that only you could say, built from your top talent.",
         "verb": "Name my uniqueness"
       },
       "tagline": {
-        "eyebrow": "Workshop · Step 7",
+        "eyebrow": "Collective · Step 7",
         "headline": "The tagline of your unique business",
         "silhouette": "You get one sentence for the people you serve: where they are, and where you take them.",
         "verb": "Write my tagline"
@@ -3772,6 +3772,11 @@
       "consciousness-meets-science": {
         "name": "Consciousness Meets Science",
         "result": "a course where consciousness meets science"
+      },
+      "founder-collective": {
+        "name": "Founder Collective",
+        "result": "founders with working businesses, by invitation",
+        "closed": "Opens when your mission is saved. Inside: founders with working businesses, by invitation."
       },
       "ubb-canvas": {
         "name": "Canvas",
@@ -6298,14 +6303,14 @@
         "description": "Gatherings and Experiences"
       },
       "coop": {
-        "label": "Workshop",
+        "label": "Collective",
         "description": "Build your unique business"
       }
     },
     "unlockHints": {
       "teams": "Complete your Zone of Genius to unlock Co-working.",
       "marketplace": "Create your Genius Offer to unlock Market.",
-      "coop": "Create your Genius Offer to unlock Workshop.",
+      "coop": "Create your Genius Offer to unlock the Collective.",
       "events": "Complete your Zone of Genius to unlock Events."
     },
     "toast": {
@@ -6347,7 +6352,7 @@
       "description": "Join forces with others on shared projects and missions. This is where individual genius becomes collective impact."
     },
     "build": {
-      "title": "Workshop",
+      "title": "Collective",
       "tagline": "Turn genius into income",
       "description": "Create your unique offer, build your landing page, and launch your genius business to the world."
     },
@@ -8080,10 +8085,10 @@
       },
       "offer": {
         "title": "Your offer",
-        "saved": "Your offer is saved in the Workshop.",
+        "saved": "Your offer is saved in the Collective.",
         "empty": "Not built yet",
         "start": "Build your offer",
-        "again": "Open the Workshop"
+        "again": "Open the Collective"
       }
     },
     "badges": {
@@ -8333,7 +8338,8 @@
       "name": "Sovereign Founder Collective",
       "badge": "10% revenue share goes into a decentralized treasury",
       "line": "A collective where we build unique businesses together.",
-      "body": "We build unique businesses together, support each other, and self-organize."
+      "body": "We build unique businesses together, support each other, and self-organize.",
+      "cta": "Open the Collective"
     },
     "forClients": {
       "name": "Running this sequence for your clients",
@@ -9598,9 +9604,9 @@
       "activated": "Your AI {{version}}",
       "talent": "your top talent",
       "talentMission": "your top talent + your mission",
-      "work": "{{n}} of {{total}} Workshop pieces",
+      "work": "{{n}} of {{total}} Collective pieces",
       "opensTalent": "Opens when you save your top talent",
-      "opensWorkshop": "Opens in the Workshop"
+      "opensWorkshop": "Opens in the Collective"
     },
     "outro": {
       "aria": "Your AI is ready",
@@ -9629,7 +9635,7 @@
         "coworking": "Find partners for the work.",
         "fire-circle": "Join your FMF circle.",
         "academy": "Grow in what matters most.",
-        "workshop": "Craft your offer.",
+        "workshop": "Founders building unique businesses together.",
         "market": "Open your shop.",
         "town-hall": "Build ventures together."
       }
@@ -9664,7 +9670,7 @@
     "question": "Do you see me this way too?",
     "shareStall": "Share your stall",
     "pickLinkName": "Pick your link name",
-    "needsGift": "Your uniqueness phrase in the Workshop gives your card its line",
+    "needsGift": "Your uniqueness phrase in the Collective gives your card its line",
     "share": "Share",
     "copyLink": "Copy link",
     "copied": "Copied",
@@ -9849,7 +9855,7 @@
         "ether": "Ether is lit. The Entry Portal is open to you.",
         "water": "Water is lit. The Café is open to you.",
         "fire": "Fire is lit. The Academy and FMF are open to you.",
-        "earth": "Earth is lit. The Workshop is open to you."
+        "earth": "Earth is lit. The Collective is open to you."
       }
     },
     "glint": {
@@ -9995,12 +10001,6 @@
     "inside": {
       "title": "What you get inside",
       "resultLabel": "Result",
-      "status": {
-        "live": "Live",
-        "coming": "Coming",
-        "liveInGame": "Live in the game",
-        "firstSteps": "First steps live"
-      },
       "cards": [
         {
           "name": "Collaborations",
@@ -10044,6 +10044,16 @@
         }
       ]
     },
+    "public": {
+      "title": "Our business, in public",
+      "sub": "While Aleksandr is at the center, this is how it actually went for him. New milestones appear here as they happen.",
+      "viewsLabel": "Choose a view",
+      "views": { "short": "Short", "key": "Key milestones", "full": "Full timeline" },
+      "short": "Day {{days}} · {{total}} earned so far.",
+      "latest": "Latest milestone",
+      "day": "Day {{day}}",
+      "link": "See the full dashboard"
+    },
     "path": {
       "title": "The path in",
       "steps": [
@@ -10055,7 +10065,8 @@
     "terms": {
       "title": "Terms",
       "items": [
-        "10% revenue share, only once your business earns. No equity, ever.",
+        "10% revenue share, only once your business earns. No equity.",
+        "At each 10x of your revenue, the agreement renews on the same terms, unless either side chooses to end it.",
         "Today Aleksandr holds it as steward of the collective; it partly funds the shared tools.",
         "Over 2027–2028 his roles pass step by step to members.",
         "Later the 10% moves to an entity the members govern and nobody can sell."

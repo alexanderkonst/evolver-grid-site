@@ -13,7 +13,7 @@ describe("rail places", () => {
       "Co-working",
       "FMF",
       "Academy",
-      "Workshop",
+      "Collective",
       "Market",
       "Town Hall",
     ]);

@@ -43,7 +43,7 @@ const CARDS: ProductCardDef[] = [
   { key: "pmf", links: [{ href: "/products/pmf", external: false, ctaKey: "cta" }] },
   { key: "evolution", links: [{ href: "/products/crossing", external: false, ctaKey: "cta" }] },
   { key: "vector", links: [{ href: "/products/vector", external: false, ctaKey: "cta" }] },
-  { key: "collective", links: [] },
+  { key: "collective", links: [{ href: "/collective", external: false, ctaKey: "cta" }] },
   { key: "forClients", links: [] },
   { key: "license", links: [] },
   { key: "profile", links: [{ href: "/", external: false, ctaKey: "cta" }] },

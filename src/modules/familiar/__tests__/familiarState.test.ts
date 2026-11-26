@@ -14,7 +14,7 @@ describe("gifts", () => {
     expect(gifts.map((g) => g.key)).toEqual(["knowsYou", "activated", "knowsYourWork"]);
     expect(gift(gifts, "activated")).toMatchObject({ lit: true, detail: "Your AI 5.2" });
     expect(gift(gifts, "knowsYou")).toMatchObject({ lit: false, opensWhen: "Opens when you save your top talent" });
-    expect(gift(gifts, "knowsYourWork")).toMatchObject({ lit: false, opensWhen: "Opens in the Workshop" });
+    expect(gift(gifts, "knowsYourWork")).toMatchObject({ lit: false, opensWhen: "Opens in the Collective" });
     expect(gift(gifts, "knowsYou").detail).toBeUndefined();
   });
 
@@ -26,7 +26,7 @@ describe("gifts", () => {
 
   it("Workshop pieces light «knows your work» and are counted out of 19", () => {
     const g = gift(buildGifts({ ...base, talent, artifacts: pieces(6) }), "knowsYourWork");
-    expect(g).toMatchObject({ lit: true, detail: `6 of ${WORKSHOP_TOTAL} Workshop pieces` });
+    expect(g).toMatchObject({ lit: true, detail: `6 of ${WORKSHOP_TOTAL} Collective pieces` });
     expect(g.opensWhen).toBeUndefined();
   });
 

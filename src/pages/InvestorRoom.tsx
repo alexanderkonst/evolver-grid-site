@@ -36,7 +36,7 @@ const COPY = {
     items: [
       {
         label: "The world",
-        body: "A living digital village, each place a module that already works: Gate, Home, Quest Board, Oracle, Café, Co-working, Fire Circle, Academy, Workshop, Market, Town Hall.",
+        body: "A living digital village, each place a module that already works: Gate, Home, Quest Board, Oracle, Café, Co-working, Fire Circle, Academy, Collective, Market, Town Hall.",
       },
       {
         label: "The engine",
@@ -100,7 +100,7 @@ const COPY = {
       { place: "Entry Portal", step: "Pass the uniqueness test and enter the village", scene: "gate" },
       { place: "Home", step: "Keep describing your character", scene: "house" },
       { place: "Home", step: "Say your uniqueness in one sentence", scene: "house" },
-      { place: "Workshop", step: "Receive the tagline of your business", scene: "workshop" },
+      { place: "Collective", step: "Receive the tagline of your business", scene: "workshop" },
       { place: "Academy", step: "Learn how the path of uniqueness works", scene: "academy" },
       { place: "Fire Circle", step: "Sit in FMF, three days in a circle", scene: "fire-circle" },
       { place: "Academy", step: "Complete the 21-day mastery practice", scene: "academy" },
