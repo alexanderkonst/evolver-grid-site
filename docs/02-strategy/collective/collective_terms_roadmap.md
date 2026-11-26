@@ -6,6 +6,8 @@
 
 **The 10% stays the same; who holds it changes over time.** Today it goes to Aleksandr as steward of the collective. Through 2027–2028 he hands his roles to others. When the network is large enough, it moves to an entity the members govern.
 
+**Cap (Sasha, 2026-11-25 18:01 MST):** «10% capped at each 10x revenue milestone. After that, a reconsideration on both ends.» Reading: the 10% runs until the member's revenue grows 10x from where it was on joining; at that milestone both sides set the terms again (and again at each next 10x). Baseline = revenue at joining is my reading, not yet confirmed.
+
 ## The roadmap
 
 | Stage | When | Who holds the 10% | What depends on Sasha | What moves it to the next stage |
