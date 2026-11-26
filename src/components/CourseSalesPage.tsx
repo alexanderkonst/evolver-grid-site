@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import SEO from "@/components/SEO";
+import CourseVersionInfo from "@/components/CourseVersionInfo";
 import WaitlistModal from "@/components/WaitlistModal";
 import { getPublishedModules } from "@/lib/coursePlayer";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
@@ -98,6 +99,7 @@ const CourseSalesPage = ({ course }: { course: CourseSalesData }) => {
                             {course.title}
                         </span>
                     </h1>
+                    {course.versioning && <CourseVersionInfo course={course.versioning} centered />}
                     <p
                         className="text-lg sm:text-xl italic max-w-xl mx-auto leading-relaxed"
                         style={TITLE_STYLE}

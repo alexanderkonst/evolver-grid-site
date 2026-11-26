@@ -44,6 +44,13 @@
 
 </details>
 
+### Versioning
+*(Sasha's issue #522, 2026-11-26.)* Every mini-training is a living, versioned product with a level and a category. The fields live on its `CourseConfig` in `src/data/courses/` (rule also in `types.ts`).
+- **Fields:** `version` (semver, "1.0"), `updatedAt` (ISO date), `changelog` (`{ version, date, summary }[]`, oldest first in the file, shown newest first), `level` (`Fundamental` · `Intermediate` · `Advanced`), `category` (`General` · `Mind & Consciousness`; add a value only when an existing mini-training clearly needs one).
+- **Rule:** semver. **Minor** = a new episode or module. **Patch** = fixes and copy. **Major** = the structure changes. Every bump adds ONE changelog line and updates `updatedAt` to that line's date; `version` equals the last changelog entry.
+- **Shown:** one quiet line under the title, "Living mini-training, updated continuously. Current version v1.0 (YYYY-MM-DD).", a "What's new" disclosure with the changelog, and level and category chips, on the player page (`/grow/<slug>`) and the sales page (`/academy/<slug>`). Component: `CourseVersionInfo`.
+- **First version:** changelog `[{ version: "1.0", date, summary: "First public version" }]`.
+
 ### Look & feel (NotebookLM Video Overview)
 - Format: **Explainer (16:9)**, never Short 9:16 (too simplified). Add to the end of Custom topic: "Total video length must stay under 2 minutes."
 - Visual style: pick **Custom** if offered (else Watercolor) and describe the look in the prompt's last "Visual style" line.

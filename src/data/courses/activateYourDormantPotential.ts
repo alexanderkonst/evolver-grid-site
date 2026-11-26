@@ -137,6 +137,11 @@ export const ACTIVATE_YOUR_DORMANT_POTENTIAL: CourseConfig = {
     title: COURSE_TITLE,
     // «Mini-training» is the word for ADP in UI copy (course-from-source.md §Words; issue #523).
     eyebrowKey: "course.eyebrowMiniTraining",
+    version: "1.0",
+    updatedAt: "2026-11-25",
+    changelog: [{ version: "1.0", date: "2026-11-25", summary: "First public version" }],
+    level: "Fundamental",
+    category: "General",
     taglineKey: "course.tagline",
     modules: COURSE_MODULES,
     practices: COURSE_PRACTICES,

@@ -51,6 +51,11 @@ export const AIV_COURSE_MODULES: CourseModule[] = [
 export const ACTIVATION_OF_INNER_VISION: CourseConfig = {
     slug: AIV_COURSE_SLUG,
     title: AIV_COURSE_TITLE,
+    version: "1.0",
+    updatedAt: "2026-11-21",
+    changelog: [{ version: "1.0", date: "2026-11-21", summary: "First public version" }],
+    level: "Advanced",
+    category: "Mind & Consciousness",
     eyebrowKey: "courseAiv.eyebrow",
     taglineKey: "courseAiv.tagline",
     leadKey: "courseAiv.lead",

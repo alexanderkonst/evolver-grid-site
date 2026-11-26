@@ -67,6 +67,11 @@ export const CMS_COURSE_MODULES: CourseModule[] = [
 export const CONSCIOUSNESS_MEETS_SCIENCE: CourseConfig = {
     slug: CMS_COURSE_SLUG,
     title: CMS_COURSE_TITLE,
+    version: "1.0",
+    updatedAt: "2026-11-21",
+    changelog: [{ version: "1.0", date: "2026-11-21", summary: "First public version" }],
+    level: "Fundamental",
+    category: "Mind & Consciousness",
     taglineKey: "courseCms.tagline",
     leadKey: "courseCms.lead",
     modules: CMS_COURSE_MODULES,
