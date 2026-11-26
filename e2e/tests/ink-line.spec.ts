@@ -41,6 +41,8 @@ async function openEtherFace(page: Page) {
   await glyphOf(page).click();
   await expect(dialogOf(page)).toBeVisible();
   await page.waitForTimeout(800);
+  // Since #513 the instrument opens on the Console; the bodies are inert until the player steps back to it.
+  await page.getByRole("button", { name: "Back to the instrument" }).click();
   const body = page.getByTestId("instrument-body-ether");
   await expect(body).toHaveAttribute("data-lit", "true");
   await body.getByRole("button").click();
