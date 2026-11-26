@@ -422,7 +422,7 @@ export const modules: Module[] = [
     price: "Free",
     space: "LEARN",
     startRoute: ADP_COURSE_PATH,
-    description: "<p>A free mini-course by Aleksandr Konstantinov: how to master your spirit, mind, emotions, body and unique genius.</p>",
+    description: "<p>A free mini-training by Aleksandr Konstantinov: how to master your spirit, mind, emotions, body and unique genius.</p>",
     owner: "evolver",
     source: "internal",
     place: "academy",

@@ -127,6 +127,88 @@ Works: centre reads FULL MOON / Harvesting / TUESDAY / Action at a glance; «+ t
 5. Accessibility text: visible words are separate (space or separator between spans), so a screen reader says «Full Moon, Harvesting, Tuesday, Action».
 Done when: at 390x844 guest, opening the card leaves «ENTER» and the Entry Portal title fully visible and unobscured on scroll; no duplicated «next»; view 3 for a guest has no year header.
 
+## Roast: thicker rings + live v6.3 review (2026-11-26, local Chromium 390x844 and 1280x900, guest, Thursday / Full Moon)
+Measured (computed styles): dial 200x200 on phone AND desktop; Moon ring stroke 1.4 px, same cream colour, lived part opacity 0.35 vs ahead 0.85; Week ring ~3 px chakra segments.
+Verdict: thicker is right but not enough alone. The split «lived / ahead» is carried only by opacity of one colour on a noisy dotted photo, so it stays unreadable at any width.
+1. Ring weight: Moon and Week tracks 8 px on the 200 px dial (4% of diameter; Apple-style 12% would swallow the phase and planet glyphs). Year 6 px, Day 4 px dashed kept.
+2. Lived vs ahead by two cues, not one: ahead = solid full colour; lived = same hue at ≤25% plus thin (2 px) centreline. Contrast ahead vs map ≥3:1 (WCAG 1.4.11).
+3. Solid dark plate: a full circle behind the dial, ~85% opaque, concentric. Today the dark shape is offset left and only partly covers the map.
+4. Centre words collide with inner glyphs: «Harvesting» touches the Saturn orb, «Expansion» touches the Sun orb. Either shrink inner orbs off the text box or push the Week ring out by ~8 px.
+5. Two big discs compete: the current Full Moon (bottom) and a large pale disc at top. One big = now; everything else small.
+6. Desktop dial is 200 px too: at 1280 it reads as an icon. Desktop 260–280 px.
+7. Card now pushes «YOUR NEXT MOVE» and ENTER below the fold on phone (trade-off of v6.3). Keep card short: drop «before …» lines on phone, or the card closes on scroll.
+8. The header line «Full moon. Harvesting.» repeats the dial centre; one of them is enough.
+
+## Rings v7: segmented rings, phase brightness, neutral phase names (Sasha 2026-11-26 12:45 MST «да, делай»; 12:46 «маленькие луны пусть остаются»)
+
+Mockups: [final dial](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v8-final.png) · [phone, real 200 px](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v8-phone.png) · [A vs B](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v8.png) (B chosen). Replaces the ring styling of v6–v6.3; the views, toggle, card and engine stay as they are. The 8-point roast above is NOT part of this change except where repeated here.
+
+1. **Segmented rings.** Moon ring = 8 segments (one per phase), Week ring = 7 segments (one per day, chakra colour). Small gaps between segments: 0.004 of a turn at each end (~1.4°). Square (butt) caps, no round caps.
+2. **Width grows with radius** (Sasha asked for Apple Watch geometry; Activity rings are actually equal width, so we scale by radius instead). In the 200-unit viewBox: Moon radius 84, stroke 15; Week radius 56, stroke 15×56/84 = 10. Year and Day rings (view 3) follow the same rule: stroke = 15 × r/84.
+3. **Moon segment brightness = how lit that phase is.** Colour is a mix from #343640 (dark) to #fff1d6 (cream) by illumination: New 0.03, Growing Crescent 0.25, Growing Half 0.5, Almost Full 0.8, Full 1.0, Past Full 0.8, Fading Half 0.5, Fading Crescent 0.25.
+4. **Lived vs ahead (variant B).** Ahead = full-width solid segment, opacity 1. Lived = the same colour as a thin line, 30% of the stroke width, opacity 0.85, centred on the ring radius. The current segment is split at "now": lived part thin, rest full. Same rule on the Week ring and on Year/Day rings.
+5. **Small symbols stay.** Small moon-phase glyph centred on each Moon segment (lived ones at 45% opacity); current phase as the big MoonOrb with glow. Week ring: small planet on each day, current day big with glow. Reuse MoonOrb and the planet assets.
+6. **Dark backing:** one full concentric dark disc behind the dial (rgba(6,9,20,.9)), radius = dial radius.
+7. **Neutral phase names** everywhere the user reads them (clock, card, Equilibrium pages, transitions, harvest, Telegram/eyebrow copy in the frontend), en/ru/es locales:
+   | old | en | ru | es |
+   |---|---|---|---|
+   | New Moon | New Moon | Новолуние | Luna nueva |
+   | Waxing Crescent | Growing Crescent | Растущий серп | Creciente fina |
+   | First Quarter | Growing Half | Растущая половина | Media creciente |
+   | Waxing Gibbous | Almost Full | Почти полная | Casi llena |
+   | Full Moon | Full Moon | Полнолуние | Luna llena |
+   | Waning Gibbous | Past Full | После полнолуния | Recién llena |
+   | Last Quarter | Fading Half | Убывающая половина | Media menguante |
+   | Waning Crescent | Fading Crescent | Убывающий серп | Menguante fina |
+   Display strings only: keep internal keys, ids, stored values and astronomy comments. Do not touch supabase/functions in this change (edge deploys cost Lovable credits); list any user-facing old names left there in the PR.
+8. **Texture: "Light flow"** (Sasha 2026-11-26 12:51 «2 точно круче»; [three textures](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v9-styles.png), #2 chosen). Each ahead (full-width) segment is stroked with a linear gradient along its arc: start colour = 65% own + 35% previous segment's colour, middle = own colour, end = 65% own + 35% next segment's colour (gradientUnits userSpaceOnUse, from the segment's start point to its end point). So the Moon ring brightens and fades smoothly phase to phase and each day flows into the next. Lived thin lines stay flat colour. No glow, no shadow, no rim.
+9. **All rings in the expanded view use the same style** (Sasha 2026-11-26 12:55 «применить такой стиль и ко всем кругам (годовому и так далее) в раскрытой версии»): Year ring = 4 season segments, Day ring = one continuous gold arc. Both: width ∝ radius (stroke = 15·r/84), small gaps between Year segments, butt caps, lived = thin line 30% width at .85, ahead = full width with the «Light flow» gradient (Year: toward neighbouring season colour; Day: gold #f2c46b → deeper amber toward the end of the day), current segment split at now. Small symbols/markers on these rings follow the Moon/Week rule (lived 45% opacity).
+10. Out of scope (ideas, not approved): breathing glow on "now", a soft "click" at phase/day change.
+
+Done when: on /village and /game/me/overview at 390 and 1280 the dial matches the final mockup; no "Gibbous"/"Waxing"/"Waning"/"First Quarter"/"Last Quarter" in user-facing UI text; tests green.
+
+
+## Concept: «Light Instrument» — the dial as Bloom Stage 8 (proposal, 2026-11-26; not approved for build)
+
+Source: `docs/01-vision/new_ui_paradigm_vision.md` (Bloom, the 8 primitives, Stage 8 Neo-Dimensional, B.1 rules, Part C anti-patterns) and `docs/03-playbooks/ui_playbook.md` (performance budgets, breathing UI, liquid glass). Sketch: [v7 vs concept](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v10-concept.png) · [phone](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v10-phone.png).
+
+**Master result.** In one glance the dial reads as a real object under real light that tells true time of the sky and of my life. Futurism comes from light behaving intelligently; realism comes from material and the true sky. Not from more pixels.
+
+**Core metaphor.** A dark stone instrument (astrolabe) with light channels cut into it. Light = what is still ahead in the cycle. Lived time = the empty engraved groove the light already passed through. This turns v7's «lived thin line» into a physical truth instead of a style.
+
+### Eight primitives on one object
+| Primitive | Dial rule | Realism ↔ futurism |
+|---|---|---|
+| Material | One material: night stone (pre-baked texture) with a thin gold rim. No glass blur. | real |
+| Depth | Three planes only: stone (far), channels cut in (middle), moons/planets/words (near). Channels are inset (inner shadow + 1 px lower highlight). | real |
+| Form | Circles and arcs only; butt-cut segment ends like cut stone. | real |
+| Color | Moon channels = true illumination of each phase; week = chakra hues; year = four seasons; day = gold. Light flow gradient between neighbours. Bloom level tints the rim/sheen only. | both |
+| Light | One light source = the real sun for this moment: the sheen on the stone sits where the sun is (time of day, computed locally). Ahead channels emit a soft halo; current moon carries its true terminator. | futurism through truth |
+| Motion | One slow breath (≈12 s): light drifts along the ahead channels (gradient offset). Nothing else moves. Fast motion only on tap (view change). | futurism |
+| Sound | Seed, off by default: one soft tone when a phase or day turns. | later |
+| Typography | Serif for meanings, thin mono caps for names (current). | — |
+
+### Truth layer (imitation of reality, computed, no network)
+- Moon disc terminator and tilt from the engine's illumination and the local sky (already in `getAllCyclesV2` + one formula), not a photo swap per phase.
+- Stone sheen angle = sun azimuth for the player's time zone and hour; at night the sheen dims and the moon becomes the light source (sheen moves to the moon's side).
+- Day ring lit part ends at local sunset/sunrise when known from the timezone (optional, phase 3).
+
+### Performance architecture (fits ui_playbook budgets)
+- **Rendering:** SVG only. No WebGL, no canvas, no `backdrop-filter`, no runtime SVG filters (`feTurbulence`/`feGaussianBlur` are CPU-heavy on phones). Halos are a wider low-opacity stroke; inset is two strokes.
+- **Assets:** one stone texture WebP ~20–30 KB (2× of 280 px), cached; moon/planet images already shipped. Total added weight ≤ 40 KB, zero new requests after first load, zero runtime network.
+- **Compute:** geometry recomputed once a minute (memoised), the only animation is CSS `stroke-dashoffset`/gradient-transform on the ahead layer (GPU-composited). Paused by IntersectionObserver when off-screen and by `document.hidden`.
+- **Tiers:** T0 `prefers-reduced-motion` or low-end (deviceMemory ≤ 2 / saveData): static, no breath. T1 default: breath. T2 desktop pointer: sheen follows pointer slightly (≤ 6°), parallax ≤ 2 px between planes.
+- **Accessibility:** contrast of lit channels vs stone ≥ 3:1; text AA; screen-reader text unchanged.
+
+### Build order (each step shippable)
+1. Material + depth: stone disc, gold rim, engraved lived grooves, inset lit channels (static).
+2. Truth light: sun/moon-driven sheen; true moon terminator.
+3. Motion: the one breath; tiers T0–T2.
+4. Sound seed (off by default) and Bloom tint of rim.
+
+### Anti-patterns kept out
+Neon/glow outlines, glassmorphism blur on the dial, more than one moving thing, particles, rainbow gradients behind text, any number or score on the rings.
+
 ## Done when
 A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 

@@ -167,6 +167,20 @@ Each icon is one idea as before → after: before on the left in QUIET / silver,
 
 `kit/ci.py` and `book_sync` pick the icon specs up like any other (`book_sync` SKIPs them: not Book ids).
 
+### Icons v2 (issue #528, replaces v1 once Sasha picks)
+
+One simple silhouette of the result ("after" only): no arrow, no before / after, no text. Two variants per app (`<id>-a`, `<id>-b`), Sasha picks. A v2 spec carries `icon_version: 2` and `halo: LAV|AQUA|BLUSH|CHAMP|PEARL` (one pastel per app, the same for A and B); the tile is lunar ink with that halo behind the sign. Scripts draw everything inside `with c.side("after")`, with shapes from `apps/icon_shapes.py`, and every line and ring `I.WEIGHT` (64 px at 1024, 2 px at 32 px). `group="nodes"` makes repeated identical parts count as one shape. The sphere (`orb`) is "you": in the Book it is you / the person (`ideal-client-01`, `-04`, ADP `A01`) and the dormant seed (`A02`), so the iridescent sphere is used as is.
+
+`icon_version: 2` swaps two lint rules and adds two (`ICON_V2_RULES`):
+
+| Rule | Fails when |
+|---|---|
+| `elements` | more than 4 shapes (same-`group` parts count once), or anything on the `before` / `mid` side |
+| `fill` | the sign's longest side is outside 62-78% of the tile (~70%) |
+| `weight` | a line or ring is not exactly `I.WEIGHT` wide |
+
+The 32 px test: `card.silhouette(32)` redraws the sign as a filled black shape; `python3 apps/make_sheet_v2.py --silhouettes out.png` lays all ten out. The choice sheet: `python3 apps/make_sheet_v2.py` writes `apps/sheet-v2.png` (per app: A and B at 256, 64, 32 px and the A tile mock). `apps/make_sheet.py` (v1 sheet) skips v2 specs.
+
 ## Old scripts
 
 `fyt_style.py` stays at its path and API (`import fyt_style`, `fyt_style.footer(a)`); it forwards to `kit/mpl.py`. `speedrun-matching/make.py` renders byte-identical PNGs.

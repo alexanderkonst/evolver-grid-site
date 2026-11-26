@@ -1,0 +1,16 @@
+id: vision-a
+kind: icon
+icon_version: 2
+chapter: apps
+number: 5
+of: 10
+title: Vision
+caption: Activates Your Inner Vision
+skin: v4
+halo: CHAMP
+text:
+  shape: "eye with a star as pupil"
+  three_words: "eye, star pupil"
+sources:
+  - issue #528 (app icons v2: choice sheet), replaces v1 from issue #506
+  - docs/templates/spec-handoff.md

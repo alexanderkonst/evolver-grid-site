@@ -135,6 +135,8 @@ export const COURSE_PRACTICES: CoursePractice[] = [
 export const ACTIVATE_YOUR_DORMANT_POTENTIAL: CourseConfig = {
     slug: COURSE_SLUG,
     title: COURSE_TITLE,
+    // «Mini-training» is the word for ADP in UI copy (course-from-source.md §Words; issue #523).
+    eyebrowKey: "course.eyebrowMiniTraining",
     taglineKey: "course.tagline",
     modules: COURSE_MODULES,
     practices: COURSE_PRACTICES,
