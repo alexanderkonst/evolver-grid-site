@@ -9738,3 +9738,37 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 
 ### Cross-references — Connects to
 - `docs/templates/template-router.md` (Phase Shift Technology column); `docs/templates/meta-template.md` (Shift carried); *Technology 115: Articulation Is the Mechanism of Growth*; *Technology 174: The Product Map: Shifts × Paths*.
+
+## Technology 187: The Packaged Shift — App Store for AI, Console of Buttons (упакованный сдвиг: аппстор для ИИ, консоль кнопок) (oral, Nov 25, 2026)
+
+> *Oral · November 25, 2026 · chat with Hark, while drawing app icons for the courses (Potential, Crossing, Vision, Nature, Your AI). Template: `docs/templates/course-as-app.md`.*
+
+**What it is.** The unit of value is one packaged shift, before → after. The same unit can be shown (an icon, a teaser, a closing infographic), walked (a course) or pressed (a button). The end of one person's shift, condensed into one image, is the door for the next person. A store of such shifts is a new kind of app store, one built for AI; quality is held by a curator who signs every app; and the AI interface simplifies to a console with two gestures: a question or a button that carries a whole layer of work.
+
+### 🫀 Essence — in Sasha's words
+
+> «у каждого курса будет инфографика, у инфографики будет тизер как лид магнит который ведет на курс. Инфографикой заканчивается курс, и это становится крутым ускорителем интеграции. И любой курс - вход в игру… И, важно, ПРИГЛАШАТЬ В ИГРУ!!!»
+> — *chat of 2026-11-25, 17:49 MST*
+
+> «Здесь кажется и про новый тип аппстора - применимый к ИИ, и приложения там именно такие. И значит нужно обеспечивать качество. Значит пока что я, и далее другие люди. И что ИИ интерфейс упрощается до КОНСОЛИ кнопок. Можно задать вопрос, то есть послать человеческий сигнал, а можно нажать кнопку которая берет на себя целый пласт работы, и чем дальше тем более невероятные пласты.»
+> — *chat of 2026-11-25, 18:12 MST*
+
+> «обогати его конкретикой того как его применить с помощью ИИ облегчив человеку задачу вплоть до исчезнования всего кроме одной кнопки.»
+> — *chat of 2026-11-25, 18:09 MST*
+
+### The steps
+1. **Name the shift:** before → after, one line. That is the app.
+2. **Package it** three ways: shown (icon, teaser, closing card), walked (course), pressed (button).
+3. **Sign it:** a curator signs every app before it ships (now Sasha, later others).
+4. **Shelve it** in the store: icon, bold name, tagline of the result.
+5. **Close the loop:** the closing image of one person's shift becomes the teaser for the next; the end of every course invites into the game.
+6. **Grow the buttons:** each new button takes on a bigger layer of work.
+
+### 🧠 Significance — AI draft
+*AI draft, for Sasha to rewrite in his voice.*
+- **Essence.** Content stops being something you consume and leave; it becomes a shift you can hand over, show and trigger.
+- **Consequences.** (1) Every course ships as an app with a before → after icon. (2) The author's work collapses to one button (Make it an app → Sign → Publish); the learner's to one button (Enter the game). (3) Curation, not production, becomes the scarce role.
+
+### Cross-references — Connects to
+- `docs/templates/course-as-app.md`; `docs/templates/course-from-source.md`; *Technology 8: One Acorn, Every Magnification*; *Technology 183: Signal Authorship* (the question is the human signal); *Technology 185: The Visible Shift*; *Technology 186: Technologies → Template → Living Product*.
+
