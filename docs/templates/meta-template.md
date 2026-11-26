@@ -110,6 +110,8 @@ Everything we build is assembled from five primitives. They are the central chai
 8. **Template → library.** A new law found in a template's debrief (retro, session notes, a planning review) is a candidate technology for the Phase Shift Technology Library; note it in the template and bring it to Sasha (the library carries his transmission).
 9. **Library → template.** A technology that grows a repeatable protocol is a template candidate: register it in the README inventory and promote it by §7.1–7.3.
 
+**Hypothesis (Sasha, 2026-11-26 11:59 MST; not yet confirmed by its check):** «чем лучше описан how-to, тем быстрее, проще и дешевле ИИ агенту выполнить его» (the better the how-to is written, the faster, simpler and cheaper it is for an AI agent to run it). A template can zoom in on three levels: **goal** (why, what: meta-description, why it exists) → **steps** (input → output → who acts → gate) → **runbook** (click-level actions, for stable UIs only). A template carries the runbook level wherever a step runs on a UI again and again; the runbook carries a "last verified" date and a fallback to the step above it. Check: time and tool calls per module before and after the runbook, logged in the template's worked example. First test: [course-update.md](./course-update.md) step 5 on the [NotebookLM runbook](../04-workflows/notebooklm_video_production.md#runbook-8-actions-per-module).
+
 ## 8. Tasks (living list)
 - [x] T1 Record the transmission as this Meta-Template (2026-10-27).
 - [ ] T2 Corpus inventory of templates, structured by these levels and domains (in progress).
