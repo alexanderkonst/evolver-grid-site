@@ -50,6 +50,7 @@ test.describe("glint", () => {
     // Open: the marker is on fire's body and on no other body.
     await page.getByTestId("instrument-glyph").click();
     await expect(dialog(page)).toBeVisible();
+    await page.getByRole("button", { name: "Back to the instrument" }).click();
     await expect(page.getByTestId("instrument-glint-fire")).toBeVisible();
     for (const other of ["water", "earth", "ether"]) await expect(page.getByTestId(`instrument-glint-${other}`)).toHaveCount(0);
     // The marker carries no text of its own: the change itself is written in Your House, never here.
@@ -69,6 +70,7 @@ test.describe("glint", () => {
     await expect(page.getByTestId("instrument-glyph")).toHaveAttribute("data-glints", "");
     await page.getByTestId("instrument-glyph").click();
     await expect(dialog(page)).toBeVisible();
+    await page.getByRole("button", { name: "Back to the instrument" }).click();
     await expect(page.getByTestId("instrument-glint-fire")).toHaveCount(0);
   });
 
@@ -78,6 +80,7 @@ test.describe("glint", () => {
     await openVillage(page);
     await expect(page.getByTestId("instrument-glyph")).toHaveAttribute("data-glints", "water");
     await page.getByTestId("instrument-glyph").click();
+    await page.getByRole("button", { name: "Back to the instrument" }).click();
     await expect(page.getByTestId("instrument-glint-water")).toBeVisible();
     await expect(page.locator('[data-testid^="instrument-glint-"]')).toHaveCount(1);
   });
@@ -88,6 +91,7 @@ test.describe("glint", () => {
     await expect(page.getByTestId("instrument-glyph")).toHaveAttribute("data-glints", "");
     await page.getByTestId("instrument-glyph").click();
     await expect(dialog(page)).toBeVisible();
+    await page.getByRole("button", { name: "Back to the instrument" }).click();
     await expect(page.locator('[data-testid^="instrument-glint-"]')).toHaveCount(0);
   });
 
@@ -96,6 +100,7 @@ test.describe("glint", () => {
     await seedGlint(page, { fire: true });
     await openVillage(page);
     await page.getByTestId("instrument-glyph").click();
+    await page.getByRole("button", { name: "Back to the instrument" }).click();
     const marker = page.getByTestId("instrument-glint-fire");
     await expect(marker).toBeVisible();
     expect(await marker.evaluate((el) => getComputedStyle(el).animationName)).toBe("none");

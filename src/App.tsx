@@ -85,8 +85,7 @@ import { pathUsesLayoutShell, pathHidesLogo, zogEntryRedirectTarget, ZOG_ENTRY_P
 import MorphogeneticHolomap from "./pages/MorphogeneticHolomap";
 import IgniteSession from "./pages/IgniteSession";
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
-// Your AI (village place `oracle`): carries the 5,400-word AI OS prompt, so it loads on demand.
-const FamiliarPage = lazy(() => import("./modules/familiar/FamiliarPage"));
+
 const MiniTrainingMirror = lazy(() => import("./pages/MiniTrainingMirror"));
 const MiniTrainingKnowsYou = lazy(() => import("./pages/MiniTrainingKnowsYou"));
 const Mastermind = lazy(() => import("./pages/Mastermind"));
@@ -650,8 +649,7 @@ const App = () => (
                       stale links. /ai-os/pricing kept for the Holonic Commons
                       tip / patronage flow (no auth needed).  */}
                   <Route path="/ai-os" element={<GameShellV2><AiOsPage /></GameShellV2>} />
-                  {/* Your AI (game v1, issue #224): the village place `oracle`. Open to guests. */}
-                  <Route path="/game/your-ai" element={<GameShellV2><FamiliarPage /></GameShellV2>} />
+                  <Route path="/game/your-ai" element={<JourneyPage showQuestBoard />} />
                   {/* Mini-training 1 (issue #392): route only, linked from nowhere public (not in the sitemap or any nav) until announced. */}
                   <Route path="/mini-trainings/ai-as-a-mirror" element={<GameShellV2><MiniTrainingMirror /></GameShellV2>} />
                   {/* Mini-training 2: route only; the one link to it is the «Next» line at the end of mini-training 1. */}

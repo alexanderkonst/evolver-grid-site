@@ -16,4 +16,3 @@ export interface GiftState {
   params?: Record<string, string | number>;
 }
 export interface FamiliarState { gifts: GiftState[]; prompt: string; version: string; lastLearned?: string; loading: boolean }
-export type ChatApp = "chatgpt" | "claude" | "gemini";

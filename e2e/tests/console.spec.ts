@@ -28,7 +28,6 @@ async function openConsole(page: Page) {
   await glyph.click();
   await expect(page.getByRole("dialog", { name: "Your instrument" })).toBeVisible();
   await page.waitForTimeout(800);
-  await page.getByTestId("instrument-body-air").click();
   await page.getByRole("tab", { name: "Console" }).click();
   await expect(page.getByTestId("console-panel")).toBeVisible();
 }

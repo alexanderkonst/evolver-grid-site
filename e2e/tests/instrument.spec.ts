@@ -63,17 +63,10 @@ test.describe("instrument opens and closes", () => {
     await expect(dialogOf(page)).toHaveCount(0);
     await expect(glyph).toBeFocused();
 
-    // The same gesture closes: a second click on the glyph.
-    await glyph.click();
+    // Period opens as well, and the close button is available at every viewport.
+    await page.keyboard.press(".");
     await settled(page);
-    await glyph.click();
-    await expect(dialogOf(page)).toHaveCount(0);
-    await expect(glyph).toBeFocused();
-
-    // A tap outside closes (the scrim, top-left corner of the world).
-    await glyph.click();
-    await settled(page);
-    await page.mouse.click(8, 8);
+    await page.getByRole("button", { name: "Close Your AI" }).click();
     await expect(dialogOf(page)).toHaveCount(0);
     await expect(glyph).toBeFocused();
   });
@@ -95,7 +88,6 @@ test.describe("instrument opens and closes", () => {
     await openVillage(page);
     await glyphOf(page).click();
     await settled(page);
-    await page.getByTestId("instrument-body-air").click();
     const field = page.getByRole("textbox");
     await field.fill("");
     await field.press("i");
@@ -112,6 +104,7 @@ test.describe("instrument opens and closes", () => {
     await settled(page);
     await expect(dialogOf(page)).toHaveAttribute("aria-modal", "true");
     await expect(live).toHaveText("Your instrument is open.");
+    await page.getByRole("button", { name: "Back to the instrument" }).click();
     // Five bodies by label: air in the middle, the other four in the arc.
     await expect(page.getByTestId("instrument-body-air")).toBeVisible();
     for (const el of ["ether", "water", "fire", "earth"]) await expect(page.getByTestId(`instrument-body-${el}`)).toBeVisible();
@@ -121,9 +114,9 @@ test.describe("instrument opens and closes", () => {
     for (let i = 0; i < unlitCount; i++) await expect(unlit.nth(i)).toContainText("Opens on your path");
     const lit = page.locator("[data-testid^='instrument-body-'][data-lit='true']");
     for (let i = 0; i < (await lit.count()); i++) await expect(lit.nth(i)).not.toContainText("Opens on your path");
-    // The world is dimmed lightly and stays live: the scrim is far from opaque, and the village is still in the DOM, visible.
+    // The scrim dims the still-live village.
     const alpha = await page.getByTestId("instrument-scrim").evaluate((el) => Number(getComputedStyle(el).backgroundColor.match(/[\d.]+/g)?.[3] ?? 1));
-    expect(alpha).toBeLessThanOrEqual(0.12);
+    expect(alpha).toBe(0.55);
     await expect(page.locator("main").first()).toBeVisible();
     await page.keyboard.press("Escape");
     await expect(live).toHaveText("Your instrument is closed.");
@@ -145,16 +138,15 @@ test.describe("instrument opens and closes", () => {
     }
   });
 
-  test("air body turns the Your AI face; Back returns to the arc; the glyph still closes it", async ({ page }) => {
+  test("glyph opens Your AI; Back returns to the arc; air opens the same face", async ({ page }) => {
     await openVillage(page);
     await glyphOf(page).click();
     await settled(page);
-    await page.getByTestId("instrument-body-air").click();
     await expect(page.getByRole("region", { name: "Your AI" })).toBeVisible();
     await page.getByRole("button", { name: "Back to the instrument" }).click();
     await expect(page.getByTestId("your-ai-overlay")).toHaveAttribute("data-state", "open");
     await page.getByTestId("instrument-body-air").click();
-    await glyphOf(page).click();
+    await page.keyboard.press("Escape");
     await expect(dialogOf(page)).toHaveCount(0);
   });
 });
@@ -202,6 +194,7 @@ test.describe("phone, 390x844", () => {
     await openVillage(page);
     await glyphOf(page).tap();
     await settled(page);
+    await page.getByRole("button", { name: "Back to the instrument" }).click();
     for (const el of ["ether", "water", "fire", "earth", "air"]) {
       const b = await box(page.getByTestId(`instrument-body-${el}`));
       expect(b.left, `${el} left edge`).toBeGreaterThanOrEqual(0);
@@ -217,7 +210,7 @@ test.describe("reduced motion", () => {
     await openVillage(page);
     await glyphOf(page).click();
     await expect(dialogOf(page)).toBeVisible();
-    const transform = await page.getByTestId("instrument-body-air").evaluate((el) => getComputedStyle(el).transform);
+    const transform = await page.getByRole("region", { name: "Your AI" }).evaluate((el) => getComputedStyle(el).transform);
     expect(transform === "none" || transform === "matrix(1, 0, 0, 1, 0, 0)").toBe(true);
     await page.keyboard.press("Escape");
     await expect(dialogOf(page)).toHaveCount(0);
@@ -236,6 +229,7 @@ test("DoD 6 · axe: zero serious on /village with the instrument open", async ({
       (v) => v.impact === "serious" || v.impact === "critical",
     );
 
+  await page.getByRole("button", { name: "Back to the instrument" }).click();
   const arc = await run();
   if (arc.length) await info.attach("axe-arc.json", { body: JSON.stringify(arc, null, 2), contentType: "application/json" });
   expect(arc.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`)).toEqual([]);
@@ -247,4 +241,31 @@ test("DoD 6 · axe: zero serious on /village with the instrument open", async ({
   const face = await run();
   if (face.length) await info.attach("axe-face.json", { body: JSON.stringify(face, null, 2), contentType: "application/json" });
   expect(face.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`)).toEqual([]);
+});
+
+test("direct URL opens the same responsive face for a guest", async ({ page }, info) => {
+  await page.addInitScript(() => localStorage.setItem("fytt:your-ai-tour-seen", "true"));
+  await page.goto("/game/your-ai");
+  const panel = page.getByRole("region", { name: "Your AI" });
+  await expect(panel).toBeVisible();
+  const { width, height } = page.viewportSize()!;
+  const margin = width < 640 ? 0 : 32;
+  const panelWidth = width < 640 ? width : Math.min(1152, width - margin * 2);
+  await expect.poll(() => panel.boundingBox()).toEqual({
+    x: (width - panelWidth) / 2,
+    y: margin,
+    width: panelWidth,
+    height: height - margin * 2,
+  });
+  await expect(page.locator('[data-place="oracle"]')).toHaveCount(0);
+  await page.screenshot({ path: `artifacts/screenshots/${info.project.name}/your-ai-panel.png` });
+  if (width >= 640) {
+    await page.mouse.click(8, 8);
+  } else {
+    await page.keyboard.press("Escape");
+  }
+  await expect(dialogOf(page)).toHaveCount(0);
+  await expect(page).toHaveURL(/\/game\/your-ai$/);
+  await expect(page.getByTestId("instrument-glyph-svg")).toBeVisible();
+  await glyphOf(page).screenshot({ path: `artifacts/screenshots/${info.project.name}/your-ai-glyph.png` });
 });
