@@ -45,7 +45,7 @@
 | Critique / next version of anything | [roasting.md](./roasting.md) | The next, stronger version | 93 Vision ↔ Viability Balancing |
 | Long build: plan → ship → report → retro | [improvement-loop.md](./improvement-loop.md) | Shipped, reported, learned from | 161 The Hexagon Cycle |
 | Mini-course from a body of work | [course-from-source.md](./course-from-source.md) | A mini-course from your body of work | 57 Campfire Networking |
-| Update a living mini-training with a new source: insights signed by Sasha → infographic → micro-module → code → version bump | [course-update.md](./course-update.md) | A course that grows with every source, nothing unsigned | 117 The Learning Ledger and the Meta-Game (candidate) · 187 The Packaged Shift |
+| Update a living mini-training with a new source: insights signed by Sasha → infographic → micro-module → code → version bump | [course-update.md](./course-update.md) | A mini-training that grows with every source, nothing unsigned | 40 The Recursive Proof (proposed) · also 117, 187, 154 |
 | Integrate a source on the stream (link, essay, paper, book, course, conversation): graph with authorship, use decided | [source-integration.md](./source-integration.md) | Any source woven into what you know | 117 The Learning Ledger and the Meta-Game (candidate) |
 | Testimonial clips from calls | [testimonial-clips.md](./testimonial-clips.md) | Clients saying it in their own words | 155 Testimony Frequency |
 | Meaning of a name or surname | [name-vibration.md](./name-vibration.md) | The original energy of your name | New, not yet in the library (candidate) |
