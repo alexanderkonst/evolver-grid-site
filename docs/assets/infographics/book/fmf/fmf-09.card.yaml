@@ -1,0 +1,23 @@
+id: fmf-09
+chapter: '3.4'
+number: 9
+of: 19
+title: Founder Academy Dials
+caption: Five dials of the founder, each with its own measure.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  dials:
+  - - Consciousness
+    - bits/s
+  - - Uniqueness
+    - excitement
+  - - Mind
+    - worldview
+  - - Emotions
+    - autonomy
+  - - Body
+    - vitality
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p14)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

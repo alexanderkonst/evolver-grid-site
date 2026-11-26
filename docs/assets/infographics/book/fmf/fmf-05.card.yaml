@@ -1,0 +1,20 @@
+id: fmf-05
+chapter: '3.4'
+number: 5
+of: 19
+title: Three Mirrors
+caption: The founder is a reflection of their business. Your ideal client is your self-description. Your transformation
+  is your product's core.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  pairs:
+  - - Founder
+    - Business
+  - - Client
+    - Self
+  - - Product
+    - Transformation
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p7 (TLDR))'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

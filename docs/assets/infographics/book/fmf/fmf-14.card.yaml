@@ -1,0 +1,22 @@
+id: fmf-14
+chapter: '3.4'
+number: 14
+of: 19
+title: Conscious Entrepreneurship
+caption: Identity is self-discovery. Myth is the unique shadow. Threshold is ripeness.
+skin: v4
+max_words: 34
+text:
+  eyebrow: Founder-market fit
+  centre: Do
+  turns:
+  - Identity
+  - Faculty + its shadow = Myth
+  - Threshold
+  - Articulate
+  - Direct energy
+  - 'The next move: a question of courage'
+  - Feel alive
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p18)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'
