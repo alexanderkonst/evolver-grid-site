@@ -1,5 +1,38 @@
 # The Meta-Template: the template of templates
 
+## Core v3 (one screen) · Version: v3.0 · 2026-11-26
+*Approved by Sasha 2026-11-26 12:01 MST («ОЧЕНЬ КРУТО!!! делай»), after a roast of v2. Everything below the line «Appendix A» is Sasha's transmission of 2026-10-27, unchanged.*
+
+**Essence.** A template is how a shift Sasha sees becomes repeatable without him. The Meta-Template is not a document to read; it is **one cycle and one line**.
+
+### The cycle (5 steps, every piece of work)
+1. **Transmission.** Sasha names a vision, a formula or a workflow in chat. That is the input; the agent records it close to his words.
+2. **Router.** Check [template-router.md](./template-router.md): does a template already cover it? If yes, use it. If a near one exists, extend it. A new template only when none fits (check the router and [README.md](./README.md) for duplicates first).
+3. **Apply.** Do the work by the template.
+4. **Roast the result.** After real use: what worked, what broke, what was missing ([roasting.md](./roasting.md)).
+5. **Edit the template, new version.** Every finished piece of work ends with one line «Template change: …» (or «none»). If there is a change, the template gets it and its version goes up.
+
+### The trace line (in every artifact made by a template)
+`Template: <name> vN · Version: vX.Y · Shift check: yes / no / unknown`
+- **Template vN** = which template and which version produced it.
+- **Version vX.Y** = the artifact's own version (course, page, spec, infographic). Major = new form; minor = new part (e.g. a new episode); patch = a fix.
+- **Shift check** = did the shift the template carries actually happen (observable sign, §2b)?
+From these lines, measure (uses and shifts), version chains and archive candidates are collected by grep, with no manual counting.
+
+### Template lifecycle
+- Each template's meta-description carries `Version: vN · last changed: date · change log` (one line per change).
+- **Archive rule:** a template not applied in 60 days, or applied with Shift check «no» three times in a row, is proposed to Sasha for merge or archive. Archived templates leave the router.
+
+### One source of truth
+Templates live only here in `docs/templates/`. Hark specialties and other agents **link** to them and never keep a copy of their content.
+
+### Sasha's door
+Sasha never edits templates. He speaks (step 1) and roasts (step 4); agents do steps 2, 3 and 5.
+
+---
+
+## Appendix A: Sasha's transmission (2026-10-27), unchanged
+
 *Transmission from Sasha, 2026-10-27 (chat, dictated; recorded close to his words). Status: canonical root of `docs/templates/`. Every other template is read as a part of this one.*
 
 ## 1. Name
