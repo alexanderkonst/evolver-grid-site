@@ -2,6 +2,7 @@ import { memo, useMemo } from "react";
 import { Check, RotateCcw, Clock, Sparkles, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getLunarState, MOON_PHASES } from "@/lib/equilibrium-cycles";
+import { moonPhaseName } from "@/lib/moonPhaseNames";
 import type {
   EquilibriumStrategyCompletion,
   EquilibriumTask,
@@ -288,7 +289,7 @@ const TaskHarvestRow = ({
               <span className="text-[#0a1628]/30">·</span>
               <span
                 className="inline-flex items-center gap-1"
-                title={`Completed during ${phase.name}`}
+                title={`Completed during ${moonPhaseName(phase.name)}`}
               >
                 <span aria-hidden="true">{phase.symbol}</span>
                 <span className="hidden sm:inline">{phase.shortName}</span>
@@ -365,7 +366,7 @@ const StrategyHarvestRow = ({ completion }: StrategyHarvestRowProps) => {
               <span className="text-[#0a1628]/30">·</span>
               <span
                 className="inline-flex items-center gap-1"
-                title={`Completed during ${phase.name}`}
+                title={`Completed during ${moonPhaseName(phase.name)}`}
               >
                 <span aria-hidden="true">{phase.symbol}</span>
                 <span className="hidden sm:inline">{phase.shortName}</span>

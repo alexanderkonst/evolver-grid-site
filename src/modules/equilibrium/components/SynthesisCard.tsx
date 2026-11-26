@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { moonPhaseName } from "@/lib/moonPhaseNames";
 import { supabase } from "@/integrations/supabase/client";
 import {
   getBirthdayArcPhase,
@@ -64,7 +65,7 @@ export const SynthesisCard = ({
   const deterministicFallback = (): string => {
     const phase = cycles.lunar.holonicPhase.label.toLowerCase();
     const day = cycles.dayOfWeek.day.energy.toLowerCase();
-    const moon = cycles.lunar.phase.name.toLowerCase();
+    const moon = moonPhaseName(cycles.lunar.phase.name).toLowerCase();
     return `${phase} energy — ${day}, ${moon}.`;
   };
 

@@ -1,6 +1,7 @@
 import { memo, useMemo } from "react";
 import { Sparkle } from "lucide-react";
 import { getLunarState, MOON_PHASES } from "@/lib/equilibrium-cycles";
+import { moonPhaseName } from "@/lib/moonPhaseNames";
 
 interface UpcomingTransitionsProps {
   /** Now in ms — passed in so the parent's cycle-tick state drives refresh. */
@@ -54,7 +55,7 @@ const UpcomingTransitionsBase = ({
             <div className="flex-1 min-w-0">
               <div className="font-serif font-medium text-[#0a1628]">
                 {t.shortName}{" "}
-                <span className="font-normal text-[#0a1628]/55">· {t.name}</span>
+                <span className="font-normal text-[#0a1628]/55">· {moonPhaseName(t.name)}</span>
               </div>
               <div className="text-[11px] text-[#0a1628]/60">
                 {formatAbsolute(t.atMs)} <span className="text-[#0a1628]/35">·</span>{" "}

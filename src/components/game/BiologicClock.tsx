@@ -11,11 +11,18 @@ import {
 } from "@/lib/equilibrium-cycles";
 import { useCycles } from "@/modules/equilibrium/hooks/useCycles";
 import { useEquilibriumV2 } from "@/modules/equilibrium/hooks/useEquilibriumV2";
+import { moonPhaseName } from "@/lib/moonPhaseNames";
 import MoonOrb from "@/modules/equilibrium/components/MoonOrb";
 import BirthdayPrompt from "@/modules/equilibrium/components/BirthdayPrompt";
 import "./BiologicClock.css";
 
 /**
+ * BiologicClock v7 (Rings v7, issue #532) — segmented rings: Moon 8 segments, Week 7, butt caps and small gaps; stroke grows with the
+ * radius (15 × r / 84); each Moon segment is as bright as that phase is lit; ahead = full-width segment with the «Light flow»
+ * gradient along its arc, lived = the same colour as a thin line (30% width, opacity .85); the current segment is split at now.
+ * Phase names the player reads are the neutral ones (`moonPhaseName`); the engine keeps the astronomical names as keys.
+ * The v6.2 notes below still describe the views, the centre and the card.
+ *
  * BiologicClock v6.2 — the player's own clock (docs/specs/equilibrium/biologic_clock_rings_spec.md;
  * issues #381, #385, #405, #434). Two concentric rings, outside in: Moon (8 phases, New Moon at the top)
  * and Week (7 days, Monday at the top), both clockwise. Three views, one tap on the dial cycles
@@ -41,19 +48,31 @@ import "./BiologicClock.css";
 
 const C = 100; // centre of the 200 x 200 viewBox (Moon and Week live in it in every view)
 
-/** Moon and Week keep size and place in all views; view 3 adds Day then Year outside. */
-const RING = { moon: 80, week: 50, day: 102, year: 111, track: 1.4 } as const;
-/** viewBox padding in view 3: the dial grows outward, the inner rings do not move. */
-const PAD_EXPANDED = 14;
+/**
+ * Ring radii. Moon and Week keep size and place in all views; view 3 adds Day then Year outside.
+ * Day and Year are placed so that, with their own stroke (15 × r / 84, grows with the radius), each clears the ring inside it by 2 units.
+ */
+const RING = { moon: 84, week: 56, day: 103, year: 126 } as const;
+/** Stroke width grows with the radius (Rings v7 item 2): Moon r 84 → 15, Week r 56 → 10. */
+const MOON_STROKE = 15;
+export const ringStroke = (r: number): number => (MOON_STROKE * r) / RING.moon;
+/** Half a gap, in turns, at each end of every segment (~1.4°). */
+const SEG_GAP = 0.004;
+/** The lived part of a segment: a thin line of this share of the stroke, opacity `LIVED_LINE_OPACITY`. */
+const LIVED_LINE = 0.3;
+const LIVED_LINE_OPACITY = 0.85;
+/** The neighbour's colour at each end of a segment's «Light flow» gradient. */
+const FLOW_BLEND = 0.35;
+/** viewBox padding in view 3: the dial grows outward (to the outer edge of the Year ring), the inner rings do not move. */
+const PAD_EXPANDED = 38;
+const DISC_R = 100; // the dark backing disc, in views 1–2; view 3 adds the padding
 
 const MOON_R = 6; // the other moons: small quiet marks
 const MOON_R_NOW = 15.5; // the current moon ~2.5×
-const PLANET_R = 6;
+const PLANET_R = 5.5; // fits the 10-wide Week stroke
 const PLANET_R_NOW = 15.5; // today's planet ~2.5×
 const SATURN_SCALE = 1.7; // the rings make Saturn's disc small
 const SUN_DISC = 0.88; // the Sun PNG: the disc is ~88% of the square image, black bars around
-const LIVED = 0.35; // what is already lived
-const AHEAD = 0.85; // what is still ahead
 const CENTRE_FONT = 13; // viewBox units; the dial is never below 200 px, so words stay >= 12 px
 const CENTRE_FONT_MIN = 12;
 const CENTRE_LABEL_FONT = 11; // the small caps address over each centre word; never below 11 px on a 200 px dial
@@ -65,6 +84,12 @@ const PLANET_URL = (planet: string) => `/assets/equilibrium/planets/${planet.toL
 /** Chakra colour per weekday, Monday first (`PLANETARY_DAYS` order). */
 const WEEK_COLOURS = ["#5b4fc4", "#c9483c", "#3f84d0", "#9a62d6", "#e48a3c", "#e8c447", "#4fb06e"] as const;
 const MOON_GLOW = "#fff4dc"; // warm white
+const SILVER = "#d9d1b4"; // the Year ring (rgb 217, 209, 180)
+const GOLD = "#f2c46b"; // the Day ring (rgb 242, 196, 107)
+const MOON_DARK = "#343640"; // a new moon: dark
+const MOON_LIT = "#fff1d6"; // a full moon: cream
+/** How lit each phase is, in `MOON_PHASES` order (New Moon … Waning Crescent): the segment colour is a mix by this. */
+export const MOON_ILLUMINATION = [0.03, 0.25, 0.5, 0.8, 1, 0.8, 0.5, 0.25] as const;
 const SUN_GLOW = "#ff9a3c";
 const NIGHT = "#070b16";
 
@@ -85,6 +110,13 @@ export const contrastRatio = (a: string, b: string): number => {
   return (hi + 0.05) / (lo + 0.05);
 };
 const toHex = (rgb: number[]) => `#${rgb.map((v) => Math.round(v).toString(16).padStart(2, "0")).join("")}`;
+/** `a` mixed towards `b` by `t` (0 = a, 1 = b), both #rrggbb. */
+export const mixHex = (a: string, b: string, t: number): string => {
+  const [ra, rb] = [hexToRgb(a), hexToRgb(b)];
+  return toHex(ra.map((v, i) => v + (rb[i] - v) * t));
+};
+/** The Moon ring's eight segment colours: dark → cream by how lit the phase is. */
+export const MOON_SEGMENT_COLOURS: readonly string[] = MOON_ILLUMINATION.map((k) => mixHex(MOON_DARK, MOON_LIT, k));
 /** The colour itself when it already reads on the night background, else the nearest lighter mix towards white. */
 export const readableOnDark = (hex: string, min = 4.5): string => {
   let mix = 0;
@@ -356,6 +388,44 @@ const arcWithGaps = (r: number, a0: number, a1: number, gaps: Array<[number, num
   return pieces.map(([p0, p1]) => arcPath(r, p0, p1)).filter(Boolean).join(" ");
 };
 
+/**
+ * One ring segment `a0..a1` (turns, the gaps between segments already taken off): the part ahead of `now`
+ * as a full-width solid band, the lived part as a thin flat line of the same colour, centred on the radius.
+ * With `prev` and `next` the band carries the «Light flow» gradient along its arc: the start is `FLOW_BLEND`
+ * of the way to the previous segment's colour, the middle its own, the end `FLOW_BLEND` towards the next one.
+ * `now` outside the segment makes it all lived (now >= a1) or all ahead (now <= a0); inside, it is split there.
+ * `cut` leaves gaps for a ring label.
+ */
+const RingSegment = ({
+  gid, r, a0, a1, now, colour, prev, next, cut = [], className, data,
+}: {
+  gid: string; r: number; a0: number; a1: number; now: number; colour: string; prev?: string; next?: string;
+  cut?: Array<[number, number]>; className?: string; data?: Record<string, string | number>;
+}) => {
+  const width = ringStroke(r);
+  const split = Math.min(a1, Math.max(a0, now));
+  const lived = arcWithGaps(r, a0, split, cut);
+  const ahead = arcWithGaps(r, split, a1, cut);
+  const flow = prev !== undefined && next !== undefined;
+  const [x0, y0] = polar(r, a0);
+  const [x1, y1] = polar(r, a1);
+  return (
+    <g className={className} {...data}>
+      {flow && ahead && (
+        <linearGradient id={gid} gradientUnits="userSpaceOnUse" x1={f(x0)} y1={f(y0)} x2={f(x1)} y2={f(y1)}>
+          <stop offset="0" stopColor={mixHex(colour, prev as string, FLOW_BLEND)} />
+          <stop offset="0.5" stopColor={colour} />
+          <stop offset="1" stopColor={mixHex(colour, next as string, FLOW_BLEND)} />
+        </linearGradient>
+      )}
+      {lived && (
+        <path className="bio-clock__arc-lived" d={lived} stroke={colour} strokeWidth={f(width * LIVED_LINE)} strokeOpacity={LIVED_LINE_OPACITY} />
+      )}
+      {ahead && <path className="bio-clock__arc-ahead" d={ahead} stroke={flow ? `url(#${gid})` : colour} strokeWidth={f(width)} />}
+    </g>
+  );
+};
+
 /** Shortest distance between two turns, 0..0.5. */
 const turnDistance = (a: number, b: number) => {
   const d = Math.abs(wrapTurn(a) - wrapTurn(b));
@@ -489,6 +559,7 @@ export const BiologicClockFace = ({
   const moonP = lunar.progress;
   const dayP = dayFraction(nowMs);
   const yearP = solar.personalProgress;
+  const weekP = (weekNow + dayP) / 7; // where «now» is on the Week ring: the day plus how much of it has passed
   const seasonNow = Math.min(3, Math.floor(yearP * 4));
 
   // ── Words ──
@@ -499,7 +570,8 @@ export const BiologicClockFace = ({
   const dayWord = phaseWord(dayOfWeek.day.energy);
   const timeLeftDays = Math.max(0, (lunar.phaseEndMs - nowMs) / 86_400_000);
   const moonTime = formatTimeLeft(timeLeftDays);
-  const moonEnds = fmt("village.clock.moonIn", "Next: {{phase}} in {{time}}", { phase: lunar.nextPhaseName, time: moonTime });
+  const moonName = moonPhaseName(lunar.phase.name, t);
+  const moonEnds = fmt("village.clock.moonIn", "Next: {{phase}} in {{time}}", { phase: moonPhaseName(lunar.nextPhaseName, t), time: moonTime });
   /**
    * «before Prepping · next Celebrating, tomorrow»: «next» always carries its time when it is known.
    * `next` null: the block's header already says «Next: …» (the Moon block), so the line keeps only
@@ -519,8 +591,8 @@ export const BiologicClockFace = ({
   const weekColour = WEEK_COLOURS[weekNow]; // tracks and glows: the pure chakra colour
   const weekText = WEEK_TEXT_COLOURS[weekNow]; // words: the same colour, lightened only as far as AA needs
 
-  // «Waxing Gibbous, Prepping, Saturday, Structure»: commas, so a screen reader pauses between the four words
-  const summary = [lunar.phase.name, moonWord, dayOfWeek.day.name, dayWord].join(", ");
+  // «Almost Full, Prepping, Saturday, Structure»: commas, so a screen reader pauses between the four words
+  const summary = [moonName, moonWord, dayOfWeek.day.name, dayWord].join(", ");
   const yearName = hasBirthday ? season(seasonNow).name : "";
   const yearInvite = fmt("village.clock.yearEmpty", "Add your birthday to see your year");
   const yearAddress = fmt("village.clock.yearFrom", "Your year, from your birthday");
@@ -562,7 +634,7 @@ export const BiologicClockFace = ({
       }
     : undefined;
 
-  // ── Ring grammar: lived dim, ahead bright, now large ──
+  // ── Ring grammar: lived = thin line, ahead = full band, now = large symbol (the current segment splits at now) ──
   const moonSeg = (i: number) => (i === moonNow ? "now" : i < moonNow ? "lived" : "ahead");
   const weekSeg = (i: number) => (i === weekNow ? "today" : i < weekNow ? "lived" : "ahead");
   const seasonSeg = (q: number) => (q === seasonNow ? "now" : q < seasonNow ? "lived" : "ahead");
@@ -603,51 +675,66 @@ export const BiologicClockFace = ({
           </clipPath>
         </defs>
 
-        <circle className="bio-clock__night" cx={C} cy={C} r={expanded ? RING.year + 3 : 100} />
+        <circle className="bio-clock__night" cx={C} cy={C} r={DISC_R + pad} />
 
-        {/* ── Year (view 3, outermost): four seasons from the birthday; lived dim, ahead bright ── */}
+        {/* ── Year (view 3, outermost): four seasons from the birthday; ahead a full band, lived a thin line ── */}
         {expanded && (
           <g className="bio-clock__ring" data-ring="year">
             {!birthdayLoading && <title>{hasBirthday ? `${yearAddress}: ${yearName}` : onAskBirthday ? yearInvite : yearAddress}</title>}
             {hasBirthday ? (
               SOLAR_HOLONIC_ORDER.map((_, q) => (
-                <path
+                <RingSegment
                   key={q}
-                  data-season={q}
+                  gid={`bc-flow-year-${uid}-${q}`}
+                  r={RING.year}
+                  a0={q / 4 + SEG_GAP}
+                  a1={(q + 1) / 4 - SEG_GAP}
+                  now={yearP}
+                  colour={SILVER}
+                  cut={yearGaps}
                   className={`bio-clock__year is-${seasonSeg(q)}`}
-                  d={arcWithGaps(RING.year, q / 4 + 0.008, (q + 1) / 4 - 0.008, yearGaps)}
+                  data={{ "data-season": q }}
                 />
               ))
             ) : (
-              <path className="bio-clock__year bio-clock__year--empty" d={arcWithGaps(RING.year, 0, 1, yearGaps)} />
+              // no birthday: a thin dotted line, not a band
+              <path
+                className="bio-clock__year bio-clock__year--empty"
+                d={arcWithGaps(RING.year, 0, 1, yearGaps)}
+                strokeWidth={f(ringStroke(RING.year) * LIVED_LINE)}
+              />
             )}
-            {hasBirthday && (() => {
-              const [x, y] = polar(RING.year, yearP);
-              return <circle className="bio-clock__year-dot" cx={f(x)} cy={f(y)} r="3.4" />;
-            })()}
             <RingLabel id={`bc-label-year-${uid}`} r={RING.year} turn={yearLabelTurn} text={fmt("village.clock.yearRing", "Year").toUpperCase()} className="bio-clock__ring-label--year" />
           </g>
         )}
 
-        {/* ── Day (view 3): a thin gold ring outside the Moon; lived dim, what is left bright; no clock time ── */}
+        {/* ── Day (view 3): one gold ring outside the Moon; lived a thin line, what is left a full band; no clock time ── */}
         {expanded && (
           <g className="bio-clock__ring" data-ring="day">
             <title>{fmt("village.clock.dayPart", "Part of the day")}</title>
-            <path className="bio-clock__day-lived" d={arcWithGaps(RING.day, 0, dayP, dayGaps)} />
-            <path className="bio-clock__day-ahead" d={arcWithGaps(RING.day, dayP, 1, dayGaps)} />
-            {(() => {
-              const [x, y] = polar(RING.day, dayP);
-              return <circle className="bio-clock__day-dot" cx={f(x)} cy={f(y)} r="3" />;
-            })()}
+            <RingSegment gid={`bc-flow-day-${uid}`} r={RING.day} a0={0} a1={1} now={dayP} colour={GOLD} cut={dayGaps} className="bio-clock__day" />
             <RingLabel id={`bc-label-day-${uid}`} r={RING.day} turn={dayLabelTurn} text={fmt("village.clock.dayRing", "Day").toUpperCase()} className="bio-clock__ring-label--day" />
           </g>
         )}
 
-        {/* ── Moon: 8 phases, New Moon at the top, clockwise ── */}
+        {/* ── Moon: 8 segments (New Moon at the top, clockwise), each as bright as the phase is lit ── */}
         <g className="bio-clock__ring" data-ring="moon">
-          <title>{lunar.phase.name}</title>
-          <path className="bio-clock__track-lived" strokeWidth={RING.track} d={arcPath(RING.moon, 0, moonP)} />
-          <path className="bio-clock__track-ahead" strokeWidth={RING.track} d={arcPath(RING.moon, moonP, 1)} />
+          <title>{moonName}</title>
+          {MOON_SEGMENT_COLOURS.map((colour, i) => (
+            <RingSegment
+              key={`arc-${i}`}
+              gid={`bc-flow-moon-${uid}-${i}`}
+              r={RING.moon}
+              a0={i / 8 + SEG_GAP}
+              a1={(i + 1) / 8 - SEG_GAP}
+              now={moonP}
+              colour={colour}
+              prev={MOON_SEGMENT_COLOURS[mod(i - 1, 8)]}
+              next={MOON_SEGMENT_COLOURS[mod(i + 1, 8)]}
+              className="bio-clock__arc"
+              data={{ "data-moon-arc": i }}
+            />
+          ))}
           {Array.from({ length: 8 }, (_, i) => {
             const [x, y] = polar(RING.moon, (i + 0.5) / 8);
             const isNow = i === moonNow;
@@ -664,22 +751,24 @@ export const BiologicClockFace = ({
           })}
         </g>
 
-        {/* ── Week: 7 days, Monday at the top, chakra-coloured track ── */}
+        {/* ── Week: 7 days (Monday at the top), chakra colours, same grammar as the Moon ── */}
         <g className="bio-clock__ring" data-ring="week">
           <title>{`${dayOfWeek.day.name}, ${dayOfWeek.day.planet}`}</title>
-          {PLANETARY_DAYS.map((d, i) => {
-            const isToday = i === weekNow;
-            return (
-              <path
-                key={`seg-${d.name}`}
-                data-week-track={i}
-                className={`bio-clock__seg is-${weekSeg(i)}`}
-                style={{ "--bc-seg": WEEK_COLOURS[i] } as CSSProperties}
-                strokeWidth={isToday ? RING.track * 2.3 : RING.track * 1.3}
-                d={arcPath(RING.week, i / 7 + 0.006, (i + 1) / 7 - 0.006)}
-              />
-            );
-          })}
+          {PLANETARY_DAYS.map((d, i) => (
+            <RingSegment
+              key={`seg-${d.name}`}
+              gid={`bc-flow-week-${uid}-${i}`}
+              r={RING.week}
+              a0={i / 7 + SEG_GAP}
+              a1={(i + 1) / 7 - SEG_GAP}
+              now={weekP}
+              colour={WEEK_COLOURS[i]}
+              prev={WEEK_COLOURS[mod(i - 1, 7)]}
+              next={WEEK_COLOURS[mod(i + 1, 7)]}
+              className={`bio-clock__seg is-${weekSeg(i)}`}
+              data={{ "data-week-track": i }}
+            />
+          ))}
           {PLANETARY_DAYS.map((d, i) => {
             const [x, y] = polar(RING.week, (i + 0.5) / 7);
             const isToday = i === weekNow;
@@ -696,7 +785,7 @@ export const BiologicClockFace = ({
         <g data-ring="centre" className="bio-clock__centre" aria-hidden="true">
           <CentreLine
             y={C - 6}
-            address={lunar.phase.name}
+            address={moonName}
             word={moonWord}
             colour={MOON_GLOW}
             fontSize={centreFont}
@@ -727,7 +816,7 @@ export const BiologicClockFace = ({
         <Block
           ring="moon"
           colour={MOON_GLOW}
-          label={`${fmt("village.clock.moon", "Moon")} · ${lunar.phase.name}`}
+          label={`${fmt("village.clock.moon", "Moon")} · ${moonName}`}
           timeLeft={moonEnds}
           symbol={<MoonSymbol phaseIndex={moonNow} size={26} />}
           word={moonWord}

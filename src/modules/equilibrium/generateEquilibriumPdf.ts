@@ -2,6 +2,7 @@ import jsPDF from "jspdf";
 import { formatPhaseEndsAt } from "./hooks/useCycles";
 import type { EquilibriumV2Data } from "./hooks/useEquilibriumV2";
 import type { AllCyclesV2 } from "@/lib/equilibrium-cycles";
+import { moonPhaseName } from "@/lib/moonPhaseNames";
 
 interface GenerateEquilibriumPdfInput {
   cycles: AllCyclesV2;
@@ -174,7 +175,7 @@ export async function generateEquilibriumPdf({
   pdf.field("Moon focus", eq.state?.moon_focus_text);
   pdf.field(
     "Lunar",
-    `${cycles.lunar.phase.name} - ${cycles.lunar.currentLabel} - ${formatPhaseEndsAt(
+    `${moonPhaseName(cycles.lunar.phase.name)} - ${cycles.lunar.currentLabel} - ${formatPhaseEndsAt(
       cycles.lunar.phaseEndMs,
       cycles.lunar.daysRemainingInPhase,
     )}`,

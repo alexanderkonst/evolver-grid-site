@@ -15,6 +15,7 @@ import {
   PLANETARY_DAYS,
   ZODIAC_SIGNS,
 } from "@/lib/equilibrium-cycles";
+import { MOON_PHASE_DISPLAY_EN } from "@/lib/moonPhaseNames";
 import type { CycleSegmentSpec } from "./components/CycleEnergyBar";
 
 // ─── LUNAR (8 phases) ─────────────────────────────────────────
@@ -100,7 +101,7 @@ export const LUNAR_SEGMENTS: CycleSegmentSpec[] = LUNAR_DISPLAY_TO_ASTRONOMICAL.
     const phase = MOON_PHASES[i];
     return {
       icon: phase.symbol, // emoji fallback (won't be used while MoonOrb is wired)
-      label: phase.name,
+      label: MOON_PHASE_DISPLAY_EN[i], // neutral display name (CycleEnergyBar translates it by `moonPhaseIndex`)
       identityColor: LUNAR_ACCENT,
       litGradient: LUNAR_LIT_GRADIENTS[displayIdx],
       // Astronomical phase index — drives MoonOrb's phase-correct

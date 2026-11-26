@@ -9885,18 +9885,28 @@
       "nextMove": "Próximo movimiento"
     }
   },
+  "moonPhase": {
+    "0": "Luna nueva",
+    "1": "Creciente fina",
+    "2": "Media creciente",
+    "3": "Casi llena",
+    "4": "Luna llena",
+    "5": "Recién llena",
+    "6": "Media menguante",
+    "7": "Menguante fina"
+  },
   "waterFace": {
     "title": "Tiempo",
     "close": "Cierra tu instrumento",
     "phase": {
       "0": "Luna nueva",
-      "1": "Luna creciente",
-      "2": "Cuarto creciente",
-      "3": "Gibosa creciente",
+      "1": "Creciente fina",
+      "2": "Media creciente",
+      "3": "Casi llena",
       "4": "Luna llena",
-      "5": "Gibosa menguante",
-      "6": "Cuarto menguante",
-      "7": "Luna menguante"
+      "5": "Recién llena",
+      "6": "Media menguante",
+      "7": "Menguante fina"
     },
     "moon": {
       "label": "La luna",

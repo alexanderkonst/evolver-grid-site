@@ -27,6 +27,7 @@ import {
 import { SECTION_IDS } from "./types";
 import { EQ_INFO_COPY } from "./equilibriumCopy";
 import type { WatchMode } from "./components/WatchModeToggle";
+import { moonPhaseName } from "@/lib/moonPhaseNames";
 import {
   HeroHeadline,
   MattePolymerCard,
@@ -205,7 +206,7 @@ export const EquilibriumMDLSPage = () => {
                 currentLabel={cycles.lunar.currentLabel}
                 nextLabel={cycles.lunar.nextLabel}
                 activePillEmoji={cycles.lunar.holonicPhase.elementEmoji}
-                activePillEmojiTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${cycles.lunar.phase.name}`}
+                activePillEmojiTooltip={`${cycles.lunar.holonicPhase.element} — the umbrella for ${moonPhaseName(cycles.lunar.phase.name)}`}
                 activePillSubLabel={formatPhaseEndsAt(
                   cycles.lunar.phaseEndMs,
                   cycles.lunar.daysRemainingInPhase,
