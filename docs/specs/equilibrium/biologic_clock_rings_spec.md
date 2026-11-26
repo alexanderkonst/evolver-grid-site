@@ -161,7 +161,8 @@ Mockups: [final dial](../../02-strategy/research/iconic-mechanics/mockups/bioclo
    | Last Quarter | Fading Half | Убывающая половина | Media menguante |
    | Waning Crescent | Fading Crescent | Убывающий серп | Menguante fina |
    Display strings only: keep internal keys, ids, stored values and astronomy comments. Do not touch supabase/functions in this change (edge deploys cost Lovable credits); list any user-facing old names left there in the PR.
-8. Out of scope (ideas, not approved): breathing glow on "now", a soft "click" at phase/day change.
+8. **Texture: "Light flow"** (Sasha 2026-11-26 12:51 «2 точно круче»; [three textures](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v9-styles.png), #2 chosen). Each ahead (full-width) segment is stroked with a linear gradient along its arc: start colour = 65% own + 35% previous segment's colour, middle = own colour, end = 65% own + 35% next segment's colour (gradientUnits userSpaceOnUse, from the segment's start point to its end point). So the Moon ring brightens and fades smoothly phase to phase and each day flows into the next. Lived thin lines stay flat colour. No glow, no shadow, no rim.
+9. Out of scope (ideas, not approved): breathing glow on "now", a soft "click" at phase/day change.
 
 Done when: on /village and /game/me/overview at 390 and 1280 the dial matches the final mockup; no "Gibbous"/"Waxing"/"Waning"/"First Quarter"/"Last Quarter" in user-facing UI text; tests green.
 
