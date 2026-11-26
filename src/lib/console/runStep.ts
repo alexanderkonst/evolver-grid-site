@@ -9,7 +9,7 @@ import { ConsoleError } from "./consoleClient";
 import {
   buildConsoleContext,
   clearAfter,
-  hasMaterial,
+  readStatedGoal,
   parseCardOutput,
   requestFor,
   setCard,
@@ -48,10 +48,11 @@ export const runStep = async ({ chain, id, ownerId, playerCard, messages, locale
   // Re-running N clears the cards after N.
   const base = clearAfter(chain, id, now);
   // No goal, no invention: with nothing to ground it in, button 1 asks one question instead of calling the model.
-  if (id === 1 && !hasMaterial(playerCard, messages) && !survivorOf(base)) return { kind: "ask-goal", chain: base };
+  const context = id === 1 ? readStatedGoal(messages) : buildConsoleContext(playerCard, messages);
+  if (id === 1 && !context && !survivorOf(base)) return { kind: "ask-goal", chain: base };
   let text: string;
   try {
-    text = await call(requestFor(base, id, buildConsoleContext(playerCard, messages), locale));
+    text = await call(requestFor(base, id, context, locale));
   } catch (err) {
     const code = err instanceof ConsoleError ? err.code : "failed";
     const problem: Problem = code === "daily_cap_reached" ? "cap" : code === "sign_in_required" ? "signin" : "failed";
