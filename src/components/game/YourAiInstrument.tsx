@@ -188,13 +188,6 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
     !thinking && lastMessage?.role === "ai" ? (lastMessage.buttons ?? []).filter((b) => b.kind !== "action") : [];
 
   const playerCard = () => (ownerId ? buildPlayerCard(getCachedZogSnapshot(ownerId), readTraces(ownerId)) : null);
-  // Console button 1 with no goal to ground in: the one question lands in the conversation.
-  const askInConversation = (question: string) => {
-    if (lastMessage?.role !== "ai" || lastMessage.text !== question) {
-      setMessages([...messages, { role: "ai", text: question }]);
-    }
-    setTab("conversation");
-  };
   const onTabKeyDown = (e: React.KeyboardEvent) => {
     if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
     e.preventDefault();
@@ -310,8 +303,6 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                     language={i18n.resolvedLanguage}
                     messages={messages}
                     getPlayerCard={playerCard}
-                    onAskGoal={askInConversation}
-                    onOpenConversation={() => setTab("conversation")}
                   />
                 </div>
 
