@@ -1,14 +1,54 @@
 > Synthesized into docs/templates/course-from-source.md (2026-10-27). This file is kept as a source.
+> Exception, 2026-11-26: the **Runbook** section below is live and canonical for the click level. [course-update.md](../templates/course-update.md) step 5 and [course-from-source.md](../templates/course-from-source.md) → Production line link to it and never copy it.
 
 # NotebookLM Video Production Workflow
 
 > **Version:** 1.1  
-> **Last Updated:** 2026-02-05  
+> **Last Updated:** 2026-11-26 (Runbook section added; the rest is unchanged since 2026-02-05)  
 > **Status:** Optimized
 
 ## Overview
 
 Batch production of educational videos from micro-learning modules using NotebookLM's Video Overview feature.
+
+---
+
+## Runbook: 8 actions per module
+
+*Sasha's own workflow, added 2026-11-26 (chat, 11:55 MST; issue #525). **Last verified: 2026-11-26** (Sasha's run). It is the click level under [course-update.md](../templates/course-update.md) step 5 and [course-from-source.md](../templates/course-from-source.md) → Production line, step 2. Those files say what and why. This section says which button.*
+
+**Fallback.** If a label below is missing (NotebookLM changed its UI), follow the goal-level step above it: the first seven lines of Sasha's text (create notebook → upload module text → Video Overview, Customize → style box → focus box → download → upload). Then write the new label here with the date and move "Last verified" to that date.
+
+### Sasha's text (verbatim)
+```text
+NotebookLM → create notebook → upload module text
+Studio → Video Overview → Customize → Explainer + Custom
+Visual style box: brief, "invert colors" + Bio-Light aesthetic
+Focus box: what the AI hosts should focus on
+Download video to Mac
+YouTube → upload with numbering and version
+Table with all links
+OPTIMIZED: each module = 8 actions, ~60–90 s:
+1 Click "Create new" 2 Click "Copied text" 3 Type source content (pre-loaded) 4 Click "Insert" 5 Cmd+A → type new name "F01E07 Mind Path v1.0" 6 Click "Customize Video Overview" (edit) 7 Click "Custom" → type style prompt → type focus prompt 8 Click "Generate" → IMMEDIATELY next module (don't wait!)
+Key: don't wait between steps, no snapshot after each click.
+```
+
+### Relevance sort (our synthesis, 2026-11-26)
+- **Take as is.**
+  - The 8 actions, in this order.
+  - **Pipelining:** after action 8, start the next module at once. Do not wait for the video. Harvest later, all modules together (Phase 2 below).
+  - **Notebook name = episode code + title + course version:** `F01E07 Mind Path v1.0`, pattern `<episode code> <Title> v<course version>`. The version is the one the run ships under the versioning rule (`course-from-source.md` → Versioning, issue #522), so every video traces to one course version. The downloaded file and the YouTube title carry the same name.
+  - **The two prompt boxes (style, focus) are named, reusable inputs.** They are stored next to the module text, in the course's content file under `docs/08-content/`: one style line for the whole course, one focus line per episode. The pattern is `docs/08-content/consciousness_meets_science_course.md` → Part 2 (Master prompt, Custom style, Focus lines). Action 7 pastes them and nobody composes them during the run.
+- **Adapt for an agent.**
+  - "Download video to Mac" becomes **download into the agent's workspace**, file name `<notebook name>.mp4`. Videos are not committed to git.
+  - "No snapshot after each click" becomes a **rule for browser agents**: act on the known UI through actions 1–8 with no screenshot or page snapshot between them. Verify once at the end of each module: the notebook exists under the right name and generation is running. Take a snapshot only when that check fails or a label is missing (then use the Fallback).
+- **Needs Sasha's yes each time.**
+  - **YouTube upload.** A video on YouTube is public, even when unlisted. Upload only after Sasha has watched it and said yes to that video (course-update step 5 gate).
+  - **"Table with all links"** is not a separate table. The link of each episode lives in the course data file, `youtubeId` on the episode in `src/data/courses/<file>.ts` (one source of truth; course-update step 6).
+- **Fragility.** These UI paths break when NotebookLM changes. Hence the "Last verified" date and the Fallback above. An agent that finds a changed label fixes it here in the same run.
+
+### Measure it
+Sasha's hypothesis (2026-11-26, [meta-template.md](../templates/meta-template.md) §7) is that a click-level runbook makes the agent faster and cheaper. For each run, log **minutes per module and tool calls per module**, from action 1 to the end-of-module check, before the runbook (goal-level steps only) and with it. The log goes in the worked example of the template that ran it (course-update §5). Baseline from February: about 9 min per module serial with a snapshot after every action, about 90 s optimized (§Optimization history). Tool calls were not counted then.
 
 ---
 
@@ -22,6 +62,8 @@ Batch production of educational videos from micro-learning modules using Noteboo
 ---
 
 ## Phase 1: Batch Notebook Creation
+
+*The February version of the same 8 actions. The Runbook above is current (2026-11-26); where they differ, the Runbook wins.*
 
 ### Per-Module Steps (~60-90 seconds each)
 
@@ -131,6 +173,11 @@ For each video:
 - No snapshots between steps
 - Batch source loading
 - Immediate proceed after Generate
+
+### Runbook (2026-11-26)
+- Sasha's 8 actions written down verbatim with the relevance sort (§Runbook above)
+- Notebook name carries the course version
+- Measure minutes and tool calls per module
 
 ### v1.2 (Proposed - Next Level)
 See "Future Optimizations" section below.

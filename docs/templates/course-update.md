@@ -1,6 +1,6 @@
 # Course Update: a new source → signed insights → new micro-modules → a new version
 
-*v1.0, 2026-11-26: rewritten to the full [meta-template.md](./meta-template.md) structure (Sasha, 2026-11-26 11:48: «очень важны шаблоны, сделай их качественно»; issue #525). v0.1 the same day: the ten steps as one table. Status: canonical, first run in flight (ADP Body, §Worked example). Lens: Causal.*
+*v1.1, 2026-11-26: step 5 runs on Sasha's NotebookLM runbook (8 actions per module) and the how-to principle is added as a hypothesis (Sasha, 11:55 and 11:59 MST, issue #525). v1.0 the same day: rewritten to the full [meta-template.md](./meta-template.md) structure (Sasha, 2026-11-26 11:48: «очень важны шаблоны, сделай их качественно»; issue #525). v0.1 the same day: the ten steps as one table. Status: canonical, first run in flight (ADP Body, §Worked example). Lens: Causal.*
 
 ## Meta-description
 - Level / parent: L2 · Content & Transmission (proposed L1, Meta-Template T3) · parent: [meta-template.md](./meta-template.md); the update half of [course-from-source.md](./course-from-source.md) (its step 11, "a living course: it keeps improving after release", turned into a runnable loop)
@@ -8,12 +8,18 @@
 - Shift carried: **PST 40 The Recursive Proof (The Living Methodology)** (proposed, for Sasha to confirm) · **before:** a published mini-training sits on the shelf like a recipe and goes out of date; a good new source either never reaches it, or reaches it unsigned and uncredited · **after:** any source Sasha drops can become a signed, credited micro-module in the live mini-training under a new version, and Sasha's only acts in the run are the link, one signature message and the yes to publish and announce · **check:** for any version, its changelog line names the source and the originator; the source card shows Sasha's да / нет / правка on every insight the version carries; the run log shows no other request to Sasha. Learner side (not instrumented yet): a person who took an earlier version opens the new episode from the announcement link · also PST 117 The Learning Ledger and the Meta-Game (the source stream, as in [source-integration.md](./source-integration.md)), PST 187 The Packaged Shift (the mini-training stays one app while it grows, [course-as-app.md](./course-as-app.md)), PST 154 The Mirror Must Not Lag (every surface reads the version from one data file, none keeps its own copy)
 - What emerges: a mini-training that grows with each source the way the knowledge graph does, each addition traceable to its source, its originator and Sasha's signature.
 - As a part of the whole: the Meta-Template sees this as [source-integration.md](./source-integration.md) pointed at one live product. What the organism takes in becomes tissue of a mini-training that is already shipped, and nothing joins it unsigned.
-- Siblings / repeats: [source-integration.md](./source-integration.md) (steps 1–2: card, authorship, Use Map target 6), [infographic.md](./infographic.md) + kit (step 4), [course-from-source.md](./course-from-source.md) (episode format, Ask-AI button, signature, Versioning), [docs/04-workflows/notebooklm_video_production.md](../04-workflows/notebooklm_video_production.md) (step 5 mechanics), [course-as-app.md](./course-as-app.md) (the app tile, step 8), [spec-handoff.md](./spec-handoff.md) (the step 6 issue), [improvement-loop.md](./improvement-loop.md) (report and retro, step 10). `course-landing.md` (issue #523) joins as a sibling when it lands.
-- Status · applied in · last reviewed: v1.0 · ADP Body update, 2026-11-26 (in flight) · 2026-11-26
+- Siblings / repeats: [source-integration.md](./source-integration.md) (steps 1–2: card, authorship, Use Map target 6), [infographic.md](./infographic.md) + kit (step 4), [course-from-source.md](./course-from-source.md) (episode format, Ask-AI button, signature, Versioning), [docs/04-workflows/notebooklm_video_production.md](../04-workflows/notebooklm_video_production.md) → [Runbook: 8 actions per module](../04-workflows/notebooklm_video_production.md#runbook-8-actions-per-module) (step 5, click level), [course-as-app.md](./course-as-app.md) (the app tile, step 8), [spec-handoff.md](./spec-handoff.md) (the step 6 issue), [improvement-loop.md](./improvement-loop.md) (report and retro, step 10). `course-landing.md` (issue #523) joins as a sibling when it lands.
+- Status · applied in · last reviewed: v1.1 · ADP Body update, 2026-11-26 (in flight) · 2026-11-26
 
 **Why it exists.** A mini-training is never finished (course-from-source, Words: a wizard that leads to one result, kept alive). Without one loop, each update is improvised: an episode goes in without Sasha's signature, a version string is typed into one page and not the other, the originator of an idea is lost between the transcript and the video. This file holds only the order, who acts, Sasha's gates and the exact places. Every *how* stays in the linked template (single source of truth).
 
 **The rule.** Nothing unsigned enters the mini-training. Sasha signs every insight (step 3) before any card, video or code is made for it. Agents prepare, Sasha gates.
+
+**The principle (hypothesis, Sasha, 2026-11-26 11:59 MST).** «чем лучше описан how-to, тем быстрее, проще и дешевле ИИ агенту выполнить его» (the better the how-to is written, the faster, simpler and cheaper it is for an AI agent to run it). This template zooms in on three levels:
+- **Goal** (why, what): the Meta-description, Why it exists, The rule.
+- **Steps** (input → output · who · gate): §1.
+- **Runbook** (click-level actions, for stable UIs only): step 5, the one step that runs on the same UI for every insight, uses [the NotebookLM runbook](../04-workflows/notebooklm_video_production.md#runbook-8-actions-per-module). If another step starts to run on a UI again and again, give it a runbook too, in the file that owns that step's how, with a "last verified" date and a fallback to the step above it.
+- **Check:** minutes and tool calls per micro-module, before the runbook and with it, logged in §5 (step 5 row and run log). Until that log shows a difference, this stays a hypothesis. The general form lives in [meta-template.md](./meta-template.md) §7.
 
 ---
 
@@ -63,11 +69,14 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
 - Checks in the issue's DoD: `python3 docs/assets/infographics/kit/lint.py <spec>` all PASS; `python3 docs/assets/infographics/kit/book_build.py --check` green; a sheet `book/<course folder>/<module>-sheet.png` (`python3 docs/assets/infographics/kit/sheet.py`, kit README §Contact sheet).
 
 ### Step 5 · NotebookLM micro-module per signed insight
-- **Input:** signed line + its card + the source excerpt with locators. **Output:** per insight: an episode text (about 220 spoken words), a 90 s video uploaded unlisted (its YouTube id), and one Ask-AI prompt. **Who:** Hark or an agent with the NotebookLM and YouTube browser session; the agent writes the text and the prompt. **Gate:** Sasha watches each video and reads its text and prompt before it ships (course-from-source step 8: his signature under every word).
+- **Input:** signed line + its card + the source excerpt with locators. **Output:** per insight: an episode text (about 220 spoken words), a style line and a focus line, a 90 s video downloaded into the workspace, then (after Sasha's yes) its YouTube id, and one Ask-AI prompt. **Who:** Hark or an agent with the NotebookLM and YouTube browser session; the agent writes the text, the two prompt lines and the Ask-AI prompt. **Gate:** Sasha watches each video and reads its text and prompt (course-from-source step 8: his signature under every word). **Nothing goes to YouTube before his yes to that video**: an unlisted video is still public.
 - Episode format, length and the Ask-AI button (its job, its form, video first then the button): [course-from-source.md](./course-from-source.md) steps 6–7 and Look & feel (course look + episode scene).
-- Click path, Customize settings, trigger-don't-wait, harvest, duration gate: [notebooklm_video_production.md](../04-workflows/notebooklm_video_production.md) and course-from-source → Production line. Notebook and video name: `<episode code> — <Title>`.
 - Episode code: next free code in the module, in the module's own pattern (ADP Body has `B00`, `B01E01`–`B01E03`, so new ones are `B01E04`, `B01E05`).
-- Duration gate before upload: over 90 s → regenerate once with a stricter focus line; twice over → stop and put it in the sheet (§Cost).
+- **Before the browser opens,** write the inputs next to the module text, in the course's content file under `docs/08-content/` (ADP: `activate_your_dormant_potential_transcripts.md`): the episode text under its module heading, one focus line per episode, and the course's one style line if it has none yet. Pattern: `docs/08-content/consciousness_meets_science_course.md` → Part 2 (Custom style, Focus lines). The style line is brief: Sasha's "invert colors" + Bio-Light, inside the course look of course-from-source → Look & feel.
+- **In NotebookLM, run the [8 actions per module](../04-workflows/notebooklm_video_production.md#runbook-8-actions-per-module)** (last verified 2026-11-26), one module after another without waiting. Notebook name: `<episode code> <Title> v<course version>`, the version this run ships under step 7 (e.g. `B01E04 The Bashar Formula v1.1`). Browser agents: no snapshot between actions; one check at the end of each module (right name, generation running). If a label is missing, follow the runbook's fallback and fix the label there.
+- Log the time for each module from action 1 to the end-of-module check, and the tool calls, for the §5 step 5 row (the principle's check).
+- Harvest after all modules are triggered (runbook, Phase 2). Duration gate before download: over 90 s → regenerate once with a stricter focus line; twice over → stop and put it in the sheet (§Cost). Download into the workspace as `<notebook name>.mp4`; videos are not committed.
+- Send Sasha the videos, texts and Ask-AI prompts in one message (§Cost). On his yes per video: upload to YouTube unlisted, title = the notebook name, and keep the YouTube id for step 6. The course data file is the table of links; no separate table.
 - The text names the originator in the voice, as the card's footer does ("Bashar, as channelled by Darryl Anka, puts it as five steps…"), and keeps the `[beyond us]` line as a hypothesis, never as fact.
 
 ### Step 6 · Code: new episodes into the course data, through an @claude issue
@@ -117,7 +126,7 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
 | 3 | Flags | every claim past our position carries `[beyond us]` on the card, and is a hypothesis in the episode text |
 | 4 | Signature | every candidate row has да / нет / правка with a date; no card, video or episode exists for an unsigned or нет row |
 | 5 | Cards | one card per signed key insight; lint PASS; `book_build.py --check` green; sheet sent and answered |
-| 6 | Micro-modules | per signed insight: video ≤ 90 s, uploaded unlisted, text and Ask-AI prompt seen by Sasha |
+| 6 | Micro-modules | per signed insight: focus line stored in the content file; notebook named `<code> <Title> v<version>`; video ≤ 90 s; text, prompt and video seen by Sasha; uploaded unlisted only after his yes; minutes and tool calls per module logged in §5 |
 | 7 | Code | episodes in `src/data/courses/<file>.ts` and in the transcripts doc; i18n keys in en, ru, es; typecheck, lint, tests and i18n check green |
 | 8 | Version | `version`, `updatedAt` and one new `changelog` entry; the bump matches the rule; the summary names source and originator |
 | 9 | Surfaces | `/grow/<slug>`, `/academy/<slug>`, registry tile and app tile show the new version from data; the grep in step 8 is empty |
@@ -132,7 +141,7 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
 - Cheapest capable model for acquisition and extraction (step 1); strongest for the candidate list, authorship and flags (step 2) and the episode texts (step 5), as in [source-integration.md](./source-integration.md) §9.
 - One @claude issue for cards, one for code; the code issue carries all episodes of the run and the version bump together.
 - Read the data file and transcript by module (`grep -n` the module id or code), never whole.
-- NotebookLM: trigger all episodes before harvesting; at most one regeneration per episode. Blocked twice on the same step: stop, write what exists on the card, put `[?]` in the next sheet.
+- NotebookLM: run the [runbook](../04-workflows/notebooklm_video_production.md#runbook-8-actions-per-module) and trigger all episodes before harvesting; no snapshot between clicks; at most one regeneration per episode. Blocked twice on the same step: stop, write what exists on the card, put `[?]` in the next sheet.
 - Run steps 1–3 for several sources before any media: batching the signature saves Sasha time, and media is the expensive part.
 
 ---
@@ -157,13 +166,14 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
 | 2 | Two key insights. **Bashar:** "Act on your highest excitement, as far as it goes, with no insistence on outcome, positive whatever comes, and drop beliefs that aren't yours." Originator: Bashar; carrier: Darryl Anka (channel). A channelled source, so its origin claims are the `[beyond us]` kind. **Kushi:** "Your body is a river, not a battery. Tiredness is blockage: clear food, mind, emotion. Heaven and earth meet in the hara." Originator as the source gives it: Michio Kushi. "Tiredness is blockage" is a health claim, the `[beyond us]` kind | source cards, knowledgegraph#320 |
 | 3 | Signature record lives on the source cards (private repo, not readable from here) | knowledgegraph#320 |
 | 4 | Cards `book/adp/B01` *The Bashar Formula* (footer "After Bashar (channeled by Darryl Anka)") and `B02` *Energy Is Received* (footer "After Michio Kushi"); not in `book.yaml`; sheet `book/adp/body-sheet.png` | #521 (open) |
-| 5 | Micro-modules `B01E04`, `B01E05` (proposed codes): pending | not yet issued |
+| 5 | Micro-modules `B01E04`, `B01E05` (proposed codes): pending. Runbook check to log here: minutes and tool calls per module, before the runbook (goal-level steps only) and with it. Baseline from February, time only: ~9 min serial, ~90 s optimized | not yet issued |
 | 6–7 | Versioning fields first (ADP `1.0`, 2026-11-25); the Body episodes then bump `1.0` → `1.1` | #522 (branch pushed, not merged) |
 | 8 | Course landing template and ADP landing; educational app store on the third panel | #523, #524 (open) |
 | 9 | Announcement: waits for Sasha's yes | — |
 
 *Run log (step 10, one dated line per run):*
 - 2026-11-26: template written while the first run is in flight. Lessons so far: (1) the run needed the versioning fields before any episode could bump a version, so #522 came first; later runs only fill them. (2) `CourseEpisode` has no Ask-AI field and the course page no button: the first code issue adds them (step 6). (3) No served path existed for course cards outside the Book: the default in step 6 stands until the first PR fixes it. (4) Card and episode codes are two namespaces (`B01` card vs `B01E04` episode); keep both on the Use Map row.
+- 2026-11-26 (v1.1): Sasha gave his NotebookLM workflow; it now sits as the runbook under step 5, and the YouTube upload moved behind his yes per video. Time and tool calls per module: not measured yet (first micro-modules pending).
 
 ---
 
@@ -173,7 +183,7 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
 - Where the learner sees the changelog: the "What's new" disclosure of #522 is the working answer.
 - Whether people who already took the mini-training are told by the platform or only by Sasha's announcement (step 9).
 - The served path for course cards (`public/infographics/courses/<slug>/`) and the Ask-AI field name (`askPromptKey`) are proposals until the first code PR merges.
-- Library candidate (meta-template §7.8): none from this run yet.
+- Library candidate (meta-template §7.8): Sasha's how-to hypothesis (the principle above), once the step 5 measurement shows the runbook makes a module faster or cheaper.
 
 ## 7. Genealogy
 
@@ -185,3 +195,4 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
 | seed | 2026-11-25 | [course-as-app.md](./course-as-app.md), PST 187 | the mini-training as one app with a tile that has to stay current |
 | v0.1 | 2026-11-26 | Sasha, issue #525: the ten steps, who acts, his gates; first run ADP Body (Bashar, Kushi) with #521–#524 | the loop as one table, rules of thumb, run log |
 | v1.0 | 2026-11-26 | Sasha, issue #525 comment (11:48: «очень важны шаблоны, сделай их качественно»): full meta-template structure, runnable steps | meta-description with shift and check, how-to-run line, steps as input → output · who · gate with exact paths, field names and commands, DoD, cost discipline, worked example from #521 and #522, genealogy |
+| v1.1 | 2026-11-26 | Sasha, issue #525 comment (11:55 MST: his NotebookLM workflow; 11:59 MST: «чем лучше описан how-to, тем быстрее, проще и дешевле ИИ агенту выполнить его») | step 5 on the runbook in `notebooklm_video_production.md` (8 actions, pipelining, versioned notebook name, stored style and focus lines, YouTube only after his yes); the principle with three zoom levels and its check |
