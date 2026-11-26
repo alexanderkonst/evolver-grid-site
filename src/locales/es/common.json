@@ -153,10 +153,10 @@
         "alt": "Una gran biblioteca bajo una cúpula de noche: estantes de madera curvos, una esfera armilar, pergaminos y un libro abierto, y un dodecaedro de cristal entre las estrellas del tragaluz"
       },
       "workshop": {
-        "name": "Taller",
-        "line": "Da forma a tu oferta.",
-        "alt": "Un taller bajo arcos con borde de neón: una impresora 3D, una cortadora láser, una impresora de gran formato y un brazo robótico, con un dodecaedro de cristal luminoso flotando en el centro",
-        "opened": "El Taller está abierto."
+        "name": "Colectivo",
+        "line": "Fundadores que construyen negocios únicos juntos.",
+        "alt": "Un patio blanco con cúpula, de noche, en una colina sobre el mar: un círculo de bancos bajos y cojines alrededor de una mesa, puertas iluminadas por faroles por todas partes y un dodecaedro de cristal entre las estrellas",
+        "opened": "El Colectivo está abierto."
       },
       "market": {
         "name": "Mercado",
@@ -176,7 +176,7 @@
       "quest-board": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: tu próxima misión.",
       "cafe": "Se abre cuando tu misión está guardada. Dentro: gente por conocer, por trabajo o sin más.",
       "coworking": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: socios para el trabajo.",
-      "workshop": "Se abre cuando tu misión está guardada. Dentro: tu oferta, construida desde tu talento principal.",
+      "workshop": "Se abre cuando tu misión está guardada. Dentro: el colectivo de fundadores y las herramientas para construir tu negocio.",
       "market": "Se abre cuando tu oferta está guardada. Dentro: tu puesto y los puestos de otros residentes.",
       "town-hall": "Se abre cuando se registra tu primera venta. Dentro: proyectos construidos en conjunto y tu voz en la aldea.",
       "first-price": "Se abre cuando tu oferta está guardada. Dentro: tu primer precio, dicho a un cliente real.",
@@ -253,13 +253,13 @@
         "verb": "Mapear mis activos"
       },
       "uniqueness-phrase": {
-        "eyebrow": "Taller · Paso 6",
+        "eyebrow": "Colectivo · Paso 6",
         "headline": "Tu singularidad en una frase",
         "silhouette": "Obtienes una frase que solo tú podrías decir, hecha a partir de tu talento principal.",
         "verb": "Nombrar mi singularidad"
       },
       "tagline": {
-        "eyebrow": "Taller · Paso 7",
+        "eyebrow": "Colectivo · Paso 7",
         "headline": "El eslogan de tu negocio único",
         "silhouette": "Obtienes una frase para las personas a las que sirves: dónde están y adónde las llevas.",
         "verb": "Escribir mi eslogan"
@@ -374,6 +374,11 @@
       "consciousness-meets-science": {
         "name": "La conciencia se encuentra con la ciencia",
         "result": "un curso donde la conciencia se encuentra con la ciencia"
+      },
+      "founder-collective": {
+        "name": "Founder Collective",
+        "result": "fundadores con negocios en marcha, por invitación",
+        "closed": "Se abre cuando tu misión está guardada. Dentro: fundadores con negocios en marcha, por invitación."
       },
       "ubb-canvas": {
         "name": "Lienzo",
@@ -8005,7 +8010,7 @@
         "saved": "Tu oferta está guardada. Está en tu puesto.",
         "empty": "Aún sin construir",
         "start": "Construir tu oferta",
-        "again": "Abrir el Taller"
+        "again": "Abrir el Colectivo"
       }
     },
     "badges": {
@@ -8253,7 +8258,8 @@
       "name": "Sovereign Founder Collective",
       "badge": "El 10% de los ingresos va a una tesorería descentralizada",
       "line": "Una artel de emprendedores.",
-      "body": "Construimos negocios únicos juntos, nos apoyamos y nos autoorganizamos."
+      "body": "Construimos negocios únicos juntos, nos apoyamos y nos autoorganizamos.",
+      "cta": "Abrir el Colectivo"
     },
     "forClients": {
       "name": "Guío esta secuencia para tus clientes",
@@ -9505,15 +9511,15 @@
   },
   "villagePlaces": {
     "workshop": {
-      "title": "Taller",
+      "title": "Colectivo",
       "description": "Da forma a tu negocio único, un artefacto a la vez."
     },
     "market": {
       "title": "Mercado",
       "description": "Donde los fundadores muestran lo que ofrecen.",
-      "empty": "Tu puesto se abre cuando tu oferta esté lista en el Taller."
+      "empty": "Tu puesto se abre cuando tu oferta esté lista en el Colectivo."
     },
-    "openWorkshop": "Abrir el Taller"
+    "openWorkshop": "Abrir el Colectivo"
   },
   "market": {
     "stall": {
@@ -9571,9 +9577,9 @@
       "activated": "Tu IA {{version}}",
       "talent": "tu talento principal",
       "talentMission": "tu talento principal y tu misión",
-      "work": "Taller: {{n}} de {{total}}",
+      "work": "Colectivo: {{n}} de {{total}}",
       "opensTalent": "Se abre cuando guardes tu talento principal",
-      "opensWorkshop": "Se abre en el Taller"
+      "opensWorkshop": "Se abre en el Colectivo"
     },
     "outro": {
       "aria": "Tu IA está lista",
@@ -9602,7 +9608,7 @@
         "coworking": "Encuentra socios para el trabajo.",
         "fire-circle": "Únete a tu círculo FMF.",
         "academy": "Crece en lo que más importa.",
-        "workshop": "Crea tu oferta.",
+        "workshop": "Fundadores que construyen negocios únicos juntos.",
         "market": "Abre tu tienda.",
         "town-hall": "Construyan proyectos juntos."
       }
@@ -9637,7 +9643,7 @@
     "question": "¿Tú también me ves así?",
     "shareStall": "Comparte tu puesto",
     "pickLinkName": "Elige el nombre de tu enlace",
-    "needsGift": "Tu frase de unicidad en el Taller le da su línea a tu tarjeta",
+    "needsGift": "Tu frase de unicidad en el Colectivo le da su línea a tu tarjeta",
     "share": "Compartir",
     "copyLink": "Copiar enlace",
     "copied": "Copiado",
@@ -9823,7 +9829,7 @@
         "ether": "El Éter se enciende. El Portal de entrada está abierto para ti.",
         "water": "El Agua se enciende. El Café está abierto para ti.",
         "fire": "El Fuego se enciende. La Academia y FMF están abiertos para ti.",
-        "earth": "La Tierra se enciende. El Taller está abierto para ti."
+        "earth": "La Tierra se enciende. El Colectivo está abierto para ti."
       }
     },
     "glint": {
