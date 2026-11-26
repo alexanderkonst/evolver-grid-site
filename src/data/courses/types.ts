@@ -28,8 +28,39 @@ export interface CoursePractice {
     soundcloudUrl: string;
 }
 
+/** Where a mini-training sits on the path. */
+export type CourseLevel = "Fundamental" | "Intermediate" | "Advanced";
+
+/**
+ * Subject family. Start with "General"; add a value only when an existing course clearly needs one.
+ * "Mind & Consciousness": Consciousness Meets Science and Activation of Inner Vision (proposed, for Sasha to confirm).
+ */
+export type CourseCategory = "General" | "Mind & Consciousness";
+
+export interface CourseChangelogEntry {
+    /** Semver "MAJOR.MINOR" or "MAJOR.MINOR.PATCH", no leading "v". */
+    version: string;
+    /** ISO date, YYYY-MM-DD. */
+    date: string;
+    summary: string;
+}
+
+/**
+ * VERSIONING RULE (every course is a living, versioned mini-training).
+ * Semver. Minor = a new episode or module. Patch = fixes and copy. Major = the structure changes.
+ * Every bump adds ONE changelog line (newest LAST in the array; the UI shows newest first) and sets
+ * `updatedAt` to that line's date. `version` always equals the last changelog entry's version.
+ * Also written in docs/templates/course-from-source.md → Versioning.
+ */
 export interface CourseConfig {
     slug: string;
+    /** Semver, e.g. "1.0". Equals the last changelog entry's version. */
+    version: string;
+    /** ISO date (YYYY-MM-DD) of the last bump. Equals the last changelog entry's date. */
+    updatedAt: string;
+    changelog: CourseChangelogEntry[];
+    level: CourseLevel;
+    category: CourseCategory;
     title: string;
     /** i18n key for the small label above the title. Defaults to "course.eyebrow" ("Free mini-course"). */
     eyebrowKey?: string;

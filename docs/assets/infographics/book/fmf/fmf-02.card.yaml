@@ -1,0 +1,19 @@
+id: fmf-02
+chapter: '3.4'
+number: 2
+of: 19
+title: The Session Arc
+caption: 'An offer at the start: what they do. An offer at the end: through meditation.'
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  steps:
+  - Break the ice
+  - Short teaching
+  - Hands-on experience
+  - Live coaching
+  - Next step
+  side: Rate yourself 0–10
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p4, p22–23)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

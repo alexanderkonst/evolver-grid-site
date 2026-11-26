@@ -77,6 +77,28 @@ chapters:
           - {id: VI.01, spec: laws/VI.01.card.yaml, status: draft v6}
           - {id: VI.02, spec: laws/VI.02.card.yaml, status: draft v6}
           - {id: VI.03, spec: laws/VI.03.card.yaml, status: draft v6}
+      - number: "3.4"
+        title: Founder-Market Fit Discovery
+        cards:
+          - {id: fmf-01, spec: fmf/fmf-01.card.yaml, status: draft v1}
+          - {id: fmf-02, spec: fmf/fmf-02.card.yaml, status: draft v1}
+          - {id: fmf-03, spec: fmf/fmf-03.card.yaml, status: draft v1}
+          - {id: fmf-04, spec: fmf/fmf-04.card.yaml, status: draft v1}
+          - {id: fmf-05, spec: fmf/fmf-05.card.yaml, status: draft v1}
+          - {id: fmf-06, spec: fmf/fmf-06.card.yaml, status: draft v1}
+          - {id: fmf-07, spec: fmf/fmf-07.card.yaml, status: draft v1}
+          - {id: fmf-08, spec: fmf/fmf-08.card.yaml, status: draft v1}
+          - {id: fmf-09, spec: fmf/fmf-09.card.yaml, status: draft v1}
+          - {id: fmf-10, spec: fmf/fmf-10.card.yaml, status: draft v1}
+          - {id: fmf-11, spec: fmf/fmf-11.card.yaml, status: draft v1}
+          - {id: fmf-12, spec: fmf/fmf-12.card.yaml, status: draft v1}
+          - {id: fmf-13, spec: fmf/fmf-13.card.yaml, status: draft v1}
+          - {id: fmf-14, spec: fmf/fmf-14.card.yaml, status: draft v1}
+          - {id: fmf-15, spec: fmf/fmf-15.card.yaml, status: draft v1}
+          - {id: fmf-16, spec: fmf/fmf-16.card.yaml, status: draft v1}
+          - {id: fmf-17, spec: fmf/fmf-17.card.yaml, status: draft v1}
+          - {id: fmf-18, spec: fmf/fmf-18.card.yaml, status: draft v1}
+          - {id: fmf-19, spec: fmf/fmf-19.card.yaml, status: draft v1}
   - number: "4"
     title: "Branch B: Grow"
     note: "further learning and activation of potential"

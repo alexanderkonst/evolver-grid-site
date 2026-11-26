@@ -9540,6 +9540,7 @@
       "activate-your-dormant-potential": "Tu Potencial que se Despliega"
     },
     "eyebrow": "Minicurso gratuito",
+    "eyebrowMiniTraining": "Miniformación gratuita",
     "tagline": "Cómo dominar tu espíritu, mente, emociones, cuerpo y genio único.",
     "episodeOf": "Episodio {{current}} de {{total}}",
     "prev": "Anterior",
@@ -9917,6 +9918,18 @@
     "changes": {
       "label": "Este ciclo"
     }
+  },
+  "etherFace": {
+    "title": "Camino",
+    "label": "Tu próximo paso",
+    "go": "Muéstrame el camino",
+    "none": "Aún no hay nada que señalar."
+  },
+  "inkLine": {
+    "offer": "¿Sin rumbo? Muéstrame el camino",
+    "offerLabel": "Mostrar tu próximo paso con una línea.",
+    "dismiss": "Ahora no",
+    "announce": "Una línea señala hacia {{place}}."
   },
   "collective": {
     "seoDescription": "Fundadores que construyen un negocio a partir de quienes son, y lo construyen unos junto a otros.",

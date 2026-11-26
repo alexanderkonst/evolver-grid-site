@@ -1,0 +1,30 @@
+id: fmf-18
+chapter: '3.4'
+number: 18
+of: 19
+title: The Eight Phases
+caption: 'Camelot of the Golden Age: a kingdom of kings and queens, a queendom of queens and kings.'
+skin: v4
+max_words: 26
+text:
+  eyebrow: Founder-market fit
+  phases:
+  - - Impulse
+    - ''
+  - - Illumination
+    - ''
+  - - Clearing
+    - ''
+  - - Resourcing
+    - ''
+  - - Clarity
+    - revelation of the mechanism
+  - - Prep
+    - ''
+  - - Harvesting
+    - ''
+  - - Integration
+    - ''
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p24)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

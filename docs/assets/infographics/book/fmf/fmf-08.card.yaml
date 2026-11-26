@@ -1,0 +1,29 @@
+id: fmf-08
+chapter: '3.4'
+number: 8
+of: 19
+title: The Seven Artifacts
+caption: Change the uniqueness, and everything downstream changes automatically. The production sequence is the
+  methodology.
+skin: v4
+max_words: 46
+text:
+  eyebrow: Founder-market fit
+  items:
+  - - Uniqueness
+    - the seed
+  - - Shadow
+    - the recursive trap
+  - - Myth
+    - the worldview
+  - - Tribe
+    - the self-selecting audience
+  - - Pain
+    - the 5-layer slice
+  - - Promise
+    - point A to point B
+  - - Value ladder
+    - ascending containers
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p12–13)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

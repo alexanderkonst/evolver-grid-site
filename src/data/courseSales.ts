@@ -24,7 +24,7 @@
  * is a Telegram message to Aleksandr; the live group uses the existing waitlist
  * (WaitlistModal → send-waitlist-email).
  */
-import type { CourseModule } from "@/data/courses/types";
+import type { CourseConfig, CourseModule } from "@/data/courses/types";
 import { CONSCIOUSNESS_MEETS_SCIENCE, CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
 import { ACTIVATE_YOUR_DORMANT_POTENTIAL, COURSE_PATH as ADP_COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { ACTIVATION_OF_INNER_VISION, AIV_COURSE_PATH } from "@/data/courses/activationOfInnerVision";
@@ -90,9 +90,37 @@ export interface CourseSalesData {
     order?: string;
     /** Small status line next to the contents, e.g. "Videos in production". */
     status?: string;
+    /**
+     * The course's series infographic or its teaser card (docs/templates/course-as-app.md steps 3–4).
+     * Set it only once the image is published under public/ (Sasha's yes); a card that sits only
+     * on the kit (docs/assets/infographics/…) is not published and stays unset here.
+     */
+    teaser?: { src: string; alt: string };
+    /** Version, changelog, level and category from the course data. Omitted for entries with no course data (live/recorded sessions). */
+    versioning?: Pick<CourseConfig, "version" | "updatedAt" | "changelog" | "level" | "category">;
     cta: CourseSalesCta;
     seoDescription: string;
 }
+
+/**
+ * Copy the landing template itself carries (section labels, the link back from a course page).
+ * Kept here so that every word on a landing comes from this file (docs/templates/course-landing.md).
+ */
+export const COURSE_LANDING_COPY = {
+    back: "Academy",
+    author: "By Aleksandr Konstantinov",
+    forWhom: "Who it's for",
+    inside: "What's inside",
+    teaser: "The series",
+    practice: "The practice",
+    related: "Related",
+    /** The link in a course page's header (/grow/<slug>) back to its landing. */
+    about: "About this mini-training",
+} as const;
+
+const versioningOf = ({ version, updatedAt, changelog, level, category }: CourseConfig) => ({
+    version, updatedAt, changelog, level, category,
+});
 
 const countEpisodes = (modules: CourseModule[], publishedOnly: boolean) =>
     modules.reduce(
@@ -108,6 +136,7 @@ const aivPublished = countEpisodes(ACTIVATION_OF_INNER_VISION.modules, true);
 export const COURSE_SALES: CourseSalesData[] = [
     {
         ...fromRegistry(CONSCIOUSNESS_MEETS_SCIENCE.slug),
+        versioning: versioningOf(CONSCIOUSNESS_MEETS_SCIENCE),
         eyebrow: "Free mini-course",
         lead: `How inner experience and modern science co-reveal the nature of reality. In ${cmsVideos} short videos, see how what you feel inside and what science finds outside tell one story.`,
         forWhom: [
@@ -125,7 +154,8 @@ export const COURSE_SALES: CourseSalesData[] = [
     },
     {
         ...fromRegistry(ACTIVATE_YOUR_DORMANT_POTENTIAL.slug),
-        eyebrow: "Free mini-course",
+        versioning: versioningOf(ACTIVATE_YOUR_DORMANT_POTENTIAL),
+        eyebrow: "Free mini-training",
         lead: "How to master your spirit, mind, emotions, body and unique genius: the five paths of growth, one short video at a time.",
         forWhom: [
             "You want to grow on purpose, not by accident.",
@@ -135,7 +165,7 @@ export const COURSE_SALES: CourseSalesData[] = [
         modules: ACTIVATE_YOUR_DORMANT_POTENTIAL.modules,
         practice: ACTIVATE_YOUR_DORMANT_POTENTIAL.practices.map((p) => `${p.title} (${p.duration}), a guided audio practice.`),
         format: `${adpVideos} short videos · ${ACTIVATE_YOUR_DORMANT_POTENTIAL.practices.length} audio practices · watch at your own pace`,
-        cta: { kind: "start", label: "Start the course", to: ADP_COURSE_PATH },
+        cta: { kind: "start", label: "Start the mini-training", to: ADP_COURSE_PATH },
     },
     {
         ...fromRegistry("founder-academy"),
@@ -200,6 +230,7 @@ export const COURSE_SALES: CourseSalesData[] = [
     },
     {
         ...fromRegistry(ACTIVATION_OF_INNER_VISION.slug),
+        versioning: versioningOf(ACTIVATION_OF_INNER_VISION),
         eyebrow: "Advanced micro-course · after Integral Mystery School",
         lead: `${aivVideos} short videos on the 27-perspective instrument: two axes, twelve dimensions, the Logos, the octave of seeing the seer, and the 27th, where seeing becomes an act.`,
         forWhom: [
@@ -243,3 +274,27 @@ export const COURSE_SALES: CourseSalesData[] = [
 ];
 
 export const getCourseSales = (slug: string | undefined) => COURSE_SALES.find((c) => c.slug === slug);
+
+/** The landing of a course, when it has one: the course page's «About this mini-training» link. */
+export const courseLandingPath = (slug: string): string | undefined =>
+    getCourseSales(slug) ? courseSalesPath(slug) : undefined;
+
+export interface RelatedCourse {
+    slug: string;
+    title: string;
+    promise: string;
+    to: string;
+}
+
+/**
+ * The «Related» row of a landing: every other course with a landing, in the order of COURSE_SALES
+ * (title and promise come from the module registry through fromRegistry). A new course appears
+ * here by being added to COURSE_SALES, nothing else.
+ */
+export const relatedCourses = (slug: string): RelatedCourse[] =>
+    COURSE_SALES.filter((c) => c.slug !== slug).map((c) => ({
+        slug: c.slug,
+        title: c.title,
+        promise: c.promise,
+        to: courseSalesPath(c.slug),
+    }));

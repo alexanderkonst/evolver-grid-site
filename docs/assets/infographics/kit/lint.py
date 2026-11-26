@@ -23,6 +23,11 @@ App icons (spec `kind: icon`, see icon.py) are checked by `check_icon` with ICON
   elements     at most 7 elements per side ("before", "after"), at most 1 between them ("mid")
   no-text      no text drawn on an icon
   spec-fields  as above
+
+Icons v2 / v3 (spec `icon_version: 2|3`, issues #528, #533) add two rules and tighten one (ICON_V2_RULES):
+  elements     at most 4 shapes (parts drawn with the same `group` count once), all on the "after" side: no before, no chevron
+  fill         the sign's longest side is 62-78% of the tile (the brief says ~70%)
+  weight       every line and ring is exactly icon.WEIGHT px wide: one stroke weight for all ten
 """
 import os
 import re
@@ -34,6 +39,9 @@ from kit import skins, spec as specmod  # noqa: E402
 
 RULES = ("fit", "words", "palette", "accent", "margins", "min-font", "footer", "spec-fields")
 ICON_RULES = ("palette", "accent", "margins", "stroke", "elements", "no-text", "spec-fields")
+ICON_V2_RULES = ICON_RULES + ("fill", "weight")
+ICON_V2_MAX_SHAPES = 4
+ICON_V2_FILL = (0.62, 0.78)
 ICON_SMALL = 128        # px: the size an icon must still read at
 ICON_MIN_STROKE = 6     # px at ICON_SMALL
 ICON_MAX_PER_SIDE = 7
@@ -154,15 +162,35 @@ def check_icon(card, spec, skin=None):
         f"({min((r['stroke'] for r in log if r.get('stroke') is not None), default=0) * k:.1f}px)")
 
     counts = {s: sum(1 for r in log if r.get("side") == s) for s in ("before", "after", "mid")}
-    bad = [f"{s}: {n} elements, limit {ICON_MAX_PER_SIDE}" for s, n in counts.items() if s != "mid" and n > ICON_MAX_PER_SIDE]
-    bad += [f"mid: {counts['mid']} elements, limit 1"] if counts["mid"] > 1 else []
-    add("elements", bad, f"before {counts['before']}, after {counts['after']}, mid {counts['mid']} (limit {ICON_MAX_PER_SIDE} per side)")
+    v2 = spec.get("icon_version") in (2, 3)
+    if v2:
+        shapes = len({r["group"] if r.get("group") else id(r) for r in log if r.get("side") == "after"})
+        bad = [f"{counts[s]} elements on the {s!r} side: v2 is one silhouette, all on 'after'" for s in ("before", "mid") if counts[s]]
+        bad += [f"{shapes} shapes, limit {ICON_V2_MAX_SHAPES}"] if shapes > ICON_V2_MAX_SHAPES else []
+        add("elements", bad, f"{shapes} shapes ({counts['after']} parts), limit {ICON_V2_MAX_SHAPES}, none before or between")
+    else:
+        bad = [f"{s}: {n} elements, limit {ICON_MAX_PER_SIDE}" for s, n in counts.items() if s != "mid" and n > ICON_MAX_PER_SIDE]
+        bad += [f"mid: {counts['mid']} elements, limit 1"] if counts["mid"] > 1 else []
+        add("elements", bad, f"before {counts['before']}, after {counts['after']}, mid {counts['mid']} (limit {ICON_MAX_PER_SIDE} per side)")
 
     texts = [r for r in log if r["kind"] == "text"]
     add("no-text", [f'text on an icon: "{r["text"]}"' for r in texts], "no text drawn")
 
     missing = specmod.missing(spec)
     add("spec-fields", [f"missing: {', '.join(missing)}"] if missing else [], "all required spec fields present")
+    if v2:
+        sign = [r for r in log if r.get("geom")]
+        side = max(max(r["bbox"][2] for r in sign) - min(r["bbox"][0] for r in sign),
+                   max(r["bbox"][3] for r in sign) - min(r["bbox"][1] for r in sign)) / size if sign else 0
+        lo, hi = ICON_V2_FILL
+        add("fill", [] if lo <= side <= hi else [f"the sign's longest side is {side:.0%} of the tile, want {lo:.0%}-{hi:.0%}"],
+            f"the sign's longest side is {side:.0%} of the tile")
+        from kit import icon as _icon
+        lines = [r for r in log if r["kind"] in ("ln", "ring")]
+        bad = [f"{_name(r)} is {r['stroke']}px wide, the one weight is {_icon.WEIGHT}px" for r in lines if abs(r["stroke"] - _icon.WEIGHT) > 0.5]
+        add("weight", bad, f"{len(lines)} lines and rings, all {_icon.WEIGHT}px")
+        order = {r: i for i, r in enumerate(ICON_V2_RULES)}
+        out.sort(key=lambda t: order[t[0]])
     return _waived(out, spec)
 
 
@@ -191,7 +219,7 @@ def lint_spec(path):
         return "?", [("spec-fields", "FAIL", f"cannot read spec: {e}")] + [(r, "SKIP", "no spec") for r in RULES if r != "spec-fields"]
     cid = spec.get("id", os.path.basename(path))
     icon = spec.get("kind") == "icon"
-    RS = ICON_RULES if icon else RULES
+    RS = (ICON_V2_RULES if spec.get("icon_version") in (2, 3) else ICON_RULES) if icon else RULES
     missing = specmod.missing(spec)
     needed = {"title", "caption", "skin", "text"}
     if needed & {m.split(" ")[0] for m in missing}:

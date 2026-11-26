@@ -399,7 +399,7 @@ def build(paths=DEFAULT, force=False, say=print):
             os.remove(os.path.join(paths.public, img))
             say(f"removed  public/{img} (not in book.yaml)")
     for img in _pngs(paths.book):
-        if img not in wanted and img != "sheet.png" and not img.startswith(UNPUBLISHED):
+        if img not in wanted and os.path.basename(img) != "sheet.png" and not img.startswith(UNPUBLISHED):
             say(f"WARNING  book/{img} is not in book.yaml (kept; delete it or list it)")
     _write(paths.ts, gen_ts(title, chapters))
     md, found = apply_markers(_read(paths.md), blocks_for(chapters))
@@ -448,7 +448,7 @@ def check(paths=DEFAULT, skip_lint=False, say=print):
             bad.append(f"{c['id']}: public/infographics/book/{c['image']} differs from book/{c['image']}: run kit/book_build.py")
     wanted = {c["image"] for c in cards}
     for img in _pngs(paths.book):
-        if img not in wanted and img != "sheet.png" and not img.startswith(UNPUBLISHED):
+        if img not in wanted and os.path.basename(img) != "sheet.png" and not img.startswith(UNPUBLISHED):
             bad.append(f"book/{img} is not in book.yaml")
     for img in _pngs(paths.public):
         if img not in wanted:

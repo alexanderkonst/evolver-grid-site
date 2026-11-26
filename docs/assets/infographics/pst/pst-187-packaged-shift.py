@@ -1,66 +1,108 @@
-"""PST 187 · The Packaged Shift. All text comes from pst-187-packaged-shift.card.yaml (labels are in spec.text; lint counts them apart)."""
+"""PST 187 v2 · The End Is the Door. All text comes from pst-187-packaged-shift.card.yaml.
+
+One horizontal path, four stations: Teaser, Course, Closing infographic, The game. The game is a doorway and the ONLY
+neon on the card. The engine draws the title in neon; here the title is moonlit ink, so the door can be the single accent.
+From the door a thin IRI arrow curves down-right to a small sphere: Invite the next.
+"""
 import math
 
 from kit import vocab as K
+from moon import rgba, S
 
 
-def _arc(cx, cy, r, a0, a1, n=14):
-    return [(cx + r * math.cos(math.radians(a0 + (a1 - a0) * i / n)), cy + r * math.sin(math.radians(a0 + (a1 - a0) * i / n)))
-            for i in range(n + 1)]
+class DoorCard(K.KitCard):
+    """KitCard whose title is ink (BRIGHT) instead of neon, with Sasha's attribution under the quote."""
+
+    def __init__(self, *a, attribution="", **k):
+        self._attribution = attribution
+        super().__init__(*a, **k)
+
+    def _header(self, eyebrow, title, essence):
+        self._role = "header"
+        n0, x = len(self.log), 80
+        self.text(x, 78, f"{self.num:02d}  ·  {eyebrow.upper()}", "sansm", 17, K.DEEP, 230, spacing=3)
+        self.iri_line(x, 112, x + 90, 112, 3, 240)
+        y = self.text(x, 128, title, "serif", 70, K.BRIGHT, 255, maxw=920, lh=1.02) + 14
+        y = self.text(x, y, essence, "sans", 26, K.MOON, 225, maxw=900, lh=1.38)
+        with self.labels():
+            y = self.text(x, y + 6, self._attribution, "sans", 24, K.QUIET, 235, maxw=600)
+        texts = [r for r in self.log[n0:] if r["kind"] == "text"]
+        for r, part in zip(texts, ("eyebrow", "title", "essence")):
+            r["part"] = part
+        self.body_top = y + 40
+        self._role = "body"
+
+
+def _bez(p0, p1, p2, n=28):
+    return [((1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * p1[0] + t * t * p2[0],
+             (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t * t * p2[1]) for t in (i / n for i in range(n + 1))]
+
+
+def _arch(cx, top, w, h, n=18):
+    """A doorway: straight sides, round top, open at the floor."""
+    r = w / 2
+    pts = [(cx - r, top + h), (cx - r, top + r)]
+    pts += [(cx - r * math.cos(math.radians(a)), top + r - r * math.sin(math.radians(a))) for a in range(0, 181, 180 // n)]
+    pts += [(cx + r, top + h)]
+    return pts
 
 
 def build(spec):
     t = spec.text
-    c = K.card(spec)
-    y0 = c.body_top + 10
-    cx = 540
+    c = DoorCard(spec.number, spec.total, spec["title"], spec["caption"], eyebrow=t["eyebrow"], skin=spec["skin"],
+                 caption_size=spec.get("caption_size"), attribution=t["attribution"])
+    cy = c.body_top + 175
+    xs = [125, 345, 565, 785]
+    st = t["stations"]
+    gap = {1: 62, 2: 78, 3: 78, 4: 78}   # half-width the path leaves free at each station (gap where a line meets a node)
+    ly = cy + 112                          # labels sit on one line under the stations
 
-    # --- capsule: a shift split in two, quiet before | neon after ---
-    w, h = 460, 130
-    r = h / 2
-    cy = y0 + 365
-    top, bot = cy - r, cy + r
-    x0, x1 = cx - w / 2, cx + w / 2
-    left = [(cx, top)] + _arc(x0 + r, cy, r, -90, -270) + [(cx, bot)]
-    right = [(cx, top)] + _arc(x1 - r, cy, r, -90, 90) + [(cx, bot)]
-    c.poly(left, K.SILVER, 230, 2.4, fill_a=70, fill_c=K.SILVER)    # QUIET / silver half
-    c.poly(right, K.SILVER, 230, 2.4, fill_a=240, fill_c=K.NEON)    # the one NEON accent: the After half
-    c.ln([(cx, top), (cx, bot)], K.SILVER, 200, 2)
-    K.name(c, cx - 120, cy - 22, t["capsule"]["before"], size=40)
-    K.name(c, cx + 120, cy - 22, t["capsule"]["after"], size=40, color=K.DARK)
+    # --- the path: thin IRI line, left -> right, with a small head before the door ---
+    for i in range(3):
+        x0, x1 = xs[i] + gap[i + 1], xs[i + 1] - gap[i + 2]
+        c.iri_path([(x0, cy), (x1, cy)], 3, 210)
+        c.iri_poly([(x1 + 2, cy), (x1 - 13, cy - 8), (x1 - 13, cy + 8)], 220)
 
-    # --- seal: the curator's signature, on the seam ---
-    c.orb(cx, bot, 21, glow=50, seed=3)
-    c.ln([(cx - 8, bot), (cx - 2, bot + 7), (cx + 9, bot - 8)], K.DARK, 255, 3)
-    K.note(c, cx, bot + 30, t["seal"], size=24)
+    # --- 1 teaser: a small card ---
+    x = xs[0]
+    c.box(x - 33, cy - 44, 66, 88, fill_a=12, border_a=130)
+    c.ln([(x - 17, cy - 14), (x + 17, cy - 14)], K.SILVER, 150, 2)
+    c.ln([(x - 17, cy + 4), (x + 9, cy + 4)], K.SILVER, 110, 2)
 
-    # --- three rays out of the capsule: shown, walked, pressed ---
-    xs = [190, 540, 890]
-    oy = y0 + 130
-    for x, ray in zip(xs, t["rays"]):
-        c.ln([(cx, top - 4), (x, oy + 30)], K.SILVER, 190, 2)
-        c.orb(x, oy, 26, glow=50, seed=xs.index(x) + 1)
-        K.name(c, x, oy - 126, ray["title"])
-        K.note(c, x, oy - 78, ray["sub"], size=26)
+    # --- 2 course: steps going up ---
+    x = xs[1]
+    steps = [(x - 52, cy + 40), (x - 52, cy + 12), (x - 18, cy + 12), (x - 18, cy - 16), (x + 16, cy - 16), (x + 16, cy - 44), (x + 52, cy - 44)]
+    c.ln(steps, K.SILVER, 215, 3)
 
-    # --- loop arrow: right edge round to the left; the end is the next door (IRI) ---
-    rr, xr, xl, yb = 45, 850, 230, bot + 95
-    path = [(x1, cy), (xr - rr, cy)] + _arc(xr - rr, cy + rr, rr, -90, 0) + [(xr, yb - rr)]
-    path += _arc(xr - rr, yb - rr, rr, 0, 90) + [(xl + rr, yb)] + _arc(xl + rr, yb - rr, rr, 90, 180)
-    path += [(xl, cy + rr)] + _arc(xl + rr, cy + rr, rr, 180, 270) + [(xl + rr, cy), (x0 - 4, cy)]
-    c.iri_path(path, 4, 215)
-    c.iri_poly([(x0 - 2, cy), (x0 - 24, cy - 13), (x0 - 24, cy + 13)], 230)
-    K.note(c, cx, yb + 16, t["loop"], size=32)
+    # --- 3 closing infographic: a card with a lit edge, a figure drawn inside ---
+    x = xs[2]
+    c.box(x - 48, cy - 64, 96, 128, fill_a=26, border_a=255, glow=70)
+    c.iri_ring(x, cy - 24, 15, 2.4, 210)
+    c.ln([(x - 26, cy + 10), (x + 26, cy + 10)], K.SILVER, 190, 2)
+    c.ln([(x - 26, cy + 28), (x + 8, cy + 28)], K.SILVER, 140, 2)
 
-    # --- console: two keys side by side. Ask is a signal; Press is a layer of work (IRI) ---
-    ky = yb + 92
-    c.box(190, ky, 700, 130, fill_a=10, border_a=90)
-    for key, (kx, kind) in zip(t["console"], ((215, "plain"), (565, "iri"))):
-        if kind == "iri":
-            c.iri_box(kx, ky + 15, 300, 100, 190, 3)
-        else:
-            c.box(kx, ky + 15, 320 - 20, 100, fill_a=22, border_a=140)
-        mx = kx + 150
-        K.name(c, mx, ky + 28, key["title"], size=38)
-        K.note(c, mx, ky + 74, key["sub"], size=24)
+    # --- 4 the game: a doorway, the only neon on the card ---
+    x = xs[3]
+    door = _arch(x, cy - 78, 92, 156)
+    for g, a in ((46, 40), (28, 60), (12, 80)):    # the door's own halo, on the glow layer (not a second accent element)
+        halo = _arch(x, cy - 78 - g, 92 + 2 * g, 156 + g + 4)
+        c.gd.polygon([(px * S, py * S) for px, py in halo], fill=rgba(K.NEON, a))
+    c.poly(door, K.NEON, 255, 5, fill_a=70, fill_c=K.NEON)
+
+    # --- labels ---
+    for x, s in zip(xs, st):
+        y = K.name(c, x, ly, s["title"], size=36, maxw=190)
+        if s.get("sub"):
+            K.note(c, x, y + 6, s["sub"], size=26, color=K.QUIET, maxw=190)
+
+    # --- from the door, a thin IRI arrow curves down-right out to the next one ---
+    sx, sy, sr = 880, cy + 330, 32
+    p = _bez((xs[3] + 62, cy + 6), (sx + 40, cy + 20), (sx, sy - sr - 22))
+    c.iri_path(p, 3, 215)
+    (ax, ay), (bx, by) = p[-2], p[-1]
+    ang = math.atan2(by - ay, bx - ax)
+    tip = (bx + 22 * math.cos(ang), by + 22 * math.sin(ang))
+    c.iri_poly([tip] + [(bx + 3 * math.cos(ang) + s * 9 * -math.sin(ang), by + 3 * math.sin(ang) + s * 9 * math.cos(ang)) for s in (1, -1)], 225)
+    c.orb(sx, sy, sr, glow=30, seed=2)
+    K.name(c, sx, sy + sr + 18, t["invite"], size=34, maxw=200)
     return c

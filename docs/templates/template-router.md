@@ -9,7 +9,7 @@
 - **What emerges:** artifacts of one shape across all agents; every lesson lands in one template and reaches every future use
 - **As a part of the whole:** the load-bearing joint of the architecture. Templates are the MODULE layer (methodology); the router is the `//` that connects any task to its module, so the methodology reaches the PROMPT layer (agents) without Sasha in the loop
 - **Siblings:** [README.md](./README.md) (full inventory, source of truth for what exists), [holonic-prism.md](./holonic-prism.md) (the prism every template stands on), `CLAUDE.md` §Templates first, Hark specialty `templates-first` (points to this file)
-- **Status · last reviewed:** v1.4 · 2026-11-25 (site-routing-change row; qa-pass row; Result + Phase Shift Technology columns since v1.2, 2026-11-19)
+- **Status · last reviewed:** v1.5 · 2026-11-26 (course-landing and course-update rows; site-routing-change and qa-pass rows 2026-11-25; Result + Phase Shift Technology columns since v1.2, 2026-11-19)
 
 ## Through the prism
 - **Essence:** a switch between "what is asked" and "the form that already knows how to do it".
@@ -45,6 +45,8 @@
 | Critique / next version of anything | [roasting.md](./roasting.md) | The next, stronger version | 93 Vision ↔ Viability Balancing |
 | Long build: plan → ship → report → retro | [improvement-loop.md](./improvement-loop.md) | Shipped, reported, learned from | 161 The Hexagon Cycle |
 | Mini-course from a body of work | [course-from-source.md](./course-from-source.md) | A mini-course from your body of work | 57 Campfire Networking |
+| Landing page of a course / mini-training (`/academy/<slug>`): its sections, voice, links to and from it | [course-landing.md](./course-landing.md) | A course page that names the promise and opens the course in one click | 173 Sell the Shift, Not the Content (candidate) |
+| Update a living mini-training with a new source: insights signed by Sasha → infographic → micro-module → code → version bump | [course-update.md](./course-update.md) | A mini-training that grows with every source, nothing unsigned | 40 The Recursive Proof (proposed) · also 117, 187, 154 |
 | Integrate a source on the stream (link, essay, paper, book, course, conversation): graph with authorship, use decided | [source-integration.md](./source-integration.md) | Any source woven into what you know | 117 The Learning Ledger and the Meta-Game (candidate) |
 | Testimonial clips from calls | [testimonial-clips.md](./testimonial-clips.md) | Clients saying it in their own words | 155 Testimony Frequency |
 | Meaning of a name or surname | [name-vibration.md](./name-vibration.md) | The original energy of your name | New, not yet in the library (candidate) |
@@ -54,5 +56,7 @@
 | Synthesize one domain across many exemplars (navigation, onboarding, progression…): take it apart, find the task invariants by common denominator, keep the proven solutions, reassemble one whole without overload | [integral-synthesis.md](./integral-synthesis.md) | One whole, built from what works everywhere | 98 Prime Invariant Branding · 82 Linguistic Synthesis (candidate) |
 | Simplify a screen or interface by testing and cutting until it gets out of the way | [subtraction-loop.md](./subtraction-loop.md) | An interface a first-timer gets in seconds | 115 Articulation Is the Mechanism of Growth (candidate) |
 | Anything else / a new template | [meta-template.md](./meta-template.md), then [README.md](./README.md) | A new form for a new kind of work | Craft (nearest 115) |
+
+**Trace line (Meta-Template v3, 2026-11-26):** every artifact made by a template carries `Template: <name> vN · Version: vX.Y · Shift check: yes / no / unknown`, and every finished work ends with «Template change: …» or «none» ([meta-template.md](./meta-template.md) Core v3).
 
 Every report to Sasha shows the result with one clickable link, never only "done" ([improvement-loop.md](./improvement-loop.md) §3).

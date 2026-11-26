@@ -15,6 +15,7 @@ import { VILLAGE_ELEMENTS, type ElementKey } from "@/data/villagePlaces";
 import WaterFace from "@/components/game/instrument/faces/WaterFace";
 import EarthFace from "@/components/game/faces/EarthFace";
 import FireFace from "@/components/game/faces/FireFace";
+import EtherFace from "@/components/game/faces/EtherFace";
 
 export type FaceProps = {
   /** Signed-in player id, or null for a guest. */
@@ -29,6 +30,8 @@ export type FaceProps = {
   onBack: () => void;
   /** Close the whole instrument; the player is where they were. */
   onClose: () => void;
+  /** Close the instrument and draw one ink line to the glowing place (the ether face, phase 3). Optional: other faces never call it. */
+  onShowWay?: () => void;
   /** Close the instrument and go to a place in the village. */
   onNavigate: (to: string) => void;
 };
@@ -57,3 +60,6 @@ export const hasFace = (element: ElementKey): boolean => FACES[element].componen
 // WP4: the fire and earth lenses fill their slots.
 registerFace("fire", FireFace);
 registerFace("earth", EarthFace);
+
+// WP5: the ether face shows the one next move and draws the ink line.
+registerFace("ether", EtherFace);
