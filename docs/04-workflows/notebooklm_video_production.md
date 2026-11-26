@@ -39,12 +39,13 @@ Key: don't wait between steps, no snapshot after each click.
   - **Pipelining:** after action 8, start the next module at once. Do not wait for the video. Harvest later, all modules together (Phase 2 below).
   - **Notebook name = episode code + title + course version:** `F01E07 Mind Path v1.0`, pattern `<episode code> <Title> v<course version>`. The version is the one the run ships under the versioning rule (`course-from-source.md` → Versioning, issue #522), so every video traces to one course version. The downloaded file and the YouTube title carry the same name.
   - **The two prompt boxes (style, focus) are named, reusable inputs.** They are stored next to the module text, in the course's content file under `docs/08-content/`: one style line for the whole course, one focus line per episode. The pattern is `docs/08-content/consciousness_meets_science_course.md` → Part 2 (Master prompt, Custom style, Focus lines). Action 7 pastes them and nobody composes them during the run.
+  - **YouTube upload with numbering and version, default visibility Unlisted** (Sasha's correction, 2026-11-26 12:02 MST). Upload as Unlisted (or Private) needs no approval: upload right after download, title = the notebook name (Phase 3 below). Sasha reviews from the unlisted link (course-update step 5).
 - **Adapt for an agent.**
   - "Download video to Mac" becomes **download into the agent's workspace**, file name `<notebook name>.mp4`. Videos are not committed to git.
   - "No snapshot after each click" becomes a **rule for browser agents**: act on the known UI through actions 1–8 with no screenshot or page snapshot between them. Verify once at the end of each module: the notebook exists under the right name and generation is running. Take a snapshot only when that check fails or a label is missing (then use the Fallback).
-- **Needs Sasha's yes each time.**
-  - **YouTube upload.** A video on YouTube is public, even when unlisted. Upload only after Sasha has watched it and said yes to that video (course-update step 5 gate).
   - **"Table with all links"** is not a separate table. The link of each episode lives in the course data file, `youtubeId` on the episode in `src/data/courses/<file>.ts` (one source of truth; course-update step 6).
+- **Needs Sasha's yes each time.**
+  - **Switching a video to Public**, and announcing it (course-update step 9). Never upload straight to Public.
 - **Fragility.** These UI paths break when NotebookLM changes. Hence the "Last verified" date and the Fallback above. An agent that finds a changed label fixes it here in the same run.
 
 ### Measure it
@@ -135,7 +136,7 @@ For each video:
 3. Title: `F01E04 — Five Paths of Growth — Planetary OS v1.0`
 4. Description: Module summary + course link
 5. Playlist: Add to "Foundational Training" (create if needed)
-6. Visibility: Unlisted (for now)
+6. Visibility: **Unlisted** (default; no approval needed, Private is also fine). Public only on Sasha's yes to that video (2026-11-26).
 
 ---
 
