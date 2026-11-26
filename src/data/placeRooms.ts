@@ -52,6 +52,7 @@ export const PLACE_ROOMS: Partial<Record<VillagePlaceKey, readonly StaticRoom[]>
     { id: "consciousness-meets-science", name: "Consciousness Meets Science", to: CMS_COURSE_PATH, result: "a course where consciousness meets science" },
   ],
   workshop: [
+    { id: "founder-collective", name: "Founder Collective", to: "/collective", result: "founders with working businesses, by invitation" },
     { id: "ubb-canvas", name: "Canvas", to: "/ubb", result: "your business on one canvas: uniqueness, myth, tribe, pain, promise" },
     { id: "ubb-session", name: "1st Session Design", to: "/ubb/session", result: "your first paid session, designed" },
     { id: "ubb-marketing", name: "Marketing", to: "/ubb/marketing", result: "your core belief, your packaging and a frictionless purchase" },

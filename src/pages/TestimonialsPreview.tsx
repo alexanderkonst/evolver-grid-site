@@ -176,7 +176,7 @@ const TestimonialsPreview = () => {
 
         <section className="tp-section">
           <p className="tp-mono">In context · after a module Outro</p>
-          <h2>How a clip would sit at the Workshop</h2>
+          <h2>How a clip would sit at the Collective</h2>
           <p className="tp-lede">
             Mock of the placement from the template: the player finishes Myth &amp; Uniqueness, the Outro
             closes, and before the way back to the village a 9:16 note appears from someone who walked
@@ -188,7 +188,7 @@ const TestimonialsPreview = () => {
             <div className="tp-outro__veil" />
             <div className="tp-outro__body">
               <div className="tp-outro__text">
-                <p className="tp-mono">The Workshop · Outro complete</p>
+                <p className="tp-mono">The Collective · Outro complete</p>
                 <h3>Your myth is written.</h3>
                 <p className="tp-outro__line">
                   What you found here is yours to carry. Before you go, a word from someone who stood
