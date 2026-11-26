@@ -18,7 +18,7 @@ export type KnowsYouModuleCopy = {
 export const KNOWS_YOU_OPENING: string[] = [
   "In the last mini-training, AI got to know you through the game: your talents, your archetype, your mission. Here you take that knowledge with you. In about half an hour you'll write a one-page profile that makes any AI know you, and you'll learn three moves that make every answer better: name the goal, give the context, refine in cycles.",
   "Seven short steps. Each is one idea, a short video and a button. Watch the video first, then press the button. The question is already written; change it or say it by voice if you like.",
-  "At the end your profile is saved on this device, ready to copy into any AI."
+  "At the end your profile is saved on this device, ready to use in Your AI."
 ];
 
 export const KNOWS_YOU_MODULE_COPY: KnowsYouModuleCopy[] = [
@@ -49,7 +49,7 @@ export const KNOWS_YOU_MODULE_COPY: KnowsYouModuleCopy[] = [
     "paragraphs": [
       "Here it is: you, on one page. Five parts. Who you are and the roles you play. Your goals for the next 90 days. Your genius, said concretely, not vaguely. How you like answers: tone, length, format, language. And your limits.",
       "Read it slowly. Where AI guessed, it marked it. Fix what isn't you: press Edit or the microphone and tell it. The words matter more than the polish. Then press Save profile.",
-      "This one page is what you'll give any AI from now on. It's version 1.0. It will grow with you."
+      "This one page is what you can share in conversations with Your AI. It's version 1.0. It will grow with you."
     ]
   },
   {
@@ -84,18 +84,18 @@ export const KNOWS_YOU_MODULE_COPY: KnowsYouModuleCopy[] = [
   },
   {
     "n": 7,
-    "title": "Take it anywhere",
-    "promise": "Any AI knows you in 10 seconds.",
+    "title": "Try it in Your AI",
+    "promise": "See how Your AI understands your profile.",
     "paragraphs": [
       "Your profile is yours. It doesn't live inside one app.",
       "Some AIs remember you as you talk to them, across conversations. That's one kind of personalization. The other kind is stronger: you tell AI, on purpose, who you are, what you want and what your limits are. The two don't compete. But the second one goes with you.",
-      "Copy your profile, open another AI, paste it, and read its answer. If it sounds like it knows you, you're done. Ten seconds, and a stranger becomes a colleague."
+      "Copy your profile, open Your AI, paste it, and read its answer. If it sounds like it knows you, you're done."
     ]
   }
 ];
 
 export const KNOWS_YOU_CLOSING: string[] = [
   "Half an hour ago a new AI met you as a stranger. Now any AI can know you in ten seconds: your roles, your goals, your genius, how you like answers, and what it must never do.",
-  "Your profile is saved on this device. Copy it into any AI you use. Once a month, read it again and update what changed: it's a living document.",
+  "Your profile is saved on this device. Once a month, read it again and update what changed: it's a living document.",
   "Next step: bring your business into the same conversation."
 ];

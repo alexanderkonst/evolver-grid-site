@@ -82,6 +82,7 @@ async function openFace(page: Page, element: "fire" | "earth", name: "Growth" | 
   await glyphOf(page).click();
   await expect(dialogOf(page)).toBeVisible();
   await page.waitForTimeout(800);
+  await page.getByRole("button", { name: "Back to the instrument" }).click();
   const body = page.getByTestId(`instrument-body-${element}`);
   await expect(body).toHaveAttribute("data-lit", "true");
   await body.getByRole("button").click();
@@ -109,6 +110,7 @@ test.describe("fire face", () => {
     await glyphOf(page).click();
     await expect(dialogOf(page)).toBeVisible();
     await page.waitForTimeout(800);
+    await page.getByRole("button", { name: "Back to the instrument" }).click();
     const earth = page.getByTestId("instrument-body-earth");
     await expect(earth).toHaveAttribute("data-lit", "false");
     await expect(earth.getByRole("button")).toHaveCount(0);
@@ -148,6 +150,7 @@ test.describe("phone, 390x844", () => {
       await glyphOf(page).tap();
       await expect(dialogOf(page)).toBeVisible();
       await page.waitForTimeout(800);
+      await page.getByRole("button", { name: "Back to the instrument" }).click();
       await page.getByTestId(`instrument-body-${c.element}`).getByRole("button").tap();
       await expect(faceOf(page, c.name)).toBeVisible();
       await page.waitForTimeout(800);

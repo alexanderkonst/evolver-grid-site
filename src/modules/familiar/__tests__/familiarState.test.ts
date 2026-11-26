@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { buildFamiliarState, buildGifts, hashPrompt, WORKSHOP_TOTAL } from "../familiarState";
-import { chatAppUrl, CHAT_APPS, isChatApp } from "../chatApps";
 
 const AI_OS = "AI OS text";
 const base = { aiOs: AI_OS, aiOsVersion: "5.2" };
@@ -50,18 +49,5 @@ describe("state and version", () => {
     expect(c.version).not.toBe(a.version);
     expect(a.version).toBe(hashPrompt(a.prompt));
     expect(a.version).toMatch(/^[0-9a-f]{8}$/);
-  });
-});
-
-describe("chat apps", () => {
-  it("offers ChatGPT, Claude and Gemini, each with an https new-chat address", () => {
-    expect(CHAT_APPS.map((a) => a.id)).toEqual(["chatgpt", "claude", "gemini"]);
-    for (const a of CHAT_APPS) expect(chatAppUrl(a.id)).toMatch(/^https:\/\//);
-  });
-
-  it("knows which values are apps", () => {
-    expect(isChatApp("claude")).toBe(true);
-    expect(isChatApp("bing")).toBe(false);
-    expect(isChatApp(null)).toBe(false);
   });
 });

@@ -451,7 +451,7 @@
     "heroSubhead": "Paste your AI's analysis below. We'll capture the one sentence that lands.",
     "step1Eyebrow": "Step 1",
     "step1Title": "Copy the prompt",
-    "step1Desc": "Paste it into ChatGPT, Claude, or whichever AI knows you best.",
+    "step1Desc": "Paste it into Your AI, then bring its response back here.",
     "copyButton": "Copy",
     "copyButtonCopied": "Copied",
     "step2Eyebrow": "Step 2",
@@ -9584,11 +9584,6 @@
     "reuseDiscipline": "Say founder-market fit, exactly those words, every time. Not founder/market fit, not founder-market alignment. A category is a phrase people have to remember, and every synonym splits the memory in two."
   },
   "familiar": {
-    "takeYourAi": "Take your AI",
-    "updateMyAi": "Update my AI",
-    "pasteNote": "Copied. Paste it into the new chat.",
-    "copyFailed": "Your browser blocked the copy. Press the button again, or try another browser.",
-    "whereLive": "Where will your AI live?",
     "gifts": {
       "aria": "What your AI has",
       "lit": "(has it)",
@@ -9606,11 +9601,6 @@
       "work": "{{n}} of {{total}} Workshop pieces",
       "opensTalent": "Opens when you save your top talent",
       "opensWorkshop": "Opens in the Workshop"
-    },
-    "handover": {
-      "eyebrow": "Your AI",
-      "line": "Your AI: your prompt, carried into the chat you already use.",
-      "next": "Next"
     },
     "outro": {
       "aria": "Your AI is ready",

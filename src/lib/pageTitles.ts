@@ -58,7 +58,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path.startsWith("/game/events"), title: "Gatherings" },
   { match: (path) => path.startsWith("/game/meet"), title: "Café" },
   { match: (path) => path.startsWith("/game/coop"), title: "Town Hall" },
-  // WP-15: the Your AI place (FamiliarPage), named as the village names it.
+  // The direct link to the Your AI instrument.
   { match: (path) => path === "/game/your-ai" || path.startsWith("/game/your-ai/"), title: "Your AI" },
   { match: (path) => path.startsWith("/mini-trainings/ai-as-a-mirror"), title: "Mini-training · AI as a Mirror" },
   { match: (path) => path.startsWith("/mini-trainings/ai-that-knows-you"), title: "Mini-training · AI That Knows You" },

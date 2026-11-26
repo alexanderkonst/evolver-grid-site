@@ -1516,7 +1516,7 @@
     "heroSubhead": "Pega abajo el análisis de tu IA. Capturaremos la única frase que aterriza.",
     "step1Eyebrow": "Paso 1",
     "step1Title": "Copia el prompt",
-    "step1Desc": "Pégalo en ChatGPT, Claude o la IA que mejor te conozca.",
+    "step1Desc": "Pégalo en Tu IA y vuelve aquí con su respuesta.",
     "copyButton": "Copiar",
     "copyButtonCopied": "Copiado",
     "step2Eyebrow": "Paso 2",
@@ -9557,11 +9557,6 @@
     "whatsappHint": "Abre una conversación privada"
   },
   "familiar": {
-    "takeYourAi": "Llévate tu IA",
-    "updateMyAi": "Actualizar mi IA",
-    "pasteNote": "Copiado. Pégalo en el chat nuevo.",
-    "copyFailed": "Tu navegador bloqueó la copia. Pulsa el botón otra vez o prueba con otro navegador.",
-    "whereLive": "¿Dónde vivirá tu IA?",
     "gifts": {
       "aria": "Lo que tiene tu IA",
       "lit": "(lo tiene)",
@@ -9579,11 +9574,6 @@
       "work": "Taller: {{n}} de {{total}}",
       "opensTalent": "Se abre cuando guardes tu talento principal",
       "opensWorkshop": "Se abre en el Taller"
-    },
-    "handover": {
-      "eyebrow": "Tu IA",
-      "line": "Tu IA: tu prompt, llevado al chat que ya usas.",
-      "next": "Siguiente"
     },
     "outro": {
       "aria": "Tu IA está lista",

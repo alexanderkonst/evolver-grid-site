@@ -92,11 +92,7 @@ type Direction = "left" | "right" | "up" | "down";
 
 const HOUSE_PLACE = "house";
 
-/**
- * Where a pin or list row goes. Every place opens its scene first, except Your AI: it is a
- * place of the game itself, open to guests, so its pin goes straight to /game/your-ai.
- */
-const pinTo = (p: VillagePlace) => (p.key === "oracle" ? p.to : `/village/${p.key}`);
+const pinTo = (p: VillagePlace) => `/village/${p.key}`;
 const RECEPTION_INDEX =VILLAGE_PLACES.findIndex((p) => p.key === "reception");
 const ASPECT = VILLAGE_MAP.width / VILLAGE_MAP.height;
 
@@ -493,7 +489,7 @@ const Village = () => {
     return () => window.removeEventListener("keydown", onKey);
   }, [place, mobile, active, select, navigate]);
 
-  if (placeKey && !place) return <Navigate to="/village" replace />;
+  if (placeKey && (!place || place.key === "oracle")) return <Navigate to="/village" replace />;
 
   const current = active !== null ? VILLAGE_PLACES[active] : null;
   const lastIndex = lastPlace ? VILLAGE_PLACES.indexOf(lastPlace) : -1;
@@ -571,6 +567,12 @@ const Village = () => {
                           // Mobile: the list below is the menu; dots only mark the buildings.
                           <span className="vl-pin__link" aria-hidden="true">
                             <span className="vl-dot ps-fade" />
+                          </span>
+                        ) : p.key === "oracle" ? (
+                          <span className="vl-pin__link">
+                            <span className="vl-dot ps-fade" aria-hidden="true" />
+                            <span className="vl-pin__name">{placeName(p, t)}</span>
+                            <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" />
                           </span>
                         ) : shown[i] === "closed" ? (
                           <a
@@ -678,7 +680,7 @@ const Village = () => {
 
           <nav className="vl-list" aria-label={tr(t, "village.placesNav", "Places")}>
             <ul>
-              {VILLAGE_PLACES.map((p, i) => (
+              {VILLAGE_PLACES.map((p, i) => p.key !== "oracle" && (
                 <PlaceState key={p.key} as="li" state={shown[i]} className={`vl-light--${lights[i]} ${isNew(p) ? "is-new" : ""} ${isRevealed(p) ? "is-reveal" : ""} ${isLit(p) ? "is-lit" : ""}`.trim().replace(/\s+/g, " ") || undefined} tag={false}>
                   {shown[i] === "closed" ? (
                     // Issue #270: closed means aria-disabled and no navigation; the line says what opens it.

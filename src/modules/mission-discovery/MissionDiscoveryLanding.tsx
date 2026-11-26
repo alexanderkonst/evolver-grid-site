@@ -3,9 +3,8 @@
  *
  * Single-screen flow. Three states:
  *
- *   1. PROMPT — show the user the prompt to copy to their own AI
- *      (ChatGPT / Claude / Gemini / etc.) + a textarea to paste the
- *      AI's response back. One button: "Find my mission".
+ *   1. PROMPT — show the prompt for Your AI and accept its response
+ *      or a one-sentence mission.
  *
  *   2. CONFIRM — extracted one-sentence synthesis pre-filled in an
  *      editable textarea. User can edit before saving. One button:
@@ -510,6 +509,9 @@ const MissionDiscoveryLanding = () => {
                                 <p className="text-sm font-medium" style={{ color: INK }}>
                                     {t("missionLanding.step1Desc")}
                                 </p>
+                                <a href="/game/your-ai" target="_blank" rel="noopener" className="mt-2 inline-block text-sm font-semibold underline" style={{ color: INK }}>
+                                    {t("yourAiInstrument.title")}
+                                </a>
                             </div>
                             {/* Editorial Copy pill — gold-accent inline button
                                 in the same family as the rest of the gold UI.

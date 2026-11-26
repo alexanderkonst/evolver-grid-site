@@ -2,6 +2,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
 import { MemoryRouter } from "react-router-dom";
+import { VILLAGE_PLACES } from "@/data/villagePlaces";
 import { RAIL_PLACES } from "@/lib/railPlaces";
 
 /**
@@ -10,7 +11,7 @@ import { RAIL_PLACES } from "@/lib/railPlaces";
  * never locked.
  */
 vi.mock("@/hooks/usePlaceStates", () => ({
-  usePlaceStates: () => ({ states: RAIL_PLACES.map(() => "closed"), ready: true }),
+  usePlaceStates: () => ({ states: VILLAGE_PLACES.map(() => "closed"), ready: true }),
 }));
 
 import Navigation from "@/components/Navigation";

@@ -2,12 +2,10 @@
  * YourAiInstrument — the navigation instrument's host (docs/specs/navigation-instrument/architecture.md
  * §4–§5.1, GoBY §25.10) and the air face, Your AI (docs/specs/your-ai-instrument/sow.md, #458).
  *
- * Closed: the glyph in the corner (`InstrumentGlyph`). One gesture (click, Enter, the `I` key, a swipe
- * up on touch) raises the instrument over the living world: the crystal rises to the centre and turns
- * a face, the world dims to about 0.9 brightness and stays mounted and live, the bodies unfold in an
- * arc with their labels (lit ones drawn, unlit ones outlines that say "Opens on your path"). The same
- * gesture, Esc, or a tap outside lowers it, playing the same motion backwards, and focus goes back to
- * where it was. Opening never changes the route. Reduced motion: a 150 ms crossfade, no rise, no turn.
+ * Closed: the glyph in the corner (`InstrumentGlyph`) opens Your AI over the living world. The Back
+ * button shows the raised crystal and quarter arc. The live world stays mounted under the scrim.
+ * Esc, the close button, and a tap on the scrim restore focus to the opener.
+ * Reduced motion uses a 150 ms crossfade in place of the rise.
  *
  * A face is one body turned forward (`src/lib/instrument/faces.ts`). Only air has one today: the Your
  * AI panel below (header, conversation, Console, first-open tour). The other slots are
@@ -64,8 +62,7 @@ const ARC_RADIUS_MAX = 140;
 /** Open: about 600 ms; reduced motion: a 150 ms crossfade. */
 const OPEN_MS = 600;
 const OPEN_REDUCED_MS = 150;
-/** The world under the instrument: about 0.9 brightness, still live. */
-const DIM = "rgba(0,0,0,0.1)";
+const DIM = "rgba(0,0,0,0.55)";
 
 const ACCENT = "#bcd7e6";
 const INK = "#e8eef2";
@@ -240,16 +237,15 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
       data-face-root="air"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
-      className="pointer-events-auto relative flex max-h-full w-full flex-col overflow-hidden rounded-2xl outline-none sm:w-[26rem]"
+      className="pointer-events-auto relative flex h-dvh w-full min-h-0 flex-col overflow-hidden outline-none pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] sm:h-[calc(100dvh-4rem)] sm:w-[min(72rem,calc(100vw-4rem))] sm:rounded-2xl sm:p-0"
       style={{
-        height: "min(40rem, 100%)",
         backgroundColor: PANEL,
         border: `1px solid ${HAIRLINE}`,
         boxShadow: "0 28px 60px -14px rgba(0,0,0,0.75)",
         color: INK,
-        transformOrigin: "bottom right",
+        transformOrigin: "center",
         opacity: active ? 1 : 0,
-        transform: active || reduced ? "none" : "translateY(28px) scale(0.9)",
+        transform: active || reduced ? "none" : "translate(var(--your-ai-rise-x), var(--your-ai-rise-y)) scale(0.12)",
         transition: `opacity ${closeMs}ms ${EASE}, transform ${closeMs}ms ${EASE}`,
       }}
     >
@@ -305,7 +301,7 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                   role="tabpanel"
                   id={`${titleId}-panel-console`}
                   aria-labelledby={`${titleId}-tab-console`}
-                  className={tab === "console" ? "flex min-h-0 flex-1 flex-col" : "hidden"}
+                  className={tab === "console" ? "mx-auto flex w-full max-w-3xl min-h-0 flex-1 flex-col" : "hidden"}
                   {...inertProps(tab !== "console")}
                 >
                   <ConsolePanel
@@ -323,7 +319,7 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                   role="tabpanel"
                   id={`${titleId}-panel-conversation`}
                   aria-labelledby={`${titleId}-tab-conversation`}
-                  className={tab === "conversation" ? "flex min-h-0 flex-1 flex-col gap-3" : "hidden"}
+                  className={tab === "conversation" ? "mx-auto flex w-full max-w-3xl min-h-0 flex-1 flex-col gap-3 overflow-y-auto" : "hidden"}
                   {...inertProps(tab !== "conversation")}
                 >
                 {/* Group 2 · conversation */}
@@ -475,6 +471,8 @@ const inertProps = (on: boolean): Record<string, string> => (on ? { inert: "" } 
 type Props = {
   /** The existing gate: T+M+A complete, or the AI OS was ever visited. */
   enabled: boolean;
+  /** Location key of a direct visit to Your AI. */
+  openAt?: string;
   /** Signed-in player id, for the daily cap and traces; null for a guest. */
   ownerId: string | null;
   /** `litQuarters` for this player: which bodies are lit. */
@@ -483,7 +481,7 @@ type Props = {
   avoid?: string;
 };
 
-const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
+const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const reduced = useReducedMotion();
@@ -492,7 +490,7 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
   const raised = isRaised(model);
   const [mounted, setMounted] = useState(false);
   const [shown, setShown] = useState(false);
-  const [rise, setRise] = useState({ dx: 0, dy: 0 });
+  const [rise, setRise] = useState({ dx: 0, dy: 0, panelDy: 0 });
   const [announce, setAnnounce] = useState("");
   const [arcRadius, setArcRadius] = useState(ARC_RADIUS_MAX);
 
@@ -523,13 +521,26 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
   }, [enabled]);
 
   const openInstrument = useCallback(() => {
-    returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    returnFocusRef.current = document.activeElement instanceof HTMLElement && document.activeElement !== document.body
+      ? document.activeElement : null;
     // The crystal rises from where the glyph is to the middle of the screen.
     const g = glyphRef.current?.getBoundingClientRect();
-    if (g) setRise({ dx: g.left + g.width / 2 - window.innerWidth / 2, dy: g.top + g.height / 2 - window.innerHeight * STAGE_Y });
+    if (g) {
+      const y = g.top + g.height / 2;
+      setRise({
+        dx: g.left + g.width / 2 - window.innerWidth / 2,
+        dy: y - window.innerHeight * STAGE_Y,
+        panelDy: y - window.innerHeight / 2,
+      });
+    }
     setArcRadius(Math.max(96, Math.min(ARC_RADIUS_MAX, (window.innerWidth - 84) / 2)));
     dispatch({ type: "open" });
+    dispatch({ type: "face", element: "air" });
   }, []);
+  useEffect(() => {
+    if (openAt !== undefined) openInstrument();
+  }, [openAt, openInstrument]);
+
   const closeInstrument = useCallback(() => dispatch({ type: "close" }), []);
   const toggle = useCallback(() => (raised ? closeInstrument() : openInstrument()), [raised, openInstrument, closeInstrument]);
 
@@ -549,8 +560,14 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
   useEffect(() => {
     if (raised) {
       setMounted(true);
-      const raf = requestAnimationFrame(() => requestAnimationFrame(() => setShown(true)));
-      return () => cancelAnimationFrame(raf);
+      let showFrame = 0;
+      const mountFrame = requestAnimationFrame(() => {
+        showFrame = requestAnimationFrame(() => setShown(true));
+      });
+      return () => {
+        cancelAnimationFrame(mountFrame);
+        cancelAnimationFrame(showFrame);
+      };
     }
     if (!mounted) return;
     setShown(false);
@@ -574,7 +591,7 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
 
   // Esc closes; Tab stays inside the dialog while it is up.
   useEffect(() => {
-    if (!mounted) return;
+    if (!raised) return;
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.preventDefault();
@@ -583,7 +600,7 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
         return;
       }
       if (e.key !== "Tab" || !dialogRef.current) return;
-      const nodes = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((n) => !n.closest("[inert]"));
+      const nodes = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)).filter((n) => n.tabIndex >= 0 && !n.closest("[inert]") && n.getClientRects().length > 0);
       if (nodes.length === 0) {
         e.preventDefault();
         dialogRef.current.focus();
@@ -603,7 +620,7 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
     };
     window.addEventListener("keydown", onKeyDown, true);
     return () => window.removeEventListener("keydown", onKeyDown, true);
-  }, [mounted, closeInstrument]);
+  }, [raised, closeInstrument]);
 
   const goTo = useCallback(
     (to: string) => {
@@ -618,6 +635,7 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
   const bodies = VILLAGE_ELEMENTS.filter((e) => e.key !== "air");
   const FaceComponent = getFace(model.face ?? lastFaceRef.current);
   const inFace = model.state === "face";
+  const airFace = (model.face ?? lastFaceRef.current) === "air";
   const bodyStyle = (i: number): React.CSSProperties => {
     const a = (ARC_DEG[i] * Math.PI) / 180;
     const x = Math.cos(a) * arcRadius;
@@ -666,15 +684,16 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
           tabIndex={-1}
           data-testid="your-ai-overlay"
           data-state={model.state}
-          className="fixed inset-0 z-[80] outline-none"
+          className="fixed inset-0 z-[82] outline-none"
+          {...inertProps(!raised)}
         >
-          {/* The world stays mounted and visible behind: dimmed to about 0.9, not paused. Tapping it lowers the instrument. */}
+          {/* The live world stays visible through the scrim. */}
           <div
             aria-hidden="true"
             data-testid="instrument-scrim"
             onClick={closeInstrument}
             className="absolute inset-0"
-            style={{ backgroundColor: DIM, opacity: shown ? 1 : 0, transition: `opacity ${moveMs}ms ${EASE}` }}
+            style={{ backgroundColor: DIM, backdropFilter: "blur(6px)", opacity: shown ? 1 : 0, transition: `opacity ${moveMs}ms ${EASE}` }}
           />
 
           {/* The stage: the crystal at the middle of the screen, the bodies in an arc above it. */}
@@ -758,8 +777,15 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
           {/* The face turned forward. The air face stays mounted once opened so a conversation is not lost on Back. */}
           {FaceComponent && (
             <div
-              className="pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+10.25rem)] top-3 flex items-end justify-end sm:inset-x-6 sm:bottom-[12.25rem]"
-              {...inertProps(!inFace)}
+              className={airFace
+                ? "pointer-events-none absolute inset-0 grid place-items-center"
+                : "pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+10.25rem)] top-3 flex items-end justify-end sm:inset-x-6 sm:bottom-[12.25rem]"}
+              style={airFace ? {
+                "--your-ai-rise-x": `${rise.dx}px`,
+                "--your-ai-rise-y": `${rise.panelDy}px`,
+                visibility: inFace || !raised ? "visible" : "hidden",
+              } as React.CSSProperties : undefined}
+              {...inertProps(!inFace || !shown)}
             >
               <FaceComponent
                 key={ownerId ?? "guest"}
