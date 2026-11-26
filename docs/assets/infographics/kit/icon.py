@@ -16,8 +16,8 @@ Calls (coordinates in 1024 px; zones: before centre x=272, after centre x=752, m
   chevron(cx, cy, h, w, c, a)                 the arrow between before and after (side "mid")
 Export: save(path) writes the 1024 PNG and `<name>@128.png` beside it.
 
-Icons v2 (spec `icon_version: 2`, issue #528): ONE silhouette of the result, drawn inside `side("after")`, no chevron,
-on a lunar-ink tile with a pastel halo (spec `halo: LAV|AQUA|BLUSH|CHAMP|PEARL`). Every line and ring is WEIGHT px wide.
+Icons v2 / v3 (spec `icon_version: 2|3`, issues #528, #533): ONE silhouette of the result, drawn inside `side("after")`, no chevron,
+on a lunar-ink tile with the app's pastel rising from the bottom (spec `halo: LAV|AQUA|BLUSH|CHAMP|PEARL`). Every line and ring is WEIGHT px wide.
 `group="name"` makes repeated identical parts (four equal nodes) count as one shape. `silhouette(px)` redraws the sign
 as a filled black shape on white, the 32 px legibility test.
 """
@@ -34,7 +34,8 @@ S = K.S
 BEFORE_X, AFTER_X, MID_X = 272, 752, 512
 MARGIN = 80
 CENTER = 512
-WEIGHT = 64            # v2: the one stroke weight of all ten icons (2 px at 32 px, 8 px at 128 px)
+WEIGHT = 48            # v3: the one stroke weight of all five icons (1.5 px at 32 px, 6 px at 128 px = the lint floor); v2 was 64
+HALO_START, HALO_MAX, HALO_CURVE = 0.25, 118, 1.3   # pastel gradient: starts at 30% down, alpha 150/255 at the bottom edge
 HALOS = {"LAV": K.LAV, "AQUA": K.AQUA, "BLUSH": K.BLUSH, "CHAMP": K.CHAMP, "PEARL": K.PEARL}
 
 
@@ -64,13 +65,13 @@ class IconCard(K.V4):
             t = y / h
             grad.putpixel((0, y), tuple(int(K.BG_TOP[i] * (1 - t) + K.BG_BOT[i] * t) for i in range(3)) + (255,))
         self.im = grad.resize((w, h))
-        if self.halo is not None:                         # v2: a pastel halo behind the sign, same on every tile
-            halo = Image.new("RGBA", (w, h), (0, 0, 0, 0)); hd = ImageDraw.Draw(halo)
-            c = CENTER * S
-            for r, a in ((400, 46), (310, 60), (220, 72)):
-                hd.ellipse([c - r * S, c - r * S, c + r * S, c + r * S], fill=K.rgba(self.halo, a))
-            halo = halo.filter(ImageFilter.GaussianBlur(70 * S))
-            self.im = Image.alpha_composite(self.im, halo)
+        if self.halo is not None:                         # v3: the app's pastel rises from the bottom edge, visible at 64 px
+            up = Image.new("RGBA", (1, h))
+            for y in range(h):
+                t = y / h
+                a = HALO_MAX * max(0.0, (t - HALO_START) / (1 - HALO_START)) ** HALO_CURVE
+                up.putpixel((0, y), self.halo + (int(a),))
+            self.im = Image.alpha_composite(self.im, up.resize((w, h)))
             return
         dawn = Image.new("RGBA", (w, h), (0, 0, 0, 0)); dd = ImageDraw.Draw(dawn)
         cx, cy = AFTER_X * S, 560 * S                     # dawn: light rising behind the after side
@@ -100,9 +101,14 @@ class IconCard(K.V4):
         self._rec("dot", (cx - r, cy - r, cx + r, cy + r), c, 2 * r, ("disc", cx, cy, r), group)
         super().dot(cx, cy, r, c, a, glow)
 
-    def ring(self, cx, cy, r, w=48, c=K.SILVER, a=200, group=None):
+    def ring(self, cx, cy, r, w=48, c=K.SILVER, a=200, group=None, soft=0):
+        """Outline ring, r = radius of the stroke centre. `soft` > 0 adds a glow around the line (alpha of the glow, 0-255)."""
         o = r + w / 2                                      # PIL draws an outline inward from the outer radius
         self._rec("ring", (cx - o, cy - o, cx + o, cy + o), c, w, ("ring", cx, cy, r, w), group)
+        if soft:
+            g = w * 1.6                                    # the glow layer is blurred at save time
+            self.gd.ellipse([(cx - o - g / 2) * S, (cy - o - g / 2) * S, (cx + o + g / 2) * S, (cy + o + g / 2) * S],
+                            outline=K.rgba(K.GLOW, soft), width=int((w + g) * S))
         super().circle(cx, cy, o, c, a, w)
 
     def iri_ring(self, cx, cy, r, w=48, a=200):

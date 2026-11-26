@@ -24,7 +24,7 @@ App icons (spec `kind: icon`, see icon.py) are checked by `check_icon` with ICON
   no-text      no text drawn on an icon
   spec-fields  as above
 
-Icons v2 (spec `icon_version: 2`, issue #528) add two rules and tighten one (ICON_V2_RULES):
+Icons v2 / v3 (spec `icon_version: 2|3`, issues #528, #533) add two rules and tighten one (ICON_V2_RULES):
   elements     at most 4 shapes (parts drawn with the same `group` count once), all on the "after" side: no before, no chevron
   fill         the sign's longest side is 62-78% of the tile (the brief says ~70%)
   weight       every line and ring is exactly icon.WEIGHT px wide: one stroke weight for all ten
@@ -162,7 +162,7 @@ def check_icon(card, spec, skin=None):
         f"({min((r['stroke'] for r in log if r.get('stroke') is not None), default=0) * k:.1f}px)")
 
     counts = {s: sum(1 for r in log if r.get("side") == s) for s in ("before", "after", "mid")}
-    v2 = spec.get("icon_version") == 2
+    v2 = spec.get("icon_version") in (2, 3)
     if v2:
         shapes = len({r["group"] if r.get("group") else id(r) for r in log if r.get("side") == "after"})
         bad = [f"{counts[s]} elements on the {s!r} side: v2 is one silhouette, all on 'after'" for s in ("before", "mid") if counts[s]]
@@ -219,7 +219,7 @@ def lint_spec(path):
         return "?", [("spec-fields", "FAIL", f"cannot read spec: {e}")] + [(r, "SKIP", "no spec") for r in RULES if r != "spec-fields"]
     cid = spec.get("id", os.path.basename(path))
     icon = spec.get("kind") == "icon"
-    RS = (ICON_V2_RULES if spec.get("icon_version") == 2 else ICON_RULES) if icon else RULES
+    RS = (ICON_V2_RULES if spec.get("icon_version") in (2, 3) else ICON_RULES) if icon else RULES
     missing = specmod.missing(spec)
     needed = {"title", "caption", "skin", "text"}
     if needed & {m.split(" ")[0] for m in missing}:

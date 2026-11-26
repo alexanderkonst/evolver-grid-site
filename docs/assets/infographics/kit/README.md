@@ -149,6 +149,8 @@ Generated: `infographicBook.ts`, the `<!-- book:begin … -->` blocks of `BOOK.m
 
 ## App icons
 
+> Current icons are v3, see "Icons v3" below. The paragraph that follows describes the v1 before → after format and its `ICON_RULES`, kept for the rules table.
+
 Square icons for the course-apps (Potential, Crossing, Vision, Nature, Your AI) live in [`apps/`](../apps/): `<id>.card.yaml` (`kind: icon`), `<id>.py`, `<id>.png` (1024), `<id>@128.png`, plus `sheet.png` (five mock tiles, Name bold and tagline at one size, and the five icons at 64 px; `python3 apps/make_sheet.py`).
 
 Each icon is one idea as before → after: before on the left in QUIET / silver, after on the right with the one NEON accent, a bold chevron and a dawn bloom between. No text. A script builds `K`-style: `c = icon.card(spec)`, then `with c.side("before"): ...` / `with c.side("after"): ...` using `orb`, `dot`, `ring`, `path`, `fill`, `iri_fill`, `chevron` (call list in `icon.py`). The spec's `title` is the tile's **Name**, `caption` its tagline, `text.before` / `text.after` say the idea in words.
@@ -167,11 +169,21 @@ Each icon is one idea as before → after: before on the left in QUIET / silver,
 
 `kit/ci.py` and `book_sync` pick the icon specs up like any other (`book_sync` SKIPs them: not Book ids).
 
-### Icons v2 (issue #528, replaces v1 once Sasha picks)
+### Icons v3 (issue #533, the final icons; replaced v1 #506 and v2 #528)
 
-One simple silhouette of the result ("after" only): no arrow, no before / after, no text. Two variants per app (`<id>-a`, `<id>-b`), Sasha picks. A v2 spec carries `icon_version: 2` and `halo: LAV|AQUA|BLUSH|CHAMP|PEARL` (one pastel per app, the same for A and B); the tile is lunar ink with that halo behind the sign. Scripts draw everything inside `with c.side("after")`, with shapes from `apps/icon_shapes.py`, and every line and ring `I.WEIGHT` (64 px at 1024, 2 px at 32 px). `group="nodes"` makes repeated identical parts count as one shape. The sphere (`orb`) is "you": in the Book it is you / the person (`ideal-client-01`, `-04`, ADP `A01`) and the dormant seed (`A02`), so the iridescent sphere is used as is.
+One icon per app, files `apps/<id>.card.yaml`, `<id>.py`, `<id>.png` (1024), `<id>@128.png`. One simple silhouette of the result ("after" only): no arrow, no before / after, no text. A v3 spec carries `icon_version: 3` and `halo: LAV|AQUA|BLUSH|CHAMP|PEARL` (the app's own pastel). The tile is lunar ink with that pastel rising as a gradient from the bottom edge (visible at 64 px). Scripts draw everything inside `with c.side("after")`, with shapes from `apps/icon_shapes.py`.
 
-`icon_version: 2` swaps two lint rules and adds two (`ICON_V2_RULES`):
+Family rules: every line and ring is `I.WEIGHT` wide (48 px at 1024 = 6 px at 128, the lint floor, 1.5 px at 32; v2 was 64); one NEON per icon, a smaller area than the white; the iridescent sphere (`orb`, "you / the seed": Book `ideal-client-01`, `-04`, ADP `A01`, `A02`) only in Potential and Your AI; the sign's longest side ~70% of the tile; `group="name"` makes repeated identical parts (ticks) count as one shape. `ring(..., soft=alpha)` adds a glow round a line.
+
+| App | Sign |
+|---|---|
+| Potential | open bud: two white petals, a neon middle petal, the sphere |
+| Crossing | two overlapping circles, the lens open: left a precise line with tick marks (science), right a soft glowing line (consciousness), one neon dot at the centre of the crossing |
+| Vision | an eye, a neon four-point star as the pupil |
+| Nature | one continuous line: a wave curling up into a crescent, the tip lit |
+| Your AI | the sphere, a thin tilted orbit (far half behind the sphere, near half in front), one neon satellite |
+
+`icon_version: 2` and `3` share one rule set (`ICON_V2_RULES`):
 
 | Rule | Fails when |
 |---|---|
@@ -179,7 +191,7 @@ One simple silhouette of the result ("after" only): no arrow, no before / after,
 | `fill` | the sign's longest side is outside 62-78% of the tile (~70%) |
 | `weight` | a line or ring is not exactly `I.WEIGHT` wide |
 
-The 32 px test: `card.silhouette(32)` redraws the sign as a filled black shape; `python3 apps/make_sheet_v2.py --silhouettes out.png` lays all ten out. The choice sheet: `python3 apps/make_sheet_v2.py` writes `apps/sheet-v2.png` (per app: A and B at 256, 64, 32 px and the A tile mock). `apps/make_sheet.py` (v1 sheet) skips v2 specs.
+The 32 px test: `card.silhouette(32)` redraws the sign as a filled black shape; `python3 apps/make_sheet_v3.py --silhouettes out.png` lays all five out. The sheet: `python3 apps/make_sheet_v3.py` writes `apps/sheet-v3.png` (per app: 256, 64, 32 px and the tile mock with the tagline in a quieter colour, at most 2 lines; a bottom shelf of all five at 32 px). Render first: `python3 kit/render.py apps/*.card.yaml`. `sheet.png` (v1) and `sheet-v2.png` stay as history.
 
 ## Old scripts
 

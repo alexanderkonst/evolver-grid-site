@@ -1,14 +1,17 @@
 id: crossing
 kind: icon
+icon_version: 3
 chapter: apps
-number: 2
-of: 5
+number: 3
+of: 10
 title: Crossing
 caption: Reconciles Consciousness with Science
 skin: v4
+halo: LAV
 text:
-  before: two separate rings far apart
-  after: "the two rings overlap into one vesica (one coin, two sides)"
+  shape: "two overlapping circles, lens open: left a precise ticked line (science), right a soft glowing line (consciousness), one dot at the centre"
+  three_words: "two circles, one dot"
 sources:
-  - issue #506 (app icons v1), row 2
+  - issue #533 (app icons v3: one final icon per app), from Sasha's yes (2026-11-26) to roast round 2 of sheet-v2.png; replaces v1 (#506) and v2 (#528)
   - docs/templates/spec-handoff.md
+  - docs/assets/infographics/kit/README.md (App icons)
