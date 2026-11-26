@@ -45,6 +45,7 @@ One file per card, beside its script and PNG: `<card>.card.yaml`, `<card>.py`, `
 | `text` | yes | every other on-card string, any shape your script wants. `eyebrow` is read by `vocab.card()` |
 | `sources` | yes | list of where it came from: files, calls, sessions |
 | `number`, `of` | no | footer `NN / TT` (default 1 / 1) |
+| `caption_size` | no | px size of the line under the title (default: the engine's 26). ADP cards use 30, the body size of the ideal-client cards |
 | `max_words` | no | waiver above the skin's 25. Only for ported legacy cards; shows up in the lint line |
 | `waive` | no | `{rule: reason}`: a rule a ported legacy card fails by its original layout (`fit`, `margins`, `min-font`, ...). The lint line says `WAIVED (reason)` and keeps the detail. Never for `spec-fields` |
 | `parity` | no | `{module, fn, index}`: the engine-v4 call `compare.py` diffs against |
@@ -100,7 +101,7 @@ Make a card: write the two files, then `python3 kit/render.py <card>.card.yaml` 
 | Rule | Fails when |
 |---|---|
 | `fit` | a text line is wider than its `maxw` (measured with the real font), or text leaves the box it sits in |
-| `words` | more than 25 on-card words (title, caption, eyebrow without its number, body; footer excluded), unless the spec waives |
+| `words` | more than 25 on-card prose words (title, caption, eyebrow without its number, body; footer excluded), unless the spec waives. Figure labels drawn with `K.name` / `K.note` (logged `part="label"`) do not count toward the 25; instead each label may have at most 3 words (`label_words` in the skin) |
 | `palette` | a colour outside the skin palette |
 | `accent` | the skin accent (v4: NEON) used by more than one element. The neon title already is one |
 | `margins` | a non-footer element outside the skin margin (±2 px) |

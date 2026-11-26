@@ -1,4 +1,4 @@
-# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487; v2 labels: issue #495.
 id: A03
 chapter: "1"
 number: 3
@@ -6,9 +6,13 @@ of: 10
 title: "Growth Acceleration Cycle"
 caption: "Learn. Experience. Implement. Repeat. Each turn makes the next one easier and faster, so growth compounds."
 skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
 text:
   eyebrow: Growth
+  nodes: [Learn, Experience, Implement]
+  center: {title: Repeat, sub: faster each turn}
 sources:
   - docs/08-content/activate_your_dormant_potential_transcripts.md (F01E03)
   - src/data/courses/activateYourDormantPotential.ts
   - issue #487 (title and line verbatim)
+  - issue #495 (labels: words from the card's own line only)

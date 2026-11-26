@@ -1,4 +1,4 @@
-# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487; v2 labels: issue #495.
 id: A02
 chapter: "1"
 number: 2
@@ -6,9 +6,14 @@ of: 10
 title: "Dormant Potential"
 caption: "Growth is not building from scratch. It is a seed waiting for a clear signal. See what is possible and it wakes."
 skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
 text:
   eyebrow: Growth
+  center: dormant potential
+  signal: clear signal
+  ring: what is possible
 sources:
   - docs/08-content/activate_your_dormant_potential_transcripts.md (F01E02)
   - src/data/courses/activateYourDormantPotential.ts
   - issue #487 (title and line verbatim)
+  - issue #495 (labels: words from the card's own line only)
