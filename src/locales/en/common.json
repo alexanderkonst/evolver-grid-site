@@ -9983,12 +9983,6 @@
     "inside": {
       "title": "What you get inside",
       "resultLabel": "Result",
-      "status": {
-        "live": "Live",
-        "coming": "Coming",
-        "liveInGame": "Live in the game",
-        "firstSteps": "First steps live"
-      },
       "cards": [
         {
           "name": "Collaborations",
@@ -10031,6 +10025,16 @@
           "result": "a shipped thing by evening."
         }
       ]
+    },
+    "public": {
+      "title": "Our business, in public",
+      "sub": "While Aleksandr is at the center, this is how it actually went for him. New milestones appear here as they happen.",
+      "viewsLabel": "Choose a view",
+      "views": { "short": "Short", "key": "Key milestones", "full": "Full timeline" },
+      "short": "Day {{days}} · {{total}} earned so far.",
+      "latest": "Latest milestone",
+      "day": "Day {{day}}",
+      "link": "See the full dashboard"
     },
     "path": {
       "title": "The path in",

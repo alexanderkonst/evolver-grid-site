@@ -9957,12 +9957,6 @@
     "inside": {
       "title": "Qué recibes dentro",
       "resultLabel": "Resultado",
-      "status": {
-        "live": "Activo",
-        "coming": "Próximamente",
-        "liveInGame": "Activo en el juego",
-        "firstSteps": "Primeros pasos activos"
-      },
       "cards": [
         {
           "name": "Colaboraciones",
@@ -10006,6 +10000,16 @@
         }
       ]
     },
+    "public": {
+      "title": "Nuestro negocio, en público",
+      "sub": "Mientras Aleksandr está en el centro, así es como le fue de verdad. Los nuevos hitos aparecen aquí a medida que ocurren.",
+      "viewsLabel": "Elige una vista",
+      "views": { "short": "Breve", "key": "Hitos clave", "full": "Cronología completa" },
+      "short": "Día {{days}} · {{total}} ganados hasta ahora.",
+      "latest": "Último hito",
+      "day": "Día {{day}}",
+      "link": "Ver el panel completo"
+    },
     "path": {
       "title": "El camino de entrada",
       "steps": [
@@ -10018,7 +10022,7 @@
       "title": "Condiciones",
       "items": [
         "10% de los ingresos, solo cuando tu negocio gane. Sin participación accionaria.",
-        "Con cada 10x de tus ingresos, el acuerdo se renueva en las mismas condiciones, salvo que alguna de las partes decida terminarlo.",
+        "Cada vez que tus ingresos se multiplican por 10, el acuerdo se renueva en las mismas condiciones, salvo que alguna de las partes decida terminarlo.",
         "Hoy Aleksandr lo administra como custodio del colectivo; en parte financia las herramientas compartidas.",
         "Durante 2027–2028 sus roles pasan paso a paso a los miembros.",
         "Más adelante el 10% pasa a una entidad que los miembros gobiernan y que nadie puede vender."
