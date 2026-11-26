@@ -7,8 +7,14 @@
  * Esc, the close button, and a tap on the scrim restore focus to the opener.
  * Reduced motion uses a 150 ms crossfade in place of the rise.
  *
- * The face registry is in `src/lib/instrument/faces.ts`. The state machine is in
- * `src/lib/instrument/state.ts`.
+ * A face is one body turned forward (`src/lib/instrument/faces.ts`). Only air has one today: the Your
+ * AI panel below (header, conversation, Console, power-ups, first-open tour). The other slots are
+ * empty, and an empty body is shown but not offered as a door.
+ *
+ * The machine is `src/lib/instrument/state.ts`. Design law (GoBY §5): near-black, one accent ice blue,
+ * physical materials, no glow rings. AiOsPage is deliberately not imported: its backgrounds are the
+ * documented OOM / stacking-context hazard (see SpacesRail.tsx), and this component lives in the shell
+ * on every screen.
  */
 import { useCallback, useEffect, useId, useMemo, useReducer, useRef, useState } from "react";
 import { createPortal } from "react-dom";
