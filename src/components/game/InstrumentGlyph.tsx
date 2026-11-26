@@ -16,6 +16,7 @@ import { getVillageSky } from "@/lib/villageSky";
 import { SWIPE_OPEN_PX } from "@/lib/yourAiInstrument";
 import { GLYPH_PX, MOON_RADIUS, OCTAHEDRON_SCALE, RING_RADIUS, innerBodies, liftAbove, moonLitPolygon, type InnerBody } from "@/lib/instrument/glyph";
 import { createFrameLoop, glyphPose, ringSweep } from "@/lib/instrument/loop";
+import type { Glints } from "@/lib/instrument/glint";
 
 const WATER = getVillageElement("water").color;
 const MOON_REFRESH_MS = 15 * 60 * 1000;
@@ -51,9 +52,22 @@ const drawBody = (ctx: CanvasRenderingContext2D, c: number, b: InnerBody) => {
   ctx.restore();
 };
 
-type Frame = { spin: number; reduced: boolean; lit: Record<ElementKey, boolean>; carried: boolean; moon: number };
+const drawGlint = (ctx: CanvasRenderingContext2D, x: number, y: number, alpha: number) => {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = "#f2f6f8";
+  ctx.strokeStyle = "rgba(11,14,19,0.9)";
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(x, y, 3, 0, Math.PI * 2);
+  ctx.stroke();
+  ctx.fill();
+  ctx.restore();
+};
 
-const drawGlyph = (ctx: CanvasRenderingContext2D, { spin, reduced, lit, carried, moon }: Frame) => {
+type Frame = { spin: number; reduced: boolean; lit: Record<ElementKey, boolean>; glints: Glints; carried: boolean; moon: number };
+
+const drawGlyph = (ctx: CanvasRenderingContext2D, { spin, reduced, lit, glints, carried, moon }: Frame) => {
   const size = GLYPH_PX;
   const c = size / 2;
   ctx.clearRect(0, 0, size, size);
@@ -102,12 +116,18 @@ const drawGlyph = (ctx: CanvasRenderingContext2D, { spin, reduced, lit, carried,
   if (carried) {
     for (const b of innerBodies(lit)) drawBody(ctx, c, b);
     drawOctahedron(ctx, size, glyphPose(spin, reduced), OCTAHEDRON_SCALE, false);
+    // WP6: a glint on the body whose face changed, and only there. A static dot under reduced motion; it breathes otherwise.
+    for (const b of innerBodies(lit)) {
+      if (glints[b.element]) drawGlint(ctx, c + b.x + b.size / 2 - 3, c + b.y - b.size / 2 + 3, reduced ? 1 : 0.7 + 0.3 * Math.sin(spin * 2.4));
+    }
   }
 };
 
 type Props = {
   /** `litQuarters` for this player. */
   lit: Record<ElementKey, boolean>;
+  /** Bodies whose face changed since the player was here (WP6): a glint on each, nothing else. */
+  glints?: Glints;
   /** The crystal is in the glyph (false while it is raised in the open instrument). */
   carried: boolean;
   open: boolean;
@@ -119,7 +139,9 @@ type Props = {
   onSwipeUp: () => void;
 };
 
-const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, carried, open, reduced, label, avoid, onToggle, onSwipeUp }, ref) => {
+const NO_GLINTS: Glints = {};
+
+const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, glints = NO_GLINTS, carried, open, reduced, label, avoid, onToggle, onSwipeUp }, ref) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
   const setButton = useCallback(
@@ -207,8 +229,8 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, carried, op
   }, [open, applyLift]);
 
   const [moon, setMoon] = useState(() => getVillageSky().cycle);
-  const frameRef = useRef<Frame>({ spin: 0, reduced, lit, carried, moon });
-  frameRef.current = { ...frameRef.current, reduced, lit, carried, moon };
+  const frameRef = useRef<Frame>({ spin: 0, reduced, lit, glints, carried, moon });
+  frameRef.current = { ...frameRef.current, reduced, lit, glints, carried, moon };
   const redrawRef = useRef<() => void>(() => {});
   const swipeRef = useRef<{ x: number; y: number } | null>(null);
 
@@ -251,7 +273,7 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, carried, op
   // A change of inputs while the loop is stopped (reduced motion, hidden tab) still repaints.
   useEffect(() => {
     redrawRef.current();
-  }, [lit, carried, moon]);
+  }, [lit, glints, carried, moon]);
 
   const onTouchStart = (e: React.TouchEvent) => {
     swipeRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
@@ -280,6 +302,7 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, carried, op
       aria-keyshortcuts="I"
       data-testid="instrument-glyph"
       data-open={open ? "true" : "false"}
+      data-glints={Object.keys(glints).join(",")}
       style={{
         width: GLYPH_PX,
         height: GLYPH_PX,

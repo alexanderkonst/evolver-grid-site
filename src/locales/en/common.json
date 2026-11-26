@@ -7994,6 +7994,9 @@
     }
   },
   "characterSheet": {
+    "since": {
+      "title": "Since you were here"
+    },
     "stats": {
       "title": "Your stats",
       "qol": "QoL",
@@ -9858,6 +9861,9 @@
         "fire": "Fire is lit. The Academy and FMF are open to you.",
         "earth": "Earth is lit. The Workshop is open to you."
       }
+    },
+    "glint": {
+      "label": "Changed since you were here"
     },
     "sound": {
       "label": "Instrument sound",
