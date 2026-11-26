@@ -209,6 +209,17 @@ Source: `docs/01-vision/new_ui_paradigm_vision.md` (Bloom, the 8 primitives, Sta
 ### Anti-patterns kept out
 Neon/glow outlines, glassmorphism blur on the dial, more than one moving thing, particles, rainbow gradients behind text, any number or score on the rings.
 
+### Roast v2 of the concept with Sasha's ideas (2026-11-26 13:23; proposal, not approved for build)
+Sasha's inputs: background makes the dial physical; light through stone; Excalibur on a rock in the mountains joined to the village, peacock metallic light; new top-down landing view with the sword visible; the sword may lead to the top talent reveal («извлечь свою силу из камня»); dial from dry clay (his earlier carved clay surfaces). Sketches: [clay](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v11-clay.png) · [village + Excalibur](../../02-strategy/research/iconic-mechanics/mockups/village-excalibur-v1.jpg).
+1. **One material story across scales.** Mountain rock → sword in stone → clay dial with light coming through carved channels. Myth = product: your power is already in the stone; only you can pull it out. Strongest part; keep it.
+2. **Clay: dark fired, not raw.** Raw light clay (sketch, middle) kills the phase-brightness encoding and the centre text: light segments merge with the surface. Dark fired clay keeps the handmade warmth and the ≥3:1 contrast. Raw light clay can stay as the carved-symbol material elsewhere (cards, plaques).
+3. **Sword light within Bloom rules.** Peacock palette as thin-film iridescence on the metal plus light falling on the rock; no halo, no beams. On the map it is the only moving thing (slow shimmer, CSS overlay), clock breath stays inside the dial.
+4. **Scale.** The sketch's sword is taller than the minaret, which reads as a fantasy monument (kitsch risk). Recommend human-to-heroic scale (≈ 2–3× human) on a clearly visible rock; it is found by its light and a lit path, not by size.
+5. **Collision found.** On the phone the dial sits top-right; the sketch puts the sword top-right too, so the dial would cover it. Place the sword upper-left/centre ridge, or move the dial. Must be checked in the 390 px crop before anything ships.
+6. **Excalibur → top talent reveal** (core flow, needs Sasha's exact yes to a sketched flow): before the reveal the sword sits in the stone and the path glows; the reveal is pulling it; after it the stone is empty and the sword lives in the character profile (your talent). Map state, not ring state, so the rings rule (time and energy only) holds.
+7. **Performance.** New map replaces the old one at the same budget (WebP ≤ 250 KB desktop, separate phone crop), sword shimmer is a small transparent overlay, clay texture one shared ≤ 30 KB tile. No WebGL.
+8. **Order.** (a) dial in dark fired clay (concept step 1); (b) map v2: mountains + sword, placed clear of the dial, phone crop checked; (c) Excalibur → reveal flow sketch; build each only after Sasha's yes.
+
 ## Done when
 A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 
