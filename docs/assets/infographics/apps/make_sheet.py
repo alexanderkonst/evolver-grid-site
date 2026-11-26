@@ -38,7 +38,8 @@ def wrap(d, s, font, maxw):
 
 
 def main(out=os.path.join(HERE, "sheet.png")):
-    specs = sorted((specmod.load(p) for p in glob.glob(os.path.join(HERE, "*.card.yaml"))), key=lambda s: s.number)
+    specs = sorted((s for s in (specmod.load(p) for p in glob.glob(os.path.join(HERE, "*.card.yaml")))
+                    if s.get("icon_version") != 2), key=lambda s: s.number)       # v1 only; v2 has make_sheet_v2.py
     bold = ImageFont.truetype(os.path.join(FONTS, "SpaceGrotesk-700.ttf"), TEXT)
     reg = ImageFont.truetype(os.path.join(FONTS, "SpaceGrotesk-400.ttf"), TEXT)
     small = ImageFont.truetype(os.path.join(FONTS, "SpaceGrotesk-400.ttf"), 20)
