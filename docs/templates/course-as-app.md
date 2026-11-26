@@ -10,7 +10,7 @@
 - What emerges: a shelf of result-apps, each one a door into the game
 - As a part of the whole: the Meta-Template sees a transmission that keeps moving: what was received is condensed, and the condensed form becomes the next person's door
 - Siblings / repeats: [infographic.md](./infographic.md) (the cards), [course-from-source.md](./course-from-source.md) (building the course), PST 8 One Acorn, Every Magnification
-- Status · applied in · last reviewed: v0 · Potential, Crossing, Vision (courses exist), Nature, Your AI (to create) · 2026-11-25
+- Status · applied in · last reviewed: v0.1 (one button) · Potential, Crossing, Vision (courses exist), Nature, Your AI (to create) · 2026-11-25
 
 ## Invariant (draft, for Sasha)
 **The end is the door.** The result of one cycle, condensed into one image, closes the cycle (integration) and opens the next one (invitation). The same before→after shape repeats at every scale: the app icon, the teaser, the closing infographic, the course, the game.
@@ -28,6 +28,28 @@ The Training Center splits into the **Academy of Human Development** and the **M
 7. **Invite into the game.** Every course is an entry into the game; the ending explicitly invites the person in. (How: Sasha, pending.)
 8. **Price.** The first course is free; every course after it is paid (amounts: Sasha).
 9. **Update this template** after each app.
+
+## Run it with AI: one button
+*(Sasha, 2026-11-25: «обогати конкретикой того как его применить с помощью ИИ, облегчив человеку задачу вплоть до исчезновения всего кроме одной кнопки».)*
+
+### For the author: one button, **Make it an app**
+The author gives nothing but the course they already have (its data file `src/data/courses/<course>.ts`, or the folder of materials). Everything else the AI already knows or decides by default. The one button changes its label as it goes; there is never a second control.
+
+| Press | What the AI does, with no question to the author | Where it lives |
+|-------|---------------------------------------------------|----------------|
+| **Make it an app** | 1. Reads the course, writes the result as one before → after line. 2. Names the app: one word, the noun the result is about. 3. Tagline: verb in 3rd person + object, ≤6 words, same as the result line. 4. Icon spec: «before» drawn from the before half (QUIET/silver), «after» from the after half (one NEON), ≤7 elements a side. 5. Series: one card per module on the kit, all nodes labelled. 6. Teaser: the one card that shows the whole before → after. 7. Closing card: the full series condensed into one map. 8. Invite line at the end of the course. 9. Price: first app of the person = free, others = the default tier set once by the owner. Opens one @claude issue `Template: course-as-app`, lint must be PASS, `book_build.py --check` green. | kit: `docs/assets/infographics/apps/<id>.*`, `book/<course>/` |
+| **Sign** (same button) | Shows one sheet: tile, teaser, closing card, invite line. The author reads it. Any word they change in place, the AI re-renders. Pressing signs (course-from-source step 8: nothing ships unsigned). | contact sheet |
+| **Publish** (same button) | Adds the cards to the manifest, puts the tile on the third panel in its space (Academy or Mystery School, from the course's own level), switches the teaser on as a lead magnet. | `book.yaml`, app shelf |
+
+Defaults remove every fork: the author never picks a layout, a colour, a card count, a name or a price. If the AI cannot fill a field from the course, it asks one short question inside the sheet, never a form.
+
+### For the person who takes the course: one button, **Enter the game**
+- Teaser seen anywhere → one tap opens the course.
+- Course ends on the closing infographic → under it the only control is **Enter the game**. What they learnt becomes their first move in the game (the result line is carried in as their starting state).
+- Nothing to fill in: the platform already knows them from the course.
+
+### Status
+Spec only. Building the button is a separate @claude issue; the learner's **Enter the game** touches how a player enters the game, so it needs Sasha's yes to that exact change first.
 
 ## Applications
 | App | Tagline | Course source | Status |
