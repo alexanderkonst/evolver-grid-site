@@ -1,0 +1,16 @@
+id: nature-b
+kind: icon
+icon_version: 2
+chapter: apps
+number: 8
+of: 10
+title: Nature
+caption: Aligns You With Natural Rhythms
+skin: v4
+halo: AQUA
+text:
+  shape: "spiral of moon phases"
+  three_words: "moon-phase spiral"
+sources:
+  - issue #528 (app icons v2: choice sheet), replaces v1 from issue #506
+  - docs/templates/spec-handoff.md

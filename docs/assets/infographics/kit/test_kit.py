@@ -187,6 +187,94 @@ class AppIcons(unittest.TestCase):
             self.assertEqual([r[0] for r in rows if r[1] == "FAIL"], ["stroke"])
 
 
+V2_APPS = ("potential", "crossing", "vision", "nature", "your-ai")
+
+
+class IconLintV2(unittest.TestCase):
+    """Icons v2 (issue #528): one silhouette, <= 4 shapes, all on 'after', ~70% of the tile, one stroke weight."""
+    def v2(self, log):
+        spec = specmod.Spec(ICON_SPEC, icon_version=2)
+        return {r: (ok, d) for r, ok, d in lint.check_icon(IconFake(log), spec)}
+
+    def part(self, **kw):
+        base = dict(kind="dot", role="body", bbox=(160, 160, 880, 880), color=(200, 210, 222), container=None, side="after",
+                    stroke=100, geom=("disc", 512, 512, 360), group=None)
+        return {**base, **kw}
+
+    def good(self):
+        return [self.part(), self.part(color=NEON, bbox=(450, 450, 550, 550))]
+
+    def test_clean_v2_icon_passes_every_v2_rule(self):
+        r = self.v2(self.good())
+        self.assertEqual([k for k, (ok, _) in r.items() if not ok], [])
+        self.assertEqual(set(r), set(lint.ICON_V2_RULES))
+
+    def test_five_shapes_fail_but_a_group_counts_once(self):
+        five = self.good() + [self.part() for _ in range(3)]
+        ok, detail = self.v2(five)["elements"]
+        self.assertFalse(ok); self.assertIn("5 shapes", detail)
+        grouped = self.good() + [self.part(group="nodes") for _ in range(4)]
+        self.assertTrue(self.v2(grouped)["elements"][0])
+
+    def test_a_before_side_or_a_chevron_fails(self):
+        self.assertFalse(self.v2(self.good() + [self.part(side="before")])["elements"][0])
+        self.assertFalse(self.v2(self.good() + [self.part(side="mid")])["elements"][0])
+
+    def test_the_sign_must_fill_about_70_percent(self):
+        small = [self.part(bbox=(400, 400, 600, 600)), self.part(color=NEON, bbox=(450, 450, 550, 550))]
+        ok, detail = self.v2(small)["fill"]
+        self.assertFalse(ok); self.assertIn("20%", detail)
+        big = [self.part(bbox=(80, 80, 944, 944)), self.part(color=NEON, bbox=(450, 450, 550, 550))]
+        self.assertFalse(self.v2(big)["fill"][0])
+
+    def test_every_line_and_ring_has_the_one_weight(self):
+        from kit import icon
+        ln = self.part(kind="ln", stroke=icon.WEIGHT)
+        self.assertTrue(self.v2(self.good() + [ln])["weight"][0])
+        ok, detail = self.v2(self.good() + [dict(ln, stroke=icon.WEIGHT - 8)])["weight"]
+        self.assertFalse(ok); self.assertIn(f"{icon.WEIGHT - 8}px", detail)
+
+
+class AppIconsV2(unittest.TestCase):
+    ids = [f"{a}-{v}" for a in V2_APPS for v in "ab"]
+
+    def test_ten_specs_pass_lint_and_ship_1024_and_128(self):
+        from PIL import Image
+        for i in self.ids:
+            cid, rows = lint.lint_spec(os.path.join(INF, "apps", f"{i}.card.yaml"))
+            self.assertEqual([r for r in rows if r[1] != "PASS"], [], cid)
+            self.assertEqual([r[0] for r in rows], list(lint.ICON_V2_RULES), cid)
+            self.assertEqual(Image.open(os.path.join(INF, "apps", f"{i}.png")).size, (1024, 1024), i)
+            self.assertEqual(Image.open(os.path.join(INF, "apps", f"{i}@128.png")).size, (128, 128), i)
+
+    def test_one_halo_per_app_five_different_and_the_taglines_are_kept(self):
+        specs = {i: specmod.load(os.path.join(INF, "apps", f"{i}.card.yaml")) for i in self.ids}
+        for a in V2_APPS:
+            self.assertEqual(specs[f"{a}-a"]["halo"], specs[f"{a}-b"]["halo"], a)
+            self.assertEqual(specs[f"{a}-a"]["caption"], specs[f"{a}-b"]["caption"], a)
+        self.assertEqual(len({specs[f"{a}-a"]["halo"] for a in V2_APPS}), 5)
+        v1 = specmod.load(os.path.join(INF, "apps", "your-ai.card.yaml"))["caption"]
+        self.assertEqual(specs["your-ai-a"]["caption"], v1.replace("up", "Up"))
+
+    def test_the_v1_sheet_still_holds_only_the_five_v1_icons(self):
+        import glob
+        v1 = [p for p in glob.glob(os.path.join(INF, "apps", "*.card.yaml")) if specmod.load(p).get("icon_version") != 2]
+        self.assertEqual(len(v1), 5)
+
+    def test_a_heavier_line_fails_through_the_real_renderer(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for ext in (".card.yaml", ".py"):
+                with open(os.path.join(INF, "apps", "crossing-a" + ext), encoding="utf-8") as f:
+                    body = f.read()
+                if ext == ".py":
+                    body = body.replace("sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))",
+                                        f"sys.path.insert(0, {os.path.join(INF, 'apps')!r})").replace("r, W, K.INK, 255)", "r, 80, K.INK, 255)", 1)
+                with open(os.path.join(tmp, "heavy" + ext), "w", encoding="utf-8") as f:
+                    f.write(body.replace("id: crossing-a", "id: heavy"))
+            _, rows = lint.lint_spec(os.path.join(tmp, "heavy.card.yaml"))
+            self.assertIn("weight", [r[0] for r in rows if r[1] == "FAIL"])
+
+
 class BookSync(unittest.TestCase):
     def setUp(self):
         self.book = book_sync.parse_book(book_sync._read(book_sync.BOOK))

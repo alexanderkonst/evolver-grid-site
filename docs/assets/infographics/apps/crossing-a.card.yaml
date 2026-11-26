@@ -1,0 +1,16 @@
+id: crossing-a
+kind: icon
+icon_version: 2
+chapter: apps
+number: 3
+of: 10
+title: Crossing
+caption: Reconciles Consciousness with Science
+skin: v4
+halo: LAV
+text:
+  shape: "vesica lens: two overlapping circles, lens lit"
+  three_words: "overlapping circles, lens"
+sources:
+  - issue #528 (app icons v2: choice sheet), replaces v1 from issue #506
+  - docs/templates/spec-handoff.md
