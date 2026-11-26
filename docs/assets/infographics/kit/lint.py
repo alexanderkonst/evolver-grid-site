@@ -14,6 +14,15 @@ Rules (skin tokens in kit/skins.py):
   min-font     no text below the skin minimum (v4: 16 px at 1080 wide)
   footer       footer mark + findyourtoptalent.com present
   spec-fields  id, chapter, title, caption, skin, text, sources present; skin known
+
+App icons (spec `kind: icon`, see icon.py) are checked by `check_icon` with ICON_RULES instead:
+  palette      as above
+  accent       the skin accent used by exactly one element, and that element is on the "after" side
+  margins      every element inside the skin margin of the icon canvas
+  stroke       every shape >= 6 px at 128 px (a line / ring / dot / orb: its width or diameter; a fill: its narrowest span)
+  elements     at most 7 elements per side ("before", "after"), at most 1 between them ("mid")
+  no-text      no text drawn on an icon
+  spec-fields  as above
 """
 import os
 import re
@@ -24,6 +33,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from kit import skins, spec as specmod  # noqa: E402
 
 RULES = ("fit", "words", "palette", "accent", "margins", "min-font", "footer", "spec-fields")
+ICON_RULES = ("palette", "accent", "margins", "stroke", "elements", "no-text", "spec-fields")
+ICON_SMALL = 128        # px: the size an icon must still read at
+ICON_MIN_STROKE = 6     # px at ICON_SMALL
+ICON_MAX_PER_SIDE = 7
 TOL = 2  # px: rounding and glyph side-bearings
 FOOTER_TEXT = "findyourtoptalent.com"
 
@@ -104,6 +117,55 @@ def check(card, spec, skin=None):
     return _waived(out, spec)
 
 
+def check_icon(card, spec, skin=None):
+    """-> [(rule, ok, detail)] for a rendered icon (anything with `.log`, `.size`, `.skin`) and its spec.
+    Icon elements carry `side` ("before" | "after" | "mid") and `stroke` (px at canvas size)."""
+    skin = skin or card.skin
+    log, size = card.log, card.size
+    out = []
+
+    def add(rule, bad, ok_detail):
+        shown = "; ".join(bad[:3]) + (f"; +{len(bad) - 3} more" if len(bad) > 3 else "")
+        out.append((rule, not bad, ok_detail if not bad else shown))
+
+    allowed = skin.colors()
+    add("palette", [f"{_name(r)} uses {_rgb(r['color'])}" for r in log
+                    if isinstance(r["color"], (tuple, list)) and _rgb(r["color"]) not in allowed],
+        f"all colours in skin {skin.name!r} palette")
+
+    acc = skin.accent_colors()
+    used = [r for r in log if isinstance(r["color"], (tuple, list)) and _rgb(r["color"]) in acc]
+    bad = []
+    if len(used) != 1:
+        bad.append(f"{len(used)} elements use the accent, want exactly 1" + (": " + ", ".join(_name(r) for r in used) if used else ""))
+    elif used[0].get("side") != "after":
+        bad.append(f"the accent {_name(used[0])} is on the {used[0].get('side')!r} side, want 'after'")
+    add("accent", bad, "one accent element, on the after side")
+
+    m = skin.margin
+    bad = [f"{_name(r)} outside margin {m}px" for r in log
+           if r["bbox"][0] < m - TOL or r["bbox"][2] > size - m + TOL or r["bbox"][1] < m - TOL or r["bbox"][3] > size - m + TOL]
+    add("margins", bad, f"{len(log)} elements inside the {m}px margin")
+
+    k = ICON_SMALL / size
+    bad = [f"{_name(r)} is {r['stroke'] * k:.1f}px at {ICON_SMALL}px, minimum {ICON_MIN_STROKE}px"
+           for r in log if r.get("stroke") is not None and r["stroke"] * k < ICON_MIN_STROKE - 1e-6]
+    add("stroke", bad, f"thinnest shape >= {ICON_MIN_STROKE}px at {ICON_SMALL}px "
+        f"({min((r['stroke'] for r in log if r.get('stroke') is not None), default=0) * k:.1f}px)")
+
+    counts = {s: sum(1 for r in log if r.get("side") == s) for s in ("before", "after", "mid")}
+    bad = [f"{s}: {n} elements, limit {ICON_MAX_PER_SIDE}" for s, n in counts.items() if s != "mid" and n > ICON_MAX_PER_SIDE]
+    bad += [f"mid: {counts['mid']} elements, limit 1"] if counts["mid"] > 1 else []
+    add("elements", bad, f"before {counts['before']}, after {counts['after']}, mid {counts['mid']} (limit {ICON_MAX_PER_SIDE} per side)")
+
+    texts = [r for r in log if r["kind"] == "text"]
+    add("no-text", [f'text on an icon: "{r["text"]}"' for r in texts], "no text drawn")
+
+    missing = specmod.missing(spec)
+    add("spec-fields", [f"missing: {', '.join(missing)}"] if missing else [], "all required spec fields present")
+    return _waived(out, spec)
+
+
 def _waived(out, spec):
     """A spec may waive a rule for a ported legacy card: `waive: {fit: "why"}`. A waived FAIL passes and says so.
     `words` has its own waiver (`max_words`). Waivers never hide a rule that passes, and an unknown rule is an error."""
@@ -128,17 +190,20 @@ def lint_spec(path):
     except Exception as e:  # unreadable spec
         return "?", [("spec-fields", "FAIL", f"cannot read spec: {e}")] + [(r, "SKIP", "no spec") for r in RULES if r != "spec-fields"]
     cid = spec.get("id", os.path.basename(path))
+    icon = spec.get("kind") == "icon"
+    RS = ICON_RULES if icon else RULES
     missing = specmod.missing(spec)
     needed = {"title", "caption", "skin", "text"}
     if needed & {m.split(" ")[0] for m in missing}:
-        return cid, [(r, "FAIL" if r == "spec-fields" else "SKIP", f"missing: {', '.join(missing)}" if r == "spec-fields" else "cannot render without spec fields") for r in RULES]
+        return cid, [(r, "FAIL" if r == "spec-fields" else "SKIP", f"missing: {', '.join(missing)}" if r == "spec-fields" else "cannot render without spec fields") for r in RS]
     try:
         with tempfile.TemporaryDirectory() as tmp:
             card, _ = render.render(spec, os.path.join(tmp, "card.png"))
     except Exception as e:
-        return cid, [(r, "FAIL" if r == "fit" else "SKIP", f"render failed: {type(e).__name__}: {e}" if r == "fit" else "render failed") for r in RULES]
-    res = {r: (ok, d) for r, ok, d in check(card, spec)}
-    return cid, [(r, "PASS" if res[r][0] else "FAIL", res[r][1]) for r in RULES]
+        first = RS[0]
+        return cid, [(r, "FAIL" if r == first else "SKIP", f"render failed: {type(e).__name__}: {e}" if r == first else "render failed") for r in RS]
+    res = {r: (ok, d) for r, ok, d in (check_icon if icon else check)(card, spec)}
+    return cid, [(r, "PASS" if res[r][0] else "FAIL", res[r][1]) for r in RS]
 
 
 def main(paths):

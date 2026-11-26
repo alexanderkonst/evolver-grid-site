@@ -11,6 +11,7 @@ Square (1080×1080) grayscale cards for Find Your Top Talent, all drawn in code 
 | `assets/` | FYT octahedron mark, gold original and grayscale |
 | `speedrun-matching/` | 1 same direction, opposite gifts (collaborators) · 2 who complements you · 3 professional matchmaking tools. `python make.py` from inside the folder |
 | `solids/` | cover: Sasha's handmade platonic solids. `cutout.py` → `still.py` (solids-handmade.png); `turn.py` (solids-turning.mp4/.gif, 8 s seamless loop) |
+| `apps/` | app icons v1 (Potential, Crossing, Vision, Nature, Your AI): 1024 + @128 PNGs, specs, `sheet.png`. Rules: [kit/README.md](kit/README.md#app-icons) |
 | `carousel/` | LinkedIn carousel v1 (cover + cards 1–3) and caption draft |
 
 Requires: `pip install matplotlib pillow numpy scipy` (+ `rembg[cpu] onnxruntime` for cutout.py; ffmpeg for turn.py).

@@ -15,6 +15,7 @@ Needs `pip install pillow numpy pyyaml` (matplotlib + scipy only for the old `fy
 | `sheet.py` | one contact sheet PNG per batch: grid, each card with id + title |
 | `compare.py` | mean abs pixel diff of a ported card against the engine-v4 render it came from |
 | `ci.py`, `infographics.workflow.yml` | what the PR workflow runs (see CI below) |
+| `icon.py` | the app-icon canvas (1024×1024, before / after, no text, no footer) on the same V4 primitives; see App icons below |
 | `mpl.py` | matplotlib side of the `grayscale` skin; `../fyt_style.py` is a shim onto it |
 | `proof/`, `fixtures/` | two ported cards + contact sheet; a deliberately broken card lint must FAIL |
 
@@ -145,6 +146,26 @@ Generated: `infographicBook.ts`, the `<!-- book:begin … -->` blocks of `BOOK.m
 1. Edit the card's `*.card.yaml` (text, title, caption) or `*.py` (drawing).
 2. `python3 kit/book_build.py`: only that card re-renders; it prints the mean pixel diff against the previous PNG. A title or caption change also moves the reader data and the `BOOK.md` list.
 3. If the card is a law (`III.01` ...), also edit its hand-written `### III.01` section in `BOOK.md` (title, Subtitle); `--check` fails until they agree.
+
+## App icons
+
+Square icons for the course-apps (Potential, Crossing, Vision, Nature, Your AI) live in [`apps/`](../apps/): `<id>.card.yaml` (`kind: icon`), `<id>.py`, `<id>.png` (1024), `<id>@128.png`, plus `sheet.png` (five mock tiles, Name bold and tagline at one size, and the five icons at 64 px; `python3 apps/make_sheet.py`).
+
+Each icon is one idea as before → after: before on the left in QUIET / silver, after on the right with the one NEON accent, a bold chevron and a dawn bloom between. No text. A script builds `K`-style: `c = icon.card(spec)`, then `with c.side("before"): ...` / `with c.side("after"): ...` using `orb`, `dot`, `ring`, `path`, `fill`, `iri_fill`, `chevron` (call list in `icon.py`). The spec's `title` is the tile's **Name**, `caption` its tagline, `text.before` / `text.after` say the idea in words.
+
+`python3 kit/lint.py apps/<id>.card.yaml` runs the icon rules instead of the card rules:
+
+| Rule | Fails when |
+|---|---|
+| `palette` | a colour outside the v4 palette |
+| `accent` | NEON is used by anything other than exactly one element, or that element is not on the after side |
+| `margins` | an element outside the 80 px margin of the 1024 canvas |
+| `stroke` | a shape under 6 px at 128 px (48 px at 1024): a line or ring by its width, a dot or orb by its diameter, a fill by `min_dim`, its narrowest span (the script states it; lint trusts it) |
+| `elements` | more than 7 elements on one side, or more than 1 between them |
+| `no-text` | any text drawn |
+| `spec-fields` | as for cards |
+
+`kit/ci.py` and `book_sync` pick the icon specs up like any other (`book_sync` SKIPs them: not Book ids).
 
 ## Old scripts
 
