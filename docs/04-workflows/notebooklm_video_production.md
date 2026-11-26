@@ -3,8 +3,8 @@
 
 # NotebookLM Video Production Workflow
 
-> **Version:** 1.1  
-> **Last Updated:** 2026-11-26 (Runbook section added; the rest is unchanged since 2026-02-05)  
+> **Version:** 1.1.1  
+> **Last Updated:** 2026-11-26 (Runbook section added and patched to v1.1.1; the rest is unchanged since 2026-02-05)  
 > **Status:** Optimized
 
 ## Overview
@@ -15,7 +15,7 @@ Batch production of educational videos from micro-learning modules using Noteboo
 
 ## Runbook: 8 actions per module
 
-**Runbook v1.1 · last changed: 2026-11-26 · last verified: 2026-11-26** (Sasha's run) · change log: [Runbook changelog](#runbook-changelog)
+**Runbook v1.1.1 · last changed: 2026-11-26 · last verified: 2026-11-26** (Sasha's live run, 13:10 MST, ADP Body, 2 modules) · change log: [Runbook changelog](#runbook-changelog)
 
 *Sasha's own workflow, added 2026-11-26 (chat, 11:55 MST; issue #525). It is the click level under [course-update.md](../templates/course-update.md) step 5 and [course-from-source.md](../templates/course-from-source.md) → Production line, step 2. Those files say what and why. This section says which button.*
 
@@ -40,14 +40,18 @@ Key: don't wait between steps, no snapshot after each click.
 
 | # | Goal (what the action does) | Current label / action | Last verified |
 |---|---|---|---|
-| 1 | open a new notebook | click "Create new" | 2026-11-26 |
-| 2 | choose pasted text as the source | click "Copied text" | 2026-11-26 |
-| 3 | add the episode text | type (paste) the episode text, pre-loaded from the course's content file | 2026-11-26 |
-| 4 | save the source | click "Insert" | 2026-11-26 |
-| 5 | name the notebook | Cmd+A on the title → type `<episode code> <Title> v<course version>` | 2026-11-26 |
-| 6 | open the video settings | click "Customize Video Overview" (the edit icon) | 2026-11-26 |
-| 7 | set format and prompts | click "Custom" → type the style line → type the focus line | 2026-11-26 |
-| 8 | start generation | click "Generate" → start the next module at once | 2026-11-26 |
+| 1 | open a new notebook | click **"New notebook"** (was "Create new") | 2026-11-26 |
+| 2 | choose pasted text as the source | click **"Add source"** → **"Copied text"** | 2026-11-26 |
+| 3 | add the episode text | paste the episode text, pre-loaded from the course's content file | 2026-11-26 |
+| 4 | save the source | click **"Insert"** | 2026-11-26 |
+| 5 | name the notebook | in the **notebook title field**, type `<episode code> <Title> v<course version>` | 2026-11-26 |
+| 6 | open the video settings | in Studio, click **"Video Overview"**: it opens **"Customize Video Overview"** directly (no pencil / edit-icon step) | 2026-11-26 |
+| 7 | set format and prompts | Format **"Explainer"** → **"Choose visual style"** → **"Custom"** → type the style line in the **"Describe a custom visual style"** box → type the focus line in the **"What should the video focus on?"** box | 2026-11-26 |
+| 8 | start generation | click **"Generate now"** → start the next module at once | 2026-11-26 |
+
+**Harvest (not one of the 8 actions; Phase 2 below).** Open the notebook, on the video card click **"More"** → **"Download"**. Last verified 2026-11-26.
+
+**Known quirk.** The generation status card can freeze at "Wrapping things up...". One page reload shows the finished video. Reload once before treating the generation as stuck.
 
 ### Relevance sort (our synthesis, 2026-11-26)
 - **Take as is.**
@@ -66,6 +70,9 @@ Key: don't wait between steps, no snapshot after each click.
 ### Measure it
 Sasha's hypothesis (2026-11-26, [meta-template.md](../templates/meta-template.md) §7) is that a click-level runbook makes the agent faster and cheaper. For each run, log **minutes per module and tool calls per module**, from action 1 to the end-of-module check, before the runbook (goal-level steps only) and with it. The log goes in the worked example of the template that ran it (course-update §5). Baseline from February: about 9 min per module serial with a snapshot after every action, about 90 s optimized (§Optimization history). Tool calls were not counted then.
 
+### Open
+- **Video length is not controlled by the focus box.** Measured 2026-11-26 (Sasha's live run, ADP Body, 2 modules): a focus line that asked for 90 s still produced videos of **2:59** and **3:11**. Next run: test a shorter source text, or an explicit "under 90 seconds" line in the focus box, and log the resulting length. Until then the 90-second constraint in Phase 1 is a request, not a guarantee, and the duration gate in [course-update.md](../templates/course-update.md) step 5 will trip on these videos.
+
 
 ### When the UI drifts
 *Sasha, 2026-11-26 12:02 MST: «интерфейсы постоянно меняются, это должна быть часть изменения шаблонов, петля обратной связи обратно в шаблон, с изменением версии» (interfaces change all the time; this must be part of how templates change: a feedback loop back into the template, with a version change). The general form is [course-update.md](../templates/course-update.md) step 10; this is it for this runbook.*
@@ -73,7 +80,7 @@ Sasha's hypothesis (2026-11-26, [meta-template.md](../templates/meta-template.md
 1. **Finish first.** An action that does not match the UI (label renamed, button moved, extra dialog) never stops the run: finish the module by the Fallback.
 2. **Name it.** Write, in the job's report, `Template change: runbook step N, old → new`, e.g. `Template change: NotebookLM runbook action 6, "Customize Video Overview" → "Customize"`.
 3. **Fix it in the same job.** Edit the row in [The 8 actions, current labels](#the-8-actions-current-labels) (new label, today's date), bump the runbook version, add a row to the [Runbook changelog](#runbook-changelog) naming the run that found it.
-4. **Version.** A label or UI-path fix = patch (v1.1 → v1.1.1); a changed order of actions or a new check = minor (v1.1 → v1.2); a new phase or a changed end-of-module check = major (v1.1 → v2.0).
+4. **Version.** A label or UI-path fix = patch (v1.1.1 → v1.1.2); a changed order of actions or a new check = minor (v1.1.1 → v1.2); a new phase or a changed end-of-module check = major (v1.1.1 → v2.0).
 5. **Last verified.** On every successful run, even with no change, move `last verified` in the Runbook header (and on the rows the run used) to today.
 
 ### Runbook changelog
@@ -82,6 +89,7 @@ Sasha's hypothesis (2026-11-26, [meta-template.md](../templates/meta-template.md
 |---|---|---|---|
 | 2026-02-05 | v1.0 | the February 8-step batch (Phase 1 below) | February production runs (§Optimization history) |
 | 2026-11-26 | v1.1 | Sasha's 8 actions verbatim, relevance sort, versioned notebook name, measurement; YouTube unlisted by default with no approval; current-labels table and the UI drift loop | Sasha, issue #525 (11:55 and 12:02 MST) |
+| 2026-11-26 | v1.1.1 | **patch**, first live run of the UI drift loop (13:10 MST, ADP Body, 2 modules). Labels: action 1 "Create new" → "New notebook"; action 2 adds "Add source" before "Copied text"; action 5 renames in the notebook title field; action 6 "Video Overview" in Studio opens "Customize Video Overview" directly (no pencil step); action 7 Format "Explainer" → "Choose visual style" → "Custom" → "Describe a custom visual style" box → "What should the video focus on?" box; action 8 "Generate" → "Generate now"; harvest: video card → "More" → "Download". Quirk: status card can freeze at "Wrapping things up..." (reload once). Open: video length not controlled by the focus box (2:59 and 3:11 for a "90 s" prompt). `last verified` → 2026-11-26 | Sasha's live run, issue #525 / PR #538 (13:10 MST) |
 
 ---
 
@@ -114,6 +122,8 @@ Sasha's hypothesis (2026-11-26, [meta-template.md](../templates/meta-template.md
 ### Video Overview Settings
 
 **⚠️ CRITICAL: 90-SECOND MAXIMUM DURATION**
+
+*Measured 2026-11-26: the focus box does not enforce length (2:59 and 3:11 for a "90 s" prompt). See Runbook → Open.*
 
 When clicking "Generate" for Video Overview:
 1. Click the **edit icon (⚙️)** next to the Generate button
@@ -154,7 +164,7 @@ After ~15-20 minutes from first generation:
 
 1. Navigate to NotebookLM homepage
 2. Open each notebook with completed video
-3. Click **Video Overview** → **Download**
+3. On the video card click **"More"** → **"Download"** (verified 2026-11-26; if the status card is frozen at "Wrapping things up...", reload once)
 4. Save with naming convention: `F01E04 — Five Paths of Growth — Planetary OS v1.0.mp4`
 
 ---
@@ -353,6 +363,7 @@ Task: "Create NotebookLM notebooks and trigger video generation for modules F01E
 |-------|----------|
 | Tab disconnected | `browser:tabs` → get new targetId |
 | Source not inserted | Re-paste, ensure dialog is open |
+| Status card frozen at "Wrapping things up..." | Reload the page once; the finished video shows (2026-11-26) |
 | Video generation stuck | Refresh notebook, retry |
 | Wrong visual style | Re-open customize, select Custom again |
 
