@@ -9790,6 +9790,7 @@
     "limitNote": "Llegaste al límite gratuito de hoy de Tu IA. Se renueva mañana.",
     "limitPlaceholder": "Se alcanzó el límite gratuito de hoy",
     "turnsRemaining_one": "{{count}} turno disponible hoy",
+    "turnsRemaining_many": "{{count}} turnos disponibles hoy",
     "turnsRemaining_other": "{{count}} turnos disponibles hoy",
     "go": "Ir",
     "nextSteps": "Próximos pasos sugeridos",
