@@ -90,13 +90,25 @@ describe("placeRooms", () => {
     }
   });
 
-  it("the Collective's pane lists Founder Collective ahead of the builder rooms, in order", () => {
+  it("the Collective's pane lists Founder Collective first, then the build-business step, then Canvas and the builder rooms, in order", () => {
     const { rooms } = placeRooms(at("workshop"), everythingDone());
-    // Canvas shares /ubb with the build-business step row, so that one route is listed once, as the step.
-    const staticRooms = rooms.filter((r) => PLACE_ROOMS.workshop?.some((s) => s.id === r.id));
-    expect(staticRooms.map((r) => r.id)).toEqual(["founder-collective", "ubb-session", "ubb-marketing", "ubb-distribution", "ubb-communications", "ubb-landing-page"]);
-    expect(staticRooms[0]).toMatchObject({ name: "Founder Collective", to: "/collective", state: "open" });
+    expect(rooms.map((r) => r.id)).toEqual(["founder-collective", "build-business", "ubb-canvas", "ubb-session", "ubb-marketing", "ubb-distribution", "ubb-communications", "ubb-landing-page"]);
+    expect(rooms[0]).toMatchObject({ name: "Founder Collective", to: "/collective", state: "open" });
+    expect(rooms.find((r) => r.id === "ubb-canvas")).toMatchObject({ name: "Canvas", state: "open" });
     expect(PLACE_ROOMS.workshop?.map((r) => r.id)).toEqual(["founder-collective", "ubb-canvas", "ubb-session", "ubb-marketing", "ubb-distribution", "ubb-communications", "ubb-landing-page"]);
+  });
+
+  it("Canvas keeps its own route, distinct from the build-business step's /ubb, so both rows show; the route is still the /ubb page", () => {
+    const canvas = PLACE_ROOMS.workshop!.find((r) => r.id === "ubb-canvas")!;
+    expect(canvas.to).not.toBe("/ubb");
+    expect(canvas.to.split("#")[0]).toBe("/ubb");
+  });
+
+  it("a closed Collective lists Founder Collective first too, closed with its own line", () => {
+    const { rooms } = placeRooms(at("workshop"), guest());
+    expect(rooms[0].id).toBe("founder-collective");
+    expect(rooms[0].state).toBe("closed");
+    expect(rooms.map((r) => r.id)).toContain("ubb-canvas");
   });
 
   it("an open place's rooms are open", () => {

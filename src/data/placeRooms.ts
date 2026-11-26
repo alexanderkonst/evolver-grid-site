@@ -26,6 +26,8 @@ export type StaticRoom = {
   result: string;
   /** Only a signed-in player has this room (a guest is not shown a door that asks them to sign up). */
   signedInOnly?: boolean;
+  /** Listed ahead of the place's Journey step rows, not after them (the Collective's Founder Collective). */
+  first?: boolean;
 };
 
 export const PLACE_ROOMS: Partial<Record<VillagePlaceKey, readonly StaticRoom[]>> = {
@@ -52,8 +54,9 @@ export const PLACE_ROOMS: Partial<Record<VillagePlaceKey, readonly StaticRoom[]>
     { id: "consciousness-meets-science", name: "Consciousness Meets Science", to: CMS_COURSE_PATH, result: "a course where consciousness meets science" },
   ],
   workshop: [
-    { id: "founder-collective", name: "Founder Collective", to: "/collective", result: "founders with working businesses, by invitation" },
-    { id: "ubb-canvas", name: "Canvas", to: "/ubb", result: "your business on one canvas: uniqueness, myth, tribe, pain, promise" },
+    { id: "founder-collective", name: "Founder Collective", to: "/collective", result: "founders with working businesses, by invitation", first: true },
+    // "#canvas": the canvas is the /ubb index, the same route as the build-business step row; a distinct URL keeps both rows in the pane.
+    { id: "ubb-canvas", name: "Canvas", to: "/ubb#canvas", result: "your business on one canvas: uniqueness, myth, tribe, pain, promise" },
     { id: "ubb-session", name: "1st Session Design", to: "/ubb/session", result: "your first paid session, designed" },
     { id: "ubb-marketing", name: "Marketing", to: "/ubb/marketing", result: "your core belief, your packaging and a frictionless purchase" },
     { id: "ubb-distribution", name: "Distribution", to: "/ubb/distribution", result: "how your offer reaches people, is delivered and spreads" },

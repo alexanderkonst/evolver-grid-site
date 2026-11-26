@@ -1,5 +1,5 @@
 import type { TFunction } from "i18next";
-import { PLACE_ROOMS } from "@/data/placeRooms";
+import { PLACE_ROOMS, type StaticRoom } from "@/data/placeRooms";
 import type { VillagePlace } from "@/data/villagePlaces";
 import { QUEST_STEP_IDS, moduleClosedLine } from "@/data/journeyModules";
 import { journeyResultText, journeyRows, questRows, type JourneyRow, type QuestRow } from "@/lib/questBoard";
@@ -81,6 +81,27 @@ export const placeRooms = (
   const quests = questRows(save, t);
   const rooms: PlaceRoomRow[] = [];
 
+  const placeStatic = PLACE_ROOMS[place.key] ?? [];
+  const seen = new Set<string>();
+  const staticRows = (list: readonly StaticRoom[]) => {
+    for (const room of list) {
+      if (room.signedInOnly && !signedIn) continue;
+      if (seen.has(room.to)) continue;
+      seen.add(room.to);
+      rooms.push({
+        id: room.id,
+        name: tr(t, `village.room.${room.id}.name`, room.name),
+        line: placeClosed
+          ? lockOf(tr(t, `village.room.${room.id}.result`, room.result), `village.room.${room.id}.closed`)
+          : tr(t, `village.room.${room.id}.result`, room.result),
+        state: placeClosed ? "closed" : "open",
+        to: room.to,
+      });
+    }
+  };
+  // Rooms marked `first` lead the pane, ahead of the place's Journey steps.
+  staticRows(placeStatic.filter((r) => r.first));
+
   // Rooms the place holds as Journey steps or quests: read, not restated.
   for (const req of place.rule.steps ?? []) {
     const jr = journey.find((r) => r.id === req);
@@ -102,21 +123,8 @@ export const placeRooms = (
   }
 
   // The routes the place already opens. One route is one room, whoever lists it first.
-  const seen = new Set(rooms.map((r) => r.to));
-  for (const room of PLACE_ROOMS[place.key] ?? []) {
-    if (room.signedInOnly && !signedIn) continue;
-    if (seen.has(room.to)) continue;
-    seen.add(room.to);
-    rooms.push({
-      id: room.id,
-      name: tr(t, `village.room.${room.id}.name`, room.name),
-      line: placeClosed
-        ? lockOf(tr(t, `village.room.${room.id}.result`, room.result), `village.room.${room.id}.closed`)
-        : tr(t, `village.room.${room.id}.result`, room.result),
-      state: placeClosed ? "closed" : "open",
-      to: room.to,
-    });
-  }
+  for (const r of rooms) seen.add(r.to);
+  staticRows(placeStatic.filter((r) => !r.first));
 
   // A place with a single door (Your AI, FMF, Town Hall) is one room: the module behind its ENTER.
   if (rooms.length === 0) {
