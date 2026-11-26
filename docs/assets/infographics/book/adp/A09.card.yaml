@@ -1,0 +1,14 @@
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+id: A09
+chapter: "1"
+number: 9
+of: 10
+title: "Body"
+caption: "Vitality is already inside you. Build the physical foundation and learn to listen to your body."
+skin: v4
+text:
+  eyebrow: Growth
+sources:
+  - docs/08-content/activate_your_dormant_potential_transcripts.md (F01E05, B01E01, B01E02, B01E03)
+  - src/data/courses/activateYourDormantPotential.ts
+  - issue #487 (title and line verbatim)

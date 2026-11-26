@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { useSessionUserId } from "@/hooks/useSessionUserId";
 
@@ -7,9 +8,15 @@ export interface CollectiveMembership {
   loading: boolean;
 }
 
+// Untyped on purpose: the `collective_member` role is not in the generated types until
+// migrations 20261125210000/210100/210200 are applied. Remove this cast (use `supabase`
+// directly) once they are applied and the types are regenerated.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const db = supabase as unknown as SupabaseClient<any>;
+
 /** The query itself, apart from React so it can be tested: does this user hold the role? */
 export async function fetchIsCollectiveMember(userId: string): Promise<boolean> {
-  const { data, error } = await supabase
+  const { data, error } = await db
     .from("user_roles")
     .select("role")
     .eq("user_id", userId)
