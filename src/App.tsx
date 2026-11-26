@@ -342,6 +342,7 @@ function ExternalRedirect({ to }: { to: string }) {
 // Space pages - renamed: GROW, LEARN, MEET, COLLABORATE, BUILD, OFFER
 const GrowSpace = lazy(() => import("./pages/spaces/ProfileSpace")); // was Profile
 const LearnSpace = lazy(() => import("./pages/spaces/TransformationSpace")); // was Transformation
+const CourseStorePage = lazy(() => import("./pages/spaces/CourseStorePage")); // /game/learn/courses — the educational app store (#524), public
 const ElementsModel = lazy(() => import("./pages/spaces/transformation/Elements")); // /game/learn/elements — the five elements in 3D (C1)
 const InfographicBook = lazy(() => import("./pages/spaces/transformation/InfographicBook")); // /game/learn/book: Book of Infographics reader (C4), public
 const CourseSales = lazy(() => import("./pages/CourseSales")); // /academy/:slug — one sales page per course (Sasha 2026-10-30)
@@ -878,6 +879,7 @@ const App = () => (
                       for the account only at «Save». The sub-routes below still need it. */}
                   <Route path="/game/learn" element={<LearnSpace />} />
                   {/* C1: the five elements as a playable 3D model. Public, like /game/learn. */}
+                  <Route path="/game/learn/courses" element={<CourseStorePage />} />
                   <Route path="/game/learn/elements" element={<ElementsModel />} />
                   <Route path="/game/learn/book" element={<InfographicBook />} />
                   <Route path="/game/learn/today" element={<RequireAuth><TodaysPractice /></RequireAuth>} />
