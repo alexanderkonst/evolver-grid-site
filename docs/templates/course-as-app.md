@@ -12,8 +12,14 @@
 - Siblings / repeats: [infographic.md](./infographic.md) (the cards), [course-from-source.md](./course-from-source.md) (building the course), PST 8 One Acorn, Every Magnification
 - Status · applied in · last reviewed: v0.1 (one button) · Potential, Crossing, Vision (courses exist), Nature, Your AI (to create) · 2026-11-25
 
-## Invariant (draft, for Sasha)
-**The end is the door.** The result of one cycle, condensed into one image, closes the cycle (integration) and opens the next one (invitation). The same before→after shape repeats at every scale: the app icon, the teaser, the closing infographic, the course, the game.
+## Invariant (draft v2, for Sasha)
+**One unit: a packaged shift, before → after.** It can be shown (an icon, a teaser, a closing card), walked (a course) or pressed (a button). The end of one person's shift, condensed into one image, is the door for the next person.
+
+## App store for AI and the button console
+*(Sasha, 2026-11-25 18:12, his words: «новый тип аппстора, применимый к ИИ, и приложения там именно такие»; «значит нужно обеспечивать качество. Значит пока что я, и далее другие люди»; «ИИ интерфейс упрощается до КОНСОЛИ кнопок. Можно задать вопрос, то есть послать человеческий сигнал, а можно нажать кнопку, которая берёт на себя целый пласт работы, и чем дальше, тем более невероятные пласты».)*
+- **Apps** in this store are result-apps as above: one icon before → after, one name, one tagline.
+- **Quality:** every app is signed by a curator before it ships. Now: Sasha. Later: other people.
+- **Console:** the AI interface has two kinds of input only: a question (a human signal) or a button (a whole layer of work). Over time buttons take on bigger and bigger layers.
 
 ## Two spaces
 The Training Center splits into the **Academy of Human Development** and the **Mystery School**. Which app lives where: open.
