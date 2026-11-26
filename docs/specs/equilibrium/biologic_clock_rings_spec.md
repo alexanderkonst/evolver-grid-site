@@ -221,6 +221,18 @@ Sasha's inputs: background makes the dial physical; light through stone; Excalib
 9. **Moonlit dry clay** (Sasha 2026-11-26 13:38, replaces «dark fired clay» in (a)): raw dry clay under cool moonlight; the surface brightness and the silver sheen follow tonight's real moon illumination (Full Moon brightest, New Moon nearly dark, only the light channels glow); sheen sits on the moon's side of the sky. Contrast holds in all phases ([sketch](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v12-moonlit.png)). Same cost: one clay tile, tint and sheen in CSS/SVG from the engine's illumination.
 8. **Order.** (a) dial in moonlit dry clay (item 9) (concept step 1); (b) map v2: mountains + sword, placed clear of the dial, phone crop checked; (c) Excalibur → reveal flow sketch; build each only after Sasha's yes.
 
+### Craft layer: moonlit dry clay with inlaid light (proposal 2026-11-26 13:44; sketch [v13](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v13-inlay.png) · [phone](../../02-strategy/research/iconic-mechanics/mockups/bioclock-v13-phone.png); not approved for build)
+**Idea.** The dial is a disc thrown on a potter's wheel; the rings are carved into it like a craftsman's grooves, and the light lives in inlays set into those grooves. Precision from Japanese craft, analog feel from the wheel and the hand.
+1. **Base drawing = the potter's wheel (rokuro).** Faint concentric throwing lines with a slight hand wobble; the rings continue the wheel's own circles, so the clock looks born from the clay, not printed on it. Thrown raised lip at the edge instead of a painted gold rim.
+2. **Dry clay, photoreal.** Multi-scale grain (6 octaves), pinholes, warm clay albedo under cool moonlight, carved grooves with shadow inside (ambient occlusion), surface lit by a real normal map from one light.
+3. **Micro-glints.** Dry clay carries mica and quartz: about 1% of grains are tiny facets that catch the moon and sparkle; brighter at Full Moon, almost none at New Moon. Desktop pointer: glints shift slightly with the light angle.
+4. **Inlay (zōgan / raden logic).** Lit segment = translucent stone set into the groove: a black urushi hairline around it, a soft core of light inside (subsurface), one thin bevel glint on the edge facing the moon. Light flow gradient stays.
+5. **Lived = silver wire (nunome zōgan).** The empty groove keeps a single silver wire along its centre: the v7 «thin line» as metal, not paint.
+6. **Hand-made ends.** Segment ends are hand-cut: tiny irregular angle (±0.1°), 0.9-unit bevel, never perfectly radial. Wabi-sabi, read only up close.
+7. **Words impressed, not floating.** Centre words in dark ink (#2b2620; week name in deep chakra tone), like a stamped seal in clay; no white text on clay.
+8. **Moonlight drives all of it.** Clay brightness, glint count and sheen side follow tonight's illumination (item 9 of the roast).
+**Architecture.** Ring geometry is fixed (8 + 7 segments), so carving, wheel lines, grain and glints are baked once into one clay tile; only the state (which inlays glow, where now is) is live SVG. Measured: baked tile at 280 px WebP = 17 KB. Moonlight = CSS filter/opacity on that tile plus one sparkle layer. No WebGL, no runtime filters, no network.
+
 ## Done when
 A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 
