@@ -51,7 +51,7 @@ describe("quarter signs (§25.14)", () => {
 
   it("names every sign «<Element> quarter»", () => {
     const html = rail();
-    for (const [el, name] of [["ether", "Ether quarter"], ["air", "Air quarter"], ["water", "Water quarter"], ["fire", "Fire quarter"], ["earth", "Earth quarter"]]) {
+    for (const [el, name] of [["ether", "Ether quarter"], ["water", "Water quarter"], ["fire", "Fire quarter"], ["earth", "Earth quarter"]]) {
       expect(html).toContain(`aria-label="${name}"`);
       expect(html).toContain(`data-quarter-sign="${el}"`);
     }
@@ -62,7 +62,7 @@ describe("quarter signs (§25.14)", () => {
     const html = rail({ placeStates: closedEarth });
     const lit = (el: string) => html.match(new RegExp(`<svg[^>]*data-quarter-sign="${el}"[^>]*data-lit="(\\w+)"`))?.[1];
     expect(lit("earth")).toBe("false");
-    expect(lit("air")).toBe("true");
+    expect(lit("air")).toBeUndefined();
     const opened = VILLAGE_PLACES.map((p) => (p.key === "workshop" ? ("open" as const) : p.element === "earth" ? ("closed" as const) : ("open" as const)));
     expect(rail({ placeStates: opened }).match(/data-quarter-sign="earth"[^>]*data-lit="(\w+)"/)?.[1]).toBe("true");
   });

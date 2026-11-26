@@ -1,14 +1,19 @@
-# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487; v2 labels: issue #495.
 id: A04
 chapter: "1"
 number: 4
 of: 10
 title: "The Five Paths of Growth"
-caption: "Body, Mind, Emotions, Spirit, Genius. Growth in one path fuels all the others."
+caption: "Body, Mind, Emotions, Spirit, Uniqueness. Growth in one path fuels all the others."
 skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
 text:
   eyebrow: Growth
+  nodes: [Body, Mind, Emotions, Spirit, Uniqueness]
+  center: each fuels all
 sources:
   - docs/08-content/activate_your_dormant_potential_transcripts.md (F01E04)
   - src/data/courses/activateYourDormantPotential.ts
   - issue #487 (title and line verbatim)
+  - issue #495 (labels: words from the card's own line only)
+  - issue #501 (fifth path renamed Uniqueness)

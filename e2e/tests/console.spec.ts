@@ -28,7 +28,6 @@ async function openConsole(page: Page) {
   await glyph.click();
   await expect(page.getByRole("dialog", { name: "Your instrument" })).toBeVisible();
   await page.waitForTimeout(800);
-  await page.getByTestId("instrument-body-air").click();
   await page.getByRole("tab", { name: "Console" }).click();
   await expect(page.getByTestId("console-panel")).toBeVisible();
 }
@@ -87,4 +86,40 @@ test.describe("phone, 390x844", () => {
     }
     await page.screenshot({ path: `artifacts/screenshots/${info.project.name}/console-v1-390.png` });
   });
+});
+
+test("a suggestion replies in place and the conversation survives reload", async ({ page }) => {
+  await page.route("**/functions/v1/library-advisor", async (route) => {
+    const prompt: string = route.request().postDataJSON().prompt;
+    await route.fulfill({
+      json: {
+        generatedText: JSON.stringify(
+          prompt.includes("ME: Breathwork and activations")
+            ? { text: "Let's start with one breath.", buttons: [] }
+            : { text: "Try a short practice.", buttons: ["practice:breathwork"] },
+        ),
+      },
+    });
+  });
+
+  await openConsole(page);
+  await page.getByRole("tab", { name: "Conversation" }).click();
+  const originalUrl = page.url();
+  const input = page.getByRole("textbox", { name: "Write to Your AI…" });
+  await expect(page.getByText("20 turns left today")).toBeVisible();
+  await input.fill("I could use a way to settle.");
+  await input.press("Enter");
+  const suggestion = page.getByRole("button", { name: "Breathwork and activations", exact: true });
+  await expect(page.getByRole("button", { name: "Go: Breathwork and activations" })).toBeVisible();
+  await suggestion.click();
+  await expect(page.getByRole("log")).toContainText("Let's start with one breath.");
+  await expect(page).toHaveURL(originalUrl);
+  await expect(page.getByText("18 turns left today")).toBeVisible();
+
+  await page.reload();
+  await page.getByTestId("instrument-glyph").click();
+  await page.getByTestId("instrument-body-air").click();
+  await expect(page.getByRole("log")).toContainText("Breathwork and activations");
+  await expect(page.getByRole("log")).toContainText("Let's start with one breath.");
+  await expect(page.getByText("18 turns left today")).toBeVisible();
 });

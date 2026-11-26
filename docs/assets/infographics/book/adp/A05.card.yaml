@@ -1,4 +1,4 @@
-# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487; v2 labels: issue #495.
 id: A05
 chapter: "1"
 number: 5
@@ -6,9 +6,14 @@ of: 10
 title: "Balanced Growth"
 caption: "Develop every area together, not one by one. Master practices, like conscious breathing, move several paths at once."
 skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
 text:
   eyebrow: Growth
+  lines: [Body, Mind, Emotions, Spirit, Uniqueness]
+  bar: {title: master practice, sub: conscious breathing}
 sources:
   - docs/08-content/activate_your_dormant_potential_transcripts.md (F01E10)
   - src/data/courses/activateYourDormantPotential.ts
   - issue #487 (title and line verbatim)
+  - issue #495 (labels: words from the card's own line only)
+  - issue #501 (fifth path renamed Uniqueness)

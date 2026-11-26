@@ -12,14 +12,14 @@ const save = (met: PlaceSave["met"] = {}): PlaceSave => ({
 describe("quarters (§25.14)", () => {
   it("groups the rail by quarter and keeps the order inside each quarter", () => {
     expect(RAIL_PLACES.map((p) => p.element)).toEqual([
-      "ether", "ether", "ether", "air", "water", "water", "fire", "fire", "earth", "earth", "earth",
+      "ether", "ether", "ether", "water", "water", "fire", "fire", "earth", "earth", "earth",
     ]);
     expect(RAIL_PLACES.map((p) => p.key)).toEqual([
-      "reception", "house", "quest-board", "oracle", "cafe", "coworking", "fire-circle", "academy", "workshop", "market", "town-hall",
+      "reception", "house", "quest-board", "cafe", "coworking", "fire-circle", "academy", "workshop", "market", "town-hall",
     ]);
     const shuffled = [...VILLAGE_PLACES].reverse();
     const grouped = groupByQuarter(shuffled);
-    expect(grouped.map((p) => p.element)).toEqual(RAIL_PLACES.map((p) => p.element));
+    expect(grouped.map((p) => p.element)).toEqual(["ether", "ether", "ether", "air", "water", "water", "fire", "fire", "earth", "earth", "earth"]);
     expect(grouped.filter((p) => p.element === "earth").map((p) => p.key)).toEqual(["town-hall", "market", "workshop"]);
   });
 

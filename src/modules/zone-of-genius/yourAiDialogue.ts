@@ -70,8 +70,9 @@ export const askYourAi = async (
   ownAiNotes: string,
   lang: string | undefined,
   card?: PlayerCard | null,
+  surface?: "entry" | "instrument",
 ): Promise<ParsedTurn> => {
-  const turn = parseTurn(await callYourAi(buildTurnPrompt(messages, ownAiNotes, lang, card)));
+  const turn = parseTurn(await callYourAi(buildTurnPrompt(messages, ownAiNotes, lang, card, surface)));
   if (!turn.reply) throw new Error("Your AI returned nothing");
   return turn;
 };

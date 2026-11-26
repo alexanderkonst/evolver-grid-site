@@ -2,14 +2,13 @@ import { describe, expect, it } from "vitest";
 import { VILLAGE_PLACES } from "@/data/villagePlaces";
 import { activePlaceKey, isHomePath, PANE_BY_PLACE, RAIL_PLACES, tourIdFor } from "../railPlaces";
 
-// WP-4 (issue #161, item 1): the rail is the 11 places of the village map.
+// WP-4 (issue #161, item 1): the rail is the village map places that have rail panes.
 describe("rail places", () => {
-  it("is the village map: same places, same order, same names", () => {
+  it("lists the village places in map order, excluding Your AI", () => {
     expect(RAIL_PLACES.map((p) => p.name)).toEqual([
       "Entry Portal",
       "Home",
       "Quest Board",
-      "Your AI",
       "Café",
       "Co-working",
       "FMF",
@@ -18,7 +17,7 @@ describe("rail places", () => {
       "Market",
       "Town Hall",
     ]);
-    expect(RAIL_PLACES.map((p) => p.key)).toEqual(VILLAGE_PLACES.map((p) => p.key));
+    expect(RAIL_PLACES.map((p) => p.key)).toEqual(VILLAGE_PLACES.filter((p) => p.key !== "oracle").map((p) => p.key));
   });
 
   it("gives every place a pane to open", () => {
@@ -28,7 +27,7 @@ describe("rail places", () => {
   it("lights the place whose pane the player is in", () => {
     expect(activePlaceKey("/game/journey", "journey")).toBe("quest-board");
     expect(activePlaceKey("/game/me/overview", "grow")).toBe("house");
-    expect(activePlaceKey("/ai-os", "ai-os")).toBe("oracle");
+    expect(activePlaceKey("/ai-os", "ai-os")).toBeNull();
     expect(activePlaceKey("/ubb", "build")).toBe("workshop");
     expect(activePlaceKey("/ignite", "build")).toBe("workshop");
     expect(activePlaceKey("/game/marketplace", "buysell")).toBe("market");

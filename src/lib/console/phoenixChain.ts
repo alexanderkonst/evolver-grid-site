@@ -219,8 +219,10 @@ export type ConsoleRequest = { button: ButtonId; context: string; previousCards:
 
 export const MAX_CONTEXT_CHARS = 12000;
 
-export const hasMaterial = (card: PlayerCard | null | undefined, messages: DialogueMessage[]): boolean =>
-  !!card?.top_talent || messages.some((m) => m.role === "player" && m.text.trim().length > 0);
+export const readStatedGoal = (messages: DialogueMessage[]): string => {
+  const latest = messages.filter((message) => message.role === "player" && message.text.trim()).pop();
+  return latest?.text.trim().slice(0, MAX_CONTEXT_CHARS) ?? "";
+};
 
 /** The context the Your AI conversation already builds (card + conversation); no new reads. */
 export const buildConsoleContext = (card: PlayerCard | null | undefined, messages: DialogueMessage[]): string => {
@@ -365,13 +367,13 @@ type StorageLike = Pick<Storage, "getItem" | "setItem">;
 
 const defaultStorage = (): StorageLike | null => {
   try {
-    return typeof window !== "undefined" ? window.localStorage : null;
+    return typeof window !== "undefined" ? window.sessionStorage : null;
   } catch {
     return null;
   }
 };
 
-/** Per player on a device, so a shared browser never mixes two players. */
+/** Per player in this browser session, so a shared browser never mixes two players. */
 const keyFor = (owner: string | null | undefined) => `${CHAIN_KEY}:${owner || "guest"}`;
 
 const isRecord = (x: unknown): x is Record<string, unknown> => !!x && typeof x === "object" && !Array.isArray(x);
@@ -392,7 +394,20 @@ const cleanCards = (raw: unknown): ChainState["cards"] => {
 export const readChain = (owner?: string | null, storage: StorageLike | null = defaultStorage()): ChainState => {
   if (!storage) return emptyChain();
   try {
-    const raw = storage.getItem(keyFor(owner));
+    const key = keyFor(owner);
+    let raw = storage.getItem(key);
+    // Import an existing device-scoped lap on first use of the session storage.
+    if (!raw && typeof window !== "undefined" && storage === defaultStorage()) {
+      try {
+        raw = window.localStorage.getItem(key);
+        if (raw) {
+          storage.setItem(key, raw);
+          window.localStorage.removeItem(key);
+        }
+      } catch {
+        // A storage restriction must not break the Console.
+      }
+    }
     if (!raw) return emptyChain();
     const p = JSON.parse(raw) as unknown;
     if (!isRecord(p) || typeof p.lap !== "number" || !Number.isFinite(p.lap) || p.lap < 1) return emptyChain();

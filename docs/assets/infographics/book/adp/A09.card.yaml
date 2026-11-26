@@ -1,4 +1,4 @@
-# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487; v2 labels: issue #495.
 id: A09
 chapter: "1"
 number: 9
@@ -6,9 +6,14 @@ of: 10
 title: "Body"
 caption: "Vitality is already inside you. Build the physical foundation and learn to listen to your body."
 skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
 text:
   eyebrow: Growth
+  top: vitality
+  steps: physical foundation
+  wave: {title: listen to, sub: your body}
 sources:
   - docs/08-content/activate_your_dormant_potential_transcripts.md (F01E05, B01E01, B01E02, B01E03)
   - src/data/courses/activateYourDormantPotential.ts
   - issue #487 (title and line verbatim)
+  - issue #495 (labels: words from the card's own line only)

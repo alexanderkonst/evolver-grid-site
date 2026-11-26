@@ -3,27 +3,29 @@ import { groupByQuarter } from "@/lib/quarters";
 
 /**
  * The rail is the village map folded (WP-4, game_of_being_you.md §14.1.2, §14.6):
- * the same 11 places, with the same names and the same states as `/village`, grouped by
+ * the navigable rail places, with the same names and the same states as `/village`, grouped by
  * quarter (ether, air, water, fire, earth; GoBY §25.14) and in map order inside each quarter.
- * `RAIL_PLACES` is `VILLAGE_PLACES` sorted by `element`; nothing here restates a name.
+ * Your AI opens through the instrument.
  * The states array of `usePlaceStates` follows `VILLAGE_PLACES` order, so read a place's state
  * with `railState`, never by the index in `RAIL_PLACES`.
  *
  * What this file adds is the bridge to the existing pane 2 (`SectionsPanel`), which is
  * still keyed by the old space ids. Each place opens the pane of the module it holds.
  */
-export const RAIL_PLACES: readonly VillagePlace[] = groupByQuarter(VILLAGE_PLACES);
+type RailPlaceKey = Exclude<VillagePlaceKey, "oracle">;
+type RailPlace = VillagePlace & { key: RailPlaceKey };
+
+export const RAIL_PLACES = groupByQuarter(VILLAGE_PLACES.filter((place): place is RailPlace => place.key !== "oracle"));
 
 /** The entry of `states` (in `VILLAGE_PLACES` order) that belongs to the place. */
 export const railState = <T>(states: readonly T[] | undefined, key: VillagePlaceKey): T | undefined =>
   states?.[VILLAGE_PLACES.findIndex((p) => p.key === key)];
 
 /** The pane-2 space id (SECTIONS in SectionsPanel.tsx) behind each place. */
-export const PANE_BY_PLACE: Record<VillagePlaceKey, string> = {
+export const PANE_BY_PLACE: Record<RailPlaceKey, string> = {
   reception: "journey",
   house: "grow",
   "quest-board": "journey",
-  oracle: "ai-os",
   cafe: "meet",
   coworking: "collaborate",
   "fire-circle": "build",
@@ -37,7 +39,6 @@ export const PANE_BY_PLACE: Record<VillagePlaceKey, string> = {
 const PLACE_BY_PANE: Record<string, VillagePlaceKey> = {
   journey: "quest-board",
   grow: "house",
-  "ai-os": "oracle",
   meet: "cafe",
   collaborate: "coworking",
   learn: "academy",
@@ -50,7 +51,7 @@ const PLACE_BY_PANE: Record<string, VillagePlaceKey> = {
  * ("grow", "learn", "build", …); a place that is the canonical door of its pane keeps that
  * id, and a place that only shares a pane (Reception, Fire Circle, Town Hall) uses its own key.
  */
-export const tourIdFor = (key: VillagePlaceKey): string =>
+export const tourIdFor = (key: RailPlaceKey): string =>
   PLACE_BY_PANE[PANE_BY_PLACE[key]] === key ? PANE_BY_PLACE[key] : key;
 
 const under = (pathname: string, base: string) => pathname === base || pathname.startsWith(`${base}/`);

@@ -1,0 +1,14 @@
+id: nature
+kind: icon
+chapter: apps
+number: 4
+of: 5
+title: Nature
+caption: Aligns You With Natural Rhythms
+skin: v4
+text:
+  before: a jagged line out of phase with a dim moon
+  after: a smooth wave in phase with a lit moon-phase arc
+sources:
+  - issue #506 (app icons v1), row 4
+  - docs/templates/spec-handoff.md
