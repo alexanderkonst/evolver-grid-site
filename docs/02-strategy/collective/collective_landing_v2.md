@@ -57,7 +57,8 @@ Each card: name · what it gives · result · status tag.
 
 ## 6. Terms
 
-- 10% revenue share, only once your business earns. No equity, ever.
+- 10% revenue share, only once your business earns. No equity.
+- Capped: when your revenue grows 10x, we sit down and set the terms again, on both sides. Same at every next 10x.
 - Today Aleksandr holds it as steward of the collective; it partly funds the shared tools.
 - Over 2027–2028 his roles pass step by step to members.
 - Later the 10% moves to an entity the members govern and nobody can sell.
