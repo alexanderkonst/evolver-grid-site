@@ -9,7 +9,7 @@
 - **What emerges:** artifacts of one shape across all agents; every lesson lands in one template and reaches every future use
 - **As a part of the whole:** the load-bearing joint of the architecture. Templates are the MODULE layer (methodology); the router is the `//` that connects any task to its module, so the methodology reaches the PROMPT layer (agents) without Sasha in the loop
 - **Siblings:** [README.md](./README.md) (full inventory, source of truth for what exists), [holonic-prism.md](./holonic-prism.md) (the prism every template stands on), `CLAUDE.md` §Templates first, Hark specialty `templates-first` (points to this file)
-- **Status · last reviewed:** v1.4 · 2026-11-25 (site-routing-change row; qa-pass row; Result + Phase Shift Technology columns since v1.2, 2026-11-19)
+- **Status · last reviewed:** v1.5 · 2026-11-26 (course-landing row); v1.4 · 2026-11-25 (site-routing-change row; qa-pass row; Result + Phase Shift Technology columns since v1.2, 2026-11-19)
 
 ## Through the prism
 - **Essence:** a switch between "what is asked" and "the form that already knows how to do it".
@@ -45,6 +45,7 @@
 | Critique / next version of anything | [roasting.md](./roasting.md) | The next, stronger version | 93 Vision ↔ Viability Balancing |
 | Long build: plan → ship → report → retro | [improvement-loop.md](./improvement-loop.md) | Shipped, reported, learned from | 161 The Hexagon Cycle |
 | Mini-course from a body of work | [course-from-source.md](./course-from-source.md) | A mini-course from your body of work | 57 Campfire Networking |
+| Mini-training landing page (`/academy/<slug>`) and the links to and from it | [course-landing.md](./course-landing.md) | A landing a stranger understands in one screen | Craft (nearest 115) |
 | Integrate a source on the stream (link, essay, paper, book, course, conversation): graph with authorship, use decided | [source-integration.md](./source-integration.md) | Any source woven into what you know | 117 The Learning Ledger and the Meta-Game (candidate) |
 | Testimonial clips from calls | [testimonial-clips.md](./testimonial-clips.md) | Clients saying it in their own words | 155 Testimony Frequency |
 | Meaning of a name or surname | [name-vibration.md](./name-vibration.md) | The original energy of your name | New, not yet in the library (candidate) |

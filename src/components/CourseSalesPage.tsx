@@ -6,13 +6,22 @@ import WaitlistModal from "@/components/WaitlistModal";
 import { getPublishedModules } from "@/lib/coursePlayer";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { BODY_STYLE, EYEBROW_STYLE, TITLE_STYLE } from "@/pages/Library";
-import { courseSalesPath, telegramHref, type CourseSalesData } from "@/data/courseSales";
+import {
+    courseInfographic,
+    courseSalesPath,
+    relatedCourses,
+    telegramHref,
+    versionLine,
+    type CourseSalesData,
+} from "@/data/courseSales";
 import "@/pages/CoursePage.css";
 
 /**
  * CourseSalesPage — the ONE template for every Academy course's sales page
  * (/academy/<slug>). Content lives in src/data/courseSales.ts; this file only lays it out:
- * promise → who it's for → what's inside → the practice → price + format → one CTA.
+ * title → promise → level + category chips → version line → who it's for → what's inside →
+ * series infographic (if the course has one) → the practice → price + format → start CTA → related courses.
+ * The form: docs/templates/course-landing.md.
  * Minimal, in the Academy's editorial register (Cormorant, gold accent, liquid glass).
  */
 
@@ -62,6 +71,9 @@ const CourseSalesPage = ({ course }: { course: CourseSalesData }) => {
             : course.modules
         : undefined;
 
+    const infographic = courseInfographic(course);
+    const related = relatedCourses(course.slug);
+
     return (
         <>
             <SEO
@@ -98,6 +110,25 @@ const CourseSalesPage = ({ course }: { course: CourseSalesData }) => {
                     <p className="text-sm mt-4" style={BODY_STYLE}>
                         By Aleksandr Konstantinov
                     </p>
+                    {(course.level || course.category) && (
+                        <ul className="flex flex-wrap justify-center gap-2 list-none p-0 m-0 mt-3" aria-label="Level and category">
+                            {[course.level, course.category].filter(Boolean).map((chip) => (
+                                <li
+                                    key={chip}
+                                    data-testid="course-chip"
+                                    className="rounded-full px-3 py-0.5 text-xs"
+                                    style={{ ...BODY_STYLE, boxShadow: "0 0 0 1px rgba(212, 175, 55, 0.35)" }}
+                                >
+                                    {chip}
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                    {course.version && (
+                        <p className="text-xs mt-3 italic" style={BODY_STYLE} data-testid="course-version">
+                            {versionLine(course.version)}
+                        </p>
+                    )}
                     <div className="mt-7">
                         <CtaButton course={course} onWaitlist={() => setWaitlistOpen(true)} />
                     </div>
@@ -158,6 +189,18 @@ const CourseSalesPage = ({ course }: { course: CourseSalesData }) => {
                     </div>
                 </Section>
 
+                {infographic && (
+                    <Section label="The series in one picture">
+                        <img
+                            src={infographic.src}
+                            alt={`${course.title}: ${infographic.title}`}
+                            loading="lazy"
+                            className="w-full rounded-2xl"
+                            style={CARD_STYLE}
+                        />
+                    </Section>
+                )}
+
                 <Section label="The practice">
                     <ul className="space-y-2 list-none p-0 m-0">
                         {course.practice.map((line) => (
@@ -187,6 +230,31 @@ const CourseSalesPage = ({ course }: { course: CourseSalesData }) => {
                         <CtaButton course={course} onWaitlist={() => setWaitlistOpen(true)} />
                     </div>
                 </section>
+
+                {related.length > 0 && (
+                    <section className="mt-12" aria-label="Related courses" data-testid="course-related">
+                        <h2 className="text-[10.5px] mb-3 text-center" style={EYEBROW_STYLE}>
+                            Related
+                        </h2>
+                        <ul className="list-none p-0 m-0 divide-y divide-[rgba(212,175,55,0.16)]">
+                            {related.map((c) => (
+                                <li key={c.slug}>
+                                    <Link
+                                        to={courseSalesPath(c.slug)}
+                                        className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 py-2.5 rounded-md hover:opacity-80"
+                                    >
+                                        <span className="text-base font-semibold" style={{ ...TITLE_STYLE, fontWeight: 600 }}>
+                                            {c.title}
+                                        </span>
+                                        <span className="text-sm italic" style={BODY_STYLE}>
+                                            {c.promise}
+                                        </span>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </section>
+                )}
             </article>
 
             {course.cta.kind === "waitlist" && (

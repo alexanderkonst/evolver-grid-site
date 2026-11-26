@@ -11,6 +11,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import type { CourseConfig } from "@/data/courses/types";
+import { courseSalesPath, getCourseSales } from "@/data/courseSales";
 import { supabase } from "@/integrations/supabase/client";
 import {
     flattenEpisodes,
@@ -144,6 +145,16 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                     <p className="text-sm sm:text-base max-w-2xl mt-3" style={BODY_STYLE}>
                         {t(course.leadKey)}
                     </p>
+                )}
+                {getCourseSales(course.slug) && (
+                    <Link
+                        to={courseSalesPath(course.slug)}
+                        data-testid="course-about-link"
+                        className="inline-block text-sm mt-3 underline underline-offset-4 hover:opacity-80"
+                        style={BODY_STYLE}
+                    >
+                        {t("course.about", { defaultValue: "About this mini-training" })}
+                    </Link>
                 )}
             </header>
 

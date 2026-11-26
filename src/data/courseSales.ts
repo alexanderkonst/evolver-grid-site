@@ -92,6 +92,12 @@ export interface CourseSalesData {
     status?: string;
     cta: CourseSalesCta;
     seoDescription: string;
+    /** Level and category chips under the title. Filled from the course object once the versioning
+     *  issue (#522) lands; the landing shows a chip only when its value is here. */
+    level?: string;
+    category?: string;
+    /** "Living mini-training, updated continuously. Current version v1.0 (YYYY-MM-DD)." Same source as the chips. */
+    version?: { number: string; updatedAt: string };
 }
 
 const countEpisodes = (modules: CourseModule[], publishedOnly: boolean) =>
@@ -125,7 +131,7 @@ export const COURSE_SALES: CourseSalesData[] = [
     },
     {
         ...fromRegistry(ACTIVATE_YOUR_DORMANT_POTENTIAL.slug),
-        eyebrow: "Free mini-course",
+        eyebrow: "Free mini-training",
         lead: "How to master your spirit, mind, emotions, body and unique genius: the five paths of growth, one short video at a time.",
         forWhom: [
             "You want to grow on purpose, not by accident.",
@@ -135,7 +141,7 @@ export const COURSE_SALES: CourseSalesData[] = [
         modules: ACTIVATE_YOUR_DORMANT_POTENTIAL.modules,
         practice: ACTIVATE_YOUR_DORMANT_POTENTIAL.practices.map((p) => `${p.title} (${p.duration}), a guided audio practice.`),
         format: `${adpVideos} short videos · ${ACTIVATE_YOUR_DORMANT_POTENTIAL.practices.length} audio practices · watch at your own pace`,
-        cta: { kind: "start", label: "Start the course", to: ADP_COURSE_PATH },
+        cta: { kind: "start", label: "Start the mini-training", to: ADP_COURSE_PATH },
     },
     {
         ...fromRegistry("founder-academy"),
@@ -243,3 +249,20 @@ export const COURSE_SALES: CourseSalesData[] = [
 ];
 
 export const getCourseSales = (slug: string | undefined) => COURSE_SALES.find((c) => c.slug === slug);
+
+/** The "Related" row of a landing: every other course in the registry, in path order. */
+export const relatedCourses = (slug: string) => COURSE_SALES.filter((c) => c.slug !== slug);
+
+/** The series infographic (or teaser) of a course: the first episode that carries one. None = no section. */
+export const courseInfographic = (course: CourseSalesData): { src: string; title: string } | undefined => {
+    for (const m of course.modules ?? []) {
+        for (const e of m.episodes) {
+            if (e.infographic) return { src: e.infographic, title: e.title };
+        }
+    }
+    return undefined;
+};
+
+/** The one line under the title, built from `version`. */
+export const versionLine = (v: NonNullable<CourseSalesData["version"]>) =>
+    `Living mini-training, updated continuously. Current version v${v.number} (${v.updatedAt}).`;

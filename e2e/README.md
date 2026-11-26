@@ -30,6 +30,7 @@ Screenshots land in `artifacts/screenshots/<project>/`. A preview behind Vercel 
 |---|---|
 | `tests/navigation.spec.ts` | GoBY §25 navigation DoD: one glow; map = rail chip = pane row; where / next / home in the first screen; rooms pane (all rooms, one line each); closed rooms; the enabled «Your next move» on a closed place; no pane text under Hide or the launcher |
 | `tests/a11y.spec.ts` | axe: no serious or critical violation (DoD 8); the language chip is named by its code inside the game and keeps its plain name on the title screen, and the moon-clock dial's name holds its visible words (DoD 9) |
+| `tests/course-landing.spec.ts` | course landing (`docs/templates/course-landing.md`): ADP landing sections, start CTA, round trip landing → course page → «About this mini-training» → landing, Related row, Academy entry |
 | `tests/reduced-motion.spec.ts` | motion stops under `prefers-reduced-motion` (reduced-motion project only) |
 
 Test names start with `DoD <n> ·`; the PR comment table is built from those names (`scripts/pr-comment.mjs`).
