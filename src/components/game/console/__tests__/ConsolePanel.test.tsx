@@ -22,8 +22,8 @@ import ConsolePanel from "../ConsolePanel";
 
 const stubStorage = () => {
   const m = new Map<string, string>();
-  vi.stubGlobal("window", { localStorage: { getItem: (k: string) => m.get(k) ?? null, setItem: (k: string, v: string) => void m.set(k, v) } });
-  return m;
+  vi.stubGlobal("window", { sessionStorage: { getItem: (k: string) => m.get(k) ?? null, setItem: (k: string, v: string) => void m.set(k, v) } });
+
 };
 afterEach(() => {
   vi.unstubAllGlobals();
@@ -57,9 +57,9 @@ describe("Console panel", () => {
     expect((html.match(/<button/g) ?? []).length).toBe(1);
   });
 
-  it("DoD 4 · with card 1 saved, button 2 opens and 3 to 5 stay locked; card 1 shows with copy, re-run and Next", () => {
-    const m = stubStorage();
-    writeChain("u1", chainWith(1), { getItem: (k) => m.get(k) ?? null, setItem: (k, v) => void m.set(k, v) });
+  it("DoD 4 · after a fresh mount with card 1 saved in the session, button 2 opens and 3 to 5 stay locked; card 1 shows with copy, re-run and Next", () => {
+    stubStorage();
+    writeChain("u1", chainWith(1));
     const html = decode(render("en"));
     expect([1, 2, 3, 4, 5].map((n) => state(html, n as ButtonId))).toEqual(["done", "open", "locked", "locked", "locked"]);
     expect(html).toContain("Launch my first paid cohort.");
@@ -71,16 +71,16 @@ describe("Console panel", () => {
   });
 
   it("card 5 offers «Next: <label of button 1>» (the loop)", () => {
-    const m = stubStorage();
-    writeChain("u1", chainWith(1, 2, 3, 4, 5), { getItem: (k) => m.get(k) ?? null, setItem: (k, v) => void m.set(k, v) });
+    stubStorage();
+    writeChain("u1", chainWith(1, 2, 3, 4, 5));
     const html = decode(render("en"));
     expect([1, 2, 3, 4, 5].map((n) => state(html, n as ButtonId))).toEqual(["done", "done", "done", "done", "done"]);
     expect(html).toContain("Next: Your goal, clear and grounded");
   });
 
   it("another player on the same browser sees a fresh chain", () => {
-    const m = stubStorage();
-    writeChain("u1", chainWith(1, 2), { getItem: (k) => m.get(k) ?? null, setItem: (k, v) => void m.set(k, v) });
+    stubStorage();
+    writeChain("u1", chainWith(1, 2));
     expect(state(render("en", "u2"), 2)).toBe("locked");
   });
 });

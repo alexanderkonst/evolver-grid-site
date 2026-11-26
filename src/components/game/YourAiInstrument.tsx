@@ -10,7 +10,7 @@
  * where it was. Opening never changes the route. Reduced motion: a 150 ms crossfade, no rise, no turn.
  *
  * A face is one body turned forward (`src/lib/instrument/faces.ts`). Only air has one today: the Your
- * AI panel below (header, conversation, Console, power-ups, first-open tour). The other slots are
+ * AI panel below (header, conversation, Console, first-open tour). The other slots are
  * empty, and an empty body is shown but not offered as a door.
  *
  * The machine is `src/lib/instrument/state.ts`. Design law (GoBY §5): near-black, one accent ice blue,
@@ -22,7 +22,7 @@ import { useCallback, useEffect, useId, useMemo, useReducer, useRef, useState } 
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, ChevronLeft, Lock, RotateCcw, Send, X } from "lucide-react";
+import { ArrowRight, ChevronLeft, RotateCcw, Send, X } from "lucide-react";
 import AirOctahedron from "@/components/game/AirOctahedron";
 import InstrumentGlyph from "@/components/game/InstrumentGlyph";
 import InstrumentRitual from "@/components/game/InstrumentRitual";
@@ -46,6 +46,8 @@ import {
   writeTourSeen,
   type TourGroup,
 } from "@/lib/yourAiInstrument";
+import { readConversation, writeConversation } from "@/lib/instrument/conversation";
+import { ConversationSuggestion } from "@/components/game/console/ConversationSuggestion";
 import ConsolePanel from "@/components/game/console/ConsolePanel";
 import { getFace, hasFace, registerFace, type FaceProps } from "@/lib/instrument/faces";
 import { hasGlint, parseGlints, type Glints } from "@/lib/instrument/glint";
@@ -96,26 +98,22 @@ const useReducedMotion = (): boolean => {
 const FOCUSABLE =
   "a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex='-1'])";
 
-/** Conversations survive the instrument closing and opening again, for as long as the page lives. */
-const conversations = new Map<string, DialogueMessage[]>();
-
 /** The air face: Your AI (#458). It registers itself in the faces registry below. */
 const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigate }: FaceProps) => {
   const { t, i18n } = useTranslation();
   const titleId = useId();
-  const convoKey = ownerId ?? "guest";
 
   const [beat, setBeat] = useState<number | null>(null);
   // The air face has two tabs beside each other: the conversation and the Console (Phoenix chain).
   const [tab, setTab] = useState<"conversation" | "console">("conversation");
-  const [messages, setMessagesState] = useState<DialogueMessage[]>(() => conversations.get(convoKey) ?? []);
+  const [messages, setMessagesState] = useState<DialogueMessage[]>(() => readConversation(ownerId));
   const setMessages = (next: DialogueMessage[]) => {
-    conversations.set(convoKey, next);
+    writeConversation(ownerId, next);
     setMessagesState(next);
   };
   const [draft, setDraft] = useState("");
   const [thinking, setThinking] = useState(false);
-  const [turnError, setTurnError] = useState(false);
+  const [turnError, setTurnError] = useState(() => messages[messages.length - 1]?.role === "player");
   const [turnsUsed, setTurnsUsed] = useState(() => getTurnsUsedToday(ownerId));
   const limitReached = turnsUsed >= YOUR_AI_DAILY_FREE_TURNS;
 
@@ -165,37 +163,39 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
     const used = getTurnsUsedToday(ownerId);
     setTurnsUsed(used);
     if (used >= YOUR_AI_DAILY_FREE_TURNS) return;
+    setMessages(history);
     setThinking(true);
     setTurnError(false);
     try {
       const snapshot = ownerId ? getCachedZogSnapshot(ownerId) : null;
       const card = buildPlayerCard(snapshot, readTraces(ownerId));
-      const turn = await askYourAi(history, "", i18n.resolvedLanguage, card);
+      const turn = await askYourAi(history, "", i18n.resolvedLanguage, card, "instrument");
       setTurnsUsed(recordTurn(ownerId));
       setMessages([...history, { role: "ai", text: turn.reply, buttons: turn.buttons }]);
     } catch (err) {
       console.error("[YourAiInstrument] turn failed", err);
-      setMessages(history);
       setTurnError(true);
     } finally {
       setThinking(false);
     }
   };
-  const send = () => {
-    const text = draft.trim();
+  const send = (reply = draft) => {
+    const text = reply.trim();
     if (!text || thinking || limitReached) return;
-    setDraft("");
+    if (reply === draft) setDraft("");
     void runTurn([...messages, { role: "player", text }]);
   };
   const lastMessage = messages[messages.length - 1];
-  // Host-handled actions (the ZoG reveal) have no meaning here: only buttons that go somewhere.
+  // The reveal action belongs to the entry dialogue.
   const offered: YourAiButton[] =
-    !thinking && lastMessage?.role === "ai" ? (lastMessage.buttons ?? []).filter((b) => b.kind !== "action" && b.to) : [];
+    !thinking && lastMessage?.role === "ai" ? (lastMessage.buttons ?? []).filter((b) => b.kind !== "action") : [];
 
   const playerCard = () => (ownerId ? buildPlayerCard(getCachedZogSnapshot(ownerId), readTraces(ownerId)) : null);
   // Console button 1 with no goal to ground in: the one question lands in the conversation.
   const askInConversation = (question: string) => {
-    setMessages([...messages, { role: "ai", text: question }]);
+    if (lastMessage?.role !== "ai" || lastMessage.text !== question) {
+      setMessages([...messages, { role: "ai", text: question }]);
+    }
     setTab("conversation");
   };
   const onTabKeyDown = (e: React.KeyboardEvent) => {
@@ -268,6 +268,9 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                       {t("yourAiInstrument.title")}
                     </h2>
                     <p className="text-[12px]" style={{ color: MUTED }}>{t("yourAiInstrument.powered")}</p>
+                    <p className="text-[12px]" style={{ color: MUTED }} aria-live="polite">
+                      {t("yourAiInstrument.turnsRemaining", { count: Math.max(0, YOUR_AI_DAILY_FREE_TURNS - turnsUsed) })}
+                    </p>
                   </div>
                   <button type="button" onClick={() => setBeat(0)} aria-label={t("yourAiInstrument.replay")} className={`${pill} !px-0 w-11`} style={{ color: MUTED }}>
                     <RotateCcw aria-hidden="true" className="h-4 w-4" />
@@ -365,16 +368,17 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                   {offered.length > 0 && (
                     <div className="flex flex-wrap gap-2" role="group" aria-label={t("yourAiInstrument.nextSteps")}>
                       {offered.map((b, i) => (
-                        <button
+                        <ConversationSuggestion
                           key={b.id}
-                          type="button"
-                          onClick={() => goTo(b.to as string, b)}
+                          suggestion={b}
+                          onReply={send}
+                          onGo={goTo}
+                          goLabel={t("yourAiInstrument.go")}
+                          disabled={limitReached}
                           className={pill}
                           style={i === 0 ? { backgroundColor: ACCENT, color: PANEL, fontWeight: 600 } : { border: `1px solid ${HAIRLINE}`, color: INK }}
-                        >
-                          {b.label}
-                          {i === 0 && <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />}
-                        </button>
+                          accent={ACCENT}
+                        />
                       ))}
                     </div>
                   )}
@@ -398,7 +402,7 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                     />
                     <button
                       type="button"
-                      onClick={send}
+                      onClick={() => send()}
                       disabled={!draft.trim() || thinking || limitReached}
                       aria-label={t("yourAiInstrument.send")}
                       className="grid h-11 w-11 shrink-0 place-items-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-[#bcd7e6] disabled:opacity-40"
@@ -425,27 +429,16 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                           style={{ backgroundColor: RAISED, border: `1px solid ${HAIRLINE}`, color: INK }}
                         >
                           <span>{t(`aiOsPage.suites.${s.category}`)}</span>
-                          <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" style={{ color: ACCENT }} />
+                          <span className="inline-flex items-center gap-1" style={{ color: ACCENT }}>
+                            {t("yourAiInstrument.go")}
+                            <ArrowRight aria-hidden="true" className="h-3.5 w-3.5" />
+                          </span>
                         </button>
                       </li>
                     ))}
                   </ul>
                 </section>
 
-                {/* Group 4 · Power-ups: one closed row, GoBY §25.5 form */}
-                <section
-                  role="group"
-                  aria-label={t("yourAiInstrument.powerUpsTitle")}
-                  className="rounded-xl px-3 py-2.5"
-                  style={{ ...lit("powerUps"), border: `1px dashed ${HAIRLINE}`, color: MUTED }}
-                >
-                  <p className="inline-flex items-center gap-1.5 text-[13px] font-semibold" style={{ color: INK }}>
-                    <Lock aria-hidden="true" className="h-3.5 w-3.5" />
-                    {t("yourAiInstrument.powerUpsTitle")}
-                    <span className="sr-only">{t("yourAiInstrument.locked")}</span>
-                  </p>
-                  <p className="text-[12px] leading-relaxed">{t("yourAiInstrument.powerUpsLine")}</p>
-                </section>
                 </div>
               </div>
 
@@ -769,6 +762,7 @@ const YourAiInstrument = ({ enabled, ownerId, lit, avoid }: Props) => {
               {...inertProps(!inFace)}
             >
               <FaceComponent
+                key={ownerId ?? "guest"}
                 ownerId={ownerId}
                 reduced={reduced}
                 closeMs={moveMs}

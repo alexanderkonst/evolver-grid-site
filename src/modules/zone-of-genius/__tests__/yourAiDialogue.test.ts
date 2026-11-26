@@ -63,3 +63,11 @@ describe("yourAiDialogue", () => {
     expect(buildRawSignal("", msgs, "")).toContain("ME: When I untangle");
   });
 });
+
+it("responds to an instrument goal without steering into the entry interview", () => {
+  const prompt = buildTurnPrompt([{ role: "player", text: "Launch a paid cohort." }], "", "en", null, "instrument");
+  expect(prompt).toContain("Launch a paid cohort.");
+  expect(prompt).toContain("Respond directly to the player's latest message");
+  expect(prompt).not.toContain("time disappears");
+  expect(prompt).not.toContain("action:reveal");
+});

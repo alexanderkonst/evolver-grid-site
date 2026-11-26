@@ -50,7 +50,8 @@ const ConsolePanel = ({ ownerId, language, messages, getPlayerCard, onAskGoal, o
   const chainRef = useRef(chain);
   const [running, setRunning] = useState<ButtonId | null>(null);
   const [problem, setProblem] = useState<Problem | null>(null);
-  const [waiting, setWaiting] = useState(false);
+  const lastMessage = messages[messages.length - 1];
+  const waiting = lastMessage?.role === "ai" && lastMessage.text === GOAL_QUESTION[locale];
   const [copied, setCopied] = useState<ButtonId | null>(null);
   const runningRef = useRef(false);
 
@@ -69,15 +70,9 @@ const ConsolePanel = ({ ownerId, language, messages, getPlayerCard, onAskGoal, o
     return () => window.clearTimeout(timer);
   }, [copied]);
 
-  const askGoal = () => {
-    onAskGoal(GOAL_QUESTION[locale]);
-    setWaiting(true);
-  };
-
   const run = async (id: ButtonId, from: ChainState = chainRef.current) => {
     if (runningRef.current) return;
     setProblem(null);
-    setWaiting(false);
     runningRef.current = true;
     setRunning(id);
     try {
@@ -91,7 +86,7 @@ const ConsolePanel = ({ ownerId, language, messages, getPlayerCard, onAskGoal, o
         call: (request) => runConsoleButton(request, !!ownerId),
       });
       commit(out.chain);
-      if (out.kind === "ask-goal") askGoal();
+      if (out.kind === "ask-goal") onAskGoal(GOAL_QUESTION[locale]);
       else if (out.kind === "problem") setProblem({ button: id, kind: out.problem });
     } finally {
       runningRef.current = false;

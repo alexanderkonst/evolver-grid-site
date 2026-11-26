@@ -40,12 +40,25 @@ describe("Console v1 · empty profile", () => {
     expect(out.chain.cards[1]).toBeUndefined();
   });
 
-  it("with material (a top talent, or something the player said) button 1 runs", async () => {
+  it("asks for a goal when the player profile only has a top talent", async () => {
+    const call = vi.fn();
+    const out = await runStep({ ...base, messages: [], chain: emptyChain(), id: 1, call });
+    expect(out.kind).toBe("ask-goal");
+    expect(call).not.toHaveBeenCalled();
+  });
+
+  it("returns a grounded card from the stated goal alone without asking a follow-up", async () => {
     const call = vi.fn().mockResolvedValue(output(CARDS[1], "Full."));
-    const out = await runStep({ ...base, chain: emptyChain(), id: 1, call });
+    const goal = "Launch the first paid cohort of the Your Unfolding Potential course.";
+    const messages: DialogueMessage[] = [
+      { role: "player", text: goal },
+      { role: "ai", text: "When does time disappear for you?" },
+    ];
+    const out = await runStep({ ...base, messages, chain: emptyChain(), id: 1, call });
     expect(out.kind).toBe("card");
     expect(out.chain.cards[1]?.full).toBe("Full.");
-    expect(call.mock.calls[0][0].context).toContain("I want to teach a cohort.");
+    expect(call).toHaveBeenCalledTimes(1);
+    expect(call).toHaveBeenCalledWith({ button: 1, context: goal, previousCards: [], locale: "en" });
   });
 });
 

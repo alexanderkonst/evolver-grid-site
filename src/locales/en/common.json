@@ -9816,11 +9816,12 @@
     "retry": "Retry",
     "limitNote": "You've reached today's free Your AI limit. It resets tomorrow.",
     "limitPlaceholder": "Today's free limit is reached",
+    "turnsRemaining_one": "{{count}} turn left today",
+    "turnsRemaining_other": "{{count}} turns left today",
+    "go": "Go",
     "nextSteps": "Suggested next steps",
     "console": "Console",
-    "powerUpsTitle": "Power-ups for business",
     "locked": "Closed",
-    "powerUpsLine": "Opens when power-ups launch. Inside: your AI put to work on your business.",
     "tourLabel": "Your AI, a short tour",
     "tourStep": "{{n}} of {{total}}",
     "tourSkip": "Skip",
@@ -9829,8 +9830,7 @@
     "tour": {
       "header": "This is Your AI, powered by Your AI OS. It goes with you on every screen.",
       "conversation": "It is built to know you, and it knows you closer as you play.",
-      "console": "The Console: every app is a button that does something powerful.",
-      "powerUps": "Power-ups for your business are optional, and they come later."
+      "console": "The Console: every app is a button that does something powerful."
     }
   },
   "instrument": {

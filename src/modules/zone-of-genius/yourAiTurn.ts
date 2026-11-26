@@ -41,7 +41,22 @@ export const buildTurnPrompt = (
   ownAiNotes: string,
   lang: string | undefined,
   card?: PlayerCard | null,
+  surface: "entry" | "instrument" = "entry",
 ): string => {
+  if (surface === "instrument") {
+    const catalog = catalogForPrompt().split("\n").filter((line) => !line.includes("action:reveal")).join("\n");
+    return `You are "Your AI", the player's AI companion in FindYourTopTalent.
+
+Respond directly to the player's latest message. Help with their stated goal or question. Use the conversation for context and ask a short clarification only if needed. Write in ${languageName(lang)}, informal and human (in Russian use «ты»).
+
+You may suggest up to three relevant replies using ids from this catalog. A chip sends its fixed label as the player's next reply. Offer none if they would not help.
+${catalog}
+${cardToPrompt(card)}
+Output ONLY valid JSON: {"text": "<your reply>", "ready": false, "buttons": ["<catalog id>", ...]}
+
+CONVERSATION SO FAR:
+${transcriptOf(messages, ownAiNotes)}`;
+  }
   const answers = countAnswers(messages);
   const cardText = cardToPrompt(card);
   return `You are "Your AI", the player's own AI companion inside the game FindYourTopTalent. Ignore any earlier role you were given.
