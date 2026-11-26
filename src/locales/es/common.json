@@ -9920,5 +9920,124 @@
     "changes": {
       "label": "Este ciclo"
     }
+  },
+  "collective": {
+    "seoDescription": "Fundadores que construyen un negocio a partir de quienes son, y lo construyen unos junto a otros.",
+    "hero": {
+      "eyebrow": "Por invitación",
+      "title": "Sovereign Founder Collective",
+      "lede": "Fundadores que construyen un negocio a partir de quienes son, y lo construyen unos junto a otros.",
+      "line": "La membresía se abre cuando tu negocio único funciona.",
+      "cta": "Empieza con tu talento principal",
+      "free": "Gratis."
+    },
+    "origin": {
+      "title": "No empezó de cero",
+      "lede": "El colectivo nació de años de trabajo con fundadores, una persona a la vez.",
+      "figures": [
+        {
+          "value": "~100",
+          "label": "personas en trabajo transformacional con Aleksandr"
+        },
+        {
+          "value": "~80",
+          "label": "hicieron con él el test de unicidad"
+        },
+        {
+          "value": "33",
+          "label": "fundadores en contenedores de fundadores y místicos"
+        },
+        {
+          "value": "~20",
+          "label": "clientes de sesiones de negocio único"
+        },
+        {
+          "value": "~13",
+          "label": "fundadores en el círculo del Fuego"
+        }
+      ],
+      "figuresLabel": "Cifras",
+      "footnote": "~ marca una estimación. Los círculos se superponen, por eso no los sumamos."
+    },
+    "what": {
+      "title": "Qué es",
+      "body": "Un círculo pequeño de fundadores, cada uno construyendo un negocio único: uno que solo ellos podrían dirigir, porque nace de su propio don. El mismo método, el mismo ritmo, y los unos a los otros."
+    },
+    "inside": {
+      "title": "Qué recibes dentro",
+      "resultLabel": "Resultado",
+      "status": {
+        "live": "Activo",
+        "coming": "Próximamente",
+        "liveInGame": "Activo en el juego",
+        "firstSteps": "Primeros pasos activos"
+      },
+      "cards": [
+        {
+          "name": "Colaboraciones",
+          "gives": "ofertas conjuntas, clientes compartidos, productos creados en equipo, recomendaciones.",
+          "result": "trabajo que un fundador en solitario no consigue por sí solo."
+        },
+        {
+          "name": "Presentaciones",
+          "gives": "las personas indicadas se conocen: clientes, socios, mentores.",
+          "result": "presentaciones que se convierten en trabajo."
+        },
+        {
+          "name": "Founder Cockpit",
+          "gives": "una pantalla para dirigir tu negocio: ofertas, clientes, el siguiente movimiento.",
+          "result": "un negocio que se dirige, no que se persigue."
+        },
+        {
+          "name": "Tu IA",
+          "gives": "una escalera desde la IA como espejo hasta tu propia empresa de IA.",
+          "result": "el negocio hace más sin contratar."
+        },
+        {
+          "name": "Ritmo compartido",
+          "gives": "el mes lunar. Semanas tranquilas para reunirse y planificar, semanas fuertes para liderar y cosechar.",
+          "result": "un solo compás, sin reuniones por reunirse."
+        },
+        {
+          "name": "Promoción mutua",
+          "gives": "la página de cada miembro se muestra aquí, cada miembro es presentado por los demás.",
+          "result": "clientes nuevos desde la audiencia del colectivo."
+        },
+        {
+          "name": "Expertos en escalar",
+          "gives": "ventas, marketing, finanzas, legal, operaciones.",
+          "result": "la siguiente etapa de ingresos con un experto a tu lado."
+        },
+        {
+          "name": "Minihackatones",
+          "gives": "un día o un fin de semana; los fundadores entregan juntos una pieza real (landing, oferta, embudo, rutina de IA).",
+          "result": "algo terminado antes de que acabe el día."
+        }
+      ]
+    },
+    "path": {
+      "title": "El camino de entrada",
+      "steps": [
+        "Encuentra tu talento principal en el juego. Gratis.",
+        "Recorre el camino: unicidad, promesa, primera oferta, landing, primeros clientes.",
+        "Cuando tu negocio único funciona, Aleksandr te invita a entrar."
+      ]
+    },
+    "terms": {
+      "title": "Condiciones",
+      "items": [
+        "10% de los ingresos, solo cuando tu negocio gane. Sin participación accionaria, nunca.",
+        "Hoy Aleksandr lo administra como custodio del colectivo; en parte financia las herramientas compartidas.",
+        "Durante 2027–2028 sus roles pasan paso a paso a los miembros.",
+        "Más adelante el 10% pasa a una entidad que los miembros gobiernan y que nadie puede vender."
+      ],
+      "motto": "El don es gratis, el sistema es de pago, el nombre es permanente."
+    },
+    "closing": {
+      "lede": "Tu negocio, construido a partir de quien eres. Con personas que construyen de la misma manera.",
+      "cta": "Empieza con tu talento principal",
+      "ask": "¿Ya eres fundador en el camino? Pídele una invitación a Aleksandr.",
+      "footer": "Sovereign Founder Collective · por invitación"
+    }
   }
 }
