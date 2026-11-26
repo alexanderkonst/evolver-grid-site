@@ -127,6 +127,18 @@ Works: centre reads FULL MOON / Harvesting / TUESDAY / Action at a glance; «+ t
 5. Accessibility text: visible words are separate (space or separator between spans), so a screen reader says «Full Moon, Harvesting, Tuesday, Action».
 Done when: at 390x844 guest, opening the card leaves «ENTER» and the Entry Portal title fully visible and unobscured on scroll; no duplicated «next»; view 3 for a guest has no year header.
 
+## Roast: thicker rings + live v6.3 review (2026-11-26, local Chromium 390x844 and 1280x900, guest, Thursday / Full Moon)
+Measured (computed styles): dial 200x200 on phone AND desktop; Moon ring stroke 1.4 px, same cream colour, lived part opacity 0.35 vs ahead 0.85; Week ring ~3 px chakra segments.
+Verdict: thicker is right but not enough alone. The split «lived / ahead» is carried only by opacity of one colour on a noisy dotted photo, so it stays unreadable at any width.
+1. Ring weight: Moon and Week tracks 8 px on the 200 px dial (4% of diameter; Apple-style 12% would swallow the phase and planet glyphs). Year 6 px, Day 4 px dashed kept.
+2. Lived vs ahead by two cues, not one: ahead = solid full colour; lived = same hue at ≤25% plus thin (2 px) centreline. Contrast ahead vs map ≥3:1 (WCAG 1.4.11).
+3. Solid dark plate: a full circle behind the dial, ~85% opaque, concentric. Today the dark shape is offset left and only partly covers the map.
+4. Centre words collide with inner glyphs: «Harvesting» touches the Saturn orb, «Expansion» touches the Sun orb. Either shrink inner orbs off the text box or push the Week ring out by ~8 px.
+5. Two big discs compete: the current Full Moon (bottom) and a large pale disc at top. One big = now; everything else small.
+6. Desktop dial is 200 px too: at 1280 it reads as an icon. Desktop 260–280 px.
+7. Card now pushes «YOUR NEXT MOVE» and ENTER below the fold on phone (trade-off of v6.3). Keep card short: drop «before …» lines on phone, or the card closes on scroll.
+8. The header line «Full moon. Harvesting.» repeats the dial centre; one of them is enough.
+
 ## Done when
 A player opens the village map and, without a legend, sees in the dial alone the moon phase and the day of the week (symbols + two words); one tap opens meaning, previous, next and the time to the next moon phase; a second adds Year and day; a third closes back to the dial. Checked live on desktop and on a phone.
 
