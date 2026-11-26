@@ -72,6 +72,12 @@
 - Keep the source of each episode traceable (which workshop/paragraph) so the course can be improved live.
 - Mark claims honestly: established vs. hypothesis (esp. for science).
 
+### Versioning
+*(Added 2026-11-26 with [course-update.md](./course-update.md), the loop that uses it.)*
+- A course is versioned **semver**: **minor** = a new episode or module; **patch** = a fix (a corrected line, a re-cut video, a repaired link); **major** = the result or the structure of step 1–2 changes (Sasha's call).
+- Every bump comes with one changelog line (date, what changed, source card if any) and an `updatedAt` date, in the course's data file, so the course page, the sales copy and the app tile read it from one place.
+- Only signed content raises the version (step 8 above).
+
 ### Applications
 - 1. **Activate Your Dormant Potential** (6 modules, 38 episodes): [activate_your_dormant_potential_transcripts.md](../08-content/activate_your_dormant_potential_transcripts.md).
 - 2. **Consciousness Meets Science** (Mystery School intro, draft): plan in [VIDEO_PRODUCTION_PLAN.md](../08-content/VIDEO_PRODUCTION_PLAN.md) → Application 2; episode texts in [consciousness_meets_science_course.md](../08-content/consciousness_meets_science_course.md).
