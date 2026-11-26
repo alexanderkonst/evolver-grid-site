@@ -1,0 +1,21 @@
+# ADP series card, Body module (not published: not in book/book.yaml). Spec: issue #521.
+id: B02
+chapter: "1"
+number: 2
+of: 2
+title: "Energy Is Received"
+caption: "Your body is a river, not a battery. Tiredness is blockage: clear food, mind, emotion. Heaven and earth meet in the hara."
+skin: v4
+max_words: 26   # waiver above the skin's 25: title 3 + eyebrow 1 + caption 22, all verbatim from issue #521
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
+text:
+  eyebrow: Body
+  battery: battery
+  stones: [Food, Mind, Emotion]
+  heaven: Heaven
+  earth: Earth
+  hara: Hara
+  attribution: "After Michio Kushi"
+sources:
+  - "knowledgegraph: 10 Sources/youtube/michio-kushi/undated-why-most-people-never-access-full-energy.md (verbatim transcript; integration: knowledgegraph#320)"
+  - issue #521 (title, line, labels and attribution verbatim)

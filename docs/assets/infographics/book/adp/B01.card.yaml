@@ -1,0 +1,18 @@
+# ADP series card, Body module (not published: not in book/book.yaml). Spec: issue #521.
+id: B01
+chapter: "1"
+number: 1
+of: 2
+title: "The Bashar Formula"
+caption: "Act on your highest excitement, as far as it goes, with no insistence on outcome, positive whatever comes, and drop beliefs that aren't yours."
+skin: v4
+max_words: 28   # waiver above the skin's 25: title 3 + eyebrow 1 + caption 24, all verbatim from issue #521
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
+text:
+  eyebrow: Body
+  steps: [Highest excitement, As far, No insistence, Positive, Drop beliefs]
+  center: You
+  attribution: "After Bashar (channeled by Darryl Anka)"
+sources:
+  - "knowledgegraph: 10 Sources/youtube/bashar/undated-five-step-formula.md (verbatim transcript; integration: knowledgegraph#320)"
+  - issue #521 (title, line, labels and attribution verbatim)
