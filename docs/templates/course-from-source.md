@@ -31,7 +31,7 @@
 8. **Signature.** Sasha signs under every word. Nothing ships that he would not sign.
 9. **Wizard.** The micro-modules are put together as a path that leads to the result of step 1.
 10. **Academy.** *(Then it ships as an app: [course-as-app.md](./course-as-app.md).)* A mini-training ships only inside the Academy on our platform, at its level (Academy → University → School; exact names to confirm). It has a mini-training page and a sales page.
-11. **Update the template.** After each mini-training, and during the work, the template is updated from experience. Many cycles.
+11. **Update the template.** After each mini-training, and during the work, the template is updated from experience. Many cycles. *(Updating a shipped mini-training with a new source: [course-update.md](./course-update.md), 2026-11-26.)*
 
 <details><summary>The 6 steps (v1, 2026-10-27), kept for history</summary>
 
@@ -71,12 +71,6 @@
 - Module = a theme of the structure; course = a short, self-paced experience with Intro, Outro and one badge (Game of Being You rules).
 - Keep the source of each episode traceable (which workshop/paragraph) so the course can be improved live.
 - Mark claims honestly: established vs. hypothesis (esp. for science).
-
-### Versioning
-*(Added 2026-11-26 with [course-update.md](./course-update.md), the loop that uses it.)*
-- A course is versioned **semver**: **minor** = a new episode or module; **patch** = a fix (a corrected line, a re-cut video, a repaired link); **major** = the result or the structure of step 1–2 changes (Sasha's call).
-- Every bump comes with one changelog line (date, what changed, source card if any) and an `updatedAt` date, in the course's data file, so the course page, the sales copy and the app tile read it from one place.
-- Only signed content raises the version (step 8 above).
 
 ### Applications
 - 1. **Activate Your Dormant Potential** (6 modules, 38 episodes): [activate_your_dormant_potential_transcripts.md](../08-content/activate_your_dormant_potential_transcripts.md).
