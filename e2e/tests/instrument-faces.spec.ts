@@ -82,6 +82,7 @@ async function openFace(page: Page, element: "fire" | "earth", name: "Growth" | 
   await glyphOf(page).click();
   await expect(dialogOf(page)).toBeVisible();
   await page.waitForTimeout(800);
+  await page.getByRole("button", { name: "Back to the instrument" }).click();
   const body = page.getByTestId(`instrument-body-${element}`);
   await expect(body).toHaveAttribute("data-lit", "true");
   await body.getByRole("button").click();
@@ -104,16 +105,17 @@ test.describe("fire face", () => {
     await expect(dialogOf(page)).toHaveCount(0);
   });
 
-  test("DoD 1 · a guest's earth body stays an outline: no face, no Workshop, Market or Town Hall inside the instrument", async ({ page }) => {
+  test("DoD 1 · a guest's earth body stays an outline: no face, no Collective, Market or Town Hall inside the instrument", async ({ page }) => {
     await openVillage(page);
     await glyphOf(page).click();
     await expect(dialogOf(page)).toBeVisible();
     await page.waitForTimeout(800);
+    await page.getByRole("button", { name: "Back to the instrument" }).click();
     const earth = page.getByTestId("instrument-body-earth");
     await expect(earth).toHaveAttribute("data-lit", "false");
     await expect(earth.getByRole("button")).toHaveCount(0);
     const text = (await dialogOf(page).innerText()).replace(/\s+/g, " ");
-    for (const closed of ["Workshop", "Market", "Town Hall"]) expect(text).not.toContain(closed);
+    for (const closed of ["Collective", "Market", "Town Hall"]) expect(text).not.toContain(closed);
   });
 });
 
@@ -122,10 +124,10 @@ test.describe("earth face", () => {
     await seedPlayer(page, { mission: true });
     await openVillage(page);
     await openFace(page, "earth", "Work");
-    // Mission saved: the Workshop is open; the Market (a saved offer) and Town Hall (the first sale) are not.
+    // Mission saved: the Collective is open; the Market (a saved offer) and Town Hall (the first sale) are not.
     await expect(items(page, "Work")).toHaveCount(1);
     const text = (await faceOf(page, "Work").innerText()).replace(/\s+/g, " ");
-    expect(text).toContain("Workshop");
+    expect(text).toContain("Collective");
     for (const closed of ["Market", "Town Hall", "Opens when"]) expect(text).not.toContain(closed);
     await faceOf(page, "Work").locator("[data-place='workshop']").click();
     await expect(page).toHaveURL(/\/village\/workshop$/);
@@ -148,6 +150,7 @@ test.describe("phone, 390x844", () => {
       await glyphOf(page).tap();
       await expect(dialogOf(page)).toBeVisible();
       await page.waitForTimeout(800);
+      await page.getByRole("button", { name: "Back to the instrument" }).click();
       await page.getByTestId(`instrument-body-${c.element}`).getByRole("button").tap();
       await expect(faceOf(page, c.name)).toBeVisible();
       await page.waitForTimeout(800);

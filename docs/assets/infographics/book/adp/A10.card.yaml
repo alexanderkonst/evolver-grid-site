@@ -1,14 +1,19 @@
-# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487; v2 labels: issue #495.
 id: A10
 chapter: "1"
 number: 10
 of: 10
-title: "Genius"
+title: "Uniqueness"
 caption: "Your unique gift to the world. Find your zone, forge your offer, live it."
 skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
 text:
   eyebrow: Growth
+  center: your unique gift
+  chain: [find your zone, forge your offer, live it]
 sources:
   - docs/08-content/activate_your_dormant_potential_transcripts.md (F01E04, G01E02, G01E03, G01E05)
   - src/data/courses/activateYourDormantPotential.ts
   - issue #487 (title and line verbatim)
+  - issue #495 (labels: words from the card's own line only)
+  - issue #501 (fifth path renamed Uniqueness)

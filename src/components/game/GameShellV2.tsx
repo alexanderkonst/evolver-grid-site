@@ -818,8 +818,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             collaborate: "collaborate",
             build: "build",
             marketplace: "buysell",
-            // Your AI (village place `oracle`) shares the AI OS pane.
-            "your-ai": "ai-os",
+            "your-ai": "journey",
             // Legacy redirects (for backwards compatibility)
             me: "grow",
             profile: "grow",
@@ -1540,6 +1539,7 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
     // children, pane 3 is the only overflow-y-auto) is the structural
     // fix. All other routes keep the historical document-scroll layout
     // because they rely on it (e.g. /playbook 7-step spine sticky).
+    const isYourAiRoute = /^\/game\/your-ai\/?$/i.test(path);
     const isAiOsRoute = path === "/ai-os" || path.startsWith("/ai-os/");
 
     return (
@@ -2405,7 +2405,12 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
             {/* The navigation instrument (docs/specs/navigation-instrument/architecture.md), with Your AI as its air
                 face (docs/specs/your-ai-instrument/sow.md): the existing AI OS gate (T+M+A complete, or the AI OS
                 ever visited) decides who carries it. */}
-            <YourAiInstrument enabled={tmaComplete || aiOsEverVisited} ownerId={user?.id ?? null} lit={instrumentLit} />
+            <YourAiInstrument
+                enabled={tmaComplete || aiOsEverVisited || isYourAiRoute}
+                openAt={isYourAiRoute ? location.key : undefined}
+                ownerId={user?.id ?? null}
+                lit={instrumentLit}
+            />
         </div>
     );
 };

@@ -66,11 +66,82 @@ class LintRules(unittest.TestCase):
         waived = specmod.Spec(GOOD_SPEC, max_words=30)
         self.assertTrue(res(over, waived)["words"][0])
 
+    def test_label_words_are_counted_apart_from_the_prose_limit(self):
+        labels = [text("one lens", part="label") for _ in range(12)]          # 24 label words: not prose
+        prose = text(" ".join(["w"] * 25))
+        r = res(Fake("v4", [prose] + labels + FOOT))
+        self.assertTrue(r["words"][0], r["words"][1])
+        self.assertIn("12 labels", r["words"][1])
+        self.assertFalse(res(Fake("v4", [text(" ".join(["w"] * 26))] + labels + FOOT))["words"][0])  # prose limit unchanged
+
+    def test_a_label_over_three_words_fails_and_names_itself(self):
+        ok, detail = res(Fake("v4", [text("four words in label", part="label")] + FOOT))["words"]
+        self.assertFalse(ok)
+        self.assertIn('"four words in label"', detail)
+        self.assertTrue(res(Fake("v4", [text("three word label", part="label")] + FOOT))["words"][0])
+
     def test_missing_spec_fields_fail(self):
         r = res(Fake("moonworld", [text("x")] + FOOT), specmod.Spec(id="x", skin="moonworld"))
         self.assertFalse(r["spec-fields"][0])
         for f in ("chapter", "title", "caption", "text", "sources"):
             self.assertIn(f, r["spec-fields"][1])
+
+
+class IconFake:
+    """A rendered icon as far as lint is concerned: skin, canvas size, log of elements."""
+    def __init__(self, log, size=1024):
+        self.skin, self.size, self.log = skins.get("v4"), size, log
+
+
+NEON = skins.get("v4").accent
+ICON_SPEC = specmod.Spec(id="x", kind="icon", chapter="apps", title="T", caption="C", skin="v4", text={"a": "b"}, sources=["s"])
+
+
+def el(side="before", kind="dot", bbox=(200, 450, 300, 550), color=(200, 210, 222), stroke=100):
+    return dict(kind=kind, role="body", bbox=bbox, color=color, container=None, side=side, stroke=stroke)
+
+
+def ires(log, spec=ICON_SPEC):
+    return {r: (ok, d) for r, ok, d in lint.check_icon(IconFake(log), spec)}
+
+
+GOOD_ICON = [el("before"), el("after", color=NEON, bbox=(700, 450, 800, 550))]
+
+
+class IconLint(unittest.TestCase):
+    def test_clean_icon_passes_every_rule(self):
+        r = ires(GOOD_ICON)
+        self.assertEqual([k for k, (ok, _) in r.items() if not ok], [])
+        self.assertEqual(set(r), set(lint.ICON_RULES))
+
+    def test_stroke_under_6px_at_128_fails_and_names_the_element(self):
+        thin = el("before", kind="ln", bbox=(100, 300, 400, 500), stroke=47)   # 47 px at 1024 = 5.9 px at 128
+        ok, detail = ires(GOOD_ICON + [thin])["stroke"]
+        self.assertFalse(ok); self.assertIn("ln", detail); self.assertIn("5.9", detail)
+        self.assertTrue(ires(GOOD_ICON + [dict(thin, stroke=48)])["stroke"][0])
+
+    def test_more_than_7_elements_on_one_side_fails(self):
+        seven = [el("before") for _ in range(7)] + [GOOD_ICON[1]]
+        self.assertTrue(ires(seven)["elements"][0])
+        ok, detail = ires(seven + [el("before")])["elements"]
+        self.assertFalse(ok); self.assertIn("before", detail)
+
+    def test_accent_exactly_once_and_on_the_after_side(self):
+        self.assertFalse(ires([el("before"), el("after")])["accent"][0])                             # none
+        two = [el("after", color=NEON), el("after", color=NEON, bbox=(700, 450, 800, 550))]
+        self.assertFalse(ires(two)["accent"][0])                                                      # two
+        self.assertFalse(ires([el("before", color=NEON), el("after")])["accent"][0])                  # on the before side
+
+    def test_palette_margins_and_text(self):
+        self.assertFalse(ires(GOOD_ICON + [el("after", color=(255, 0, 0))])["palette"][0])
+        self.assertFalse(ires(GOOD_ICON + [el("after", bbox=(900, 450, 1000, 550))])["margins"][0])
+        words = dict(kind="text", role="body", bbox=(300, 300, 400, 330), color=(230, 235, 242), container=None,
+                     side="before", text="hi", lines=["hi"], widths=[40], maxw=None, size=30, font="sans")
+        self.assertFalse(ires(GOOD_ICON + [words])["no-text"][0])
+
+    def test_spec_fields_are_required_for_icons_too(self):
+        r = ires(GOOD_ICON, specmod.Spec(id="x", kind="icon", skin="v4"))
+        self.assertFalse(r["spec-fields"][0])
 
 
 class RenderedCards(unittest.TestCase):
@@ -88,6 +159,32 @@ class RenderedCards(unittest.TestCase):
             self.assertEqual([r for r in rows if r[1] != "PASS"], [], cid)
             mean, _ = compare.compare(specmod.load(path))["committed"]
             self.assertLess(mean, 0.5, cid)
+
+
+class AppIcons(unittest.TestCase):
+    ids = ("potential", "crossing", "vision", "nature", "your-ai")
+
+    def test_every_icon_passes_lint_and_ships_1024_and_128(self):
+        from PIL import Image
+        for i in self.ids:
+            path = os.path.join(INF, "apps", f"{i}.card.yaml")
+            cid, rows = lint.lint_spec(path)
+            self.assertEqual([r for r in rows if r[1] != "PASS"], [], cid)
+            self.assertEqual([r[0] for r in rows], list(lint.ICON_RULES), cid)
+            self.assertEqual(Image.open(os.path.join(INF, "apps", f"{i}.png")).size, (1024, 1024), i)
+            self.assertEqual(Image.open(os.path.join(INF, "apps", f"{i}@128.png")).size, (128, 128), i)
+
+    def test_a_thin_icon_fails_through_the_real_renderer(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            for ext in (".card.yaml", ".py"):
+                with open(os.path.join(INF, "apps", "potential" + ext), encoding="utf-8") as f:
+                    body = f.read()
+                if ext == ".py":
+                    body = body.replace("c.ring(I.BEFORE_X, 512, 160, 48,", "c.ring(I.BEFORE_X, 512, 160, 30,")
+                with open(os.path.join(tmp, "thin" + ext), "w", encoding="utf-8") as f:
+                    f.write(body.replace("id: potential", "id: thin"))
+            _, rows = lint.lint_spec(os.path.join(tmp, "thin.card.yaml"))
+            self.assertEqual([r[0] for r in rows if r[1] == "FAIL"], ["stroke"])
 
 
 class BookSync(unittest.TestCase):
@@ -246,6 +343,30 @@ class BookBuild(unittest.TestCase):
         book_build.build(self.paths, say=out.append)
         self.assertIn("rendered 1 of 2 card(s)", "\n".join(out))
         self.assertEqual(book_build.check(self.paths, say=lambda *_: None), 0)
+
+
+class CaptionSize(unittest.TestCase):
+    """`caption_size` in a spec sets the size of the line under the title; without it the engine's 26 px stays."""
+    def _caption(self, **extra):
+        from kit import vocab as K
+        sp = specmod.Spec(GOOD_SPEC, skin="v4", caption="Five paths, one cycle.", **extra)
+        sp.path = os.path.join(HERE, "x.card.yaml")
+        c = K.card(sp)
+        return [r for r in c.log if r["kind"] == "text" and r["text"] == sp["caption"]][0]
+
+    def test_default_is_the_engine_size_and_the_param_raises_it(self):
+        self.assertEqual(self._caption()["size"], 26)
+        self.assertEqual(self._caption(caption_size=30)["size"], 30)
+
+    def test_labels_are_logged_as_labels(self):
+        from kit import vocab as K
+        sp = specmod.Spec(GOOD_SPEC, skin="v4"); sp.path = os.path.join(HERE, "x.card.yaml")
+        c = K.card(sp)
+        K.name(c, 540, 600, "Body")
+        K.tag(c, 540, 700, "not a label")
+        parts = {r["text"]: r.get("part") for r in c.log if r["kind"] == "text"}
+        self.assertEqual(parts["Body"], "label")
+        self.assertNotEqual(parts["not a label"], "label")
 
 
 class Waivers(unittest.TestCase):

@@ -22,13 +22,17 @@ describe("your-ai-console · prompt assembly (server)", () => {
   it("DoD 2 · each button's prompt = AI OS v6.0 (system) + its prompt + profile + previous cards + locale line", () => {
     for (const b of CONSOLE_BUTTONS) {
       const { system, user } = assemble({ button: b.id, context: "PLAYER-CTX-LINE", previousCards: cards, locale: "en" });
-      expect(system).toBe(AI_OS_PROMPT);
+      if (b.id === 1) {
+        expect(system).toContain("A readable goal needs no follow-up.");
+      } else {
+        expect(system).toBe(AI_OS_PROMPT);
+      }
       expect(user.startsWith(SRC_PROMPTS[b.prompt])).toBe(true);
       expect(user).toContain("PLAYER-CTX-LINE");
       expect(user).toContain(JSON.stringify(cards, null, 2));
       expect(user.endsWith("Answer in English.")).toBe(true);
       // The order: prompt, then context, then cards, then the locale line.
-      expect(user.indexOf("=== PLAYER CONTEXT ===")).toBe(SRC_PROMPTS[b.prompt].length + 2);
+      expect(user.indexOf(b.id === 1 ? "=== STATED GOAL ===" : "=== PLAYER CONTEXT ===")).toBe(SRC_PROMPTS[b.prompt].length + 2);
       expect(user.indexOf("=== PREVIOUS CARDS (JSON) ===")).toBeGreaterThan(user.indexOf("PLAYER-CTX-LINE"));
     }
   });

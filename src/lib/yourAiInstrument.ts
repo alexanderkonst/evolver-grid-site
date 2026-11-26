@@ -16,8 +16,8 @@ export const SWIPE_CLOSE_PX = 72;
 /** Swipe up at least this far (px) from the glyph to open. */
 export const SWIPE_OPEN_PX = 40;
 
-/** The four groups the first-open tour zooms onto, in order. */
-export const TOUR_GROUPS = ["header", "conversation", "console", "powerUps"] as const;
+/** The groups the first-open tour zooms onto, in order. */
+export const TOUR_GROUPS = ["header", "conversation", "console"] as const;
 export type TourGroup = (typeof TOUR_GROUPS)[number];
 
 /**

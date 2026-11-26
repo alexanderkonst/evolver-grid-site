@@ -104,7 +104,7 @@
 2. FOUNDER-MARKET FIT: Найти свой founder-market fit, $555 лично, $222 в группе)  
 3. BUILT TO PMF: cтроим уникальный масштабируемый продукт за 1 месяц, $3333 индивидуально, $1111 в группе, или $5 555 с первых $55 555 выручки)  
 4. ENTREPRENEUR’S EVOLUTION: поддержка на пути героя, и мягкое ускорение роста (to be announced later)  
-5. SOVEREIGN FOUNDER COLLECTIVE (10% revenue share to grow together, requires a unique product with a PMF).  
+5. SOVEREIGN FOUNDER COLLECTIVE (10% revenue share to grow together, requires a unique product with a PMF; at each 10x of the founder's revenue from joining, the agreement renews on the same terms unless either side chooses to end it; terms: [collective_terms_roadmap.md](../collective/collective_terms_roadmap.md)).  
 6. UNIQUE BUSINESS CREATION AS A SERVICE: Предлагаю им проводить эту программу для их клиентов  
 7. RAPID INCUBATION OF UNIQUE BUSINESSES: Предлагаю тренинг чтобы получить лицензию вести эту программу самим для своих клиентов
 

@@ -58,9 +58,8 @@ describe("Your AI instrument: the tour is shown once", () => {
     expect(readTourSeen(null)).toBe(false);
     expect(() => writeTourSeen(null)).not.toThrow();
   });
-  it("has one beat per group, four to five in all", () => {
-    expect(TOUR_GROUPS.length).toBeGreaterThanOrEqual(4);
-    expect(TOUR_GROUPS.length).toBeLessThanOrEqual(5);
+  it("introduces the header, conversation, and Console", () => {
+    expect(TOUR_GROUPS).toEqual(["header", "conversation", "console"]);
   });
 });
 
@@ -77,6 +76,12 @@ describe("Your AI instrument: the Console and the labels", () => {
     for (const lang of ["en", "ru", "es"]) {
       const json = JSON.parse(readFileSync(join(root, `src/locales/${lang}/common.json`), "utf8"));
       for (const k of used) {
+        if (k === "turnsRemaining") {
+          for (const category of new Intl.PluralRules(lang).resolvedOptions().pluralCategories) {
+            expect(json.yourAiInstrument[`turnsRemaining_${category}`]).toContain("{{count}}");
+          }
+          continue;
+        }
         const v = k.split(".").reduce<unknown>((o, p) => (o as Record<string, unknown> | undefined)?.[p], json.yourAiInstrument);
         expect(typeof v, `${lang}: yourAiInstrument.${k}`).toBe("string");
       }

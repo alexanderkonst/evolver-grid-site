@@ -153,10 +153,10 @@
         "alt": "Una gran biblioteca bajo una cúpula de noche: estantes de madera curvos, una esfera armilar, pergaminos y un libro abierto, y un dodecaedro de cristal entre las estrellas del tragaluz"
       },
       "workshop": {
-        "name": "Taller",
-        "line": "Da forma a tu oferta.",
-        "alt": "Un taller bajo arcos con borde de neón: una impresora 3D, una cortadora láser, una impresora de gran formato y un brazo robótico, con un dodecaedro de cristal luminoso flotando en el centro",
-        "opened": "El Taller está abierto."
+        "name": "Colectivo",
+        "line": "Fundadores que construyen negocios únicos juntos.",
+        "alt": "Un patio blanco con cúpula, de noche, en una colina sobre el mar: un círculo de bancos bajos y cojines alrededor de una mesa, puertas iluminadas por faroles por todas partes y un dodecaedro de cristal entre las estrellas",
+        "opened": "El Colectivo está abierto."
       },
       "market": {
         "name": "Mercado",
@@ -176,7 +176,7 @@
       "quest-board": "Se abre cuando tu talento principal está guardado en tu cuenta. Dentro: tu próxima misión.",
       "cafe": "Se abre cuando tu misión está guardada. Dentro: gente por conocer, por trabajo o sin más.",
       "coworking": "Se abre cuando tu talento principal, tu misión y tus activos están guardados. Dentro: socios para el trabajo.",
-      "workshop": "Se abre cuando tu misión está guardada. Dentro: tu oferta, construida desde tu talento principal.",
+      "workshop": "Se abre cuando tu misión está guardada. Dentro: el colectivo de fundadores y las herramientas para construir tu negocio.",
       "market": "Se abre cuando tu oferta está guardada. Dentro: tu puesto y los puestos de otros residentes.",
       "town-hall": "Se abre cuando se registra tu primera venta. Dentro: proyectos construidos en conjunto y tu voz en la aldea.",
       "first-price": "Se abre cuando tu oferta está guardada. Dentro: tu primer precio, dicho a un cliente real.",
@@ -253,13 +253,13 @@
         "verb": "Mapear mis activos"
       },
       "uniqueness-phrase": {
-        "eyebrow": "Taller · Paso 6",
+        "eyebrow": "Colectivo · Paso 6",
         "headline": "Tu singularidad en una frase",
         "silhouette": "Obtienes una frase que solo tú podrías decir, hecha a partir de tu talento principal.",
         "verb": "Nombrar mi singularidad"
       },
       "tagline": {
-        "eyebrow": "Taller · Paso 7",
+        "eyebrow": "Colectivo · Paso 7",
         "headline": "El eslogan de tu negocio único",
         "silhouette": "Obtienes una frase para las personas a las que sirves: dónde están y adónde las llevas.",
         "verb": "Escribir mi eslogan"
@@ -374,6 +374,11 @@
       "consciousness-meets-science": {
         "name": "La conciencia se encuentra con la ciencia",
         "result": "un curso donde la conciencia se encuentra con la ciencia"
+      },
+      "founder-collective": {
+        "name": "Founder Collective",
+        "result": "fundadores con negocios en marcha, por invitación",
+        "closed": "Se abre cuando tu misión está guardada. Dentro: fundadores con negocios en marcha, por invitación."
       },
       "ubb-canvas": {
         "name": "Lienzo",
@@ -1516,7 +1521,7 @@
     "heroSubhead": "Pega abajo el análisis de tu IA. Capturaremos la única frase que aterriza.",
     "step1Eyebrow": "Paso 1",
     "step1Title": "Copia el prompt",
-    "step1Desc": "Pégalo en ChatGPT, Claude o la IA que mejor te conozca.",
+    "step1Desc": "Pégalo en Tu IA y vuelve aquí con su respuesta.",
     "copyButton": "Copiar",
     "copyButtonCopied": "Copiado",
     "step2Eyebrow": "Paso 2",
@@ -7926,6 +7931,9 @@
     }
   },
   "characterSheet": {
+    "since": {
+      "title": "Desde tu última visita"
+    },
     "lockedFold": "Aún sin abrir: {{rooms}}.",
     "eyebrow": "Casa",
     "playerFallback": "Jugador",
@@ -8002,7 +8010,7 @@
         "saved": "Tu oferta está guardada. Está en tu puesto.",
         "empty": "Aún sin construir",
         "start": "Construir tu oferta",
-        "again": "Abrir el Taller"
+        "again": "Abrir el Colectivo"
       }
     },
     "badges": {
@@ -8250,7 +8258,8 @@
       "name": "Sovereign Founder Collective",
       "badge": "El 10% de los ingresos va a una tesorería descentralizada",
       "line": "Una artel de emprendedores.",
-      "body": "Construimos negocios únicos juntos, nos apoyamos y nos autoorganizamos."
+      "body": "Construimos negocios únicos juntos, nos apoyamos y nos autoorganizamos.",
+      "cta": "Abrir el Colectivo"
     },
     "forClients": {
       "name": "Guío esta secuencia para tus clientes",
@@ -9502,15 +9511,15 @@
   },
   "villagePlaces": {
     "workshop": {
-      "title": "Taller",
+      "title": "Colectivo",
       "description": "Da forma a tu negocio único, un artefacto a la vez."
     },
     "market": {
       "title": "Mercado",
       "description": "Donde los fundadores muestran lo que ofrecen.",
-      "empty": "Tu puesto se abre cuando tu oferta esté lista en el Taller."
+      "empty": "Tu puesto se abre cuando tu oferta esté lista en el Colectivo."
     },
-    "openWorkshop": "Abrir el Taller"
+    "openWorkshop": "Abrir el Colectivo"
   },
   "market": {
     "stall": {
@@ -9554,11 +9563,6 @@
     "whatsappHint": "Abre una conversación privada"
   },
   "familiar": {
-    "takeYourAi": "Llévate tu IA",
-    "updateMyAi": "Actualizar mi IA",
-    "pasteNote": "Copiado. Pégalo en el chat nuevo.",
-    "copyFailed": "Tu navegador bloqueó la copia. Pulsa el botón otra vez o prueba con otro navegador.",
-    "whereLive": "¿Dónde vivirá tu IA?",
     "gifts": {
       "aria": "Lo que tiene tu IA",
       "lit": "(lo tiene)",
@@ -9573,14 +9577,9 @@
       "activated": "Tu IA {{version}}",
       "talent": "tu talento principal",
       "talentMission": "tu talento principal y tu misión",
-      "work": "Taller: {{n}} de {{total}}",
+      "work": "Colectivo: {{n}} de {{total}}",
       "opensTalent": "Se abre cuando guardes tu talento principal",
-      "opensWorkshop": "Se abre en el Taller"
-    },
-    "handover": {
-      "eyebrow": "Tu IA",
-      "line": "Tu IA: tu prompt, llevado al chat que ya usas.",
-      "next": "Siguiente"
+      "opensWorkshop": "Se abre en el Colectivo"
     },
     "outro": {
       "aria": "Tu IA está lista",
@@ -9609,7 +9608,7 @@
         "coworking": "Encuentra socios para el trabajo.",
         "fire-circle": "Únete a tu círculo FMF.",
         "academy": "Crece en lo que más importa.",
-        "workshop": "Crea tu oferta.",
+        "workshop": "Fundadores que construyen negocios únicos juntos.",
         "market": "Abre tu tienda.",
         "town-hall": "Construyan proyectos juntos."
       }
@@ -9644,7 +9643,7 @@
     "question": "¿Tú también me ves así?",
     "shareStall": "Comparte tu puesto",
     "pickLinkName": "Elige el nombre de tu enlace",
-    "needsGift": "Tu frase de unicidad en el Taller le da su línea a tu tarjeta",
+    "needsGift": "Tu frase de unicidad en el Colectivo le da su línea a tu tarjeta",
     "share": "Compartir",
     "copyLink": "Copiar enlace",
     "copied": "Copiado",
@@ -9786,11 +9785,13 @@
     "retry": "Reintentar",
     "limitNote": "Llegaste al límite gratuito de hoy de Tu IA. Se renueva mañana.",
     "limitPlaceholder": "Se alcanzó el límite gratuito de hoy",
+    "turnsRemaining_one": "{{count}} turno disponible hoy",
+    "turnsRemaining_many": "{{count}} turnos disponibles hoy",
+    "turnsRemaining_other": "{{count}} turnos disponibles hoy",
+    "go": "Ir",
     "nextSteps": "Próximos pasos sugeridos",
     "console": "Consola",
-    "powerUpsTitle": "Potenciadores para negocios",
     "locked": "Cerrado",
-    "powerUpsLine": "Se abre cuando se lancen los potenciadores. Dentro: tu IA puesta a trabajar en tu negocio.",
     "tourLabel": "Tu IA, un recorrido corto",
     "tourStep": "{{n}} de {{total}}",
     "tourSkip": "Omitir",
@@ -9799,8 +9800,7 @@
     "tour": {
       "header": "Esta es Tu IA, impulsada por Your AI OS. Va contigo en cada pantalla.",
       "conversation": "Está hecha para conocerte, y te conoce más de cerca mientras juegas.",
-      "console": "La Consola: cada app es un botón que hace algo poderoso.",
-      "powerUps": "Los potenciadores para tu negocio son opcionales, y llegan después."
+      "console": "La Consola: cada app es un botón que hace algo poderoso."
     }
   },
   "instrument": {
@@ -9829,8 +9829,11 @@
         "ether": "El Éter se enciende. El Portal de entrada está abierto para ti.",
         "water": "El Agua se enciende. El Café está abierto para ti.",
         "fire": "El Fuego se enciende. La Academia y FMF están abiertos para ti.",
-        "earth": "La Tierra se enciende. El Taller está abierto para ti."
+        "earth": "La Tierra se enciende. El Colectivo está abierto para ti."
       }
+    },
+    "glint": {
+      "label": "Cambió desde tu última visita"
     },
     "sound": {
       "label": "Sonido del instrumento",
@@ -9913,6 +9916,130 @@
     },
     "changes": {
       "label": "Este ciclo"
+    }
+  },
+  "collective": {
+    "seoDescription": "Fundadores que construyen un negocio a partir de quienes son, y lo construyen unos junto a otros.",
+    "hero": {
+      "eyebrow": "Por invitación",
+      "title": "Sovereign Founder Collective",
+      "lede": "Fundadores que construyen un negocio a partir de quienes son, y lo construyen unos junto a otros.",
+      "line": "La membresía se abre cuando tu negocio único funciona.",
+      "cta": "Empieza con tu talento principal",
+      "free": "Gratis."
+    },
+    "origin": {
+      "title": "No empezó de cero",
+      "lede": "El colectivo nació de años de trabajo con fundadores, una persona a la vez.",
+      "figures": [
+        {
+          "value": "~100",
+          "label": "personas en trabajo transformacional con Aleksandr"
+        },
+        {
+          "value": "~80",
+          "label": "hicieron con él el test de unicidad"
+        },
+        {
+          "value": "33",
+          "label": "fundadores en contenedores de fundadores y místicos"
+        },
+        {
+          "value": "~20",
+          "label": "clientes de sesiones de negocio único"
+        },
+        {
+          "value": "~13",
+          "label": "fundadores en el círculo del Fuego"
+        }
+      ],
+      "figuresLabel": "Cifras",
+      "footnote": "~ marca una estimación. Los círculos se superponen, por eso no los sumamos."
+    },
+    "what": {
+      "title": "Qué es",
+      "body": "Un círculo pequeño de fundadores, cada uno construyendo un negocio único: uno que solo ellos podrían dirigir, porque nace de su propio don. El mismo método, el mismo ritmo, y los unos a los otros."
+    },
+    "inside": {
+      "title": "Qué recibes dentro",
+      "resultLabel": "Resultado",
+      "cards": [
+        {
+          "name": "Colaboraciones",
+          "gives": "ofertas conjuntas, clientes compartidos, productos creados en equipo, recomendaciones.",
+          "result": "trabajo que un fundador en solitario no consigue por sí solo."
+        },
+        {
+          "name": "Presentaciones",
+          "gives": "las personas indicadas se conocen: clientes, socios, mentores.",
+          "result": "presentaciones que se convierten en trabajo."
+        },
+        {
+          "name": "Founder Cockpit",
+          "gives": "una pantalla para dirigir tu negocio: ofertas, clientes, el siguiente movimiento.",
+          "result": "un negocio que se dirige, no que se persigue."
+        },
+        {
+          "name": "Tu IA",
+          "gives": "una escalera desde la IA como espejo hasta tu propia empresa de IA.",
+          "result": "el negocio hace más sin contratar."
+        },
+        {
+          "name": "Ritmo compartido",
+          "gives": "el mes lunar. Semanas tranquilas para reunirse y planificar, semanas fuertes para liderar y cosechar.",
+          "result": "un solo compás, sin reuniones por reunirse."
+        },
+        {
+          "name": "Promoción mutua",
+          "gives": "la página de cada miembro se muestra aquí, cada miembro es presentado por los demás.",
+          "result": "clientes nuevos desde la audiencia del colectivo."
+        },
+        {
+          "name": "Expertos en escalar",
+          "gives": "ventas, marketing, finanzas, legal, operaciones.",
+          "result": "la siguiente etapa de ingresos con un experto a tu lado."
+        },
+        {
+          "name": "Minihackatones",
+          "gives": "un día o un fin de semana; los fundadores entregan juntos una pieza real (landing, oferta, embudo, rutina de IA).",
+          "result": "algo terminado antes de que acabe el día."
+        }
+      ]
+    },
+    "public": {
+      "title": "Nuestro negocio, en público",
+      "sub": "Mientras Aleksandr está en el centro, así es como le fue de verdad. Los nuevos hitos aparecen aquí a medida que ocurren.",
+      "viewsLabel": "Elige una vista",
+      "views": { "short": "Breve", "key": "Hitos clave", "full": "Cronología completa" },
+      "short": "Día {{days}} · {{total}} ganados hasta ahora.",
+      "latest": "Último hito",
+      "day": "Día {{day}}",
+      "link": "Ver el panel completo"
+    },
+    "path": {
+      "title": "El camino de entrada",
+      "steps": [
+        "Encuentra tu talento principal en el juego. Gratis.",
+        "Recorre el camino: unicidad, promesa, primera oferta, landing, primeros clientes.",
+        "Cuando tu negocio único funciona, Aleksandr te invita a entrar."
+      ]
+    },
+    "terms": {
+      "title": "Condiciones",
+      "items": [
+        "10% de los ingresos, solo cuando tu negocio gane. Sin participación accionaria.",
+        "Cada vez que tus ingresos se multiplican por 10, el acuerdo se renueva en las mismas condiciones, salvo que alguna de las partes decida terminarlo.",
+        "Hoy Aleksandr lo administra como custodio del colectivo; en parte financia las herramientas compartidas.",
+        "Durante 2027–2028 sus roles pasan paso a paso a los miembros.",
+        "Más adelante el 10% pasa a una entidad que los miembros gobiernan y que nadie puede vender."
+      ],
+      "motto": "El don es gratis, el sistema es de pago, el nombre es permanente."
+    },
+    "closing": {
+      "lede": "Tu negocio, construido a partir de quien eres. Con personas que construyen de la misma manera.",
+      "cta": "Empieza con tu talento principal",
+      "ask": "¿Ya eres fundador en el camino? Pídele una invitación a Aleksandr.",
+      "footer": "Sovereign Founder Collective · por invitación"
     }
   }
 }

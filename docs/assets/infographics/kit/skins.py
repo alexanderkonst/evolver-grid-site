@@ -24,12 +24,13 @@ class Skin:
     size: tuple                 # (w, h) px
     margin: int                 # px at `size`; every non-footer element stays inside
     min_font: int               # px at 1080 wide
-    max_words: int              # on-card words, footer excluded
+    max_words: int              # on-card words, footer excluded; labels (part="label") are counted apart
     palette: dict               # name -> (r, g, b): the only colours a card may use
     accent: tuple = None        # the single accent colour (None = skin has none)
     accent_family: tuple = ()   # extra RGBs that count as the same accent (v4 NEON_HI / NEON_LO)
     bg: tuple = ()
     fonts: dict = field(default_factory=dict)   # role -> family
+    label_words: int = 3        # max words in one figure label (K.name); labels do not count toward max_words
     renderer: str = ""          # "pil-v4" = vocab.py can draw it; "" = tokens only
     iridescent: bool = False    # iri_* fills (thin-film shader) are native to the skin
     notes: str = ""

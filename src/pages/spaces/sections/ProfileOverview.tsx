@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import GameShellV2 from "@/components/game/GameShellV2";
 import { PlaceState, PlaceStateTag } from "@/components/game/PlaceState";
+import SinceYouWereHere from "@/components/game/SinceYouWereHere";
 import ProfileClock from "@/components/game/ProfileClock";
 import SoulDodecahedron from "@/components/SoulDodecahedron";
 import ProfilePictureUpload from "@/components/profile/ProfilePictureUpload";
@@ -10,6 +11,7 @@ import { useCharacterSheet } from "@/hooks/useCharacterSheet";
 import { usePlayerMetricHistory } from "@/hooks/usePlayerMetricHistory";
 import MetricHistory from "@/components/game/MetricHistory";
 import { useModuleChoices } from "@/hooks/useModuleChoice";
+import { useSinceYouWereHere } from "@/hooks/useSinceYouWereHere";
 import { useSoulColors } from "@/hooks/useSoulColors";
 import { choiceDate } from "@/data/journeyChoices";
 import { useLocalizedDomains } from "@/modules/quality-of-life-map/qolConfig";
@@ -89,6 +91,8 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
         [sheet.chain, sheet.offerSaved],
     );
     const rooms = useMemo(() => houseRooms(save, t), [save, t]);
+    // WP6 (#451): what opened since the last visit, and the glint it writes on the instrument.
+    const sinceChanges = useSinceYouWereHere(sheet.userId, save);
     // #375: one locked block (the next one) and one quiet line for the rest.
     const lockedFold = useMemo(() => lockedRoomFold(rooms), [rooms]);
     const badges = useMemo(() => houseBadges(save, t), [save, t]);
@@ -404,6 +408,8 @@ const HouseSheet = ({ sheet }: { sheet: Sheet }) => {
                 {/* A9 (#377): the player's own biological clock, compact, in the page header. */}
                 <ProfileClock className="cs-clock" />
             </header>
+
+            <SinceYouWereHere changes={sinceChanges} />
 
             {stats.length > 0 && (
                 <section className="cs-stats" aria-label={t("characterSheet.stats.title")}>

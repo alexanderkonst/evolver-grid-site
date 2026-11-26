@@ -30,7 +30,7 @@
 7. **Infographic and video.** One NotebookLM per micro-module: an infographic and a **90 s** video (Sasha, 2026-11-22: past 90 s it gets hard to follow; replaces 90–120 s). One look for the whole mini-training, one scene per episode (Look & feel below).
 8. **Signature.** Sasha signs under every word. Nothing ships that he would not sign.
 9. **Wizard.** The micro-modules are put together as a path that leads to the result of step 1.
-10. **Academy.** A mini-training ships only inside the Academy on our platform, at its level (Academy → University → School; exact names to confirm). It has a mini-training page and a sales page.
+10. **Academy.** *(Then it ships as an app: [course-as-app.md](./course-as-app.md).)* A mini-training ships only inside the Academy on our platform, at its level (Academy → University → School; exact names to confirm). It has a mini-training page and a sales page.
 11. **Update the template.** After each mini-training, and during the work, the template is updated from experience. Many cycles.
 
 <details><summary>The 6 steps (v1, 2026-10-27), kept for history</summary>

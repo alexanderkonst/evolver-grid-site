@@ -1,14 +1,20 @@
-# ADP series card (not published: not in book/book.yaml). Spec: issue #487.
+# ADP series card (not published: not in book/book.yaml). Spec: issue #487; v2 labels: issue #495.
 id: A06
 chapter: "1"
 number: 6
 of: 10
 title: "Spirit"
-caption: "Spirit = awareness + sensitivity + character. The core engine of all your development."
+caption: "Spirit = awareness + sensitivity + character: mind, heart, gut. The core engine of all your development."
 skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
 text:
   eyebrow: Growth
+  nodes: [Awareness, Sensitivity, Character]
+  centres: [mind, heart, gut]   # one per node, in order (course: awareness = what you notice inside your head; sensitivity = capacity to feel; character = that gut feeling)
+  center: Spirit
 sources:
   - docs/08-content/activate_your_dormant_potential_transcripts.md (S01E01, F01E09)
   - src/data/courses/activateYourDormantPotential.ts
   - issue #487 (title and line verbatim)
+  - issue #495 (labels: words from the card's own line only)
+  - issue #501 (centres mind / heart / gut)

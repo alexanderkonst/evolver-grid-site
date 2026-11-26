@@ -31,6 +31,7 @@ async function openWaterFace(page: Page) {
   await glyphOf(page).click();
   await expect(dialogOf(page)).toBeVisible();
   await page.waitForTimeout(800);
+  await page.getByRole("button", { name: "Back to the instrument" }).click();
   // The Café is open to guests, so the water body is lit and is a door.
   await page.getByTestId("instrument-body-water").getByRole("button").click();
   await expect(page.getByRole("region", { name: "Time" })).toBeVisible();

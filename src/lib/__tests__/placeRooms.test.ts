@@ -90,6 +90,15 @@ describe("placeRooms", () => {
     }
   });
 
+  it("the Collective's pane lists Founder Collective ahead of the builder rooms, in order", () => {
+    const { rooms } = placeRooms(at("workshop"), everythingDone());
+    // Canvas shares /ubb with the build-business step row, so that one route is listed once, as the step.
+    const staticRooms = rooms.filter((r) => PLACE_ROOMS.workshop?.some((s) => s.id === r.id));
+    expect(staticRooms.map((r) => r.id)).toEqual(["founder-collective", "ubb-session", "ubb-marketing", "ubb-distribution", "ubb-communications", "ubb-landing-page"]);
+    expect(staticRooms[0]).toMatchObject({ name: "Founder Collective", to: "/collective", state: "open" });
+    expect(PLACE_ROOMS.workshop?.map((r) => r.id)).toEqual(["founder-collective", "ubb-canvas", "ubb-session", "ubb-marketing", "ubb-distribution", "ubb-communications", "ubb-landing-page"]);
+  });
+
   it("an open place's rooms are open", () => {
     const { rooms } = placeRooms(at("workshop"), everythingDone());
     expect(rooms.some((r) => r.state === "closed")).toBe(false);
@@ -282,7 +291,7 @@ describe("room lines are translated (es, ru)", () => {
   });
 
   it("every room of a closed place has its own closed line, in the reader's language", () => {
-    const closedIds = ["me-overview", "equilibrium", "my-artifacts", "settings", "genius-match", "connections", "people", "messages", "ubb-canvas", "ubb-session", "ubb-marketing", "ubb-distribution", "ubb-communications", "ubb-landing-page", "overview", "my-products", "discover-mission", "assess-qol", "map-assets", "build-business"];
+    const closedIds = ["me-overview", "equilibrium", "my-artifacts", "settings", "genius-match", "connections", "people", "messages", "founder-collective", "ubb-canvas", "ubb-session", "ubb-marketing", "ubb-distribution", "ubb-communications", "ubb-landing-page", "overview", "my-products", "discover-mission", "assess-qol", "map-assets", "build-business"];
     for (const id of closedIds) {
       expect(rooms(en)[id]?.closed, `en/${id}`).toMatch(/^Opens when .+\. Inside: .+\.$/);
       expect(rooms(es)[id]?.closed, `es/${id}`).toMatch(/^Se abre cuando .+\. Dentro: .+\.$/);

@@ -345,7 +345,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // Which rows a player sees is decided by their journey stage, not here:
     // src/data/founderTools.ts (issue #250). No more branching on location.pathname.
     build: {
-        title: "THE FORGE",
+        title: "THE COLLECTIVE",
         sections: [
             { id: "build-header-founder-tools", label: "Founder Tools", path: "", isHeader: true },
             { id: "equilibrium-v2", label: "Equilibrium", path: "/build/equilibrium" },

@@ -28,7 +28,7 @@ describe("getPageTitle", () => {
     expect(getPageTitle("/game/marketplace")).toBe("Market");
     expect(getPageTitle("/game/collaborate/matches")).toBe("Co-working");
     expect(getPageTitle("/game/meet")).toBe("Café");
-    expect(getPageTitle("/ubb")).toBe("Workshop");
+    expect(getPageTitle("/ubb")).toBe("Collective");
   });
 
   it("names every Journey place in the tab as the village names it (WP-15)", () => {

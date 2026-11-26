@@ -28,11 +28,15 @@ export const assemble = ({ button, context, previousCards, locale }: AssembleInp
   const key = BUTTON_PROMPT_KEYS[button];
   const prompt = key ? CONSOLE_PROMPTS[key] : undefined;
   if (!prompt) throw new Error(`unknown button ${button}`);
+  const contextLabel = button === 1 ? "STATED GOAL" : "PLAYER CONTEXT";
   const user = [
     prompt,
-    `=== PLAYER CONTEXT ===\n${context.trim() || "(nothing yet)"}`,
+    `=== ${contextLabel} ===\n${context.trim() || "(nothing yet)"}`,
     `=== PREVIOUS CARDS (JSON) ===\n${JSON.stringify(previousCards, null, 2)}`,
     localeLine(locale),
   ].join("\n\n");
-  return { system: AI_OS_PROMPT, user };
+  const system = button === 1
+    ? `${AI_OS_PROMPT}\n\nFor this Console turn, use the supplied goal and return the requested goal card. A readable goal needs no follow-up. When there is no readable goal, return the needs-goal card without a question.`
+    : AI_OS_PROMPT;
+  return { system, user };
 };

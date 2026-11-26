@@ -112,9 +112,9 @@ const JourneyLanding = () => {
   );
 };
 
-const JourneyPage = () => {
+const JourneyPage = ({ showQuestBoard = false }: { showQuestBoard?: boolean }) => {
   const { pathname } = useLocation();
-  if (pathname === "/game/journey") {
+  if (showQuestBoard || pathname === "/game/journey") {
     return (
       <GameShellV2>
         <QuestBoard />

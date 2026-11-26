@@ -1,0 +1,34 @@
+.instrument-glyph-haze {
+  position: absolute;
+  inset: -19px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.58), rgba(179, 214, 241, 0.34) 35%, transparent 70%);
+  opacity: 0.65;
+}
+
+.instrument-glyph-sweep {
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .instrument-glyph-haze {
+    animation: instrument-glyph-breathe 10s ease-in-out infinite;
+  }
+
+  .instrument-glyph-sweep {
+    animation: instrument-glyph-ring-sweep 60s linear infinite;
+  }
+}
+
+@keyframes instrument-glyph-breathe {
+  50% {
+    opacity: 0.95;
+    transform: scale(1.16);
+  }
+}
+
+@keyframes instrument-glyph-ring-sweep {
+  from { transform: rotate(-90deg); }
+  to { transform: rotate(270deg); }
+}

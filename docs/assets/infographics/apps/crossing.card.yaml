@@ -1,0 +1,14 @@
+id: crossing
+kind: icon
+chapter: apps
+number: 2
+of: 5
+title: Crossing
+caption: Reconciles Consciousness with Science
+skin: v4
+text:
+  before: two separate rings far apart
+  after: "the two rings overlap into one vesica (one coin, two sides)"
+sources:
+  - issue #506 (app icons v1), row 2
+  - docs/templates/spec-handoff.md

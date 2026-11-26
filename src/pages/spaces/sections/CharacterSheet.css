@@ -132,6 +132,21 @@
 .cs-stat__value span { font-size: 0.4em; color: var(--cs-ink-3); letter-spacing: 0.08em; }
 .cs-stat__change { margin: 10px 0 0; color: var(--cs-ink-2); }
 
+/* ---------- Since you were here (WP6, #451): at most three lines, only when something changed ---------- */
+.cs-since { margin: clamp(32px, 5vh, 48px) 0 0; animation: cs-since-in 0.6s ease both; }
+.cs-since__title { margin: 0 0 10px; color: var(--cs-ink-3); }
+.cs-since__list { list-style: none; margin: 0; padding: 0; }
+.cs-since__item { border-top: 1px solid var(--cs-hair); }
+.cs-since__link {
+  display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 8px 0;
+  color: var(--cs-ink-2); font-family: var(--cs-serif); font-style: italic; font-weight: 300;
+  font-size: var(--vl-text-lead); text-decoration: none;
+}
+.cs-since__link:hover, .cs-since__link:focus-visible { color: var(--cs-ink); }
+.cs-since__link:focus-visible { outline: 1px solid var(--cs-accent); outline-offset: 4px; }
+@keyframes cs-since-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .cs-since { animation: none; } }
+
 /* ---------- Rooms: one sheet, hairlines, each unfolds in place ---------- */
 .cs-rooms { list-style: none; margin: clamp(40px, 7vh, 72px) 0 0; padding: 0; }
 .cs-room, .cs-badge { --slot-accent: var(--cs-accent); }
