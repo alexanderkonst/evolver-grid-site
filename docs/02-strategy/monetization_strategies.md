@@ -56,7 +56,7 @@ Six distinct ways money enters, each a different "who pays for what":
 2. **Facilitator tool** (Play #2) — a coach or guide pays to run it with their own clients.
 3. **Forked operator** (Play #3) — a sovereign operator self-hosts their own branded copy and sends back 10% of revenue above a $1,000/month free tier.
 4. **Hosted community** (Play #5) — an organization pays (per active member plus an onboarding fee) to run the whole thing for its membership under its own brand. Example shape: a ~300-member network at $2K/90-day pilot, then ~$2.25K/month; communities generally $5-50K/year or $5-20/member/month.
-5. **Venture carry** (Play #4) — the platform keeps a small, lasting share (equity or persistent rev-share, ~5-10%) of ventures born through it.
+5. **Venture carry = Sovereign Founder Collective** (Play #4) — 10% revenue share of the unique businesses of collective members, no equity. At each 10x of the founder's revenue (from revenue at joining) the agreement renews on the same terms unless either side chooses to end it. *(Sasha, 2026-11-25; replaces "equity or persistent rev-share, ~5-10%", per his rule of 2026-11-04: capped rev share or debt, no equity.)* Terms, single source: [`collective_terms_roadmap.md`](./collective/collective_terms_roadmap.md).
 6. **Teaching license** (Play #6) — institutions pay to teach the method: a per-trainer certification fee ($1-5K), annual maintenance ($500-2K), and a per-student fee.
 
 A free kernel sits underneath all six: the 2-minute talent profile, given away on purpose so it spreads. Nobody is charged for the seed; the six lines are charges on what grows from it.
