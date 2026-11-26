@@ -1,0 +1,14 @@
+id: potential
+kind: icon
+chapter: apps
+number: 1
+of: 5
+title: Potential
+caption: Accelerates The Unfolding of Your Potential
+skin: v4
+text:
+  before: dim closed seed sphere inside a tight ring
+  after: the same sphere lit, five orbit nodes unfolding around it
+sources:
+  - issue #506 (app icons v1), row 1
+  - docs/templates/spec-handoff.md

@@ -1,0 +1,14 @@
+id: vision
+kind: icon
+chapter: apps
+number: 3
+of: 5
+title: Vision
+caption: Activates Your Inner Vision
+skin: v4
+text:
+  before: a single dot on one axis
+  after: a twelve-pointed star around an eye-like centre
+sources:
+  - issue #506 (app icons v1), row 3
+  - docs/templates/spec-handoff.md
