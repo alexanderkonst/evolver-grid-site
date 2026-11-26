@@ -31,7 +31,7 @@
 8. **Signature.** Sasha signs under every word. Nothing ships that he would not sign.
 9. **Wizard.** The micro-modules are put together as a path that leads to the result of step 1.
 10. **Academy.** *(Then it ships as an app: [course-as-app.md](./course-as-app.md).)* A mini-training ships only inside the Academy on our platform, at its level (Academy → University → School; exact names to confirm). It has a mini-training page and a sales page.
-11. **Update the template.** After each mini-training, and during the work, the template is updated from experience. Many cycles.
+11. **Update the template.** After each mini-training, and during the work, the template is updated from experience. Many cycles. *(Updating a shipped mini-training with a new source: [course-update.md](./course-update.md), 2026-11-26.)*
 
 <details><summary>The 6 steps (v1, 2026-10-27), kept for history</summary>
 
@@ -58,9 +58,9 @@
 ### Production line (batch, from the February runs)
 *Synthesized 2026-10-27 from five production files (Genealogy below). Where they differ from the 6 steps above, the October rules win.*
 1. **Prepare all sources first.** One text per episode, in one batch file with clear separators (`===MODULE: <code> <title>===` … `===END===`), and the per-episode focus line pre-written in a table. No thinking during execution, only pasting.
-2. **Trigger, don't wait.** Per episode: new notebook → paste source → rename to the episode code → Video Overview → Customize → style line + focus line → Generate → **move to the next episode at once** (~60–90 s each). Several tabs in rotation, or the Playwright script `scripts/regenerate_videos.js` (`scripts/README_REGENERATION.md`), which continues on failure, marks ❌ and saves a screenshot.
+2. **Trigger, don't wait.** Per episode: new notebook → paste source → rename to the episode code → Video Overview → Customize → style line + focus line → Generate → **move to the next episode at once** (~60–90 s each). Click level: [notebooklm_video_production.md → Runbook: 8 actions per module](../04-workflows/notebooklm_video_production.md#runbook-8-actions-per-module) (Sasha's own, 2026-11-26). Several tabs in rotation, or the Playwright script `scripts/regenerate_videos.js` (`scripts/README_REGENERATION.md`), which continues on failure, marks ❌ and saves a screenshot.
 3. **Harvest after ~15–20 min**, in rolling batches. **Duration gate before download:** within target, else mark and regenerate with a stricter focus line.
-4. **Name and file:** `<module code><episode> — <Title>` (codes: F Foundational, S Spirit, M Mind, E Emotions, B Body, G Genius, C Consciousness; "seasons are called modules").
+4. **Name and file:** `<module code><episode> — <Title>` (codes: F Foundational, S Spirit, M Mind, E Emotions, B Body, G Genius, C Consciousness; "seasons are called modules"). Since 2026-11-26 the notebook name also carries the course version, `<code> <Title> v<version>` (the runbook).
 5. **Upload unlisted**, one playlist per module; description = one-sentence summary + the course link + 3–4 tags; log each URL in the tracker.
 6. **Tracker per course:** episode × (sourced, triggered, downloaded, uploaded, URL). Delegate batches of 10+ to a cheaper sub-agent with a self-contained task.
 
