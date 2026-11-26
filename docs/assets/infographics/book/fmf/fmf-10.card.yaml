@@ -1,0 +1,27 @@
+id: fmf-10
+chapter: '3.4'
+number: 10
+of: 19
+title: Radical Simplification of Business
+caption: You, a product, a change. Then they recognize it and see it.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  left:
+    centre: You
+    rings:
+    - Product
+    - Change
+    - Marketing
+    - Distribution
+  right:
+    centre: Client
+    rings:
+    - Product
+    - Change
+    - As their want
+    - Recognition
+    - Seeing it
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p15)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

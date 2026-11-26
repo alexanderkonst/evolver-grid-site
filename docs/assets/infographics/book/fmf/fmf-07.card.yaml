@@ -1,0 +1,17 @@
+id: fmf-07
+chapter: '3.4'
+number: 7
+of: 19
+title: Inner Growth Is the Highest Leverage
+caption: Inner growth fuels the hero's journey, and the journey becomes intentional.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  nodes:
+  - Inner growth
+  - Hero's journey
+  - Intentional
+  link: fuels
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p10)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

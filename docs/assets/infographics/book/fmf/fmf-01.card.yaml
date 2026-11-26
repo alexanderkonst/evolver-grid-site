@@ -1,0 +1,19 @@
+id: fmf-01
+chapter: '3.4'
+number: 1
+of: 19
+title: Gamified Professional Success
+caption: Success by doing what you love, and multiplayer co-creation with others of the Golden Age.
+skin: v4
+max_words: 40
+text:
+  eyebrow: Founder-market fit
+  button: New Game
+  steps:
+  - Describe your talents, resources, craft
+  - Turn them into a unique business
+  - Enter multiplayer collaborations
+  - Work, play, grow together
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p3)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

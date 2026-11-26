@@ -1,0 +1,25 @@
+id: fmf-15
+chapter: '3.4'
+number: 15
+of: 19
+title: Clarity, Strategy, Action
+caption: Clarity, then strategy as riverbanks that focus the lens, then execution.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  nodes:
+  - - '1'
+    - Clarity
+    - ''
+  - - '2'
+    - Strategy
+    - direction
+  - - '3'
+    - Action
+    - ''
+  centre:
+  - Hero's journey
+  - = business
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p20)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'
