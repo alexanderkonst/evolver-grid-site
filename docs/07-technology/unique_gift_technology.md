@@ -121,6 +121,20 @@ Sasha's account of how it works in people, close to his words:
 
 *Reading (Evolver):* the fading in step 3 is integration, not failure; step 4 is the shadow's counter-move, and it is the moment the caught feeling (movement 5, re-meet) is needed most. The dip is a predictable gate of the path (uniqueness holomap 4→5: «once the mirror-session glow fades»), so it should be named to the person in advance and met, not avoided.
 
+### The cycle by stage, and how to calibrate it (Sasha, 2026-11-27 16:01 MST; calibration design: Evolver, draft)
+**Two results, by where the person stands on the uniqueness holomap.**
+- **Stages 1–4:** the Mi-Fa crossing itself (3→4 Recognition), if they choose it. «Это результатище!» They also get a path of iterative improvement until they reach 5.
+- **Stage 5+:** a formulation precise enough to build a business from (the input to Excalibur).
+
+**The spiral (Sasha's words, close):** formulation → give it to their own AI (the model they use now) → the knowledge integrates into psyche, nervous system, brain → they start seeing more possibilities, talk to the AI differently, act from the new seeing → the next turn of the spiral. Maturation: within one moon for almost everyone, one week for some, one lunar phase for those who are aimed.
+
+**Calibration (draft, built on Technology 185 The Visible Shift and `docs/templates/calibration.md` E0)**
+1. *Before:* uniqueness stage (quiz Q2 or holomap self-placement); professional life 0–10 from the quality-of-life test; the change they want, in their own words (no target number).
+2. *Promise, said before and after, honestly:* «expect a tangible, important shift in your professional life within one moon: maybe money, maybe new possibilities that were not visible before». Name what to notice, never guarantee an amount.
+3. *Check-ins at one lunar phase and one moon:* «Has X happened?», a short list of observable signs: a new door or opportunity seen; a new conversation, request or offer; they talk to their AI differently; one decision made from the phrase; money. Plus: can they still feel the caught feeling (same, deeper, gone)? Plus: professional life 0–10 again and «how much has your described change come true?» (−2…+2).
+4. *Ready for the next turn when:* the feeling holds, at least one sign has happened, and they want a more precise formulation (Sasha's step 5). Stages 1–4 loop; stage 5 moves to Excalibur.
+5. *Honesty guard:* self-report rises with expectation (it is inflated in staged settings), so at least one sign must be an observable act (a message sent, a decision, an offer), and «nothing happened yet» is a valid answer that leads to the next turn, not to failure.
+
 ### How to tell true recognition (checks)
 - **By shape, not strength.** Quiet and certain, «like a drop of water into a sponge» (Ignatius of Loyola), surprise with certainty, relief together with a little embarrassment. Loud, dramatic, flattering states are suspect (makyō in Zen; peak experiences are «self-validating» and prove nothing).
 - **Linked to the person's own episodes.** A true read connects to many of their memories (Singer's self-defining memories); a Barnum read connects to none.
