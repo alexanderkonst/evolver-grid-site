@@ -8,7 +8,6 @@ import {
   INTRO_FRAMES,
   INTRO_OUTRO_MS,
   INTRO_OVERLAYS,
-  INTRO_SKIP_AFTER_MS,
   type IntroFrame,
   type IntroPos,
 } from "@/data/introSequence";
@@ -40,7 +39,7 @@ import "./IntroSequence.css";
  *
  * A clip that is not in public/game/intro/ plays its still frames instead (slow Ken Burns +
  * dissolves), so the sequence always runs end to end. prefers-reduced-motion: stills only,
- * plain fades. Skip (bottom-right, after 1.5 s) or Esc jumps to the Entry Portal.
+ * plain fades. Skip (bottom-right, from the first frame, labelled "Skip intro") or Esc jumps to the Entry Portal.
  */
 
 type Props = {
@@ -157,7 +156,6 @@ const IntroSequence = ({ onDone, anchorSelector, sceneSelector = '[data-intro-an
 
   const [phases, setPhases] = useState<Record<string, OverlayPhase>>({});
   const [videoOn, setVideoOn] = useState<[boolean, boolean]>([false, false]);
-  const [skipOn, setSkipOn] = useState(false);
   const [out, setOut] = useState<"" | "ended" | "skipped">("");
   const [layout, setLayout] = useState<CaptionLayout>(() => captionLayout(window.innerWidth, window.innerHeight));
   const [startRect, setStartRect] = useState<DOMRect | null>(null);
@@ -207,11 +205,6 @@ const IntroSequence = ({ onDone, anchorSelector, sceneSelector = '[data-intro-an
       window.removeEventListener("keydown", onKey, { capture: true });
     };
   }, [finish]);
-
-  useEffect(() => {
-    const id = window.setTimeout(() => setSkipOn(true), INTRO_SKIP_AFTER_MS);
-    return () => window.clearTimeout(id);
-  }, []);
 
   useEffect(() => {
     bed.current = startIntroAmbience(2500);
@@ -514,7 +507,11 @@ const IntroSequence = ({ onDone, anchorSelector, sceneSelector = '[data-intro-an
           return (
             <li key={e.key} style={place}>
               <span className="intro-el__name">{tr(t, `intro.elements.${e.key}.name`, e.name)}</span>
+              {/* Roast 2026-11-27: read as text ("Body · Earth"), not "BODYEARTH". The layout stacks the
+                  two, so the dot is hidden from the eye and kept for text, search and screen readers. */}
+              <span className="intro-el__sep">{" · "}</span>
               <span className="intro-el__element">{tr(t, `intro.elements.${e.key}.element`, e.element)}</span>
+              {" "}
               <span className="intro-el__line">{tr(t, `intro.elements.${e.key}.line`, e.line)}</span>
             </li>
           );
@@ -534,11 +531,10 @@ const IntroSequence = ({ onDone, anchorSelector, sceneSelector = '[data-intro-an
 
       <button
         type="button"
-        className={`intro-skip${skipOn && !out ? " is-on" : ""}`}
+        className={`intro-skip${out ? " is-off" : ""}`}
         onClick={() => finish("skipped")}
-        aria-label={tr(t, "intro.skipAria", "Skip intro")}
       >
-        {tr(t, "intro.skip", "Skip")}
+        {tr(t, "intro.skipAria", "Skip intro")}
       </button>
     </div>,
     document.body,

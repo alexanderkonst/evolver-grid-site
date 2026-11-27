@@ -125,7 +125,6 @@ export const INTRO_ELEMENT_Y = 42.5;
 /** The frame every clip is cut for. */
 export const INTRO_FRAME_RATIO = 16 / 9;
 
-/** The Skip control shows after this long. */
-export const INTRO_SKIP_AFTER_MS = 1500;
+// The Skip control is on screen from the first frame (roast 2026-11-27, #562 item 2): no delay constant.
 /** Cross-cut from the last frame to the live Entry Portal. */
 export const INTRO_OUTRO_MS = 900;

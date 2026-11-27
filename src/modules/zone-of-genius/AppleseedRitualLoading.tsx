@@ -12,8 +12,8 @@ interface AppleseedRitualLoadingProps {
     stageLines?: string[];
 }
 
-/** Seconds into the wait at which each stage line takes over (the real wait is usually 2–4 minutes). */
-export const STAGE_STARTS_S = [0, 40, 100];
+/** Seconds into the wait at which each stage line takes over (the real wait is usually about 30 seconds, measured 28 s on 2026-11-27). */
+export const STAGE_STARTS_S = [0, 8, 18];
 
 /** The index of the stage line for this many elapsed seconds, clamped to `count` lines. */
 export const stageIndexAt = (elapsedS: number, count: number): number => {

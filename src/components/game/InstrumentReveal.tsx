@@ -122,6 +122,8 @@ type ViewProps = {
   /** Translation of `t`. */
   t: (key: string, opts?: Record<string, unknown>) => string;
   onContinue: () => void;
+  /** Ends the reveal from any step (Skip on steps 1 to 8, Close on the last). Esc does the same. */
+  onSkip?: () => void;
   /** Wrapper hooks: the stage element (to measure the flight) and the button (to focus it). */
   stageRef?: (el: HTMLDivElement | null) => void;
   buttonRef?: (el: HTMLButtonElement | null) => void;
@@ -138,7 +140,7 @@ const BANDS: Record<TourGroup, { y: number; h: number }> = {
   console: { y: 202, h: 24 },
 };
 
-export const InstrumentRevealView = ({ step, reduced, moonCycle, t, onContinue, stageRef, buttonRef, fly = null }: ViewProps) => {
+export const InstrumentRevealView = ({ step, reduced, moonCycle, t, onContinue, onSkip, stageRef, buttonRef, fly = null }: ViewProps) => {
   const motion = revealMotion(reduced);
   const stage = revealStage(step);
   const crystal = QUARTER_DRAWINGS.octahedron;
@@ -340,10 +342,25 @@ export const InstrumentRevealView = ({ step, reduced, moonCycle, t, onContinue, 
         data-testid="instrument-reveal-continue"
         data-last={last ? "true" : "false"}
         className="relative min-h-[44px] min-w-[44px] rounded-full px-8 py-2 text-[1rem] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-[#bcd7e6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e13]"
-        style={{ background: INK, color: PANEL, touchAction: "manipulation" }}
+        // The root lets the pointer through during the flight to the corner (the crystal is not a control);
+        // the button must not inherit that, or its click lands on the village list underneath (roast 2026-11-27).
+        style={{ background: INK, color: PANEL, touchAction: "manipulation", pointerEvents: "auto" }}
       >
         {t(REVEAL_CONTINUE_KEY)}
       </button>
+
+      {/* Roast 2026-11-27 (#562 item 4): a way out on every step. Skip, then Close on the last. */}
+      {onSkip ? (
+        <button
+          type="button"
+          onClick={onSkip}
+          data-testid="instrument-reveal-skip"
+          className="absolute right-3 top-3 min-h-[44px] min-w-[44px] rounded-full px-4 py-2 text-[0.95rem] font-semibold outline-none focus-visible:ring-2 focus-visible:ring-[#bcd7e6]"
+          style={{ background: PANEL, color: INK, border: `1px solid ${HAIRLINE}`, touchAction: "manipulation", pointerEvents: "auto" }}
+        >
+          {t(last ? "instrument.reveal.close" : "instrument.reveal.skip")}
+        </button>
+      ) : null}
     </div>
   );
 };
@@ -435,6 +452,12 @@ const InstrumentReveal = ({ onSettled, onDone, reducedMotion, moonCycle }: Props
     onDone();
   }, [settle, onDone]);
 
+  // Shown at most once per player: the reveal counts as seen the moment it is on screen, so a player who
+  // closes the tab at step 3 does not meet it again (before, only the last step or Esc recorded it).
+  useEffect(() => {
+    settle();
+  }, [settle]);
+
   // Focus goes to the one button and returns to where it was when the reveal ends.
   useEffect(() => {
     returnTo.current = document.activeElement;
@@ -477,6 +500,7 @@ const InstrumentReveal = ({ onSettled, onDone, reducedMotion, moonCycle }: Props
       moonCycle={moon}
       t={t as ViewProps["t"]}
       onContinue={onContinue}
+      onSkip={finish}
       stageRef={(el) => {
         stageEl.current = el;
       }}
