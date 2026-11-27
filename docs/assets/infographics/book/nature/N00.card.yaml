@@ -4,7 +4,7 @@ chapter: "1"
 number: 1
 of: 1
 title: "Nature"
-caption: "Four rhythms already move you. Learn to walk with them."
+caption: "Four rhythms already move you. Move with them: work that lands, a steady mind, more energy."
 skin: v4
 caption_size: 30
 text:
@@ -12,10 +12,10 @@ text:
   center: You
   rings:
     - {name: Day, sub: one Earth turn}
-    - {name: Week, sub: seven visible lights}
-    - {name: Month, sub: eight moon phases}
+    - {name: Week, sub: seven classical planets}
+    - {name: Moon, sub: eight moon phases}
     - {name: Year, sub: birthday to birthday}
-  arc: "asleep · aware · attuned"
+  arc: "out-of-sync → in-sync"
 sources:
   - docs/04-products/equilibrium_user_manual.md (ATTUNE; eight phases; Three Degrees)
   - docs/01-vision/holonic_cycles.md (Naming; Circadian; Weekly; Lunar; Seasonal)

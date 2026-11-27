@@ -81,6 +81,7 @@
 - **Roast the architecture before writing episodes** (Nature, 2026-11-26): after steps 1–2, run one roast cycle + crash-test ([roasting.md](./roasting.md)) on result + structure, write architecture v2, then the texts. It caught the uncheckable result and the missing final rite.
 - **Three honesty labels** when a mini-training mixes biology and tradition (Nature, 2026-11-26): *established* · *tradition* · *practice*, one per episode on screen.
 - **End with a rite**: the last Ask AI makes the person produce the result of step 1 about their own life (Nature: "Read your Now").
+- **The overview card states the result in plain words** (Nature, Sasha 2026-11-27): the arc line is the before → after a newcomer gets at once ("out-of-sync → in-sync"), not internal degree names; the caption says what moving with it gives (business, inner state, energy). Open the PNG: lint does not catch a wrapped note line.
 - **After the signature, three tracks in parallel** (Nature, 2026-11-27): (a) videos: NotebookLM by the runbook, then YouTube unlisted; (b) infographics: one kit card per micro-module through an @claude issue; (c) platform: course data file + page through an @claude issue, youtubeIds filled when (a) lands. Keep the style line, focus lines and a production tracker in the content file before the run starts. A driver task carries all three to the end.
 
 ### Applications

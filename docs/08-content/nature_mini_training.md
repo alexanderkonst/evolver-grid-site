@@ -173,5 +173,6 @@ The person passes N01 → Y01–Y02 → M01–M04 → W01–W02 → D01–D02 �
 
 ## Changelog
 - 0.1 (2026-11-26): architecture v1 from Sasha's structure.
+- 0.4 (2026-11-27): Sasha's edits on N00: module "Month" is named **Moon**; the seven weekday bodies are "the seven classical planets" (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn); the result line is "out-of-sync → in-sync"; the why: work that lands, a steady mind, more energy. Applies to cards, platform labels and later video versions.
 - 0.3 (2026-11-27): signed by Sasha; NotebookLM inputs and production tracker added; production started (videos, infographics, platform in parallel).
 - 0.2 (2026-11-26): roast (3 passes + crash-test) → v2: checkable result, honesty labels, two years named apart, rite at the end; 12 micro-module texts; overview infographic N00.
