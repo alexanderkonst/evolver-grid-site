@@ -2413,9 +2413,10 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 lit={instrumentLit}
             />
             {/* The first reveal of the instrument (architecture §5.3): once, after the profile exists and never
-                before the top talent result. */}
+                before the top talent result. It is not tied to
+                the glyph's gate: with no glyph yet, the crystal settles to where the glyph will be. */}
             <InstrumentRevealGate
-                enabled={tmaComplete || aiOsEverVisited || isYourAiRoute}
+                enabled
                 ownerId={user?.id ?? null}
                 profileCreated={!!profile}
                 topTalentDone={topTalentComplete}

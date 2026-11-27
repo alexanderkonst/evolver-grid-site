@@ -368,11 +368,33 @@ const usePrefersReducedMotion = (): boolean => {
 
 type Fly = { x: number; y: number; scale: number };
 
-/** Where the stage has to go so its crystal lands on the corner glyph (or where the glyph lives, if it is not mounted). */
+/** Where the stage has to go so its crystal lands on the corner glyph (or where the glyph will be, if it is not mounted). */
+/** The bottom safe-area inset in px (0 where there is none), read through a probe: CSS `env()` has no JS reader. */
+const safeAreaBottom = (): number => {
+  const probe = document.createElement("div");
+  probe.style.cssText = "position:fixed;visibility:hidden;pointer-events:none;padding-bottom:env(safe-area-inset-bottom,0px)";
+  document.body.appendChild(probe);
+  const px = parseFloat(getComputedStyle(probe).paddingBottom) || 0;
+  probe.remove();
+  return px;
+};
+
+/**
+ * Where the glyph will sit when it is not mounted yet (a player who has the reveal but not yet the glyph's gate): the
+ * centre of its corner box, from the same rules as `InstrumentGlyph` (right 0.5rem, bottom max(1rem, inset) + 3.75rem;
+ * from 640px: right 1.25rem, bottom 5.5rem).
+ */
+const glyphHome = (): { x: number; y: number; ring: number } => {
+  const wide = window.innerWidth >= 640;
+  const right = wide ? 20 : 8;
+  const bottom = wide ? 88 : Math.max(16, safeAreaBottom()) + 60;
+  return { x: window.innerWidth - right - GLYPH_PX / 2, y: window.innerHeight - bottom - GLYPH_PX / 2, ring: RING_RADIUS * 2 };
+};
+
 const measureFlight = (stage: HTMLElement): Fly => {
   const from = stage.getBoundingClientRect();
   const glyph = document.querySelector(GLYPH_SELECTOR)?.getBoundingClientRect();
-  const to = glyph && glyph.width > 0 ? { x: glyph.left + glyph.width / 2, y: glyph.top + glyph.height / 2, ring: (RING_RADIUS * 2 * glyph.width) / GLYPH_PX } : { x: window.innerWidth - 60, y: window.innerHeight - 140, ring: RING_RADIUS * 2 };
+  const to = glyph && glyph.width > 0 ? { x: glyph.left + glyph.width / 2, y: glyph.top + glyph.height / 2, ring: (RING_RADIUS * 2 * glyph.width) / GLYPH_PX } : glyphHome();
   const ringNow = (RING_R * 2 * from.width) / VIEW;
   return { x: to.x - (from.left + from.width / 2), y: to.y - (from.top + from.height / 2), scale: to.ring / ringNow };
 };

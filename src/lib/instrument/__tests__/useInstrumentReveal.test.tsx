@@ -54,18 +54,20 @@ describe("once, and never before the top talent result", () => {
   });
 });
 
-describe("mounted where the instrument is carried, and nowhere else", () => {
+describe("mounted in the shell and the village map, and nowhere else", () => {
   const read = (p: string) => readFileSync(p, "utf8");
   const shell = read("src/components/game/GameShellV2.tsx");
   const village = read("src/pages/Village.tsx");
 
-  it("is mounted once in the shell and once in the village map, behind the same gate as the glyph", () => {
+  it("is mounted once in the shell and once in the village map, not behind the glyph's gate", () => {
     expect(shell.match(/<InstrumentRevealGate/g)).toHaveLength(1);
     expect(village.match(/<InstrumentRevealGate/g)).toHaveLength(1);
     expect(shell).toContain("topTalentDone={topTalentComplete}");
     expect(village).toContain("topTalentDone={!!sheet.topTalent}");
-    expect(shell).toMatch(/<InstrumentRevealGate\s+enabled=\{tmaComplete \|\| aiOsEverVisited \|\| isYourAiRoute\}/);
-    expect(village).toMatch(/<InstrumentRevealGate\s+enabled=\{\s*!introOn/);
+    // Not tied to the glyph's gate: right after the top talent result, the crystal settles to where the glyph will be.
+    expect(shell).toMatch(/<InstrumentRevealGate\s+enabled\s/);
+    expect(village).toMatch(/<InstrumentRevealGate\s+enabled=\{!introOn\}/);
+    expect(shell).not.toMatch(/<InstrumentRevealGate\s+enabled=\{tmaComplete/);
   });
 
   it("is not mounted by the title, the game intro, the talent reveal or a theme", () => {
