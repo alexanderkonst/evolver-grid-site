@@ -81,6 +81,7 @@
 - **Roast the architecture before writing episodes** (Nature, 2026-11-26): after steps 1–2, run one roast cycle + crash-test ([roasting.md](./roasting.md)) on result + structure, write architecture v2, then the texts. It caught the uncheckable result and the missing final rite.
 - **Three honesty labels** when a mini-training mixes biology and tradition (Nature, 2026-11-26): *established* · *tradition* · *practice*, one per episode on screen.
 - **End with a rite**: the last Ask AI makes the person produce the result of step 1 about their own life (Nature: "Read your Now").
+- **After the signature, three tracks in parallel** (Nature, 2026-11-27): (a) videos: NotebookLM by the runbook, then YouTube unlisted; (b) infographics: one kit card per micro-module through an @claude issue; (c) platform: course data file + page through an @claude issue, youtubeIds filled when (a) lands. Keep the style line, focus lines and a production tracker in the content file before the run starts. A driver task carries all three to the end.
 
 ### Applications
 - 1. **Activate Your Dormant Potential** (6 modules, 38 episodes): [activate_your_dormant_potential_transcripts.md](../08-content/activate_your_dormant_potential_transcripts.md).

@@ -1,7 +1,7 @@
 # Nature · Aligns You With Natural Rhythms (mini-training)
 
 > Draft v0.2 (2026-11-26), built by Hark on Sasha's brief of 2026-11-26 18:44 MST. Template: [course-from-source.md](../templates/course-from-source.md) (11 steps), roast: [roasting.md](../templates/roasting.md). Name and caption as in [apps/nature.card.yaml](../assets/infographics/apps/nature.card.yaml) (Nature, "Aligns You With Natural Rhythms"); Sasha's working words: "Nature · Align with rhythms of nature".
-> Status: awaiting Sasha's signature (step 8). Nothing goes to NotebookLM or the platform before it.
+> Status: **signed by Sasha 2026-11-27 11:50 CST** («Супер! Продолжай по шаблону»). Ships as course version **1.0**. In production: NotebookLM videos, episode infographics, platform.
 
 ## Sources (step 3)
 - [equilibrium_user_manual.md](../04-products/equilibrium_user_manual.md): Solar Energy (personal year, 5 phases), Lunar Energy and the eight phases (essence, act, trap), elements in pairs, Day-of-Week Energy, A normal day, Three Degrees, Rules.
@@ -135,6 +135,43 @@ The person passes N01 → Y01–Y02 → M01–M04 → W01–W02 → D01–D02 �
 2. Episode infographics in the kit (book/nature/), one per micro-module.
 3. Platform through an @claude issue: `src/data/courses/nature.ts` (version 1.0, level Fundamental, category General), thin page, route, Grow row, Ask AI cards.
 
+## 9. NotebookLM inputs (runbook action 7; pasted, never composed during the run)
+**Notebook name:** `<code> <Title> v1.0`, e.g. `N01 Nothing Is Wrong With You v1.0`. Source = the episode's **Text** in section 6 (promise line on top).
+**Format:** Explainer · Custom. Add to the end of the focus box: "Total video length must stay under 90 seconds."
+**Style line (whole course):** Bio-Light aesthetic, inverted colors (dark background): nested rings of a living dial slowly turning from night toward dawn; aqua, moon silver, warm sand; soft grain; slow, calm motion; never mechanical clock ticks, never zodiac clip-art, no faces, no text clutter.
+**Focus lines (one per episode):**
+| Code | Focus |
+|---|---|
+| N01 | Only the three degrees: unconscious, conscious, collaboration. Relief first: nothing is wrong with you. |
+| Y01 | The personal year from birthday to birthday and its five phases; one kind of effort per phase. |
+| Y02 | Two years at once: personal year leads, Earth's seasons are the weather; hemisphere and tropics note. |
+| M01 | Month comes from moon; four lunar seasons (fire, water, earth, air), windows not deadlines. |
+| M02 | The seed half: Planning, Planting, Clearing, Gathering; the how is none of your business yet. |
+| M03 | The harvest half: Seeing, Prep for Harvest, Harvesting, Celebrating; one job and one trap each. |
+| M04 | The cycle starts after the celebration; don't skip gratitude. |
+| W01 | Seven visible lights name the weekdays; the 24-hours-and-7-planets arithmetic, plainly. |
+| W02 | Each day's traditional mode, labeled as tradition; don't run the week in one mode. |
+| D01 | One Earth turn, four quarters of the day; mornings create, afternoons polish. Label the biology as established. |
+| D02 | The ~90-minute wave; 3–4 deep sprints a day; the dip is the wave ending. |
+| O01 | Read your Now: four rhythms in under a minute, one action; Equilibrium as the watch that reads them daily. |
+
+## 10. Production tracker (v1.0)
+| Code | Notebook | Video | YouTube (unlisted) | Infographic |
+|---|---|---|---|---|
+| N01 | | | | |
+| Y01 | | | | |
+| Y02 | | | | |
+| M01 | | | | |
+| M02 | | | | |
+| M03 | | | | |
+| M04 | | | | |
+| W01 | | | | |
+| W02 | | | | |
+| D01 | | | | |
+| D02 | | | | |
+| O01 | | | | |
+
 ## Changelog
 - 0.1 (2026-11-26): architecture v1 from Sasha's structure.
+- 0.3 (2026-11-27): signed by Sasha; NotebookLM inputs and production tracker added; production started (videos, infographics, platform in parallel).
 - 0.2 (2026-11-26): roast (3 passes + crash-test) → v2: checkable result, honesty labels, two years named apart, rite at the end; 12 micro-module texts; overview infographic N00.
