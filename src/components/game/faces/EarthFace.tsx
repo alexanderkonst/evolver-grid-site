@@ -119,13 +119,27 @@ export const EarthFaceView = ({ save, ready = true, places = VILLAGE_PLACES, red
         </button>
       </header>
 
+      {/* Until the save has loaded the card shows a skeleton of the rows it will hold, never a blank card.
+          Still under reduced motion: the pulse only runs when motion is allowed. */}
+      {!ready && (
+        <ul aria-hidden="true" data-testid="earth-face-skeleton" className="m-0 flex list-none flex-col gap-2 p-0">
+          {[0, 1].map((i) => (
+            <li
+              key={i}
+              className="h-[4.25rem] rounded-xl motion-safe:animate-pulse"
+              style={{ backgroundColor: RAISED, border: `1px solid ${HAIRLINE}` }}
+            />
+          ))}
+        </ul>
+      )}
+
       {ready && items.length === 0 && (
         <p className="rounded-xl p-3 text-[13px]" style={{ backgroundColor: RAISED, color: MUTED }}>
           {tr(t, "instrument.opensOnPath", "Opens on your path")}
         </p>
       )}
 
-      {items.length > 0 && (
+      {ready && items.length > 0 && (
         <ul className="m-0 flex list-none flex-col gap-2 p-0">
           {items.map(({ place, state, to }) => {
             const word = stateWordText(state, t);
