@@ -203,17 +203,17 @@
     "retakeDialogDesc": "This replaces your current Top Talent with a new reveal. Your saved result stays until you finish and save the new one.",
     "retakeDialogKeep": "Keep my current result",
     "retakeDialogConfirm": "Yes, start fresh",
-    "yourAiHeading": "Your AI",
+    "yourAiHeading": "My AI",
     "yourAiSubtitle": "A few questions, about 5 minutes. Then your top talent.",
-    "yourAiName": "Your AI",
+    "yourAiName": "My AI",
     "yourAiOpening": "Hi, I'm your AI in this game. Let's find your top talent together: a few questions, then the reveal.\n\nTo start: when does time disappear for you? What are you doing in those moments?",
-    "yourAiThinking": "Your AI is thinking…",
-    "yourAiTurnError": "Your AI didn't answer this time.",
+    "yourAiThinking": "My AI is thinking…",
+    "yourAiTurnError": "My AI didn't answer this time.",
     "yourAiPlaceholder": "Write your answer…",
     "yourAiSend": "Send",
     "yourAiNotesOpen": "Already asked ChatGPT or Claude about yourself? Paste what it knows (optional)",
     "yourAiNotesEdit": "Edit what your other AI knows about you",
-    "yourAiNotesHint": "Paste anything your other AI knows about you. Your AI here will use it and ask about the rest.",
+    "yourAiNotesHint": "Paste anything your other AI knows about you. My AI here will use it and ask about the rest.",
     "yourAiNotesPlaceholder": "Paste here…",
     "yourAiNotesCancel": "Cancel",
     "yourAiNotesSave": "Add to our conversation",
@@ -221,11 +221,11 @@
     "yourAiSendHint": "Write your answer to send it.",
     "moreOptions": "More options",
     "revealPasteHint": "Paste your AI’s answer above first.",
-    "yourAiNeedMore": "Your AI needs a bit more to see your pattern. Answer one or two more questions, then reveal again.",
+    "yourAiNeedMore": "My AI needs a bit more to see your pattern. Answer one or two more questions, then reveal again.",
     "ownAiPromptLink": "Use an outside AI instead",
-    "yourAiCreditsTitle": "How Your AI credits work",
-    "yourAiCreditsBody": "Your AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.",
-    "yourAiLimitNote": "You've reached today's free Your AI limit. It resets tomorrow.",
+    "yourAiCreditsTitle": "How My AI credits work",
+    "yourAiCreditsBody": "My AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.",
+    "yourAiLimitNote": "You've reached today's free My AI limit. It resets tomorrow.",
     "yourAiLimitPlaceholder": "Today's free limit is reached",
     "yourAiDeepReading": "Deep reading",
     "yourAiDeepReadingLocked": "Locked",
@@ -451,7 +451,7 @@
     "heroSubhead": "Paste your AI's analysis below. We'll capture the one sentence that lands.",
     "step1Eyebrow": "Step 1",
     "step1Title": "Copy the prompt",
-    "step1Desc": "Paste it into Your AI, then bring its response back here.",
+    "step1Desc": "Paste it into My AI, then bring its response back here.",
     "copyButton": "Copy",
     "copyButtonCopied": "Copied",
     "step2Eyebrow": "Step 2",
@@ -3530,7 +3530,7 @@
         "alt": "A rooftop terrace at dusk with a wooden quest board of pinned notes, lanterns, cushions on rugs around a low table, white domes and the sea beyond"
       },
       "oracle": {
-        "name": "Your AI",
+        "name": "My AI",
         "line": "Ask your AI.",
         "alt": "A still reflecting pool at night, a glowing crystal dodecahedron floating above its mirrored water, neon-lit arches on one side, floating candles and a singing bowl in the foreground"
       },
@@ -3866,7 +3866,7 @@
     "logInTitle": "Log In",
     "logInLabel": "Log In",
     "journey": "MAIN QUEST",
-    "aiOs": "Your AI",
+    "aiOs": "My AI",
     "me": "CHARACTER",
     "learn": "LEARN",
     "meet": "MEET",
@@ -4554,14 +4554,14 @@
     "intro": "Two-hour transformative workshops. Each one a self-contained activation — synthesized from live sessions, packaged as standalone product.",
     "liveCount": "{{live}} live · {{coming}} more coming",
     "emptyTitle": "Activations are being prepared. First batch ships soon.",
-    "emptyHint": "In the meantime, Your AI layer is fully open.",
-    "useAiOs": "Use Your AI",
+    "emptyHint": "In the meantime, My AI layer is fully open.",
+    "useAiOs": "Use My AI",
     "openActivation": "Open activation",
     "bundleEyebrow": "The bundle",
     "bundleHeading": "All Activations · ${{price}}",
     "bundleSavings": "Get every activation. Lifetime access. Save ${{savings}} vs individual.",
     "bundleStripeNote": "(Bundle Stripe link wires up once first 3 activations are live.)",
-    "footerNote": "Activations are educational apps inside the Planetary OS. Your AI layer is free; activations bring depth-work that AI alone can't."
+    "footerNote": "Activations are educational apps inside the Planetary OS. My AI layer is free; activations bring depth-work that AI alone can't."
   },
   "activationAccess": {
     "notFound": "Activation not found.",
@@ -5578,7 +5578,7 @@
     "controller": {
       "eyebrow": "The Controller",
       "heading": "Select skills for everyday craft",
-      "subtitle": "Pick a category for the move you're on. Your AI is already installed above.",
+      "subtitle": "Pick a category for the move you're on. My AI is already installed above.",
       "aria": "Pick your class of tasks"
     },
     "suites": {
@@ -5663,31 +5663,31 @@
       "transcriptFailed": "Failed to fetch transcript"
     },
     "seo": {
-      "docTitle": "Your AI — A different kind of cognition",
-      "docTitleSuffix": "Your AI",
+      "docTitle": "My AI — A different kind of cognition",
+      "docTitleSuffix": "My AI",
       "clarity": {
-        "title": "Your AI — Clarity skills",
+        "title": "My AI — Clarity skills",
         "description": "Free, curated AI skills for clarity. The Holonic Commons library."
       },
       "iteration": {
-        "title": "Your AI — Iteration skills",
+        "title": "My AI — Iteration skills",
         "description": "Free, curated AI skills for iteration and refinement."
       },
       "deployment": {
-        "title": "Your AI — Vibe Code skills",
+        "title": "My AI — Vibe Code skills",
         "description": "Free, curated AI skills for shipping. The Holonic Commons library."
       },
       "design": {
-        "title": "Your AI — Design skills",
+        "title": "My AI — Design skills",
         "description": "Free, curated AI skills for design work."
       },
       "home": {
-        "title": "Your AI — The Holonic Commons",
+        "title": "My AI — The Holonic Commons",
         "description": "A free, curated library of AI skills for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer."
       }
     },
     "story": {
-      "outro": "Your AI is your knoware library. Start anywhere — every skill is a piece of the layer."
+      "outro": "My AI is your knoware library. Start anywhere — every skill is a piece of the layer."
     },
     "spotlight": {
       "eyebrow": "Read this · 30 seconds",
@@ -5702,15 +5702,15 @@
       "step2Before": "Open a ",
       "step2Strong": "new chat",
       "step2After": ". Paste the system prompt. It's a fascinating read, if you like. Then run the same prompt again.",
-      "copyInstall": "Copy Your AI system prompt v6.0",
-      "copyInstallAria": "Copy the Your AI system prompt v6.0 to clipboard",
+      "copyInstall": "Copy My AI system prompt v6.0",
+      "copyInstallAria": "Copy the My AI system prompt v6.0 to clipboard",
       "installCopied": "Copied — paste into a new AI chat",
       "step3": "Compare. Notice what's different.",
       "rateEyebrow": "How did it go?",
       "rateBody": "Compare the two responses. Rate the difference.",
       "scaleHigh": " = significantly more useful response",
       "scaleLow": " = no difference noticed",
-      "rateGroupAria": "Rate the difference between before and after Your AI install, 1 to 10",
+      "rateGroupAria": "Rate the difference between before and after My AI install, 1 to 10",
       "rateAria": "Rate {{n}} out of 10",
       "thanksBefore": "Thank you. Logged as ",
       "thanksAfter": ".",
@@ -5880,16 +5880,16 @@
     }
   },
   "aiOsBenchmark": {
-    "legacyNote": "Legacy page. This study measured an earlier scaffold of Your AI in April 2026. We've decided not to focus on benchmarks for now: the next step is a completely new benchmark, and that work is in progress. The results below stay as a record.",
-    "backToAiOs": "Back to Your AI",
+    "legacyNote": "Legacy page. This study measured an earlier scaffold of My AI in April 2026. We've decided not to focus on benchmarks for now: the next step is a completely new benchmark, and that work is in progress. The results below stay as a record.",
+    "backToAiOs": "Back to My AI",
     "heroHeadline": "Same model. Different conversation.",
-    "heroIntro1": "This page is about what changes when you install Your AI into a fresh AI conversation.",
+    "heroIntro1": "This page is about what changes when you install My AI into a fresh AI conversation.",
     "heroIntro2Before": "This is integral work. The kind of cognition the scaffold elevates operates at a register where",
     "heroIntro2Highlight": "coherence, depth, and felt resonance",
     "heroIntro2After": "become primary signals — and where conclusiveness through metrics alone is structurally impossible.",
     "heroIntro3": "I'll show you what I measured because measurement keeps me honest. But the felt difference is the actual evidence — the kind that lands in your body before your mind catches up, the kind that distinguishes a response that's competent from one that's alive.",
     "feltTitle": "The felt difference (what matters most)",
-    "felt1Before": "The first time you load Your AI into a Claude conversation and ask a hard cognitive question, the response doesn't feel \"better\" the way you might expect — like a smarter version of the answer you'd already imagined. It feels different in",
+    "felt1Before": "The first time you load My AI into a Claude conversation and ask a hard cognitive question, the response doesn't feel \"better\" the way you might expect — like a smarter version of the answer you'd already imagined. It feels different in",
     "felt1Em": "register",
     "felt2Before": "It reads less like advice and more like recognition. Less like Wikipedia answering you and more like a wise friend who's been watching the same problem from the inside. The framings are not the framings you've heard before; they",
     "felt2Em": "reorganize",
@@ -5900,7 +5900,7 @@
     "felt4After": "the model brings to your question. And quality of attention — when it's the kind that produces recognition rather than information — is the thing that's been missing from most AI conversations for most users.",
     "felt5": "That's the part that matters. Everything below this line is in service of falsifying or confirming it.",
     "whatThisIsTitle": "What this is",
-    "whatThisIs1Before": "Your AI is a text-based cognitive scaffold. You paste it into a fresh conversation (or pin it as a system prompt, or load it as a Claude Project / Custom GPT instruction). The model's weights don't change. What changes is the",
+    "whatThisIs1Before": "My AI is a text-based cognitive scaffold. You paste it into a fresh conversation (or pin it as a system prompt, or load it as a Claude Project / Custom GPT instruction). The model's weights don't change. What changes is the",
     "whatThisIs1Em": "structure of attention",
     "whatThisIs1After": "the model brings to your problem.",
     "whatThisIs2": "I've been building it for five years. This is v5.",
@@ -5916,7 +5916,7 @@
     "setupRow2Label": "Baseline",
     "setupRow2Value": "The same model, with no scaffold loaded",
     "setupRow3Label": "Treatment",
-    "setupRow3Value": "The same model, with Your AI loaded",
+    "setupRow3Value": "The same model, with My AI loaded",
     "setupRow4Label": "What's being measured",
     "setupRow4Value": "The delta from one variable: the scaffold",
     "setupRow5Label": "What's not being measured",
@@ -6035,7 +6035,7 @@
     "limit3Strong": "Limited cross-model baseline.",
     "limit3Text": "Tested twice within the Claude family — Opus 4.7 (+42% on SIB) and Claude 4.6 (+29% on SIB) — see \"The compounding multiplier\" above for the implied 1.45× per-generation amplification. Other model families (GPT-4.x, Gemini, open-weights frontier) remain unmeasured. The mechanism (structured context) is model-agnostic; the multiplier itself is family-dependent until proven otherwise.",
     "limit4Strong": "Scaffold not decomposed.",
-    "limit4Text": "Your AI is a compound — integral theory, developmental stage framing, my corpus vocabulary, process protocols. Which component contributes most of the delta is an open question.",
+    "limit4Text": "My AI is a compound — integral theory, developmental stage framing, my corpus vocabulary, process protocols. Which component contributes most of the delta is an open question.",
     "limit5Strong": "Tokens not separated.",
     "limit5Text": "Input vs. output token counts weren't isolated per condition. Next replication will fix this.",
     "limitsOutro1Before": "The structural claim —",
@@ -6059,7 +6059,7 @@
     "replicateTitle": "Replicate this",
     "replicateBody": "The full protocol, prompts, scoring rubric, and raw outputs are open. If you want to run it yourself — different model, different corpus, different scorer — that's exactly the rigor step I'm inviting.",
     "replicateLicensing": "Free for personal non-commercial use. Contact for commercial licensing.",
-    "ctaInstall": "Install Your AI",
+    "ctaInstall": "Install My AI",
     "ctaReplicate": "Replicate / commercial inquiry"
   },
   "mdlsPreview": {
@@ -8275,8 +8275,8 @@
     "eyebrow": "Products",
     "title": "Products",
     "intro": "Different doors, one starting point: your uniqueness, made precise enough to build on. Start where you are.",
-    "aiCreditsHeading": "Your AI credits",
-    "aiCreditsBody": "Your AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.",
+    "aiCreditsHeading": "My AI credits",
+    "aiCreditsBody": "My AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.",
     "summaryEyebrow": "The whole, in one breath",
     "summaryHeading": "One method, many doors.",
     "summaryBody": "Each product here does the same core work at a different scale. It finds the signal you already carry and makes it clear enough to act on. A free quiz shows where you are on the hero's journey. Sessions name your genius and your founder-market fit. A month-long build takes the product to market. Programs and a collective carry the work further, and tools and white-label infrastructure serve communities. You start where you are, and go as far as you want.",
@@ -9602,7 +9602,7 @@
       "knowsYourWork": "Knows your work"
     },
     "giftText": {
-      "activated": "Your AI {{version}}",
+      "activated": "My AI {{version}}",
       "talent": "your top talent",
       "talentMission": "your top talent + your mission",
       "work": "{{n}} of {{total}} Collective pieces",
@@ -9610,12 +9610,12 @@
       "opensWorkshop": "Opens in the Collective"
     },
     "outro": {
-      "aria": "Your AI is ready",
-      "eyebrow": "Done · Your AI is ready",
-      "badge": "Your AI",
+      "aria": "My AI is ready",
+      "eyebrow": "Done · My AI is ready",
+      "badge": "My AI",
       "naming": "Models have become alike. The difference is how well your AI knows you.",
       "why": "Why this works",
-      "lives": "Always here, in the village, at Your AI. It grows as you play.",
+      "lives": "Always here, in the village, at My AI. It grows as you play.",
       "back": "Back to the village",
       "skills": "Skills for your AI"
     },
@@ -9800,18 +9800,18 @@
     }
   },
   "yourAiInstrument": {
-    "open": "Open Your AI",
-    "close": "Close Your AI",
-    "title": "Your AI",
-    "powered": "Powered by Your AI OS",
+    "open": "Open My AI",
+    "close": "Close My AI",
+    "title": "My AI",
+    "powered": "Powered by My AI OS",
     "replay": "Replay the tour",
     "greeting": "I'm on every screen. Write to me, or open an app below.",
-    "placeholder": "Write to Your AI…",
+    "placeholder": "Write to My AI…",
     "send": "Send",
-    "thinking": "Your AI is thinking…",
-    "turnError": "Your AI didn't answer this time.",
+    "thinking": "My AI is thinking…",
+    "turnError": "My AI didn't answer this time.",
     "retry": "Retry",
-    "limitNote": "You've reached today's free Your AI limit. It resets tomorrow.",
+    "limitNote": "You've reached today's free My AI limit. It resets tomorrow.",
     "limitPlaceholder": "Today's free limit is reached",
     "turnsRemaining_one": "{{count}} turn left today",
     "turnsRemaining_other": "{{count}} turns left today",
@@ -9819,13 +9819,13 @@
     "nextSteps": "Suggested next steps",
     "console": "Console",
     "locked": "Closed",
-    "tourLabel": "Your AI, a short tour",
+    "tourLabel": "My AI, a short tour",
     "tourStep": "{{n}} of {{total}}",
     "tourSkip": "Skip",
     "tourNext": "Next",
     "tourDone": "Done",
     "tour": {
-      "header": "This is Your AI, powered by Your AI OS. It goes with you on every screen.",
+      "header": "This is My AI, powered by My AI OS. It goes with you on every screen.",
       "conversation": "It is built to know you, and it knows you closer as you play.",
       "console": "The Console: every app is a button that does something powerful."
     }
@@ -9847,7 +9847,7 @@
       "earth": "Earth"
     },
     "face": {
-      "air": "Your AI",
+      "air": "My AI",
       "fire": "Growth",
       "earth": "Work"
     },
@@ -9869,7 +9869,7 @@
     }
   },
   "yourAiConsole": {
-    "tablist": "Your AI views",
+    "tablist": "My AI views",
     "tabConversation": "Conversation",
     "tab": "Console",
     "intro": "Five buttons. Each gives you one result and hands it to the next.",
@@ -9889,7 +9889,7 @@
     "readAll": "Read all",
     "retryLine": "That answer did not come back in a form I can show. Try once more.",
     "retry": "Try again",
-    "failedLine": "Your AI didn't answer this time.",
+    "failedLine": "My AI didn't answer this time.",
     "capLine": "You've used today's Console turns. They come back tomorrow.",
     "signInLine": "Sign in to use the Console. It works from your profile.",
     "goalInput": "Your goal",
@@ -10018,7 +10018,7 @@
           "result": "a business that is steered, not chased."
         },
         {
-          "name": "Your AI",
+          "name": "My AI",
           "gives": "a ladder from AI as a mirror to your own AI company.",
           "result": "the business does more without hiring."
         },

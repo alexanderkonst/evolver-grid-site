@@ -105,7 +105,7 @@ test("a suggestion replies in place and the conversation survives reload", async
   await openConsole(page);
   await page.getByRole("tab", { name: "Conversation" }).click();
   const originalUrl = page.url();
-  const input = page.getByRole("textbox", { name: "Write to Your AI…" });
+  const input = page.getByRole("textbox", { name: "Write to My AI…" });
   await expect(page.getByText("20 turns left today")).toBeVisible();
   await input.fill("I could use a way to settle.");
   await input.press("Enter");

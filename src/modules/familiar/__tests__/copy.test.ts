@@ -18,7 +18,7 @@ const sources = (dir: URL): string[] =>
 
 const lookup = (path: string): unknown => path.split(".").reduce<unknown>((o, k) => (o as Record<string, unknown> | undefined)?.[k], en);
 
-describe("Your AI copy", () => {
+describe("My AI copy", () => {
   const code = sources(root).join("\n");
   const keys = [...code.matchAll(/\bt\(\s*"(familiar\.[A-Za-z0-9.]+)"/g)].map((m) => m[1]);
 
@@ -46,8 +46,8 @@ describe("Your AI copy", () => {
     expect(readFileSync(new URL("GiftChips.tsx", root), "utf8")).toMatch(/\{" "\}\s*<span className="sr-only">/);
   });
 
-  it("names the place «Your AI» in the village catalog", () => {
-    expect(lookup("village.place.oracle.name")).toBe("Your AI");
+  it("names the place «My AI» in the village catalog", () => {
+    expect(lookup("village.place.oracle.name")).toBe("My AI");
   });
 
   it("uses no em or en dashes in what a player reads", () => {

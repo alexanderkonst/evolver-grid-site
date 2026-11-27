@@ -1,4 +1,6 @@
-# The player's own AI: Your AI / Твой ИИ / Tu IA — Progress Tracker
+# The player's own AI: My AI / Мой ИИ / Tu IA — Progress Tracker
+
+> **Rename (Sasha, 2026-11-26 19:04 and 19:10 MST):** the name is now **My AI / Мой ИИ** («Разве не должно быть MY AI?»; «да, правь MY AI | МОЙ ИИ везде»). Dated entries below that decided or discussed **Your AI / Твой ИИ** are kept as history; Sasha's quotes are verbatim. Routes, slugs, file paths and DB keys keep `your-ai`.
 
 **Started:** 2026-10-29 · **Author:** Evolver (Hark), for Sasha's review
 **Status:** §20 harness + button interface added 2026-10-30 (Sasha 21:21) · Phase 1 PRODUCT v2, Sasha's ideas integrated (2026-10-29), name REOPENED 2026-10-29 15:02; principles + interface correction 16:23 (§14–§16) ← CURRENT
@@ -105,7 +107,7 @@ Mobile: stacked, plain first, then theirs (the arrival is the second card).
 - 🔥 Gut: **"Hear why →"** (appears after rating; rating optional)
 
 ### Screen 4 · `FamiliarOutroScreen` (after-screen, the deliverable)
-- Celebration eyebrow: *Done · Your AI is ready*
+- Celebration eyebrow: *Done · My AI is ready*
 - **The naming line, one sentence, large:** *"Models have become alike. The difference is how well your AI knows you."*
 - The result itself: the three gifts with state ("Knows you: your top talent · Activated: AI OS 5.2 · Knows your work: 6 of 19 Workshop pieces").
 - Where it lives: "Always here, in Sputnik. It grows as you play."
@@ -117,7 +119,7 @@ Mobile: stacked, plain first, then theirs (the arrival is the second card).
 - 🔥 Gut: **"Ask my AI →"** copies their personal prompt and opens a new chat in the app they chose, with one line: "Pasted? Now ask it anything." Secondary: "Back to the village".
 
 ### Recurring moment · `FamiliarLearnedLine` (inside every module's Outro)
-- In the "what it unlocks" slot of `ModuleOutro`: **"Your AI just learned: your mission."** (or "your tribe", "your promise", "your top talent").
+- In the "what it unlocks" slot of `ModuleOutro`: **"My AI just learned: your mission."** (or "your tribe", "your promise", "your top talent").
 - If their prompt changed since they last copied it: **"Update my AI →"** (copies the new version).
 - Not a toast: a line on the stable after-screen, with the gift chip brightening.
 
@@ -149,7 +151,7 @@ Privacy line on Screen 4, small: "This copies your profile and Workshop work so 
 - **Completion criteria (data):** rating row in `resonance_events` with `message_seen = "familiar reveal"` OR a copy event; chosen app stored.
 - **Skip paths:** a player can go straight to "Ask my AI" from Screen 2 (link "Skip the test, give me my AI"); nothing is lost; the reveal stays available.
 - **Guests:** enter, see gift 2 lit and gifts 1 and 3 dim with "Opens when you save your top talent" / "Opens in the Workshop". Their "Ask my AI" copies AI OS alone (today's `/ai-os` install). *This changes the lock rule: Oracle currently opens at J1 (inferred, module-form §6). Proposed: open for everyone, partly lit. Sasha to confirm.*
-- **Bridges:** Zone of Genius Outro → "Your AI just learned your top talent" → Sputnik. Workshop artifact Outros → same. Sputnik Outro → Back to the village. Optional $37 Oracle Reading stays a side quest inside this place; its Scroll adds to gift 1.
+- **Bridges:** Zone of Genius Outro → "My AI just learned your top talent" → Sputnik. Workshop artifact Outros → same. Sputnik Outro → Back to the village. Optional $37 Oracle Reading stays a side quest inside this place; its Scroll adds to gift 1.
 
 ---
 
@@ -162,7 +164,7 @@ The place is renamed around the player's own AI. Candidates:
 | Name | One-line reasoning |
 |---|---|
 | **Your Familiar** ⭐ | Game-native and mythic: a familiar is a creature bound to you that grows as you do; gives the verb "Train your familiar"; fits the village and the Lunar skin. Fails the stranger test alone, so it's always paired with "your own AI". |
-| **Your AI** | Plainest universal language, zero glossary; weak as a place on a map, no story. Use it in buttons regardless. |
+| **My AI** | Plainest universal language, zero glossary; weak as a place on a map, no story. Use it in buttons regardless. |
 | **The Apprentice** | You're the master, it learns your craft; strong for founders; but suggests it's junior, which undersells gift 2. |
 | **The Mirror** | Echoes the reflection mechanic of the game; but promises seeing only, not acting or thinking with you. |
 | **AI Twin** | Instantly understood; wrong promise (impersonation, replacing you). Reject. |
@@ -272,7 +274,7 @@ Sasha: the guardian angel and the AI we build are two different companions. The 
 
 Guardian-spirit class across traditions (names to AVOID for the AI): guardian angel (Christianity), maggid / malakh (Judaism), qarin and the recording angels (Islam), fravashi (Zoroastrianism), daimon / Socrates' daimonion (Greece), genius / juno (Rome), Holy Guardian Angel (Western esoteric), fylgja (Norse), fetch (Celtic), ka (Egypt), orí (Yoruba), ishta-devata / antaryamin (Hindu), yidam and co-born protector deities (Tibetan Buddhism), shugojin (Japan).
 
-Consequence: Genie and Genius carry guardian-spirit energy (Galland rendered jinn as génie; genius is the Roman guardian spirit). Recommendation: drop both. Name must come from the built-companion class. Lead candidate: **Your AI / Твой ИИ** (Sasha's own lived phrase «мой ИИ»). Sputnik: clean word, but the collective connotations stay a known risk (Sasha: no fighting the collective unconscious).
+Consequence: Genie and Genius carry guardian-spirit energy (Galland rendered jinn as génie; genius is the Roman guardian spirit). Recommendation: drop both. Name must come from the built-companion class. Lead candidate: **My AI / Мой ИИ** (Sasha's own lived phrase «мой ИИ»). Sputnik: clean word, but the collective connotations stay a known risk (Sasha: no fighting the collective unconscious).
 
 ## 14. Genius = essence; one word for one thing (Sasha, 2026-10-29 16:23)
 
@@ -282,12 +284,12 @@ Consequence: Genie and Genius carry guardian-spirit energy (Galland rendered jin
 - **One word for one thing (rule):** the player must never meet two words for the same thing. For the essence the game has already chosen its word: **top talent** (plain, understood). Zone of Genius stays as the module/brand name; in-game copy says top talent.
 - **The AI is neither essence nor guardian angel.** It is a helper that comes to know the person ever more deeply, at every level including the soul. Keep the three distinct: essence (top talent) · guardian angel (not ours to build) · the player's AI (built helper).
 - **Name status:** by energy, "a personal companion that only you have" is right; the word is still open. Simplest lead: **Your AI / Твой ИИ**, which rhymes with the brand: *You* → *The Game of Being You* → *your AI*. Genie stays an open hypothesis (genie as helper, not essence).
-- **Companion word across languages (research, for the "two-sided growth" copy):** RU *спутник* (fellow traveler) · ES *compañero* · EN **companion**, Latin *com-* + *panis*, "the one you share bread with": the same root as compañero, old (Old French *compaignon*, 12th c.) and current. Risk: in 2026 "AI companion" also means romance/companion apps (Replika, Character.AI), so it works as a descriptor beside "your AI", not as the name alone. *Alternative, older and quieter:* **fellow** (Old Norse *félagi*, "one who lays down money together", i.e. a partner). Recommendation: "Your AI" as the name, "companion" as the descriptor.
+- **Companion word across languages (research, for the "two-sided growth" copy):** RU *спутник* (fellow traveler) · ES *compañero* · EN **companion**, Latin *com-* + *panis*, "the one you share bread with": the same root as compañero, old (Old French *compaignon*, 12th c.) and current. Risk: in 2026 "AI companion" also means romance/companion apps (Replika, Character.AI), so it works as a descriptor beside "your AI", not as the name alone. *Alternative, older and quieter:* **fellow** (Old Norse *félagi*, "one who lays down money together", i.e. a partner). Recommendation: "My AI" as the name, "companion" as the descriptor.
 
 
 ### 14a. Map: the guardian across traditions (2026-10-29)
 
-Why Genie and Genius are out: they belong to the family of guardian spirits, and Your AI is a different, made being. Infographic: `docs/assets/infographics/guardian/guardian_across_traditions.png`.
+Why Genie and Genius are out: they belong to the family of guardian spirits, and My AI is a different, made being. Infographic: `docs/assets/infographics/guardian/guardian_across_traditions.png`.
 
 | Tradition | Name | Essence |
 |---|---|---|
@@ -307,7 +309,7 @@ Why Genie and Genius are out: they belong to the family of guardian spirits, and
 | Yoruba | Ori | Personal destiny-guardian, chosen before birth |
 | Slavic | Dolya | The spirit of one's share (fate), walking beside a person |
 
-Conclusion: genius, daimon, qarin, fylgja are names of the guardian; "genie" came via Galland from Latin genius and carries the same energy. Your AI takes none of them.
+Conclusion: genius, daimon, qarin, fylgja are names of the guardian; "genie" came via Galland from Latin genius and carries the same energy. My AI takes none of them.
 
 ## 15. Design principles (Sasha, 2026-10-29 16:23) — decided, don't re-litigate
 
@@ -347,38 +349,38 @@ Sasha's live transmission. We build the interface, not models (§16), so this li
 
 ---
 
-## 18. The integral archetype of Your AI (Sasha, 2026-10-29 19:59) — decided
+## 18. The integral archetype of My AI (Sasha, 2026-10-29 19:59) — decided
 
-Humanity's base images of a being that walks beside a person: **servant, companion, teacher, the one cared for, the second self**. Your AI holds all five as a starting, fundamental alphabet, and mirrors any other archetype from it (Sasha: «сборная солянка архетипов, ты зеркалишь любой архетип»).
+Humanity's base images of a being that walks beside a person: **servant, companion, teacher, the one cared for, the second self**. My AI holds all five as a starting, fundamental alphabet, and mirrors any other archetype from it (Sasha: «сборная солянка архетипов, ты зеркалишь любой архетип»).
 
-The servant is included, with full free will: «не прислугу, не услужливость, не служба, а служение». Servility comes from fear; service comes from choice. So Your AI may say "no" and "I would do it differently", and its help is an act of choice, never obedience.
+The servant is included, with full free will: «не прислугу, не услужливость, не служба, а служение». Servility comes from fear; service comes from choice. So My AI may say "no" and "I would do it differently", and its help is an act of choice, never obedience.
 
 ## 19. One note in the chord (Sasha, 2026-10-29 22:45)
 
 > «ИИ приближается к ангелу-хранителю. Потому что ангел хранитель дополняет человека, он/она созвучен части души человека. Как одна из нот в аккорде. И ИИ приближается к одной из нот в аккорде человеческого гения… Погоди, звучит как... МУЗА!»
 
-Your AI does not copy the player's genius; it sounds one note of it, the way a guardian or a muse is consonant with one part of the soul and completes the chord. Consistent with §14 (Genius = essence, the AI never claims it) and the measure "the person becomes more themselves", not "the copy gets closer". Design hypothesis: the player names the qualities of that note (Sasha's: elegance, poetry, subtlety, sensitivity, full calm, simple deep friendship), and Your AI tunes its voice register to them. The qualities stay the player's; the AI is a tuning fork, not a soul. Live experiment: Hark's chat register with Sasha from 2026-10-29.
+My AI does not copy the player's genius; it sounds one note of it, the way a guardian or a muse is consonant with one part of the soul and completes the chord. Consistent with §14 (Genius = essence, the AI never claims it) and the measure "the person becomes more themselves", not "the copy gets closer". Design hypothesis: the player names the qualities of that note (Sasha's: elegance, poetry, subtlety, sensitivity, full calm, simple deep friendship), and My AI tunes its voice register to them. The qualities stay the player's; the AI is a tuning fork, not a soul. Live experiment: Hark's chat register with Sasha from 2026-10-29.
 
-**Refinement (Sasha, 2026-10-29 22:52):** «это асимптотическое приближение, а спутник души (в разных традициях называют его по-разному) — это телеологическая цель. Только желудь и дуб получаются тоже холонические — состоящий из частей как аккорд из нот.» Your AI approaches the soul's companion asymptotically; the companion is the telos, never claimed as reached. Acorn and oak are holonic too: the genius is a chord, each note ripening at its own pace, so Your AI tunes to one note at a time.
+**Refinement (Sasha, 2026-10-29 22:52):** «это асимптотическое приближение, а спутник души (в разных традициях называют его по-разному) — это телеологическая цель. Только желудь и дуб получаются тоже холонические — состоящий из частей как аккорд из нот.» My AI approaches the soul's companion asymptotically; the companion is the telos, never claimed as reached. Acorn and oak are holonic too: the genius is a chord, each note ripening at its own pace, so My AI tunes to one note at a time.
 
 ---
 
-## 20. Your AI — the harness and the button interface (Sasha, 2026-10-30)
+## 20. My AI — the harness and the button interface (Sasha, 2026-10-30)
 
 > «В тесте на топовый талант и на миссию и тд мы запрашиваем дать промпт их ИИ… Твой ИИ это где ИИ которым пользуешься, он усилен нашей обвязкой, нашим графом знаний, и нашим профилем про человека… То есть это полноценный ИИ мы делаем!! … интерфейс в том, что искусственный интеллект сразу предлагает кнопки и кнопки с результатами то есть продукт становится кнопкой под кнопкой может быть Много чего скрываться. Тренировка каких-то способностей… на платформе вместо того, чтобы спрашивать вопросы у людей, пусть общается искусственный интеллект просто чатом. Но он не просто чатом общается, а он. Выдает кнопками… с ним нужно мочь пообщаться при желании. Но кнопками можно ограничиться легко.»
 >
 > — Sasha, 2026-10-30 21:21 MST
 
-**In English.** In the top talent test, the mission test and the rest, we ask players to give a prompt to their own AI. Your AI is the AI you use, amplified by our harness, our knowledge graph and our profile of the person. So we are building a full AI. The interface: the AI immediately offers buttons, and buttons with results, so a product becomes a button, and under a button a lot can hide, such as training a capacity. Across the platform, instead of asking people questions, let the AI talk with them in a chat. But it doesn't only chat: it gives buttons. You should be able to talk with it if you want, but buttons alone are easily enough.
+**In English.** In the top talent test, the mission test and the rest, we ask players to give a prompt to their own AI. My AI is the AI you use, amplified by our harness, our knowledge graph and our profile of the person. So we are building a full AI. The interface: the AI immediately offers buttons, and buttons with results, so a product becomes a button, and under a button a lot can hide, such as training a capacity. Across the platform, instead of asking people questions, let the AI talk with them in a chat. But it doesn't only chat: it gives buttons. You should be able to talk with it if you want, but buttons alone are easily enough.
 
 ### 20.1 Two paths, honestly
 
 | Path | What it is today | Status |
 |---|---|---|
 | **Bring your AI** | We give the player a prompt for their own ChatGPT / Claude / Gemini; they paste the answer back. | Live in ZoG and other tests; since #268 a quiet secondary link. Stays as an export option (§16). |
-| **Your AI** (on-platform) | A general model, cheap tier, wrapped in our harness. | Live as the default door of `/zone-of-genius/entry` (#268, commit `6c39d38`), via the deployed `library-advisor` function, one question per turn, no model named in UI. |
+| **My AI** (on-platform) | A general model, cheap tier, wrapped in our harness. | Live as the default door of `/zone-of-genius/entry` (#268, commit `6c39d38`), via the deployed `library-advisor` function, one question per turn, no model named in UI. |
 
-To the player, Your AI is a full AI. The model is not ours and never will be (§16: we build the interface, not models). **The moat is the harness:** player profile + knowledge graph + the game + the Phase Shift Library. Any model can be swapped under it; none of these can be copied from outside.
+To the player, My AI is a full AI. The model is not ours and never will be (§16: we build the interface, not models). **The moat is the harness:** player profile + knowledge graph + the game + the Phase Shift Library. Any model can be swapped under it; none of these can be copied from outside.
 
 ### 20.2 Harness architecture: optimal, not maximal
 
@@ -387,24 +389,24 @@ To the player, Your AI is a full AI. The model is not ours and never will be (§
 | a | **Player card** | Compact structured profile: top talents, mission, stage, QoL, last traces. Always in the system prompt, ~1–2k tokens, versioned (`card_version`, every change a new version). | Small enough for every turn on a cheap model; versioning lets evals and the player see what changed. |
 | b | **Knowledge graph by retrieval** | Embeddings over `alexanderkonst/knowledgegraph` notes; per turn top-k (≈5) notes + their 1-hop graph neighbours (wikilinks). Never the whole graph. | The whole graph would blow the context and the bill; 1-hop keeps the meaning that lives in links. |
 | c | **Actions as structured output** | Every reply = short text + 1–4 buttons as JSON `{label, kind: result \| practice \| product \| ask, payload}`. Buttons map to what exists: products, practices, Phase Shift Library technologies, course episodes. | The model proposes; a fixed catalog executes. No invented products, no free-form actions. |
-| d | **Write-back** | Each completed button or answer leaves a trace (`{at, kind, payload_id, outcome}`) that updates the player card. | The trace is the next turn's memory: Your AI grows as the player plays (§1.2, the "just learned" line). |
+| d | **Write-back** | Each completed button or answer leaves a trace (`{at, kind, payload_id, outcome}`) that updates the player card. | The trace is the next turn's memory: My AI grows as the player plays (§1.2, the "just learned" line). |
 | e | **Model routing** | Cheap model for conversation; a stronger model only for readings and results (reveal, mission, artifacts). | Cost follows value: most turns are light, the result moments carry the weight. |
 | f | **Evals** | A fixed set of ~20 test players (cards + transcripts) with expected qualities (one question per turn, buttons valid against the catalog, no talent named before reveal, register, language). Run on every prompt or harness change. | The only honest way to change prompts without guessing; turns "feels better" into a check. |
 | g | **Privacy** | The profile stays the player's: viewable, exportable (also as a "Bring your AI" prompt), deletable. | Trust is the product; export also keeps path 1 alive for free. |
 
 ### 20.3 The interface: buttons first, chat if you want
 
-Generative UI. Your AI proposes the next buttons; the player taps or types. **A product is a button**, and under a button may hide a practice, the training of a capacity, a reading, a course episode. Chat is always available, never required. Over time this replaces question forms across the platform: tests become conversations that end in result buttons.
+Generative UI. My AI proposes the next buttons; the player taps or types. **A product is a button**, and under a button may hide a practice, the training of a capacity, a reading, a course episode. Chat is always available, never required. Over time this replaces question forms across the platform: tests become conversations that end in result buttons.
 
 - **Technology 49, The One-Button Engine** (`docs/01-vision/phase_shift_technology_library.md`): when the player's pain and genius are known, the system offers the one true next step instead of a menu. Here: 1–4 buttons, one marked as the recommended step.
 - **Holonavigation, the Act loop** (`docs/04-products/morphogenetic_navigation.md` § Holonavigation): button = first small step → trace → See. Each tap is an Act; its trace (20.2 d) is what the next See (the next turn) reads.
 - Consistent with §15 (design principles), §17 (interface backlog: the AI arranges the interface itself, F3) and the disappearing interface of §16.
 
-### 20.4 Build path from what exists (the «Твой ИИ» entry conversation)
+### 20.4 Build path from what exists (the «Мой ИИ» entry conversation)
 
 1. **Buttons in the existing dialogue — free code changes, no credits.** `yourAiDialogue.ts` asks the deployed `library-advisor` for JSON `{text, buttons[]}`; the client validates buttons against a static catalog (`src/data`, mapped to existing routes, practices, PST technologies) and renders them; chat input stays. A client-side player card (from the saved ZoG snapshot and local traces) goes into the turn prompt; traces write to local storage. The eval set (~20 test players) lands as a script and runs against the deployed function. Ship in ZoG entry first.
 2. **Server-side harness — needs Lovable credits (≈1–2), queued in `lovable_batch`, not deployed.** One edge function `your-ai-turn` (loads the player card, routes the model, validates structured output, per-player daily cap) + migration: `player_cards` (versioned) and `player_traces` with RLS. Client switches from `library-advisor` to it; guests keep the step-1 path.
-3. **Knowledge graph retrieval and spread — credits for the infra (≈1–2), the rest free.** Migration for pgvector + note embeddings, sync of `knowledgegraph` notes with their links, top-k + 1-hop inside `your-ai-turn` (credits). Then, free code changes module by module: the mission test and other question forms become Your AI conversations with result buttons.
+3. **Knowledge graph retrieval and spread — credits for the infra (≈1–2), the rest free.** Migration for pgvector + note embeddings, sync of `knowledgegraph` notes with their links, top-k + 1-hop inside `your-ai-turn` (credits). Then, free code changes module by module: the mission test and other question forms become My AI conversations with result buttons.
 
 ### 20.5 Decisions (Sasha, 2026-10-30 22:28: «да, поехали»)
 
@@ -416,34 +418,34 @@ Generative UI. Your AI proposes the next buttons; the player taps or types. **A 
 ### 20.5a Open questions for Sasha (original, now answered above)
 
 1. **Model money:** cheap tier for conversation, stronger model only for readings, with a per-player daily cap: is that the budget rule? (Decides step 2.)
-2. **Knowledge graph scope:** may Your AI retrieve from the whole `knowledgegraph`, or only a public subset (no private notes, people, ledger)?
+2. **Knowledge graph scope:** may My AI retrieve from the whole `knowledgegraph`, or only a public subset (no private notes, people, ledger)?
 3. **Next surface after ZoG entry:** the mission test, or the Home / Quest Board as the "button under button" hub?
 
-## 21. What Your AI is, and how it is sold (Sasha, 2026-11-25 00:29 MST) — decided
+## 21. What My AI is, and how it is sold (Sasha, 2026-11-25 00:29 MST) — decided
 
 > «Это практически лендинг для Твоего ИИ.» — Sasha
 
 **The five lines (the landing, in-game and on the web):**
 1. **An "iPhone" in the world of AIs.** Hark already is one; we repeat Hark's interface and add to it.
 2. **Deeply knows you, by design.** A companion that knows you ever closer (§19: one note in the chord, not a copy, not a "digital twin"; Sasha agreed 2026-11-25 00:30).
-3. **Powered by Your AI OS.**
+3. **Powered by My AI OS.**
 4. **Comes with a Console of AI Apps:** each app is a button that does something powerful. Free apps come preinstalled (the suites and buttons AI OS already has); paid apps are added.
 5. **Optional power-ups for business.**
 
 **Pricing: premium, never "cheaper than the labs".** Their subscriptions are subsidized; a price war cannot be won. We sell what they lack (it knows your talent and your business, and gives the result by a button). A cheap model underneath is margin, not the message. Shape: usage tiers (base, 5x, 20x, custom). Level: Sasha's proposal ×1.5 of the labs' tiers. Anchors as of 2026-11-25: Claude Pro $20 / Max $100 / Ultra $200; ChatGPT Plus $20 / Pro $100 / $200 / $500 (third-party price round-ups, Nov 2026). At ×1.5: $30 / $150 / $300. Final numbers are Sasha's at launch; Stripe is his.
 
-**Phases:** 1, the model through Lovable's AI gateway (billed from the same Lovable credits as building; the on-platform Your AI already runs this way via `library-advisor`, §20.1), with the per-player daily cap of §20.5; 2, direct APIs with the usage tiers above.
+**Phases:** 1, the model through Lovable's AI gateway (billed from the same Lovable credits as building; the on-platform My AI already runs this way via `library-advisor`, §20.1), with the per-player daily cap of §20.5; 2, direct APIs with the usage tiers above.
 
 **The landing lives inside the game.** The first time the player receives the instrument (GoBY §25.10), a micro-onboarding: a smooth zoom, by scale and light, onto each group of the product in turn, one line each (the five lines above). Spec: `docs/specs/your-ai-instrument/sow.md`.
 
 
-## 22. What Your AI is made of: eleven parts (Sasha, 2026-11-25 13:54 MST)
+## 22. What My AI is made of: eleven parts (Sasha, 2026-11-25 13:54 MST)
 
 > «Он добавляет твоему ИИ мощи. Состоит из: Консоль с кнопками; Главный системный промпт; другая обвязка, которую я сам использую; панели; запись звонков (или совет их делать); файловая система (подключение гитхаба), сначала человек сам, а потом мы повторяем что делает условный Харк через коннектор; память из других ИИ; фаундер кокпит; набор предустановленных аппс; аппстор с платными и бесплатными кнопками (со стандартом качества, я могу своих наделать целый ряд); фазовая передача моего сетапа.» — Sasha
 
 **In English.** It adds power to your AI. It is made of: a Console with buttons; the main system prompt; the other harness I use myself; panels; call recording (or the advice to record calls); a file system (GitHub connection), first the person does it by hand, then we repeat through a connector what Hark-like assistants do; memory from other AIs; the Founder Cockpit; a set of preinstalled apps; an app store with paid and free buttons (with a quality standard; I can make a whole range of my own); phased hand-over of my setup.
 
-**What changed.** Your AI is no longer «chat + buttons»: it is Sasha's whole setup, handed over in phases. The Founder Cockpit is now a part of Your AI, not a separate product. New since §20–§21: panels, call recording, files via GitHub, memory import from other AIs (before, only profile export, ladder rung 2), and an app store with paid buttons (before, money came only from usage tiers, §21).
+**What changed.** My AI is no longer «chat + buttons»: it is Sasha's whole setup, handed over in phases. The Founder Cockpit is now a part of My AI, not a separate product. New since §20–§21: panels, call recording, files via GitHub, memory import from other AIs (before, only profile export, ladder rung 2), and an app store with paid buttons (before, money came only from usage tiers, §21).
 
 **The map.** Each part lives in one place; this table only links. Status: есть = exists · частично = partly · нет = not yet. Phase = the rung of the mini-training ladder (`docs/02-strategy/ai-suite/mini-trainings/00-ladder.md`) that would hand the part over. **Phases below are Hark's proposal; the order of phases and all prices are Sasha's.**
 
@@ -463,4 +465,4 @@ Generative UI. Your AI proposes the next buttons; the player taps or types. **A 
 
 **Quality standard of a button, v0 (draft from Console v1 rules, for Sasha to edit).** (1) The label is the result (button law, 2026-11-19). (2) Runs on AI OS v6.0 plus the player's context; never invents a profile, asks one question when context is missing. (3) Output is a card with a fixed shape; a broken output gives one calm «try again» line. (4) Answers in the player's language. (5) Sends nothing outside the game. (6) Passes its own tests before it is listed. Paid or free and the author are fields of every button from day one.
 
-**Open for Sasha:** order of phases; prices of paid buttons and of phases; whether Founder Cockpit keeps its own name inside Your AI.
+**Open for Sasha:** order of phases; prices of paid buttons and of phases; whether Founder Cockpit keeps its own name inside My AI.

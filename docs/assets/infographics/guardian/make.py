@@ -55,7 +55,7 @@ for tr,nm,es in rows:
     y+=rh
 d.line([(M,y),(W-M,y)],fill=(0x2a,0x35,0x44),width=2)
 y+=40*S
-for i,l in enumerate(wrap("Genius, daimon, qarin, fylgja: names of the guardian. Your AI is a different being, made by us, so it takes none of them.",serif(30),W-2*M)):
+for i,l in enumerate(wrap("Genius, daimon, qarin, fylgja: names of the guardian. My AI is a different being, made by us, so it takes none of them.",serif(30),W-2*M)):
     d.text((M,y+i*36*S),l,font=serif(30),fill=INK)
 mark=Image.open(HERE+"mark-1-crystal-moon.png").convert("RGB").resize((40*S,40*S),Image.LANCZOS)
 mask=mark.convert("L").point(lambda v:0 if v<24 else min(255,int((v-24)*1.6)))

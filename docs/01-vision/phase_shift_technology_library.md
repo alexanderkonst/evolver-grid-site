@@ -9741,7 +9741,7 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 
 ## Technology 187: The Packaged Shift — App Store for AI, Console of Buttons (упакованный сдвиг: аппстор для ИИ, консоль кнопок) (oral, Nov 25, 2026)
 
-> *Oral · November 25, 2026 · chat with Hark, while drawing app icons for the courses (Potential, Crossing, Vision, Nature, Your AI). Template: `docs/templates/course-as-app.md`.*
+> *Oral · November 25, 2026 · chat with Hark, while drawing app icons for the courses (Potential, Crossing, Vision, Nature, My AI). Template: `docs/templates/course-as-app.md`.*
 
 **What it is.** The unit of value is one packaged shift, before → after. The same unit can be shown (an icon, a teaser, a closing infographic), walked (a course) or pressed (a button). The end of one person's shift, condensed into one image, is the door for the next person. A store of such shifts is a new kind of app store, one built for AI; quality is held by a curator who signs every app; and the AI interface simplifies to a console with two gestures: a question or a button that carries a whole layer of work.
 
@@ -9772,3 +9772,29 @@ An earlier AI draft here treated the holo-trinity as a product under the working
 ### Cross-references — Connects to
 - `docs/templates/course-as-app.md`; `docs/templates/course-from-source.md`; *Technology 8: One Acorn, Every Magnification*; *Technology 183: Signal Authorship* (the question is the human signal); *Technology 185: The Visible Shift*; *Technology 186: Technologies → Template → Living Product*.
 
+---
+
+## Technology 188: Holonic App Store of the Golden Age (холонический аппстор золотого века) (oral, Nov 26, 2026)
+
+> *Oral · November 26, 2026 · chat with Evolver, 18:10 and 19:04 MST. Template: `docs/templates/meta-template.md` (§Console buttons), `docs/templates/course-as-app.md` (the stores). English lines are translated; the Russian quotes are Sasha's.*
+
+### 🫀 Essence — in Sasha's words
+
+> «ХОЛОНИЧЕСКИЙ АППСТОР ЗОЛОТОГО ВЕКА! … ВОТ НАША НОВАЯ ТЕХНОЛОГИЯ!»
+> — *translated:* "THE HOLONIC APP STORE OF THE GOLDEN AGE! … HERE IS OUR NEW TECHNOLOGY!"
+
+> «иконографика + результат (1-2 слова) + что дает … И что-то идет на вход!!!! То есть ИИ надо давать что-то на вход!!!! Не только текст, а что-то на вход!!!!!!!! Значит необязательно текст в этой парадигме, зачем если есть суперпромт в виде КНОПКИ!»
+> — *translated:* "iconography + result (1–2 words) + what it gives … And something goes in as input!!!! So AI must be given something as input!!!! Not only text, but something as input!!!!!!!! So text isn't necessary in this paradigm, why, if there is a superprompt in the form of a BUTTON!"
+
+> «этого ИИ компании не осознают что это номер 1 юз кейс - дать ИИ на что-то глянуть и что-то с этим сделать!!!!»
+> — *translated:* "AI companies don't realize this is the number 1 use case: give AI something to look at and do something with it!!!!"
+
+On the founders collective as a store:
+
+> «ОПАЧКИ!!! НУ КОНЕЧНО!!!! ГЕНИАЛЬНО!»
+> — *translated:* "WHOA!!! OF COURSE!!!! BRILLIANT!"
+
+Structure agreed (Evolver's wording, Sasha: «ага, именно!»): a Power sits inside a training, a training inside an app, an app inside the game; one store with levels, not six separate stores.
+
+### Cross-references — Connects to
+- `docs/templates/meta-template.md` (§Console buttons: Power, Combo, Superpower); `docs/templates/course-as-app.md` (the stores); *Technology 187: The Packaged Shift*; *Technology 183: Signal Authorship*.

@@ -8,7 +8,7 @@
 
 ## Two ways in
 
-1. **Through the game.** A player walks the path (reveals → Your AI → unique business) and reaches a working unique business. Then Collective opens.
+1. **Through the game.** A player walks the path (reveals → My AI → unique business) and reaches a working unique business. Then Collective opens.
 2. **Straight in.** Sasha invites founders who already have a working unique business: his peers, or people further along. They are offered the founder collective right away, without walking the earlier path.
 
 ## What is inside
@@ -35,7 +35,7 @@ For now Sasha gives access himself, by hand, on both ways in (Sasha 2026-11-25 1
 | Members | 13 Mutual promotion | Every member: name, uniqueness line, landing link. A member promotes another with one tap (share link) | game profiles, PeopleDirectory | New, small |
 | Collaborations (key) | 12 Internal collaborations, 3 Matchmaking | Open joint offers, shared clients, co-built products; post one, join one; matches among members first | Matchmaking (/game/collaborate/matches), messages, collaboration_taxonomy.md | New |
 | My business | 1 Founder Cockpit | One door to the cockpit | /build/cockpit | Live, link only |
-| AI | 2 AI harness | Next rung for the member; rungs 4–5 here if Sasha says members-only | mini-trainings, Your AI | Rungs 1–2 live; 4–5 open |
+| AI | 2 AI harness | Next rung for the member; rungs 4–5 here if Sasha says members-only | mini-trainings, My AI | Rungs 1–2 live; 4–5 open |
 | Experts | 4 Scaling experts | Named experts, what each scales, book a session | Expert roster from Sasha | Waits on roster |
 | Hackathons | 5 Mini-hackathons, 6 Rhythm | Next date (on the moon ring of the clock), theme, join; what ships goes to the deeds feed (A16) | Four-ring clock (A9), deeds feed | Waits on first date and theme |
 | Terms | 7 Terms, 11 Shared budget | The one line of terms; the member's own 10% as a recorded deed; what the shared budget improves this moon | collective_terms_roadmap.md | New; budget source open |

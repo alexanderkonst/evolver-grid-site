@@ -53,7 +53,7 @@
 | Жизнь по природным циклам | Equilibrium | «Хочу жить и работать в ритме, а не против него» | Планирование по циклам + простой таск-менеджер | Бесплатно (тест) · веб-приложение | 0.8 | /build/equilibrium |
 | Вся линейка группой | Mystery School for Founders | «Хочу пройти путь с группой» | Большинство продуктов в одном комбо | $111–222 · 1 месяц · когорта | 1.0 (пересмотрим) | nas.com/founder-academy |
 | Навигация дела и основателя | Founder Cockpit | «Хочу видеть себя и своё дело как одно целое» | Дело и человек видны как одна система | Бесплатно (тест) · веб-приложение | 0.6 | /build/cockpit |
-| Функция уточняется | Your AI | уточнить | уточнить | Бесплатно до лимита; пакеты TBD | 0.4 | /game/your-ai |
+| Функция уточняется | My AI | уточнить | уточнить | Бесплатно до лимита; пакеты TBD | 0.4 | /game/your-ai |
 | Расширение сознания | Spiritual Practice with Cannabis (не публикуем) | уточнить | Качество жизни, витальность, мистический опыт | ~$100 за место · группа | 1.0 | скрыт с /products |
 
 ### 0.3 R&D
@@ -176,7 +176,7 @@ Aka Value Ladder aka CJM
 
 ---
 
-## 6. Your AI credits (как работают AI-кредиты в Your AI)
+## 6. My AI credits (как работают AI-кредиты в My AI)
 
 Решение Саши, 2026-10-30, одобрено как публичный коммерческий текст. Цены пакетов ещё не назначены: на сайте без цен, без кнопок, без checkout.
 
@@ -184,11 +184,11 @@ Aka Value Ladder aka CJM
 
 > "We are as generous as we can be with the AI credits but when you start to really use this AI more and hit the limits, we will offer you larger packages of AI credits, that also come with an upgrade to the model's power."
 
-**Публичный текст (экран Your AI и строка на /products):**
+**Публичный текст (экран My AI и строка на /products):**
 
-> Your AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.
+> My AI is free to start. We're as generous with AI credits as we can be. When you really start using it and hit the limit, larger credit packages are there, and each one also upgrades the power of the model.
 
-**Уровни Your AI (решение Саши, 2026-10-30):**
+**Уровни My AI (решение Саши, 2026-10-30):**
 
 - **Free forever:** профиль, первый шаг и обычный диалог в пределах дневного лимита, на дешёвой модели.
 - **Paid:** глубокие прочтения (deep readings) на сильной модели, через более крупные пакеты кредитов / подписку. Цена TBD; без checkout и без Stripe, пока цена не назначена.

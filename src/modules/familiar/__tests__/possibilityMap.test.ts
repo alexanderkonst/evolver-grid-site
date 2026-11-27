@@ -18,7 +18,7 @@ const afterSteps = (n: number) =>
   placeSaveFromSheet({ chain: JOURNEY_MAIN.map((item, i) => ({ id: item.id, done: i < n })) }, TUESDAY);
 
 describe("possibility map", () => {
-  it("has a house for every village place except Your AI", () => {
+  it("has a house for every village place except My AI", () => {
     const map = buildPossibilityMap(emptyPlaceSave(TUESDAY));
     expect(map.houses.map((h) => h.place.key)).toEqual(VILLAGE_PLACES.map((p) => p.key).filter((k) => k !== MAP_HOME));
   });

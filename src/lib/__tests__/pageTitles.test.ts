@@ -33,7 +33,7 @@ describe("getPageTitle", () => {
 
   it("names every Journey place in the tab as the village names it (WP-15)", () => {
     expect(getPageTitle("/game/me/overview")).toBe("Home");
-    expect(getPageTitle("/game/your-ai")).toBe("Your AI");
+    expect(getPageTitle("/game/your-ai")).toBe("My AI");
     expect(getPageTitle("/build/fmf")).toBe("FMF");
   });
 
@@ -41,8 +41,8 @@ describe("getPageTitle", () => {
     expect(getPageTitle("/playbook")).toBe("Playbook");
   });
 
-  it("returns Your AI for /ai-os subpaths", () => {
-    expect(getPageTitle("/ai-os/benchmark")).toBe("Your AI");
+  it("returns My AI for /ai-os subpaths", () => {
+    expect(getPageTitle("/ai-os/benchmark")).toBe("My AI");
   });
 
   it("returns empty string for unknown routes (caller drops the suffix)", () => {

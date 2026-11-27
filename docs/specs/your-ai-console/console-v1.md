@@ -1,7 +1,7 @@
-# Your AI Console v1: the Phoenix chain
+# My AI Console v1: the Phoenix chain
 
 Status: spec v1.1 after roast, 2026-11-25 13:45 MST (Hark). Build waits on his yes and on WP1 (#472) merging.
-Canon: Sasha 2026-11-24 21:48 (AI OS = the system prompt that activates AI potential; Console = apps = buttons = results; the chain below). Button law 2026-11-19: the label IS the result the button gives. Your AI SoW `docs/specs/your-ai-instrument/sow.md` (D3: never «Take your AI» outward, Hark-like interface inside the game). Navigation instrument `docs/specs/navigation-instrument/architecture.md` (air octahedron = Your AI: chat, installed apps, what it knows of you).
+Canon: Sasha 2026-11-24 21:48 (AI OS = the system prompt that activates AI potential; Console = apps = buttons = results; the chain below). Button law 2026-11-19: the label IS the result the button gives. My AI SoW `docs/specs/your-ai-instrument/sow.md` (D3: never «Take your AI» outward, Hark-like interface inside the game). Navigation instrument `docs/specs/navigation-instrument/architecture.md` (air octahedron = My AI: chat, installed apps, what it knows of you).
 
 ## TLDR
 Five buttons, one chain. Each label names the result. Each button reads the player's profile plus the result of the step before, runs one prompt on top of AI OS v6.0, shows the result as a card, and hands it to the next button. Button 5 feeds button 1, so the chain is a loop: every turn the goal comes back sharper.
@@ -10,7 +10,7 @@ Five buttons, one chain. Each label names the result. Each button reads the play
 
 | # | Label (= result) EN / RU | In | Prompt on top of AI OS | Out (card) | Hands to next |
 |---|---|---|---|---|---|
-| 1 | **Your goal, clear and grounded** / Твоя цель, ясная и обоснованная | Profile (top talent, mission if set, what Your AI knows), last conversation turns; on a second lap, button 5's survivor | NEW `GOAL_SYNTHESIS`: name the one current goal in one sentence; three reasons grounded in this player's profile; what it is not | `goal`, `why[3]`, `notThis` | `goal` + `why` |
+| 1 | **Your goal, clear and grounded** / Твоя цель, ясная и обоснованная | Profile (top talent, mission if set, what My AI knows), last conversation turns; on a second lap, button 5's survivor | NEW `GOAL_SYNTHESIS`: name the one current goal in one sentence; three reasons grounded in this player's profile; what it is not | `goal`, `why[3]`, `notThis` | `goal` + `why` |
 | 2 | **The case for your goal, with its risks** / Кейс за твою цель и её риски | Card 1 | NEW `CASE_AND_RISKS`: strongest honest case for the goal; top 3 risks; 3 likely mistakes this player would make, each with the sign to watch | `case`, `risks[3]`, `mistakes[3]` | card 1 + card 2 |
 | 3 | **Your goal, version 2** / Твоя цель, версия 2 | Cards 1–2 | NEW `NEXT_VERSION`: rewrite the goal so it keeps the case and answers each risk and mistake; one sentence plus three moves | `goalV2`, `moves[3]`, `whatChanged` | card 3 |
 | 4 | **What is weak in your goal, and how to fix it** / Что слабо в твоей цели и как это исправить | Card 3 | REUSE `ROAST THE RESULT` + `ANOTHER ROUND` content from `/ai-os` (imported from the suite data, never copied) | `weak[]`, `fixes[]`, `thirteenth` (the one-line centre) | card 3 + card 4 |
@@ -20,12 +20,12 @@ Three new prompts (1–3), two reused (4–5). New prompts live in `src/prompts/
 
 ### Guards (from the roast)
 - **No goal, no invention.** If the profile and conversation hold no goal, button 1 does not synthesize one; it asks the player one question («What do you want to make real in the next 90 days?») in the conversation, and the card waits for the answer.
-- **Profile source:** the same context Your AI conversation already builds (`buildProfilePrompt` / `buildRawSignal` in `yourAiDialogue.ts`). No new reads.
+- **Profile source:** the same context My AI conversation already builds (`buildProfilePrompt` / `buildRawSignal` in `yourAiDialogue.ts`). No new reads.
 - **Language:** every prompt ends with «Answer in <player locale>» (en/es/ru).
 - **Laps:** chain history keeps the last 3 laps; older laps fold into one line each.
 
 ## Button format (app store ready)
-Every Console button is a record, not hard-coded UI: `{id, label{en,es,ru}, result, prompt, card, tier: "free" | "paid", author, standard: "v0"}`. In v1 all five are `tier: "free"`, `author: "evolver"`; no store UI, no billing. The fields exist so the app store (Your AI tracker §22, part 10) and buttons by other authors need no rewrite. Quality standard v0: tracker §22.
+Every Console button is a record, not hard-coded UI: `{id, label{en,es,ru}, result, prompt, card, tier: "free" | "paid", author, standard: "v0"}`. In v1 all five are `tier: "free"`, `author: "evolver"`; no store UI, no billing. The fields exist so the app store (My AI tracker §22, part 10) and buttons by other authors need no rewrite. Quality standard v0: tracker §22.
 
 ## How it runs
 - **Prompt assembly:** `AI_OS_PROMPT` (`src/modules/familiar/aiOsSource.ts`, v6.0) + button prompt + player context + previous cards as JSON.
@@ -37,7 +37,7 @@ Every Console button is a record, not hard-coded UI: `{id, label{en,es,ru}, resu
 ## What it builds on, not duplicates
 - `/ai-os` stays the library (the proto-Console). Buttons 4–5 import its prompts. `AiOsPage.tsx` (3,754 lines) is not edited in v1; if the ROAST prompts sit inline there, the job first moves those two into `src/prompts/` and imports them back, text unchanged.
 - Ask AI buttons in mini-trainings (`mirrorAi.ts`, `knowsYou*`, edge function `mini-training-chat`) stay as they are: they teach the player to use an AI. The Console is where the player's own AI does the work. No shared code changes.
-- In the instrument: the Console is a tab of the air face, beside conversation (navigation architecture, bodies table: Air = Your AI, chat, installed apps). It touches only `faces/AirFace` content and new files; it never edits WP1–WP8 owned files (`GameShellV2.tsx`, `state.ts`, `faces.ts`, ritual, other faces). It starts only after WP1 (#472) merges, so it never edits the instrument files while that job runs.
+- In the instrument: the Console is a tab of the air face, beside conversation (navigation architecture, bodies table: Air = My AI, chat, installed apps). It touches only `faces/AirFace` content and new files; it never edits WP1–WP8 owned files (`GameShellV2.tsx`, `state.ts`, `faces.ts`, ritual, other faces). It starts only after WP1 (#472) merges, so it never edits the instrument files while that job runs.
 
 ## Out of scope
 Paid apps and billing, model switch or benchmark, any Lovable deploy, title, intro, reveal, entry, themes, quiz, the `oracle` place, sending results anywhere outside the game.

@@ -28,7 +28,7 @@ Octave reading: stages 1→3 run in the machine's language. The **Mi–Fa interv
 | 4–5 | GUI, touch | **They meet halfway.** Metaphors the human already knows (desk, folder, finger). |
 | 6 | Conversation | **The machine learns humans.** Any person's language. |
 | 7 | Space & streams | **The machine learns how humans think:** in parallel threads, not in one line. |
-| 8+ | (forecast) | **The machine learns this human.** Your AI. |
+| 8+ | (forecast) | **The machine learns this human.** My AI. |
 
 **Inversion at 6** (mirror of the game almanac's fidelity flip at 7): for five stages the human climbed toward the machine. With language the arrow turns, and the machine climbs toward the human, first humans in general, then one person.
 
@@ -75,7 +75,7 @@ Hark today is stage 6 with stage-7 seeds (parallel browsers, live cards, Home pa
 1. **Stage 8 is won by whoever holds the person's context.** Ambient AI needs to know *this* human: talents, mission, life areas, current quests. That is exactly the empty cell on all 18 market maps (an AI that knows you down to your genius and is useful). The game's top-talent profile is not a side feature: it is the context layer stage 8 runs on, and it must be portable (the person owns it, any model can read it).
 2. **F3 is the wedge, F1 is a patch.** Build the core of stage 7 (stream windows, F2) only as the ground for F3 (the AI arranges the space and speaks only when needed). Do not invest in polishing bookmarks or other stage-6 patches.
 3. **The game is the onboarding to stage 8.** Each quest a player completes adds verified context (see node architecture in docs/06-architecture/game_architecture.md: "done when" = a real event). The more the game knows, the less the person has to tell any AI. Progress in the game = how much of the person the machine can read, which is this almanac's invariant.
-4. **The window is short.** 3→4 took ~15 years; 6→7 is taking a few. Stage 8 products appear 2026–2032. Our entry: stage-7 surfaces inside the game now (the Your AI possibility map is space, not a chat line), stage-8 behaviour once in-game AI launches.
+4. **The window is short.** 3→4 took ~15 years; 6→7 is taking a few. Stage 8 products appear 2026–2032. Our entry: stage-7 surfaces inside the game now (the My AI possibility map is space, not a chat line), stage-8 behaviour once in-game AI launches.
 5. **Ethics move with the arrow.** When the machine adapts to the human, the risk is that it shapes him. Rule carried from the node model: agents prepare, the person decides; at stage 10 the interface disappears and the person stays, never the reverse.
 
 **Next steps:** (a) place the Interface product line as nodes in the node architecture; (b) write a minimal F3 spec (which signals open/close a stream, when the AI stays silent); (c) one Evolver diary post on the almanac for strangers.
