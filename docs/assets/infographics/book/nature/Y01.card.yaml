@@ -1,0 +1,23 @@
+# Nature mini-training, episode card Y01 (kit v4, 2026-11-27). Not in book/book.yaml (like the ADP series). Issue #550.
+id: Y01
+chapter: "1"
+number: 2
+of: 12
+title: "Your Year Starts on Your Birthday"
+caption: "Your real new year is the day you were born."
+skin: v4
+caption_size: 30
+text:
+  eyebrow: "Nature · Year"
+  label: "practice"
+  center: {name: Birthday, sub: 365 days}
+  phases:
+    - {name: Fresh start, sub: "days 0–14"}
+    - {name: Big push, sub: "days 14–90"}
+    - {name: Steady stretch, sub: "days 90–270"}
+    - {name: Harvest time, sub: "days 270–335"}
+    - {name: Wind down, sub: last month}
+sources:
+  - docs/08-content/nature_mini_training.md (section 6, Y01; section 4 table)
+  - docs/04-products/equilibrium_user_manual.md (Solar Energy, your personal year, five phases)
+  - issue #550 (title and Promise line verbatim; terms of changelog 0.4: Moon, seven classical planets, out-of-sync → in-sync)
