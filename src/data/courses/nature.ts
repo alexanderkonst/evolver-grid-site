@@ -7,7 +7,9 @@
  *  - Promise lines are i18n (`courseNature.promise.<code>`, en / ru / es).
  *  - `youtubeId` "" = the video is not uploaded yet: the player shows a calm
  *    "Video coming soon" state, no broken embed (isEpisodeReady in src/lib/coursePlayer.ts).
- *    Hark posts the 12 ids on the PR; fill them here. Videos are Unlisted on YouTube.
+ *    Hark posts the ids on the PR; fill them here. Videos are Unlisted on YouTube.
+ *    Filled 2026-11-27: N01 Y01 M02 W02 D01 D02. Pending: M01 M03 M04 W01 O01 Y02.
+ *  - The month module is named "Moon" (Sasha, 2026-11-27, changelog 0.4 of the source doc).
  *  - `infographic` stays undefined until docs/assets/infographics/book/nature/<code>.png is
  *    published under public/ (separate issue); then set it as "/infographics/courses/nature/<code>.png".
  *  - `askPrompt` is the Ask AI prompt of section 6, with tokens the platform fills
@@ -31,7 +33,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
             {
                 code: "N01",
                 title: "Nothing Is Wrong With You",
-                youtubeId: "",
+                youtubeId: "RicCzZRxxdY",
                 promiseKey: "courseNature.promise.N01",
                 askPrompt:
                     "Recall a week when I felt 'wrong' for no clear reason. Ask me 2 short questions to see if it matched a natural low (time of day, the moon, the season, the end of my personal year). Up to 5 lines.",
@@ -45,7 +47,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
             {
                 code: "Y01",
                 title: "Your Year Starts on Your Birthday",
-                youtubeId: "",
+                youtubeId: "8IlTh1PDwCg",
                 promiseKey: "courseNature.promise.Y01",
                 askPrompt:
                     "My birthday is {birthday}. Today is {today}. Which phase of my personal year am I in (fresh start, big push, steady stretch, harvest time, wind down), and what one kind of effort belongs to it? Up to 5 lines.",
@@ -61,8 +63,8 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
         ],
     },
     {
-        id: "month",
-        title: "Month",
+        id: "moon",
+        title: "Moon",
         episodes: [
             {
                 code: "M01",
@@ -75,7 +77,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
             {
                 code: "M02",
                 title: "The Seed Half",
-                youtubeId: "",
+                youtubeId: "i1CptJI9kFU",
                 promiseKey: "courseNature.promise.M02",
                 askPrompt:
                     "We're in the {phase} phase. Ask me one question that helps me notice what this phase is bringing me (an intention, a direction, a fear to release, or what has arrived). Up to 5 lines.",
@@ -113,7 +115,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
             {
                 code: "W02",
                 title: "Don't Run the Week in One Mode",
-                youtubeId: "",
+                youtubeId: "zjdS0UFPSm8",
                 promiseKey: "courseNature.promise.W02",
                 askPrompt:
                     "Today is {weekday}. What's its traditional mode, and what's one small thing in my day that would honour it? Up to 5 lines.",
@@ -127,7 +129,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
             {
                 code: "D01",
                 title: "One Turn of the Earth",
-                youtubeId: "",
+                youtubeId: "OJpPZ3VD38M",
                 promiseKey: "courseNature.promise.D01",
                 askPrompt:
                     "Here's how my day usually goes: ask me in one question. Then tell me which part of my day I'm spending against the four quarters, and one swap. Up to 5 lines.",
@@ -135,7 +137,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
             {
                 code: "D02",
                 title: "Waves Inside the Day",
-                youtubeId: "",
+                youtubeId: "mMLGPNZhlPE",
                 promiseKey: "courseNature.promise.D02",
                 askPrompt:
                     "Help me place 3 deep work sprints of about 90 minutes into my day tomorrow, with breaks, given the four quarters of the day. Up to 5 lines.",

@@ -56,14 +56,25 @@ const anchors = (html: string) =>
 const lookup = (tree: unknown, key: string): unknown =>
   key.split(".").reduce<unknown>((node, k) => (node as Record<string, unknown> | undefined)?.[k], tree);
 
+/** Ids Hark posted for the unlisted playlist (2026-11-27). The rest stay "" until their videos land. */
+const VIDEO_IDS: Record<string, string> = {
+  N01: "RicCzZRxxdY",
+  Y01: "8IlTh1PDwCg",
+  M02: "i1CptJI9kFU",
+  W02: "zjdS0UFPSm8",
+  D01: "OJpPZ3VD38M",
+  D02: "mMLGPNZhlPE",
+};
+const PENDING = ["Y02", "M01", "M03", "M04", "W01", "O01"];
+
 const EXPECTED: [string, string, string][] = [
   ["intro", "N01", "Nothing Is Wrong With You"],
   ["year", "Y01", "Your Year Starts on Your Birthday"],
   ["year", "Y02", "Two Years Turn at Once"],
-  ["month", "M01", "The Moon Has Four Seasons"],
-  ["month", "M02", "The Seed Half"],
-  ["month", "M03", "The Harvest Half"],
-  ["month", "M04", "The Cycle Starts After You Celebrate"],
+  ["moon", "M01", "The Moon Has Four Seasons"],
+  ["moon", "M02", "The Seed Half"],
+  ["moon", "M03", "The Harvest Half"],
+  ["moon", "M04", "The Cycle Starts After You Celebrate"],
   ["week", "W01", "Seven Lights Named Your Week"],
   ["week", "W02", "Don't Run the Week in One Mode"],
   ["day", "D01", "One Turn of the Earth"],
@@ -86,7 +97,7 @@ describe("Nature course data", () => {
   });
 
   it("holds the 12 episodes of section 4, in order, in six modules", () => {
-    expect(NATURE_COURSE_MODULES.map((m) => m.id)).toEqual(["intro", "year", "month", "week", "day", "outro"]);
+    expect(NATURE_COURSE_MODULES.map((m) => m.id)).toEqual(["intro", "year", "moon", "week", "day", "outro"]);
     const flat = NATURE_COURSE_MODULES.flatMap((m) => m.episodes.map((e) => [m.id, e.code, e.title]));
     expect(flat).toEqual(EXPECTED);
     expect(new Set(episodes.map((e) => e.code)).size).toBe(12);
@@ -103,12 +114,14 @@ describe("Nature course data", () => {
     }
   });
 
-  it("has every video empty and no infographic until they land", () => {
+  it("has the six posted video ids, the other six empty, and no infographic until they land", () => {
     for (const e of episodes) {
-      expect(e.youtubeId, e.code).toBe("");
-      expect(isEpisodeReady(e), e.code).toBe(false);
+      expect(e.youtubeId, e.code).toBe(VIDEO_IDS[e.code] ?? "");
+      expect(isEpisodeReady(e), e.code).toBe(e.code in VIDEO_IDS);
       expect(e.infographic, e.code).toBeUndefined();
     }
+    expect(Object.keys(VIDEO_IDS)).toHaveLength(6);
+    expect(PENDING.every((c) => episodes.find((e) => e.code === c)?.youtubeId === "")).toBe(true);
     // An empty id is listed, unlike a TBD id.
     expect(flattenEpisodes(getPublishedModules(NATURE_COURSE_MODULES))).toHaveLength(12);
   });
@@ -125,18 +138,32 @@ describe("Nature course page", () => {
     expect(getPageTitle(NATURE_COURSE_PATH)).toBe("Nature");
   });
 
-  it.each(EXPECTED)("%s · %s renders its title, promise line, empty-video state and Ask AI card", (_module, code, title) => {
+  it.each(EXPECTED)("%s · %s renders its title, promise line, video or empty-video state, and Ask AI card", (_module, code, title) => {
     const html = render(<CoursePage course={NATURE} />, `${NATURE_COURSE_PATH}?ep=${code}`);
     expect(html).toContain(escapeHtml(title));
     expect(html).toContain(escapeHtml(lookup(en, `courseNature.promise.${code}`) as string));
-    // Calm empty state: a message, no embed.
-    expect(html).toContain('data-testid="video-coming-soon"');
-    expect(html).toContain("Video coming soon");
-    expect(html).not.toContain("<iframe");
-    expect(html).not.toContain("youtube-nocookie.com");
-    // Video first, then the Ask AI button.
     expect(html).toContain(`data-testid="ask-ai-${code}"`);
-    expect(html.indexOf("video-coming-soon")).toBeLessThan(html.indexOf(`ask-ai-${code}`));
+    const id = VIDEO_IDS[code];
+    if (id) {
+      // A posted id embeds the video, and there is no empty state.
+      expect(html).toContain(`https://www.youtube-nocookie.com/embed/${id}`);
+      expect(html).not.toContain("video-coming-soon");
+      // Video first, then the Ask AI button.
+      expect(html.indexOf("youtube-nocookie.com")).toBeLessThan(html.indexOf(`ask-ai-${code}`));
+    } else {
+      // Calm empty state: a message, no embed.
+      expect(html).toContain('data-testid="video-coming-soon"');
+      expect(html).toContain("Video coming soon");
+      expect(html).not.toContain("<iframe");
+      expect(html).not.toContain("youtube-nocookie.com/embed");
+      expect(html.indexOf("video-coming-soon")).toBeLessThan(html.indexOf(`ask-ai-${code}`));
+    }
+  });
+
+  it("names the month module Moon", () => {
+    const html = render(<CoursePage course={NATURE} />, NATURE_COURSE_PATH);
+    expect(html).toContain("Moon");
+    expect(NATURE_COURSE_MODULES.some((m) => m.title === "Month")).toBe(false);
   });
 
   it("fills the Ask AI prompt on the page (a guest gets the «ask me» wording)", () => {
