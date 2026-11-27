@@ -375,6 +375,10 @@
         "name": "La conciencia se encuentra con la ciencia",
         "result": "un curso donde la conciencia se encuentra con la ciencia"
       },
+      "nature": {
+        "name": "Naturaleza",
+        "result": "una miniformación que te alinea con los ritmos naturales"
+      },
       "founder-collective": {
         "name": "Founder Collective",
         "result": "fundadores con negocios en marcha, por invitación",
@@ -4123,7 +4127,8 @@
           "library": "Biblioteca de Prácticas",
           "paths": "Caminos de Crecimiento",
           "dormantPotential": "Tu Potencial que se Despliega",
-          "consciousnessMeetsScience": "La conciencia se encuentra con la ciencia"
+          "consciousnessMeetsScience": "La conciencia se encuentra con la ciencia",
+          "nature": "Naturaleza"
         }
       },
       "marketplace": {
@@ -9535,6 +9540,28 @@
       "lampUnlit": "La lámpara aún no está encendida."
     }
   },
+  "courseNature": {
+    "tagline": "Te alinea con los ritmos naturales",
+    "promise": {
+      "N01": "Hay días en que no puedes empujar, y no es un defecto.",
+      "Y01": "Tu verdadero año nuevo es el día en que naciste.",
+      "Y02": "Tu año por dentro, el año de la Tierra por fuera.",
+      "M01": "Cada mes es un pequeño año.",
+      "M02": "El cómo todavía no es asunto tuyo.",
+      "M03": "Primero claridad, luego el trabajo, luego el fruto.",
+      "M04": "La gratitud es el combustible de lo que viene.",
+      "W01": "Los días de tu semana llevan nombres del cielo.",
+      "W02": "Una semana con siete modos se compone sola.",
+      "D01": "Las mañanas crean, las tardes pulen.",
+      "D02": "Trabaja en olas, no en línea recta.",
+      "O01": "Cuatro ritmos en menos de un minuto."
+    },
+    "outro": {
+      "title": "Deja que el reloj lo lea por ti",
+      "body": "Equilibrium lee los cuatro ritmos cada día y mantiene tu intención, tu estrategia y tu próxima tarea al compás de la luna.",
+      "button": "Abrir Equilibrium"
+    }
+  },
   "course": {
     "titles": {
       "activate-your-dormant-potential": "Tu Potencial que se Despliega"
@@ -9556,7 +9583,13 @@
     "ctaTitle": "Has completado el curso",
     "ctaBody": "Ahora descubre para qué estás hecho de forma única.",
     "ctaButton": "Descubre tu Zona de Genio",
-    "videoTitle": "Video: {{title}}"
+    "videoTitle": "Video: {{title}}",
+    "videoSoon": "Video próximamente",
+    "videoSoonHint": "Ya viene en camino.",
+    "askAi": {
+      "title": "Pregunta a la IA",
+      "sendSoon": "El envío desde aquí aún no está listo. Pulsa Copy y pégalo en cualquier IA."
+    }
   },
   "chatLauncher": {
     "title": "Escríbenos",

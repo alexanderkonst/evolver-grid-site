@@ -14,6 +14,7 @@
 import type { VillagePlaceKey } from "@/data/villagePlaces";
 import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
+import { NATURE_COURSE_PATH } from "@/data/courses/nature";
 
 export type StaticRoom = {
   id: string;
@@ -50,6 +51,7 @@ export const PLACE_ROOMS: Partial<Record<VillagePlaceKey, readonly StaticRoom[]>
     { id: "academy", name: "Academy", to: "/game/learn", result: "the courses of the Academy" },
     { id: "dormant-potential", name: "Your Unfolding Potential", to: COURSE_PATH, result: "a course that wakes your dormant potential" },
     { id: "consciousness-meets-science", name: "Consciousness Meets Science", to: CMS_COURSE_PATH, result: "a course where consciousness meets science" },
+    { id: "nature", name: "Nature", to: NATURE_COURSE_PATH, result: "a mini-training that aligns you with natural rhythms" },
   ],
   workshop: [
     { id: "founder-collective", name: "Founder Collective", to: "/collective", result: "founders with working businesses, by invitation" },

@@ -27,6 +27,7 @@
 import type { CourseConfig, CourseModule } from "@/data/courses/types";
 import { CONSCIOUSNESS_MEETS_SCIENCE, CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
 import { ACTIVATE_YOUR_DORMANT_POTENTIAL, COURSE_PATH as ADP_COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
+import { NATURE, NATURE_COURSE_PATH } from "@/data/courses/nature";
 import { ACTIVATION_OF_INNER_VISION, AIV_COURSE_PATH } from "@/data/courses/activationOfInnerVision";
 import { getRegistryModule } from "@/data/modules";
 import type { Module } from "@/types/module";
@@ -129,6 +130,7 @@ const countEpisodes = (modules: CourseModule[], publishedOnly: boolean) =>
     );
 
 const cmsVideos = countEpisodes(CONSCIOUSNESS_MEETS_SCIENCE.modules, true);
+const natureEpisodes = countEpisodes(NATURE.modules, true);
 const adpVideos = countEpisodes(ACTIVATE_YOUR_DORMANT_POTENTIAL.modules, true);
 const aivVideos = countEpisodes(ACTIVATION_OF_INNER_VISION.modules, false);
 const aivPublished = countEpisodes(ACTIVATION_OF_INNER_VISION.modules, true);
@@ -151,6 +153,24 @@ export const COURSE_SALES: CourseSalesData[] = [
         ],
         format: `${cmsVideos} short videos · about 2 minutes each · watch at your own pace`,
         cta: { kind: "start", label: "Start the course", to: CMS_COURSE_PATH },
+    },
+    {
+        ...fromRegistry(NATURE.slug),
+        versioning: versioningOf(NATURE),
+        eyebrow: "Free mini-training",
+        lead: `Read where you stand in four rhythms in under a minute: your year, the moon, the week, the day. ${natureEpisodes} short episodes, each with one idea and one question to ask your AI.`,
+        forWhom: [
+            "Some days nothing moves, and you wonder if something is wrong with you.",
+            "You want to plan around your energy instead of against it.",
+            "You like a plain label on every claim: established, tradition or practice.",
+        ],
+        modules: NATURE.modules,
+        practice: [
+            "Each episode ends with one question for your AI, filled in with your birthday, today's date and your mission.",
+            "At the end you write your own Now: four lines and one action that goes with them.",
+        ],
+        format: `${natureEpisodes} short episodes · about 90 seconds each · watch at your own pace`,
+        cta: { kind: "start", label: "Start the mini-training", to: NATURE_COURSE_PATH },
     },
     {
         ...fromRegistry(ACTIVATE_YOUR_DORMANT_POTENTIAL.slug),
