@@ -270,7 +270,7 @@ A player opens the village map and, without a legend, sees in the dial alone the
 ## Word ring: ЭКВИЛИБРИУМ (decided 2026-11-26)
 - Sasha 17:40 approved the hand-carved wordmark look (v5: straight stems; a growing sine wave only on horizontal bars, Э middle bar, Б top bar, А middle bar; small elegant feet to the right on the bottom ends of К, Л, И; В bottom-left corner runs along the floor; round, slightly heavier ends; micro roughness). Sasha 17:41: «ставь вариантом три» = variant C.
 - Variant C: the word sits in the gap between the Moon and Week rings, radius 68.8/200 of dial size, letter height 8.2/200, compact arc starting at 12 o'clock and running clockwise (about 0–130°), tracking 0.30 of letter height. Carved into the clay (same light as the dial: from upper left), never a flat text label. The active moon and planet orbs draw above the letters.
-- Centre: Sasha's muted gold solar emblem, 26/200 of dial size, small shadow; phase words above it, day words below.
+- Centre: Sasha's muted gold solar emblem with lapis veins, 36/200 of dial size (Sasha 17:56: a bit larger, crisp), small shadow; shipped as a 2× and 3× WebP from his 1254 px original, never upscaled. Phase words above it (−35/−25), day words below (31/41). Mockup bioclock-v23.
 - Built as one pre-rendered transparent WebP per finish (wordmark arc with its carved shading), not as a runtime font. Mockup: bioclock-v22-word.jpg.
 - Ships with the craft-layer issue.
 
