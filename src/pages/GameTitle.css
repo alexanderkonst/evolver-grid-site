@@ -101,13 +101,23 @@
 
 .gt-start {
   position: absolute; left: 50%; bottom: 30px; transform: translateX(-50%); z-index: 1; margin: 0;
-  font-family: var(--gt-mono); font-weight: 300; font-size: var(--vl-text-label); letter-spacing: 0.42em;
-  color: var(--gt-ink-2); animation: gt-pulse 2.4s ease-in-out infinite; transition: opacity 0.8s ease;
+  font-family: var(--gt-mono); font-weight: 400; font-size: var(--vl-text-label); letter-spacing: 0.42em;
+  /* Roast 2026-11-27 (#562 item 1): the primary action reads as one. Full-strength ink on a scrim that
+     keeps AA contrast over any part of the art; the pulse moves the glow, never the text's opacity. */
+  color: #f3efe0; animation: gt-pulse 2.4s ease-in-out infinite; transition: opacity 0.8s ease;
   /* Issue 270: it is a <button> now, so reset the chrome and keep a touch-sized target. */
-  background: none; border: 0; padding: 0 16px; min-height: 44px; cursor: pointer; white-space: nowrap;
+  background: rgba(8, 10, 14, 0.78); border: 1px solid rgba(238, 234, 226, 0.55); border-radius: 999px;
+  padding: 0 22px 0 calc(22px - 0.42em); min-height: 44px; cursor: pointer; white-space: nowrap;
+  /* Never under the Chat bubble (bottom-right, 48px + 12px edge): the pill stays inside the column that is
+     left of it at every width, at the cost of nothing on desktop where it is centred. */
+  max-width: calc(100vw - 2 * (48px + 12px + 8px));
 }
-@keyframes gt-pulse { 0%, 100% { opacity: 0.15; } 50% { opacity: 0.8; } }
-.gt-start:hover, .gt-start:focus-visible { animation: none; opacity: 1; color: var(--gt-ink); }
+@keyframes gt-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(238, 234, 226, 0); }
+  50% { box-shadow: 0 0 18px 2px rgba(238, 234, 226, 0.28); }
+}
+.gt-start:hover, .gt-start:focus-visible { animation: none; color: #fff; border-color: #f3efe0; }
+.gt-start:focus-visible { outline: 2px solid #f3efe0; outline-offset: 3px; }
 .gt-start.is-gone { animation: none; opacity: 0; pointer-events: none; }
 
 /* ---------- Shared section frame ---------- */
@@ -191,6 +201,7 @@
 }
 .gt-paths .gt-mono { margin-top: 22px; color: var(--gt-ink); letter-spacing: 0.36em; }
 .gt-paths li.is-unique .gt-mono { color: var(--gt-accent); }
+.gt-paths .gt-sep { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .gt-paths .gt-mono.gt-element { margin-top: 6px; letter-spacing: 0.3em; color: var(--gt-ink-3); }
 .gt-paths li.is-unique .gt-mono.gt-element { color: var(--gt-accent); opacity: 0.75; }
 .gt-paths p { font-family: var(--gt-serif); font-style: italic; font-size: var(--vl-text-lead); line-height: 1.4; color: var(--gt-ink-2); margin: 10px 0 0; max-width: 18ch; }
@@ -233,7 +244,7 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .gt-screen__img, .gt-menu li.is-active .gt-cur { animation: none; }
-  .gt-start { animation: none; opacity: 0.6; }
+  .gt-start { animation: none; }
   .gt-menu-wrap { animation-duration: 0.01s; animation-delay: 0s; }
   .gt-menu a, .gt-cur, .gt-enter, .gt-start { transition: none; }
 }

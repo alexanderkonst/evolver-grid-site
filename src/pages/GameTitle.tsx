@@ -513,6 +513,8 @@ const TitleScreen = () => {
                     />
                   </div>
                   <span className="gt-mono">{p.name}</span>
+                  {/* Roast 2026-11-27: "Body · Earth" in text, not "BODYEARTH"; the dot is for text and readers only. */}
+                  <span className="gt-sep">{" · "}</span>
                   <span className="gt-mono gt-element">{p.element}</span>
                   <p>{p.line}</p>
                 </li>
