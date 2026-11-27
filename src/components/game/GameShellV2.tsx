@@ -56,6 +56,7 @@ import { OPEN_CHAT_EVENT } from "@/components/ChatLauncher";
 import SiteLogo from "@/components/SiteLogo";
 import MoonMedallion from "@/components/game/MoonMedallion";
 import YourAiInstrument from "@/components/game/YourAiInstrument";
+import { InstrumentRevealGate } from "@/lib/instrument/useInstrumentReveal";
 import { placeTagline } from "@/lib/villageCopy";
 import { displayName } from "@/lib/displayName";
 // hls.js is dynamically imported inside MuxVideoBackground to avoid module-level crashes
@@ -2410,6 +2411,14 @@ const GameShellV2Inner = ({ children, hideNavigation: forceHideNavigation, showN
                 openAt={isYourAiRoute ? location.key : undefined}
                 ownerId={user?.id ?? null}
                 lit={instrumentLit}
+            />
+            {/* The first reveal of the instrument (architecture §5.3): once, after the profile exists and never
+                before the top talent result. */}
+            <InstrumentRevealGate
+                enabled={tmaComplete || aiOsEverVisited || isYourAiRoute}
+                ownerId={user?.id ?? null}
+                profileCreated={!!profile}
+                topTalentDone={topTalentComplete}
             />
         </div>
     );

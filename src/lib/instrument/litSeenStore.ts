@@ -37,11 +37,13 @@ export const writeRemote = async (userId: string, seen: LitSeen): Promise<void> 
 };
 
 /**
- * `[litSeen, markSeen]` for one player. `markSeen(element)` is idempotent; it persists at once to
+ * `[litSeen, markSeen, loaded]` for one player. `markSeen(element)` is idempotent; it persists at once to
  * localStorage and, when signed in, to the profile (best effort: a failed write never blocks the player).
  */
-export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element: ElementKey) => void] => {
+export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element: ElementKey) => void, boolean] => {
   const [seen, setSeen] = useState<LitSeen>(() => readLitSeen(ownerId));
+  // The saved record has been read (signed out: there is none to wait for). The first reveal waits for it.
+  const [loaded, setLoaded] = useState<boolean>(!ownerId);
   const seenRef = useRef(seen);
   seenRef.current = seen;
 
@@ -49,7 +51,11 @@ export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element:
     const local = readLitSeen(ownerId);
     seenRef.current = local;
     setSeen(local);
-    if (!ownerId) return;
+    if (!ownerId) {
+      setLoaded(true);
+      return;
+    }
+    setLoaded(false);
     let cancelled = false;
     void readRemote(ownerId)
       .then((remote) => {
@@ -59,7 +65,10 @@ export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element:
         seenRef.current = merged;
         setSeen(merged);
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setLoaded(true);
+      });
     return () => {
       cancelled = true;
     };
@@ -77,5 +86,5 @@ export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element:
     [ownerId],
   );
 
-  return [seen, markSeen] as const;
+  return [seen, markSeen, loaded] as const;
 };
