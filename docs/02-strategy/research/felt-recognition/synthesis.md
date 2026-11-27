@@ -41,8 +41,8 @@ Have: a reveal prompt written to produce the felt moment («TRANSMIT, DON'T REPO
 Missing: the product never catches the feeling itself (body place + own word), has no charge dial for the shadow, stores nothing to re-meet the next day, and never uses it for a decision. The quiz «recognition» answer means holomap stage 3, a term clash.
 
 ## 6. What changes (proposals; the reveal is a core flow, nothing ships without Sasha's yes to the exact change)
-1. **Technology draft:** [caught-recognition-technology-draft.md](./caught-recognition-technology-draft.md), for Sasha's signature before it enters the library.
-2. **Appleseed upgrade spec draft:** [appleseed-felt-upgrade-spec-draft.md](./appleseed-felt-upgrade-spec-draft.md).
+1. **Technology:** written as Apple Seed v2 (Sasha: an upgrade, not a new technology) in [unique_gift_technology.md](../../../07-technology/unique_gift_technology.md).
+2. **Screens:** parked by Sasha («рано идти в мысли про экран»); [old draft](./appleseed-felt-upgrade-spec-draft.md) kept as a record.
 3. **E0 in [calibration.md](../../../templates/calibration.md):** felt layer = caught (body + own word) and re-evoked next day with the same or deeper shape; evolutionary layer = holomap stage over weeks + one decision made from it in 30 days.
 
 ## 7. Acceptance test

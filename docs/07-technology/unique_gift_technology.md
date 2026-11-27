@@ -71,11 +71,69 @@ The highest-accuracy "scanner" for human uniqueness. A technology to articulate 
 - One-sentence **mastery action** (the one thing that leads to mastery)
 - One paragraph on **roles and functions**
 
+### Upgrade v2 (2026-11-27): the felt etalon
+Apple Seed now catches not only the words but the feeling they evoke. See **Apple Seed v2: Caught Recognition** below.
+
 ### Why It's Frontier
 
 - Most assessments give 30-page reports with no action
 - Unique Gift is the #1 thing AI models say is most useful for personalization
 - Combines: Enneagram + Jungian + Developmental + Integral Theory + experiential knowing
+
+---
+
+---
+
+## Apple Seed v2: Caught Recognition (the felt etalon)
+
+> *Upgrade of Apple Seed, 2026-11-27. Sasha decided it is an Apple Seed upgrade, not a new technology («это апгрейд AppleSeed», 14:54 MST) and called it «большой прорыв». Research: `docs/02-strategy/research/felt-recognition/synthesis.md` (6 clusters, 37 exemplars). Written by Evolver from Sasha's words; the Significance is an AI draft for him to rewrite in his voice. No screens yet: «Рано идти в мысли про экран. Сначала пиши технологию.»*
+
+### 🫀 Essence, in Sasha's words
+> «он получает то ЧУВСТВО которое он чувствует в момент прочтения фразы и тени. Оно ТОНКОЕ и ОЧЕНЬ ВИБРАЦИОННО БЛИЗКОЕ К ЕГО СУТИ. поймать само это чувство - бесценно. Делит на до и после.»
+> «Артикуляция уникальности - это следствие контакта с уникальностью, и инструмент развития все большего контакта… это как меч правды который рассекает сразу кучу mental garbage.»
+> — *chat of 2026-11-27, 14:29 MST*
+
+**The law in one sentence.** The words of Apple Seed point at the signal; the feeling they evoke is the contact with it. Caught, carried and re-met, that feeling becomes the person's own etalon, truer than any phrase.
+
+### 🧠 Significance (AI draft)
+- **From phrase to felt etalon.** Apple Seed v1 maximized the signal-to-noise ratio of the words. v2 keeps the signal itself. As the kilogram moved from a bar in a vault to a constant of nature, the person's measure moves from a sentence they can forget or re-word to a feeling they can evoke again and check against.
+- **The only direct measure of the return.** A rating 1–10 is an indirect instrument. The felt moment is the contact (E0 in `docs/templates/calibration.md`).
+- **The 3→4 crossing, lived.** In the uniqueness holomap the reveal is Initiation → Recognition («landed in my body»). The feeling is that Mi-Fa shock in the body; that is why it divides life into before and after.
+- **The sword of truth.** Once caught, the feeling sorts: what does not resonate with it is not you. This is how articulation cuts mental garbage and becomes a tool for more contact (Technology 115).
+
+### The five movements
+1. **Evoke with a true mirror that has a cost.** The phrase together with the shadow. A phrase alone, flattering, sits in the Barnum zone (a generic sketch was rated 4.26/5 by the people it was given to; Forer 1949). The shadow is the cost that makes recognition real.
+2. **Pause.** Silence right after the shadow lands. Nothing to do, nothing to rate. The moment belongs to the person.
+3. **Catch: body first, then the person's own word.** Where did it land? Then, if it comes, one word or image of their own. Never a word given to them: naming dampens a feeling (affect labeling, pleasant ones too) and a supplied name replaces theirs.
+4. **Keep and close calmly.** The person's word (or the place in the body) is kept as their tuning fork. The moment ends softly: the end of a moment shapes its memory (peak-end rule).
+5. **Re-meet and use.** Later the person meets the feeling again, fresh, not replayed («is it here now?»), and checks a choice against it («does this feel like that?»). Recall reopens a memory; it deepens only when something new meets it.
+
+### How to tell true recognition (checks)
+- **By shape, not strength.** Quiet and certain, «like a drop of water into a sponge» (Ignatius of Loyola), surprise with certainty, relief together with a little embarrassment. Loud, dramatic, flattering states are suspect (makyō in Zen; peak experiences are «self-validating» and prove nothing).
+- **Linked to the person's own episodes.** A true read connects to many of their memories (Singer's self-defining memories); a Barnum read connects to none.
+- **It has a cost.** The shadow lands with charge.
+- **It holds the next day.** Re-evoked, it is the same or deeper.
+- **It bears fruit.** Within 30 days the person makes one choice from it. A reveal without use fades (only 3% meet all four strengths-use items in Gallup's data).
+
+### The witness
+Asks, never supplies. «The body scores: if the facilitator or the AI says 9 and the founder feels 7, it's 7» (Unique Business Canvas). In sessions: where did it land, what moved; two dials, resonance for the gift and charge for the shadow. The AI is a witness of the same kind.
+
+### Guards (sovereignty)
+Consent before reflecting (Technology 125). Offer the mirror once and let go (Technology 137). Never name the feeling for the person. No installed triggers: NLP anchoring found no support in most studies (54.5% unsupportive, Witkowski 2010). Intensity is never proof. No harsh initiations, no dependence on a guide.
+
+### Where it lives (each grows from the technology; no screen decided)
+- **Sessions:** already closest (body score, «where did it land», two dials). v2 adds: keep the client's word, re-meet it at the next session.
+- **The AI prompt** (people who run Apple Seed in their own AI): the prompt can end with the pause and the two questions.
+- **The game:** later, from the technology, with Sasha's yes to each exact change (core flow).
+
+### Shift check
+The person can evoke the feeling again the next day, the same or deeper, and makes one choice from it within 30 days. This is E0's felt layer; the evolutionary layer is the step on the uniqueness holomap.
+
+### Roots
+Gendlin's felt sense and felt shift (Focusing); the Experiencing research of Rogers, Gendlin and colleagues: clients who spoke more from directly felt experience tended to do better, a small-to-medium link (r ≈ .19, 2017 meta-analysis); Ignatian discernment (consolation, decide in consolation); affect labeling (Lieberman); peak-end (Kahneman); context reinstatement (Smith); self-defining memories (Singer); Reflected Best Self (Roberts et al.); Barnum/Forer as the negative.
+
+### Connects to
+Technologies 56 (share to verify identity), 115 (articulation as growth), 118 (seer invariant), 125 (social physics of the mirror), 128 (the name is the result), 137 (sealed mirror), 154 (the mirror must not lag), 156 (feeling vs emotion), 185 (the visible shift); `docs/holomaps/uniqueness_holomap.md` (3→4→5); `docs/templates/calibration.md` (E0).
 
 ---
 

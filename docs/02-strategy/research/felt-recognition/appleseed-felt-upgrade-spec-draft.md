@@ -1,6 +1,6 @@
 # Spec draft: Appleseed felt upgrade (catch the feeling at the reveal)
 
-Template: spec-handoff (draft) · Version: v0 · 2026-11-27 · Status: **draft, not for build.** The top talent reveal is a core flow: nothing here is built without Sasha's yes to the exact change. Source: [synthesis](./synthesis.md), [technology draft](./caught-recognition-technology-draft.md).
+Template: spec-handoff (draft) · Version: v0 · 2026-11-27 · Status: **parked** (Sasha 2026-11-27 14:54 MST: «нет! Рано идти в мысли про экран. Сначала пиши технологию»). Kept only as a record; screens come later, from the technology. The top talent reveal is a core flow: nothing here is built without Sasha's yes to the exact change. Source: [synthesis](./synthesis.md), [technology draft](./caught-recognition-technology-draft.md).
 
 ## Why
 Today the reveal shows the phrase, three talents and the top shadow, then one 1–10 «How much does this sound like you?» (one number, not logged to `resonance_events`). The feeling itself, the part Sasha calls priceless, is never caught, kept, re-met or used.
