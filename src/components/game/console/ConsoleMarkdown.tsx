@@ -25,6 +25,13 @@ const inlineComponents: Components = {
 /** A single newline inside a paragraph stays a line break (the old text was `whitespace-pre-wrap`). */
 const keepLineBreaks = (text: string) => text.replace(/([^\n])\n(?=[^\n])/g, "$1  \n");
 
+/**
+ * A bold label glued to its text (`**Clear intent:**The goal`) is not bold in CommonMark: a closing `**`
+ * after punctuation must be followed by a space or punctuation. Models write it that way, so the marks
+ * leaked as literal asterisks. A space is added after a `**Label:**` that is missing one.
+ */
+const spaceAfterBoldLabel = (text: string) => text.replace(/(\*\*[^*\n]+[:：]\*\*)(?=[^\s\p{P}\p{S}])/gu, "$1 ");
+
 type Props = { children: string; inline?: boolean };
 
 const ConsoleMarkdown = ({ children, inline = false }: Props) => (
@@ -34,7 +41,7 @@ const ConsoleMarkdown = ({ children, inline = false }: Props) => (
     unwrapDisallowed
     components={inline ? inlineComponents : blockComponents}
   >
-    {inline ? children : keepLineBreaks(children)}
+    {inline ? children : keepLineBreaks(spaceAfterBoldLabel(children))}
   </ReactMarkdown>
 );
 

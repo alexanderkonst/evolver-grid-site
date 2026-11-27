@@ -31,6 +31,17 @@ describe("Console polish (after #503)", () => {
     expect(out).toMatch(/<ol[^>]*>\s*<li[^>]*>First reason/);
   });
 
+  it("1 · «Read all»: a bold label glued to its text (**Clear intent:**The goal) renders bold, no asterisks", () => {
+    const out = html(withText(
+      "Why it works:\n\n1. **Clear intent:**The goal is stated.\n2. **Action-oriented:**It starts with a verb.\n3. **Measurability:** Has a number.\n4. **Clear intent:**\u00a0Spaced.",
+    ));
+    expect(out).not.toMatch(/\*/);
+    for (const label of ["Clear intent:", "Action-oriented:", "Measurability:"]) {
+      expect(out).toMatch(new RegExp(`<strong[^>]*>${label}</strong>`));
+    }
+    expect(out).toMatch(/<\/strong> ?The goal is stated/);
+  });
+
   it("1 · raw HTML and images in model text are not rendered", () => {
     const out = html(withText('<script>alert(1)</script> ![x](http://e.com/a.png) [a](javascript:alert(1))'));
     expect(out).not.toContain("<script");
