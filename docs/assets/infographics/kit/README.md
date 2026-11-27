@@ -157,9 +157,9 @@ Lint checks two things only: `spec-fields` (id, chapter, title, caption, source 
 
 ## App icons
 
-> Current icons are v3, see "Icons v3" below. The paragraph that follows describes the v1 before → after format and its `ICON_RULES`, kept for the rules table.
+> Current icons are v6, see "Icons v6" below. The v1 → v3 paragraphs that follow describe the drawn formats and their rules (`ICON_RULES`, `ICON_V2_RULES`), kept for the rules tables; their `<id>.py` scripts, PNGs and `icon_shapes.py` were removed with #559.
 
-Square icons for the course-apps (Potential, Crossing, Vision, Nature, My AI) live in [`apps/`](../apps/): `<id>.card.yaml` (`kind: icon`), `<id>.py`, `<id>.png` (1024), `<id>@128.png`, plus `sheet.png` (five mock tiles, Name bold and tagline at one size, and the five icons at 64 px; `python3 apps/make_sheet.py`).
+Square icons for the course-apps (Potential, Crossing, Vision, Nature, My AI) live in [`apps/`](../apps/): `<id>.card.yaml` (`kind: icon`) and `apps/v6/` (see below). v1 drew each as before → after with a script per icon; `sheet.png` (v1), `sheet-v2.png` and `sheet-v3.png` stay as history.
 
 Each icon is one idea as before → after: before on the left in QUIET / silver, after on the right with the one NEON accent, a bold chevron and a dawn bloom between. No text. A script builds `K`-style: `c = icon.card(spec)`, then `with c.side("before"): ...` / `with c.side("after"): ...` using `orb`, `dot`, `ring`, `path`, `fill`, `iri_fill`, `chevron` (call list in `icon.py`). The spec's `title` is the tile's **Name**, `caption` its tagline, `text.before` / `text.after` say the idea in words.
 
@@ -177,9 +177,26 @@ Each icon is one idea as before → after: before on the left in QUIET / silver,
 
 `kit/ci.py` and `book_sync` pick the icon specs up like any other (`book_sync` SKIPs them: not Book ids).
 
-### Icons v3 (issue #533, the final icons; replaced v1 #506 and v2 #528)
+### Icons v6 (issue #559, approved by Sasha 2026-11-27; the current icons)
 
-One icon per app, files `apps/<id>.card.yaml`, `<id>.py`, `<id>.png` (1024), `<id>@128.png`. One simple silhouette of the result ("after" only): no arrow, no before / after, no text. A v3 spec carries `icon_version: 3` and `halo: LAV|AQUA|BLUSH|CHAMP|PEARL` (the app's own pastel). The tile is lunar ink with that pastel rising as a gradient from the bottom edge (visible at 64 px). Scripts draw everything inside `with c.side("after")`, with shapes from `apps/icon_shapes.py`.
+Five apps (`potential`, `crossing`, `vision`, `nature`, `my-ai`; the id `your-ai` became `my-ai`) x four themes (`lunar`, `lapis`, `aurum`, `grayscale`). The files are finished rasters in `apps/v6/`: `<app>-<theme>.png` (1024) and `<app>-<theme>@128.png`, plus `sheet-v6.png`. Vision and Nature are code-drawn by `apps/v6/render6.py`; the other three are art. The kit does not draw v6.
+
+The spec carries `icon_version: 6` and a `themes:` map, `<theme>: {png: v6/<app>-<theme>.png, png128: v6/<app>-<theme>@128.png}`, paths relative to the spec; `caption` is the tagline, `text.shape` says the sign in words. `python3 kit/lint.py apps/<id>.card.yaml` runs `ICON_V6_RULES`:
+
+| Rule | Fails when |
+|---|---|
+| `themes` | one of the four themes is missing, or a file it names does not exist |
+| `size` | a `png` is not 1024 x 1024, or a `png128` is not 128 x 128 |
+| `no-text` | title, caption or `text.shape` is missing (the icons carry no words) |
+| `spec-fields` | as for cards |
+
+`kit/ci.py` skips the render step for v6 and counts a change to any of the named PNGs as touching the spec; `spec.png` is the lunar PNG (the contact sheet uses it).
+
+On the site the same 128 and 1024 PNGs are copied to `public/apps/icons/` and shown by `src/components/AppIcon.tsx`, which picks the file by the active skin (`SkinContext`; lunar, lapis, aurum, grayscale; any other skin falls back to lunar) and masks it to a rounded square in CSS, no frame, no dial.
+
+### Icons v3 (issue #533; replaced v1 #506 and v2 #528, itself replaced by v6)
+
+One icon per app, files `apps/<id>.card.yaml`, `<id>.py`, `<id>.png` (1024), `<id>@128.png` (removed with #559). One simple silhouette of the result ("after" only): no arrow, no before / after, no text. A v3 spec carries `icon_version: 3` and `halo: LAV|AQUA|BLUSH|CHAMP|PEARL` (the app's own pastel). The tile is lunar ink with that pastel rising as a gradient from the bottom edge (visible at 64 px). Scripts draw everything inside `with c.side("after")`, with shapes from `apps/icon_shapes.py`.
 
 Family rules: every line and ring is `I.WEIGHT` wide (48 px at 1024 = 6 px at 128, the lint floor, 1.5 px at 32; v2 was 64); one NEON per icon, a smaller area than the white; the iridescent sphere (`orb`, "you / the seed": Book `ideal-client-01`, `-04`, ADP `A01`, `A02`) only in Potential and My AI; the sign's longest side ~70% of the tile; `group="name"` makes repeated identical parts (ticks) count as one shape. `ring(..., soft=alpha)` adds a glow round a line.
 
@@ -191,7 +208,7 @@ Family rules: every line and ring is `I.WEIGHT` wide (48 px at 1024 = 6 px at 12
 | Nature | one continuous line: a wave curling up into a crescent, the tip lit |
 | My AI | the sphere, a thin tilted orbit (far half behind the sphere, near half in front), one neon satellite |
 
-`icon_version: 2` and `3` share one rule set (`ICON_V2_RULES`):
+For the removed v2 / v3 icons, `icon_version: 2` and `3` shared one rule set (`ICON_V2_RULES`):
 
 | Rule | Fails when |
 |---|---|
@@ -199,7 +216,7 @@ Family rules: every line and ring is `I.WEIGHT` wide (48 px at 1024 = 6 px at 12
 | `fill` | the sign's longest side is outside 62-78% of the tile (~70%) |
 | `weight` | a line or ring is not exactly `I.WEIGHT` wide |
 
-The 32 px test: `card.silhouette(32)` redraws the sign as a filled black shape; `python3 apps/make_sheet_v3.py --silhouettes out.png` lays all five out. The sheet: `python3 apps/make_sheet_v3.py` writes `apps/sheet-v3.png` (per app: 256, 64, 32 px and the tile mock with the tagline in a quieter colour, at most 2 lines; a bottom shelf of all five at 32 px). Render first: `python3 kit/render.py apps/*.card.yaml`. `sheet.png` (v1) and `sheet-v2.png` stay as history.
+The 32 px test: `card.silhouette(32)` redraws the sign as a filled black shape. `apps/sheet-v3.png` (per app: 256, 64, 32 px and the tile mock, a shelf at 32 px) stays as history with `sheet.png` (v1) and `sheet-v2.png`; `make_sheet_v3.py` went with the v3 files.
 
 ## Old scripts
 

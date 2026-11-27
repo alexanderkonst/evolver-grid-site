@@ -1,17 +1,32 @@
 id: crossing
 kind: icon
-icon_version: 3
+icon_version: 6
 chapter: apps
 number: 3
 of: 10
 title: Crossing
 caption: Reconciles Consciousness with Science
 skin: v4
-halo: LAV
+# v6: one raster icon per theme (1024 + @128), paths relative to this file. The site picks by the active skin,
+# fallback lunar (src/components/AppIcon.tsx; copies in public/apps/icons/).
+themes:
+  lunar:
+    png: v6/crossing-lunar.png
+    png128: v6/crossing-lunar@128.png
+  lapis:
+    png: v6/crossing-lapis.png
+    png128: v6/crossing-lapis@128.png
+  aurum:
+    png: v6/crossing-aurum.png
+    png128: v6/crossing-aurum@128.png
+  grayscale:
+    png: v6/crossing-grayscale.png
+    png128: v6/crossing-grayscale@128.png
 text:
-  shape: "two overlapping circles, lens open: left a precise ticked line (science), right a soft glowing line (consciousness), one dot at the centre"
-  three_words: "two circles, one dot"
+  shape: "two overlapping discs with a lens at the overlap"
+  three_words: "two discs, one lens"
 sources:
-  - issue #533 (app icons v3: one final icon per app), from Sasha's yes (2026-11-26) to roast round 2 of sheet-v2.png; replaces v1 (#506) and v2 (#528)
+  - issue #559 (app icons v6 on the site), from Sasha's approval of 2026-11-27; replaces v3 (#533), v2 (#528) and v1 (#506)
   - docs/templates/spec-handoff.md
   - docs/assets/infographics/kit/README.md (App icons)
+  - docs/assets/infographics/apps/v6/sheet-v6.png

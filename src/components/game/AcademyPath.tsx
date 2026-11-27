@@ -7,6 +7,8 @@ import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { BOOK_CARDS, BOOK_TITLE } from "@/data/infographicBook";
 import { BODY_STYLE, EYEBROW_STYLE, TITLE_STYLE } from "@/pages/Library";
 import { PLACE_BACK_LINK_CLASS } from "@/components/game/VillagePlaceHeader";
+import AppIcon from "@/components/AppIcon";
+import { appIconForCourse } from "@/lib/appIcons";
 
 /**
  * AcademyPath — the Academy (/game/learn): the two courses we have, shown as one path
@@ -71,14 +73,18 @@ const AcademyPath = () => {
               className="block h-full rounded-2xl p-5 text-left transition-all duration-300 liquid-glass-strong hover:scale-[1.012] hover:shadow-[0_12px_36px_-14px_rgba(10,22,40,0.25)] motion-reduce:transition-none motion-reduce:hover:scale-100"
               style={cardStyle}
             >
-              <div className="flex items-start gap-3">
-                <span
-                  className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-semibold"
-                  style={numberStyle}
-                >
-                  {i + 1}
-                </span>
-                <div className="flex-1 min-w-0">
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="flex-shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-semibold"
+                    style={numberStyle}
+                  >
+                    {i + 1}
+                  </span>
+                  {/* App icon v6 (#559): Potential, Crossing; the icon follows the active skin. */}
+                  {appIconForCourse(course.slug) && <AppIcon app={appIconForCourse(course.slug)!} size={56} />}
+                </div>
+                <div className="min-w-0">
                   <div className="text-lg font-semibold mb-1 leading-snug" style={{ ...TITLE_STYLE, fontWeight: 600 }}>
                     {course.title}
                   </div>
@@ -135,6 +141,8 @@ const AcademyPath = () => {
               <span className="text-xs tabular-nums self-center" style={BODY_STYLE} aria-label={`Step ${i + 1}`}>
                 {i + 1}
               </span>
+              {/* App icon v6 (#559): Vision (Activation of Inner Vision). */}
+              {appIconForCourse(c.slug) && <AppIcon app={appIconForCourse(c.slug)!} size={28} className="self-center" />}
               <span className="text-base font-semibold" style={{ ...TITLE_STYLE, fontWeight: 600 }}>
                 {c.title}
               </span>
