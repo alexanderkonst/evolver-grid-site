@@ -10,8 +10,8 @@
  *    Hark posts the ids on the PR; fill them here. Videos are Unlisted on YouTube.
  *    Filled 2026-11-27: N01 Y01 M02 W02 D01 D02. Pending: M01 M03 M04 W01 O01 Y02.
  *  - The month module is named "Moon" (Sasha, 2026-11-27, changelog 0.4 of the source doc).
- *  - `infographic` stays undefined until docs/assets/infographics/book/nature/<code>.png is
- *    published under public/ (separate issue); then set it as "/infographics/courses/nature/<code>.png".
+ *  - `infographic` = "/infographics/courses/nature/<code>.png", copied from
+ *    docs/assets/infographics/book/nature/<code>.png (kit v4, PR #557; course-update.md step 6 default).
  *  - `askPrompt` is the Ask AI prompt of section 6, with tokens the platform fills
  *    (src/lib/courseAskAi.ts). Text signed by Sasha 2026-11-27.
  * Source: docs/08-content/nature_mini_training.md (sections 4, 6, 7).
@@ -35,6 +35,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "Nothing Is Wrong With You",
                 youtubeId: "RicCzZRxxdY",
                 promiseKey: "courseNature.promise.N01",
+                infographic: "/infographics/courses/nature/N01.png",
                 askPrompt:
                     "Recall a week when I felt 'wrong' for no clear reason. Ask me 2 short questions to see if it matched a natural low (time of day, the moon, the season, the end of my personal year). Up to 5 lines.",
             },
@@ -49,6 +50,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "Your Year Starts on Your Birthday",
                 youtubeId: "8IlTh1PDwCg",
                 promiseKey: "courseNature.promise.Y01",
+                infographic: "/infographics/courses/nature/Y01.png",
                 askPrompt:
                     "My birthday is {birthday}. Today is {today}. Which phase of my personal year am I in (fresh start, big push, steady stretch, harvest time, wind down), and what one kind of effort belongs to it? Up to 5 lines.",
             },
@@ -57,6 +59,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "Two Years Turn at Once",
                 youtubeId: "",
                 promiseKey: "courseNature.promise.Y02",
+                infographic: "/infographics/courses/nature/Y02.png",
                 askPrompt:
                     "I live in {location}. My birthday is {birthday}. How do my personal-year phase and the current season meet right now, and what does that suggest for this month? Up to 5 lines.",
             },
@@ -71,6 +74,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "The Moon Has Four Seasons",
                 youtubeId: "",
                 promiseKey: "courseNature.promise.M01",
+                infographic: "/infographics/courses/nature/M01.png",
                 askPrompt:
                     "Today is {today}. Which moon phase are we in, which of the four lunar seasons (fire, water, earth, air) holds it, and how many days are left? Then one line on what it's for. Up to 5 lines.",
             },
@@ -79,6 +83,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "The Seed Half",
                 youtubeId: "i1CptJI9kFU",
                 promiseKey: "courseNature.promise.M02",
+                infographic: "/infographics/courses/nature/M02.png",
                 askPrompt:
                     "We're in the {phase} phase. Ask me one question that helps me notice what this phase is bringing me (an intention, a direction, a fear to release, or what has arrived). Up to 5 lines.",
             },
@@ -87,6 +92,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "The Harvest Half",
                 youtubeId: "",
                 promiseKey: "courseNature.promise.M03",
+                infographic: "/infographics/courses/nature/M03.png",
                 askPrompt:
                     "Here's what I'm working on: {mission}. If I lived the next harvest half of the moon by its four jobs, what would each phase ask of me? One line each. Up to 5 lines.",
             },
@@ -95,6 +101,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "The Cycle Starts After You Celebrate",
                 youtubeId: "",
                 promiseKey: "courseNature.promise.M04",
+                infographic: "/infographics/courses/nature/M04.png",
                 askPrompt:
                     "What did I harvest in the last few weeks? Ask me, then help me name one win to say out loud and one person or thing to thank. Up to 5 lines.",
             },
@@ -109,6 +116,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "Seven Lights Named Your Week",
                 youtubeId: "",
                 promiseKey: "courseNature.promise.W01",
+                infographic: "/infographics/courses/nature/W01.png",
                 askPrompt:
                     "Show me, in up to 5 lines, how my language's weekday names trace back to the seven planets, and which planet rules today.",
             },
@@ -117,6 +125,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "Don't Run the Week in One Mode",
                 youtubeId: "zjdS0UFPSm8",
                 promiseKey: "courseNature.promise.W02",
+                infographic: "/infographics/courses/nature/W02.png",
                 askPrompt:
                     "Today is {weekday}. What's its traditional mode, and what's one small thing in my day that would honour it? Up to 5 lines.",
             },
@@ -131,6 +140,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "One Turn of the Earth",
                 youtubeId: "OJpPZ3VD38M",
                 promiseKey: "courseNature.promise.D01",
+                infographic: "/infographics/courses/nature/D01.png",
                 askPrompt:
                     "Here's how my day usually goes: ask me in one question. Then tell me which part of my day I'm spending against the four quarters, and one swap. Up to 5 lines.",
             },
@@ -139,6 +149,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "Waves Inside the Day",
                 youtubeId: "mMLGPNZhlPE",
                 promiseKey: "courseNature.promise.D02",
+                infographic: "/infographics/courses/nature/D02.png",
                 askPrompt:
                     "Help me place 3 deep work sprints of about 90 minutes into my day tomorrow, with breaks, given the four quarters of the day. Up to 5 lines.",
             },
@@ -153,6 +164,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 title: "Read Your Now",
                 youtubeId: "",
                 promiseKey: "courseNature.promise.O01",
+                infographic: "/infographics/courses/nature/O01.png",
                 askPrompt:
                     "My birthday is {birthday}, today is {today}, and it's {timeOfDay}. Write my Now in 4 lines (year phase, moon phase and days left, today's planet and mode, part of the day), then 1 line: the one action that goes with all four. Up to 5 lines.",
             },

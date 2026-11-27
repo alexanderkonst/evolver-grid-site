@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { renderToStaticMarkup } from "react-dom/server";
 import { HelmetProvider } from "react-helmet-async";
 import { MemoryRouter } from "react-router-dom";
@@ -114,11 +115,12 @@ describe("Nature course data", () => {
     }
   });
 
-  it("has the six posted video ids, the other six empty, and no infographic until they land", () => {
+  it("has the six posted video ids, the other six empty, and one published infographic per episode", () => {
     for (const e of episodes) {
       expect(e.youtubeId, e.code).toBe(VIDEO_IDS[e.code] ?? "");
       expect(isEpisodeReady(e), e.code).toBe(e.code in VIDEO_IDS);
-      expect(e.infographic, e.code).toBeUndefined();
+      expect(e.infographic, e.code).toBe(`/infographics/courses/nature/${e.code}.png`);
+      expect(existsSync(resolve(process.cwd(), "public", (e.infographic as string).slice(1))), `${e.code} png is under public/`).toBe(true);
     }
     expect(Object.keys(VIDEO_IDS)).toHaveLength(6);
     expect(PENDING.every((c) => episodes.find((e) => e.code === c)?.youtubeId === "")).toBe(true);

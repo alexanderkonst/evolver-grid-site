@@ -202,7 +202,7 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
 - Sasha to confirm the shift: PST 40 (the living methodology) as the main one, or PST 117 as in source-integration.
 - Where the learner sees the changelog: the "What's new" disclosure of #522 is the working answer.
 - Whether people who already took the mini-training are told by the platform or only by Sasha's announcement (step 9).
-- The served path for course cards (`public/infographics/courses/<slug>/`) is a proposal until the first code PR merges (the Ask-AI field is settled: `askPrompt`, Nature PR #551).
+- The served path for course cards (`public/infographics/courses/<slug>/`) is settled: Nature (PR #551) serves its 12 cards from `public/infographics/courses/nature/<ID>.png`, copied from `docs/assets/infographics/book/nature/` (the Ask-AI field is settled too: `askPrompt`).
 - Library candidate (meta-template §7.8): Sasha's how-to hypothesis (the principle above), once the step 5 measurement shows the runbook makes a module faster or cheaper.
 
 ## 7. Genealogy
