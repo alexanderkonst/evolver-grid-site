@@ -109,3 +109,45 @@ test.describe("2 · intro: Skip from the first frame, words separated", () => {
     for (const text of await items.allTextContents()) expect(text).not.toMatch(/[a-z]{3}(Earth|Water|Aether|Air|Fire)/i);
   });
 });
+
+/** The reveal's paste screen, as a first-time guest: Reception → «Find my top talent» → «I've got my AI's answer». */
+async function openPasteScreen(page: Page) {
+  await page.goto("/zone-of-genius/entry", { waitUntil: "load" });
+  const find = page.getByRole("button", { name: "Find my top talent", exact: true });
+  await find.click({ timeout: 15_000 });
+  await expect(page.getByText("Which way?")).toBeVisible();
+  await page.waitForTimeout(800);
+  // The primary breathes (cta-breath), so Playwright's stability check never settles: press it by force.
+  await find.click({ force: true });
+  await page.getByRole("button", { name: "I've got my AI's answer" }).click({ force: true, timeout: 15_000 });
+  await expect(page.getByPlaceholder(/Paste your AI/i)).toBeVisible();
+}
+
+test.describe("3 · paste screen: the warning and the button agree", () => {
+  test("short answer: warning says why and the button is disabled; a full answer enables it", async ({ page }, info) => {
+    await openPasteScreen(page);
+    const box = page.getByPlaceholder(/Paste your AI/i);
+    const reveal = page.getByRole("button", { name: /Reveal my top talent/i });
+    const hint = page.getByTestId("paste-short-hint");
+
+    await expect(reveal).toBeDisabled();
+
+    await box.fill("I like to help people.");
+    await expect(hint).toBeVisible();
+    await expect(hint).toContainText(/too short/i);
+    await expect(hint).toContainText("200");
+    await expect(reveal, "warning showing → button disabled").toBeDisabled();
+    await shot(page, info, "paste-screen-short");
+
+    await box.fill("A".repeat(199));
+    await expect(reveal).toBeDisabled();
+    await box.fill("A".repeat(200));
+    await expect(hint, "answer passes the check → warning gone").toHaveCount(0);
+    await expect(reveal, "answer passes the check → button enabled").toBeEnabled();
+
+    // Never press it: a reveal is a paid AI call. Back to short: the button follows.
+    await box.fill("too short again");
+    await expect(hint).toBeVisible();
+    await expect(reveal).toBeDisabled();
+  });
+});

@@ -9,7 +9,7 @@ describe("ZoG reveal wait: the waiting line follows elapsed time", () => {
     expect(stageIndexAt(STAGE_STARTS_S[1], 3)).toBe(1);
     expect(stageIndexAt(STAGE_STARTS_S[2] - 1, 3)).toBe(1);
     expect(stageIndexAt(STAGE_STARTS_S[2], 3)).toBe(2);
-    // A wait past the usual four minutes stays on the last line.
+    // A wait past the usual half minute stays on the last line.
     expect(stageIndexAt(600, 3)).toBe(2);
   });
 
@@ -18,12 +18,12 @@ describe("ZoG reveal wait: the waiting line follows elapsed time", () => {
     expect(stageIndexAt(600, 0)).toBe(0);
   });
 
-  it("the three lines exist in EN, and the hint says 2–4 minutes", () => {
+  it("the three lines exist in EN, and the hint says about 30 seconds", () => {
     const zog = en.zogEntry as Record<string, string>;
     for (const key of ["revealStageReading", "revealStagePattern", "revealStageWriting", "revealWaitHint"]) {
       expect(zog[key], `en.zogEntry.${key}`).toBeTruthy();
     }
-    expect(en.zogEntry.revealWaitHint).toContain("2–4 minutes");
-    expect(en.zogEntry.revealWaitHint).not.toMatch(/one to three/i);
+    expect(en.zogEntry.revealWaitHint).toContain("30 seconds");
+    expect(en.zogEntry.revealWaitHint).not.toMatch(/minutes/i);
   });
 });
