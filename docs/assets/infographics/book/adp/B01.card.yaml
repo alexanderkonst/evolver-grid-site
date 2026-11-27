@@ -1,24 +1,27 @@
-# ADP series card, Body module (not published: not in book/book.yaml). Spec: issue #521, revision v2 (Sasha's review 2026-11-26).
+# ADP series card, Body module (not published: not in book/book.yaml). Spec: issue #569, v3 (Sasha 2026-11-27 16:37 and 16:39 MST).
+# Template: infographic v1.1 (#568). Standard kit card; the figure is a full-colour photo (photos/B01-flower-moon.jpg).
 id: B01
 chapter: "1"
 number: 1
-of: 2
-title: "The Bashar Formula"
-caption: "Excitement is your body's compass. Follow it all the way, let go of the outcome, and every result teaches."
+of: 3
+title: "Excitement is your body's compass"
+caption: "Follow it all the way, let go of the outcome, and every result teaches."
 skin: v4
 caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
 waive:
-  words: "v2 step labels are full actions on purpose (Sasha: each label must carry the action alone), so they run past the skin's 3-word label limit. Prose is 23 words, under the limit of 25."
+  words: "Step labels are full actions on purpose (Sasha: each label must carry the action alone), so one runs past the skin's 3-word label limit. Prose is 22 words (title 5, caption 14, eyebrow 3), under the limit of 25."
 text:
-  eyebrow: Body
+  eyebrow: "Body · Bashar Formula"
+  photo: B01-flower-moon.jpg
   steps:
-    - ["Act on your excitement", "the most passion = your next step"]
-    - ["Until it fades on its own", "not until fear dampens it"]
-    - ["Let go of the outcome", "you don't know the best one"]
-    - ["Stay positive, whatever comes", "so you take the lesson"]
-    - ["Drop beliefs that aren't yours", "your own weigh nothing"]
+    - Follow your excitement
+    - Until it fades on its own
+    - Let go of the outcome
+    - Stay positive, whatever comes
+    - Drop beliefs that aren't yours
   center: You
   attribution: "After Bashar (channeled by Darryl Anka)"
 sources:
   - "knowledgegraph: 10 Sources/youtube/bashar/undated-five-step-formula.md (verbatim transcript; integration: knowledgegraph#320)"
-  - "issue #521 comment, revision v2: caption, step labels and sub-lines (Sasha's synthesis); title and attribution from the issue"
+  - "issue #569: title, caption, eyebrow (comment 2026-11-27 16:39 MST: Bashar Formula), five step labels, layout (steps at the five rib tips, cycle 5 to 1)"
+  - "photos/B01-flower-moon.jpg (flower centre about (512,530) of 1024 px; ribs at 270, 342, 54, 126, 198 degrees; moonlight is in the photo)"

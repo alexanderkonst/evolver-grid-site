@@ -1,62 +1,32 @@
-"""B02 · Energy Is Received. All text comes from B02.card.yaml (labels are in spec.text; lint counts them apart)."""
-import math
+"""B02 · Life energy is received, not only generated. All text comes from B02.card.yaml (labels are in spec.text; lint counts them apart)."""
+import os
+import sys
 
-from kit import vocab as K
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from kit import vocab as K  # noqa: E402
+import photo_figure as P  # noqa: E402
 
-
-def attribution(c, s):
-    """The 'After ...' line in the footer row (footer text is outside the prose word count)."""
-    draw_footer = c.footer
-
-    def footer():
-        draw_footer()
-        c._role = "footer"
-        c.rtext(920, 1258 + 13, s, "sans", 20, K.MOON, 200, maxw=520)
-        c._role = "body"
-    c.footer = footer
-
-
-def bank(x, top, bot, amp=12, period=170):
-    return [(x + amp * math.sin((y - top) * 2 * math.pi / period), y) for y in range(int(top), int(bot) + 1, 8)]
+PHOTO = (928, 1152)
+COLUMN, BELLY, GROUND = (465, 120), (462, 770), (462, 985)    # where the tags point, in photo px
 
 
 def build(spec):
     t = spec.text
     c = K.card(spec)
-    attribution(c, t["attribution"])
-    ax, half = 540, 180
-    top = c.body_top + 64
-    bot = top + 590
-    hy = top + 430
-    # hero: the river channel, water flowing down (short arrows between the banks), three rocks in the bed
-    c.ln(bank(ax - half, top + 30, bot), K.SILVER, 170, 2.4)
-    c.ln(bank(ax + half, top + 30, bot), K.SILVER, 170, 2.4)
-    c.iri_path(bank(ax - half, top + 30, bot), 3, 150)
-    c.iri_path(bank(ax + half, top + 30, bot), 3, 150)
-    rocks = [(ax - 95, top + 140, -1), (ax + 95, top + 240, 1), (ax - 95, top + 340, -1)]
-    for (sx, sy, side), label in zip(rocks, t["stones"]):
-        c.circle(sx, sy, 34, K.QUIET, 230, 2.4, fill_a=110)
-        edge = ax - half - 26 if side < 0 else ax + half + 26
-        K.name(c, edge, sy - 22, label, "right" if side < 0 else "left", size=36)
-    for fx, fy in ((ax - 95, top + 60), (ax + 95, top + 60), (ax + 95, top + 140), (ax - 95, top + 240), (ax + 95, top + 340)):
-        c.arrow(fx, fy - 20, fx, fy + 20, K.SILVER, 150, 2, head=9)
-    # heaven comes down, earth comes up; they meet at the glowing hara
-    K.name(c, ax, top - 56, t["heaven"], size=38)
-    c.arrow(ax, top, ax, hy - 56, K.SILVER, 220, 2.6, head=14)
-    c.arrow(ax, bot + 26, ax, hy + 56, K.SILVER, 220, 2.6, head=14)
-    K.name(c, ax, bot + 38, t["earth"], size=38)
-    c.orb(ax, hy, 36, glow=120)
-    c.iri_ring(ax, hy, 52, 3, 230)
-    c.ln([(ax + 58, hy), (ax + half + 22, hy)], K.SILVER, 150, 1.6)
-    K.name(c, ax + half + 36, hy - 34, t["hara"], "left", size=42)
-    K.note(c, ax + half + 36, hy + 14, t["hara_sub"], "left", size=26, color=K.MOON, a=225, maxw=250)
-    # left, small and faded: the battery model, crossed out
-    bx, by = 170, top + 480
-    c.poly([(bx - 30, by - 46), (bx + 30, by - 46), (bx + 30, by + 46), (bx - 30, by + 46)], K.QUIET, 150, 2.4)
-    c.poly([(bx - 10, by - 46), (bx - 10, by - 58), (bx + 10, by - 58), (bx + 10, by - 46)], K.QUIET, 150, 2.4)
-    c.ln([(bx - 50, by - 68), (bx + 50, by + 68)], K.QUIET, 200, 3)
-    c.ln([(bx + 50, by - 68), (bx - 50, by + 68)], K.QUIET, 200, 3)
-    K.note(c, bx, by + 96, t["battery"], size=26, color=K.QUIET, a=220, maxw=170)
-    # the takeaway: highest emphasis after the title
-    K.name(c, 540, bot + 100, t["takeaway"], size=62, maxw=900)
+    P.attribution(c, t["attribution"])
+    cx, cy, width = 540, 802, 640
+    x0, y0, sc = P.place(c, spec, t["photo"], cx, cy, width, fade=(0.80, 1.0), power=4)
+    at = lambda p: (x0 + p[0] * sc, y0 + p[1] * sc)
+    hx, hy = at(BELLY)
+    colx, coly = at(COLUMN)
+    gx, gy = at(GROUND)
+    with c.labels():
+        # Heaven by the light column (it comes down), Hara by the belly glow, Earth by the ground (it comes up)
+        K.tag(c, colx + 62, coly - 22, t["heaven"], align="left", tsize=36, maxw=240)
+        c.ln([(colx + 18, coly), (colx + 54, coly)], K.SILVER, 170, 1.6)
+        c.orb(hx, hy, 9, glow=0)
+        c.ln([(hx + 16, hy), (hx + 150, hy)], K.SILVER, 190, 1.6)
+        K.tag(c, hx + 164, hy - 22, t["hara"], align="left", tsize=40, maxw=200)
+        K.tag(c, gx + 62, gy - 22, t["earth"], align="left", tsize=36, maxw=240)
+        c.ln([(gx + 18, gy), (gx + 54, gy)], K.SILVER, 170, 1.6)
     return c
