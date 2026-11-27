@@ -1,0 +1,25 @@
+# Nature mini-training, episode card W02 (kit v4, 2026-11-27). Not in book/book.yaml (like the ADP series). Issue #550.
+id: W02
+chapter: "1"
+number: 9
+of: 12
+title: "Don't Run the Week in One Mode"
+caption: "A week with seven modes composes itself."
+skin: v4
+caption_size: 30
+text:
+  eyebrow: "Nature · Week"
+  label: "tradition"
+  days:
+    - {name: Sunday, sub: Sun · illumination}
+    - {name: Monday, sub: Moon · intuition}
+    - {name: Tuesday, sub: Mars · action}
+    - {name: Wednesday, sub: Mercury · clarity}
+    - {name: Thursday, sub: Jupiter · expansion}
+    - {name: Friday, sub: Venus · beauty}
+    - {name: Saturday, sub: Saturn · structure}
+  center: 7 modes
+sources:
+  - docs/08-content/nature_mini_training.md (section 6, W02; section 4 table)
+  - docs/04-products/equilibrium_user_manual.md (Day-of-Week Energy)
+  - issue #550 (title and Promise line verbatim; terms of changelog 0.4: Moon, seven classical planets, out-of-sync → in-sync)
