@@ -43,7 +43,7 @@ Each card: name · what it gives · result. No status tags.
 1. **Collaborations** (the heart, visually larger): joint offers, shared clients, co-built products, referrals. Result: work a solo founder can't get alone.
 2. **Introductions**: the right people meet: clients, partners, mentors. Result: introductions that turn into work.
 3. **Founder Cockpit**: one screen to run your business: offers, clients, the one next move. Result: a business that is steered, not chased.
-4. **Your AI**: a ladder from AI as a mirror to your own AI company. Result: the business does more without hiring.
+4. **My AI**: a ladder from AI as a mirror to your own AI company. Result: the business does more without hiring.
 5. **Shared rhythm**: the lunar month. Quiet weeks to gather and plan, strong weeks to lead and harvest. Result: one beat, no meetings for meetings' sake.
 6. **Mutual promotion**: each member's page shown here, each member introduced by the others. Result: new clients from the collective's audience.
 7. **Scaling experts**: sales, marketing, finance, legal, operations. Result: the next stage of revenue with an expert beside you.

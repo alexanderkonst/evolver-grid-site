@@ -21,7 +21,7 @@ const key = (over: Partial<Parameters<typeof isToggleKey>[0]> = {}) => ({
   ...over,
 });
 
-describe("Your AI instrument: the period key", () => {
+describe("My AI instrument: the period key", () => {
   it("toggles on a bare period outside text fields", () => {
     expect(isToggleKey(key())).toBe(true);
   });
@@ -42,7 +42,7 @@ describe("Your AI instrument: the period key", () => {
   });
 });
 
-describe("Your AI instrument: the tour is shown once", () => {
+describe("My AI instrument: the tour is shown once", () => {
   const store = () => {
     const m = new Map<string, string>();
     return { getItem: (k: string) => m.get(k) ?? null, setItem: (k: string, v: string) => void m.set(k, v) };
@@ -63,7 +63,7 @@ describe("Your AI instrument: the tour is shown once", () => {
   });
 });
 
-describe("Your AI instrument: the Console and the labels", () => {
+describe("My AI instrument: the Console and the labels", () => {
   const root = join(__dirname, "..", "..", "..");
   const app = readFileSync(join(root, "src/App.tsx"), "utf8");
   it("opens only routes that exist in App.tsx", () => {

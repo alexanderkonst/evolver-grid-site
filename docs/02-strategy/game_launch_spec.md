@@ -14,7 +14,7 @@ Key documents and this moon: [golden_age_canon.md §0](./golden_age_canon.md) (t
 | Circles (our own Luma), spec when written | project «Круги в GoBY» |
 | [modular_collaboration/](./modular_collaboration/): Module 2 launch plan, partner offer, connector, research | project «Модуль 2: модульная коллаборация» |
 | [source-integration.md](../templates/source-integration.md) (v2.0) and the knowledge intake stream | project «Интейк знаний в проект» |
-| [collective_terms_roadmap.md](./collective/collective_terms_roadmap.md), [funnel_map_v1.md](./unique-businesses/funnel_map_v1.md), [ai-suite/](./ai-suite/) (Your AI suite spec, AI course outline, Result Wizards spec, wizards/) | project «Модуль 3: коллектив фаундеров» |
+| [collective_terms_roadmap.md](./collective/collective_terms_roadmap.md), [funnel_map_v1.md](./unique-businesses/funnel_map_v1.md), [ai-suite/](./ai-suite/) (My AI suite spec, AI course outline, Result Wizards spec, wizards/) | project «Модуль 3: коллектив фаундеров» |
 | Formalization of the universal ontology (theory layer, private repo knowledgegraph) | project «Модуль 1: Формализация Теории Всего» |
 
 **Write rule for every project.** Read the file fresh from the GitHub API right before editing (never raw.githubusercontent.com: it served a stale copy and a row was lost on 2026-11-21). Commit on the current head. After the commit, compare it with the parent and check that only your lines changed.
@@ -70,18 +70,18 @@ Design compass (not tasks): actions in the game world are done in the real one; 
 ## Progress
 
 - 2026-11-21: live A5 stats cards (#364), A6 messages (#363, table player_messages deployed on Sasha's yes; open to everyone by default, profile visibility setting closes it), A7 clients (#366), A9 four-ring clock (#378), B2 quiz → game link (#372), C1 3D elements (#367), C4 Book of Infographics (#365). A12 badge logic live, art v1 rejected. A10 glyphs v2 drafted.
-- 2026-11-22: merged A4 hook after reveal (#399), A16 feed of real deeds (#400, migration applied), A6 People Directory (#397), playtest fixes (#398), clock Moon + Week and three views (#382, #387), Circles v1 with Care of a place (#388, live), place icons painted set per skin (live). Your AI place re-scoped to a plain hand-over, no test (#402, in work). Loading screen matte + waxing moon (#401, in work). A13 streak PR #373 green, held for «Да: деплой миграции streak_acts». Waiting on Sasha: A10 glyph look, A12 badge designs, A2 video, reveal words.
+- 2026-11-22: merged A4 hook after reveal (#399), A16 feed of real deeds (#400, migration applied), A6 People Directory (#397), playtest fixes (#398), clock Moon + Week and three views (#382, #387), Circles v1 with Care of a place (#388, live), place icons painted set per skin (live). My AI place re-scoped to a plain hand-over, no test (#402, in work). Loading screen matte + waxing moon (#401, in work). A13 streak PR #373 green, held for «Да: деплой миграции streak_acts». Waiting on Sasha: A10 glyph look, A12 badge designs, A2 video, reveal words.
 
 ## Moon picture, 2026-11-23 (eve of the Harvest; Sasha: «пиши это в спеку»)
 
-- **One picture.** Four faces (game · Sasha's business of businesses · Collective · Theory), Your AI as the ring through all four. Launch early January 2027, after 01-04.
+- **One picture.** Four faces (game · Sasha's business of businesses · Collective · Theory), My AI as the ring through all four. Launch early January 2027, after 01-04.
 - **What the moon gave.** Game: messages + People Directory, stats, Moon + Week clock, Circles with Care of a place, hook after reveal, feed of real deeds, 3D elements, Book, place icons; 25 mechanics accepted (GoBY §24.1), core = circle × weekly rhythm × Save Point × confirmation by one who walked the step. Business: partner's 10% gift, money one way; /bring-your-module live. Collective: Academy three levels, Result Wizards, mini-training «AI as a Mirror» in work. Theory: Stage 2 closed, Stage 3 on pre-registered tests.
 - **Main observation.** The specs are whole; the live game is still separate good pieces (synthesis pass v2: 44/100). Three player paths are not reconciled: Journey J0–J13 (GoBY §14.2, what the code follows), Gift Path 22 steps (§20), Player One 13 steps (§23.1, Sasha's order). Result: three different Level unlock rules and contradicting locks. The funnel / player path work starts by merging them into one path.
 - **Sasha's check list (2026-11-23) and its state.**
   - Messaging, profiles, social network: built (A6); a live two-player exchange not yet tested; first in the next check.
   - Character room (Your House): passed in synthesis pass v2; bugs in work (#413–#419); recheck after fixes.
-  - Your AI console: Controller with lens buttons is spec only (AIF §20.3); the game has the prompt hand-over (#402).
-  - Your AI design: check /ai-os and /game/your-ai as a product.
+  - My AI console: Controller with lens buttons is spec only (AIF §20.3); the game has the prompt hand-over (#402).
+  - My AI design: check /ai-os and /game/your-ai as a product.
   - Course constructor: not built (C2); template and Result Wizards spec only.
   - Transitions between screens and iconic look and feel: one click-by-click pass through the whole world, each seam judged.
 - **Sales chain (offer → shop → buyer):** parked; UBB is run personally by Sasha with people for now, nobody is sent to /ubb (Sasha 2026-11-23).

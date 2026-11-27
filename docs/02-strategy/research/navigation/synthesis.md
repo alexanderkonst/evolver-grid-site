@@ -68,7 +68,7 @@ Synergy tests: remove the one pull → players wander (Cyberpunk launch); remove
 ## 5. Subtraction pass (what to cut)
 
 1. **Pane 2 (SectionsPanel, old "spaces")**: a second, older map of the same world under other names. It violates S2 and causes the wrong-place bugs in #443. Replace by rooms inside the place scene. (Fork F1.)
-2. **Your AI as a village place**: by Sasha's 2026-11-24 definition it is a separate company and interface (one chat, deep personalization, activation). In navigation it is a mode outside the world: one quiet global button, not a place on the map. (Fork F2.)
+2. **My AI as a village place**: by Sasha's 2026-11-24 definition it is a separate company and interface (one chat, deep personalization, activation). In navigation it is a mode outside the world: one quiet global button, not a place on the map. (Fork F2.)
 3. **Multiple hints / lists on the village**: already one hint; keep it one.
 4. Nothing on the title screen, intro, reveal, themes or entry is touched.
 
@@ -82,7 +82,7 @@ Synergy tests: remove the one pull → players wander (Cyberpunk launch); remove
 | Module form | §14.4 | Intro shows what it unlocks (S5) |
 | Colour returns as you play | §14.11 | none; this is S7 |
 | Constellation path view | §20, §23, player path v1 (draft) | new, after Sasha's review |
-| Pane 2 removal, Your AI as global button | new | forks F1, F2 |
+| Pane 2 removal, My AI as global button | new | forks F1, F2 |
 | #443 shell bugs | bugs | separate, already with Claude |
 
 ## 7. Roast (short) and acceptance test
@@ -98,6 +98,6 @@ Synergy tests: remove the one pull → players wander (Cyberpunk launch); remove
 
 - **Where am I: both.** Place in the village (game location) and step on the path (hero's-journey roadmap) are both shown.
 - **F1 rejected.** The second pane stays as a key milestone of navigation: it appears at the right moments and is open when the player looks at the order of quests. Section 5 item 1 is withdrawn. Open to better solutions from this research.
-- **F2 accepted, upgraded.** Your AI leaves the map and becomes a carried instrument that opens natively and smoothly from anywhere, like the Pip-Boy.
+- **F2 accepted, upgraded.** My AI leaves the map and becomes a carried instrument that opens natively and smoothly from anywhere, like the Pip-Boy.
 - **Smoothness everywhere:** the interface should feel like an ancient mystical instrument.
 - **F3** (constellation path view) still waits on his review of player path v1.

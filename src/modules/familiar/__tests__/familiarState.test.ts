@@ -12,7 +12,7 @@ describe("gifts", () => {
   it("guest: activated is lit, the other two are dim and say what opens them", () => {
     const gifts = buildGifts(base);
     expect(gifts.map((g) => g.key)).toEqual(["knowsYou", "activated", "knowsYourWork"]);
-    expect(gift(gifts, "activated")).toMatchObject({ lit: true, detail: "Your AI 5.2" });
+    expect(gift(gifts, "activated")).toMatchObject({ lit: true, detail: "My AI 5.2" });
     expect(gift(gifts, "knowsYou")).toMatchObject({ lit: false, opensWhen: "Opens when you save your top talent" });
     expect(gift(gifts, "knowsYourWork")).toMatchObject({ lit: false, opensWhen: "Opens in the Collective" });
     expect(gift(gifts, "knowsYou").detail).toBeUndefined();

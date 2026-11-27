@@ -181,7 +181,7 @@ export const VILLAGE_PLACES: VillagePlace[] = [
   {
     key: "oracle",
     element: "air",
-    name: "Your AI",
+    name: "My AI",
     line: "Ask your AI.",
     to: "/game/your-ai",
     // Open to everyone, guests included: the place shows what the AI already has (activated)
