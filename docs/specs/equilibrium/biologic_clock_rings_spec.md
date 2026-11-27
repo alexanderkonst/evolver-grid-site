@@ -270,7 +270,7 @@ A player opens the village map and, without a legend, sees in the dial alone the
 ## Word ring: ЭКВИЛИБРИУМ (decided 2026-11-26)
 - Sasha 17:40 approved the hand-carved wordmark look (v5: straight stems; a growing sine wave only on horizontal bars, Э middle bar, Б top bar, А middle bar; small elegant feet to the right on the bottom ends of К, Л, И; В bottom-left corner runs along the floor; round, slightly heavier ends; micro roughness). Sasha 17:41: «ставь вариантом три» = variant C.
 - Variant C: the word sits in the gap between the Moon and Week rings, radius 68.8/200 of dial size, letter height 8.2/200, compact arc starting at 12 o'clock and running clockwise (about 0–130°), tracking 0.30 of letter height. Carved into the clay (same light as the dial: from upper left), never a flat text label. The active moon and planet orbs draw above the letters.
-- Centre: Sasha's muted gold solar emblem with lapis veins, 36/200 of dial size (Sasha 17:56: a bit larger, crisp), small shadow; shipped as a 2× and 3× WebP from his 1254 px original, never upscaled. Phase words above it (−35/−25), day words below (31/41). Mockup bioclock-v23.
+- Centre: Sasha's muted gold solar emblem, 26/200 of dial size, small shadow; phase words above it, day words below (v22 layout). v23 (36/200) tried and rejected 2026-11-27: text lost its harmony. Ship the emblem from his 1254 px original as 2×/3× WebP, never upscaled.
 - Built as one pre-rendered transparent WebP per finish (wordmark arc with its carved shading), not as a runtime font. Mockup: bioclock-v22-word.jpg.
 - Ships with the craft-layer issue.
 
@@ -316,3 +316,10 @@ Ask (Sasha 17:53): make the inlaid pieces more real, and the light passing throu
 - All lowercase (it's just a word): "full moon", "harvesting", "thursday", "expansion".
 - Font: Sasha's own handwriting (cursive), bold for the phase and day name, regular for its meaning. Source: a sheet in his hand with the alphabet and every word the clock shows; vectorised into one font (latin + cyrillic + spanish accents). Replaces the roast's Cormorant Garamond proposal.
 - Legibility floor: on the 200 px phone dial the words are about 12 px; cursive needs strong strokes there, so bold stays heavier than the reference.
+
+
+## Concept: phase and day words in Sasha's cursive (sketch v24, NOT APPROVED FOR BUILD)
+Sasha 2026-11-27: a font for every reading. Moon: 8 names + 8 energy words. Week: 7 names + 7 energy words. All lowercase. Name and energy in ONE size; name bold, energy thin. He writes the words by hand; we vectorise them (fixed word images per finish, or a small font from his letters).
+- A: cursive name bold + cursive energy thin (Caveat used as a stand-in for his hand).
+- B: cursive name bold + energy carved like the ЭКВИЛИБРИУМ wordmark and filled with metallic-neon light as paint in stone: moon words pearl-silver, day words in the planet's colour (Thursday violet). Comfortaa is a stand-in for carved letters.
+Words: moon new moon/clearing, growing crescent/gathering, growing half/seeing, almost full/prepping, full moon/harvesting, past full/celebrating, fading half/planning, fading crescent/planting; week monday/intuition, tuesday/action, wednesday/clarity, thursday/expansion, friday/beauty, saturday/structure, sunday/threshold. Mockups bioclock-v24A, bioclock-v24B.
