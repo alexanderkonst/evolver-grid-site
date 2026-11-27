@@ -50,13 +50,13 @@ const statesOf = (save: ReturnType<typeof saveWith>) =>
   Object.fromEntries(VILLAGE_PLACES.map((p) => [p.key, placeState(p, save)])) as Record<VillagePlaceKey, PlaceStateName>;
 
 describe("placeState: unlock order (§14.3)", () => {
-  it("a guest sees Reception next, Academy, Café, FMF and Your AI open, everything else closed", () => {
+  it("a guest sees Reception next, Academy, Café, FMF and My AI open, everything else closed", () => {
     const s = statesOf(saveWith([]));
     expect(s.reception).toBe("next");
     expect(s.academy).toBe("open");
     expect(s["fire-circle"]).toBe("open");
     expect(s.cafe).toBe("open");
-    expect(s.oracle).toBe("open"); // Your AI is open to guests, partly lit (issue #224)
+    expect(s.oracle).toBe("open"); // My AI is open to guests, partly lit (issue #224)
     for (const k of ["house", "quest-board", "workshop", "market", "coworking", "town-hall"] as const) {
       expect(s[k]).toBe("closed");
     }
@@ -67,7 +67,7 @@ describe("placeState: unlock order (§14.3)", () => {
     expect(placeState(place("reception"), emptyPlaceSave(TUESDAY))).toBe("next");
   });
 
-  it("Top Talent saved opens Home and Quest Board; Reception is done; Your AI stays open", () => {
+  it("Top Talent saved opens Home and Quest Board; Reception is done; My AI stays open", () => {
     const s = statesOf(saveWith(["find-top-talent"]));
     expect(s.reception).toBe("done");
     expect(s.house).toBe("next"); // mission is the next move, and it lives in the House
@@ -214,7 +214,7 @@ describe("closed lines come from data (§14.3)", () => {
     }
   });
 
-  it("only Reception, Academy, FMF, Café and Your AI are open for a guest", () => {
+  it("only Reception, Academy, FMF, Café and My AI are open for a guest", () => {
     const open = VILLAGE_PLACES.filter((p) => !p.rule.opens).map((p) => p.key);
     expect(open.sort()).toEqual(["academy", "cafe", "fire-circle", "oracle", "reception"]);
   });

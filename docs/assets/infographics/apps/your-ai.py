@@ -1,4 +1,4 @@
-"""Your AI: an iridescent sphere, a thin tilted orbit, one neon satellite riding it. No text."""
+"""My AI: an iridescent sphere, a thin tilted orbit, one neon satellite riding it. No text."""
 import os
 import sys
 

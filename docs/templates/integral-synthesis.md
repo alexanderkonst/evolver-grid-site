@@ -1,6 +1,6 @@
 # Integral Holonic Deep Synthesis: take a domain apart across its best exemplars, put it back together as one whole
 
-> Button (= the result): **One whole, built from what works everywhere.** Repo file name: `docs/templates/integral-synthesis.md`. Routed by [template-router.md](./template-router.md). Template: meta-template. Draft v0, 2026-11-24, written by Evolver (Hark) in parallel with its first application, game navigation.
+> Button (= the result): **Wholeness** («Цельность»): the common denominator of the best solutions. Input: a domain or a set of exemplars. Console category: Power (Sasha, 2026-11-26; see [meta-template.md](./meta-template.md) §Console buttons). Repo file name: `docs/templates/integral-synthesis.md`. Routed by [template-router.md](./template-router.md). Template: meta-template. Draft v0, 2026-11-24, written by Evolver (Hark) in parallel with its first application, game navigation.
 >
 > Source: Sasha, 2026-11-24 (chat, verbatim): «Давай соберем интегральный глубинный синтез навигации в культовых играх... Возьмем их навигацию. Выделим инварианты задач которые они решают через общие знаменатели. Обратим внимание на самые успешные решения. Создадим интегральный холонический синтез из соответствия инварианту навигации и найденных успешных элементов которые вместе создают синергию цельности навигации не перегружая ее деталями. Можно сказать разбирают ее и собирают. Составляем параллельно ультра-подробный шаблон создания интегрального холонического глубинного синтеза, используя этот частный случай.»
 >
@@ -153,7 +153,7 @@ No time estimates per phase (Sasha, 2026-11-21: we just do it). Phase 3 runs in 
 - Domain: how a player of The Game of Being You always knows where they are, where they can go and what opens it, what to do next and why, how to get there, what changed, what they have done, how to get back to safety, and how to see the whole. (Seed from SCHEMA Q1–Q9.)
 - Target whole: GoBY navigation. Serves: the Journey and the village (the player becoming themselves in a real village). Carried by: title screen, village screen, rail, shell, module form.
 - Canon (binding unless marked): GoBY §14.1 principles 1–5, 7, 10 ("The Journey is the spine"; "One world, one map, one menu. The village is the navigation"; "The village is where you play"; one module form; "Open is alive; closed is faded"; progress in the world, never in numbers; nothing internal on the surface); §13.1 village places; §14.2 Journey; §14.3 lock rule; §14.4 module form; §14.6. Draft: `player-path-v1-draft.md` (Player One as spine, Gift Path as progress scale), hypothesis only.
-- Current state: [`nav_map_v0.md`](../02-strategy/research/navigation/nav_map_v0.md) (snapshot 2026-11-24): five layers (title, village with 11 places, rail = village places, shell with pane 2 on the old space ids, inside modules); known breaks (#443 A: rail greys out, Town Hall never navigates, pane 2 shows the wrong place, routes outside the shell, missing "← Village"); open questions to Sasha 2026-11-24: Q1 where-am-I = place or path step, Q2 the fate of pane 2, Q3 Your AI = place or global button.
+- Current state: [`nav_map_v0.md`](../02-strategy/research/navigation/nav_map_v0.md) (snapshot 2026-11-24): five layers (title, village with 11 places, rail = village places, shell with pane 2 on the old space ids, inside modules); known breaks (#443 A: rail greys out, Town Hall never navigates, pane 2 shows the wrong place, routes outside the shell, missing "← Village"); open questions to Sasha 2026-11-24: Q1 where-am-I = place or path step, Q2 the fate of pane 2, Q3 My AI = place or global button.
 - Acceptance walk (draft, to sharpen in §13): *a stranger goes title → New Game → Entry Portal → village → their next move → one module → back to the village, sees what changed, and can say where they are and what is next, without a dead end, a wrong pane or a missing way back.*
 - Thresholds: *fill.* Standing rules: core flows (title, intro, entry, reveal, themes) change only on Sasha's yes to the exact change; no numbers that mirror no real act. Out of scope: *fill* (for example the content inside each module).
 
@@ -434,7 +434,7 @@ Levels to test (from the target's own structure, `nav_map_v0.md`): world (title 
 **Anti-patterns.** Cutting the transitions (they look small and are load-bearing). Cutting the only answer to a gap invariant because its evidence is C (flag it instead). Keeping something because an iconic exemplar has it.
 
 **Worked example: game navigation**
-*Fill: the cut list and the before/after count per level.* Candidates to check against the current state: pane 2 on the old space ids (Q2 fork), duplicated places between rail and map (canon already says they are one), Your AI as place and as global button (Q3 fork).
+*Fill: the cut list and the before/after count per level.* Candidates to check against the current state: pane 2 on the old space ids (Q2 fork), duplicated places between rail and map (canon already says they are one), My AI as place and as global button (Q3 fork).
 
 ---
 
@@ -539,7 +539,7 @@ Sources: dossiers (exemplars/*), solutions.md, matrix.md.
 **Gate.** Every item is a real fork; none is answerable from earlier decisions; each has a recommendation.
 
 **Worked example: game navigation**
-Already open with Sasha (2026-11-24): Q1 where-am-I = place or path step; Q2 the fate of pane 2; Q3 Your AI as place or global button. The synthesis should answer them with evidence or sharpen them. *Fill: the final decision list.*
+Already open with Sasha (2026-11-24): Q1 where-am-I = place or path step; Q2 the fate of pane 2; Q3 My AI as place or global button. The synthesis should answer them with evidence or sharpen them. *Fill: the final decision list.*
 
 ---
 
@@ -610,7 +610,7 @@ Already open with Sasha (2026-11-24): Q1 where-am-I = place or path step; Q2 the
 | 6 Matrix | folded into §2 (Serves column) | synthesis §2 |
 | 7 Principle | canon candidate §14.1.1–2 to test | `synthesis.md` §1 |
 | 8 Reassembly | levels to test: world → place → module → moment | `synthesis.md` §2 |
-| 9 Subtraction | candidates: pane 2, rail/map duplication, Your AI placement | `synthesis.md` §3 |
+| 9 Subtraction | candidates: pane 2, rail/map duplication, My AI placement | `synthesis.md` §3 |
 | 10 Fit | protected flows and #443 bugs to keep separate | `synthesis.md` §4 |
 | 11 Roast | short v0 done | `synthesis.md` §5 |
 | 12 Prism | done | `synthesis.md` top |

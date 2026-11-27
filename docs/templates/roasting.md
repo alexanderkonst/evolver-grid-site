@@ -1,5 +1,7 @@
 # Roasting: see everything wrong before fixing anything, then survive reality
 
+> Button (= the result): **«увидеть потенциал для роста!»** (*translated:* "see the potential for growth!"). Input: any artifact. Icon idea (Sasha): a comedian roasting the audience. Console category: Power (Sasha, 2026-11-26; see [meta-template.md](./meta-template.md) §Console buttons).
+
 *Canonical template, synthesized 2026-10-27 by Evolver from three tellings of the roasting protocol, the roast-gate records, the strategy crash-test and the live roast of the game (Genealogy at the end). Newer Sasha-confirmed practice wins where tellings differ; older shapes stay as dated notes.*
 
 ## Meta-description

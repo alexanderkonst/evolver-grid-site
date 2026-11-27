@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 
 /**
- * Your AI Console v1, the Phoenix chain (docs/specs/your-ai-console/console-v1.md), guest view.
+ * My AI Console v1, the Phoenix chain (docs/specs/your-ai-console/console-v1.md), guest view.
  * No sign-in and no model call: a guest sees the five buttons and the locked lines, and pressing
  * button 1 gives the sign-in line without a single request to an edge function.
  *   PREVIEW_URL=http://127.0.0.1:8080 npx playwright test tests/console.spec.ts
@@ -105,7 +105,7 @@ test("a suggestion replies in place and the conversation survives reload", async
   await openConsole(page);
   await page.getByRole("tab", { name: "Conversation" }).click();
   const originalUrl = page.url();
-  const input = page.getByRole("textbox", { name: "Write to Your AI…" });
+  const input = page.getByRole("textbox", { name: "Write to My AI…" });
   await expect(page.getByText("20 turns left today")).toBeVisible();
   await input.fill("I could use a way to settle.");
   await input.press("Enter");
@@ -117,7 +117,7 @@ test("a suggestion replies in place and the conversation survives reload", async
   await expect(page.getByText("18 turns left today")).toBeVisible();
 
   await page.reload();
-  // Since #513 the glyph opens Your AI straight onto its face; the air body in the arc is inert there.
+  // Since #513 the glyph opens My AI straight onto its face; the air body in the arc is inert there.
   await page.getByTestId("instrument-glyph").click();
   await expect(page.getByRole("dialog", { name: "Your instrument" })).toBeVisible();
   await page.getByRole("tab", { name: "Conversation" }).click();

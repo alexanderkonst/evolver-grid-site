@@ -9776,7 +9776,7 @@
     "open": "Abrir Tu IA",
     "close": "Cerrar Tu IA",
     "title": "Tu IA",
-    "powered": "Impulsada por Your AI OS",
+    "powered": "Impulsada por My AI OS",
     "replay": "Repetir el recorrido",
     "greeting": "Estoy en cada pantalla. Escríbeme o abre una app abajo.",
     "placeholder": "Escribe a Tu IA…",
@@ -9799,7 +9799,7 @@
     "tourNext": "Siguiente",
     "tourDone": "Listo",
     "tour": {
-      "header": "Esta es Tu IA, impulsada por Your AI OS. Va contigo en cada pantalla.",
+      "header": "Esta es Tu IA, impulsada por My AI OS. Va contigo en cada pantalla.",
       "conversation": "Está hecha para conocerte, y te conoce más de cerca mientras juegas.",
       "console": "La Consola: cada app es un botón que hace algo poderoso."
     }

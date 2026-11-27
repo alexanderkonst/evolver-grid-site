@@ -2144,7 +2144,7 @@ const META_PROMPTS: Prompt[] = [
   {
     id: "meta-cognition-boost",
     label: "AI COGNITION FOUNDATION",
-    description: "The free cognition base — self-awareness + skill mastery + evolutionary calibration in one paste. Your AI doesn't just answer better, it thinks better.",
+    description: "The free cognition base — self-awareness + skill mastery + evolutionary calibration in one paste. My AI doesn't just answer better, it thinks better.",
     category: "meta",
     content: [
       getPromptContent('ai-self-awareness'),
@@ -2466,8 +2466,8 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
   useEffect(() => {
     const prev = document.title;
     document.title = focusCategory
-      ? `${suiteTitle(focusCategory)} — ${tr(t, "aiOsPage.seo.docTitleSuffix", "Your AI")}`
-      : tr(t, "aiOsPage.seo.docTitle", "Your AI — A different kind of cognition");
+      ? `${suiteTitle(focusCategory)} — ${tr(t, "aiOsPage.seo.docTitleSuffix", "My AI")}`
+      : tr(t, "aiOsPage.seo.docTitle", "My AI — A different kind of cognition");
     return () => { document.title = prev; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [focusCategory, t]);
@@ -2752,15 +2752,15 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
     });
     switch (focusCategory) {
       case "clarity":
-        return seo("clarity", "/ai-os/clarity", "Your AI — Clarity skills", "Free, curated AI skills for clarity. The Holonic Commons library.");
+        return seo("clarity", "/ai-os/clarity", "My AI — Clarity skills", "Free, curated AI skills for clarity. The Holonic Commons library.");
       case "iteration":
-        return seo("iteration", "/ai-os/iteration", "Your AI — Iteration skills", "Free, curated AI skills for iteration and refinement.");
+        return seo("iteration", "/ai-os/iteration", "My AI — Iteration skills", "Free, curated AI skills for iteration and refinement.");
       case "deployment":
-        return seo("deployment", "/ai-os/vibe-code", "Your AI — Vibe Code skills", "Free, curated AI skills for shipping. The Holonic Commons library.");
+        return seo("deployment", "/ai-os/vibe-code", "My AI — Vibe Code skills", "Free, curated AI skills for shipping. The Holonic Commons library.");
       case "design":
-        return seo("design", "/ai-os/design", "Your AI — Design skills", "Free, curated AI skills for design work.");
+        return seo("design", "/ai-os/design", "My AI — Design skills", "Free, curated AI skills for design work.");
       default:
-        return seo("home", "/ai-os", "Your AI — The Holonic Commons", "A free, curated library of AI skills for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer.");
+        return seo("home", "/ai-os", "My AI — The Holonic Commons", "A free, curated library of AI skills for solo founders. Holonic Commons. Aleksandr's curatorship is the paid layer.");
     }
   })();
   return (
@@ -2845,7 +2845,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                 {/* Day 50 (Sasha): hero torus medallion retired — the
                     GameShell rail already carries the brand mark.
                     Day 53 evening (Sasha 2026-04-27): profile button + auth
-                    flow retired entirely from /ai-os. Your AI is Holonic
+                    flow retired entirely from /ai-os. My AI is Holonic
                     Commons — free for everyone, no profile, no sign-in.
                     Anyone arriving at the page can use it immediately
                     without an account. The /ai-os/auth and /ai-os/profile
@@ -3128,7 +3128,7 @@ const AiOsPage = ({ focusCategory }: AiOsPageProps = {}) => {
                   style={{ color: 'hsla(242, 40%, 85%, 0.75)' }}
                 >
                   <ArrowLeft className="w-3.5 h-3.5" />
-                  {tr(t, "aiOsPage.seo.docTitleSuffix", "Your AI")}
+                  {tr(t, "aiOsPage.seo.docTitleSuffix", "My AI")}
                 </Link>
                 <span aria-hidden="true" style={{ color: 'hsla(0, 0%, 100%, 0.3)' }}>/</span>
                 <span

@@ -88,7 +88,7 @@ describe("mini-training 1 page", () => {
     }
   });
 
-  it("closes with Your AI and a secondary link to mini-training 2", () => {
+  it("closes with My AI and a secondary link to mini-training 2", () => {
     const html = render(profileWithGaps);
     expect(html).toContain('href="/game/your-ai"');
     expect(html).toContain('href="/mini-trainings/ai-that-knows-you"');

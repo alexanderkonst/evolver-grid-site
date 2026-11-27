@@ -113,7 +113,7 @@ Everything we build is assembled from five primitives. They are the central chai
 | **Gift** | what only you can do |
 | **Step** | the first act with it in the world |
 | **Trace** | the record of what happened |
-| **Your AI** | the one who reads the trace and helps |
+| **My AI** | the one who reads the trace and helps |
 | **Room** | the people who watch the line |
 
 - **Holonic.** The same five hold at every level. In the Holostrategy below, the L1 primitive (one person) is gift → step → trace → your AI; L2 (two people) and L3 (group, network) are the Room at a larger scale.
@@ -158,6 +158,27 @@ Everything we build is assembled from five primitives. They are the central chai
 - [ ] T10 Make the self-extension protocol runnable: an agent specialty that adds and evolves templates by §7.
 - [ ] T11 Review rhythm: revisit this Meta-Template after each wave of template work, improving the structure itself.
 - [ ] T12 «Shift carried» on every template (Sasha approved 2026-10-27). Line made required, principle added (§2b, §6). Pilot (2026-10-27): session-script ↔ PST 125, unique-business-canvas ↔ PST 158, course-from-source ↔ PST 57, written in plain words. Other templates keep their earlier technology, relabelled «Shift carried»; rewrite each in the same plain before / after / check form when next touched.
+
+## Console buttons (addendum, 2026-11-26)
+*Source: Sasha, 2026-11-26 18:10 MST; library entry: PST 188 Holonic App Store of the Golden Age ([`phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)). Extends the button law in [template-router.md](./template-router.md) rule 5.*
+
+**Button formula: icon + result (1–2 words) + input.** The input is a thing (image sheet, file, link, card, another result), not only text. The prompt lives in the button.
+
+### Three categories (Sasha: «так и сделаем. Три категории кнопок»)
+| Category | What it is |
+|---|---|
+| **Power** | One button = one template. |
+| **Combo** | Two Powers in sequence. A Combo that worked is saved as a new Power with its own icon. |
+| **Superpower** | A rare combo of three or more Powers. |
+
+### Seed entries
+| Button | Category | Icon | Result | Input |
+|---|---|---|---|---|
+| Roasting ([roasting.md](./roasting.md)) | Power | Sasha's idea: a comedian roasting the audience | «увидеть потенциал для роста!» (*translated:* "see the potential for growth!") | Any artifact |
+| Integral synthesis ([integral-synthesis.md](./integral-synthesis.md)) | Power | open | **Wholeness** («Цельность»): the common denominator of the best solutions | A domain or a set of exemplars |
+| Roast + Integral synthesis | Combo | open | **Growth potential** («Потенциал роста») | Your artifact |
+
+First worked Combo: Roast + Integral synthesis on 2026-11-26 (app icons).
 
 ## Holostrategy — meta-template (v0, 2026-10-30)
 *Transmission from Sasha, 2026-10-30 (voice, recorded close to his words), after the "invisible players" scan. Library entry: Phase Shift Technology Library, Technology 181 ([`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)). Holomap background in the same library: §2 Navigating Systems as Living Wholes (Holomaps), §25 Navigation, Not Dashboard (Morphogenetic Holomap), Technology 78 The Planetary Holomap. Holonic levels of this file: §5.*

@@ -136,7 +136,7 @@ export const JOURNEY_MODULES: JourneyModuleDef[] = [
       done: "Done · Your top talent is saved",
       badge: "Top Talent",
       livesIn: { text: "It lives at Home, on the shelf of your victories.", to: "/game/me/overview" },
-      opened: "Home, the Quest Board and Your AI are open.",
+      opened: "Home, the Quest Board and My AI are open.",
       fallbackResult: "Your top talent",
     },
   },

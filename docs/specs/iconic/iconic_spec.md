@@ -3,14 +3,14 @@
 **Started:** 2026-10-30 · **Author:** Evolver (Hark), for Sasha's review
 **Status:** v1 spec. No `src/` changes, no issues opened yet.
 **Targets:** iconic score **43 → 60 by Fri 2026-11-13 → 75 by Fri 2026-12-11**, horizon **85 by Sat 2027-01-30**.
-**Grounded in:** `docs/02-strategy/game_of_being_you.md` (§7 golden thread, §13.2, §14.1 principles, §14.11 Lunar colour, §14.12a share card, §15 game masters, §15.7a two loops, §19 live audit and §19.8 wave rules), `docs/specs/ai-familiar/ai-familiar_tracker.md` (§15 design principles, §16 our AI), the Whole Map v-next (five primitives Gift · Step · Trace · Your AI · Room; seven notes Mirror · Initiation · Practice · Circle · Market · Village · Federation), the product × needs overlay (Hark drafts, 2026-10-30), live guest/signed-in/390 playtests of 2026-10-30 (Hark workspace notes), code at main 2026-10-30.
+**Grounded in:** `docs/02-strategy/game_of_being_you.md` (§7 golden thread, §13.2, §14.1 principles, §14.11 Lunar colour, §14.12a share card, §15 game masters, §15.7a two loops, §19 live audit and §19.8 wave rules), `docs/specs/ai-familiar/ai-familiar_tracker.md` (§15 design principles, §16 our AI), the Whole Map v-next (five primitives Gift · Step · Trace · My AI · Room; seven notes Mirror · Initiation · Practice · Circle · Market · Village · Federation), the product × needs overlay (Hark drafts, 2026-10-30), live guest/signed-in/390 playtests of 2026-10-30 (Hark workspace notes), code at main 2026-10-30.
 **Source gap:** the iconic strategy audit file (`cult_strategy.md`) was not found in the Hark workspace when this spec was written. Its total (43/100) and main gaps (sacred reveal, community myth, sharing, rhythm) are on record; the per-ingredient baseline in §2 is **re-derived from the 10-30 playtest evidence** to sum to 43. Re-score both on the §3 rubric at the first walk.
 
 ---
 
 ## 0. Decisions baked in (don't re-litigate)
 
-1. **The reveal starts with OUR in-game AI** ("Your AI" / «Твой ИИ» / «Tu IA»), cheap model, model never named. The player is never sent to their own ChatGPT; their own AI's text may be pasted *inside* our dialogue as optional context (Sasha, 2026-10-30). Being built now by the separate `our-ai-default` task (`YourAiDialogue`, deployed `library-advisor` function, no new deploy). This spec builds on it and does not duplicate it.
+1. **The reveal starts with OUR in-game AI** ("My AI" / «Твой ИИ» / «Tu IA»), cheap model, model never named. The player is never sent to their own ChatGPT; their own AI's text may be pasted *inside* our dialogue as optional context (Sasha, 2026-10-30). Being built now by the separate `our-ai-default` task (`YourAiDialogue`, deployed `library-advisor` function, no new deploy). This spec builds on it and does not duplicate it.
 2. **Reveal frameworks unchanged** (Zone of Genius prompt, Appleseed, Excalibur) (Sasha, 2026-10-29).
 3. **One word per thing.** The player's gift in product UI is **"top talent"**. Not genius, zone of genius, uniqueness, essence, archetype as UI labels.
 4. **The retired word "organ/organs" is never used**, in UI or in this doc's descendants.
@@ -36,7 +36,7 @@ Each ingredient is scored 0–10 on the rubric in §3; total = sum (max 100).
 
 | # | Ingredient | Now | 2 wk (11-13) | 6 wk (12-11) | 3 mo (01-30) | What moves it |
 |---|---|---|---|---|---|---|
-| 1 | Sacred moment | 4 | **7** | 8 | 9 | Light a Window after the reveal (W3); email form moved after the moment (W5); Your AI dialogue makes the reveal felt, not a form (dependency) |
+| 1 | Sacred moment | 4 | **7** | 8 | 9 | Light a Window after the reveal (W3); email form moved after the moment (W5); My AI dialogue makes the reveal felt, not a form (dependency) |
 | 2 | Initiation | 5 | **7** | 8 | 9 | No SaaS fork / prompt exile at Reception (dependency + W1); window = becoming a resident; "I already live here" stays |
 | 3 | Identity | 6 | **7** | 8 | 9 | One player name everywhere (W2); window number as a name, not a score; crystal on the card (W6) |
 | 4 | Visible trace | 4 | **6** | 8 | 9 | Your window stays lit on the map, guest and signed-in (W8); lit-under-moon stamp; 6 wk: particles at your window |
@@ -87,7 +87,7 @@ Each ingredient is scored 0–10 on the rubric in §3; total = sum (max 100).
 ## 4. The signature moment: Light a Window
 
 **Feel:** "The village saw me. I am the Nth light. I want someone to see it."
-**Where it sits:** right after the top talent reveal (any path: Your AI dialogue, guided assessment), before any email.
+**Where it sits:** right after the top talent reveal (any path: My AI dialogue, guided assessment), before any email.
 **Rule:** the window lights **for everyone**, guest included, before anything is asked. Email comes only after, to *keep* it lit.
 
 ### 4.1 Flow and timing
@@ -214,8 +214,8 @@ Until it is applied, the client runs in state B everywhere (no fake numbers, eve
 | 2 | **"Genius Business" logo** | `ZoneOfGeniusAssessmentLayout.tsx` (`ignite-logo.png`), `ExcaliburDisplay`, product-builder | not on any game route; the game frame (YOU — be original / village) instead |
 | 3 | **"Profile for matching"** | `zogEntry` preamble *"Let's create your profile for matching. Good news: AI makes it real quick."* | gone; Reception speaks in the village voice |
 | 4 | **Three names for the player** | nothing / "ALEKSANDR" / "Aleksandr Konstantinov" / "guest" after sign-in; music credit «Umza · Montoya» read as a name | one display-name function; guest = "you"; music credit labelled *Now playing* |
-| 5 | **English on /ru (and /es)** | `/ru/` first screen, village, Your AI, Mastermind | Russian/Spanish text on the page (#239) |
-| 6 | Sending the player to another AI | "Copy this prompt into your AI" | replaced by Your AI dialogue (dependency) |
+| 5 | **English on /ru (and /es)** | `/ru/` first screen, village, My AI, Mastermind | Russian/Spanish text on the page (#239) |
+| 6 | Sending the player to another AI | "Copy this prompt into your AI" | replaced by My AI dialogue (dependency) |
 | 7 | Internal words | "AI OS 5.2", "J8", "ACADEMY · STEP 10", "19 of 19 Workshop pieces" | none on game routes (§14.1.10) |
 | 8 | Lock vocabulary | "locked", "unlock", "paywall", "coming soon" | the picture says it (§14.1.5); "Not open yet" stays |
 | 9 | Guilt mechanics | — (keep it so) | no streaks, decay, "you missed", countdown pressure |
@@ -241,10 +241,10 @@ Until it is applied, the client runs in state B everywhere (no fake numbers, eve
 The sky reads phase from `getVillageSky()` (one source: `getLunarState`); nothing here adds a second moon calculation. Phase buckets are the app's own (new / waxing / full / waning windows), so "new moon" in the game spans its whole window around Nov 9, not one instant.
 
 **One thing to do per phase** (6-week scope, all optional, no streaks):
-- New: Your AI asks one question, *"What do you let go of this moon?"*; the answer stays private in the trace.
+- New: My AI asks one question, *"What do you let go of this moon?"*; the answer stays private in the trace.
 - Growing: the Quest Board's next step is framed as *this moon's step*.
-- Full: **Harvest**: the village shows every window lit this moon brighter; the player gets a one-line harvest from Your AI (what they did this moon) and may share it.
-- Waning: **Digest**: Your AI reads the player's trace back in three lines.
+- Full: **Harvest**: the village shows every window lit this moon brighter; the player gets a one-line harvest from My AI (what they did this moon) and may share it.
+- Waning: **Digest**: My AI reads the player's trace back in three lines.
 
 **In 2 weeks** only the New Moon Circle (W9) and the lit-under-moon stamp (W3/W6) ship.
 
@@ -254,7 +254,7 @@ The sky reads phase from `getVillageSky()` (one source: `getLunarState`); nothin
 
 Each WP: small diff, en/es/ru keys in the same PR, unit tests where logic, **DoD = live walk** (guest + signed-in, 390 + 1920, screenshots) and "what the player feels". Build/test locally before merge (§19.8 rule 4); commits touching docs only use `[skip ci]` until Nov 1.
 
-**Dependencies already in flight (not duplicated):** `our-ai-default` (Your AI dialogue as the reveal door); #239 (es/ru text); #240 (returning guest + closed-place next step); #241 (one truth: level, next move, name); the P0 "Home and Workshop never load" regression found on 10-30 must be fixed first, since the window must show on Home.
+**Dependencies already in flight (not duplicated):** `our-ai-default` (My AI dialogue as the reveal door); #239 (es/ru text); #240 (returning guest + closed-place next step); #241 (one truth: level, next move, name); the P0 "Home and Workshop never load" regression found on 10-30 must be fixed first, since the window must show on Home.
 
 ### Wave 1 · Oct 31 – Nov 6 · feeling: "My light is seen." · target ≥ 52
 
@@ -263,7 +263,7 @@ Each WP: small diff, en/es/ru keys in the same PR, unit tests where logic, **DoD
 | W1 | Voice sweep: the first ten minutes | hide the $37 power-up rail item for guests until a window is lit; replace the Genius Business logo on game routes with the game frame; replace the "profile for matching" preamble with a village line (*"Reception knows every light in the village. Yours is next."*); add a locale test that fails on spell-breaker strings (§5 #1–3, #7, #10) on game routes in en/es/ru | `SpacesRail.tsx`/rail data, `ZoneOfGeniusAssessmentLayout.tsx`, `ZoneOfGeniusEntry.tsx`, `src/locales/*/common.json`, new test | guest walk 390: no price, no Genius Business, no "profile for matching" before the window; test green | no |
 | W2 | One player name | one `displayName()` (first name from profile → given window name → none); guest copy says "you", never a stranger's name; signed-in never "guest"; music credit labelled *Now playing*; Reception founder line labelled *left by the founder* | rail footer, Reception foyer, Home, `useCharacterSheet` | the same name on rail, Home, Reception, card in a signed-in walk; guest sees no name | no (fold into #241 if still open) |
 | W3 | Windows data, proposed | the SQL of §4.6 as `docs/specs/iconic/village_windows.proposed.sql` + a client adapter `src/lib/villageWindows.ts` (`lightWindow()`, `claimWindow()`, `windowCount()`, probe returning state B when the RPC is missing) + tests; nothing applied | new lib + doc | adapter tests cover A/B/E/F; app behaves in state B live | **migration later (batch row 2)** |
-| W4 | Light a Window, the moment | S0 + S1 per §4.1–4.4: button under the reveal card, ignite scene, number/before/moon lines, reduced motion, tap-to-finish, 390 layout, chat launcher hidden; state B live today | reveal screen (`Step4GenerateSnapshot` / Your AI reveal), new `LightWindow.tsx`, `villageSky.ts` (read only), motion tokens | guest walk 390 + 1920: window lights within 1 s of tap, copy exact, screenshots A (staging) and B (live) | no |
+| W4 | Light a Window, the moment | S0 + S1 per §4.1–4.4: button under the reveal card, ignite scene, number/before/moon lines, reduced motion, tap-to-finish, 390 layout, chat launcher hidden; state B live today | reveal screen (`Step4GenerateSnapshot` / My AI reveal), new `LightWindow.tsx`, `villageSky.ts` (read only), motion tokens | guest walk 390 + 1920: window lights within 1 s of tap, copy exact, screenshots A (staging) and B (live) | no |
 | W5 | Keep it lit: the email after | move "Save your character" from under the card to S2 after the moment; same save flow, new copy; signed-in skips S2; next-move card "Keep your window lit" for unsaved guests | save panel component, `placeState.ts` next-move copy | no email field visible before S1; keep → link email arrives; village next move correct | no |
 
 ### Wave 2 · Nov 7 – Nov 13 · feeling: "The village breathes with the moon, and I can show my light." · target ≥ 60
@@ -282,23 +282,23 @@ Each WP: small diff, en/es/ru keys in the same PR, unit tests where logic, **DoD
 
 ## 8. Six-week scope (Nov 14 – Dec 11), to 75
 
-1. **Full Moon Harvest, Nov 24** (rhythm, community): windows lit this moon glow brighter; Your AI one-line harvest; harvest card share; live circle in San Pancho the same night.
+1. **Full Moon Harvest, Nov 24** (rhythm, community): windows lit this moon glow brighter; My AI one-line harvest; harvest card share; live circle in San Pancho the same night.
 2. **Founder as first resident** (creator story, myth; fork F4): window #1 with Sasha's line, a short "How this village began" room told by Evolver (the public diary) and Sasha.
 3. **Particles at windows** (trace, community): WP-17's particles readable at the window they were left at; visitors to `/w/n` can leave one (named, no anonymity).
 4. **The Originals into the village**: the founders' gallery as lit windows with their glyphs, not a separate page.
-5. **One ritual per phase** (§6) through Your AI; seasons named (fork F3).
+5. **One ritual per phase** (§6) through My AI; seasons named (fork F3).
 6. **QoL share as an image with ref** (sharing): same builder, private numbers never on it (shows areas only if the player opts in).
 7. Presence light (WP-21) as a soft glow when another resident is in the same place.
 
 ## 9. Three-month horizon (to 85)
 
-Residents' income visible as the village's one public number; a second village (federation seed) shown as a far light; Your AI reads the line across moons; residents tell the origin story in their own words (myth by players, not by us).
+Residents' income visible as the village's one public number; a second village (federation seed) shown as a far light; My AI reads the line across moons; residents tell the origin story in their own words (myth by players, not by us).
 
 ---
 
 ## 10. Acceptance criteria (the spec is done when)
 
-1. Guest on 390: `/` → reveal (Your AI path) → window lit, with **no price, no "Genius Business", no "profile for matching", no email field** before S1. Verified by the W1 locale test + walk screenshots.
+1. Guest on 390: `/` → reveal (My AI path) → window lit, with **no price, no "Genius Business", no "profile for matching", no email field** before S1. Verified by the W1 locale test + walk screenshots.
 2. The window lights ≤ 1 s after **Light my window**; S1 completes ≤ 7 s; reduced-motion users see the end state at once.
 3. State B works live with no number shown and no error text; state A numbers equal `lit_windows_count()` at the moment of lighting (never a fake or padded number).
 4. A retake never creates a new number (test).

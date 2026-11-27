@@ -5,6 +5,9 @@
 **Method:** `docs/03-playbooks/integrated_product_building_workflow.md` (Transformative-Result Pattern), `docs/templates/module-form.md` (Intro → one button → result → Outro), `docs/templates/spec-handoff.md` (build tasks)
 **Grounded in:** `docs/ai/README.md` §0 (Sasha's thesis, 2026-10-29), `docs/02-strategy/game_of_being_you.md` §18, `docs/01-vision/ai_os_benchmark.md`, current `/ai-os` (code `src/modules/ai-os/`, live page read 2026-10-29), repo at `04e6f0a`
 
+
+> **Rename, 2026-11-26 19:04 MST (Sasha: «Разве не должно быть MY AI?»):** the English product name is now **My AI** (tagline: Sets Up My AI). This tracker is a dated decision journal, so every entry below keeps the name it was written under («Your AI»); read «Your AI» here as «My AI». Routes, slugs, file paths and DB keys keep `your-ai`. Issue #545.
+
 ---
 
 ## INPUT ✅ (5/5)

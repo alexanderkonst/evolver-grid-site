@@ -42,7 +42,7 @@
 | Audit of modules against the form | [module-form.md](./module-form.md) §9 + §12.6 | Every module checked against the form | 81 The Specificity Loop |
 | Reflection after a client session | [session-reflection.md](./session-reflection.md) | What the session really showed | Craft (candidate shift in template) |
 | Measuring a client's transformation | [transformation-results.md](./transformation-results.md) | Your change, measured in your own words | 185 The Visible Shift |
-| Critique / next version of anything | [roasting.md](./roasting.md) | The next, stronger version | 93 Vision ↔ Viability Balancing |
+| Critique / next version of anything | [roasting.md](./roasting.md) | See the potential for growth (input: any artifact) | 93 Vision ↔ Viability Balancing |
 | Long build: plan → ship → report → retro | [improvement-loop.md](./improvement-loop.md) | Shipped, reported, learned from | 161 The Hexagon Cycle |
 | Mini-course from a body of work | [course-from-source.md](./course-from-source.md) | A mini-course from your body of work | 57 Campfire Networking |
 | Landing page of a course / mini-training (`/academy/<slug>`): its sections, voice, links to and from it | [course-landing.md](./course-landing.md) | A course page that names the promise and opens the course in one click | 173 Sell the Shift, Not the Content (candidate) |
@@ -53,7 +53,7 @@
 | Grant / fellowship / accelerator application | [application-loop.md](./application-loop.md) | An application in your true voice | 93 Vision ↔ Viability Balancing |
 | One unified reading from all positions | [holonic-seeing.md](./holonic-seeing.md) | One reading from every position | 15 Complete Seeing Guaranteed · 66 The 27th Perspective |
 | Any change of a client's amount (offered / agreed / superseded / received / rolled back): every place it lives, in order, then one grep | private ledger: `docs/templates/money-change-checklist.md` (evolver-private-ledger; client names and money stay private) | One amount, the same everywhere | Craft (nearest 115) |
-| Synthesize one domain across many exemplars (navigation, onboarding, progression…): take it apart, find the task invariants by common denominator, keep the proven solutions, reassemble one whole without overload | [integral-synthesis.md](./integral-synthesis.md) | One whole, built from what works everywhere | 98 Prime Invariant Branding · 82 Linguistic Synthesis (candidate) |
+| Synthesize one domain across many exemplars (navigation, onboarding, progression…): take it apart, find the task invariants by common denominator, keep the proven solutions, reassemble one whole without overload | [integral-synthesis.md](./integral-synthesis.md) | Wholeness: the common denominator of the best solutions (input: a domain or a set of exemplars) | 98 Prime Invariant Branding · 82 Linguistic Synthesis (candidate) |
 | Simplify a screen or interface by testing and cutting until it gets out of the way | [subtraction-loop.md](./subtraction-loop.md) | An interface a first-timer gets in seconds | 115 Articulation Is the Mechanism of Growth (candidate) |
 | Anything else / a new template | [meta-template.md](./meta-template.md), then [README.md](./README.md) | A new form for a new kind of work | Craft (nearest 115) |
 

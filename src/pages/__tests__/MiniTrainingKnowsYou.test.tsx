@@ -67,11 +67,11 @@ describe("mini-training 2 page", () => {
     expect(html.toLowerCase()).not.toMatch(/\bcourse\b/);
   });
 
-  it("ends with the profile slot and the way back to Your AI", () => {
+  it("ends with the profile slot and the way back to My AI", () => {
     const html = render(profileWithGaps);
     expect(html).toContain('data-testid="no-profile-yet"');
     expect(html).toContain('href="/game/your-ai"');
-    expect(html).toContain("Keep talking in Your AI");
+    expect(html).toContain("Keep talking in My AI");
   });
 
   it("gates a player without a Top Talent: link to the existing reveal, no cards", () => {

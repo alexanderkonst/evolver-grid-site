@@ -40,7 +40,7 @@ export function buildGifts(src: FamiliarSources): GiftState[] {
       key: "activated",
       lit: true,
       label: "Activated",
-      detail: `Your AI ${src.aiOsVersion}`,
+      detail: `My AI ${src.aiOsVersion}`,
       detailKey: "activated",
       params: { version: src.aiOsVersion },
     },

@@ -17,7 +17,7 @@ const titleRules: TitleRule[] = [
   // Journey space — section-specific so each tab is self-identifying.
   { match: (path) => path === "/playbook" || path.startsWith("/playbook/"), title: "Playbook" },
   { match: (path) => path === "/path" || path.startsWith("/path/"), title: "Path" },
-  { match: (path) => path === "/ai-os" || path.startsWith("/ai-os/"), title: "Your AI" },
+  { match: (path) => path === "/ai-os" || path.startsWith("/ai-os/"), title: "My AI" },
   { match: (path) => path === "/dashboard", title: "Dashboard" },
   { match: (path) => path === "/build/cockpit/dashboard", title: "Founder Cockpit" },
   { match: (path) => path === "/build/cockpit/offers", title: "Offers Board" },
@@ -59,7 +59,7 @@ const titleRules: TitleRule[] = [
   { match: (path) => path.startsWith("/game/meet"), title: "Café" },
   { match: (path) => path.startsWith("/game/coop"), title: "Town Hall" },
   // The direct link to the Your AI instrument.
-  { match: (path) => path === "/game/your-ai" || path.startsWith("/game/your-ai/"), title: "Your AI" },
+  { match: (path) => path === "/game/your-ai" || path.startsWith("/game/your-ai/"), title: "My AI" },
   { match: (path) => path.startsWith("/mini-trainings/ai-as-a-mirror"), title: "Mini-training · AI as a Mirror" },
   { match: (path) => path.startsWith("/mini-trainings/ai-that-knows-you"), title: "Mini-training · AI That Knows You" },
   { match: (path) => path.startsWith("/game/next-move"), title: "Next Move" },

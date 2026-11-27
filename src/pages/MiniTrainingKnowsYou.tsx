@@ -306,7 +306,7 @@ const Training = ({ userId, profile: baseProfile }: { userId: string; profile: M
         )}
         <div className="mt-6">
           <Button asChild data-testid="knows-you-next">
-            <Link to={YOUR_AI_PATH}>Keep talking in Your AI</Link>
+            <Link to={YOUR_AI_PATH}>Keep talking in My AI</Link>
           </Button>
         </div>
       </section>
@@ -332,18 +332,18 @@ const CopyButton = ({ text, label, testId }: { text: string; label: string; test
 
 /** #7: try the saved profile in the Your AI conversation. */
 const AnywhereCard = ({ saved, done, onDone }: { saved: string | null; done: boolean; onDone: () => void }) => (
-  <section className="rounded-xl border border-border bg-card p-4 shadow-sm" aria-label="Try your profile in Your AI" data-testid="card-7">
-    <h3 className="mb-2 text-sm font-semibold text-foreground">Try your profile in Your AI</h3>
+  <section className="rounded-xl border border-border bg-card p-4 shadow-sm" aria-label="Try your profile in My AI" data-testid="card-7">
+    <h3 className="mb-2 text-sm font-semibold text-foreground">Try your profile in My AI</h3>
     {saved ? (
       <>
         <p className="mb-2 text-sm text-muted-foreground">
-          Copy your saved profile and the question below. Paste them into Your AI and read the answer.
+          Copy your saved profile and the question below. Paste them into My AI and read the answer.
         </p>
         <p className="whitespace-pre-wrap rounded-md bg-muted/50 p-3 text-sm leading-relaxed text-foreground">{anywhereText(saved)}</p>
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <CopyButton text={anywhereText(saved)} label="Copy" testId="copy-anywhere" />
           <Button asChild variant="outline">
-            <a href={YOUR_AI_PATH} target="_blank" rel="noopener">Open Your AI</a>
+            <a href={YOUR_AI_PATH} target="_blank" rel="noopener">Open My AI</a>
           </Button>
           <Button type="button" size="sm" variant={done ? "outline" : "default"} onClick={onDone} disabled={done} data-testid="anywhere-done">
             {done ? "Marked: it knew me" : "It knew me"}
