@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { MOTION } from "@/lib/motion";
 
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -31,6 +32,19 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       setTransitionStage("fadeOut");
     }
   }, [location, displayLocation]);
+
+  // #497: the exit fade ends at opacity 0 (`forwards`), and only `animationend` brought the page back.
+  // Under prefers-reduced-motion the exit lasts 0 ms and the browser sometimes never reports the event,
+  // so the new route stayed invisible (the shell around it stayed). Time is the backstop: whether or not
+  // the event comes, the exit is over shortly after it should have ended.
+  useEffect(() => {
+    if (transitionStage !== "fadeOut") return;
+    const timer = window.setTimeout(() => {
+      setTransitionStage("fadeIn");
+      setDisplayLocation(location);
+    }, MOTION.fast + 100);
+    return () => window.clearTimeout(timer);
+  }, [transitionStage, location]);
 
   return (
     <div
