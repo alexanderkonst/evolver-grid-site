@@ -9833,6 +9833,23 @@
         "earth": "La Tierra se enciende. El Colectivo está abierto para ti."
       }
     },
+    "reveal": {
+      "label": "Conoce tu instrumento",
+      "continue": "Continuar",
+      "opensOnPath": "Se abre en tu camino",
+      "step": "{{n}} de {{total}}",
+      "line": {
+        "dim": "El mundo se atenúa. Aparece un pequeño punto de luz.",
+        "gather": "La luz se reúne en un cristal. Este es tu instrumento.",
+        "ring": "Un anillo de agua se cierra a su alrededor. La luna del anillo es la luna de hoy.",
+        "open": "Se abre una sola vez, para que veas dentro. Después se queda en la esquina.",
+        "header": "Esta es Mi IA, impulsada por My AI OS. Va contigo en cada pantalla.",
+        "conversation": "Está hecha para conocerte, y te conoce más de cerca mientras juegas.",
+        "console": "La Consola: cada app es un botón que hace algo poderoso.",
+        "outlines": "Tres cuerpos más esperan aquí como contornos. Cada uno se enciende cuando se abre su cuarto.",
+        "settle": "Ahora queda en la esquina. Tócalo cuando quieras abrirlo."
+      }
+    },
     "glint": {
       "label": "Cambió desde tu última visita"
     },

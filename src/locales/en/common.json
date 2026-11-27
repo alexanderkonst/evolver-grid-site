@@ -9859,6 +9859,23 @@
         "earth": "Earth is lit. The Collective is open to you."
       }
     },
+    "reveal": {
+      "label": "Meet your instrument",
+      "continue": "Continue",
+      "opensOnPath": "Opens on your path",
+      "step": "{{n}} of {{total}}",
+      "line": {
+        "dim": "The world dims. A small point of light appears.",
+        "gather": "The light gathers into a crystal. This is your instrument.",
+        "ring": "A ring of water closes around it. The moon on the ring is today's moon.",
+        "open": "It opens once, so you can see inside. After this it stays in the corner.",
+        "header": "This is My AI, powered by My AI OS. It goes with you on every screen.",
+        "conversation": "It is built to know you, and it knows you closer as you play.",
+        "console": "The Console: every app is a button that does something powerful.",
+        "outlines": "Three more bodies wait here as outlines. Each lights when its quarter opens.",
+        "settle": "Now it sits in the corner. Tap it any time to open it."
+      }
+    },
     "glint": {
       "label": "Changed since you were here"
     },

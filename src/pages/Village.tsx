@@ -52,6 +52,7 @@ import { useSceneSrc } from "@/lib/sceneSrc";
 import { placeObjects, placeSoul, watchedCourseObjects } from "@/lib/placeColor";
 import IntroSequence from "@/components/game/IntroSequence";
 import YourAiInstrument from "@/components/game/YourAiInstrument";
+import { InstrumentRevealGate } from "@/lib/instrument/useInstrumentReveal";
 import { instrumentGate, readAiOsVisited } from "@/lib/instrument/state";
 import MoonDial from "@/components/game/MoonDial";
 import PlaceRoomsPane from "@/components/game/PlaceRoomsPane";
@@ -815,6 +816,15 @@ const Village = () => {
         ownerId={sheet.userId}
         lit={quarterLit}
         avoid=".vl-move__card"
+      />
+      {/* The first reveal of the instrument (architecture §5.3): once, after the profile exists and never
+          before the top talent result. Not tied to the glyph's gate;
+          only the game intro keeps it waiting. */}
+      <InstrumentRevealGate
+        enabled={!introOn}
+        ownerId={sheet.userId}
+        profileCreated={!!sheet.userId}
+        topTalentDone={!!sheet.topTalent}
       />
     </div>
   );
