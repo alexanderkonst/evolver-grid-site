@@ -63,7 +63,7 @@ Spec only. Building the button is a separate @claude issue; the learner's **Ente
 | Potential | Accelerates The Unfolding of Your Potential | Activate Your Dormant Potential | series on kit; icon #506 |
 | Crossing | Reconciles Consciousness with Science | Consciousness Meets Science | icon #506 |
 | Vision | Activates Your Inner Vision | Activation of Inner Vision | icon #506 |
-| Nature | Aligns You With Natural Rhythms | to create from the Equilibrium manual | icon #506 |
+| Nature | Aligns You With Natural Rhythms | draft v0.2 (texts, awaiting signature): [nature_mini_training.md](../08-content/nature_mini_training.md) | icon #533 |
 | Your AI | Sets up Your AI | to create | icon #506 |
 
 ## Open
