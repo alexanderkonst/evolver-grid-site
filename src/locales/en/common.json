@@ -10097,7 +10097,8 @@
       ]
     },
     "public": {
-      "title": "Our business, in public",
+      "title": "Our business of businesses",
+      "founders": "Founders in the collective: {{count}}",
       "sub": "While Aleksandr is at the center, this is how it actually went for him. New milestones appear here as they happen.",
       "viewsLabel": "Choose a view",
       "views": { "short": "Short", "key": "Key milestones", "full": "Full timeline" },
