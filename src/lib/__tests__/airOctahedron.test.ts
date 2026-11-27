@@ -1,10 +1,16 @@
 import { describe, expect, it } from "vitest";
 import {
+  CRYSTAL_MAX_PX,
+  CRYSTAL_MIN_PX,
+  EDGE_ALPHA_BACK,
+  EDGE_ALPHA_FRONT,
+  FACE_ALPHA_SCALE,
   FRAME_MS,
   MAX_FPS,
   OCTAHEDRON_EDGES,
   OCTAHEDRON_FACES,
   STATIC_POSE,
+  crystalPx,
   frameGate,
   octahedronVertices,
   poseAt,
@@ -111,5 +117,38 @@ describe("performance budget", () => {
     expect(shouldAnimate({ hidden: true, panelOpen: false, reduced: false })).toBe(false);
     expect(shouldAnimate({ hidden: false, panelOpen: true, reduced: false })).toBe(false);
     expect(shouldAnimate({ hidden: false, panelOpen: false, reduced: true })).toBe(false);
+  });
+});
+
+describe("clear air: faint facets", () => {
+  it("cuts face fills and edge strokes to about a third of #458 (faces 0.9 / 0.34 edges)", () => {
+    expect(FACE_ALPHA_SCALE).toBeLessThanOrEqual(0.34);
+    expect(EDGE_ALPHA_FRONT).toBeLessThanOrEqual(0.9 / 3);
+    expect(EDGE_ALPHA_BACK).toBeLessThanOrEqual(0.34 / 3);
+    expect(EDGE_ALPHA_BACK).toBeLessThan(EDGE_ALPHA_FRONT);
+  });
+});
+
+describe("crystalPx", () => {
+  it("stays inside the clamp from a small phone to a large desktop", () => {
+    for (const [w, h] of [[320, 568], [375, 667], [768, 1024], [1280, 800], [1920, 1080], [3840, 2160]]) {
+      const px = crystalPx(w, h);
+      expect(px).toBeGreaterThanOrEqual(CRYSTAL_MIN_PX);
+      expect(px).toBeLessThanOrEqual(CRYSTAL_MAX_PX);
+    }
+  });
+
+  it("follows the shorter side, so rotating a device does not change it", () => {
+    expect(crystalPx(768, 1024)).toBe(crystalPx(1024, 768));
+  });
+
+  it("grows between phone and tablet, and never shrinks as the screen grows", () => {
+    expect(crystalPx(768, 1024)).toBeGreaterThan(crystalPx(375, 667));
+    expect(crystalPx(1920, 1080)).toBeGreaterThanOrEqual(crystalPx(1280, 800));
+  });
+
+  it("falls back to the minimum for a zero or broken viewport", () => {
+    expect(crystalPx(0, 0)).toBe(CRYSTAL_MIN_PX);
+    expect(crystalPx(NaN, 800)).toBe(CRYSTAL_MIN_PX);
   });
 });

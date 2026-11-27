@@ -3,7 +3,8 @@
  * (docs/specs/your-ai-instrument/sow.md D1; reference docs/assets/your-ai/octahedron_reference.png).
  *
  * One small 2D canvas, no WebGL, no library. Eight translucent faces in sky tones, twelve light edges,
- * painted far to near so the back edges show through the faces. No shadowBlur, no halo: the only light
+ * both kept faint (2026-11-27: clear air, barely visible facets), painted far to near so the back edges
+ * show through the faces. No shadowBlur, no halo: the only light
  * is the object's own, a refraction gradient on each face.
  *
  * Performance budget: rAF capped at ~30fps; the loop is not running when the tab is hidden, when the
@@ -11,6 +12,11 @@
  */
 import { useEffect, useRef } from "react";
 import {
+  EDGE_ALPHA_BACK,
+  EDGE_ALPHA_FRONT,
+  EDGE_WIDTH_BACK,
+  EDGE_WIDTH_FRONT,
+  FACE_ALPHA_SCALE,
   STATIC_POSE,
   frameGate,
   poseAt,
@@ -61,8 +67,9 @@ export const drawOctahedron = (ctx: CanvasRenderingContext2D, size: number, pose
     // Refraction: the face brightens along the line from the light-facing corner to the far one.
     const grad = ctx.createLinearGradient(p[0], p[1], (q[0] + s[0]) / 2, (q[1] + s[1]) / 2);
     const a = front ? 0.07 + 0.2 * lit : 0.03 + 0.06 * lit;
-    grad.addColorStop(0, `rgba(${r},${g},${b},${a + 0.08})`);
-    grad.addColorStop(1, `rgba(${r},${g},${b},${Math.max(0.02, a - 0.05)})`);
+    // Same light, a third of the strength: the facets barely show, the gradient still turns toward the light.
+    grad.addColorStop(0, `rgba(${r},${g},${b},${(a + 0.08) * FACE_ALPHA_SCALE})`);
+    grad.addColorStop(1, `rgba(${r},${g},${b},${Math.max(0.02, a - 0.05) * FACE_ALPHA_SCALE})`);
     ctx.fillStyle = grad;
     ctx.beginPath();
     ctx.moveTo(p[0], p[1]);
@@ -75,8 +82,8 @@ export const drawOctahedron = (ctx: CanvasRenderingContext2D, size: number, pose
   // Edges after all faces so the near ones stay crisp over the translucent fills.
   for (const e of projectEdges(pose, scale, c, c)) {
     const front = e.depth > 0;
-    ctx.strokeStyle = `rgba(${EDGE},${front ? 0.9 : 0.34})`;
-    ctx.lineWidth = front ? 1.4 : 1;
+    ctx.strokeStyle = `rgba(${EDGE},${front ? EDGE_ALPHA_FRONT : EDGE_ALPHA_BACK})`;
+    ctx.lineWidth = front ? EDGE_WIDTH_FRONT : EDGE_WIDTH_BACK;
     ctx.beginPath();
     ctx.moveTo(e.from[0], e.from[1]);
     ctx.lineTo(e.to[0], e.to[1]);
