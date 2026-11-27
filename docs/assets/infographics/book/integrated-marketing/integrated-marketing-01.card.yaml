@@ -1,0 +1,14 @@
+id: integrated-marketing-01
+chapter: "3.1"
+kind: as_is
+source: integrated-marketing-01.source.jpeg
+title: "Integrated Marketing"
+caption: "Myth, Threshold, Identity: the path to business and client"
+text:
+  myth: "Myth · faculty"
+  threshold: "Threshold · trajectory"
+  identity: "Identity · distance"
+  center: "Integrated Marketing"
+author: "Sasha (hand drawing)"
+sources:
+  - "GitHub issue #563 (Sasha, 2026-11-27 13:10 MST: his hand drawing, added as is)"

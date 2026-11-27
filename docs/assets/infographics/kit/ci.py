@@ -10,7 +10,7 @@ import subprocess
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from kit import book_sync, lint, render, sheet, skins, spec as specmod  # noqa: E402
+from kit import asis, book_sync, lint, render, sheet, skins, spec as specmod  # noqa: E402
 
 REPO = os.path.normpath(os.path.join(skins.INFOGRAPHICS, "..", "..", ".."))
 GLOBAL = ("docs/assets/infographics/kit/", "docs/assets/infographics/engine-v4/", "docs/assets/infographics/fyt_style.py")
@@ -52,7 +52,8 @@ if __name__ == "__main__":
     os.makedirs(a.out, exist_ok=True)
     specs = [specmod.load(p) for p in paths]
     for s in specs:
-        render.render(s)
+        if not asis.is_as_is(s):  # as-is cards keep the author's pixels; the build converts them
+            render.render(s)
     rc = lint.main(paths)
     rc |= book_sync.main(paths)
     print(sheet.make_sheet(specs, os.path.join(a.out, "contact-sheet.png")))

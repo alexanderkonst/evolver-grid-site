@@ -24,6 +24,10 @@ App icons (spec `kind: icon`, see icon.py) are checked by `check_icon` with ICON
   no-text      no text drawn on an icon
   spec-fields  as above
 
+As-is cards (spec `kind: as_is`, `source: <file>`, see asis.py) are never drawn, so they get two rules only:
+  spec-fields  id, chapter, title, caption and source present
+  source-file  the source file exists
+
 Icons v2 / v3 (spec `icon_version: 2|3`, issues #528, #533) add two rules and tighten one (ICON_V2_RULES):
   elements     at most 4 shapes (parts drawn with the same `group` count once), all on the "after" side: no before, no chevron
   fill         the sign's longest side is 62-78% of the tile (the brief says ~70%)
@@ -35,7 +39,7 @@ import sys
 import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from kit import skins, spec as specmod  # noqa: E402
+from kit import asis, skins, spec as specmod  # noqa: E402
 
 RULES = ("fit", "words", "palette", "accent", "margins", "min-font", "footer", "spec-fields")
 ICON_RULES = ("palette", "accent", "margins", "stroke", "elements", "no-text", "spec-fields")
@@ -218,6 +222,8 @@ def lint_spec(path):
     except Exception as e:  # unreadable spec
         return "?", [("spec-fields", "FAIL", f"cannot read spec: {e}")] + [(r, "SKIP", "no spec") for r in RULES if r != "spec-fields"]
     cid = spec.get("id", os.path.basename(path))
+    if asis.is_as_is(spec):  # the author's picture: only title/caption and the source file are checked
+        return cid, [(r, "PASS" if ok else "FAIL", d) for r, ok, d in asis.check(spec)]
     icon = spec.get("kind") == "icon"
     RS = (ICON_V2_RULES if spec.get("icon_version") in (2, 3) else ICON_RULES) if icon else RULES
     missing = specmod.missing(spec)

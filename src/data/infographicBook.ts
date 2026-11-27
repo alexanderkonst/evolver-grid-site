@@ -96,6 +96,7 @@ export const BOOK_CHAPTERS: BookChapter[] = [
     depth: 2,
     coming: false,
     cards: [
+      { id: "integrated-marketing-01", title: "Integrated Marketing", caption: "Myth, Threshold, Identity: the path to business and client", image: "/infographics/book/integrated-marketing/integrated-marketing-01.png", status: "approved v1" },
       { id: "primitives-01", title: "Two Humans", caption: "Every business, even deep tech, is a relationship between people.", image: "/infographics/book/first-principles/primitives-01.png", status: "draft v4" },
       { id: "primitives-02", title: "Process, Change, Exchange", caption: "What happens between the two.", image: "/infographics/book/first-principles/primitives-02.png", status: "draft v4" },
       { id: "primitives-03", title: "The DNA of a Business", caption: "Six cells. Every business that holds has all six.", image: "/infographics/book/first-principles/primitives-03.png", status: "draft v4" },

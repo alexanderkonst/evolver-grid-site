@@ -30,7 +30,7 @@ from collections import namedtuple
 import yaml
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from kit import book_sync, lint, render, sheet, skins, spec as specmod  # noqa: E402
+from kit import asis, book_sync, lint, render, sheet, skins, spec as specmod  # noqa: E402
 
 REPO = os.path.normpath(os.path.join(skins.INFOGRAPHICS, "..", "..", ".."))
 Paths = namedtuple("Paths", "book public ts md")  # book = dir holding book.yaml, cards and sheet.png
@@ -124,9 +124,11 @@ def _card(entry, chapter_no, errors, seen_ids, paths):
         errors.append(f"{where}: spec says id {spec.get('id')!r}")
     if str(spec.get("chapter")) != chapter_no:
         errors.append(f"{where}: sits in chapter {chapter_no}, spec says chapter {spec.get('chapter')!r}")
-    miss = specmod.missing(spec)
+    miss = asis.missing(spec) if asis.is_as_is(spec) else specmod.missing(spec)
     if miss:
         errors.append(f"{where}: spec incomplete: {', '.join(miss)}")
+    elif asis.is_as_is(spec) and not os.path.isfile(asis.source_path(spec)):
+        errors.append(f"{where}: source-file: source file not found: {spec['source']!r}")
     card.update(spec=spec, folder=folder, image=f"{folder}/{cid}.png", title=spec.get("title", ""),
                 caption=spec.get("caption") or "")
     return card
@@ -264,6 +266,8 @@ def apply_markers(md, blocks):
 
 
 def fingerprint_card(spec):
+    if asis.is_as_is(spec):  # spec + source picture; no script, the renderer does not apply
+        return asis.fingerprint(spec)
     h = hashlib.sha256()
     for p in (spec.path, spec.script):
         with open(p, "rb") as f:
@@ -341,6 +345,11 @@ def pixel_diff(a, b):
 def render_card(card, paths, out_png):
     """Render to out_png, lint. -> list of FAIL lines (empty = lint PASS)."""
     spec = card["spec"]
+    if asis.is_as_is(spec):  # the author's picture: convert only, lint = file + title/caption
+        bad = [f"FAIL  {card['id']}  {r:<11} {d}" for r, ok, d in asis.check(spec) if not ok]
+        if not bad:
+            asis.build_png(spec, out_png)
+        return bad
     c = render.build(spec)
     c.save(out_png)
     return [f"FAIL  {card['id']}  {r:<11} {d}" for r, ok, d in lint.check(c, spec) if not ok]
