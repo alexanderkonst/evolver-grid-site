@@ -7,6 +7,7 @@ import type { PlayerCard } from "@/modules/zone-of-genius/yourAiCard";
 import type { DialogueMessage } from "@/modules/zone-of-genius/yourAiTurn";
 import { ConsoleError } from "./consoleClient";
 import {
+  MAX_CONTEXT_CHARS,
   buildConsoleContext,
   clearAfter,
   readStatedGoal,
@@ -18,6 +19,7 @@ import {
   type ChainState,
   type ConsoleLocale,
   type ConsoleRequest,
+  type GoalCard,
 } from "./phoenixChain";
 
 export type Problem = "malformed" | "failed" | "cap" | "signin";
@@ -25,7 +27,7 @@ export type Problem = "malformed" | "failed" | "cap" | "signin";
 export type StepOutcome =
   /** Signed out: no model call was made. */
   | { kind: "problem"; problem: "signin"; chain: ChainState }
-  /** Nothing to ground a goal in: ask the one question in the conversation, wait for the answer. */
+  /** Nothing to ground a goal in: focus the Console goal input. */
   | { kind: "ask-goal"; chain: ChainState }
   | { kind: "card"; chain: ChainState }
   | { kind: "problem"; problem: Exclude<Problem, "signin">; chain: ChainState };
@@ -37,18 +39,21 @@ export type StepInput = {
   ownerId: string | null;
   playerCard: PlayerCard | null;
   messages: DialogueMessage[];
+  goal?: string;
   locale: ConsoleLocale;
   /** One model call for a request: the text it returned, or a `ConsoleError`. */
   call: (request: ConsoleRequest) => Promise<string>;
   now?: Date;
 };
 
-export const runStep = async ({ chain, id, ownerId, playerCard, messages, locale, call, now = new Date() }: StepInput): Promise<StepOutcome> => {
+export const runStep = async ({ chain, id, ownerId, playerCard, messages, goal, locale, call, now = new Date() }: StepInput): Promise<StepOutcome> => {
   if (!ownerId) return { kind: "problem", problem: "signin", chain };
   // Re-running N clears the cards after N.
   const base = clearAfter(chain, id, now);
-  // No goal, no invention: with nothing to ground it in, button 1 asks one question instead of calling the model.
-  const context = id === 1 ? readStatedGoal(messages) : buildConsoleContext(playerCard, messages);
+  const savedGoal = (base.cards[1]?.data as GoalCard | undefined)?.goal;
+  const context = id === 1
+    ? (goal?.trim() || readStatedGoal(messages) || savedGoal || "").slice(0, MAX_CONTEXT_CHARS)
+    : buildConsoleContext(playerCard, messages);
   if (id === 1 && !context && !survivorOf(base)) return { kind: "ask-goal", chain: base };
   let text: string;
   try {
@@ -59,7 +64,6 @@ export const runStep = async ({ chain, id, ownerId, playerCard, messages, locale
     return { kind: "problem", problem, chain: base } as StepOutcome;
   }
   const parsed = parseCardOutput(id, text);
-  if (!parsed.ok) return { kind: "problem", problem: "malformed", chain: base };
-  if (parsed.kind === "needsGoal") return { kind: "ask-goal", chain: base };
+  if (!parsed.ok || parsed.kind === "needsGoal") return { kind: "problem", problem: "malformed", chain: base };
   return { kind: "card", chain: setCard(base, id, { data: parsed.data, full: parsed.full, at: now.toISOString() }, now) };
 };

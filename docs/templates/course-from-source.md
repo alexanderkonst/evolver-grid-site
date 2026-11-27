@@ -78,12 +78,16 @@
 - Module = a theme of the structure; course = a short, self-paced experience with Intro, Outro and one badge (Game of Being You rules).
 - Keep the source of each episode traceable (which workshop/paragraph) so the course can be improved live.
 - Mark claims honestly: established vs. hypothesis (esp. for science).
+- **Roast the architecture before writing episodes** (Nature, 2026-11-26): after steps 1–2, run one roast cycle + crash-test ([roasting.md](./roasting.md)) on result + structure, write architecture v2, then the texts. It caught the uncheckable result and the missing final rite.
+- **Three honesty labels** when a mini-training mixes biology and tradition (Nature, 2026-11-26): *established* · *tradition* · *practice*, one per episode on screen.
+- **End with a rite**: the last Ask AI makes the person produce the result of step 1 about their own life (Nature: "Read your Now").
 
 ### Applications
 - 1. **Activate Your Dormant Potential** (6 modules, 38 episodes): [activate_your_dormant_potential_transcripts.md](../08-content/activate_your_dormant_potential_transcripts.md).
 - 2. **Consciousness Meets Science** (Mystery School intro, draft): plan in [VIDEO_PRODUCTION_PLAN.md](../08-content/VIDEO_PRODUCTION_PLAN.md) → Application 2; episode texts in [consciousness_meets_science_course.md](../08-content/consciousness_meets_science_course.md).
 - 3. **Activation of Inner Vision** (advanced micro-course from the /27 paper, unlocks after Integral Mystery School; 3 modules, 9 episodes, draft): [activation_of_inner_vision_course.md](../08-content/activation_of_inner_vision_course.md).
 - 4. **Micro-courses on Uniqueness and Professional Development** (backlog, 13 candidates of 1–3 episodes, each a power-up for one Gift Path boss; pricing note inside): [VIDEO_PRODUCTION_PLAN.md](../08-content/VIDEO_PRODUCTION_PLAN.md) → Application 4.
+- 5. **Nature · Aligns You With Natural Rhythms** (from the Equilibrium manual and holonic_cycles; 6 parts, 12 micro-modules; draft v0.2 awaiting signature): [nature_mini_training.md](../08-content/nature_mini_training.md).
 
 ---
 

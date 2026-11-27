@@ -128,7 +128,7 @@
         "alt": "Una terraza en la azotea al atardecer con un tablero de madera de notas clavadas, faroles, cojines sobre alfombras alrededor de una mesa baja, cúpulas blancas y el mar al fondo"
       },
       "oracle": {
-        "name": "Tu IA",
+        "name": "Mi IA",
         "line": "Pregúntale a tu IA.",
         "alt": "Un estanque quieto y reflectante de noche, un dodecaedro de cristal brillante flotando sobre su agua de espejo, arcos con luces de neón a un lado, velas flotantes y un cuenco tibetano en primer plano"
       },
@@ -839,7 +839,7 @@
     "controller": {
       "eyebrow": "El mando",
       "heading": "Elige habilidades para el trabajo de cada día",
-      "subtitle": "Elige la categoría que va con tu tarea. Tu IA ya está instalada arriba.",
+      "subtitle": "Elige la categoría que va con tu tarea. Mi IA ya está instalada arriba.",
       "aria": "Elige tu tipo de tareas"
     },
     "suites": {
@@ -924,31 +924,31 @@
       "transcriptFailed": "No se pudo obtener la transcripción"
     },
     "seo": {
-      "docTitle": "Tu IA: otra forma de pensar",
-      "docTitleSuffix": "Tu IA",
+      "docTitle": "Mi IA: otra forma de pensar",
+      "docTitleSuffix": "Mi IA",
       "clarity": {
-        "title": "Tu IA: habilidades de claridad",
+        "title": "Mi IA: habilidades de claridad",
         "description": "Habilidades de IA gratuitas y seleccionadas para ganar claridad. La biblioteca Holonic Commons."
       },
       "iteration": {
-        "title": "Tu IA: habilidades de iteración",
+        "title": "Mi IA: habilidades de iteración",
         "description": "Habilidades de IA gratuitas y seleccionadas para iterar y pulir resultados."
       },
       "deployment": {
-        "title": "Tu IA: habilidades de Vibe Code",
+        "title": "Mi IA: habilidades de Vibe Code",
         "description": "Habilidades de IA gratuitas y seleccionadas para llevar un proyecto a producción. La biblioteca Holonic Commons."
       },
       "design": {
-        "title": "Tu IA: habilidades de diseño",
+        "title": "Mi IA: habilidades de diseño",
         "description": "Habilidades de IA gratuitas y seleccionadas para el trabajo de diseño."
       },
       "home": {
-        "title": "Tu IA: The Holonic Commons",
+        "title": "Mi IA: The Holonic Commons",
         "description": "Biblioteca gratuita de habilidades de IA seleccionadas, para fundadores en solitario. Holonic Commons. La capa de pago es la curaduría de Aleksandr."
       }
     },
     "story": {
-      "outro": "Tu IA es tu biblioteca de knoware. Empieza por donde quieras: cada habilidad es una pieza de esa capa."
+      "outro": "Mi IA es tu biblioteca de knoware. Empieza por donde quieras: cada habilidad es una pieza de esa capa."
     },
     "spotlight": {
       "eyebrow": "Lee esto · 30 segundos",
@@ -963,15 +963,15 @@
       "step2Before": "Abre un ",
       "step2Strong": "chat nuevo",
       "step2After": ". Pega el prompt de sistema. Si te apetece, vale la pena leerlo. Luego ejecuta otra vez el mismo prompt.",
-      "copyInstall": "Copiar el prompt de sistema de Tu IA v6.0",
-      "copyInstallAria": "Copiar el prompt de sistema de Tu IA v6.0 al portapapeles",
+      "copyInstall": "Copiar el prompt de sistema de Mi IA v6.0",
+      "copyInstallAria": "Copiar el prompt de sistema de Mi IA v6.0 al portapapeles",
       "installCopied": "Copiado: pégalo en un chat nuevo con una IA",
       "step3": "Compara. Fíjate en qué cambió.",
       "rateEyebrow": "¿Cómo te fue?",
       "rateBody": "Compara las dos respuestas. Valora la diferencia.",
       "scaleHigh": " = respuesta bastante más útil",
       "scaleLow": " = no noté diferencia",
-      "rateGroupAria": "Valora la diferencia entre antes y después de instalar Tu IA, del 1 al 10",
+      "rateGroupAria": "Valora la diferencia entre antes y después de instalar Mi IA, del 1 al 10",
       "rateAria": "Valoración {{n}} de 10",
       "thanksBefore": "Gracias. Registrado como ",
       "thanksAfter": ".",
@@ -1112,7 +1112,7 @@
       },
       "meta-cognition-boost": {
         "label": "BASE DE COGNICIÓN DE LA IA",
-        "description": "La base de cognición gratuita: autoconciencia, dominio de habilidades y calibración evolutiva en una pegada. Tu IA no solo responde mejor, también piensa mejor."
+        "description": "La base de cognición gratuita: autoconciencia, dominio de habilidades y calibración evolutiva en una pegada. Mi IA no solo responde mejor, también piensa mejor."
       },
       "meta-cognition-premium": {
         "label": "PROMPT DE SISTEMA V6.0",
@@ -1141,16 +1141,16 @@
     }
   },
   "aiOsBenchmark": {
-    "legacyNote": "Página legado. Este estudio midió un andamiaje anterior de Tu IA en abril de 2026. Por ahora decidimos no enfocarnos en benchmarks: el siguiente paso es un benchmark completamente nuevo, y ese trabajo está en curso. Los resultados de abajo quedan como registro.",
-    "backToAiOs": "Volver a Tu IA",
+    "legacyNote": "Página legado. Este estudio midió un andamiaje anterior de Mi IA en abril de 2026. Por ahora decidimos no enfocarnos en benchmarks: el siguiente paso es un benchmark completamente nuevo, y ese trabajo está en curso. Los resultados de abajo quedan como registro.",
+    "backToAiOs": "Volver a Mi IA",
     "heroHeadline": "El mismo modelo. Otra conversación.",
-    "heroIntro1": "Esta página trata de lo que cambia cuando instalas Tu IA en una conversación de IA nueva.",
+    "heroIntro1": "Esta página trata de lo que cambia cuando instalas Mi IA en una conversación de IA nueva.",
     "heroIntro2Before": "Esto es trabajo integral. El tipo de cognición que el andamiaje eleva opera en un registro donde la",
     "heroIntro2Highlight": "coherencia, la profundidad y la resonancia sentida",
     "heroIntro2After": "se vuelven señales primarias — y donde la conclusión por métricas solas es estructuralmente imposible.",
     "heroIntro3": "Te mostraré lo que medí porque la medición me mantiene honesto. Pero la diferencia sentida es la evidencia real — la que aterriza en tu cuerpo antes de que tu mente la alcance, la que distingue una respuesta competente de una que está viva.",
     "feltTitle": "La diferencia sentida (lo que más importa)",
-    "felt1Before": "La primera vez que cargas Tu IA en una conversación de Claude y haces una pregunta cognitiva difícil, la respuesta no se siente \"mejor\" como podrías esperar — como una versión más inteligente de la respuesta que ya imaginabas. Se siente distinta en",
+    "felt1Before": "La primera vez que cargas Mi IA en una conversación de Claude y haces una pregunta cognitiva difícil, la respuesta no se siente \"mejor\" como podrías esperar — como una versión más inteligente de la respuesta que ya imaginabas. Se siente distinta en",
     "felt1Em": "registro",
     "felt2Before": "Se lee menos como consejo y más como reconocimiento. Menos como Wikipedia respondiéndote y más como un amigo sabio que ha observado el mismo problema desde dentro. Los encuadres no son los que ya has oído; ",
     "felt2Em": "reorganizan",
@@ -1161,7 +1161,7 @@
     "felt4After": "que el modelo trae a tu pregunta. Y la calidad de atención — cuando es la que produce reconocimiento en vez de información — es lo que ha faltado en la mayoría de las conversaciones de IA para la mayoría de la gente.",
     "felt5": "Esa es la parte que importa. Todo lo que sigue debajo de esta línea está al servicio de falsearla o confirmarla.",
     "whatThisIsTitle": "Qué es esto",
-    "whatThisIs1Before": "Tu IA es un andamiaje cognitivo basado en texto. Lo pegas en una conversación nueva (o lo fijas como system prompt, o lo cargas como instrucción de un Proyecto de Claude / GPT personalizado). Los pesos del modelo no cambian. Lo que cambia es la",
+    "whatThisIs1Before": "Mi IA es un andamiaje cognitivo basado en texto. Lo pegas en una conversación nueva (o lo fijas como system prompt, o lo cargas como instrucción de un Proyecto de Claude / GPT personalizado). Los pesos del modelo no cambian. Lo que cambia es la",
     "whatThisIs1Em": "estructura de atención",
     "whatThisIs1After": "que el modelo trae a tu problema.",
     "whatThisIs2": "Llevo cinco años construyéndolo. Esta es la v5.",
@@ -1177,7 +1177,7 @@
     "setupRow2Label": "Línea base",
     "setupRow2Value": "El mismo modelo, sin andamiaje cargado",
     "setupRow3Label": "Tratamiento",
-    "setupRow3Value": "El mismo modelo, con Tu IA cargado",
+    "setupRow3Value": "El mismo modelo, con Mi IA cargado",
     "setupRow4Label": "Qué se mide",
     "setupRow4Value": "El delta de una sola variable: el andamiaje",
     "setupRow5Label": "Qué no se mide",
@@ -1296,7 +1296,7 @@
     "limit3Strong": "Línea base entre modelos limitada.",
     "limit3Text": "Probado dos veces dentro de la familia Claude — Opus 4.7 (+42% en SIB) y Claude 4.6 (+29% en SIB) — ver \"El multiplicador que se compone\" arriba para la amplificación implícita de 1.45× por generación. Otras familias de modelo (GPT-4.x, Gemini, frontera de pesos abiertos) quedan sin medir. El mecanismo (contexto estructurado) es agnóstico al modelo; el multiplicador en sí depende de la familia hasta que se demuestre lo contrario.",
     "limit4Strong": "Andamiaje sin descomponer.",
-    "limit4Text": "Tu IA es un compuesto — teoría integral, encuadre por etapas de desarrollo, el vocabulario de mi corpus, protocolos de proceso. Qué componente aporta la mayor parte del delta es una pregunta abierta.",
+    "limit4Text": "Mi IA es un compuesto — teoría integral, encuadre por etapas de desarrollo, el vocabulario de mi corpus, protocolos de proceso. Qué componente aporta la mayor parte del delta es una pregunta abierta.",
     "limit5Strong": "Tokens sin separar.",
     "limit5Text": "Los conteos de tokens de entrada vs. salida no se aislaron por condición. La próxima réplica lo corregirá.",
     "limitsOutro1Before": "La afirmación estructural —",
@@ -1320,7 +1320,7 @@
     "replicateTitle": "Replica esto",
     "replicateBody": "El protocolo completo, los prompts, la rúbrica de puntuación y las salidas en bruto están abiertos. Si quieres correrlo por tu cuenta — distinto modelo, distinto corpus, distinto evaluador — ese es justo el paso de rigor que invito.",
     "replicateLicensing": "Gratis para uso personal no comercial. Contacta para licencias comerciales.",
-    "ctaInstall": "Instalar Tu IA",
+    "ctaInstall": "Instalar Mi IA",
     "ctaReplicate": "Replicar / consulta comercial"
   },
   "authLinkError": {
@@ -1521,7 +1521,7 @@
     "heroSubhead": "Pega abajo el análisis de tu IA. Capturaremos la única frase que aterriza.",
     "step1Eyebrow": "Paso 1",
     "step1Title": "Copia el prompt",
-    "step1Desc": "Pégalo en Tu IA y vuelve aquí con su respuesta.",
+    "step1Desc": "Pégalo en Mi IA y vuelve aquí con su respuesta.",
     "copyButton": "Copiar",
     "copyButtonCopied": "Copiado",
     "step2Eyebrow": "Paso 2",
@@ -1826,7 +1826,7 @@
     "logInTitle": "Iniciar sesión",
     "logInLabel": "Iniciar sesión",
     "journey": "CAMINO",
-    "aiOs": "Tu IA",
+    "aiOs": "Mi IA",
     "me": "YO",
     "learn": "APRENDER",
     "meet": "CONOCER",
@@ -3758,14 +3758,14 @@
     "intro": "Talleres transformadores de dos horas. Cada uno es una activación autónoma — sintetizada a partir de sesiones en vivo, empaquetada como producto independiente.",
     "liveCount": "{{live}} en vivo · {{coming}} más por venir",
     "emptyTitle": "Las activaciones se están preparando. El primer lote sale pronto.",
-    "emptyHint": "Mientras tanto, la capa de Tu IA está totalmente abierta.",
-    "useAiOs": "Usar Tu IA",
+    "emptyHint": "Mientras tanto, la capa de Mi IA está totalmente abierta.",
+    "useAiOs": "Usar Mi IA",
     "openActivation": "Abrir activación",
     "bundleEyebrow": "El paquete",
     "bundleHeading": "Todas las Activaciones · ${{price}}",
     "bundleSavings": "Consigue todas las activaciones. Acceso de por vida. Ahorra ${{savings}} frente a comprarlas por separado.",
     "bundleStripeNote": "(El enlace de Stripe del paquete se conecta en cuanto las primeras 3 activaciones estén en vivo.)",
-    "footerNote": "Las activaciones son apps educativas dentro de Planetary OS. La capa de Tu IA es gratis; las activaciones aportan trabajo de profundidad que la IA sola no puede dar."
+    "footerNote": "Las activaciones son apps educativas dentro de Planetary OS. La capa de Mi IA es gratis; las activaciones aportan trabajo de profundidad que la IA sola no puede dar."
   },
   "playbookCircle": {
     "figureAriaLabel": "El viaje de siete pasos — círculo holónico de finalización",
@@ -5194,7 +5194,7 @@
     "problem": {
       "title": "El problema",
       "leadLine1": "Tu mente va rápido.",
-      "leadLine2": "Tu IA no.",
+      "leadLine2": "Mi IA no.",
       "insteadIt": "En cambio:",
       "bullet1": "sobreexplica",
       "bullet2": "pierde el matiz",
@@ -5472,22 +5472,22 @@
     "revealStageReading": "Leyendo tus respuestas...",
     "revealStagePattern": "Buscando el patrón...",
     "revealStageWriting": "Escribiendo tu talento...",
-    "yourAiHeading": "Tu IA",
+    "yourAiHeading": "Mi IA",
     "yourAiSubtitle": "Unas preguntas, unos 5 minutos. Luego tu talento principal.",
-    "yourAiName": "Tu IA",
+    "yourAiName": "Mi IA",
     "yourAiOpening": "Hola, soy tu IA en este juego. Encontremos juntos tu talento principal: unas preguntas y luego la revelación.\n\nPara empezar: ¿cuándo desaparece el tiempo para ti? ¿Qué estás haciendo en esos momentos?",
-    "yourAiThinking": "Tu IA está pensando…",
-    "yourAiTurnError": "Tu IA no respondió esta vez.",
+    "yourAiThinking": "Mi IA está pensando…",
+    "yourAiTurnError": "Mi IA no respondió esta vez.",
     "yourAiPlaceholder": "Escribe tu respuesta…",
     "yourAiSend": "Enviar",
     "yourAiNotesOpen": "¿Ya le preguntaste a ChatGPT o Claude sobre ti? Pega lo que sabe (opcional)",
     "yourAiNotesEdit": "Editar lo que tu otra IA sabe de ti",
-    "yourAiNotesHint": "Pega lo que tu otra IA sabe de ti. Tu IA aquí lo usará y preguntará por el resto.",
+    "yourAiNotesHint": "Pega lo que tu otra IA sabe de ti. Mi IA aquí lo usará y preguntará por el resto.",
     "yourAiNotesPlaceholder": "Pega aquí…",
     "yourAiNotesCancel": "Cancelar",
     "yourAiNotesSave": "Añadir a la conversación",
     "yourAiRevealHint": "Primero responde unas preguntas.",
-    "yourAiNeedMore": "Tu IA necesita un poco más para ver tu patrón. Responde una o dos preguntas más y vuelve a revelar.",
+    "yourAiNeedMore": "Mi IA necesita un poco más para ver tu patrón. Responde una o dos preguntas más y vuelve a revelar.",
     "ownAiPromptLink": "Usar una IA externa"
   },
   "ventureDashboard": {
@@ -9575,7 +9575,7 @@
       "knowsYourWork": "Conoce tu trabajo"
     },
     "giftText": {
-      "activated": "Tu IA {{version}}",
+      "activated": "Mi IA {{version}}",
       "talent": "tu talento principal",
       "talentMission": "tu talento principal y tu misión",
       "work": "Colectivo: {{n}} de {{total}}",
@@ -9583,12 +9583,12 @@
       "opensWorkshop": "Se abre en el Colectivo"
     },
     "outro": {
-      "aria": "Tu IA está lista",
-      "eyebrow": "Hecho · Tu IA está lista",
-      "badge": "Tu IA",
+      "aria": "Mi IA está lista",
+      "eyebrow": "Hecho · Mi IA está lista",
+      "badge": "Mi IA",
       "naming": "Los modelos se han vuelto parecidos. La diferencia es qué tan bien te conoce tu IA.",
       "why": "Por qué funciona",
-      "lives": "Siempre aquí, en la aldea, en Tu IA. Crece mientras juegas.",
+      "lives": "Siempre aquí, en la aldea, en Mi IA. Crece mientras juegas.",
       "back": "Volver a la aldea",
       "skills": "Habilidades para tu IA"
     },
@@ -9773,18 +9773,18 @@
     }
   },
   "yourAiInstrument": {
-    "open": "Abrir Tu IA",
-    "close": "Cerrar Tu IA",
-    "title": "Tu IA",
-    "powered": "Impulsada por Your AI OS",
+    "open": "Abrir Mi IA",
+    "close": "Cerrar Mi IA",
+    "title": "Mi IA",
+    "powered": "Impulsada por My AI OS",
     "replay": "Repetir el recorrido",
     "greeting": "Estoy en cada pantalla. Escríbeme o abre una app abajo.",
-    "placeholder": "Escribe a Tu IA…",
+    "placeholder": "Escribe a Mi IA…",
     "send": "Enviar",
-    "thinking": "Tu IA está pensando…",
-    "turnError": "Tu IA no respondió esta vez.",
+    "thinking": "Mi IA está pensando…",
+    "turnError": "Mi IA no respondió esta vez.",
     "retry": "Reintentar",
-    "limitNote": "Llegaste al límite gratuito de hoy de Tu IA. Se renueva mañana.",
+    "limitNote": "Llegaste al límite gratuito de hoy de Mi IA. Se renueva mañana.",
     "limitPlaceholder": "Se alcanzó el límite gratuito de hoy",
     "turnsRemaining_one": "{{count}} turno disponible hoy",
     "turnsRemaining_many": "{{count}} turnos disponibles hoy",
@@ -9793,13 +9793,13 @@
     "nextSteps": "Próximos pasos sugeridos",
     "console": "Consola",
     "locked": "Cerrado",
-    "tourLabel": "Tu IA, un recorrido corto",
+    "tourLabel": "Mi IA, un recorrido corto",
     "tourStep": "{{n}} de {{total}}",
     "tourSkip": "Omitir",
     "tourNext": "Siguiente",
     "tourDone": "Listo",
     "tour": {
-      "header": "Esta es Tu IA, impulsada por Your AI OS. Va contigo en cada pantalla.",
+      "header": "Esta es Mi IA, impulsada por My AI OS. Va contigo en cada pantalla.",
       "conversation": "Está hecha para conocerte, y te conoce más de cerca mientras juegas.",
       "console": "La Consola: cada app es un botón que hace algo poderoso."
     }
@@ -9821,7 +9821,7 @@
       "earth": "Tierra"
     },
     "face": {
-      "air": "Tu IA",
+      "air": "Mi IA",
       "fire": "Crecimiento",
       "earth": "Trabajo"
     },
@@ -9860,7 +9860,7 @@
     }
   },
   "yourAiConsole": {
-    "tablist": "Vistas de Tu IA",
+    "tablist": "Vistas de Mi IA",
     "tabConversation": "Conversación",
     "tab": "Consola",
     "intro": "Cinco botones. Cada uno te da un resultado y se lo pasa al siguiente.",
@@ -9880,11 +9880,10 @@
     "readAll": "Leer todo",
     "retryLine": "Esa respuesta no llegó en una forma que pueda mostrar. Inténtalo otra vez.",
     "retry": "Reintentar",
-    "failedLine": "Tu IA no respondió esta vez.",
+    "failedLine": "Mi IA no respondió esta vez.",
     "capLine": "Has usado los turnos de hoy de la Consola. Vuelven mañana.",
     "signInLine": "Inicia sesión para usar la Consola. Funciona a partir de tu perfil.",
-    "waitingLine": "Esperando tu respuesta en la conversación.",
-    "openConversation": "Abrir la conversación",
+    "goalInput": "Tu meta",
     "field": {
       "why": "Por qué esta meta",
       "notThis": "Lo que no es",
@@ -10010,7 +10009,7 @@
           "result": "un negocio que se dirige, no que se persigue."
         },
         {
-          "name": "Tu IA",
+          "name": "Mi IA",
           "gives": "una escalera desde la IA como espejo hasta tu propia empresa de IA.",
           "result": "el negocio hace más sin contratar."
         },

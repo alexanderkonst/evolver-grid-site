@@ -4,7 +4,7 @@ import { activePlaceKey, isHomePath, PANE_BY_PLACE, RAIL_PLACES, tourIdFor } fro
 
 // WP-4 (issue #161, item 1): the rail is the village map places that have rail panes.
 describe("rail places", () => {
-  it("lists the village places in map order, excluding Your AI", () => {
+  it("lists the village places in map order, excluding My AI", () => {
     expect(RAIL_PLACES.map((p) => p.name)).toEqual([
       "Entry Portal",
       "Home",

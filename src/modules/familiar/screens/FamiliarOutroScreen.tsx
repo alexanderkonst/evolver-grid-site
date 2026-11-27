@@ -20,15 +20,15 @@ const FamiliarOutroScreen = ({ state }: Props) => {
   const { t } = useTranslation();
 
   return (
-    <section className="mf mf--outro" aria-label={t("familiar.outro.aria", { defaultValue: "Your AI is ready" })}>
+    <section className="mf mf--outro" aria-label={t("familiar.outro.aria", { defaultValue: "My AI is ready" })}>
       <Link className="mf__back" to="/village">
         {t("village.backVillage", { defaultValue: "← Village" })}
       </Link>
       <div className="mf__stage" data-place-state="done">
-        <p className="mf__eyebrow">{t("familiar.outro.eyebrow", { defaultValue: "Done · Your AI is ready" })}</p>
+        <p className="mf__eyebrow">{t("familiar.outro.eyebrow", { defaultValue: "Done · My AI is ready" })}</p>
 
         <figure className="mf__badge">
-          <figcaption className="mf__badge-name">{t("familiar.outro.badge", { defaultValue: "Your AI" })}</figcaption>
+          <figcaption className="mf__badge-name">{t("familiar.outro.badge", { defaultValue: "My AI" })}</figcaption>
           <h1 className="mf__result">
             {t("familiar.outro.naming", {
               defaultValue: "Models have become alike. The difference is how well your AI knows you.",
@@ -48,7 +48,7 @@ const FamiliarOutroScreen = ({ state }: Props) => {
 
         <div className="mf__facts">
           <p className="mf__fact">
-            {t("familiar.outro.lives", { defaultValue: "Always here, in the village, at Your AI. It grows as you play." })}
+            {t("familiar.outro.lives", { defaultValue: "Always here, in the village, at My AI. It grows as you play." })}
           </p>
         </div>
 

@@ -22,7 +22,7 @@ const AiOsBenchmark = () => {
 
     useEffect(() => {
         const prevTitle = document.title;
-        document.title = "Your AI — Same model, different conversation";
+        document.title = "My AI — Same model, different conversation";
         // Belt + suspenders for the dark canvas: in-page fixed overlays
         // give the radial luminosity, body bg is the safety net for any
         // transient paint moments (page-enter fade, route transitions).
@@ -91,7 +91,7 @@ const AiOsBenchmark = () => {
                             textShadow: "0 0 14px rgba(244,212,114,0.35), 0 0 12px rgba(0,0,0,0.85)",
                         }}
                     >
-                        Your AI · v5.0 · Legacy
+                        My AI · v5.0 · Legacy
                     </p>
                     <p
                         className="text-sm sm:text-base leading-relaxed max-w-2xl mb-6 rounded-xl px-4 py-3"

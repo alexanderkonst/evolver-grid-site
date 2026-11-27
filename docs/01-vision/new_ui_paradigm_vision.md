@@ -394,7 +394,7 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **CTA** →
 - **CTA:** NEW GAME is the one primary (CONTINUE takes its place for returning players): the largest, highest-contrast item in the menu, obviously selectable on hover, tap and focus; the other menu items readable and clearly tappable, never faint.
 - **Issue:** #271.
 
-### 2. First question (`/zone-of-genius/entry` and the first Your AI turn)
+### 2. First question (`/zone-of-genius/entry` and the first My AI turn)
 - **Feels:** *someone is actually asking about me.*
 - **Transmitted by:** one question, large serif, on the night world; three answer buttons + free text; nothing else on screen.
 - **Do:** the question is the screen; the answer is an act, not a form field.
@@ -410,7 +410,7 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **CTA** →
 - **CTA:** one labelled, lit button for the next real step (a plain verb, e.g. «Find your top talent →»), anchored at the bottom on phones; the glow on the map points to it and never replaces it.
 - **Issue:** #271, #277.
 
-### 4. The Your AI moment (`/game/your-ai`, reveal steps)
+### 4. The My AI moment (`/game/your-ai`, reveal steps)
 - **Feels:** *it already knows me a little, and it's on my side.* The AI is felt, not seen.
 - **Transmitted by:** a voice in the world (the character's line, set in the game's type), followed by 1–3 personal buttons and *say it your way*; AI OS loaded underneath every session (#275); "your AI just learned…" as a soft moment, not a notification.
 - **Do:** credits copy quiet and honest (free start, daily free dialogue, deep readings locked, "larger credit packages are coming") — no prices, no checkout from here (#272).
@@ -455,7 +455,7 @@ Each screen: **feels** → **transmitted by** → **do / don't** → **CTA** →
 
 # Part C — Anti-patterns: what we never ship
 
-**The default dark-mode SaaS / chat app.** Sasha rejected a Your AI mockup on 2026-10-30 as *"ugly, default UI"*. Named here so no one rebuilds it:
+**The default dark-mode SaaS / chat app.** Sasha rejected a My AI mockup on 2026-10-30 as *"ugly, default UI"*. Named here so no one rebuilds it:
 - rounded cards as the universal container;
 - a chat bubble + avatar as the main surface of the AI;
 - flat pills: generic SaaS button styling (the fault is the generic look, not visibility; a bold glowing CTA pill in the world's light is right, see the A.0 CTA rule);
@@ -495,5 +495,5 @@ Open: none right now.
 *Updated: 2026-05-16 — Added the Dimensionality framework: first principle (digital surfaces evolve as consciousness evolves through dimensionality), the 10-stage arc (Binary → Reality-Indistinguishable, Stage 8 = NEO-DIMENSIONAL as our sweet spot), the 7 primitives of digital surface design (material · depth · form · color · light · motion · sound), Stage 8 "is / isn't" definition, the cosmic recursion linking cosmogenesis to UI evolution, the Steve Jobs joint (product+design fuse around transformation), naming question with three candidates, and the 27-perspective protocol for upcoming mood boards. Prior Five Pillars relocated as expressions of specific primitives + architecture-wide proportion constraint.*
 *Updated: 2026-05-16 (later) — Resolved syntactic collision flagged by Sasha: "dimensions" is reserved for perspectives of consciousness (the 27-perspective ontology); the 7 building blocks of digital surface design are renamed **primitives** (Web3 / CS sense — irreducible, composable, trusted, load-bearing units). Added "A note on terminology — Primitives vs Dimensions" section. Affirmed **Motion** (not Animation) as the primitive name; animation, transition, physics, parallax, generative, gesture-driven are all techniques *inside* Motion. Flagged **Typography** as candidate 8th primitive — held for mood-board test.*
 *Updated: 2026-05-16 (later II) — **Typography promoted out of held-status into the 8th primitive of digital surface design.** Distinct from Form because letters carry meaning differently (typeface, weight, scale, leading, kerning, rhythm, light/color/depth/motion interactions). Count adjustments propagated (Liquid Glass = 7–8 primitives; "the 8 primitives" header). Open question closed; will revisit only if mood boards reveal a folding-back into Form.*
-*Updated: 2026-10-30 (v2, Bloom) — Combined all UI findings into this single place. Named the paradigm **Bloom** (Stage 8 Neo-Dimensional remains its stage). Added A.0 (AI invisible; 1 primary + ≤2 secondary + free text; global world bloom 0–9; gift colors from the first artifact; «нежно, тонко» tenderness rule), Part B (rules per primitive + eight screens: menu, first question, village, Your AI, gift reveal, academy, offers/checkout, multiplayer, linked to #271/#272/#275/#277), Part C (anti-patterns incl. the rejected default dark-mode SaaS/chat UI, no urgency copy), Part D (open decisions). Soul colors revived from deprioritized.*
-*Updated: 2026-10-31 (v2.1) — Project-wide CTA rule (Sasha: CTAs very visible and clear) in A.0; a CTA line on each of the eight screens in B.2; secondary actions quieter but clearly tappable (B.1); Part C: flat pills = generic SaaS styling, new anti-pattern «CTA dissolved into scenery / dim caption buttons»; Part D resolved by Hark (first color from the first artifact; fixed seven hues tinted toward the gift; places take on light, color only in the world-wide bloom; sound later, off by default; first proof = first question → first artifact → village at bloom 1); Your AI approved direction recorded.*
+*Updated: 2026-10-30 (v2, Bloom) — Combined all UI findings into this single place. Named the paradigm **Bloom** (Stage 8 Neo-Dimensional remains its stage). Added A.0 (AI invisible; 1 primary + ≤2 secondary + free text; global world bloom 0–9; gift colors from the first artifact; «нежно, тонко» tenderness rule), Part B (rules per primitive + eight screens: menu, first question, village, My AI, gift reveal, academy, offers/checkout, multiplayer, linked to #271/#272/#275/#277), Part C (anti-patterns incl. the rejected default dark-mode SaaS/chat UI, no urgency copy), Part D (open decisions). Soul colors revived from deprioritized.*
+*Updated: 2026-10-31 (v2.1) — Project-wide CTA rule (Sasha: CTAs very visible and clear) in A.0; a CTA line on each of the eight screens in B.2; secondary actions quieter but clearly tappable (B.1); Part C: flat pills = generic SaaS styling, new anti-pattern «CTA dissolved into scenery / dim caption buttons»; Part D resolved by Hark (first color from the first artifact; fixed seven hues tinted toward the gift; places take on light, color only in the world-wide bloom; sound later, off by default; first proof = first question → first artifact → village at bloom 1); My AI approved direction recorded.*

@@ -15,7 +15,7 @@ Draft v1 · 2026-11-21 · read from the code of evolver-grid-site (main branch, 
 | Reception | Entry, welcome | No (ours) |
 | Home | Crystal, mission, save file | No (player's own) |
 | Quest Board | Next quest on the Journey | Later: partner quests |
-| Your AI | Ask your AI | Later: partner agents (level 4) |
+| My AI | Ask your AI | Later: partner agents (level 4) |
 | Café | Meet people | Partner communities, events |
 | Co-working | Find partners for the work | Partner collaboration tools |
 | Mastermind | Circle | Partner circles |
@@ -41,7 +41,7 @@ Source: src/data/villagePlaces.ts (single source for places and routes).
 | Heartcraft (game) | — | Coming soon | — | — |
 | Integral Mystery School | — | Coming soon | — | — |
 
-Source: src/data/modules.ts. Further modules live in code but are not in this registry yet: Your AI, Mission Discovery, Unique Business Builder (Workshop), Product Builder, Growth Paths, Genius Path, Asset Mapping, Equilibrium, Transition Quiz, Library. The registry is not yet the single source of all modules.
+Source: src/data/modules.ts. Further modules live in code but are not in this registry yet: My AI, Mission Discovery, Unique Business Builder (Workshop), Product Builder, Growth Paths, Genius Path, Asset Mapping, Equilibrium, Transition Quiz, Library. The registry is not yet the single source of all modules.
 
 ## 3. The card already exists in code
 

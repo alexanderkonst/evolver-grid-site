@@ -24,7 +24,7 @@ What Sasha's past AI workshops (client workshop A, Sep 2025; client workshop B, 
 | 0. Nature of AI | **strong** | Two full decks agree: myths, what an LLM is, AI as relation, where it goes, utopia/dystopia | Lesson shape and checks |
 | 1. One chat | **good** | Input = output, prompting as briefing, voice notes, roast → next version, quirks and fixes, model choice, closing principles | Spoken layer of three stub slides (context checklist, 3 prompt patterns, counter-thesis) |
 | 2. Cockpit | **partial** | One doc / one chat per project or client, versioned living doc, meeting note-taker → commitments | Approval rules, connected accounts |
-| 3. AI that knows you | **good** | One-page profile schema (identity, 90-day goals, genius, preferences, limits) and seven layers of symbiosis | Check; link to Your AI card |
+| 3. AI that knows you | **good** | One-page profile schema (identity, 90-day goals, genius, preferences, limits) and seven layers of symbiosis | Check; link to My AI card |
 | 4. Templates & remote | **thin** | Save winning prompts by function and reuse; list of "what to ask AI now" | Router, prism, remote |
 | 5. Terminal & workers | **thin** | Vibe-coding and agents as titles only | Everything; comes from Sasha's setup, not the workshops |
 | 6. Orchestration & routines | **thin** | Two routine seeds: monthly obsolescence sweep, short AI journaling | Agents, routine configs |

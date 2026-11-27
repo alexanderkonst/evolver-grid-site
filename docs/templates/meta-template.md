@@ -113,7 +113,7 @@ Everything we build is assembled from five primitives. They are the central chai
 | **Gift** | what only you can do |
 | **Step** | the first act with it in the world |
 | **Trace** | the record of what happened |
-| **Your AI** | the one who reads the trace and helps |
+| **My AI** | the one who reads the trace and helps |
 | **Room** | the people who watch the line |
 
 - **Holonic.** The same five hold at every level. In the Holostrategy below, the L1 primitive (one person) is gift → step → trace → your AI; L2 (two people) and L3 (group, network) are the Room at a larger scale.
@@ -216,3 +216,34 @@ Finding people is cheap (minutes). Contacting at scale is the constraint. Linked
 ### Open
 - Where primitives L1–L3 get their full spec (product side).
 - Which phase-shift technologies map to which path step.
+
+---
+
+## Console buttons (addendum, 2026-11-26)
+
+*Source: PST 188 Holonic App Store of the Golden Age. Sasha, chat 2026-11-26 18:10 and 19:04 MST; Russian quotes are his, English is *translated*.*
+
+### Button formula
+**icon + result (1–2 words) + input.**
+- The **input** is a thing, not only text: an image sheet, a file, a link, a card, another button's result. The prompt lives in the button.
+- Sasha: «ИИ надо давать что-то на вход … Не только текст … зачем если есть суперпромпт в виде КНОПКИ!» (*translated:* "AI must be given something as input … not only text … why, if there is a superprompt in the form of a BUTTON!")
+
+### Three categories
+Sasha: «так и сделаем. Три категории кнопок» (*translated:* "so we will do it. Three categories of buttons").
+
+| Category | What it is |
+|---|---|
+| **Power** | One button = one template. |
+| **Combo** | Two Powers in sequence. A Combo that worked is saved as a new Power with its own icon. |
+| **Superpower** | A rare combo of three or more Powers. |
+
+### Seed entries
+| Button | Category | Icon | Result | Input |
+|---|---|---|---|---|
+| Roasting ([roasting.md](./roasting.md)) | Power | idea (Sasha): a comedian roasting the audience | «увидеть потенциал для роста!» (*translated:* "see the potential for growth!") | any artifact |
+| Integral synthesis ([integral-synthesis.md](./integral-synthesis.md)) | Power | open | **Wholeness** («Цельность»): the common denominator of the best solutions | a domain or a set of exemplars |
+| Roast + Integral synthesis | Combo | open | **Growth potential** («Потенциал роста») | your artifact |
+
+First worked Combo: Roast + Integral synthesis on the app icons, 2026-11-26.
+
+Where the buttons live: one store with levels (a Power inside a training, a training inside an app, an app inside the game). Store list: [course-as-app.md](./course-as-app.md) §The stores.

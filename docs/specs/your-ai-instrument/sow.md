@@ -1,12 +1,12 @@
-# Your AI as a carried instrument: scope of work
+# My AI as a carried instrument: scope of work
 
 Template: spec-handoff (Planning + Implementation SoW shape). Status: Phase 1 in work since 2026-11-25. Owner: Hark. Decisions: Sasha.
 
 ## TLDR
-Your AI stops being a place you walk to. It is an instrument the player carries: a clear octahedron of air in the corner of every game screen. One gesture raises it over the living, dimmed world; the same gesture lowers it, and the player is exactly where they were. Inside: a Hark-like interface, conversation plus the Console of AI Apps (each app a button). The first time it appears, it shows itself in a micro-onboarding that is its own landing.
+My AI stops being a place you walk to. It is an instrument the player carries: a clear octahedron of air in the corner of every game screen. One gesture raises it over the living, dimmed world; the same gesture lowers it, and the player is exactly where they were. Inside: a Hark-like interface, conversation plus the Console of AI Apps (each app a button). The first time it appears, it shows itself in a micro-onboarding that is its own landing.
 
 ## Ground truth in code (2026-11-25, main @ after PR #454)
-- Your AI today is the village place `oracle` (`src/data/villagePlaces.ts`), route `/game/your-ai` → `FamiliarPage` («Take your AI» copies a prompt to an outside chat, then Outro). Rail: `src/lib/railPlaces.ts` maps `oracle` ↔ pane `ai-os`.
+- My AI today is the village place `oracle` (`src/data/villagePlaces.ts`), route `/game/your-ai` → `FamiliarPage` («Take your AI» copies a prompt to an outside chat, then Outro). Rail: `src/lib/railPlaces.ts` maps `oracle` ↔ pane `ai-os`.
 - On-platform conversation already exists: `src/modules/zone-of-genius/yourAiDialogue.ts` → deployed edge function `library-advisor`, buttons validated against `src/data/yourAiCatalog.ts`, daily cap `yourAiDailyLimit.ts`. Reuse it; no new backend.
 - Console = `/ai-os` (`src/modules/ai-os/AiOsPage.tsx`, suites rendered by category). Free preinstalled apps = these suites.
 - Gate that already exists: `GameShellV2.tsx` shows the AI OS chip when `tmaComplete` (top talent + mission + assets) or `localStorage fytt:ai-os-visited === "true"`.
@@ -16,7 +16,7 @@ Your AI stops being a place you walk to. It is an instrument the player carries:
 - D1 Object: clear octahedron, element of air, clarity. Reference `docs/assets/your-ai/octahedron_reference.png`. (2026-11-24)
 - D2 Option A: rises over the living world, world dimmed but visible; same gesture closes; Esc / swipe down. (2026-11-24)
 - D3 Inside: never «Take your AI» outward; Hark-like interface; free preinstalled apps + paid apps. (2026-11-24)
-- D4 Positioning, the five lines, premium pricing: Your AI tracker §21. (2026-11-25)
+- D4 Positioning, the five lines, premium pricing: My AI tracker §21. (2026-11-25)
 - D5 First receipt = micro-onboarding: smooth zoom by scale and light onto each product group in turn. (2026-11-25)
 - D6 Path moves (QoL out of the profile, receipt after profile, `oracle` → activation quest) are NOT in this SoW. They wait in `docs/02-strategy/player-path-v1-draft.md` § Pending path moves. (2026-11-25 00:30)
 
@@ -27,7 +27,7 @@ Any change to title screen, intro, reveal, entry, themes; moving QoL; changing w
 **Phase 1 · The instrument (shell + conversation + Console + first-open tour).** One PR.
 - Corner object on every `GameShellV2` screen for players past the existing gate. Tap or key (`.`) opens.
 - Overlay: world behind dimmed and visible (not paused); panel rises from the object; Esc, same tap, or swipe down closes; focus returns to where it was; route does not change.
-- Inside, three groups matching the five lines: header (the object + «Your AI», «Powered by Your AI OS»), conversation (reuses `yourAiDialogue`), Console (app buttons from the AI OS suites; each opens its existing route and closes the instrument). «Power-ups for business» appears as one closed row in §25.5 form: «Opens when <real event>. Inside: <result>.»
+- Inside, three groups matching the five lines: header (the object + «My AI», «Powered by My AI OS»), conversation (reuses `yourAiDialogue`), Console (app buttons from the AI OS suites; each opens its existing route and closes the instrument). «Power-ups for business» appears as one closed row in §25.5 form: «Opens when <real event>. Inside: <result>.»
 - First open: micro-onboarding, 4–5 beats, each a smooth zoom by scale and light on one group with one line (tracker §21). Skippable, shown once (localStorage), replayable from the header.
 - Design law: GoBY §5 (near-black, one accent ice blue `#bcd7e6`, physical materials, no neon or glow outlines; the octahedron's own light is the one exception, as a material refraction, not a glow ring), §25.11 smoothness, `prefers-reduced-motion` = fades instead of zooms, words ≥4.5:1.
 

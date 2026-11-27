@@ -229,7 +229,7 @@ class AppIconsV3(unittest.TestCase):
         self.assertEqual(len({s["halo"] for s in specs.values()}), 5)
         self.assertEqual({i: s["caption"] for i, s in specs.items()}, {
             "potential": "Accelerates The Unfolding of Your Potential", "crossing": "Reconciles Consciousness with Science",
-            "vision": "Activates Your Inner Vision", "nature": "Aligns You With Natural Rhythms", "your-ai": "Sets Up Your AI"})
+            "vision": "Activates Your Inner Vision", "nature": "Aligns You With Natural Rhythms", "your-ai": "Sets Up My AI"})
         old = [p for p in glob.glob(os.path.join(INF, "apps", "*")) if os.path.basename(p).split(".")[0].split("@")[0].endswith(("-a", "-b"))]
         self.assertEqual(old, [])
 

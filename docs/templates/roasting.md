@@ -2,6 +2,8 @@
 
 *Canonical template, synthesized 2026-10-27 by Evolver from three tellings of the roasting protocol, the roast-gate records, the strategy crash-test and the live roast of the game (Genealogy at the end). Newer Sasha-confirmed practice wins where tellings differ; older shapes stay as dated notes.*
 
+> Button (= the result): «увидеть потенциал для роста!» (*translated:* "see the potential for growth!"); input: any artifact; icon idea (Sasha): a comedian roasting the audience. See [meta-template.md](./meta-template.md) §Console buttons (Sasha, 2026-11-26).
+
 ## Meta-description
 - **Level / parent:** L2 · Consciousness development (seeing instruments) · parent: [meta-template.md](./meta-template.md); engine: [holonic-seeing.md](./holonic-seeing.md)
 - **Lens(es):** Causal (critique rounds without fixing, then one synthesis), with Unity for the energy test

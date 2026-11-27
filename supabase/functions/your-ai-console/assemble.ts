@@ -36,7 +36,7 @@ export const assemble = ({ button, context, previousCards, locale }: AssembleInp
     localeLine(locale),
   ].join("\n\n");
   const system = button === 1
-    ? `${AI_OS_PROMPT}\n\nFor this Console turn, use the supplied goal and return the requested goal card. A readable goal needs no follow-up. When there is no readable goal, return the needs-goal card without a question.`
+    ? `${AI_OS_PROMPT}\n\nFor this Console turn, use the supplied goal and return the requested goal card. Do not ask follow-up questions. Return a goal card for any non-empty stated goal or prior survivor. If neither is supplied, return only the needs-goal card.`
     : AI_OS_PROMPT;
   return { system, user };
 };

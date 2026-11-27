@@ -154,7 +154,7 @@ Applied: Mastermind = the creative "Factory"; participants are co-authors, not c
 - 2026-11-22: Circles v1 = a weekly circle hosted by a player; Care of a place is an ordinary event at a real place, no separate event dynamics.
 - 2026-11-22: the feed of real deeds lives on the Quest Board: finite, no ranking, one tap «I see you» (§24 #23, launch spec A16).
 - 2026-11-22: the «Which way?» fork stays: Faster (prompt to the player's own AI) and Guided (in-game assessment) both lead to the top talent reveal.
-- 2026-11-22: Your AI place has no test: one screen «Take your AI» (copy the personal prompt into a new chat), then the outro.
+- 2026-11-22: My AI place has no test: one screen «Take your AI» (copy the personal prompt into a new chat), then the outro.
 - 2026-11-22: place icons are painted gold engraving; every crystal is a dodecahedron; one set per skin; no religious or human figures.
 - 2026-11-22: loading screen gets a matte layer and a waxing moon; «Chat with us» hidden while loading; the cursor glow stays.
 - 2026-11-22: biologic clock: Moon and Week are primary, Year and Day open on tap; «Prepping» joins «Readying» for the lunar phase across Equilibrium.
@@ -518,8 +518,8 @@ Sizes: S ≤ 4 h, M 5–10 h, L > 10 h of Claude Code work; review = Hark review
 **Total: 133 h Claude Code + 47 h review = 180 h** (15 WPs; 5 L, 7 M, 3 S). *WP-15 added Oct 27 after Sasha asked whether transitions, visual design and UX/UI harmony were counted: visual design was inside WP-1/2/3/8, screen transitions and a harmony pass were not.* Upper bound; shrinks after the code inventory.
 
 **Status and totals (2026-10-28 14:10 CST).** 24 WPs, **177 h Claude Code + 62 h review = 239 h**. WP-7 is split: 7a and 7b shipped, 7 rest (save → village handoff, M · 2 · 1.5) in build #195; WP-7c (entry button) was built and then reverted 10-28 (Sasha: the player's own AI mirror stays the primary path on the entry page; the guided in-site test stays the secondary path).
-- **Update 2026-10-29 22:40 CST (night loop).** Since the 10-28 block: audit fixes shipped #209 (honest save line, one top talent), #210 (closed places readable, Mastermind follows the skin), #211 (own-AI paste error), #212 (phone menu), #213 (i18n of the game layer), #215/#216 fixes, #219 Workshop/Market as places, #223 Co-working shows real founders, #226 (splash advances on a mouse click; Café open to guests with the Nov 4 webinar and Mastermind cards). Published 22:35, live guest walk ok: Café pin open, Quest Board shows J8/J9, Market is a faded scene, not a sign-up redirect. In build: #224 «Your AI» place (self-experiment, no credits; branch pushed, rebase onto main asked), #228 Café polish (← Village, no Create Event for guests). Queue after them: WP-15 harmony pass, WP-12 Market stall. Parked: WP-10 (Fire Circle). Open for Sasha: the «Fire Circle» label on the map, and the questions in the audit (hide FOUNDER TOOLS from players; Oracle as the game form; $222 seat link).
-- **Update 2026-10-30 00:55 CST (night loop).** Merged: #227 «Your AI» (the Oracle place became Your AI, open to guests: intro → ask → reveal with 1–10 rating → outro with the map of what opens next; zero credits) and #229 Café polish (← Village, guests see only Browse Events, title «Café»). The «Your House» → «Home» rename (3799a6c) conflicted with #227; I merged main into the branch and resolved 5 files by hand. Live guest walk (00:55): Your AI pin open, /game/your-ai walks all four screens, /game/meet shows Café. Lovable already said «up to date» before any click. Cosmetic: text bleeds out of the centre ring on the outro map. Queue next: WP-15 harmony pass, WP-12 Market stall.
+- **Update 2026-10-29 22:40 CST (night loop).** Since the 10-28 block: audit fixes shipped #209 (honest save line, one top talent), #210 (closed places readable, Mastermind follows the skin), #211 (own-AI paste error), #212 (phone menu), #213 (i18n of the game layer), #215/#216 fixes, #219 Workshop/Market as places, #223 Co-working shows real founders, #226 (splash advances on a mouse click; Café open to guests with the Nov 4 webinar and Mastermind cards). Published 22:35, live guest walk ok: Café pin open, Quest Board shows J8/J9, Market is a faded scene, not a sign-up redirect. In build: #224 «My AI» place (self-experiment, no credits; branch pushed, rebase onto main asked), #228 Café polish (← Village, no Create Event for guests). Queue after them: WP-15 harmony pass, WP-12 Market stall. Parked: WP-10 (Fire Circle). Open for Sasha: the «Fire Circle» label on the map, and the questions in the audit (hide FOUNDER TOOLS from players; Oracle as the game form; $222 seat link).
+- **Update 2026-10-30 00:55 CST (night loop).** Merged: #227 «My AI» (the Oracle place became My AI, open to guests: intro → ask → reveal with 1–10 rating → outro with the map of what opens next; zero credits) and #229 Café polish (← Village, guests see only Browse Events, title «Café»). The «Your House» → «Home» rename (3799a6c) conflicted with #227; I merged main into the branch and resolved 5 files by hand. Live guest walk (00:55): My AI pin open, /game/your-ai walks all four screens, /game/meet shows Café. Lovable already said «up to date» before any click. Cosmetic: text bleeds out of the centre ring on the outro map. Queue next: WP-15 harmony pass, WP-12 Market stall.
 - **Done (≈ 158 h):** WP-1, WP-1b, WP-2, WP-3, WP-4, WP-5, WP-6, WP-7a, WP-7b, WP-8, WP-9, WP-11, WP-13, WP-14, WP-16, WP-17, WP-18, WP-19, WP-20, WP-21, WP-15 part 1 (motion), WP-10 date fix, `/ignite` title (#163, part of WP-12), playtest fixes (#189 Academy guest module, #190 course player, #191 village next move / newcomer path / mobile). Published 10-28 14:05 (Lovable says up to date); the live Quest Board at `/game/journey` and the village next-move card verified signed out.
 - **In progress (10-28 14:05, three builds, disjoint files):** WP-12 Town Hall v0 (#193: `CoopSpace`, `InvestorRoom`), ~~WP-10 rest (#194: `Mastermind.tsx`)~~ parked 10-28, WP-7 rest (#195: entry, Auth, shell routes). ≈ 18 h.
 - **Left after those: ≈ 63 h** (WP-12 Market stall, WP-15 harmony pass, residual review; WP-10 checkout parked with WP-10, 10-28).
@@ -1027,8 +1027,8 @@ The first minute and the reveal are now honest and fast (about two minutes, a mo
 Mean 3.0 → **50**; laws: Fitts FAIL (Chat launcher still covers targets @390), Hick FAIL (FOUNDER TOOLS catalog), Doherty pass, Miller pass, Tesler pass → **40/100** (10-28: 38). The gain is the reveal, the Café, the stall and the honest save; the drag is consistency and i18n, which did not move.
 
 ### 19.3 Top 7 findings (by impact)
-1. **Spanish and Russian players get an English game** (blocks for ES/RU). #213 wired `t()` into the game layer but added the keys to `en` only: `node scripts/i18n-key-check.mjs` reports 563 missing entries (≈280 keys per language), of them all 158 `village.*` keys and 67 `familiar.*` (Your AI) keys, plus `market`, `course`, `eventsSpace`, `spacesRail`, `zogEntry`, `chatLauncher`. Live: `/es/village` and `/ru/village` show one localized sentence; Quest Board «Done when» lines, Your AI, Café cards and Academy rooms are English; the `/ru` title is the old NEW GAME menu with «You Are The Fifth Element», all English (`code` + `observed@390` + `observed@1920`). The translations that exist read naturally; one calque: «усиление» for power-up. → #239 (P0).
-2. **A guest who leaves is forgotten, and the result never leaves its card** (blocks conversion). After the reveal and «Not now, enter the village», reloading `/` shows the cold title menu, no «welcome back», no resume, «You are here» on step 01. The talent is not shown on the map, the Quest Board or Your AI. Five of six closed places offer a guest only «I already live here → sign in»; the Co-working sign-up wall has no way back @390 (`observed@1920`, `observed@390`). → #240 (P0).
+1. **Spanish and Russian players get an English game** (blocks for ES/RU). #213 wired `t()` into the game layer but added the keys to `en` only: `node scripts/i18n-key-check.mjs` reports 563 missing entries (≈280 keys per language), of them all 158 `village.*` keys and 67 `familiar.*` (My AI) keys, plus `market`, `course`, `eventsSpace`, `spacesRail`, `zogEntry`, `chatLauncher`. Live: `/es/village` and `/ru/village` show one localized sentence; Quest Board «Done when» lines, My AI, Café cards and Academy rooms are English; the `/ru` title is the old NEW GAME menu with «You Are The Fifth Element», all English (`code` + `observed@390` + `observed@1920`). The translations that exist read naturally; one calque: «усиление» for power-up. → #239 (P0).
+2. **A guest who leaves is forgotten, and the result never leaves its card** (blocks conversion). After the reveal and «Not now, enter the village», reloading `/` shows the cold title menu, no «welcome back», no resume, «You are here» on step 01. The talent is not shown on the map, the Quest Board or My AI. Five of six closed places offer a guest only «I already live here → sign in»; the Co-working sign-up wall has no way back @390 (`observed@1920`, `observed@390`). → #240 (P0).
 3. **One player, several truths** (reduces trust; signed-in). Same account, same session: Level 2/10 vs 4 vs 7, three different next moves (Quest Board / «Read Your Genius Profile» / «Articulate Your Top 3 Talents»); name «Umza · Montoya» in the rail, «Aleksandr Konstantinov» at Reception, «ALEKSANDR» at Home; `/asset-mapping` says «Opens when your mission is saved» with the button disabled, while Home shows 43 assets and the Quest Board marks Assets Done. Likely cause (`code`, `ModuleIntro.tsx`): after `SHEET_WAIT_MS` = 4 s the intro stops waiting and computes the state from a sheet that has not loaded, which reads as closed. Signed-in pages still say «No signup» (`/?path=match`, `/?path=build`) and «Welcome, guest» (`/map-classic` chip). → #241 (P0).
 4. **Internal tools inside the game** (adds friction; fork for Sasha). Mastermind, Workshop and Town Hall show a FOUNDER TOOLS sub-menu (Equilibrium, Commercial OS, Automated Venture Builder, Founder Cockpit, Playbook, Roadmap, Products, «Karime's Unique Offer», Dashboard, Holomap); right after sign-in the player lands on a method page with «Fork it on GitHub» (`signed-in`). Playbook / Roadmap / Dashboard must stay reachable (§14.13), so this is Sasha's question 1, not an issue.
 5. **Holes in the way around** (adds friction). «← Village» on Market and Workshop links to `/game`, which redirects to the Quest Board (`code`: `VillagePlaceHeader.tsx` line 8); Mastermind has no ← Village @390; Town Hall reached directly is a picture and a bounce, no closed line; `/spaces`, `/build`, `/xyz` show «Profile Private — This profile is not available right now.» (fall into `/:username`); the skin toggle loops Lapis → Aurum → Dao and never back to Lunar (`code`: `SpacesRail.tsx` `TOGGLE_NEXT_SKIN`); the Outro still says «Home, the Quest Board and the Oracle are open» (`code`: `journeyModules.ts`). → #242 (P1).
@@ -1039,7 +1039,7 @@ Mean 3.0 → **50**; laws: Fitts FAIL (Chat launcher still covers targets @390),
 - Honest save: guest reads «Your result is kept on this device», no false «saved» (#209). Reveal ~100–120 s with a moving bar (was several minutes of rotating lines). One top talent at Reception, Home and stall («Designing System Standards»).
 - Closed places say «Not open yet» as text in every skin; Mastermind follows the skin; Dao gold and Lapis-with-Lunar-art not reproduced (#210, #205). Latent: literal `#d4af37` in focus/hover rings in Dao.
 - Café open to guests with the Nov 4 free session (Luma) and the $222 Mastermind card, ← Village, no Create Event for guests (#226, #229).
-- Your AI place: intro → ask → two answers → outro, no raw keys (#227). Quest Board «Done when» under every quest (#233).
+- My AI place: intro → ask → two answers → outro, no raw keys (#227). Quest Board «Done when» under every quest (#233).
 - Market stall assembles from real data for a signed-in player: mission, stall name, top talent, three shelf items, signboard; «Your stall is open in the Market.» (#235, #238). #237 closed as done by #238.
 - Mastermind «Reserve my place» opens the live Stripe checkout for $222 (`3058c8d`; not paid, checked only).
 - Phone menu is an overlay drawer, closed places disabled in it (#212). Keyboard: focus ring visible, Tab reaches every pin and the next-move card, Escape closes menus.
@@ -1122,7 +1122,7 @@ The milestones on the line are Sasha's four words; the extra milestone **named g
 | I.6 | Get the shape of the business (tagline + 7 artifacts) | UBB tagline saved | Playbook 3.3; V4 |
 
 - **Boss: The Fog** — «I can't say what I do in one breath». Typical stall: 6–8/10 after any test (Playbook 2.2: no personality test gets further); the block is consent to the mirror, not its accuracy.
-- **/path to beat it faster:** free reveal + free 45-min Direction Call; Your AI copy-prompts (already in Playbook 1.2); micro-courses MC1–MC3 (§20.4); **Ignite** 2-hour session, Steps 2+3, $555; Oracle Reading $37 as an optional power-up.
+- **/path to beat it faster:** free reveal + free 45-min Direction Call; My AI copy-prompts (already in Playbook 1.2); micro-courses MC1–MC3 (§20.4); **Ignite** 2-hour session, Steps 2+3, $555; Oracle Reading $37 as an optional power-up.
 
 **Stage II · Named gift → First paid by a stranger** (Playbook 4–5, 6.3 · Transition stages 5→7, the Crossing · victories V5–V9)
 
@@ -1137,7 +1137,7 @@ The milestones on the line are Sasha's four words; the extra milestone **named g
 | II.7 | A stranger pays (the Slipper) | payment record | V9; Uniqueness 6→7 and Transition Crossing «at once» |
 
 - **Boss: The Gatekeeper of Worth** — giving forever for free, never naming the price, friends say yes and strangers don't. Ledger patterns: undefined exchange («сочтёмся») is where value leaks; donation with dignity converts where free leaks; a priced written proposal reads as service, not leak; money-shaped buyers need an income-framed promise.
-- **/path to beat it faster:** **BUILT** 3 weeks with other conscious founders, $1,111 (the team); **TEST**, $333; **Mastermind** $222 (the Room witnesses the first price); webinar; micro-courses MC4–MC7; Your AI: transcripts → testimonials (Playbook 4.2, 5.2).
+- **/path to beat it faster:** **BUILT** 3 weeks with other conscious founders, $1,111 (the team); **TEST**, $333; **Mastermind** $222 (the Room witnesses the first price); webinar; micro-courses MC4–MC7; My AI: transcripts → testimonials (Playbook 4.2, 5.2).
 
 **Stage III · First stranger → Product** (Playbook 5.3, 6.1–6.2 · venture map stage 1→2 · Uniqueness 6→7, having → transmitting)
 
@@ -1151,7 +1151,7 @@ The milestones on the line are Sasha's four words; the extra milestone **named g
 | III.6 | Someone buys without a call | a sale with no call before it | Playbook 6.1 («until the page can close without you») |
 
 - **Boss: The Explainer** — the offer only exists while you are in the room explaining it. Si-Do shock: packaged precisely enough that a stranger uses it without you.
-- **/path to beat it faster:** **LAUNCH** 2-week container (priced in conversation); Mastermind; Your AI: roasting prompts, Godfather Offer Architect (Playbook 6.1); micro-courses MC8–MC10. *Hark idea:* the player's own first product can itself be a micro-course made with course-from-source.
+- **/path to beat it faster:** **LAUNCH** 2-week container (priced in conversation); Mastermind; My AI: roasting prompts, Godfather Offer Architect (Playbook 6.1); micro-courses MC8–MC10. *Hark idea:* the player's own first product can itself be a micro-course made with course-from-source.
 
 **Stage IV · Product → Scale** (Playbook 7 · venture map 3→4 · IPDM founder tier 9–12)
 
@@ -1213,7 +1213,7 @@ Backlog with 13 candidates, two lines (Uniqueness · Professional development), 
 Sunday Save Point, Circle at new moon, Harvest at full moon. Sasha's idea: give every player an **Equilibrium** in some form (see `equilibrium` product: lunar/weekly rhythm planner). Hark draft: each player's house has a small Equilibrium clock showing their own cycle (this week's quest, this moon's intention); the Circle and Harvest are real gatherings per village (online or on the beach), led by its ambassador.
 
 ### 21.6 Daily journal in the house (good, secondary)
-A journal in Your House, dictated through Your AI, with deep prompts. Possibly the daily hook, not the main dynamic.
+A journal in Your House, dictated through My AI, with deep prompts. Possibly the daily hook, not the main dynamic.
 
 ### 21.7 Learn from real-life games
 Done as the iconic-mechanics research (2026-11-21). Decisions: §24. Research: [research/iconic-mechanics/](./research/iconic-mechanics/).
@@ -1223,7 +1223,7 @@ Game-design session Sasha × Hark (next session): the quest sequence and its art
 
 ## 22. Strategy 2026-11-02: the reveal-activation loop and the living village
 
-*Sasha, 2026-11-02 00:04 MST, reacting to Hark's 15-point list of the game's main aspects: «PLEASE DOCUMENT!!! This is our strategy coming together.»* Decisions below are his, in clean English. His leanings are marked **leaning**; undecided items are marked **OPEN**. This section extends §13 (game design), §16 (San Pancho), §18 (Your AI) and §21 (the World layer); it does not replace them except where noted.
+*Sasha, 2026-11-02 00:04 MST, reacting to Hark's 15-point list of the game's main aspects: «PLEASE DOCUMENT!!! This is our strategy coming together.»* Decisions below are his, in clean English. His leanings are marked **leaning**; undecided items are marked **OPEN**. This section extends §13 (game design), §16 (San Pancho), §18 (My AI) and §21 (the World layer); it does not replace them except where noted.
 
 ### 22.1 The game is the product (reaffirmed)
 Not a funnel. Quests and boss fights are real-life accomplishments on the hero's journey: the first offer aligned with your top talent packaged, the first time the product is offered, the first sale, the first 10, 100, 1000 (10^n) customers. **Every first is a victory and a game quest.** (Extends §13.4 and §20.)
@@ -1261,7 +1261,7 @@ Character = top talent + mission + a real photo. Your House is the character she
 - He has done sacred interior design in about 10 homes, with strong photos, mostly at night (he loves the night aesthetic; consistent with the blue hour/night village look).
 - **OPEN:** design protection, possibly through a design-portfolio site.
 
-### 22.7 Your AI: two theses (YES)
+### 22.7 My AI: two theses (YES)
 1. **Personal AI is the AI that knows you best, but it is limited by how well YOU know yourself.** The whole purpose of the game is to help you know yourself better, so **the game is the shortest path to personal AI.**
 2. **When AI knows your unique business, it is a different league.** A pioneering idea hidden in plain sight.
 (Extends §18.)
@@ -1467,16 +1467,16 @@ The world fills with light as you live (§14.11): done places light up, the path
 ### 25.9 The path as a constellation
 Your House shows the path as a constellation, not a ladder: walked steps lit, the next step glowing, closed steps faint with their 25.5 line; several next steps can be open at once (Civ's tech tree has lasted 30 years; Civ VII's linear Legacy Paths were criticised as «rails»). Sketch v0: `docs/assets/navigation/constellation_v0.png`. Built on player path v1 only after Sasha reviews it.
 
-### 25.10 Your AI: an instrument you carry
-Your AI is not a place on the map: it is used during play, so it opens natively and smoothly from anywhere, like the Pip-Boy (Fallout). Design and build run as their own project.
+### 25.10 My AI: an instrument you carry
+My AI is not a place on the map: it is used during play, so it opens natively and smoothly from anywhere, like the Pip-Boy (Fallout). Design and build run as their own project.
 
 Decisions (Sasha, 2026-11-24 23:46 MST, on brief v1):
 - **The object:** a clear octahedron of air and sky, the element of air: clarity. Reference: `docs/assets/your-ai/octahedron_reference.png`.
 - **How it opens:** option A. The instrument rises over the living world; the world stays visible, dimmed, behind it; the same gesture closes it and the player is exactly where they were. The exact look is still to be designed.
 - **Inside:** never «Take your AI» to an outside app. A Hark-like interface inside the game, sold the way Hark is sold. Phase 1 runs on a model through Lovable's AI gateway; phase 2 through direct APIs with usage tiers (5x / 10x / 20x / custom). Apps (= buttons = results) are free and paid: free ones come preinstalled (the suites and buttons AI OS already has), paid ones are added.
-- **The `oracle` place becomes a quest:** activate your AI; it names itself and grows into a companion that knows the player ever closer (§19 of the Your AI tracker: one note in the chord, not a copy or «digital twin», Sasha agreed 2026-11-25). An interactive course on it, power-ups, and access to the Console.
+- **The `oracle` place becomes a quest:** activate your AI; it names itself and grows into a companion that knows the player ever closer (§19 of the My AI tracker: one note in the chord, not a copy or «digital twin», Sasha agreed 2026-11-25). An interactive course on it, power-ups, and access to the Console.
 - **When it appears:** after the player's profile is created, without the quality-of-life test. The QoL test moves into the Academy as one of the first steps, after the first course, «Your Unfolding Potential» (renamed from «Activate Your Dormant Potential», same day).
-- **First receipt = its own landing** (Sasha, 2026-11-25): the first time the instrument appears, a micro-onboarding zooms by scale and light onto each group of the product in turn, one line each. What Your AI is and how it is sold: Your AI tracker §21. Build spec: `docs/specs/your-ai-instrument/sow.md`.
+- **First receipt = its own landing** (Sasha, 2026-11-25): the first time the instrument appears, a micro-onboarding zooms by scale and light onto each group of the product in turn, one line each. What My AI is and how it is sold: My AI tracker §21. Build spec: `docs/specs/your-ai-instrument/sow.md`.
 
 ### 25.11 Smoothness
 Every transition feels smooth: the whole interface is an ancient mystical instrument (§5; motion respects reduced-motion).
@@ -1497,7 +1497,7 @@ Sasha: «крутейшая новость, что действительно в
 | Element | Platonic solid | Meaning | Places |
 |---|---|---|---|
 | Ether | Dodecahedron | the path | Entry Portal, Home (hero's path and quests inside), Quest Board |
-| Air | Octahedron | mind | Your AI (carried instrument, §25.10) |
+| Air | Octahedron | mind | My AI (carried instrument, §25.10) |
 | Water | Icosahedron | cycles and connection | Café (where you meet), Co-working (where you collaborate), plus the time ring with the moon phase |
 | Fire | Tetrahedron | transformation, your own education | Academy, FMF |
 | Earth | Cube | structure | Workshop, Market, Town Hall |
@@ -1505,7 +1505,7 @@ Sasha: «крутейшая новость, что действительно в
 Rules:
 1. **An element is a quarter of the map, never a door.** The player taps Academy directly; fire shows as the quarter's colour and sign and as a face of the instrument. No extra click, no new menu.
 2. **Each solid lights at its step of the hero's path** (Sasha: «каждый из них активируется в какой-то момент пути героя - это факт»): a solid is a faint outline until the first place of its quarter opens. Order follows player path v1 after Sasha's review.
-3. **Carried vs in the world:** air (Your AI) and water's time ring travel with the player in the instrument; ether, fire, earth live in the world as signs of their quarters. Tapping a lit solid in the instrument leads back to its place in the world.
+3. **Carried vs in the world:** air (My AI) and water's time ring travel with the player in the instrument; ether, fire, earth live in the world as signs of their quarters. Tapping a lit solid in the instrument leads back to its place in the world.
 4. **Places are named as places, actions as verbs (Sasha, 2026-11-25 11:32: «где люди коллаборируют? нужно название места»):** Café is where you MEET (route `/game/meet`), Co-working is where you COLLABORATE (route `/game/collaborate/matches`). Place names stay as they are.
 5. **One world (Sasha, 2026-11-25 12:18 MST: «делай»; source, 2026-11-24: «весь проект интегрируется … в одно — игру, соц сеть, цифровой двойник поселений, магазин итд»):** the game, the social network, the digital twin of settlements and the store live in one world; anything new is built as a place inside a quarter, never as a separate site or app.
 

@@ -42,7 +42,7 @@ Sasha, 2026-11-20 (renamed branch Z → 2 the same day):
 | 3 | **A collective of sovereign founders** | Unique founders, each with full autonomy, sharing tools, rhythm and terms. Concept: [sovereign_founder_collective.md](./sovereign_founder_collective.md). | «КОЛЛЕКТИВ УНИКАЛЬНЫХ ФАУНДЕРОВ» (B1-64) |
 | 4 | **The Theory of Everything** | The ontology from which the whole system follows inevitably. Primary source [universal_ontology.md](../01-vision/universal_ontology.md), then [phase_shift_technology_library.md](../01-vision/phase_shift_technology_library.md). | «ТЕОРИЯ ВСЕГО ЗОЛОТОГО ВЕКА» (B1-65) |
 
-- **Your AI = a concentric ring through all four faces** (Sasha 2026-11-20, tentative, "his guess"). In the game it is the player's AI; in his business it is the connector between founder+AI pairs; in the collective it is the Founder's AI suite; in the theory it is the Controller of lenses (prisms).
+- **My AI = a concentric ring through all four faces** (Sasha 2026-11-20, tentative, "his guess"). In the game it is the player's AI; in his business it is the connector between founder+AI pairs; in the collective it is the Founder's AI suite; in the theory it is the Controller of lenses (prisms).
 - **Face 2 vs face 3, settled** (Sasha 2026-11-20 14:45: «мой уникальный бизнес, а вообще уникальный бизнес уникальных бизнесов… а коллектив это именно про взаимодействие»): face 2 is **what** — Sasha's unique business, which is a unique business of unique businesses: his comes first and is the pattern each founder's business plugs into. Face 3 is **how they interact** (terms, rhythm, exchange). Player-facing name stays "Your unique business".
 - **Rings around the faces** (B1-66, the photo does not say which ring belongs to which face `[?]`): academia | university | school · white-label village | digital twin | infrastructure · mystical insight | integration | formalization | application. Center: 8-spoke star (red, teal, yellow); brown star on the left axis `[?]` (B1-67).
 - **Geometry** of how the modules fold into each other: not decided; to be seen over time (Sasha 2026-11-20).
@@ -77,7 +77,7 @@ Every big insight lands here in the same turn it is said: one row, who said it a
 | Insight | Ledger | Where it already lives |
 |---|---|---|
 | **Product = result + system prompt.** A product follows from a result (a language or a skill gained) plus the system prompt built for it. | B1-37 | [ai_os_v6_plan.md](./ai_os_v6_plan.md) |
-| **Your AI is an AI company**, not just an AI prompt or even an "OS". Sasha's own harnesses become the company's harnesses. | B1-36, B1-40 | [ai-familiar_tracker.md](../specs/ai-familiar/ai-familiar_tracker.md) §20 |
+| **My AI is an AI company**, not just an AI prompt or even an "OS". Sasha's own harnesses become the company's harnesses. | B1-36, B1-40 | [ai-familiar_tracker.md](../specs/ai-familiar/ai-familiar_tracker.md) §20 |
 | **Every button = a prism.** A button on the Controller = look at a situation / skillset / ecosystem / business / story / event through one chosen lens. | B1-38 | [template-router.md](../templates/template-router.md), [holonic-prism.md](../templates/holonic-prism.md) |
 | **The template router is the know-how** («роутер шаблонов — НОУХАУ!»). | B1-42 | [template-router.md](../templates/template-router.md) |
 | **Selling time → selling results.** | B1-08 | [product_brief.md](../04-products/product_brief.md) §0.4 |
@@ -87,14 +87,14 @@ Every big insight lands here in the same turn it is said: one row, who said it a
 | **The game repeats social dynamics that already work in real life,** where actions in the game world are done in the real one; it launches a movement in the real world, invites everyone to collaborate, unites the evolutionary avant-garde. Play in spaces where people already play (NS, SP…). | B2-11..13, B2-16, B2-17 | [game_of_being_you.md](./game_of_being_you.md) §16, [evolutionary_avantgarde_taxonomy.md](./evolutionary_avantgarde_taxonomy.md) |
 | **Equilibrium effort by lunar phase.** LOW (3/8, no effort implied): gathering, intending, planting. HIGH (3/8): seeing, leading, harvesting (work through what rises, prepare and gather the harvest). MED (2/8): clearing and celebrating (finish, prepare; communicate a lot). Words crossed out on the page: clearing and celebrating in the LOW line, "growing" `[?]` in the MED line. | B1-02..06 | [lunar_wisdom_map.md](../specs/equilibrium/lunar_wisdom_map.md) |
 | **ACT opens when the person works on the business** (Equilibrium ATTUNE / ACT trigger). Plus biological clocks; lunar creative hours for creative cycles. | B1-55, B1-56, B2-14 | [equilibrium_v2_spec.md](../specs/equilibrium/equilibrium_v2_spec.md) §11 |
-| **Hark AI as market confirmation** for Your AI; take pricing from Hark, connect via API; communicate the benefits (and understand them first). | B1-29, B1-39, B1-41 | [product_brief.md](../04-products/product_brief.md) §6 |
+| **Hark AI as market confirmation** for My AI; take pricing from Hark, connect via API; communicate the benefits (and understand them first). | B1-29, B1-39, B1-41 | [product_brief.md](../04-products/product_brief.md) §6 |
 | References for the game's feel: Ready Player One · Heroes III · Monopoly (for collaboration) · Foundation (Asimov) for the civilizational angle. "People love stats." | B2-10, B2-04 | [game_design_almanac.md](./game_design_almanac.md) |
 | **Everything is a game.** All of reality is already a game; any social structure that proved itself is a source of mechanics. | Sasha, chat 2026-11-21 | [game_design_almanac.md](./game_design_almanac.md) § Everything is a game |
 | **Our work is an integral holonic taxonomy of social engineering** («Вот чем мы занимаемся»). | Sasha, chat 2026-11-21 15:54 | [research/iconic-mechanics/taxonomy.md](./research/iconic-mechanics/taxonomy.md) |
 | **Quality is held by a person who already walked that path.** This is how steps open, not by limits. | Sasha, chat 2026-11-21 | [GoBY §24](./game_of_being_you.md) #15 |
 | **A number only where it mirrors a real-world act**, never a mindless hook. | Sasha, chat 2026-11-21 | [GoBY §24](./game_of_being_you.md), rule |
 | **Coordinated media burst at launch.** Invite every partner to one media wave for the game at once: a big wave of players walks the game and reaches each partner's profile, so every module gains. Possible only through the ecosystem; social and economic mechanic still to design. | Sasha, Module 2, 2026-11-22 10:36 | [launch_plan.md](./modular_collaboration/launch_plan.md) «Later: coordinated media burst» |
-| **Six separate but linked things, and courses live only in the Academy.** AI training → course constructor → a mini-course; after it a founder uses AI the way Sasha does (his harness), in the business too (Founder Cockpit), all inside Your AI, all serving the collective. | Sasha, Module 3, 2026-11-22 («в целом всё так») | §4 Ring · Your AI, «Six linked things» |
+| **Six separate but linked things, and courses live only in the Academy.** AI training → course constructor → a mini-course; after it a founder uses AI the way Sasha does (his harness), in the business too (Founder Cockpit), all inside My AI, all serving the collective. | Sasha, Module 3, 2026-11-22 («в целом всё так») | §4 Ring · My AI, «Six linked things» |
 | **Partner terms, stage one: a gift, not a contract.** No contract; the author sells on their own; when the game brings a buyer, the author gives the game a voluntary gift (10% recommended) in crypto; money flows one way only, no shared pots, no payouts to referrers. Replaces 66.6/33.3 and 90/10 for partners. | Sasha, Module 2, 2026-11-22 | [partner_offer.md](./modular_collaboration/partner_offer.md) |
 | **«Ask AI» buttons are built from what the game already knows** about the person (talents, archetype, mission, life areas, uniqueness): a ready prompt sent in one tap, editable or spoken, no keyboard. | Sasha, Module 3, 2026-11-22 («now we're talking») | [course-from-source.md](../templates/course-from-source.md) step 6 |
 | **Time is really cycles.** The clock shows in 5 seconds where I am in cycles, not in clock time, so it never rushes; Moon and Week by default, Year and Day behind a toggle. | Sasha, Biologic Clock, 2026-11-22 | [biologic_clock_rings_spec.md](../specs/equilibrium/biologic_clock_rings_spec.md) |
@@ -106,12 +106,12 @@ Every big insight lands here in the same turn it is said: one row, who said it a
 
 Abbreviations: GoBY = [game_of_being_you.md](./game_of_being_you.md) · PB = [product_brief.md](../04-products/product_brief.md) · MT = [module_taxonomy.md](./module_taxonomy.md) · UB = [alexanders_unique_business.md](./unique-businesses/alexanders_unique_business.md) · SFC = [sovereign_founder_collective.md](./sovereign_founder_collective.md) · AIF = [ai-familiar_tracker.md](../specs/ai-familiar/ai-familiar_tracker.md).
 
-### Ring · Your AI (through all faces, tentative)
-**Six linked things** (Sasha, 2026-11-22, «в целом всё так»): (1) **Your AI**: an AI that already carries all of Sasha's harnesses, plus a console of buttons (most from the AI OS suites); (2) **Sasha's own AI harness**: how he works with AI, packageable for founders; (3) **Founder Cockpit**: the business harness (face 3, 3.2); (4) **AI training**: run by Sasha several times (4 workshop PDFs, 2 Fathom calls, [Training 5 // AI // Founder Academy Level 1](https://youtu.be/NZeUR7-OMSk)); (5) **Course constructor**: turns any of Sasha's material into a mini-course with a stated result (face 4 row); (6) **the founders' collective**, which all of this serves. Chain: 4 goes through 5 into a mini-course → the founder uses AI like 2, in the business like 3, all inside 1, serving 6.
+### Ring · My AI (through all faces, tentative)
+**Six linked things** (Sasha, 2026-11-22, «в целом всё так»): (1) **My AI**: an AI that already carries all of Sasha's harnesses, plus a console of buttons (most from the AI OS suites); (2) **Sasha's own AI harness**: how he works with AI, packageable for founders; (3) **Founder Cockpit**: the business harness (face 3, 3.2); (4) **AI training**: run by Sasha several times (4 workshop PDFs, 2 Fathom calls, [Training 5 // AI // Founder Academy Level 1](https://youtu.be/NZeUR7-OMSk)); (5) **Course constructor**: turns any of Sasha's material into a mini-course with a stated result (face 4 row); (6) **the founders' collective**, which all of this serves. Chain: 4 goes through 5 into a mini-course → the founder uses AI like 2, in the business like 3, all inside 1, serving 6.
 
 | Module | Status | Source | Result |
 |---|---|---|---|
-| Your AI | live | `/game/your-ai`; AIF §20; GoBY §18 · B1-25, B1-53 | The player's own AI with our harness. |
+| My AI | live | `/game/your-ai`; AIF §20; GoBY §18 · B1-25, B1-53 | The player's own AI with our harness. |
 | AI OS (system prompt v6.0) | live | `/ai-os/*`; [ai_os_v6_plan.md](./ai_os_v6_plan.md) · B1-26 | The installable prompt ("current template"). |
 | Controller (remote with lens buttons) | spec | AIF §20.3; [template-router.md](../templates/template-router.md) · B1-28, B1-38, B1-85 | One button = one lens on any situation. |
 | Template router | spec | [template-router.md](../templates/template-router.md) · B1-42 | The right template, every time, unasked. |
@@ -185,7 +185,7 @@ Working folder: [modular_collaboration/](./modular_collaboration/README.md) (pla
 | | Landing pages for each founder | live, partial | `/p/:slug`, `/ubl/:slug` · B1-80, B1-84 | A landing page per unique business. |
 | | Source intake (lead-magnet video, client sessions, NotebookLM videos and PDFs, keynote, iPhone images → Gemini transcription) | notebook | B1-12..17, B1-19; nearest [source-integration.md](../templates/source-integration.md) | Raw materials feeding the constructor. |
 | | Spirographics for Gleb and Eva | notebook | B1-86 | Visual result maps for two clients. |
-| 3.4 AI setup | see Ring · Your AI above | | B1-53 | |
+| 3.4 AI setup | see Ring · My AI above | | B1-53 | |
 | 3.5 Equilibrium (B1-54) | Equilibrium + bot | live | `/build/equilibrium`, `/equilibrium`; [equilibrium_v2_spec.md](../specs/equilibrium/equilibrium_v2_spec.md) | Plans by natural cycles: year, month, week, day. |
 | | Lunar effort levels · creative lunar hours | spec, partial | [lunar_wisdom_map.md](../specs/equilibrium/lunar_wisdom_map.md) · B1-02..06, B2-14 | 8 phases → LOW / MED / HIGH effort. |
 | | ATTUNE / ACT (ACT opens on business work) · biological clock | spec | equilibrium_v2_spec §11 · B1-55, B1-56 | Effort follows rhythm and real work. |
@@ -243,7 +243,7 @@ Working folder: [modular_collaboration/](./modular_collaboration/README.md) (pla
 | 3 | Enrich the AI-setup template (Controller, etc.) | B1-85 |
 | 3 | Spirographics for Gleb and Eva | B1-86 |
 | 3 | MVP / concept of the Founder Cockpit | B1-87 |
-| 3 | Your AI: pricing from Hark via API; turn Sasha's harnesses into company harnesses; communicate benefits | B1-39..41 |
+| 3 | My AI: pricing from Hark via API; turn Sasha's harnesses into company harnesses; communicate benefits | B1-39..41 |
 | 3 | Lead magnet (5): TBD | B1-24 |
 | 3 | Assemble a de facto working collective | B2-52 |
 | 4 | Get the template of how industries polarize; project it onto technologies | B1-68, B1-69 |
@@ -255,7 +255,7 @@ Working folder: [modular_collaboration/](./modular_collaboration/README.md) (pla
 | 4 | New courses: rotation of Sasha's sessions = Platonic solids | B1-79 |
 
 **Progress as of 2026-11-22 (Sunday, before the harvest week).** Details: [game_launch_spec.md](./game_launch_spec.md) Progress · [harvest-log.md](../harvest/harvest-log.md).
-- **Face 1, the game:** live or merged: messaging and People Directory, stats cards, clients, 3D elements, Book of Infographics, biologic clock (Moon + Week), Circles v1 with Care of a place, hook after reveal, feed of real deeds, painted place icons per skin. In work: Your AI hand-over, loading screen, player badge. Waiting on Sasha: reveal words, glyph look, badge designs, promo video, streak migration yes.
+- **Face 1, the game:** live or merged: messaging and People Directory, stats cards, clients, 3D elements, Book of Infographics, biologic clock (Moon + Week), Circles v1 with Care of a place, hook after reveal, feed of real deeds, painted place icons per skin. In work: My AI hand-over, loading screen, player badge. Waiting on Sasha: reveal words, glyph look, badge designs, promo video, streak migration yes.
 - **Face 2, Sasha's unique business:** partner terms v2.1 (one-way 10% gift); intake form live at /bring-your-module, short form in work; Sasha invites partners personally.
 - **Face 3, the Collective:** Academy levels set; Mini-training 1 «AI as a Mirror» texts for Sasha's signature, page and AI call merged, videos in production; Result Wizards spec v0.1; funnel parked.
 - **Face 4, theory:** formalization Stage 2 complete (Steps 78–83), Stage 3 started with pre-registered tests (Steps 84–85); avant-garde stream of six sources closed: nothing new in ideas, gaps = portable profile, outcome cases.
@@ -269,7 +269,7 @@ Working folder: [modular_collaboration/](./modular_collaboration/README.md) (pla
 
 ## 6. Open forks for Sasha (not resolved here)
 1. **Fund vs "no fund".** Notebook branch 3.7 "фонд: инвестиционный тезис · самоуправление · децентрализация" (B1-58) vs [sovereign_founder_collective.md](./sovereign_founder_collective.md) "No fund, no pooling… Never hold or pool anyone else's investment money." Keep, rename (e.g. treasury, or direct deals only), or drop?
-2. **Four faces vs five.** This canon: Game · Sasha's business · Collective · Theory, with Your AI as a ring. [holon-core.md](../01-vision/holon-core.md): Game · AI · Science · Economy · Way of living. Which tree is the root, or how do they map?
+2. **Four faces vs five.** This canon: Game · Sasha's business · Collective · Theory, with My AI as a ring. [holon-core.md](../01-vision/holon-core.md): Game · AI · Science · Economy · Way of living. Which tree is the root, or how do they map?
 3. **Moon strategy 3** (B2-50, the playable game): a grey mark over the line; struck out or highlighted?
 4. **Rings placement** (B1-66): which face each ring belongs to (academia / university / school; white-label village / digital twin / infrastructure; insight → application), and the brown star (B1-67).
 5. **Repo modules with no face yet:** Direction Call · FMF Private Session `/ignite` and the FMF family · PMF Discovery `/products/pmf-core` · Zone of Genius Session / for Teams · Deep Top Talent Reveal ($37) · Client Evolution Portal · The Founder Read · High-precision Business Profile · Mystery School for Founders · Spiritual Practice (hidden) · Daily Loop / My Next Move `/game/next-move` · Personality Tests · Multiple Intelligences · Destiny · Art · Transcriber · Activations and `/grow/*` courses · Founders Showcase `/founders`, The Originals · Codex, Prompt, Intros, Monetization (purpose unverified). Sources: PB, MT.

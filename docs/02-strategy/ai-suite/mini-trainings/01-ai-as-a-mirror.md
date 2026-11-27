@@ -16,7 +16,7 @@ People who fear AI and have no profile are not the audience here: the workshops 
 
 Done when the person has (1) a three-step plan for their mission, made together with AI and **saved**, and (2) caught, with their own eyes, one line AI said about them that would fit anyone.
 
-**Setup piece handed over:** this Your AI chat, with their profile and the saved plan. In rung 2 the plan becomes their 90-day goals; in rung 3 it goes into their business document.
+**Setup piece handed over:** this My AI chat, with their profile and the saved plan. In rung 2 the plan becomes their 90-day goals; in rung 3 it goes into their business document.
 
 ## The «Ask AI» button
 
@@ -27,7 +27,7 @@ The video names the idea; the button lets the person **live** it. Each button do
 - **No typing.** A card with a ready prompt; the person presses **Send**. One tap.
 - **Edit if you want.** The prompt is editable on the card, or press the microphone and say it your own way.
 - **Built from the profile.** The prompt is filled with the person's talents, archetype, mission and life areas. They see exactly what goes in before sending.
-- **One conversation.** All buttons go into one chat with Your AI, so later buttons can refer to earlier answers (micro-modules 6 and 8 depend on it).
+- **One conversation.** All buttons go into one chat with My AI, so later buttons can refer to earlier answers (micro-modules 6 and 8 depend on it).
 - **Short answers.** Every prompt ends with «Up to 5 lines, no emojis.», so a button takes about 90 s. (Test: without the emoji ban, answers came with emojis; even with the line cap, follow-up turns ran 6–10 lines.)
 - **Copy** works in any AI (ChatGPT, Claude, Gemini).
 - **Rule:** whatever the AI answers, it cannot refute the video. Never ask AI to lecture about itself.
@@ -43,7 +43,7 @@ Profile data always goes **after a colon, as a label and its value**: «My weake
 Strip a trailing period from a value before adding the label's period.
 
 ### Privacy rule
-Life-area levels are private in the game (visible only to the player). Inside Your AI they are used as is. On **Copy** to an outside AI, `{weakest_area}` becomes «[an area of my life]» and the person can type it in themselves.
+Life-area levels are private in the game (visible only to the player). Inside My AI they are used as is. On **Copy** to an outside AI, `{weakest_area}` becomes «[an area of my life]» and the person can type it in themselves.
 
 ### Profile fields used
 | Placeholder | Where it lives | If empty |

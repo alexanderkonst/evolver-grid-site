@@ -3,7 +3,7 @@
 Status: draft v1, 2026-11-25 (Hark). Architecture: [architecture.md](./architecture.md). Canon: GoBY §25. Template: [spec-handoff](../../templates/spec-handoff.md). Epic: #453.
 
 ## TLDR
-Eight work packages (WP) in four waves. Each WP = one @claude issue = one job = one branch = one PR, opened and merged by Hark when checks are green and every DoD row has evidence. WP7 (first reveal) is built only on Sasha's explicit yes. The Your AI instrument (PR #458) becomes the base of WP1.
+Eight work packages (WP) in four waves. Each WP = one @claude issue = one job = one branch = one PR, opened and merged by Hark when checks are green and every DoD row has evidence. WP7 (first reveal) is built only on Sasha's explicit yes. The My AI instrument (PR #458) becomes the base of WP1.
 
 ## Delegation mechanics (how the agents work, learned 2026-11-24/25)
 1. **One mention = one job.** Every comment that mentions @claude starts a job. Hark pings once per WP, never while a job runs on the same branch. Clarifications go in comments without the mention.
@@ -71,4 +71,4 @@ Eight work packages (WP) in four waves. Each WP = one @claude issue = one job = 
 | `.github/workflows/` | Hark |
 
 ## Out of scope for every WP
-Title screen, game intro, top talent reveal, themes (Lunar #452 has its own gate), the content of Your AI apps and pricing (Your AI SoW), and the constellation until path v1 review.
+Title screen, game intro, top talent reveal, themes (Lunar #452 has its own gate), the content of My AI apps and pricing (My AI SoW), and the constellation until path v1 review.
