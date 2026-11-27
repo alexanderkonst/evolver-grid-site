@@ -301,3 +301,18 @@ Ask (Sasha 2026-11-26 17:40): the same clock, same function and design, full scr
 
 ### Done when
 On iPad Safari, `/equilibrium` shows only the clock in full-moon light; full screen works from one tap; the screen stays on for 30 minutes; finish button and dial taps work as on the village; the shell opens from its toggle; `/build/equilibrium` still works; `/equilibrium/` no longer serves the old static app.
+
+## Concept: realistic inlay and light through it (NOT APPROVED FOR BUILD, 2026-11-26)
+Ask (Sasha 17:53): make the inlaid pieces more real, and the light passing through them more real.
+1. Real stone, one per segment colour: malachite (green), carnelian (red/orange), lapis (blue), amethyst (violet), citrine (yellow), moonstone (Moon ring). Each a small photographed-style texture with its own banding and inclusions; one sprite of six tiles, about 20 KB WebP total, tiled along the arc so no two segments look stamped.
+2. Thickness drives colour (how real translucent stone behaves): thin edges are lighter and clearer, the centre is deeper and more saturated. One radial gradient per segment over the texture.
+3. Light from within, not a glow on top: the groove floor under ahead segments is lit, so colour spills a little onto the clay walls of the groove in the segment's own hue. No outer halo (replaces the Jupiter purple glow).
+4. Moon as the light source: one moving highlight along each ring, placed at the real moon direction for the user's local time and as strong as the moon's illumination (full moon = bright cool sheen, new moon = almost none).
+5. Seating: a hairline dark gap between pieces and clay on the shadow side, a thin bright lip on the lit side, a tiny resin meniscus at segment joints. Width varies ±0.3 px so the cut looks hand-made.
+6. Now point: the inner light is strongest at "now" and fades toward the end of the ring, as a very slow drift (12 s loop, CSS gradient only, off with reduced motion). Lived segments stay silver wire.
+7. Cost: about +20 KB for the stone sprite plus CSS; no WebGL, no canvas. Supersedes the roast's single grey mineral tile if approved.
+
+## Phase and day words: Sasha's cursive (direction, 2026-11-26 17:53)
+- All lowercase (it's just a word): "full moon", "harvesting", "thursday", "expansion".
+- Font: Sasha's own handwriting (cursive), bold for the phase and day name, regular for its meaning. Source: a sheet in his hand with the alphabet and every word the clock shows; vectorised into one font (latin + cyrillic + spanish accents). Replaces the roast's Cormorant Garamond proposal.
+- Legibility floor: on the 200 px phone dial the words are about 12 px; cursive needs strong strokes there, so bold stays heavier than the reference.
