@@ -41,7 +41,7 @@ One file per card, beside its script and PNG: `<card>.card.yaml`, `<card>.py`, `
 |---|---|---|
 | `id` | yes | Book id: `ideal-client-02`, `primitives-07`, `III.01` |
 | `chapter` | yes | Book chapter number as a string, `"3.2"` |
-| `title` | yes | the neon title on the card; equals the Book title |
+| `title` | yes | the shift, one complete thought, largest type (rule: [Title = the shift](../../../templates/infographic.md#title--the-shift-first-principle-sasha-2026-11-27-1625-mst)); the neon title on the card; equals the Book title. Topic or series name goes to `text.eyebrow` |
 | `caption` | yes | the one line under the title; equals the Book caption (`""` only if the Book has none, then the script draws its own line from `text`) |
 | `skin` | yes | `v4` \| `grayscale` \| `moonworld` |
 | `text` | yes | every other on-card string, any shape your script wants. `eyebrow` is read by `vocab.card()` |
@@ -111,6 +111,8 @@ Make a card: write the two files, then `python3 kit/render.py <card>.card.yaml` 
 | `footer` | no star mark or no `findyourtoptalent.com` |
 | `spec-fields` | a required spec field missing or empty, or an unknown skin |
 
+TODO (proposed, not implemented): rule `title-claim` ([Title = the shift](../../../templates/infographic.md#title--the-shift-first-principle-sasha-2026-11-27-1625-mst), points 1 and 3). Fails when the title has no verb, or when it equals the eyebrow. Whether a title is the whole insight stays the author's self-check (point 6); lint only catches the two mechanical failures. Needs a verb test that works for EN titles first; open question: RU titles.
+
 What lint sees: everything drawn through the vocabulary (`card.log`). Raw `c.d.*` / `c.gd.*` PIL calls inside a card script are invisible to it; use the vocabulary.
 
 ## Book sync
@@ -162,6 +164,8 @@ Lint checks two things only: `spec-fields` (id, chapter, title, caption, source 
 Square icons for the course-apps (Potential, Crossing, Vision, Nature, My AI) live in [`apps/`](../apps/): `<id>.card.yaml` (`kind: icon`) and `apps/v6/` (see below). v1 drew each as before → after with a script per icon; `sheet.png` (v1), `sheet-v2.png` and `sheet-v3.png` stay as history.
 
 Each icon is one idea as before → after: before on the left in QUIET / silver, after on the right with the one NEON accent, a bold chevron and a dawn bloom between. No text. A script builds `K`-style: `c = icon.card(spec)`, then `with c.side("before"): ...` / `with c.side("after"): ...` using `orb`, `dot`, `ring`, `path`, `fill`, `iri_fill`, `chevron` (call list in `icon.py`). The spec's `title` is the tile's **Name**, `caption` its tagline, `text.before` / `text.after` say the idea in words.
+
+Every icon spec carries `shift:`, one phrase naming the shift the icon shows: the "after" side is the shift, the same rule as for cards ([Title = the shift](../../../templates/infographic.md#title--the-shift-first-principle-sasha-2026-11-27-1625-mst), point 7). Example: `shift: "a seed opens into a bud"`. Lint does not check it yet; new and edited icon specs add it, existing ones when next edited.
 
 `python3 kit/lint.py apps/<id>.card.yaml` runs the icon rules instead of the card rules:
 
@@ -229,3 +233,7 @@ The 32 px test: `card.silhouette(32)` redraws the sign as a filled black shape. 
 ## Migrating a card
 
 Only when it is edited. Copy the engine-v4 function into `<card>.py`, swap `V4(...)` for `K.card(spec)`, move every string into the spec, add `parity`, run `compare.py` (expect 0.0000), then lint. Legacy cards will need `max_words`.
+
+---
+Template: infographic v1.1 · Version: docs patch · Shift check: the title names the shift
+Template change: infographic v1.0 → v1.1: Card spec `title` row, Lint TODO `title-claim`, App icons `shift:` line added (issue #568)

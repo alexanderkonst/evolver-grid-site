@@ -1,6 +1,6 @@
 # Course Update: a new source → signed insights → new micro-modules → a new version
 
-*Version: v2.0.1 · last changed: 2026-11-27 · last verified: not yet (first run in flight, §5) · change log: §8. Status: canonical. Lens: Causal.*
+*Version: v2.0.2 · last changed: 2026-11-27 · last verified: not yet (first run in flight, §5) · change log: §8. Status: canonical. Lens: Causal.*
 
 ## Meta-description
 - Level / parent: L2 · Content & Transmission (proposed L1, Meta-Template T3) · parent: [meta-template.md](./meta-template.md); the update half of [course-from-source.md](./course-from-source.md) (its step 11, "a living course: it keeps improving after release", turned into a runnable loop)
@@ -63,6 +63,7 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
 
 ### Step 4 · One card per signed key insight
 - **Input:** the signed rows. **Output:** card spec + script + PNG per insight, and one contact sheet sent to Sasha. **Who:** Claude Code through an @claude issue opened by Hark (first line `Template: infographic.`); Hark writes the spec. **Gate:** Sasha sees the sheet before any card is used; his words on the sheet are edited in place and re-rendered.
+- **Rule first: Title = the shift** ([infographic.md → Title = the shift](./infographic.md#title--the-shift-first-principle-sasha-2026-11-27-1625-mst)). The card title is the signed insight as one complete thought, the state after the shift, in the largest type; the source or series goes to the eyebrow; one signed insight = one card (two insights in one line → two cards). The caption is how / why and does not repeat the title. Hark writes the title in the spec by this rule.
 - Card format and taxonomy: [infographic.md](./infographic.md). Drawing rules, spec fields, lint and sheet commands: [`docs/assets/infographics/kit/README.md`](../assets/infographics/kit/README.md).
 - Files: `docs/assets/infographics/book/<course folder>/<ID>.card.yaml` + `<ID>.py` + `<ID>.png` (ADP folder: `book/adp/`, series A01–A10; Body cards B01, B02). The caption is the signed line, verbatim, ≤ 25 words; labels come from the card's own line; one NEON accent; the attribution footer names the originator ("After <Name>").
 - Not published: the issue says **do not add to `book/book.yaml`**, the reader or course data until Sasha's yes (as in #521).
@@ -227,3 +228,8 @@ The versions of this file are in §8 Changelog.
 | 2026-11-26 | v1.1 | step 5 runs on the NotebookLM runbook (8 actions, pipelining, versioned notebook name, stored style and focus lines); the how-to principle with three zoom levels and its check | Sasha, #525 comments 11:55 and 11:59 MST |
 | 2026-11-26 | v2.0 | **major** (DoD changed: row 12 added, row 11 widened). Step 5: YouTube upload unlisted by default with no approval; only public or announced needs Sasha's yes (gate moved, step 9). Step 10: trace line (Meta-Template v3), `Template change:` line at the end of every job, UI drift loop, version rule, `last verified` on every run. Version line at the top in the v3 form; versions moved out of §7 into this table | Sasha, #525 comments 12:02 MST (two: unlisted needs no yes; «интерфейсы постоянно меняются…»); Meta-Template v3 core, 2026-11-26 12:01 MST |
 | 2026-11-27 | v2.0.1 | **patch** (step 6 field names): Ask-AI field is `askPrompt` (a string with tokens), not `askPromptKey`; empty `youtubeId` state; `CourseConfig.outro` | Nature PR, issue #551 |
+| 2026-11-27 | v2.0.2 | **patch** (wording, step 4): link to the infographic rule "Title = the shift" (one signed insight = one card, title is the shift) | Sasha, 2026-11-27 16:25 MST; issue #568 |
+
+---
+Template: course-update v2.0.2 · Version: docs patch · Shift check: the title names the shift
+Template change: course-update v2.0.1 → v2.0.2: step 4 links the infographic rule "Title = the shift" (issue #568)
