@@ -26,7 +26,7 @@ Lessons we adopt (source: `docs/02-strategy/research/qa/exemplars/metrology.md`,
 ## Scale ladder
 | Scale | Its etalon | Return looks like |
 |---|---|---|
-| Universe | the universal etalon (ToE: self-relation, Def 73) | to be formalized (step 3) |
+| Universe | the universal etalon (ToE: self-relation, Def 71 (+73); Step 153) | to be formalized (step 3) |
 | Person | their uniqueness / top talent | a shift: recognized, retold in own words, then acted on |
 | Business | a business that matches the founder's etalon | first sale and growth from the gift |
 | Village | places where etalons meet | to be defined (step 4) |
@@ -39,3 +39,4 @@ Lessons we adopt (source: `docs/02-strategy/research/qa/exemplars/metrology.md`,
 
 ## Changelog
 - v0.1 (2026-11-27): first core, on Sasha's «делай!».
+- v0.1.1 (2026-11-27): self-relation is Def 71 (Def 73 = order); ToE Step 153 link.
