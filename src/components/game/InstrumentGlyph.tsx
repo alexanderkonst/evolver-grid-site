@@ -43,6 +43,11 @@ type Props = {
 
 const NO_GLINTS: Glints = {};
 
+/** The «Chat with us» pill (ChatLauncher): the glyph never covers it, at any width or text size (WP8 polish). */
+const CHAT_SELECTOR = "[data-chat-launcher]";
+/** Everything the glyph keeps clear of: the screen's own `avoid` plus the chat pill. */
+const avoidSelector = (avoid?: string): string => (avoid ? `${avoid}, ${CHAT_SELECTOR}` : CHAT_SELECTOR);
+
 const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, glints = NO_GLINTS, carried, open, reduced, label, avoid, onToggle, onSwipeUp }, ref) => {
   const svgId = useId();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -68,8 +73,8 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, glints = NO
 
   // Home is the bottom-right corner. Where a screen keeps something there (the next-move card spans the
   // foot of the village on a phone), the glyph rises above it, so it never covers content or controls.
+  const avoidAll = avoidSelector(avoid);
   useEffect(() => {
-    if (!avoid) return;
     let raf = 0;
     const measure = () => {
       raf = 0;
@@ -79,7 +84,7 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, glints = NO
       // Where it sits now is home plus whatever lift is applied (none while the instrument is open).
       const applied = openRef.current ? 0 : liftRef.current;
       const home = { left: r.left, right: r.right, top: r.top + applied, bottom: r.bottom + applied };
-      const rects = Array.from(document.querySelectorAll(avoid))
+      const rects = Array.from(document.querySelectorAll(avoidAll))
         .map((n) => n.getBoundingClientRect())
         .filter((a) => a.width > 0 && a.height > 0);
       const next = liftAbove(home, rects);
@@ -90,11 +95,11 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, glints = NO
     };
     // The card arrives (the save loads) and grows without a scroll or a resize: watch for it. The
     // observer callback measures at once, before the next paint; the frame is only for scroll and resize.
-    const touches = (n: Node) => n instanceof Element && (n.matches(avoid) || !!n.querySelector(avoid));
+    const touches = (n: Node) => n instanceof Element && (n.matches(avoidAll) || !!n.querySelector(avoidAll));
     const ro = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(() => measure());
     const watched = new Set<Element>();
     const watch = () => {
-      document.querySelectorAll(avoid).forEach((n) => {
+      document.querySelectorAll(avoidAll).forEach((n) => {
         if (!watched.has(n)) {
           watched.add(n);
           ro?.observe(n);
@@ -123,7 +128,7 @@ const InstrumentGlyph = forwardRef<HTMLButtonElement, Props>(({ lit, glints = NO
       window.clearInterval(timer);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [avoid, applyLift]);
+  }, [avoidAll, applyLift]);
 
   // Open drops the lift (the open instrument keeps the corner for its own panel); closing brings it back.
   useEffect(() => {

@@ -165,3 +165,37 @@ describe("registration", () => {
     expect(getFace("fire")).not.toBe(getFace("earth"));
   });
 });
+
+describe("WP8 polish · the earth face is never a blank card while the save loads", () => {
+  const savedWithWorkshop = saveWith(["discover-mission"]);
+
+  it("not ready: a skeleton of rows, no «nothing yet» line, no items", () => {
+    const html = renderToStaticMarkup(<EarthFaceView save={emptyPlaceSave(NOW)} ready={false} {...handlers} />);
+    expect(html).toContain('data-testid="earth-face-skeleton"');
+    expect(html).toContain('aria-busy="true"');
+    expect(html).not.toContain("Opens on your path");
+    expect(html).not.toContain("data-place=");
+  });
+
+  it("not ready: even a save that has items shows only the skeleton, so the card never flips from blank to full", () => {
+    expect(earthFaceItems(savedWithWorkshop).length).toBeGreaterThan(0);
+    const html = renderToStaticMarkup(<EarthFaceView save={savedWithWorkshop} ready={false} {...handlers} />);
+    expect(html).toContain('data-testid="earth-face-skeleton"');
+    expect(html).not.toContain("data-place=");
+  });
+
+  it("ready: the skeleton is gone and the content is there", () => {
+    const html = renderToStaticMarkup(<EarthFaceView save={savedWithWorkshop} ready {...handlers} />);
+    expect(html).not.toContain("earth-face-skeleton");
+    expect(html).toContain("data-place=");
+    const empty = renderToStaticMarkup(<EarthFaceView save={emptyPlaceSave(NOW)} ready {...handlers} />);
+    expect(empty).not.toContain("earth-face-skeleton");
+    expect(empty).toContain("Opens on your path");
+  });
+
+  it("the skeleton pulses only when motion is allowed", () => {
+    const html = renderToStaticMarkup(<EarthFaceView save={emptyPlaceSave(NOW)} ready={false} {...handlers} />);
+    expect(html).toContain("motion-safe:animate-pulse");
+    expect(html).not.toMatch(/class="[^"]*(?<!motion-safe:)animate-pulse/);
+  });
+});

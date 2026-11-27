@@ -368,7 +368,10 @@ const Village = () => {
   const moveCopy = move ? nextMoveCopy(move, t) : null;
   // §25.4 step 1: one glow. Only the move's place reads `next`, the same as the rail and the pane row.
   const states: PlaceStateName[] = oneNextStates(VILLAGE_PLACES, VILLAGE_PLACES.map((p) => placeState(p, save)), move);
-  const shown: PlaceStateName[] = states.map((s) => (!ready && s === "closed" ? "open" : s));
+  // WP8 polish: until the save has loaded, no place says anything about progress. Every place draws open and
+  // neutral and no state word shows (the empty save would otherwise print «Next» on the Entry Portal and «Open»
+  // on Market and Town Hall for a frame, then correct itself). `ready` gates every state word below.
+  const shown: PlaceStateName[] = states.map((s) => (!ready ? "open" : s));
   // §25.14 earned light: a quarter's solid is lit once its first place is open. Nothing is lit until the save loads.
   const quarterLit = litQuarters(VILLAGE_PLACES, ready ? shown : []);
   const changes = useVillageChanges(sheet.userId, VILLAGE_PLACES, save, ready);
@@ -512,7 +515,7 @@ const Village = () => {
   const lastSoul = placeSoul(lastObjects);
 
   return (
-    <div className={`vl-root${leaving ? " is-leaving" : ""}`} data-view={place ? "place" : "map"} style={skyVars(sky)}>
+    <div className={`vl-root${leaving ? " is-leaving" : ""}`} data-view={place ? "place" : "map"} data-progress={ready ? "ready" : "loading"} style={skyVars(sky)}>
       <div className="vl-grain" aria-hidden="true" />
       {/* Lunar only: the player's soul colors and the sky, from the same save as placeState (§14.11). */}
       <LunarWorldSync sheet={sheet} save={save} />
@@ -590,7 +593,7 @@ const Village = () => {
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{placeName(p, t)}</span>
                             <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" />
-                            <PlaceStateTag state={shown[i]} text={gatedText(p)} />
+                            {ready ? <PlaceStateTag state={shown[i]} text={gatedText(p)} /> : null}
                           </a>
                         ) : (
                           <Link
@@ -605,7 +608,7 @@ const Village = () => {
                             <span className="vl-dot ps-fade" aria-hidden="true" />
                             <span className="vl-pin__name">{placeName(p, t)}</span>
                             <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" />
-                            <PlaceStateTag state={shown[i]} />
+                            {ready ? <PlaceStateTag state={shown[i]} /> : null}
                             {signal(i)}
                             {isNew(p) ? <NewTag /> : null}
                             {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}
@@ -687,13 +690,13 @@ const Village = () => {
                     // Issue #270: closed means aria-disabled and no navigation; the line says what opens it.
                     <a role="link" aria-disabled="true" tabIndex={0} className="is-locked">
                       <span className="vl-list__name">{placeName(p, t)}{mobile ? <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" /> : null}</span>
-                      <PlaceStateTag state={shown[i]} text={gatedText(p)} />
+                      {ready ? <PlaceStateTag state={shown[i]} text={gatedText(p)} /> : null}
                       <span className="vl-list__line">{placeLine(p, shown[i], t, signedIn === true, playerName)}</span>
                     </a>
                   ) : (
                     <Link to={pinTo(p)}>
                       <span className="vl-list__name">{placeName(p, t)}{mobile ? <QuarterSign element={p.element} lit={quarterLit[p.element]} size={16} className="vl-sign" /> : null}</span>
-                      <PlaceStateTag state={shown[i]} />
+                      {ready ? <PlaceStateTag state={shown[i]} /> : null}
                       {signal(i)}
                       {isNew(p) ? <NewTag /> : null}
                       {isLit(p) ? <span className="vl-lit-word">{tr(t, "village.lit", "Lit")}</span> : null}

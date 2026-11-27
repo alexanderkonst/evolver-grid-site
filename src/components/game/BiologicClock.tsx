@@ -109,17 +109,23 @@ export const nextView = (view: ClockView): ClockView => (view === 3 ? 1 : ((view
 
 type ViewStorage = Pick<Storage, "getItem" | "setItem" | "removeItem">;
 
-/** The remembered view is per place: the village map and the profile card keep their own. */
+/** The remembered view is per place; the village map is the exception: see `remembersView`. */
 export type ClockPlace = "village" | "profile";
+/**
+ * The village map always opens on view 1 (dial only): its card runs over the place labels and the ink line's
+ * target, so it opens only when the player taps it, and a visit never starts with it open (WP8 polish).
+ * The profile card keeps its remembered view.
+ */
+export const remembersView = (place?: ClockPlace): boolean => place !== "village";
 const viewKey = (place?: ClockPlace) => (place ? `${VIEW_KEY}:${place}` : VIEW_KEY);
 
 /**
- * The remembered view for a place; 1 (dial only) when nothing is stored. A place without its own
+ * The remembered view for a place; 1 (dial only) when nothing is stored, and always for the village map. A place without its own
  * key starts from the shared v5/v6.0 key (`bioclock:view`), then from the v5 flag: expanded "1" →
  * view 3, "0" → view 2. The old flag is moved to the new key and removed.
  */
 export const loadView = (storage: ViewStorage | null, place?: ClockPlace): ClockView => {
-  if (!storage) return 1;
+  if (!storage || !remembersView(place)) return 1;
   try {
     const own = storage.getItem(viewKey(place));
     if (own === "1" || own === "2" || own === "3") return Number(own) as ClockView;
@@ -141,7 +147,7 @@ export const loadView = (storage: ViewStorage | null, place?: ClockPlace): Clock
 };
 
 export const saveView = (storage: ViewStorage | null, view: ClockView, place?: ClockPlace): void => {
-  if (!storage) return;
+  if (!storage || !remembersView(place)) return;
   try {
     storage.setItem(viewKey(place), String(view));
   } catch {

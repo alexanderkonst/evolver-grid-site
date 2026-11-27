@@ -360,25 +360,29 @@ describe("the remembered view (localStorage)", () => {
     expect(loadView(memory({ [VIEW_KEY]: "2", [LEGACY_EXPANDED_KEY]: "1" }))).toBe(2);
   });
 
-  it("village and profile remember their own view", () => {
+  it("the profile remembers its own view; the village map is not remembered (WP8: it always opens collapsed)", () => {
     const store = memory();
     saveView(store, 3, "village");
     saveView(store, 2, "profile");
-    expect(loadView(store, "village")).toBe(3);
+    expect(loadView(store, "village")).toBe(1);
     expect(loadView(store, "profile")).toBe(2);
-    expect(store.data["bioclock:view:village"]).toBe("3");
+    expect("bioclock:view:village" in store.data).toBe(false);
     expect(store.data["bioclock:view:profile"]).toBe("2");
-    saveView(store, 1, "village");
-    expect(loadView(store, "profile")).toBe(2); // the other place does not move
+  });
+
+  it("the village starts on view 1 whatever else is stored (a profile view, an old key, an old flag)", () => {
+    expect(loadView(memory({ [VIEW_KEY]: "2" }), "village")).toBe(1);
+    expect(loadView(memory({ [VIEW_KEY]: "3", "bioclock:view:village": "3" }), "village")).toBe(1);
+    expect(loadView(memory({ [LEGACY_EXPANDED_KEY]: "1" }), "village")).toBe(1);
   });
 
   it("a place with no key of its own starts from the shared key, then from the v5 flag", () => {
-    expect(loadView(memory({ [VIEW_KEY]: "2" }), "village")).toBe(2);
+    expect(loadView(memory({ [VIEW_KEY]: "2" }), "profile")).toBe(2);
     const legacy = memory({ [LEGACY_EXPANDED_KEY]: "1" });
     expect(loadView(legacy, "profile")).toBe(3);
     expect(legacy.data["bioclock:view:profile"]).toBe("3");
     expect(LEGACY_EXPANDED_KEY in legacy.data).toBe(false);
-    expect(loadView(memory({ [VIEW_KEY]: "2", "bioclock:view:village": "3" }), "village")).toBe(3);
+    expect(loadView(memory({ [VIEW_KEY]: "2", "bioclock:view:profile": "3" }), "profile")).toBe(3);
   });
 
   it("blocked storage never throws", () => {

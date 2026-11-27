@@ -28,6 +28,8 @@ async function openConsole(page: Page) {
   await glyph.click();
   await expect(page.getByRole("dialog", { name: "Your instrument" })).toBeVisible();
   await page.waitForTimeout(800);
+  // The instrument opens on the five bodies; Your AI is the air body.
+  await page.getByTestId("instrument-body-air").click();
   await page.getByRole("tab", { name: "Console" }).click();
   await expect(page.getByTestId("console-panel")).toBeVisible();
 }
@@ -117,9 +119,9 @@ test("a suggestion replies in place and the conversation survives reload", async
   await expect(page.getByText("18 turns left today")).toBeVisible();
 
   await page.reload();
-  // Since #513 the glyph opens Your AI straight onto its face; the air body in the arc is inert there.
   await page.getByTestId("instrument-glyph").click();
   await expect(page.getByRole("dialog", { name: "Your instrument" })).toBeVisible();
+  await page.getByTestId("instrument-body-air").click();
   await page.getByRole("tab", { name: "Conversation" }).click();
   await expect(page.getByRole("log")).toContainText("Breathwork and activations");
   await expect(page.getByRole("log")).toContainText("Let's start with one breath.");

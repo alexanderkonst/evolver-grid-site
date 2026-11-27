@@ -513,7 +513,9 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
     dispatch({ type: "gate", enabled });
   }, [enabled]);
 
-  const openInstrument = useCallback(() => {
+  // Opening always lands on the five bodies; a face opens only by tapping its body (WP8 polish). The one
+  // exception is a direct visit to Your AI (`openAt`), which is asking for that face by name.
+  const openInstrument = useCallback((face?: ElementKey) => {
     returnFocusRef.current = document.activeElement instanceof HTMLElement && document.activeElement !== document.body
       ? document.activeElement : null;
     // The crystal rises from where the glyph is to the middle of the screen.
@@ -527,11 +529,13 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
       });
     }
     setArcRadius(Math.max(96, Math.min(ARC_RADIUS_MAX, (window.innerWidth - 84) / 2)));
+    // Whatever face was used last is forgotten: the next open starts from air's mounted conversation, never a stale face.
+    lastFaceRef.current = face ?? "air";
     dispatch({ type: "open" });
-    dispatch({ type: "face", element: "air" });
+    if (face) dispatch({ type: "face", element: face });
   }, []);
   useEffect(() => {
-    if (openAt !== undefined) openInstrument();
+    if (openAt !== undefined) openInstrument("air");
   }, [openAt, openInstrument]);
 
   const closeInstrument = useCallback(() => dispatch({ type: "close" }), []);
