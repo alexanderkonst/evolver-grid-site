@@ -3,7 +3,7 @@
 // supabase function: mcp
 // Bundled from src/lib/mcp/index.ts by @lovable.dev/mcp-js.
 // <define:import.meta.env>
-var define_import_meta_env_default = { VITE_SUPABASE_URL: "https://jypjttotvastdhanwvrx.supabase.co", VITE_SUPABASE_PUBLISHABLE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5cGp0dG90dmFzdGRoYW53dnJ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMwOTQ5MTQsImV4cCI6MjA3ODY3MDkxNH0.fVSXHJ_eqvMfblTD2SbNcYDrkulhqVCzv_7dXMenKc8", MODE: "production", BASE_URL: "/", DEV: false, PROD: true, SSR: false };
+var define_import_meta_env_default = { MODE: "production", BASE_URL: "/", DEV: false, PROD: true, SSR: false };
 
 // src/lib/mcp/index.ts
 import { auth, defineMcp } from "npm:@lovable.dev/mcp-js@0.20.1";
