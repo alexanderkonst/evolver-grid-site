@@ -274,7 +274,7 @@ A player opens the village map and, without a legend, sees in the dial alone the
 - Built as one pre-rendered transparent WebP per finish (wordmark arc with its carved shading), not as a runtime font. Mockup: bioclock-v22-word.jpg.
 - Ships with the craft-layer issue.
 
-## iPad clock stage on /equilibrium — concept and spec (APPROVED 2026-11-26 17:45, «да!», except the background shade, pick pending)
+## iPad clock stage on /equilibrium — concept and spec (APPROVED 2026-11-26 17:45 «да!»; backgrounds decided 17:54)
 Ask (Sasha 2026-11-26 17:40): the same clock, same function and design, full screen on a black iPad screen; game shell collapsed; on /equilibrium.
 
 ### What is on /equilibrium today
@@ -284,7 +284,7 @@ Ask (Sasha 2026-11-26 17:40): the same clock, same function and design, full scr
 ### Concept architecture
 1. One clock. The stage renders the existing `BiologicClock` with the same engine (`getAllCyclesV2`), finishes button, dial tap cycle (dial → words → Year and Day → dial), word ring, emblem. The only new input is its size.
 2. Stage page `ClockStagePage` at `/equilibrium`, inside `GameShellV2` with `hideLogo`, no background video, pane 2 closed and pane 1 rail folded on entry, its restore toggle kept (one small control in a corner).
-3. Stage in full-moon light, not black (Sasha 17:45 «только не черный фон, а FULL MOON LIGHT»): a soft radial moonlight field behind the dial, CSS gradient only, no image; shade from mockup stage-v1 (A moonlit night, B full-moon light, C pearl), pick pending. Formerly: black stage, background #000; dial centred, size = 92% of min(viewport width, viewport height), respecting safe-area insets; works in portrait and landscape and re-centres on rotation. The open words card and the Year and Day view fit inside the same square.
+3. Stage in full-moon light, not black (Sasha 17:45 «только не черный фон, а FULL MOON LIGHT»): a soft radial moonlight field behind the dial, CSS gradient only, no image; three shades from mockup stage-v1: A moonlit night, B full-moon light (default), C pearl. Decided (Sasha 17:54): a tap anywhere outside the dial cycles the background A→B→C→A (cross-fade 400 ms, none with reduced motion; localStorage `bioclock-stage-bg`); the side crown keeps cycling the dial finish (wheel, dry, moonlit) exactly as on the village. Taps on the dial itself keep the dial → words → Year and Day cycle. Formerly: black stage, background #000; dial centred, size = 92% of min(viewport width, viewport height), respecting safe-area insets; works in portrait and landscape and re-centres on rotation. The open words card and the Year and Day view fit inside the same square.
 4. Full screen: one small button in a corner, fades after 3 s without touch, comes back on touch. Calls `requestFullscreen` on the stage (webkit-prefixed fallback). If the browser refuses, the page still works as a black stage; the tip line says «Add to Home Screen» for a chrome-free view (web manifest `display: standalone` already or added for this route).
 5. Screen stays on: Screen Wake Lock API while the stage is visible; re-acquire on `visibilitychange`; release on leave. No fallback video trick.
 6. Time: the clock recomputes once a minute and on wake; nothing else polls. No network after load except the existing birthday read.
