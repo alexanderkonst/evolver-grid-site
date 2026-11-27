@@ -2019,6 +2019,28 @@
       "C05E03": "Step into the role that's yours."
     }
   },
+  "courseNature": {
+    "tagline": "Aligns You With Natural Rhythms",
+    "promise": {
+      "N01": "Some days you can't push, and it isn't a flaw.",
+      "Y01": "Your real new year is the day you were born.",
+      "Y02": "Your year inside, the Earth's year outside.",
+      "M01": "Every month is a small year.",
+      "M02": "The how is none of your business, yet.",
+      "M03": "Clarity first, then the work, then the fruit.",
+      "M04": "Gratitude is the fuel for what comes next.",
+      "W01": "Your weekdays are named after the sky.",
+      "W02": "A week with seven modes composes itself.",
+      "D01": "Mornings create, afternoons polish.",
+      "D02": "Work in waves, not in a straight line.",
+      "O01": "Four rhythms in under a minute."
+    },
+    "outro": {
+      "title": "Let the watch read it for you",
+      "body": "Equilibrium reads all four rhythms every day and keeps your intention, strategy and next task in step with the moon.",
+      "button": "Open Equilibrium"
+    }
+  },
   "course": {
     "titles": {
       "activate-your-dormant-potential": "Your Unfolding Potential"
@@ -2040,7 +2062,13 @@
     "ctaTitle": "You've completed the course",
     "ctaBody": "Now find out what you are uniquely built to do.",
     "ctaButton": "Discover your Zone of Genius",
-    "videoTitle": "Video: {{title}}"
+    "videoTitle": "Video: {{title}}",
+    "videoSoon": "Video coming soon",
+    "videoSoonHint": "It's on its way.",
+    "askAi": {
+      "title": "Ask AI",
+      "sendSoon": "Sending from here isn't ready yet. Press Copy and paste it into any AI."
+    }
   },
   "library": {
     "filterAll": "All",
@@ -3773,6 +3801,10 @@
       "consciousness-meets-science": {
         "name": "Consciousness Meets Science",
         "result": "a course where consciousness meets science"
+      },
+      "nature": {
+        "name": "Nature",
+        "result": "a mini-training that aligns you with natural rhythms"
       },
       "founder-collective": {
         "name": "Founder Collective",
@@ -6284,7 +6316,8 @@
           "library": "Practice Library",
           "paths": "Skill Tree",
           "dormantPotential": "Your Unfolding Potential",
-          "consciousnessMeetsScience": "Consciousness Meets Science"
+          "consciousnessMeetsScience": "Consciousness Meets Science",
+          "nature": "Nature"
         }
       },
       "marketplace": {

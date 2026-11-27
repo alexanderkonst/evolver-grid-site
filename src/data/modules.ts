@@ -1,6 +1,7 @@
 import type { LegacyModuleCategory, Module, ModuleSource } from "@/types/module";
 import { CMS_COURSE_PATH, CONSCIOUSNESS_MEETS_SCIENCE } from "@/data/courses/consciousnessMeetsScience";
 import { ACTIVATE_YOUR_DORMANT_POTENTIAL, COURSE_PATH as ADP_COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
+import { NATURE, NATURE_COURSE_PATH } from "@/data/courses/nature";
 import { AIV_COURSE_SLUG } from "@/data/courses/activationOfInnerVision";
 
 /**
@@ -438,6 +439,21 @@ export const modules: Module[] = [
     space: "LEARN",
     startRoute: CMS_COURSE_PATH,
     description: "<p>A free mini-course by Aleksandr Konstantinov: how inner experience and modern science co-reveal the nature of reality.</p>",
+    owner: "evolver",
+    source: "internal",
+    place: "academy",
+  },
+  {
+    id: "course-nature",
+    title: NATURE.title,
+    slug: NATURE.slug,
+    category: "LEARN",
+    tagline: "Aligns You With Natural Rhythms",
+    status: "Live",
+    price: "Free",
+    space: "LEARN",
+    startRoute: NATURE_COURSE_PATH,
+    description: "<p>A free mini-training by Aleksandr Konstantinov: read where you stand in four rhythms (your year, the moon, the week, the day) in under a minute, and choose one action that goes with them.</p>",
     owner: "evolver",
     source: "internal",
     place: "academy",

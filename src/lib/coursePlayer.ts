@@ -8,6 +8,12 @@ import type { CourseEpisode, CourseModule } from "@/data/courses/types";
 export const isEpisodePublished = (episode: CourseEpisode): boolean =>
     !episode.youtubeId.toUpperCase().startsWith("TBD");
 
+/**
+ * An episode with an empty `youtubeId` is listed, but its video is not uploaded yet: the player
+ * shows a calm "Video coming soon" state instead of an embed. ("TBD…" ids stay hidden.)
+ */
+export const isEpisodeReady = (episode: CourseEpisode): boolean => episode.youtubeId.trim() !== "";
+
 /** Modules reduced to published episodes; modules left empty are dropped. */
 export const getPublishedModules = (modules: CourseModule[]): CourseModule[] =>
     modules

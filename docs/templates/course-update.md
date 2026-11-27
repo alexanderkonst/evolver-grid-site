@@ -1,6 +1,6 @@
 # Course Update: a new source → signed insights → new micro-modules → a new version
 
-*Version: v2.0 · last changed: 2026-11-26 · last verified: not yet (first run in flight, §5) · change log: §8. Status: canonical. Lens: Causal.*
+*Version: v2.0.1 · last changed: 2026-11-27 · last verified: not yet (first run in flight, §5) · change log: §8. Status: canonical. Lens: Causal.*
 
 ## Meta-description
 - Level / parent: L2 · Content & Transmission (proposed L1, Meta-Template T3) · parent: [meta-template.md](./meta-template.md); the update half of [course-from-source.md](./course-from-source.md) (its step 11, "a living course: it keeps improving after release", turned into a runnable loop)
@@ -86,7 +86,8 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
   - `src/data/courses/<file>.ts`: append to the module whose `id` is the step 0 module, one object per episode: `{ code, title, youtubeId, infographic, promiseKey }` (shape: `CourseEpisode` in `src/data/courses/types.ts`). Order in the array = order on the page.
   - `infographic`: an image path served from `public/`. Default until the first run fixes it: copy `book/<course folder>/<ID>.png` to `public/infographics/courses/<slug>/<ID>.png` and set `infographic: "/infographics/courses/<slug>/<ID>.png"`. If Sasha has published the card in `book/book.yaml`, use its `public/infographics/book/…` copy instead.
   - `promiseKey`: the course's i18n namespace (`courseCms.promise.<code>` for Consciousness Meets Science; ADP has none yet, so the first ADP run adds `course.promise.<code>` under `"course"`) in `src/locales/en/common.json`, `ru/common.json`, `es/common.json`.
-  - **Ask-AI prompt:** `CourseEpisode` has no prompt field yet and `src/pages/CoursePage.tsx` renders no button. The first run's issue adds an optional `askPromptKey` (i18n key, same pattern as `promiseKey`) and renders it after the video with `src/components/mini-training/PromptButtonCard.tsx`. Later runs only fill the key. (Name proposed here; the merged PR is the truth, and step 10 corrects this line.)
+  - **Ask-AI prompt:** `CourseEpisode.askPrompt` (English string with tokens `{birthday} {today} {weekday} {timeOfDay} {phase} {location} {mission}`; filled by `src/lib/courseAskAi.ts`, a token the platform lacks becomes the "ask me" wording). `src/pages/CoursePage.tsx` renders it after the video with `src/components/course/CourseAskAiCard.tsx` (wraps `PromptButtonCard`; Send is held back until the AI call is approved, Copy works). First built in the Nature PR (#551); later runs only fill the string.
+  - **Empty video:** a `youtubeId` of `""` lists the episode and shows the "Video coming soon" state; `TBD…` still hides it. The last episode's door is `CourseConfig.outro` (default: Zone of Genius).
   - `docs/08-content/<course>_transcripts.md`: one block per episode under its module heading, `### <code> — <Title> (m:ss)` then the text; update the module line and the front-matter `version` / episode count.
 - Verification in the issue: `npm run typecheck` · `npm run lint` · `npm test` · `node scripts/i18n-key-check.mjs --prefix course.` (or the course's namespace) · the page `/grow/<slug>?ep=<new code>` opens the new episode (Playwright or a screenshot in the PR).
 - The version bump (step 7) goes in the same PR. One PR per run.
@@ -201,7 +202,7 @@ Each step: **input → output · who acts · Sasha's gate**, then exactly what t
 - Sasha to confirm the shift: PST 40 (the living methodology) as the main one, or PST 117 as in source-integration.
 - Where the learner sees the changelog: the "What's new" disclosure of #522 is the working answer.
 - Whether people who already took the mini-training are told by the platform or only by Sasha's announcement (step 9).
-- The served path for course cards (`public/infographics/courses/<slug>/`) and the Ask-AI field name (`askPromptKey`) are proposals until the first code PR merges.
+- The served path for course cards (`public/infographics/courses/<slug>/`) is a proposal until the first code PR merges (the Ask-AI field is settled: `askPrompt`, Nature PR #551).
 - Library candidate (meta-template §7.8): Sasha's how-to hypothesis (the principle above), once the step 5 measurement shows the runbook makes a module faster or cheaper.
 
 ## 7. Genealogy
@@ -225,3 +226,4 @@ The versions of this file are in §8 Changelog.
 | 2026-11-26 | v1.0 | full meta-template structure: meta-description with shift and check, how-to-run line, steps as input → output · who · gate with exact paths, field names and commands, DoD, cost discipline, worked example, genealogy | Sasha, #525 comment 11:48 MST («очень важны шаблоны, сделай их качественно») |
 | 2026-11-26 | v1.1 | step 5 runs on the NotebookLM runbook (8 actions, pipelining, versioned notebook name, stored style and focus lines); the how-to principle with three zoom levels and its check | Sasha, #525 comments 11:55 and 11:59 MST |
 | 2026-11-26 | v2.0 | **major** (DoD changed: row 12 added, row 11 widened). Step 5: YouTube upload unlisted by default with no approval; only public or announced needs Sasha's yes (gate moved, step 9). Step 10: trace line (Meta-Template v3), `Template change:` line at the end of every job, UI drift loop, version rule, `last verified` on every run. Version line at the top in the v3 form; versions moved out of §7 into this table | Sasha, #525 comments 12:02 MST (two: unlisted needs no yes; «интерфейсы постоянно меняются…»); Meta-Template v3 core, 2026-11-26 12:01 MST |
+| 2026-11-27 | v2.0.1 | **patch** (step 6 field names): Ask-AI field is `askPrompt` (a string with tokens), not `askPromptKey`; empty `youtubeId` state; `CourseConfig.outro` | Nature PR, issue #551 |

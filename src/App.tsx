@@ -66,6 +66,7 @@ import ContactNew from "./pages/ContactNew";
 import Library from "./pages/Library";
 import ActivateYourDormantPotential from "./pages/ActivateYourDormantPotential";
 import ConsciousnessMeetsScience from "./pages/ConsciousnessMeetsScience";
+import Nature from "./pages/Nature";
 import ActivationOfInnerVision from "./pages/ActivationOfInnerVision";
 import ModuleDetail from "./pages/ModuleDetail";
 import ModuleLandingPage from "./pages/ModuleLandingPage";
@@ -760,6 +761,7 @@ const App = () => (
                   {/* Free entry course — public, no auth. GROW space (shell supplied by SmartShellLayout). */}
                   <Route path="/grow/activate-your-dormant-potential" element={<ActivateYourDormantPotential />} />
                   <Route path="/grow/consciousness-meets-science" element={<ConsciousnessMeetsScience />} />
+                  <Route path="/grow/nature" element={<Nature />} />
                   {/* Advanced micro-course built on /27; unlocks after Integral Mystery School (label only). Sasha 2026-10-30. */}
                   <Route path="/grow/activation-of-inner-vision" element={<ActivationOfInnerVision />} />
                   {/* Course sales pages, one shared template (src/components/CourseSalesPage.tsx). Sasha 2026-10-30. */}
