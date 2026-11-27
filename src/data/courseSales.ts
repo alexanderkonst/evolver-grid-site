@@ -158,7 +158,7 @@ export const COURSE_SALES: CourseSalesData[] = [
         ...fromRegistry(NATURE.slug),
         versioning: versioningOf(NATURE),
         eyebrow: "Free mini-training",
-        lead: `Read where you stand in four rhythms in under a minute: your year, the moon, the week, the day. ${natureEpisodes} short episodes, each with one idea and one question to ask your AI.`,
+        lead: `Go from out-of-sync to in-sync with four rhythms already moving you: your year, the moon, the week, the day. Read where you stand in under a minute, for work that lands, a steady mind, more energy. ${natureEpisodes} short episodes, each with one idea and one question to ask your AI.`,
         forWhom: [
             "Some days nothing moves, and you wonder if something is wrong with you.",
             "You want to plan around your energy instead of against it.",

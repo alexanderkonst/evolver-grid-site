@@ -60,10 +60,10 @@ const EXPECTED: [string, string, string][] = [
   ["intro", "N01", "Nothing Is Wrong With You"],
   ["year", "Y01", "Your Year Starts on Your Birthday"],
   ["year", "Y02", "Two Years Turn at Once"],
-  ["month", "M01", "The Moon Has Four Seasons"],
-  ["month", "M02", "The Seed Half"],
-  ["month", "M03", "The Harvest Half"],
-  ["month", "M04", "The Cycle Starts After You Celebrate"],
+  ["moon", "M01", "The Moon Has Four Seasons"],
+  ["moon", "M02", "The Seed Half"],
+  ["moon", "M03", "The Harvest Half"],
+  ["moon", "M04", "The Cycle Starts After You Celebrate"],
   ["week", "W01", "Seven Lights Named Your Week"],
   ["week", "W02", "Don't Run the Week in One Mode"],
   ["day", "D01", "One Turn of the Earth"],
@@ -86,10 +86,23 @@ describe("Nature course data", () => {
   });
 
   it("holds the 12 episodes of section 4, in order, in six modules", () => {
-    expect(NATURE_COURSE_MODULES.map((m) => m.id)).toEqual(["intro", "year", "month", "week", "day", "outro"]);
+    expect(NATURE_COURSE_MODULES.map((m) => m.id)).toEqual(["intro", "year", "moon", "week", "day", "outro"]);
     const flat = NATURE_COURSE_MODULES.flatMap((m) => m.episodes.map((e) => [m.id, e.code, e.title]));
     expect(flat).toEqual(EXPECTED);
     expect(new Set(episodes.map((e) => e.code)).size).toBe(12);
+  });
+
+  it("names the fourth module Moon, and uses Sasha's 2026-11-27 terms, not the retired ones", () => {
+    expect(NATURE_COURSE_MODULES.find((m) => m.id === "moon")?.title).toBe("Moon");
+    expect(NATURE_COURSE_MODULES.some((m) => m.title === "Month")).toBe(false);
+    const w01 = episodes.find((e) => e.code === "W01");
+    expect(w01?.askPrompt).toContain("seven classical planets");
+    const sales = getCourseSales("nature");
+    expect(sales?.lead).toContain("out-of-sync");
+    expect(sales?.lead).toContain("in-sync");
+    expect(sales?.lead).toContain("work that lands, a steady mind, more energy");
+    const everyString = JSON.stringify([NATURE_COURSE_MODULES, sales, en.courseNature]);
+    expect(everyString).not.toMatch(/asleep|attuned|visible (lights|planets)/i);
   });
 
   it("has a promise line in English, Russian and Spanish for every episode", () => {

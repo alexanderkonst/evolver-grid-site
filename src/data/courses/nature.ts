@@ -61,8 +61,8 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
         ],
     },
     {
-        id: "month",
-        title: "Month",
+        id: "moon",
+        title: "Moon",
         episodes: [
             {
                 code: "M01",
@@ -108,7 +108,7 @@ export const NATURE_COURSE_MODULES: CourseModule[] = [
                 youtubeId: "",
                 promiseKey: "courseNature.promise.W01",
                 askPrompt:
-                    "Show me, in up to 5 lines, how my language's weekday names trace back to the seven planets, and which planet rules today.",
+                    "Show me, in up to 5 lines, how my language's weekday names trace back to the seven classical planets, and which planet rules today.",
             },
             {
                 code: "W02",
