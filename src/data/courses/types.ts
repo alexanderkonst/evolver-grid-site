@@ -12,6 +12,12 @@ export interface CourseEpisode {
     infographic?: string;
     /** i18n key for one plain promise line shown under the episode title. Optional. */
     promiseKey?: string;
+    /**
+     * The episode's Ask AI prompt, in English (a prompt works in any AI, like titles it stays English
+     * in every locale). Tokens such as {birthday} are filled from what the platform knows, see
+     * src/lib/courseAskAi.ts. Optional: no prompt, no card.
+     */
+    askPrompt?: string;
 }
 
 export interface CourseModule {
@@ -70,4 +76,16 @@ export interface CourseConfig {
     leadKey?: string;
     modules: CourseModule[];
     practices: CoursePractice[];
+    /**
+     * Where the last episode leads. Omitted = the default door to Zone of Genius.
+     * All three texts are i18n keys.
+     */
+    outro?: CourseOutro;
+}
+
+export interface CourseOutro {
+    to: string;
+    titleKey: string;
+    bodyKey: string;
+    buttonKey: string;
 }

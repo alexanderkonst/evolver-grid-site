@@ -9,14 +9,17 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Check, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ArrowRight, Check, ChevronLeft, ChevronRight, Sparkles, Video } from "lucide-react";
 import type { CourseConfig } from "@/data/courses/types";
 import { COURSE_LANDING_COPY, courseLandingPath } from "@/data/courseSales";
 import CourseVersionInfo from "@/components/CourseVersionInfo";
+import CourseAskAiCard from "@/components/course/CourseAskAiCard";
+import { useCourseAskContext } from "@/hooks/useCourseAskContext";
 import { supabase } from "@/integrations/supabase/client";
 import {
     flattenEpisodes,
     getPublishedModules,
+    isEpisodeReady,
     loadGuestWatched,
     loadLastEpisode,
     mergeGuestWatched,
@@ -54,6 +57,14 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
         return byLast >= 0 ? byLast : 0;
     }, [episodes, requestedCode]);
     const current = episodes[currentIndex];
+    // Only read when the course has Ask AI cards; a guest or a failed read gives {} (every token falls back to «ask me»).
+    const askContext = useCourseAskContext();
+    const outro = course.outro ?? {
+        to: ZOG_ENTRY_PATH,
+        titleKey: "course.ctaTitle",
+        bodyKey: "course.ctaBody",
+        buttonKey: "course.ctaButton",
+    };
 
     // A guest's watched episodes live in their own localStorage list; a signed-in user's in the
     // account list. On sign-in the guest list is merged into the account (mergeGuestWatched).
@@ -170,15 +181,28 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                         className="relative w-full overflow-hidden rounded-2xl bg-black"
                         style={{ aspectRatio: "16 / 9", ...CARD_STYLE }}
                     >
-                        <iframe
-                            key={current.code}
-                            className="absolute inset-0 h-full w-full"
-                            src={youtubeEmbedUrl(current.youtubeId)}
-                            title={t("course.videoTitle", { title: current.title })}
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                            allowFullScreen
-                            referrerPolicy="strict-origin-when-cross-origin"
-                        />
+                        {isEpisodeReady(current) ? (
+                            <iframe
+                                key={current.code}
+                                className="absolute inset-0 h-full w-full"
+                                src={youtubeEmbedUrl(current.youtubeId)}
+                                title={t("course.videoTitle", { title: current.title })}
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                                allowFullScreen
+                                referrerPolicy="strict-origin-when-cross-origin"
+                            />
+                        ) : (
+                            <div
+                                className="absolute inset-0 flex flex-col items-center justify-center gap-2 px-6 text-center"
+                                role="status"
+                                data-testid="video-coming-soon"
+                                style={{ background: "linear-gradient(160deg, #0a1628 0%, #14243d 100%)", color: "rgba(255,255,255,0.85)" }}
+                            >
+                                <Video className="w-8 h-8 opacity-70" aria-hidden="true" />
+                                <p className="text-base sm:text-lg font-medium">{t("course.videoSoon")}</p>
+                                <p className="text-xs sm:text-sm opacity-70">{t("course.videoSoonHint")}</p>
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex flex-wrap items-start justify-between gap-4">
@@ -212,6 +236,15 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                             {isWatched ? t("course.watched") : t("course.markWatched")}
                         </button>
                     </div>
+
+                    {current.askPrompt && (
+                        <CourseAskAiCard
+                            key={current.code}
+                            code={current.code}
+                            prompt={current.askPrompt}
+                            context={askContext}
+                        />
+                    )}
 
                     <div className="flex items-center justify-between gap-3">
                         <button
@@ -253,16 +286,16 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                             style={CARD_STYLE}
                         >
                             <h3 className="text-2xl font-semibold mb-2" style={TITLE_STYLE}>
-                                {t("course.ctaTitle")}
+                                {t(outro.titleKey)}
                             </h3>
                             <p className="mb-5 italic" style={BODY_STYLE}>
-                                {t("course.ctaBody")}
+                                {t(outro.bodyKey)}
                             </p>
                             <Link
-                                to={ZOG_ENTRY_PATH}
+                                to={outro.to}
                                 className="course-cta inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold"
                             >
-                                {t("course.ctaButton")}
+                                {t(outro.buttonKey)}
                                 <ArrowRight className="w-4 h-4" />
                             </Link>
                         </section>
@@ -377,11 +410,11 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                     </div>
 
                     <Link
-                        to={ZOG_ENTRY_PATH}
+                        to={outro.to}
                         className="flex items-center justify-between gap-2 rounded-xl px-4 py-3 text-sm ring-1 ring-[rgba(212,175,55,0.3)] hover:bg-[rgba(212,175,55,0.1)] transition-colors"
                         style={{ color: "var(--skin-text-primary, #0a1628)" }}
                     >
-                        <span>{t("course.ctaButton")}</span>
+                        <span>{t(outro.buttonKey)}</span>
                         <ArrowRight className="w-4 h-4 flex-shrink-0" />
                     </Link>
                 </aside>
