@@ -48,13 +48,12 @@ import {
 import { readConversation, writeConversation } from "@/lib/instrument/conversation";
 import { ConversationSuggestion } from "@/components/game/console/ConversationSuggestion";
 import ConsolePanel from "@/components/game/console/ConsolePanel";
+import { crystalPx } from "@/lib/airOctahedron";
 import { getFace, hasFace, registerFace, type FaceProps } from "@/lib/instrument/faces";
 import { hasGlint, parseGlints, type Glints } from "@/lib/instrument/glint";
 import { instrumentModel, instrumentReduce, isRaised } from "@/lib/instrument/state";
 import { useGlints } from "@/hooks/useGlints";
 
-/** The crystal raised in the middle of the screen, CSS px. */
-const AIR_PX = 128;
 /** Where the raised crystal sits, as a share of the viewport height. */
 const STAGE_Y = 0.46;
 /** The bodies' arc, degrees from the +x axis (canvas y points down, so negative is up), one per body that is not air. */
@@ -78,6 +77,23 @@ const EASE = "cubic-bezier(0.22, 0.8, 0.24, 1)";
  *  panel width, so growing one past ~1.06 would clip it; the contrast between the two does the zooming. */
 const TOUR_SCALE_IN = 1.06;
 const TOUR_SCALE_OUT = 0.92;
+
+/** The raised crystal's size, CSS px: from the shorter viewport side, clamped (`crystalPx`), live on resize and rotation. */
+const useCrystalPx = (): number => {
+  const read = () => (typeof window === "undefined" ? crystalPx(0, 0) : crystalPx(window.innerWidth, window.innerHeight));
+  const [px, setPx] = useState(read);
+  useEffect(() => {
+    const onResize = () => setPx(read());
+    onResize();
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
+    };
+  }, []);
+  return px;
+};
 
 const useReducedMotion = (): boolean => {
   const [reduced, setReduced] = useState<boolean>(
@@ -477,6 +493,7 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const reduced = useReducedMotion();
+  const airPx = useCrystalPx();
 
   const [model, dispatch] = useReducer(instrumentReduce, enabled, instrumentModel);
   const raised = isRaised(model);
@@ -711,9 +728,9 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
               data-testid="instrument-body-air"
               className="pointer-events-auto absolute flex flex-col items-center gap-1.5 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#bcd7e6]"
               style={{
-                left: -AIR_PX / 2,
-                top: -AIR_PX / 2,
-                width: AIR_PX,
+                left: -airPx / 2,
+                top: -airPx / 2,
+                width: airPx,
                 opacity: inFace ? 0 : 1,
                 transformOrigin: "center",
                 // The crystal rises from the glyph and turns one face to the player.
@@ -721,7 +738,7 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
                 transition: `transform ${reduced ? 0 : moveMs}ms ${EASE}, opacity ${reduced ? OPEN_REDUCED_MS : 300}ms ${EASE}`,
               }}
             >
-              <AirOctahedron size={AIR_PX} still reduced={reduced} />
+              <AirOctahedron size={airPx} still reduced={reduced} />
               <span className={label} style={{ ...labelStyle, marginTop: -6 }}>
                 {t("instrument.body.air")} · {t("instrument.face.air")}
               </span>
