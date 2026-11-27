@@ -1,5 +1,6 @@
 import { expect, intersects, launcher, box, seriousAxe, shot, test } from "../helpers/guest";
 import type { Locator, Page } from "@playwright/test";
+import { signInWithTopTalent } from "../helpers/signedInTalent";
 
 /**
  * Roast fixes 2026-11-27 (issue #562; findings: docs/02-strategy/research/qa/roast-2026-11-27.md).
@@ -149,5 +150,78 @@ test.describe("3 · paste screen: the warning and the button agree", () => {
     await box.fill("too short again");
     await expect(hint).toBeVisible();
     await expect(reveal).toBeDisabled();
+  });
+});
+
+// ---------------------------------------------------------------------------------------------------
+// 4 · the instrument tour ("Meet your instrument", 9 steps)
+// ---------------------------------------------------------------------------------------------------
+
+const tour = (page: Page) => page.getByRole("dialog", { name: "Meet your instrument" });
+const tourOut = (tourEl: Locator) => tourEl.getByRole("button", { name: /^(Skip tour|Close)$/ });
+
+async function openVillageWithTour(page: Page) {
+  await signInWithTopTalent(page);
+  await page.goto("/village", { waitUntil: "load" });
+  await expect(tour(page)).toBeVisible({ timeout: 20_000 });
+}
+
+test.describe("4 · instrument tour: a way out on every step, a clickable last step, once", () => {
+  test("Skip or Close is on every step, 44px, and nothing covers Continue (all 9 steps)", async ({ page }, info) => {
+    await openVillageWithTour(page);
+    const dialog = tour(page);
+    const next = dialog.getByTestId("instrument-reveal-continue");
+    for (let n = 1; n <= 9; n++) {
+      await expect(dialog.getByTestId("instrument-reveal-count")).toHaveText(`${n} of 9`);
+      const out = tourOut(dialog);
+      await expect(out, `step ${n}: Skip/Close`).toBeVisible();
+      await bigEnough(out);
+      expect(await worstContrast(out)).toBeGreaterThanOrEqual(AA);
+      // The topmost element under the centre of Continue is Continue itself (not the village list below).
+      await page.waitForTimeout(n === 9 ? 1200 : 100); // the flight to the corner settles
+      const under = await next.evaluate((el) => {
+        const r = el.getBoundingClientRect();
+        const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+        return !!top && (el === top || el.contains(top));
+      });
+      expect(under, `step ${n}: Continue is the topmost thing at its own centre`).toBe(true);
+      if (n === 9) await shot(page, info, "tour-step-9");
+      else await next.click();
+    }
+    // The last step's button really ends it.
+    await next.click();
+    await expect(dialog).toHaveCount(0);
+  });
+
+  test("Skip ends it from step 1, and the tour does not come back after a reload", async ({ page }) => {
+    await openVillageWithTour(page);
+    await tourOut(tour(page)).click();
+    await expect(tour(page)).toHaveCount(0);
+
+    // Seen once: a reload (same browser, same player) does not bring it back.
+    await page.reload({ waitUntil: "load" });
+    await page.waitForTimeout(3500);
+    await expect(tour(page)).toHaveCount(0);
+  });
+
+  test("Esc ends it from the middle, and that counts as seen", async ({ page }) => {
+    await openVillageWithTour(page);
+    const next = tour(page).getByTestId("instrument-reveal-continue");
+    for (let i = 0; i < 3; i++) await next.click();
+    await page.keyboard.press("Escape");
+    await expect(tour(page)).toHaveCount(0);
+    await page.reload({ waitUntil: "load" });
+    await page.waitForTimeout(3500);
+    await expect(tour(page)).toHaveCount(0);
+  });
+
+  test("closing the tab at step 3 still counts as seen (shown at most once)", async ({ page }) => {
+    await openVillageWithTour(page);
+    const next = tour(page).getByTestId("instrument-reveal-continue");
+    await next.click();
+    await next.click();
+    await page.reload({ waitUntil: "load" });
+    await page.waitForTimeout(3500);
+    await expect(tour(page)).toHaveCount(0);
   });
 });

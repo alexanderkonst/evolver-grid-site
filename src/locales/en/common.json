@@ -9894,6 +9894,8 @@
     },
     "reveal": {
       "label": "Meet your instrument",
+      "skip": "Skip tour",
+      "close": "Close",
       "continue": "Continue",
       "opensOnPath": "Opens on your path",
       "step": "{{n}} of {{total}}",

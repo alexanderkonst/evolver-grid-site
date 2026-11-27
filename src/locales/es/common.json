@@ -9868,6 +9868,8 @@
     },
     "reveal": {
       "label": "Conoce tu instrumento",
+      "skip": "Omitir el recorrido",
+      "close": "Cerrar",
       "continue": "Continuar",
       "opensOnPath": "Se abre en tu camino",
       "step": "{{n}} de {{total}}",
