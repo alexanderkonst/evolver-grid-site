@@ -1,6 +1,6 @@
 # The Meta-Template: the template of templates
 
-## Core v3 (one screen) · Version: v3.0 · 2026-11-26
+## Core v3 (one screen) · Version: v3.1 · 2026-11-27 (v3.1: Wizard + Template, §9)
 *Approved by Sasha 2026-11-26 12:01 MST («ОЧЕНЬ КРУТО!!! делай»), after a roast of v2. Everything below the line «Appendix A» is Sasha's transmission of 2026-10-27, unchanged.*
 
 **Essence.** A template is how a shift Sasha sees becomes repeatable without him. The Meta-Template is not a document to read; it is **one cycle and one line**.
@@ -18,6 +18,9 @@
 - **Version vX.Y** = the artifact's own version (course, page, spec, infographic). Major = new form; minor = new part (e.g. a new episode); patch = a fix.
 - **Shift check** = did the shift the template carries actually happen (observable sign, §2b)?
 From these lines, measure (uses and shifts), version chains and archive candidates are collected by grep, with no manual counting.
+
+### Every template = Wizard + Template (v3.1, Sasha 2026-11-27)
+A template has two halves. The **Template** is the etalon of the result: what a finished output looks like, its sections and gates. The **Wizard** is the guided run that walks an agent or a person from the input to a filled Template, one step at a time. A template without a Wizard is a document to read; with one it is a button to press. Form: §9.
 
 ### Template lifecycle
 - Each template's meta-description carries `Version: vN · last changed: date · change log` (one line per change).
@@ -134,7 +137,7 @@ Everything we build is assembled from five primitives. They are the central chai
 
 ## 7. Self-extension protocol (for AI agents)
 1. Before creating a template, find its place in the levels; extend an existing one if it fits (never multiply docs).
-2. Write the meta-description first, then the body; start with the «Shift carried» line (§2b): if you cannot name the shift and its check, you do not yet know what the template is for, or it is Craft.
+2. Write the meta-description first, then the Wizard (§9), then the body; start with the «Shift carried» line (§2b): if you cannot name the shift and its check, you do not yet know what the template is for, or it is Craft.
 3. Register it in `docs/templates/README.md` under its L1 domain.
 4. After each use, add what was learned to the template (as in the improvement loop's retro), and note whether the shift check was seen: the check, not the finished file, says whether the template works.
 5. When two templates turn out to be one, merge them and leave a pointer.
@@ -158,6 +161,35 @@ Everything we build is assembled from five primitives. They are the central chai
 - [ ] T10 Make the self-extension protocol runnable: an agent specialty that adds and evolves templates by §7.
 - [ ] T11 Review rhythm: revisit this Meta-Template after each wave of template work, improving the structure itself.
 - [ ] T12 «Shift carried» on every template (Sasha approved 2026-10-27). Line made required, principle added (§2b, §6). Pilot (2026-10-27): session-script ↔ PST 125, unique-business-canvas ↔ PST 158, course-from-source ↔ PST 57, written in plain words. Other templates keep their earlier technology, relabelled «Shift carried»; rewrite each in the same plain before / after / check form when next touched.
+
+## 9. Wizard + Template (v3.1, 2026-11-27)
+*Sasha, 2026-11-27 13:37 MST: «шаблон написания шаблонов (если там нет wizard + template, начни первым делом с его написания в шаблон шаблонов)».*
+
+**Why two halves.** The Template says *what* good looks like (the etalon of the output); the Wizard says *how to get there from here*, so any agent can run it cold, and the Console can turn it into one button (Power). The Wizard is the zoom level «steps» of §7's hypothesis; a runbook is the click-level under one Wizard step.
+
+**The Wizard (section 0 of every template, right after the meta-description)**
+| Step | Ask / do | Input | Output | Gate |
+|---|---|---|---|---|
+| W1 … | one action, phrased as a question to answer or a move to make | what it needs (text, file, screen, URL, a previous step) | what it leaves behind | what must be true before the next step |
+
+Rules:
+1. **3–7 steps.** More means two templates or a missing child template; link the child instead.
+2. **Self-serve first.** A step asks the person only what no source holds (memory, repo, connected accounts, the page itself). At most two questions to the person in the whole run, each with a default they can accept in one word.
+3. **Every step has a gate.** A gate is observable (a file exists, a test is green, the person said yes), never «looks fine».
+4. **The first step names the object and its level; the last step writes the trace line** (Core v3) and «Template change: …».
+5. **Branches are named, not nested:** «small change → W2, W6 only».
+6. **Approval lines are steps.** Where a rule needs Sasha's yes (core flows, money, outbound), the Wizard has a step for it; it is never implied.
+7. **Short form for a button:** one line under the table: `<result in his words> = W1 → … → Wn`.
+
+**The Template (the rest of the file)**
+- Essence in one sentence (the etalon of the result).
+- The parts of a finished output, each with its own check.
+- Formats the output must keep (finding format, record format).
+- Anti-patterns, worked example, Genealogy.
+
+**Check (does this template work?)** a fresh agent given only the file runs the Wizard to a filled Template without asking anything a source holds, and the Shift check reads yes.
+
+**Rollout.** New templates are born with a Wizard. Existing ones get theirs when next touched (first: roasting v2, calibration v1, 2026-11-27).
 
 ## Holostrategy — meta-template (v0, 2026-10-30)
 *Transmission from Sasha, 2026-10-30 (voice, recorded close to his words), after the "invisible players" scan. Library entry: Phase Shift Technology Library, Technology 181 ([`docs/01-vision/phase_shift_technology_library.md`](../01-vision/phase_shift_technology_library.md)). Holomap background in the same library: §2 Navigating Systems as Living Wholes (Holomaps), §25 Navigation, Not Dashboard (Morphogenetic Holomap), Technology 78 The Planetary Holomap. Holonic levels of this file: §5.*
