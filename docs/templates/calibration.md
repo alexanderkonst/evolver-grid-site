@@ -1,6 +1,6 @@
 # Calibration: return every thing to its etalon («Сверка с эталоном»)
 
-*Canonical template v1, 2026-11-27, Evolver (Hark). Replaces [qa-testing.md](./qa-testing.md) v0 (same day). Built by the [meta-template](./meta-template.md) §9 (Wizard + Template), roasted by [roasting.md](./roasting.md) v2 ([roast of v0](../02-strategy/research/qa/roast-of-qa-testing-v0.md)), found by [integral-synthesis.md](./integral-synthesis.md) across 42 exemplars in 7 clusters ([synthesis v1](../02-strategy/research/qa/synthesis.md)). The system's invariant (Sasha, 2026-11-27 13:18 MST): «возвращение к эталону самости чего бы то ни было». This template is that invariant applied to our own work: testing and QA.*
+*Name confirmed by Sasha 2026-11-27 14:09 MST («да отлично»). Canonical template v1, 2026-11-27, Evolver (Hark). Replaces [qa-testing.md](./qa-testing.md) v0 (same day). Built by the [meta-template](./meta-template.md) §9 (Wizard + Template), roasted by [roasting.md](./roasting.md) v2 ([roast of v0](../02-strategy/research/qa/roast-of-qa-testing-v0.md)), found by [integral-synthesis.md](./integral-synthesis.md) across 42 exemplars in 7 clusters ([synthesis v1](../02-strategy/research/qa/synthesis.md)). The system's invariant (Sasha, 2026-11-27 13:18 MST): «возвращение к эталону самости чего бы то ни было». This template is that invariant applied to our own work: testing and QA.*
 
 ## Meta-description
 - **Level / parent:** L2 · Craft · parent: [meta-template.md](./meta-template.md)
@@ -22,7 +22,7 @@
 | **W3 Pre-mortem** | «A month later this failed. Why?» Run [roasting](./roasting.md) Crash-test: 12 failure modes, each with its stress signal | W1, W2 | 12 rows → the 3 worst become test cases | the 3 worst have a test case or a spec line |
 | **W4 Machine measure (E3)** | Run [qa-pass](./qa-pass.md) on the preview: iPhone 15 390, iPad, 1440, reduced motion, en/es/ru, axe | the PR | QA table | green, no retry-to-green; paid calls blocked |
 | **W5 Outsider measure (E4)** | Two sessions in parallel: guest at 390 (harness) + Evolver test account at desktop (§6), plus an adversary charter. Every finding in the §4 format | live or preview URL | ranked findings with etalon lines | no Blocker; every finding has its etalon line or is marked taste |
-| **W6 Person measure (E0)** | The first-timer test: Sasha's, in person, silent, 3-second test per screen + the player's own words after the reveal | Sasha's yes, 5 people | pass count + words | his threshold (4 of 5, unconfirmed) |
+| **W6 Person measure (E0)** | Sasha's in-person round with 5 first-timers: the 3-second navigation test (GoBY §25.12: screen shown 3 s, hidden, three questions) + E0 felt layer; the lagging layer is read later from behaviour | Sasha's yes, 5 people | pass count + words | §25.12: a screen passes when 4 of 5 answer all three |
 | **W7 Close and recalibrate** | Each deviation → a correction at its level (§5). Instrument check (§7). Debrief if it reached a player (§8). Adjust the interval (§9). Trace line | W3–W6 | tests, spec lines, canon questions, checklist lines | every action item has an owner and an artifact |
 
 Branches: **change** = W1 → W2 → W4 → W7. **Feature** = W1–W5, W7. **Release touching a core flow** = all seven, nothing ships without Sasha's yes to that exact change. **Practice** (a template) = W1, W2, W3, W7.
@@ -35,7 +35,7 @@ A test is a comparison with an etalon; a bug is a deviation from one. «Find it 
 ## 2. The etalon chain (our nested etalons)
 | Level | Etalon | Who measures | Instrument |
 |---|---|---|---|
-| **E0** | the person's own etalon: did the player come closer to themselves? | first-timers, Sasha | silent watch, 3-second test, the player's words |
+| **E0** | the person's own etalon: did the player come closer to themselves? | first-timers, Sasha | two layers (draft, Sasha 2026-11-27: «нельзя предполагать что по одной фразе человек продвинулся»): **felt now** (recognition: «это я», retold in own words the next day) and **evolutionary, lagging** (choices made from it within 30 days; a step on the Gift Path, GoBY §20). One phrase = recognition only, never progress |
 | **E1** | Sasha's transmission and the canon: GoBY (§14 principles, §25 navigation), core-flow rules, approvals | Sasha decides; Evolver checks against it | canon lines, the core-flow gate |
 | **E2** | the spec and its DoD; templates (etalons of work) | Evolver | spec-handoff DoD, review of the diff |
 | **E3** | working standards: Playwright specs, axe, overlap checks | CI | qa-pass |
