@@ -161,7 +161,7 @@ class RenderedCards(unittest.TestCase):
             self.assertLess(mean, 0.5, cid)
 
 
-V2_APPS = ("potential", "crossing", "vision", "nature", "your-ai")
+V2_APPS = ("potential", "crossing", "vision", "nature", "my-ai")
 
 
 class IconLintV2(unittest.TestCase):
@@ -209,58 +209,71 @@ class IconLintV2(unittest.TestCase):
         self.assertFalse(ok); self.assertIn(f"{icon.WEIGHT - 8}px", detail)
 
 
-class AppIconsV3(unittest.TestCase):
-    """Icons v3 (issue #533): one final icon per app, files `apps/<id>.*`; the v1 and v2 files are gone."""
+class AppIconsV6(unittest.TestCase):
+    """Icons v6 (issue #559): five apps x four themes as finished PNGs in `apps/v6/`; the v1-v3 files are gone."""
     ids = V2_APPS
+    themes = ("lunar", "lapis", "aurum", "grayscale")
 
-    def test_five_specs_pass_lint_and_ship_1024_and_128(self):
+    def spec(self, i):
+        return specmod.load(os.path.join(INF, "apps", f"{i}.card.yaml"))
+
+    def test_five_specs_pass_the_v6_lint_and_ship_1024_and_128_for_every_theme(self):
         from PIL import Image
         for i in self.ids:
             cid, rows = lint.lint_spec(os.path.join(INF, "apps", f"{i}.card.yaml"))
             self.assertEqual([r for r in rows if r[1] != "PASS"], [], cid)
-            self.assertEqual([r[0] for r in rows], list(lint.ICON_V2_RULES), cid)
-            self.assertEqual(Image.open(os.path.join(INF, "apps", f"{i}.png")).size, (1024, 1024), i)
-            self.assertEqual(Image.open(os.path.join(INF, "apps", f"{i}@128.png")).size, (128, 128), i)
+            self.assertEqual([r[0] for r in rows], list(lint.ICON_V6_RULES), cid)
+            for t in self.themes:
+                entry = self.spec(i)["themes"][t]
+                self.assertEqual(Image.open(os.path.join(INF, "apps", entry["png"])).size, (1024, 1024), (i, t))
+                self.assertEqual(Image.open(os.path.join(INF, "apps", entry["png128"])).size, (128, 128), (i, t))
 
-    def test_one_pastel_per_app_the_taglines_are_kept_and_no_v2_files_remain(self):
+    def test_the_taglines_are_kept_your_ai_is_my_ai_and_no_v3_files_remain(self):
         import glob
-        specs = {i: specmod.load(os.path.join(INF, "apps", f"{i}.card.yaml")) for i in self.ids}
-        self.assertEqual({s["icon_version"] for s in specs.values()}, {3})
-        self.assertEqual(len({s["halo"] for s in specs.values()}), 5)
+        specs = {i: self.spec(i) for i in self.ids}
+        self.assertEqual({s["icon_version"] for s in specs.values()}, {6})
         self.assertEqual({i: s["caption"] for i, s in specs.items()}, {
             "potential": "Accelerates The Unfolding of Your Potential", "crossing": "Reconciles Consciousness with Science",
-            "vision": "Activates Your Inner Vision", "nature": "Aligns You With Natural Rhythms", "your-ai": "Sets Up My AI"})
-        old = [p for p in glob.glob(os.path.join(INF, "apps", "*")) if os.path.basename(p).split(".")[0].split("@")[0].endswith(("-a", "-b"))]
-        self.assertEqual(old, [])
+            "vision": "Activates Your Inner Vision", "nature": "Aligns You With Natural Rhythms", "my-ai": "Sets Up My AI"})
+        self.assertEqual(specs["my-ai"]["title"], "My AI")
+        self.assertFalse(os.path.exists(os.path.join(INF, "apps", "your-ai.card.yaml")))
+        left = [os.path.basename(p) for p in glob.glob(os.path.join(INF, "apps", "*")) if os.path.isfile(p)
+                and os.path.basename(p).endswith((".py", ".png")) and not os.path.basename(p).startswith("sheet")]
+        self.assertEqual(left, [])
 
-    def test_the_sphere_is_only_in_potential_and_your_ai_and_the_neon_is_the_smaller_area(self):
+    def test_the_site_copies_in_public_match_the_kit_files_byte_for_byte(self):
+        pub = os.path.join(INF, "..", "..", "..", "public", "apps", "icons")
         for i in self.ids:
-            card = render.build(specmod.load(os.path.join(INF, "apps", f"{i}.card.yaml")))
-            self.assertEqual(any(r["kind"] == "orb" for r in card.log), i in ("potential", "your-ai"), i)
-            neon = [r for r in card.log if r["color"] == NEON]
-            self.assertEqual(len(neon), 1, i)
-            ink = [r for r in card.log if r["color"] != NEON and r["kind"] != "orb"]
-            area = lambda r: (r["bbox"][2] - r["bbox"][0]) * (r["bbox"][3] - r["bbox"][1])
-            self.assertLess(area(neon[0]), sum(area(r) for r in ink), i)
+            for t in self.themes:
+                entry = self.spec(i)["themes"][t]
+                for key, name in (("png", f"{i}-{t}.png"), ("png128", f"{i}-{t}@128.png")):
+                    with open(os.path.join(INF, "apps", entry[key]), "rb") as a, open(os.path.join(pub, name), "rb") as b:
+                        self.assertEqual(a.read(), b.read(), name)
 
-    def test_a_heavier_line_fails_through_the_real_renderer(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            for ext in (".card.yaml", ".py"):
-                with open(os.path.join(INF, "apps", "vision" + ext), encoding="utf-8") as f:
-                    body = f.read()
-                if ext == ".py":
-                    body = body.replace("sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))",
-                                        f"sys.path.insert(0, {os.path.join(INF, 'apps')!r})").replace("335, 210), W,", "335, 210), 80,")
-                with open(os.path.join(tmp, "heavy" + ext), "w", encoding="utf-8") as f:
-                    f.write(body.replace("id: vision", "id: heavy"))
-            _, rows = lint.lint_spec(os.path.join(tmp, "heavy.card.yaml"))
-            self.assertIn("weight", [r[0] for r in rows if r[1] == "FAIL"])
+    def test_ci_skips_the_render_and_the_sheet_shows_the_lunar_png(self):
+        from kit import ci
+        s = ci._sheet_spec(self.spec("potential"))
+        self.assertTrue(s.png.endswith(os.path.join("v6", "potential-lunar.png")))
+        self.assertTrue(os.path.exists(s.png))
+        self.assertEqual(s["id"], "potential")
 
-    def test_the_sheet_builds_with_every_tagline_in_two_lines(self):
-        sys.path.insert(0, os.path.join(INF, "apps"))
-        import make_sheet_v3
+    def test_a_missing_theme_or_a_wrong_size_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
-            self.assertTrue(os.path.exists(make_sheet_v3.main(os.path.join(tmp, "s.png"))))
+            os.makedirs(os.path.join(tmp, "v6"))
+            from PIL import Image
+            for t in self.themes[:3]:
+                Image.new("RGB", (1024, 1024)).save(os.path.join(tmp, "v6", f"x-{t}.png"))
+                Image.new("RGB", (64, 64)).save(os.path.join(tmp, "v6", f"x-{t}@128.png"))
+            body = {"id": "x", "kind": "icon", "icon_version": 6, "chapter": "apps", "title": "X", "caption": "C", "skin": "v4",
+                    "text": {"shape": "s"}, "sources": ["s"],
+                    "themes": {t: {"png": f"v6/x-{t}.png", "png128": f"v6/x-{t}@128.png"} for t in self.themes}}
+            import yaml
+            with open(os.path.join(tmp, "x.card.yaml"), "w", encoding="utf-8") as f:
+                yaml.safe_dump(body, f)
+            _, rows = lint.lint_spec(os.path.join(tmp, "x.card.yaml"))
+            failed = {r[0]: r[2] for r in rows if r[1] == "FAIL"}
+            self.assertIn("grayscale", failed["themes"])
+            self.assertIn("64x64", failed["size"])
 
 
 class BookSync(unittest.TestCase):

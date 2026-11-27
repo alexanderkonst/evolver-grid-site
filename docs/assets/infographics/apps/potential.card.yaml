@@ -1,19 +1,32 @@
 id: potential
 kind: icon
-icon_version: 3
+icon_version: 6
 chapter: apps
 number: 1
 of: 10
 title: Potential
 caption: Accelerates The Unfolding of Your Potential
 skin: v4
-halo: BLUSH
+# v6: one raster icon per theme (1024 + @128), paths relative to this file. The site picks by the active skin,
+# fallback lunar (src/components/AppIcon.tsx; copies in public/apps/icons/).
+themes:
+  lunar:
+    png: v6/potential-lunar.png
+    png128: v6/potential-lunar@128.png
+  lapis:
+    png: v6/potential-lapis.png
+    png128: v6/potential-lapis@128.png
+  aurum:
+    png: v6/potential-aurum.png
+    png128: v6/potential-aurum@128.png
+  grayscale:
+    png: v6/potential-grayscale.png
+    png128: v6/potential-grayscale@128.png
 text:
-  shape: "open bud, petals from a sphere"
-  three_words: "open bud"
-  sphere: "sphere = you, the seed (Book: ideal-client-01/-04, ADP A01/A02)"
+  shape: "a climbing vine with heart-shaped leaves, wrapped in an iridescent spiral ribbon"
+  three_words: "vine, spiral ribbon"
 sources:
-  - issue #533 (app icons v3: one final icon per app), from Sasha's yes (2026-11-26) to roast round 2 of sheet-v2.png; replaces v1 (#506) and v2 (#528)
+  - issue #559 (app icons v6 on the site), from Sasha's approval of 2026-11-27; replaces v3 (#533), v2 (#528) and v1 (#506)
   - docs/templates/spec-handoff.md
   - docs/assets/infographics/kit/README.md (App icons)
-  - docs/assets/infographics/book/ (ideal-client-01, ideal-client-04, adp/A01, adp/A02: the sphere means you / the seed)
+  - docs/assets/infographics/apps/v6/sheet-v6.png

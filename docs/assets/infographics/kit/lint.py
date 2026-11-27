@@ -28,6 +28,12 @@ As-is cards (spec `kind: as_is`, `source: <file>`, see asis.py) are never drawn,
   spec-fields  id, chapter, title, caption and source present
   source-file  the source file exists
 
+Icons v6 (spec `icon_version: 6`, issue #559) are finished raster files, not drawn by the kit: `check_icon_v6` runs ICON_V6_RULES:
+  themes       a `themes:` map with lunar, lapis, aurum and grayscale, each naming a `png` and a `png128` that exist
+  size         every `png` is 1024 x 1024 and every `png128` is 128 x 128
+  no-text      the title and caption are in the spec, and the spec's `text` describes the shape (the icons carry no words)
+  spec-fields  as above
+
 Icons v2 / v3 (spec `icon_version: 2|3`, issues #528, #533) add two rules and tighten one (ICON_V2_RULES):
   elements     at most 4 shapes (parts drawn with the same `group` count once), all on the "after" side: no before, no chevron
   fill         the sign's longest side is 62-78% of the tile (the brief says ~70%)
@@ -44,6 +50,8 @@ from kit import asis, skins, spec as specmod  # noqa: E402
 RULES = ("fit", "words", "palette", "accent", "margins", "min-font", "footer", "spec-fields")
 ICON_RULES = ("palette", "accent", "margins", "stroke", "elements", "no-text", "spec-fields")
 ICON_V2_RULES = ICON_RULES + ("fill", "weight")
+ICON_V6_RULES = ("themes", "size", "no-text", "spec-fields")
+ICON_V6_THEMES = ("lunar", "lapis", "aurum", "grayscale")
 ICON_V2_MAX_SHAPES = 4
 ICON_V2_FILL = (0.62, 0.78)
 ICON_SMALL = 128        # px: the size an icon must still read at
@@ -198,6 +206,41 @@ def check_icon(card, spec, skin=None):
     return _waived(out, spec)
 
 
+def check_icon_v6(spec):
+    """Icons v6: raster files per theme. -> [(rule, ok, detail)] in ICON_V6_RULES order. Paths in `themes` are relative to the spec."""
+    from PIL import Image
+    base = os.path.dirname(spec.path) if spec.path else "."
+    themes = spec.get("themes") or {}
+    bad_t, bad_s, n = [], [], 0
+    if not isinstance(themes, dict):
+        bad_t.append("themes must be a mapping theme -> {png, png128}")
+        themes = {}
+    for t in ICON_V6_THEMES:
+        entry = themes.get(t)
+        if not isinstance(entry, dict):
+            bad_t.append(f"theme {t!r} missing")
+            continue
+        for key, want in (("png", 1024), ("png128", 128)):
+            rel = entry.get(key)
+            path = os.path.join(base, rel) if rel else None
+            if not rel or not os.path.exists(path):
+                bad_t.append(f"{t}.{key} {'missing' if not rel else rel + ' not found'}")
+                continue
+            n += 1
+            if Image.open(path).size != (want, want):
+                bad_s.append(f"{rel} is {Image.open(path).size[0]}x{Image.open(path).size[1]}, want {want}x{want}")
+    extra = sorted(set(themes) - set(ICON_V6_THEMES))
+    bad_t += [f"unknown theme {t!r}" for t in extra]
+    out = [("themes", not bad_t, "; ".join(bad_t) or f"{len(ICON_V6_THEMES)} themes, {n} files found"),
+           ("size", not bad_s, "; ".join(bad_s) or f"{n} files at 1024 or 128 px")]
+    shape = (spec.get("text") or {}).get("shape")
+    add_bad = [m for m in ("title", "caption") if not spec.get(m)] + ([] if shape else ["text.shape"])
+    out.append(("no-text", not add_bad, f"missing: {', '.join(add_bad)}" if add_bad else "title, caption and shape described; the icon carries no words"))
+    missing = specmod.missing(spec)
+    out.append(("spec-fields", not missing, f"missing: {', '.join(missing)}" if missing else "all required spec fields present"))
+    return out
+
+
 def _waived(out, spec):
     """A spec may waive a rule for a ported legacy card: `waive: {fit: "why"}`. A waived FAIL passes and says so.
     `words` has its own waiver (`max_words`). Waivers never hide a rule that passes, and an unknown rule is an error."""
@@ -225,6 +268,8 @@ def lint_spec(path):
     if asis.is_as_is(spec):  # the author's picture: only title/caption and the source file are checked
         return cid, [(r, "PASS" if ok else "FAIL", d) for r, ok, d in asis.check(spec)]
     icon = spec.get("kind") == "icon"
+    if icon and spec.get("icon_version") == 6:
+        return cid, [(r, "PASS" if ok else "FAIL", d) for r, ok, d in check_icon_v6(spec)]
     RS = (ICON_V2_RULES if spec.get("icon_version") in (2, 3) else ICON_RULES) if icon else RULES
     missing = specmod.missing(spec)
     needed = {"title", "caption", "skin", "text"}

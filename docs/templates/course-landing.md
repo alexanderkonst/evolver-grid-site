@@ -174,7 +174,7 @@ Each step: **input → output · who acts · Sasha's gate.** "Agent" means Claud
 2. Registry: the ADP `description` now says «A free mini-training…». Title and promise («You grow first, and then the results follow.») were unchanged.
 3. Landing entry: eyebrow «Free mini-training». `lead` and `forWhom` were unchanged.
 4. Version: #522 ran in parallel (branch `claude/issue-522-20261126-1845`: ADP `version "1.0"`, `updatedAt "2026-11-25"`, level Fundamental, category General). The meta row appears on this landing once #522 merges, with no landing edit beyond its own `versioning` line.
-5. Teaser: none. The ADP series (`docs/assets/infographics/book/adp/A01–A10`) and the Potential icon (`docs/assets/infographics/apps/potential.*`) are on the kit, not published.
+5. Teaser: none. The ADP series (`docs/assets/infographics/book/adp/A01–A10`) and the Potential icon (`docs/assets/infographics/apps/potential.card.yaml`, files in `apps/v6/`) are on the kit, not published.
 6. Start button: «Start the mini-training» → `/grow/activate-your-dormant-potential`.
 7. Links: L2 added (course page header, for every course with a landing); L5 and L6 in place; L3 waits for #524. The ADP course page eyebrow also now reads «Free mini-training» (`eyebrowKey: "course.eyebrowMiniTraining"`).
 8. Tests: 12 unit tests in `src/components/__tests__/courseLanding.test.tsx`; `e2e/tests/course-landing.spec.ts`, 5 checks × 4 viewports, 20/20 against a local dev server.

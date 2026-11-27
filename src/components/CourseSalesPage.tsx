@@ -4,6 +4,8 @@ import { ArrowLeft } from "lucide-react";
 import SEO from "@/components/SEO";
 import CourseVersionInfo from "@/components/CourseVersionInfo";
 import WaitlistModal from "@/components/WaitlistModal";
+import AppIcon from "@/components/AppIcon";
+import { appIconForCourse } from "@/lib/appIcons";
 import { getPublishedModules } from "@/lib/coursePlayer";
 import { GOLD_TEXT_STYLE, Ornament } from "@/lib/landingDesign";
 import { BODY_STYLE, EYEBROW_STYLE, TITLE_STYLE } from "@/pages/Library";
@@ -91,6 +93,10 @@ const CourseSalesPage = ({ course }: { course: CourseSalesData }) => {
                 </Link>
 
                 <header className="text-center" data-landing-section="title">
+                    {/* App icon v6 (#559): Potential, Crossing, Vision; the icon follows the active skin. */}
+                    {appIconForCourse(course.slug) && (
+                        <AppIcon app={appIconForCourse(course.slug)!} size={96} className="mx-auto mb-5" />
+                    )}
                     <p className="text-[10.5px] mb-4" style={EYEBROW_STYLE}>
                         {course.eyebrow}
                     </p>

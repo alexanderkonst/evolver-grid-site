@@ -1,17 +1,32 @@
 id: vision
 kind: icon
-icon_version: 3
+icon_version: 6
 chapter: apps
 number: 5
 of: 10
 title: Vision
 caption: Activates Your Inner Vision
 skin: v4
-halo: CHAMP
+# v6: one raster icon per theme (1024 + @128), paths relative to this file. The site picks by the active skin,
+# fallback lunar (src/components/AppIcon.tsx; copies in public/apps/icons/).
+themes:
+  lunar:
+    png: v6/vision-lunar.png
+    png128: v6/vision-lunar@128.png
+  lapis:
+    png: v6/vision-lapis.png
+    png128: v6/vision-lapis@128.png
+  aurum:
+    png: v6/vision-aurum.png
+    png128: v6/vision-aurum@128.png
+  grayscale:
+    png: v6/vision-grayscale.png
+    png128: v6/vision-grayscale@128.png
 text:
-  shape: "eye with a four-point star as pupil"
-  three_words: "eye, star pupil"
+  shape: "three light-lines crossing at one point on isometric axes (code-drawn, v6/render6.py)"
+  three_words: "three lines of light"
 sources:
-  - issue #533 (app icons v3: one final icon per app), from Sasha's yes (2026-11-26) to roast round 2 of sheet-v2.png; replaces v1 (#506) and v2 (#528)
+  - issue #559 (app icons v6 on the site), from Sasha's approval of 2026-11-27; replaces v3 (#533), v2 (#528) and v1 (#506)
   - docs/templates/spec-handoff.md
   - docs/assets/infographics/kit/README.md (App icons)
+  - docs/assets/infographics/apps/v6/sheet-v6.png

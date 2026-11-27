@@ -24,6 +24,16 @@ def changed_files(base):
     return [l for l in r.stdout.splitlines() if l]
 
 
+def _sheet_spec(s):
+    """The contact sheet reads `spec.png`; a v6 icon has one PNG per theme and no script, so the sheet shows its lunar one."""
+    if s.get("icon_version") != 6:
+        return s
+    class Lunar(type(s)):
+        png = os.path.join(os.path.dirname(s.path), s["themes"]["lunar"]["png"])
+    c = Lunar(s); c.path = s.path
+    return c
+
+
 def touched_specs(base, everything=False):
     allspecs = book_sync.find_specs()
     if everything:
@@ -34,7 +44,11 @@ def touched_specs(base, everything=False):
     out = []
     for p in allspecs:
         stem = os.path.relpath(p, REPO)[: -len(".card.yaml")]
-        if any(f in (stem + ".card.yaml", stem + ".py", stem + ".png") for f in files):
+        own = [stem + ".card.yaml", stem + ".py", stem + ".png"]
+        spec = specmod.load(p)
+        for entry in (spec.get("themes") or {}).values():  # icons v6: the per-theme PNGs the spec names
+            own += [os.path.relpath(os.path.join(os.path.dirname(p), v), REPO) for v in (entry or {}).values()]
+        if any(f in own for f in files):
             out.append(p)
     return out
 
@@ -52,9 +66,9 @@ if __name__ == "__main__":
     os.makedirs(a.out, exist_ok=True)
     specs = [specmod.load(p) for p in paths]
     for s in specs:
-        if not asis.is_as_is(s):  # as-is cards keep the author's pixels; the build converts them
+        if not (asis.is_as_is(s) or s.get("icon_version") == 6):  # as-is cards keep the author's pixels (the build converts them); v6 icons are finished PNGs, not drawn by the kit
             render.render(s)
     rc = lint.main(paths)
     rc |= book_sync.main(paths)
-    print(sheet.make_sheet(specs, os.path.join(a.out, "contact-sheet.png")))
+    print(sheet.make_sheet([_sheet_spec(s) for s in specs], os.path.join(a.out, "contact-sheet.png")))
     sys.exit(rc)
