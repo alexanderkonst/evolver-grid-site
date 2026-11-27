@@ -688,18 +688,18 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
           className="fixed inset-0 z-[82] outline-none"
           {...inertProps(!raised)}
         >
-          {/* The live world stays visible through the scrim. */}
+          {/* The live world stays visible through the scrim. Layers are explicit: scrim 0 (haze on the world only), stage 10, face panel 20 (full brightness). */}
           <div
             aria-hidden="true"
             data-testid="instrument-scrim"
             onClick={closeInstrument}
-            className="absolute inset-0"
+            className="absolute inset-0 z-0"
             style={{ backgroundColor: DIM, backdropFilter: "blur(6px)", opacity: shown ? 1 : 0, transition: `opacity ${moveMs}ms ${EASE}` }}
           />
 
           {/* The stage: the crystal at the middle of the screen, the bodies in an arc above it. */}
           <div
-            className="pointer-events-none absolute left-1/2"
+            className="pointer-events-none absolute left-1/2 z-10"
             style={{ top: `${STAGE_Y * 100}%`, width: 0, height: 0 }}
             {...inertProps(inFace)}
           >
@@ -779,8 +779,8 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
           {FaceComponent && (
             <div
               className={airFace
-                ? "pointer-events-none absolute inset-0 grid place-items-center"
-                : "pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+10.25rem)] top-3 flex items-end justify-end sm:inset-x-6 sm:bottom-[12.25rem]"}
+                ? "pointer-events-none absolute inset-0 z-20 grid place-items-center"
+                : "pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+10.25rem)] top-3 z-20 flex items-end justify-end sm:inset-x-6 sm:bottom-[12.25rem]"}
               style={airFace ? {
                 "--your-ai-rise-x": `${rise.dx}px`,
                 "--your-ai-rise-y": `${rise.panelDy}px`,
