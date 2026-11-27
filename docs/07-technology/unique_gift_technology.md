@@ -108,6 +108,19 @@ Apple Seed now catches not only the words but the feeling they evoke. See **Appl
 4. **Keep and close calmly.** The person's word (or the place in the body) is kept as their tuning fork. The moment ends softly: the end of a moment shapes its memory (peak-end rule).
 5. **Re-meet and use.** Later the person meets the feeling again, fresh, not replayed («is it here now?»), and checks a choice against it («does this feel like that?»). Recall reopens a memory; it deepens only when something new meets it.
 
+### After the moment: the integration arc and the devaluation dip (Sasha, 2026-11-27 15:51 MST)
+Sasha's account of how it works in people, close to his words:
+1. The phrase evokes a feeling.
+2. The words feel very precise; many sense, half-consciously, that fitting all of it into one phrase is huge.
+3. After a few days the knowledge integrates to some degree, and the phrase no longer thrills as it did the first time.
+4. **The mind devalues it at once.** These are malicious programs society installed about whether one can, in today's world, be oneself and be successful and not rejected. *(Key insight.)*
+5. At this point the person can learn that formulations are endless, but some are more precise and some less.
+6. Taking this knowledge in is itself a challenge.
+7. All of this happens on the way to pulling Excalibur.
+8. An animation of pulling it can come when it happens (much further along the path).
+
+*Reading (Evolver):* the fading in step 3 is integration, not failure; step 4 is the shadow's counter-move, and it is the moment the caught feeling (movement 5, re-meet) is needed most. The dip is a predictable gate of the path (uniqueness holomap 4→5: «once the mirror-session glow fades»), so it should be named to the person in advance and met, not avoided.
+
 ### How to tell true recognition (checks)
 - **By shape, not strength.** Quiet and certain, «like a drop of water into a sponge» (Ignatius of Loyola), surprise with certainty, relief together with a little embarrassment. Loud, dramatic, flattering states are suspect (makyō in Zen; peak experiences are «self-validating» and prove nothing).
 - **Linked to the person's own episodes.** A true read connects to many of their memories (Singer's self-defining memories); a Barnum read connects to none.
