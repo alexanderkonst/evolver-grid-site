@@ -17,21 +17,23 @@ import {
   type LitSeen,
 } from "@/lib/instrument/state";
 
-const readRemote = async (profileId: string): Promise<LitSeen | null> => {
-  const { data, error } = await supabase.from("game_profiles").select("first_time_actions").eq("id", profileId).maybeSingle();
+// `game_profiles.id` is a random uuid; the player's id is `user_id`. Looking up `id = <user id>` found nothing,
+// so the save was never read and never written.
+export const readRemote = async (userId: string): Promise<LitSeen | null> => {
+  const { data, error } = await supabase.from("game_profiles").select("first_time_actions").eq("user_id", userId).maybeSingle();
   if (error || !data) return null;
   return litSeenFromActions(data.first_time_actions);
 };
 
 /** Merge into the existing record: other first-time actions are never dropped. */
-const writeRemote = async (profileId: string, seen: LitSeen): Promise<void> => {
-  const { data, error } = await supabase.from("game_profiles").select("first_time_actions").eq("id", profileId).maybeSingle();
+export const writeRemote = async (userId: string, seen: LitSeen): Promise<void> => {
+  const { data, error } = await supabase.from("game_profiles").select("first_time_actions").eq("user_id", userId).maybeSingle();
   if (error || !data) return;
   const current = (data.first_time_actions as Record<string, boolean> | null) ?? {};
   await supabase
     .from("game_profiles")
     .update({ first_time_actions: { ...current, ...litSeenToActions(seen) } })
-    .eq("id", profileId);
+    .eq("user_id", userId);
 };
 
 /**
