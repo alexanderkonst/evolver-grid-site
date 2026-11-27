@@ -11,6 +11,7 @@ Needs `pip install pillow numpy pyyaml` (matplotlib + scipy only for the old `fy
 | `spec.py`, `render.py` | load `<card>.card.yaml`; import `<card>.py`, call `build(spec)`, save `<card>.png` |
 | `lint.py` | 8 rules on a rendered card, read from `card.log` (not image recognition) |
 | `book_build.py` | the Book from one manifest: `book/book.yaml` → render, lint, PNGs, reader data, BOOK.md blocks, `book/sheet.png`; `--check` for CI (see Book below) |
+| `asis.py` | as-is cards (`kind: as_is`): the author's picture converted to PNG, never drawn or restyled; its two lint rules (see Recipe: add a card the author drew) |
 | `book_sync.py` | `--check`: spec title/caption equal `BOOK.md` and `src/data/infographicBook.ts` |
 | `sheet.py` | one contact sheet PNG per batch: grid, each card with id + title |
 | `compare.py` | mean abs pixel diff of a ported card against the engine-v4 render it came from |
@@ -146,6 +147,13 @@ Generated: `infographicBook.ts`, the `<!-- book:begin … -->` blocks of `BOOK.m
 1. Edit the card's `*.card.yaml` (text, title, caption) or `*.py` (drawing).
 2. `python3 kit/book_build.py`: only that card re-renders; it prints the mean pixel diff against the previous PNG. A title or caption change also moves the reader data and the `BOOK.md` list.
 3. If the card is a law (`III.01` ...), also edit its hand-written `### III.01` section in `BOOK.md` (title, Subtitle); `--check` fails until they agree.
+
+### Recipe: add a card the author drew (as is)
+A hand drawing, a photo or any finished picture goes into the Book untouched. It is never rendered, restyled, resized, cropped or given a footer; the build only converts it to PNG (`kit/asis.py`).
+1. Put the picture beside the spec: `book/<folder>/<id>.source.<ext>` (jpeg, png ...).
+2. Write `book/<folder>/<id>.card.yaml` with `kind: as_is`, `source: <that file name>`, `id`, `chapter`, `title`, `caption` (`text`, `author`, `sources` are for the record). No `skin`, no `<id>.py`.
+3. List it in `book/book.yaml` like any card, then `python3 kit/book_build.py`: it converts the source to `book/<folder>/<id>.png` and `public/infographics/book/<folder>/<id>.png`, records spec + source in `book.lock.json` and regenerates the rest. Changing the source file marks the card stale (`--check` fails until you rebuild).
+Lint checks two things only: `spec-fields` (id, chapter, title, caption, source present) and `source-file` (the file exists). No footer, margin, palette or word rules apply. Example: `book/integrated-marketing/`.
 
 ## App icons
 

@@ -47,7 +47,7 @@ describe("the Book of Infographics data (C4) follows BOOK.md", () => {
 
   it("keeps BOOK.md order: 1, 2, 2.1 … 5", () => {
     expect(BOOK_CHAPTERS.map((c) => c.number)).toEqual(["1", "2", "2.1", "2.2", "2.3", "2.4", "3", "3.1", "3.2", "3.3", "4", "4.1", "4.2", "5"]);
-    expect(BOOK_CHAPTERS.find((c) => c.number === "3.1")?.cards).toHaveLength(19);
+    expect(BOOK_CHAPTERS.find((c) => c.number === "3.1")?.cards).toHaveLength(20);
     expect(BOOK_CHAPTERS.find((c) => c.number === "5")?.cards).toHaveLength(4);
   });
 });

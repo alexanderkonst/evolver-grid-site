@@ -8,7 +8,7 @@ import unittest
 HERE = os.path.dirname(os.path.abspath(__file__))
 INF = os.path.dirname(HERE)
 sys.path.insert(0, INF)
-from kit import book_build, book_sync, compare, lint, render, skins, spec as specmod  # noqa: E402
+from kit import asis, book_build, book_sync, compare, lint, render, skins, spec as specmod  # noqa: E402
 
 
 class Fake:
@@ -419,6 +419,99 @@ class BookBuild(unittest.TestCase):
         book_build.build(self.paths, say=out.append)
         self.assertIn("rendered 1 of 2 card(s)", "\n".join(out))
         self.assertEqual(book_build.check(self.paths, say=lambda *_: None), 0)
+
+
+AS_IS_SPEC = """id: asis-01
+chapter: "2.1"
+kind: as_is
+source: asis-01.source.jpeg
+title: "Drawn By Hand"
+caption: "Shown exactly as drawn."
+text:
+  words: ["Myth", "Threshold"]
+sources:
+  - issue #563
+"""
+
+
+class AsIs(unittest.TestCase):
+    """`kind: as_is`: the card is the author's picture; the build converts it to PNG and never restyles it."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        r = self.tmp.name
+        os.makedirs(os.path.join(r, "book", "hand")); os.makedirs(os.path.join(r, "public"))
+        from PIL import Image
+        import numpy as np
+        rng = np.random.default_rng(7)
+        self.src = os.path.join(r, "book", "hand", "asis-01.source.jpeg")
+        Image.fromarray(rng.integers(0, 256, (90, 120, 3), dtype=np.uint8)).save(self.src, quality=90)  # 120x90, not a kit size
+        self.spec_path = os.path.join(r, "book", "hand", "asis-01.card.yaml")
+        self.write_spec(AS_IS_SPEC)
+        self.paths = book_build.Paths(book=os.path.join(r, "book"), public=os.path.join(r, "public"),
+                                      ts=os.path.join(r, "infographicBook.ts"), md=os.path.join(r, "BOOK.md"))
+        with open(os.path.join(self.paths.book, "book.yaml"), "w", encoding="utf-8") as f:
+            f.write('title: T\nchapters:\n  - number: "2"\n    title: Part\n    sections:\n      - number: "2.1"\n'
+                    '        title: First\n        cards:\n          - {id: asis-01, spec: hand/asis-01.card.yaml, status: approved v1}\n')
+        with open(self.paths.md, "w", encoding="utf-8") as f:  # BOOK.md lists the card, as the real one does
+            f.write(BOOKMD + "<!-- book:begin cards-hand -->\nold\n<!-- book:end cards-hand -->\n")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def write_spec(self, text):
+        with open(self.spec_path, "w", encoding="utf-8") as f:
+            f.write(text)
+
+    def test_the_png_has_the_source_pixels_and_nothing_else(self):
+        import numpy as np
+        from PIL import Image
+        out = os.path.join(self.tmp.name, "out.png")
+        asis.build_png(specmod.load(self.spec_path), out)
+        a, b = Image.open(self.src), Image.open(out)
+        self.assertEqual((b.format, b.size, b.mode), ("PNG", a.size, a.mode))  # no resize, no crop, no footer band
+        self.assertTrue((np.asarray(a) == np.asarray(b)).all())
+
+    def test_lint_checks_the_file_and_the_words_only(self):
+        spec = specmod.load(self.spec_path)
+        self.assertTrue(asis.is_as_is(spec))
+        self.assertEqual([r for r in asis.check(spec) if not r[1]], [])  # no skin, no footer, no word limit
+        self.assertEqual(asis.missing(spec), [])
+        os.remove(self.src)
+        self.assertIn("source-file", [r for r, ok, _ in asis.check(spec) if not ok])
+        self.write_spec(AS_IS_SPEC.replace('title: "Drawn By Hand"\n', "").replace('caption: "Shown exactly as drawn."\n', ""))
+        self.assertEqual(sorted(asis.missing(specmod.load(self.spec_path))), ["caption", "title"])
+        self.write_spec(AS_IS_SPEC.replace("source: asis-01.source.jpeg", "source: ../elsewhere.jpeg"))
+        self.assertTrue(any(m.startswith("source") for m in asis.missing(specmod.load(self.spec_path))))
+        self.assertEqual(lint.lint_spec(self.spec_path)[1][0][1], "FAIL")  # same spec, bad source: lint fails, does not crash
+
+    def test_lint_spec_passes_a_good_as_is_card(self):
+        cid, rows = lint.lint_spec(self.spec_path)
+        self.assertEqual(cid, "asis-01")
+        self.assertEqual({s for _, s, _ in rows}, {"PASS"}, rows)
+
+    def test_book_build_copies_checks_and_notices_a_changed_source(self):
+        out = []
+        self.assertEqual(book_build.build(self.paths, say=out.append), 0, out)
+        png = os.path.join(self.paths.book, "hand", "asis-01.png")
+        pub = os.path.join(self.paths.public, "hand", "asis-01.png")
+        self.assertTrue(os.path.exists(png) and os.path.exists(pub))
+        self.assertEqual(book_build._sha(png), book_build._sha(pub))
+        self.assertIn("asis-01", book_build.read_lock(self.paths)["cards"])
+        self.assertEqual(book_build.check(self.paths, say=out.append), 0, out)
+        from PIL import Image
+        Image.new("RGB", (120, 90), (1, 2, 3)).save(self.src, quality=90)  # the author redraws it
+        self.assertNotEqual(book_build.check(self.paths, skip_lint=True, say=lambda *_: None), 0)
+        out = []
+        self.assertEqual(book_build.build(self.paths, say=out.append), 0, out)
+        self.assertIn("rendered 1 of 1 card(s)", "\n".join(out))
+        self.assertEqual(book_build.check(self.paths, say=lambda *_: None), 0)
+
+    def test_a_missing_source_stops_the_build(self):
+        os.remove(self.src)
+        out = []
+        self.assertNotEqual(book_build.build(self.paths, say=out.append), 0)
+        self.assertTrue(any("source-file" in l for l in out), out)
 
 
 class CaptionSize(unittest.TestCase):

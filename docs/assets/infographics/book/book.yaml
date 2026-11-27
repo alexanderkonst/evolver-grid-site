@@ -6,6 +6,8 @@
 # Card entry:    - {id, spec, status}   spec = path of <card>.card.yaml relative to this file.
 #                title and caption are read from the spec (one place), never typed here.
 # status:        draft | approved | to-make, optionally followed by a version: "draft v4".
+# As-is card:    a spec with `kind: as_is` and `source: <file beside the spec>` is the author's own picture:
+#                never drawn or restyled, only converted to PNG (see kit/asis.py).
 # Placeholder:   a chapter or section with `status: to-make` and no cards, or a card entry with
 #                status: to-make and no spec (title:/caption: given here). Shown in the contents as
 #                "(to make)"; not rendered, not in the reader's card grid.
@@ -38,6 +40,7 @@ chapters:
       - number: "3.1"
         title: Business from first principles
         cards:
+          - {id: integrated-marketing-01, spec: integrated-marketing/integrated-marketing-01.card.yaml, status: approved v1}
           - {id: primitives-01, spec: first-principles/primitives-01.card.yaml, status: draft v4}
           - {id: primitives-02, spec: first-principles/primitives-02.card.yaml, status: draft v4}
           - {id: primitives-03, spec: first-principles/primitives-03.card.yaml, status: draft v4}
