@@ -3,13 +3,14 @@ import { describe, expect, it, vi } from "vitest";
 import CourseVersionInfo, { changelogNewestFirst, courseVersionLine } from "../CourseVersionInfo";
 import { ACTIVATE_YOUR_DORMANT_POTENTIAL } from "@/data/courses/activateYourDormantPotential";
 import { CONSCIOUSNESS_MEETS_SCIENCE } from "@/data/courses/consciousnessMeetsScience";
+import { NATURE } from "@/data/courses/nature";
 import { ACTIVATION_OF_INNER_VISION } from "@/data/courses/activationOfInnerVision";
 import { COURSE_SALES } from "@/data/courseSales";
 
 // BODY_STYLE comes from pages/Library, which pulls in the Supabase client (needs a browser); not used here.
 vi.mock("@/integrations/supabase/client", () => ({ supabase: {} }));
 
-const COURSES = [ACTIVATE_YOUR_DORMANT_POTENTIAL, CONSCIOUSNESS_MEETS_SCIENCE, ACTIVATION_OF_INNER_VISION];
+const COURSES = [ACTIVATE_YOUR_DORMANT_POTENTIAL, CONSCIOUSNESS_MEETS_SCIENCE, NATURE, ACTIVATION_OF_INNER_VISION];
 const SEMVER = /^\d+\.\d+(\.\d+)?$/;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -35,6 +36,20 @@ describe("course versioning data", () => {
         expect(c.level).toBe("Fundamental");
         expect(c.category).toBe("General");
         expect(c.changelog).toEqual([{ version: "1.0", date: c.updatedAt, summary: "First public version" }]);
+    });
+});
+
+describe("Nature versioning", () => {
+    it("is a Fundamental / General v1.0 first public version, shown on the page and the landing", () => {
+        expect(NATURE.version).toBe("1.0");
+        expect(NATURE.level).toBe("Fundamental");
+        expect(NATURE.category).toBe("General");
+        expect(NATURE.changelog).toEqual([{ version: "1.0", date: NATURE.updatedAt, summary: "First public version" }]);
+        const sales = COURSE_SALES.find((s) => s.slug === NATURE.slug);
+        expect(sales?.versioning?.version).toBe(NATURE.version);
+        const html = renderToStaticMarkup(<CourseVersionInfo course={NATURE} />);
+        expect(html).toContain(`Current version v1.0 (${NATURE.updatedAt})`);
+        expect(html).toContain("First public version");
     });
 });
 

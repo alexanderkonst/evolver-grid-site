@@ -16,6 +16,7 @@ import { FOUNDER_TOOL_OPENS_WHEN } from "@/data/founderTools";
 import { resolveFounderTools } from "@/lib/founderTools";
 import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
+import { NATURE_COURSE_PATH } from "@/data/courses/nature";
 import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
@@ -614,6 +615,13 @@ const buildLearnSections = (): Section[] => {
         path: CMS_COURSE_PATH,
     };
 
+    // Third free mini-training (public), same player: Nature (issue #551), listed after Consciousness Meets Science.
+    const natureRow: Section = {
+        id: "nature",
+        label: "Nature",
+        path: NATURE_COURSE_PATH,
+    };
+
     // Sasha, 2026-10-30: the Academy lists only the two courses we have, as one path
     // (Activate Your Dormant Potential, then Consciousness Meets Science, order swapped by
     // Sasha 2026-11-02; start with either).
@@ -622,6 +630,7 @@ const buildLearnSections = (): Section[] => {
         { id: "academy", label: "Academy", path: "/game/learn" },
         dormantPotentialRow,
         consciousnessMeetsScienceRow,
+        natureRow,
     ];
 };
 

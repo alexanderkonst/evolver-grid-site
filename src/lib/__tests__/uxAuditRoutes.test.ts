@@ -11,7 +11,7 @@ const source = (rel: string) => readFileSync(new URL(rel, import.meta.url), "utf
 describe("issue #270: routes", () => {
   it("/grow goes to the Academy index; the course pages stay under /grow/*", () => {
     expect(app).toContain('<Route path="/grow" element={<Navigate to="/game/learn" replace />} />');
-    for (const slug of ["activate-your-dormant-potential", "consciousness-meets-science", "activation-of-inner-vision"]) {
+    for (const slug of ["activate-your-dormant-potential", "consciousness-meets-science", "nature", "activation-of-inner-vision"]) {
       expect(app).toContain(`<Route path="/grow/${slug}"`);
     }
   });
