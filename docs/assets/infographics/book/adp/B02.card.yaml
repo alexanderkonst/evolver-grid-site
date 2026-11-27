@@ -1,0 +1,24 @@
+# ADP series card, Body module (not published: not in book/book.yaml). Spec: issue #521, revision v2 (Sasha's review 2026-11-26).
+id: B02
+chapter: "1"
+number: 2
+of: 2
+title: "Energy Is Received"
+caption: "You don't make energy, you let it through. Tired means blocked: clear the channel before you add fuel."
+skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
+waive:
+  words: "v2 labels say what blocks, and the takeaway is a four-word line, so some run past the skin's 3-word label limit. Prose is 22 words, under the limit of 25."
+text:
+  eyebrow: Body
+  battery: not a battery
+  stones: [Heavy food, Busy mind, Held emotion]
+  heaven: Heaven
+  earth: Earth
+  hara: Hara
+  hara_sub: where they meet
+  takeaway: Remove before you add.
+  attribution: "After Michio Kushi"
+sources:
+  - "knowledgegraph: 10 Sources/youtube/michio-kushi/undated-why-most-people-never-access-full-energy.md (verbatim transcript; integration: knowledgegraph#320)"
+  - "issue #521 comment, revision v2: caption, labels and takeaway line (Sasha's synthesis); title and attribution from the issue"
