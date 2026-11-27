@@ -14,7 +14,7 @@ import { runStep, type Problem as StepProblem } from "@/lib/console/runStep";
 import {
   BUTTON_IDS,
   CONSOLE_BUTTONS,
-  GOAL_QUESTION,
+  MAX_CONTEXT_CHARS,
   buttonOf,
   cardPlainText,
   isUnlocked,
@@ -38,20 +38,17 @@ type Props = {
   /** The conversation so far, and the player card the conversation already builds. */
   messages: DialogueMessage[];
   getPlayerCard: () => PlayerCard | null;
-  /** Button 1 with no goal: put the one question into the conversation. */
-  onAskGoal: (question: string) => void;
-  onOpenConversation: () => void;
 };
 
-const ConsolePanel = ({ ownerId, language, messages, getPlayerCard, onAskGoal, onOpenConversation }: Props) => {
+const ConsolePanel = ({ ownerId, language, messages, getPlayerCard }: Props) => {
   const { t } = useTranslation();
   const locale = normalizeLocale(language);
   const [chain, setChainState] = useState<ChainState>(() => readChain(ownerId));
   const chainRef = useRef(chain);
   const [running, setRunning] = useState<ButtonId | null>(null);
   const [problem, setProblem] = useState<Problem | null>(null);
-  const lastMessage = messages[messages.length - 1];
-  const waiting = lastMessage?.role === "ai" && lastMessage.text === GOAL_QUESTION[locale];
+  const [goal, setGoal] = useState("");
+  const goalInput = useRef<HTMLInputElement>(null);
   const [copied, setCopied] = useState<ButtonId | null>(null);
   const runningRef = useRef(false);
 
@@ -82,11 +79,12 @@ const ConsolePanel = ({ ownerId, language, messages, getPlayerCard, onAskGoal, o
         ownerId,
         playerCard: getPlayerCard(),
         messages,
+        goal,
         locale,
         call: (request) => runConsoleButton(request, !!ownerId),
       });
       commit(out.chain);
-      if (out.kind === "ask-goal") onAskGoal(GOAL_QUESTION[locale]);
+      if (out.kind === "ask-goal") goalInput.current?.focus();
       else if (out.kind === "problem") setProblem({ button: id, kind: out.problem });
     } finally {
       runningRef.current = false;
@@ -167,6 +165,20 @@ const ConsolePanel = ({ ownerId, language, messages, getPlayerCard, onAskGoal, o
           }
           return (
             <li key={id} data-testid={`console-button-${id}`} data-state={rec ? "done" : "open"} className="space-y-2">
+              {id === 1 && !rec && (
+                <label className="block space-y-1 text-[13px]" style={{ color: INK }}>
+                  <span>{t("yourAiConsole.goalInput")}</span>
+                  <input
+                    ref={goalInput}
+                    type="text"
+                    value={goal}
+                    maxLength={MAX_CONTEXT_CHARS}
+                    onChange={(event) => setGoal(event.target.value)}
+                    className="block w-full rounded-xl border px-3 py-2"
+                    style={{ backgroundColor: RAISED, borderColor: HAIRLINE, color: INK }}
+                  />
+                </label>
+              )}
               {rec ? (
                 <div className="space-y-3 rounded-xl p-3" style={{ backgroundColor: RAISED, border: `1px solid ${HAIRLINE}` }}>
                   <h4 className="text-[17px] leading-tight" style={{ fontFamily: SERIF, fontWeight: 600, color: INK }}>{label}</h4>
@@ -204,14 +216,6 @@ const ConsolePanel = ({ ownerId, language, messages, getPlayerCard, onAskGoal, o
                   <span>{busy ? t("yourAiConsole.working") : label}</span>
                   <ArrowRight aria-hidden="true" className="h-3.5 w-3.5 shrink-0" style={{ color: ACCENT }} />
                 </button>
-              )}
-              {id === 1 && waiting && !rec && (
-                <p role="status" className="text-[13px]" style={{ color: INK }}>
-                  {t("yourAiConsole.waitingLine")}{" "}
-                  <button type="button" onClick={onOpenConversation} className="underline underline-offset-4" style={{ color: ACCENT }}>
-                    {t("yourAiConsole.openConversation")}
-                  </button>
-                </p>
               )}
               {busy && rec && <p role="status" className="text-[13px] italic" style={{ color: MUTED }}>{t("yourAiConsole.working")}</p>}
               {problemLine(id)}

@@ -9892,8 +9892,7 @@
     "failedLine": "Your AI didn't answer this time.",
     "capLine": "You've used today's Console turns. They come back tomorrow.",
     "signInLine": "Sign in to use the Console. It works from your profile.",
-    "waitingLine": "Waiting for your answer in the conversation.",
-    "openConversation": "Open the conversation",
+    "goalInput": "Your goal",
     "field": {
       "why": "Why this goal",
       "notThis": "What it is not",

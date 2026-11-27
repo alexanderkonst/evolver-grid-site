@@ -32,7 +32,7 @@ afterEach(() => {
 const render = (language: string, owner = "u1") => {
   lang = language;
   return renderToStaticMarkup(
-    <ConsolePanel ownerId={owner} language={language} messages={[]} getPlayerCard={() => null} onAskGoal={() => {}} onOpenConversation={() => {}} />,
+    <ConsolePanel ownerId={owner} language={language} messages={[]} getPlayerCard={() => null} />,
   );
 };
 const state = (html: string, n: ButtonId) => html.match(new RegExp(`data-testid="console-button-${n}" data-state="(\\w+)"`))?.[1];

@@ -17,7 +17,7 @@ const base = { ownerId: "u1", playerCard: card, messages: said, locale: "en" as 
 beforeEach(() => invoke.mockReset());
 
 describe("Console v1 · empty profile", () => {
-  it("DoD 9 · empty profile: button 1 asks the one question and invents nothing (no model call)", async () => {
+  it("DoD 9 · empty profile: button 1 requests input without a model call", async () => {
     const call = vi.fn();
     const out = await runStep({ ...base, playerCard: null, messages: [], chain: emptyChain(), id: 1, call });
     expect(out.kind).toBe("ask-goal");
@@ -33,10 +33,10 @@ describe("Console v1 · empty profile", () => {
     expect(call).not.toHaveBeenCalled();
   });
 
-  it("DoD 9 · when the model itself says needsGoal, no card is made up", async () => {
+  it("DoD 9 · a needsGoal response after a submitted goal is a retryable result error", async () => {
     const call = vi.fn().mockResolvedValue(output({ needsGoal: true }));
     const out = await runStep({ ...base, chain: emptyChain(), id: 1, call });
-    expect(out.kind).toBe("ask-goal");
+    expect(out).toMatchObject({ kind: "problem", problem: "malformed" });
     expect(out.chain.cards[1]).toBeUndefined();
   });
 

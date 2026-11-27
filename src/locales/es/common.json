@@ -9866,8 +9866,7 @@
     "failedLine": "Tu IA no respondió esta vez.",
     "capLine": "Has usado los turnos de hoy de la Consola. Vuelven mañana.",
     "signInLine": "Inicia sesión para usar la Consola. Funciona a partir de tu perfil.",
-    "waitingLine": "Esperando tu respuesta en la conversación.",
-    "openConversation": "Abrir la conversación",
+    "goalInput": "Tu meta",
     "field": {
       "why": "Por qué esta meta",
       "notThis": "Lo que no es",
