@@ -5,7 +5,7 @@
 ## Three layers (Product // Module // Prompt)
 - **PRODUCT:** Synthesizer: a founder brings their raw unique product and leaves with it understood in one sentence and its first module built by AI.
 - **MODULE:** [Integrated Product Building Workflow](../03-playbooks/integrated_product_building_workflow.md) (IPB v1.2): the methodology, the unfolded prism.
-- **PROMPT:** [Holonic Prism](../templates/holonic-prism.md), the button «🔺 The whole thing in one sentence» on the Your AI console.
+- **PROMPT:** [Holonic Prism](../templates/holonic-prism.md), the button «🔺 The whole thing in one sentence» on the My AI console.
 
 ## Shift offer
 - Template used: IPB + holonic-prism.md

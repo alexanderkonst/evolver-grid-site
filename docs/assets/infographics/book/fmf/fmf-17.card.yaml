@@ -1,0 +1,32 @@
+id: fmf-17
+chapter: '3.4'
+number: 17
+of: 19
+title: 'Metaphysical Basis: Elements and Centres'
+caption: Thesis, antithesis, synthesis.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  cross:
+    tl:
+    - Air
+    - octahedron
+    tr:
+    - Fire
+    - tetrahedron
+    bl:
+    - Water
+    - ''
+    br:
+    - Earth
+    - cube
+  star:
+  - Heart
+  - Moon
+  - Mind
+  - Earth
+  - Gut
+  - Sun
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p24)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

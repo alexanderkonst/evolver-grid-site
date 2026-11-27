@@ -1,0 +1,31 @@
+id: fmf-19
+chapter: '3.4'
+number: 19
+of: 19
+title: Invitation Architecture
+caption: AI needs your whole business in context. You must have that map.
+skin: v4
+max_words: 34
+text:
+  eyebrow: Founder-market fit
+  stages:
+  - - Invitation
+    - + reminder
+  - - Webinar / masterclass
+    - ''
+  - - Channel subscriptions
+    - ''
+  - - 2-day experience
+    - founder-market fit, a product from yourself
+  - - Monthly container
+    - ''
+  - - Sovereign founder collective
+    - ''
+  timeline: Unique trajectory
+  ripe: Ripe
+  notes:
+  - AI + client description = top of funnel
+  - 'Wounded healer: heal to heal'
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p25)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

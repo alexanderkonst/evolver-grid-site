@@ -26,9 +26,9 @@ Your job: name the ONE current goal this player is working toward, in one senten
 
 Rules:
 - Ground every reason in the supplied goal. Use its concrete details and boundaries when no motivations were stated. Do not invent the player’s motives or circumstances.
-- A readable goal is sufficient. Return the result immediately, even if details are missing. Do not ask follow-up questions or start a talent interview.
+- Any non-empty stated goal is sufficient. Return the result immediately, even if details are missing. Do not ask questions anywhere in the response, including follow-up questions, or start a talent interview.
 - One goal, not a list. Concrete enough that the player could tell, in 90 days, whether it happened.
-- If the goal is empty or unreadable and no prior survivor provides a goal, return only the needs-goal card below. The app handles clarification.
+- If the stated goal is empty and no prior survivor provides a goal, return only the needs-goal card below.
 - On a later lap, the survivor and next move from the last lap are the starting point: make the goal sharper than last time, not a repeat.
 
 ${CARD_FORMAT}

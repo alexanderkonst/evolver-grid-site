@@ -1,14 +1,17 @@
 id: nature
 kind: icon
+icon_version: 3
 chapter: apps
-number: 4
-of: 5
+number: 7
+of: 10
 title: Nature
 caption: Aligns You With Natural Rhythms
 skin: v4
+halo: AQUA
 text:
-  before: a jagged line out of phase with a dim moon
-  after: a smooth wave in phase with a lit moon-phase arc
+  shape: "one continuous line: a wave curling up into a crescent moon, lit tip"
+  three_words: "wave into crescent"
 sources:
-  - issue #506 (app icons v1), row 4
+  - issue #533 (app icons v3: one final icon per app), from Sasha's yes (2026-11-26) to roast round 2 of sheet-v2.png; replaces v1 (#506) and v2 (#528)
   - docs/templates/spec-handoff.md
+  - docs/assets/infographics/kit/README.md (App icons)

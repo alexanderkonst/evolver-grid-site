@@ -1,5 +1,38 @@
 # The Meta-Template: the template of templates
 
+## Core v3 (one screen) · Version: v3.0 · 2026-11-26
+*Approved by Sasha 2026-11-26 12:01 MST («ОЧЕНЬ КРУТО!!! делай»), after a roast of v2. Everything below the line «Appendix A» is Sasha's transmission of 2026-10-27, unchanged.*
+
+**Essence.** A template is how a shift Sasha sees becomes repeatable without him. The Meta-Template is not a document to read; it is **one cycle and one line**.
+
+### The cycle (5 steps, every piece of work)
+1. **Transmission.** Sasha names a vision, a formula or a workflow in chat. That is the input; the agent records it close to his words.
+2. **Router.** Check [template-router.md](./template-router.md): does a template already cover it? If yes, use it. If a near one exists, extend it. A new template only when none fits (check the router and [README.md](./README.md) for duplicates first).
+3. **Apply.** Do the work by the template.
+4. **Roast the result.** After real use: what worked, what broke, what was missing ([roasting.md](./roasting.md)).
+5. **Edit the template, new version.** Every finished piece of work ends with one line «Template change: …» (or «none»). If there is a change, the template gets it and its version goes up.
+
+### The trace line (in every artifact made by a template)
+`Template: <name> vN · Version: vX.Y · Shift check: yes / no / unknown`
+- **Template vN** = which template and which version produced it.
+- **Version vX.Y** = the artifact's own version (course, page, spec, infographic). Major = new form; minor = new part (e.g. a new episode); patch = a fix.
+- **Shift check** = did the shift the template carries actually happen (observable sign, §2b)?
+From these lines, measure (uses and shifts), version chains and archive candidates are collected by grep, with no manual counting.
+
+### Template lifecycle
+- Each template's meta-description carries `Version: vN · last changed: date · change log` (one line per change).
+- **Archive rule:** a template not applied in 60 days, or applied with Shift check «no» three times in a row, is proposed to Sasha for merge or archive. Archived templates leave the router.
+
+### One source of truth
+Templates live only here in `docs/templates/`. Hark specialties and other agents **link** to them and never keep a copy of their content.
+
+### Sasha's door
+Sasha never edits templates. He speaks (step 1) and roasts (step 4); agents do steps 2, 3 and 5.
+
+---
+
+## Appendix A: Sasha's transmission (2026-10-27), unchanged
+
 *Transmission from Sasha, 2026-10-27 (chat, dictated; recorded close to his words). Status: canonical root of `docs/templates/`. Every other template is read as a part of this one.*
 
 ## 1. Name
@@ -80,7 +113,7 @@ Everything we build is assembled from five primitives. They are the central chai
 | **Gift** | what only you can do |
 | **Step** | the first act with it in the world |
 | **Trace** | the record of what happened |
-| **Your AI** | the one who reads the trace and helps |
+| **My AI** | the one who reads the trace and helps |
 | **Room** | the people who watch the line |
 
 - **Holonic.** The same five hold at every level. In the Holostrategy below, the L1 primitive (one person) is gift → step → trace → your AI; L2 (two people) and L3 (group, network) are the Room at a larger scale.
@@ -109,6 +142,8 @@ Everything we build is assembled from five primitives. They are the central chai
 7. **Duplicates are synthesized, never discarded** (Sasha, 2026-10-27: «не выкинуть все кроме одного… синтезировать все их в один шаблон, примерно в том стиле, как ты делаешь граф знаний»). Read every copy fully; the canonical template keeps the union of what is valuable, not only the newest; where copies conflict, the newer Sasha-confirmed one wins and the older claim stays as a dated note; the template ends with a Genealogy table (each source, its date, provenance, what it contributed). Sources stay where they are, with one pointer line at their top.
 8. **Template → library.** A new law found in a template's debrief (retro, session notes, a planning review) is a candidate technology for the Phase Shift Technology Library; note it in the template and bring it to Sasha (the library carries his transmission).
 9. **Library → template.** A technology that grows a repeatable protocol is a template candidate: register it in the README inventory and promote it by §7.1–7.3.
+
+**Hypothesis (Sasha, 2026-11-26 11:59 MST; not yet confirmed by its check):** «чем лучше описан how-to, тем быстрее, проще и дешевле ИИ агенту выполнить его» (the better the how-to is written, the faster, simpler and cheaper it is for an AI agent to run it). A template can zoom in on three levels: **goal** (why, what: meta-description, why it exists) → **steps** (input → output → who acts → gate) → **runbook** (click-level actions, for stable UIs only). A template carries the runbook level wherever a step runs on a UI again and again; the runbook carries a "last verified" date and a fallback to the step above it. Check: time and tool calls per module before and after the runbook, logged in the template's worked example. First test: [course-update.md](./course-update.md) step 5 on the [NotebookLM runbook](../04-workflows/notebooklm_video_production.md#runbook-8-actions-per-module). **Runbooks drift (Sasha, 2026-11-26 12:02 MST):** «интерфейсы постоянно меняются, это должна быть часть изменения шаблонов, петля обратной связи обратно в шаблон, с изменением версии». A click-level step that no longer matches the UI is finished by the goal-level fallback, written as `Template change: runbook step N, old → new` (Core v3, cycle step 5) and fixed in the runbook in the same job, with a patch bump and a changelog row; worked form: course-update step 10.
 
 ## 8. Tasks (living list)
 - [x] T1 Record the transmission as this Meta-Template (2026-10-27).
@@ -181,3 +216,34 @@ Finding people is cheap (minutes). Contacting at scale is the constraint. Linked
 ### Open
 - Where primitives L1–L3 get their full spec (product side).
 - Which phase-shift technologies map to which path step.
+
+---
+
+## Console buttons (addendum, 2026-11-26)
+
+*Source: PST 188 Holonic App Store of the Golden Age. Sasha, chat 2026-11-26 18:10 and 19:04 MST; Russian quotes are his, English is *translated*.*
+
+### Button formula
+**icon + result (1–2 words) + input.**
+- The **input** is a thing, not only text: an image sheet, a file, a link, a card, another button's result. The prompt lives in the button.
+- Sasha: «ИИ надо давать что-то на вход … Не только текст … зачем если есть суперпромпт в виде КНОПКИ!» (*translated:* "AI must be given something as input … not only text … why, if there is a superprompt in the form of a BUTTON!")
+
+### Three categories
+Sasha: «так и сделаем. Три категории кнопок» (*translated:* "so we will do it. Three categories of buttons").
+
+| Category | What it is |
+|---|---|
+| **Power** | One button = one template. |
+| **Combo** | Two Powers in sequence. A Combo that worked is saved as a new Power with its own icon. |
+| **Superpower** | A rare combo of three or more Powers. |
+
+### Seed entries
+| Button | Category | Icon | Result | Input |
+|---|---|---|---|---|
+| Roasting ([roasting.md](./roasting.md)) | Power | idea (Sasha): a comedian roasting the audience | «увидеть потенциал для роста!» (*translated:* "see the potential for growth!") | any artifact |
+| Integral synthesis ([integral-synthesis.md](./integral-synthesis.md)) | Power | open | **Wholeness** («Цельность»): the common denominator of the best solutions | a domain or a set of exemplars |
+| Roast + Integral synthesis | Combo | open | **Growth potential** («Потенциал роста») | your artifact |
+
+First worked Combo: Roast + Integral synthesis on the app icons, 2026-11-26.
+
+Where the buttons live: one store with levels (a Power inside a training, a training inside an app, an app inside the game). Store list: [course-as-app.md](./course-as-app.md) §The stores.

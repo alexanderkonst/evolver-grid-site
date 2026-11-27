@@ -80,14 +80,10 @@ describe("moon on the ring", () => {
 describe("faces registry", () => {
   const Dummy = (() => null) as unknown as (p: FaceProps) => null;
 
-  it("has one slot per element, in village order; ether is empty until its face registers (water: WP3, fire and earth: WP4)", () => {
+  it("has one slot per element, in village order; every slot but air is filled (water: WP3, fire and earth: WP4, ether: WP5; air registers in YourAiInstrument)", () => {
     expect(Object.keys(FACES)).toEqual(VILLAGE_ELEMENTS.map((e) => e.key));
     expect(Object.keys(FACES)).toEqual(["ether", "air", "water", "fire", "earth"]);
-    for (const k of ["ether"] as const) {
-      expect(hasFace(k)).toBe(false);
-      expect(getFace(k)).toBeNull();
-    }
-    expect(hasFace("water")).toBe(true);
+    for (const k of ["ether", "water", "fire", "earth"] as const) expect(hasFace(k)).toBe(true);
   });
 
   it("registering a face fills only that slot", () => {
@@ -95,7 +91,8 @@ describe("faces registry", () => {
     registerFace("water", Dummy);
     expect(getFace("water")).toBe(Dummy);
     expect(hasFace("water")).toBe(true);
-    expect(hasFace("ether")).toBe(false);
+    expect(hasFace("ether")).toBe(true);
+    expect(getFace("ether")).not.toBe(Dummy);
     FACES.water.component = registered;
   });
 });

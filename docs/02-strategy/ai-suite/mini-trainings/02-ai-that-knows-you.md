@@ -7,13 +7,13 @@
 
 ## Who it is for
 
-**Players who finished rung 1** (AI as a Mirror). They have a Top Talent profile and a three-step plan made with Your AI. A player without a Top Talent profile is invited to do the reveal first (same gate as rung 1). Rung 1 is recommended, not required: the page does not check it.
+**Players who finished rung 1** (AI as a Mirror). They have a Top Talent profile and a three-step plan made with My AI. A player without a Top Talent profile is invited to do the reveal first (same gate as rung 1). Rung 1 is recommended, not required: the page does not check it.
 
 ## Step 1 · Result
 
 **In about 35 minutes you have a one-page profile that makes any AI know you, and you know the three moves that make every answer better: goal, context, cycles.**
 
-Done when the person pasted their profile into a second AI (not Your AI) and got an answer that sounds like it knows them. The page cannot see the other AI, so the person marks it themselves («It knew me»).
+Done when the person pasted their profile into a second AI (not My AI) and got an answer that sounds like it knows them. The page cannot see the other AI, so the person marks it themselves («It knew me»).
 
 **The thing they keep:** their **one-page AI profile** (v1.0, a living document): saved on this device, shown at the end of the page, with **Copy** for pasting into any AI.
 
@@ -51,15 +51,15 @@ Rung 2 does not use life-area levels (`{weakest_area}`), so nothing needs maskin
 | 4 | The layer of «no» | Say what AI must never do or touch. | You set your limits once. | «Ask me 3 questions, one at a time, to find what you must never do for me or with my data. Ask only the first question now and wait for my answer. After my third answer, add a «No» section to my profile and show the whole profile again. No emojis.» + answer box (3) + **Save profile**. | Safe, in charge. | Workshop A session 2 («capa de no») |
 | 5 | Goal, context, cycles | Principles that won't expire: name the goal, give the context, refine in cycles. | You have one habit for any AI, any year. | «Here is something I want: (say it). Before answering, tell me in 3 lines what goal and context you understood, and what's missing. No emojis.» Send waits until the person says it (microphone fills the gap) + answer box (2). | It asks back; I sharpen. | Workshop B closing principles |
 | 6 | Roast, then next version | Clarity opens in layers: roast it, then produce the next version. | You stop accepting the first answer. | **6a**: «Roast my profile. Up to 5 lines, no emojis.» **6b**: «Produce the next version of my profile, with what the roast found. Same one page, five short sections, no emojis.» + answer box (2) + **Save profile**. | The second version is clearly better. | Workshop B («haz el roast → produce la siguiente versión»; ciclos de mejora) |
-| 7 | Take it anywhere | Your profile is yours; it works in any AI. | Any AI knows you in 10 seconds. | No call to Your AI. **Copy** gives the saved profile + «Read my profile. In 3 lines: what would you do differently for me now?» → paste into ChatGPT, Claude or Gemini. Then the person taps **It knew me**. | Portable self. | Training 5 (Q&A: two kinds of personalization, memory vs telling it who you are) |
+| 7 | Take it anywhere | Your profile is yours; it works in any AI. | Any AI knows you in 10 seconds. | No call to My AI. **Copy** gives the saved profile + «Read my profile. In 3 lines: what would you do differently for me now?» → paste into ChatGPT, Claude or Gemini. Then the person taps **It knew me**. | Portable self. | Training 5 (Q&A: two kinds of personalization, memory vs telling it who you are) |
 
-Closing: the saved profile with **Copy**, and **Keep talking in Your AI** → `/game/your-ai`.
+Closing: the saved profile with **Copy**, and **Keep talking in My AI** → `/game/your-ai`.
 
 Timing: 7 × (≈ 90 s video + ≈ 90 s button) ≈ 21 min, plus the dialogs in #2 and #4 (≈ 3 min each) and opening/closing ≈ 30–35 min. Room under 40.
 
 ## Calls to the platform AI
 
-Reuses the `mini-training-chat` edge function as is (cheapest Lovable chat model, Sasha's yes 2026-11-22). A full run is up to ≈ 20 calls (1a, 1b, #2 with 5 answers, #3, #4 with 3 answers, #5 with 2, 6a, 6b with 2). **The function's daily cap is 20 per player, shared with Your AI**, so a player who also used Your AI that day can hit the cap mid-training (they see «The answer did not come»; Copy into their own AI still works). Its system prompt still names «AI as a Mirror»; the model is not told the rung's name, so this matters little. Both are edge-function changes: not made here.
+Reuses the `mini-training-chat` edge function as is (cheapest Lovable chat model, Sasha's yes 2026-11-22). A full run is up to ≈ 20 calls (1a, 1b, #2 with 5 answers, #3, #4 with 3 answers, #5 with 2, 6a, 6b with 2). **The function's daily cap is 20 per player, shared with My AI**, so a player who also used My AI that day can hit the cap mid-training (they see «The answer did not come»; Copy into their own AI still works). Its system prompt still names «AI as a Mirror»; the model is not told the rung's name, so this matters little. Both are edge-function changes: not made here.
 
 ## Open for Sasha
 

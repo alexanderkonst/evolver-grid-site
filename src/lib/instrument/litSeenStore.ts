@@ -17,29 +17,38 @@ import {
   type LitSeen,
 } from "@/lib/instrument/state";
 
-const readRemote = async (profileId: string): Promise<LitSeen | null> => {
-  const { data, error } = await supabase.from("game_profiles").select("first_time_actions").eq("id", profileId).maybeSingle();
-  if (error || !data) return null;
+// `game_profiles.id` is a random uuid; the player's id is `user_id`. Looking up `id = <user id>` found nothing,
+// so the save was never read and never written.
+/**
+ * `null` when the player has no save yet. A failed read THROWS: the hook then takes the localStorage record for
+ * this session only (nothing is written back as if the save had said "not seen"), and asks the save again next time.
+ */
+export const readRemote = async (userId: string): Promise<LitSeen | null> => {
+  const { data, error } = await supabase.from("game_profiles").select("first_time_actions").eq("user_id", userId).maybeSingle();
+  if (error) throw error;
+  if (!data) return null;
   return litSeenFromActions(data.first_time_actions);
 };
 
 /** Merge into the existing record: other first-time actions are never dropped. */
-const writeRemote = async (profileId: string, seen: LitSeen): Promise<void> => {
-  const { data, error } = await supabase.from("game_profiles").select("first_time_actions").eq("id", profileId).maybeSingle();
+export const writeRemote = async (userId: string, seen: LitSeen): Promise<void> => {
+  const { data, error } = await supabase.from("game_profiles").select("first_time_actions").eq("user_id", userId).maybeSingle();
   if (error || !data) return;
   const current = (data.first_time_actions as Record<string, boolean> | null) ?? {};
   await supabase
     .from("game_profiles")
     .update({ first_time_actions: { ...current, ...litSeenToActions(seen) } })
-    .eq("id", profileId);
+    .eq("user_id", userId);
 };
 
 /**
- * `[litSeen, markSeen]` for one player. `markSeen(element)` is idempotent; it persists at once to
+ * `[litSeen, markSeen, loaded]` for one player. `markSeen(element)` is idempotent; it persists at once to
  * localStorage and, when signed in, to the profile (best effort: a failed write never blocks the player).
  */
-export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element: ElementKey) => void] => {
+export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element: ElementKey) => void, boolean] => {
   const [seen, setSeen] = useState<LitSeen>(() => readLitSeen(ownerId));
+  // The saved record has been read (signed out: there is none to wait for). The first reveal waits for it.
+  const [loaded, setLoaded] = useState<boolean>(!ownerId);
   const seenRef = useRef(seen);
   seenRef.current = seen;
 
@@ -47,7 +56,11 @@ export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element:
     const local = readLitSeen(ownerId);
     seenRef.current = local;
     setSeen(local);
-    if (!ownerId) return;
+    if (!ownerId) {
+      setLoaded(true);
+      return;
+    }
+    setLoaded(false);
     let cancelled = false;
     void readRemote(ownerId)
       .then((remote) => {
@@ -57,7 +70,12 @@ export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element:
         seenRef.current = merged;
         setSeen(merged);
       })
-      .catch(() => {});
+      // A failed read: this session goes by the localStorage record alone (already in `seen` above), and the
+      // save is read again the next time. Nothing is written to either side because of the failure.
+      .catch(() => {})
+      .finally(() => {
+        if (!cancelled) setLoaded(true);
+      });
     return () => {
       cancelled = true;
     };
@@ -75,5 +93,5 @@ export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element:
     [ownerId],
   );
 
-  return [seen, markSeen] as const;
+  return [seen, markSeen, loaded] as const;
 };

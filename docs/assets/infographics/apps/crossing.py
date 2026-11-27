@@ -1,27 +1,27 @@
-"""Crossing: two rings far apart -> two rings overlapping into one vesica (one coin, two sides). No text."""
-import math
+"""Crossing: two overlapping circles, the lens left open. Left: a precise thin line with tick marks (science).
+Right: a soft glowing line (consciousness). One neon dot at the centre of the crossing. No text."""
+import os
+import sys
 
-from kit import icon as I, vocab as K
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import icon_shapes as G  # noqa: E402
+from kit import icon as I, vocab as K  # noqa: E402
 
+W = I.WEIGHT
 
-def lens(cx, cy, r, d, n=40):
-    """Overlap of two circles of radius r stacked vertically, centres d apart (a vesica when d == r)."""
-    h = math.sqrt(r * r - (d / 2) ** 2)
-    a0 = math.degrees(math.atan2(d / 2, h))
-    low = [I.polar(cx, cy - d / 2, r, a0 + (180 - 2 * a0) * i / n) for i in range(n + 1)]          # lower arc of the top ring
-    top = [I.polar(cx, cy + d / 2, r, 180 + a0 + (180 - 2 * a0) * i / n) for i in range(n + 1)]    # upper arc of the bottom ring
-    return low + top
+R, D = 196, 186                            # radius of each circle, distance between the centres
+TICKS = [120 + 15 * k for k in range(9)]  # tick marks on the outer left arc, 120..240 deg
+DX = 40                                    # ticks make the sign lean left: shift it right so the whole sign is centred
 
 
 def build(spec):
     c = I.card(spec)
-    with c.side("before"):
-        c.ring(I.BEFORE_X, 512 - 200, 90, 48, K.QUIET, 170)
-        c.ring(I.BEFORE_X, 512 + 200, 90, 48, K.QUIET, 170)
-    c.chevron()
+    xl, xr = 512 - D / 2 + DX, 512 + D / 2 + DX
     with c.side("after"):
-        r = 130
-        c.fill(lens(I.AFTER_X, 512, r, r), K.NEON, 235, min_dim=r)          # the one coin
-        c.ring(I.AFTER_X, 512 - r / 2, r, 48, K.SILVER, 235)
-        c.ring(I.AFTER_X, 512 + r / 2, r, 48, K.SILVER, 235)
+        c.ring(xl, 512, R, W, K.INK, 255)                                          # science: a precise line
+        for deg in TICKS:                                                          # ...with tick marks, like a scale
+            a, b = G.polar(xl, 512, R + W / 2 + 12 + W / 2, deg), G.polar(xl, 512, R + W / 2 + 12 + W / 2 + 30, deg)
+            c.path([a, b], W, K.INK, 255, group="ticks")
+        c.ring(xr, 512, R, W, K.SILVER, 235, soft=110)                             # consciousness: a soft glowing line
+        c.dot(512 + DX, 512, 40, K.NEON, 255, glow=0)                             # the one light: the centre of the crossing
     return c

@@ -23,7 +23,7 @@ describe("your-ai-console · prompt assembly (server)", () => {
     for (const b of CONSOLE_BUTTONS) {
       const { system, user } = assemble({ button: b.id, context: "PLAYER-CTX-LINE", previousCards: cards, locale: "en" });
       if (b.id === 1) {
-        expect(system).toContain("A readable goal needs no follow-up.");
+        expect(system).toContain("Do not ask follow-up questions.");
       } else {
         expect(system).toBe(AI_OS_PROMPT);
       }

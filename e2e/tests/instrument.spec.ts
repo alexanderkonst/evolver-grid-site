@@ -66,7 +66,7 @@ test.describe("instrument opens and closes", () => {
     // Period opens as well, and the close button is available at every viewport.
     await page.keyboard.press(".");
     await settled(page);
-    await page.getByRole("button", { name: "Close Your AI" }).click();
+    await page.getByRole("button", { name: "Close My AI" }).click();
     await expect(dialogOf(page)).toHaveCount(0);
     await expect(glyph).toBeFocused();
   });
@@ -138,11 +138,11 @@ test.describe("instrument opens and closes", () => {
     }
   });
 
-  test("glyph opens Your AI; Back returns to the arc; air opens the same face", async ({ page }) => {
+  test("glyph opens My AI; Back returns to the arc; air opens the same face", async ({ page }) => {
     await openVillage(page);
     await glyphOf(page).click();
     await settled(page);
-    await expect(page.getByRole("region", { name: "Your AI" })).toBeVisible();
+    await expect(page.getByRole("region", { name: "My AI" })).toBeVisible();
     await page.getByRole("button", { name: "Back to the instrument" }).click();
     await expect(page.getByTestId("your-ai-overlay")).toHaveAttribute("data-state", "open");
     await page.getByTestId("instrument-body-air").click();
@@ -210,7 +210,7 @@ test.describe("reduced motion", () => {
     await openVillage(page);
     await glyphOf(page).click();
     await expect(dialogOf(page)).toBeVisible();
-    const transform = await page.getByRole("region", { name: "Your AI" }).evaluate((el) => getComputedStyle(el).transform);
+    const transform = await page.getByRole("region", { name: "My AI" }).evaluate((el) => getComputedStyle(el).transform);
     expect(transform === "none" || transform === "matrix(1, 0, 0, 1, 0, 0)").toBe(true);
     await page.keyboard.press("Escape");
     await expect(dialogOf(page)).toHaveCount(0);
@@ -236,7 +236,7 @@ test("DoD 6 · axe: zero serious on /village with the instrument open", async ({
 
   // And with the Your AI face forward.
   await page.getByTestId("instrument-body-air").click();
-  await expect(page.getByRole("region", { name: "Your AI" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "My AI" })).toBeVisible();
   await page.waitForTimeout(800);
   const face = await run();
   if (face.length) await info.attach("axe-face.json", { body: JSON.stringify(face, null, 2), contentType: "application/json" });
@@ -246,7 +246,7 @@ test("DoD 6 · axe: zero serious on /village with the instrument open", async ({
 test("direct URL opens the same responsive face for a guest", async ({ page }, info) => {
   await page.addInitScript(() => localStorage.setItem("fytt:your-ai-tour-seen", "true"));
   await page.goto("/game/your-ai");
-  const panel = page.getByRole("region", { name: "Your AI" });
+  const panel = page.getByRole("region", { name: "My AI" });
   await expect(panel).toBeVisible();
   const { width, height } = page.viewportSize()!;
   const margin = width < 640 ? 0 : 32;

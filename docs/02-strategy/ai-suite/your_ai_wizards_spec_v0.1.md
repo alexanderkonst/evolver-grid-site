@@ -1,4 +1,4 @@
-# Your AI · Result Wizards: spec v0.1
+# My AI · Result Wizards: spec v0.1
 
 ## 1. Header
 
@@ -12,7 +12,7 @@
 
 ## 2. Intent
 
-Not courses («кому интересен курс? никому… курсов миллиард»): each Your AI product is a **wizard** that walks a founder, one micro-module at a time, to one transformational result, and installs a piece of their AI setup at every passed step. We sell results, not time ("SELLING TIME → SELLING RESULTS").
+Not courses («кому интересен курс? никому… курсов миллиард»): each My AI product is a **wizard** that walks a founder, one micro-module at a time, to one transformational result, and installs a piece of their AI setup at every passed step. We sell results, not time ("SELLING TIME → SELLING RESULTS").
 
 **Product law (notebook):** product = consequence of a result (a language or a skill gained) + the system prompt that produces it. One product is at once **infographic, wizard, transformational result and module**.
 
@@ -90,14 +90,14 @@ Every wizard runs this line; the template (this spec + §5 form) is run **as is*
 **Exists today** (`src/App.tsx` at `7ee69e0`):
 - `/grow/<slug>` course player (`src/pages/CoursePage.tsx`, data per course in `src/data/courses/*.ts`): modules → episodes, YouTube video + optional infographic per episode, watched progress (guest progress merges on sign-in). Live: `activate-your-dormant-potential`, `consciousness-meets-science`, `activation-of-inner-vision`.
 - `/academy/:slug` sales page (`src/data/courseSales.ts`); no checkout link in code yet (file comment: "No Stripe here").
-- `/game/learn` (Academy index), `/game/learn/book` (infographic reader), `/ai-os` (+ `/clarity`, `/iteration`, `/vibe-code`, `/design`, `/benchmark`, `/work-with-us`), `/game/your-ai` (Your AI, `src/data/yourAiCatalog.ts`).
+- `/game/learn` (Academy index), `/game/learn/book` (infographic reader), `/ai-os` (+ `/clarity`, `/iteration`, `/vibe-code`, `/design`, `/benchmark`, `/work-with-us`), `/game/your-ai` (My AI, `src/data/yourAiCatalog.ts`).
 
 **Missing for a wizard** (each a future `@claude` issue, not in this spec's scope):
 1. Step type "check" per micro-module with pass/fail recorded (today only "watched").
 2. Gating: Next locked until the check passes.
 3. Setup-piece handover on pass (copy / download the prompt or file), with before/after result screens.
 4. Per-result access: a paid wizard unlocks on purchase; levels 4–7 unlock only for collective members.
-5. Wizards as buttons on `/game/your-ai` (Controller, Suite spec row 4), so Your AI is the one home of every wizard.
+5. Wizards as buttons on `/game/your-ai` (Controller, Suite spec row 4), so My AI is the one home of every wizard.
 
 Inferred: the cheapest route is to extend `CourseConfig` with optional `check` and `setupPiece` fields on an episode, so the existing player becomes the wizard player; no new page.
 

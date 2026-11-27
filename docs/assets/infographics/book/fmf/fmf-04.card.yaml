@@ -1,0 +1,21 @@
+id: fmf-04
+chapter: '3.4'
+number: 4
+of: 19
+title: Six Traps (2/2)
+caption: 'Tell-signs: constantly changing profiles, many, many campaigns.'
+skin: v4
+max_words: 29
+text:
+  eyebrow: Founder-market fit
+  rows:
+  - trap: Spiritual fog
+    sub: Depth and pretty words, no concrete result
+  - trap: Hustle and grind
+    sub: Much movement, little leverage
+  - trap: Dropping a channel
+    sub: because it didn't sell at once
+  focus: Laser focus
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p5)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

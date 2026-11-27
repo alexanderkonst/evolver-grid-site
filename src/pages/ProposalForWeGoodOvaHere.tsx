@@ -27,7 +27,7 @@ const modules = [
   "Asset Mapping",
   "Quality of Life Map",
   "Collaborative Matchmaking",
-  "Your AI access as a bonus for individual personal use",
+  "My AI access as a bonus for individual personal use",
 ];
 
 const timelineNeeds = [

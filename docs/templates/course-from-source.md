@@ -31,7 +31,7 @@
 8. **Signature.** Sasha signs under every word. Nothing ships that he would not sign.
 9. **Wizard.** The micro-modules are put together as a path that leads to the result of step 1.
 10. **Academy.** *(Then it ships as an app: [course-as-app.md](./course-as-app.md).)* A mini-training ships only inside the Academy on our platform, at its level (Academy → University → School; exact names to confirm). It has a mini-training page and a sales page.
-11. **Update the template.** After each mini-training, and during the work, the template is updated from experience. Many cycles.
+11. **Update the template.** After each mini-training, and during the work, the template is updated from experience. Many cycles. *(Updating a shipped mini-training with a new source: [course-update.md](./course-update.md), 2026-11-26.)*
 
 <details><summary>The 6 steps (v1, 2026-10-27), kept for history</summary>
 
@@ -43,6 +43,13 @@
 6. **Authorship check.** The Foundational module is written by Sasha himself, almost word for word. The other modules are mostly AI-written, but Sasha signs under practically every word. Nothing ships that he would not sign.
 
 </details>
+
+### Versioning
+*(Sasha's issue #522, 2026-11-26.)* Every mini-training is a living, versioned product with a level and a category. The fields live on its `CourseConfig` in `src/data/courses/` (rule also in `types.ts`).
+- **Fields:** `version` (semver, "1.0"), `updatedAt` (ISO date), `changelog` (`{ version, date, summary }[]`, oldest first in the file, shown newest first), `level` (`Fundamental` · `Intermediate` · `Advanced`), `category` (`General` · `Mind & Consciousness`; add a value only when an existing mini-training clearly needs one).
+- **Rule:** semver. **Minor** = a new episode or module. **Patch** = fixes and copy. **Major** = the structure changes. Every bump adds ONE changelog line and updates `updatedAt` to that line's date; `version` equals the last changelog entry.
+- **Shown:** one quiet line under the title, "Living mini-training, updated continuously. Current version v1.0 (YYYY-MM-DD).", a "What's new" disclosure with the changelog, and level and category chips, on the player page (`/grow/<slug>`) and the sales page (`/academy/<slug>`). Component: `CourseVersionInfo`.
+- **First version:** changelog `[{ version: "1.0", date, summary: "First public version" }]`.
 
 ### Look & feel (NotebookLM Video Overview)
 - Format: **Explainer (16:9)**, never Short 9:16 (too simplified). Add to the end of Custom topic: "Total video length must stay under 2 minutes."
@@ -58,9 +65,9 @@
 ### Production line (batch, from the February runs)
 *Synthesized 2026-10-27 from five production files (Genealogy below). Where they differ from the 6 steps above, the October rules win.*
 1. **Prepare all sources first.** One text per episode, in one batch file with clear separators (`===MODULE: <code> <title>===` … `===END===`), and the per-episode focus line pre-written in a table. No thinking during execution, only pasting.
-2. **Trigger, don't wait.** Per episode: new notebook → paste source → rename to the episode code → Video Overview → Customize → style line + focus line → Generate → **move to the next episode at once** (~60–90 s each). Several tabs in rotation, or the Playwright script `scripts/regenerate_videos.js` (`scripts/README_REGENERATION.md`), which continues on failure, marks ❌ and saves a screenshot.
+2. **Trigger, don't wait.** Per episode: new notebook → paste source → rename to the episode code → Video Overview → Customize → style line + focus line → Generate → **move to the next episode at once** (~60–90 s each). Click level: [notebooklm_video_production.md → Runbook: 8 actions per module](../04-workflows/notebooklm_video_production.md#runbook-8-actions-per-module) (Sasha's own, 2026-11-26). Several tabs in rotation, or the Playwright script `scripts/regenerate_videos.js` (`scripts/README_REGENERATION.md`), which continues on failure, marks ❌ and saves a screenshot.
 3. **Harvest after ~15–20 min**, in rolling batches. **Duration gate before download:** within target, else mark and regenerate with a stricter focus line.
-4. **Name and file:** `<module code><episode> — <Title>` (codes: F Foundational, S Spirit, M Mind, E Emotions, B Body, G Genius, C Consciousness; "seasons are called modules").
+4. **Name and file:** `<module code><episode> — <Title>` (codes: F Foundational, S Spirit, M Mind, E Emotions, B Body, G Genius, C Consciousness; "seasons are called modules"). Since 2026-11-26 the notebook name also carries the course version, `<code> <Title> v<version>` (the runbook).
 5. **Upload unlisted**, one playlist per module; description = one-sentence summary + the course link + 3–4 tags; log each URL in the tracker.
 6. **Tracker per course:** episode × (sourced, triggered, downloaded, uploaded, URL). Delegate batches of 10+ to a cheaper sub-agent with a self-contained task.
 
@@ -71,12 +78,17 @@
 - Module = a theme of the structure; course = a short, self-paced experience with Intro, Outro and one badge (Game of Being You rules).
 - Keep the source of each episode traceable (which workshop/paragraph) so the course can be improved live.
 - Mark claims honestly: established vs. hypothesis (esp. for science).
+- **Roast the architecture before writing episodes** (Nature, 2026-11-26): after steps 1–2, run one roast cycle + crash-test ([roasting.md](./roasting.md)) on result + structure, write architecture v2, then the texts. It caught the uncheckable result and the missing final rite.
+- **Three honesty labels** when a mini-training mixes biology and tradition (Nature, 2026-11-26): *established* · *tradition* · *practice*, one per episode on screen.
+- **End with a rite**: the last Ask AI makes the person produce the result of step 1 about their own life (Nature: "Read your Now").
+- **After the signature, three tracks in parallel** (Nature, 2026-11-27): (a) videos: NotebookLM by the runbook, then YouTube unlisted; (b) infographics: one kit card per micro-module through an @claude issue; (c) platform: course data file + page through an @claude issue, youtubeIds filled when (a) lands. Keep the style line, focus lines and a production tracker in the content file before the run starts. A driver task carries all three to the end.
 
 ### Applications
 - 1. **Activate Your Dormant Potential** (6 modules, 38 episodes): [activate_your_dormant_potential_transcripts.md](../08-content/activate_your_dormant_potential_transcripts.md).
 - 2. **Consciousness Meets Science** (Mystery School intro, draft): plan in [VIDEO_PRODUCTION_PLAN.md](../08-content/VIDEO_PRODUCTION_PLAN.md) → Application 2; episode texts in [consciousness_meets_science_course.md](../08-content/consciousness_meets_science_course.md).
 - 3. **Activation of Inner Vision** (advanced micro-course from the /27 paper, unlocks after Integral Mystery School; 3 modules, 9 episodes, draft): [activation_of_inner_vision_course.md](../08-content/activation_of_inner_vision_course.md).
 - 4. **Micro-courses on Uniqueness and Professional Development** (backlog, 13 candidates of 1–3 episodes, each a power-up for one Gift Path boss; pricing note inside): [VIDEO_PRODUCTION_PLAN.md](../08-content/VIDEO_PRODUCTION_PLAN.md) → Application 4.
+- 5. **Nature · Aligns You With Natural Rhythms** (from the Equilibrium manual and holonic_cycles; 6 parts, 12 micro-modules; draft v0.2 awaiting signature): [nature_mini_training.md](../08-content/nature_mini_training.md).
 
 ---
 

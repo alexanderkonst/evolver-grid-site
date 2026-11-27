@@ -1,14 +1,19 @@
 id: your-ai
 kind: icon
+icon_version: 3
 chapter: apps
-number: 5
-of: 5
-title: Your AI
-caption: Sets up Your AI
+number: 10
+of: 10
+title: My AI
+caption: Sets Up My AI
 skin: v4
+halo: PEARL
 text:
-  before: a dim sphere and four scattered, unconnected nodes
-  after: the same nodes linked into a constellation around a lit central sphere
+  shape: "sphere with a thin tilted orbit and one satellite"
+  three_words: "sphere, orbit, satellite"
+  sphere: "sphere = you, held by its own orbit"
 sources:
-  - issue #506 (app icons v1), row 5
+  - issue #533 (app icons v3: one final icon per app), from Sasha's yes (2026-11-26) to roast round 2 of sheet-v2.png; replaces v1 (#506) and v2 (#528)
   - docs/templates/spec-handoff.md
+  - docs/assets/infographics/kit/README.md (App icons)
+  - docs/assets/infographics/book/ (ideal-client-01, ideal-client-04, adp/A01, adp/A02: the sphere means you / the seed)

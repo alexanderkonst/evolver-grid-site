@@ -1,14 +1,19 @@
 id: potential
 kind: icon
+icon_version: 3
 chapter: apps
 number: 1
-of: 5
+of: 10
 title: Potential
 caption: Accelerates The Unfolding of Your Potential
 skin: v4
+halo: BLUSH
 text:
-  before: dim closed seed sphere inside a tight ring
-  after: the same sphere lit, five orbit nodes unfolding around it
+  shape: "open bud, petals from a sphere"
+  three_words: "open bud"
+  sphere: "sphere = you, the seed (Book: ideal-client-01/-04, ADP A01/A02)"
 sources:
-  - issue #506 (app icons v1), row 1
+  - issue #533 (app icons v3: one final icon per app), from Sasha's yes (2026-11-26) to roast round 2 of sheet-v2.png; replaces v1 (#506) and v2 (#528)
   - docs/templates/spec-handoff.md
+  - docs/assets/infographics/kit/README.md (App icons)
+  - docs/assets/infographics/book/ (ideal-client-01, ideal-client-04, adp/A01, adp/A02: the sphere means you / the seed)

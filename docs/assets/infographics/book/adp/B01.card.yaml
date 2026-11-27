@@ -1,18 +1,24 @@
-# ADP series card, Body module (not published: not in book/book.yaml). Spec: issue #521.
+# ADP series card, Body module (not published: not in book/book.yaml). Spec: issue #521, revision v2 (Sasha's review 2026-11-26).
 id: B01
 chapter: "1"
 number: 1
 of: 2
 title: "The Bashar Formula"
-caption: "Act on your highest excitement, as far as it goes, with no insistence on outcome, positive whatever comes, and drop beliefs that aren't yours."
+caption: "Excitement is your body's compass. Follow it all the way, let go of the outcome, and every result teaches."
 skin: v4
-max_words: 28   # waiver above the skin's 25: title 3 + eyebrow 1 + caption 24, all verbatim from issue #521
 caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
+waive:
+  words: "v2 step labels are full actions on purpose (Sasha: each label must carry the action alone), so they run past the skin's 3-word label limit. Prose is 23 words, under the limit of 25."
 text:
   eyebrow: Body
-  steps: [Highest excitement, As far, No insistence, Positive, Drop beliefs]
+  steps:
+    - ["Act on your excitement", "the most passion = your next step"]
+    - ["Until it fades on its own", "not until fear dampens it"]
+    - ["Let go of the outcome", "you don't know the best one"]
+    - ["Stay positive, whatever comes", "so you take the lesson"]
+    - ["Drop beliefs that aren't yours", "your own weigh nothing"]
   center: You
   attribution: "After Bashar (channeled by Darryl Anka)"
 sources:
   - "knowledgegraph: 10 Sources/youtube/bashar/undated-five-step-formula.md (verbatim transcript; integration: knowledgegraph#320)"
-  - issue #521 (title, line, labels and attribution verbatim)
+  - "issue #521 comment, revision v2: caption, step labels and sub-lines (Sasha's synthesis); title and attribution from the issue"

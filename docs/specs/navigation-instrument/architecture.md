@@ -1,6 +1,6 @@
 # Navigation instrument: conceptual architecture v1
 
-Status: draft for Sasha, 2026-11-25 12:20 MST (Hark). Canon it serves: GoBY §25 Navigation, §25.10 Your AI, §25.14 Five quarters. Build plan: [sow.md](./sow.md).
+Status: draft for Sasha, 2026-11-25 12:20 MST (Hark). Canon it serves: GoBY §25 Navigation, §25.10 My AI, §25.14 Five quarters. Build plan: [sow.md](./sow.md).
 Sources: `research/nav/carried-instrument.md` (10 games, graded) and `instrument-time-elements.md` (11 games, 10 patterns, 8 anti-patterns), both in the navigation project; strongest evidence grade B, no controlled studies. Platonic solids as a game UI language: no prior art found, so this part is new and unproven.
 
 ## 1. The model in the player's head (one sentence)
@@ -26,7 +26,7 @@ The instrument reads; it never stores a copy.
 - Places and quarters: `src/data/villagePlaces.ts` (`element`, `VILLAGE_ELEMENTS`), `src/lib/quarters.ts` (`litQuarters`).
 - Open/closed and next move: `src/lib/placeState.ts` (`nextMove`, lock lines).
 - Lunar cycle and FMF: `src/data/fmfSession.ts`, lunar theme state (#452 area).
-- Your AI content: Your AI SoW `docs/specs/your-ai-instrument/sow.md`, PR #458 (`AirOctahedron`, `YourAiInstrument`).
+- My AI content: My AI SoW `docs/specs/your-ai-instrument/sow.md`, PR #458 (`AirOctahedron`, `YourAiInstrument`).
 - New, one file: `src/lib/instrument/state.ts` (state machine + the `litSeen` record in the save). Faces register in `src/lib/instrument/faces.ts`; one writer per face file.
 
 ## 4. Instrument states
@@ -75,7 +75,7 @@ These make the difference between a skeleton (today, about 4/10) and a cult obje
 ## 6. The five faces (lenses, never maps)
 | Body | Face | Shows (at most three items) | Hands back to |
 |---|---|---|---|
-| Air, octahedron | Your AI | chat, installed apps, what it knows of you | stays in the instrument (it is the product) |
+| Air, octahedron | My AI | chat, installed apps, what it knows of you | stays in the instrument (it is the product) |
 | Water, icosahedron | Time | moon phase, day of the lunar cycle, next FMF and Café gathering, what changed this cycle | Café, FMF |
 | Ether, dodecahedron | Path | the one next move; later the constellation (phase 8, after path v1 review) | the glowing place, with the ink line |
 | Fire, tetrahedron | Growth | the open course step, the next FMF circle | Academy, FMF |
@@ -94,7 +94,7 @@ These make the difference between a skeleton (today, about 4/10) and a cult obje
 - Performance: one canvas, ≤30 fps, stops when hidden; ritual under 2.5 s.
 
 ## 9. Anti-patterns we refuse
-Tab bar in costume (five buttons always on) · instrument that knows more than the player · guide rope (lines by default) · diegesis past usability (low-contrast glass) · clock without memory (time ring always paired with "this cycle") · grammar too big (five glyphs, one meaning each) · AI voice without character (Your AI stays quiet unless asked).
+Tab bar in costume (five buttons always on) · instrument that knows more than the player · guide rope (lines by default) · diegesis past usability (low-contrast glass) · clock without memory (time ring always paired with "this cycle") · grammar too big (five glyphs, one meaning each) · AI voice without character (My AI stays quiet unless asked).
 
 ## 10. How we know it works
 - 3-second test per screen (§25.12): closed village with glyph, open instrument, a face. Live in San Pancho, 5 first-timers, 4 of 5 pass.
