@@ -1,0 +1,20 @@
+id: fmf-13
+chapter: '3.4'
+number: 13
+of: 19
+title: The Waterfall
+caption: The rest trickles down from these understandings.
+skin: v4
+max_words: 28
+text:
+  eyebrow: Founder-market fit
+  steps:
+  - Uniqueness
+  - Shadow
+  - Myth
+  - Faculty
+  - Change
+  note: 'Your talent has a shadow; talent and shadow reveal your myth: the faculty you bring to Earth.'
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p18)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

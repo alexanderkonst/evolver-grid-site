@@ -1,17 +1,26 @@
-"""Potential: a dim, closed seed -> the same sphere lit, five nodes unfolding on an orbit. No text."""
-from kit import icon as I, vocab as K
+"""Potential: an open bud. Three petals rise from the sphere; the middle one is the one light. No text. (v2 A, sign at ~70%.)"""
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import icon_shapes as G  # noqa: E402
+from kit import icon as I, vocab as K  # noqa: E402
+
+W = I.WEIGHT
+
+K70 = 1.0                                  # scale about the tile centre so the sign is ~70% of the tile
+DY = -13                                   # the sign's vertical centre onto the tile centre
 
 
 def build(spec):
     c = I.card(spec)
-    with c.side("before"):
-        c.ring(I.BEFORE_X, 512, 160, 48, K.QUIET, 150)                     # closed
-        c.orb(I.BEFORE_X, 512, 100, tint=(0.42, 0.44, 0.50), glow=0)       # dim seed
-    c.chevron()
     with c.side("after"):
-        c.ring(I.AFTER_X, 512, 160, 48, K.SILVER, 60)                      # the orbit, open
-        c.orb(I.AFTER_X, 512, 100, glow=120)                               # lit
-        for k in range(5):
-            x, y = I.polar(I.AFTER_X, 512, 160, -90 + 72 * k)
-            c.dot(x, y, 30, K.NEON if k == 0 else K.INK, 255, glow=70 if k == 0 else 0)
+        def p(pts):
+            return G.scale(G.shift(pts, 0, DY), K70)
+        base = (512, 640)                                                       # at the rim of the sphere
+        c.fill(p(G.lens(base, 390, 160, -90 - 54)), K.INK, 255, min_dim=160 * K70)     # left petal
+        c.fill(p(G.lens(base, 390, 160, -90 + 54)), K.INK, 255, min_dim=160 * K70)     # right petal
+        c.fill(p(G.lens(base, 470, 170, -90)), K.NEON, 255, min_dim=170 * K70)         # the middle petal: the one light
+        cx, cy = p([(512, 740)])[0]
+        c.orb(cx, cy, 140 * K70, glow=40)                                       # the sphere: you, the seed
     return c

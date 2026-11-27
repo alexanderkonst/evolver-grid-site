@@ -11,6 +11,8 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
 import type { CourseConfig } from "@/data/courses/types";
+import { COURSE_LANDING_COPY, courseLandingPath } from "@/data/courseSales";
+import CourseVersionInfo from "@/components/CourseVersionInfo";
 import { supabase } from "@/integrations/supabase/client";
 import {
     flattenEpisodes,
@@ -38,6 +40,7 @@ const CARD_STYLE: React.CSSProperties = {
 const CoursePage = ({ course }: { course: CourseConfig }) => {
     const { t } = useTranslation();
     const COURSE_SLUG = course.slug;
+    const landingPath = courseLandingPath(course.slug);
     const [searchParams, setSearchParams] = useSearchParams();
 
     const modules = useMemo(() => getPublishedModules(course.modules), [course.modules]);
@@ -137,12 +140,25 @@ const CoursePage = ({ course }: { course: CourseConfig }) => {
                         {t(`course.titles.${course.slug}`, { defaultValue: course.title })}
                     </span>
                 </h1>
+                <CourseVersionInfo course={course} />
                 <p className="text-base sm:text-lg italic max-w-2xl" style={BODY_STYLE}>
                     {t(course.taglineKey)}
                 </p>
                 {course.leadKey && (
                     <p className="text-sm sm:text-base max-w-2xl mt-3" style={BODY_STYLE}>
                         {t(course.leadKey)}
+                    </p>
+                )}
+                {/* Back to the course's landing (/academy/<slug>, docs/templates/course-landing.md links checklist). */}
+                {landingPath && (
+                    <p className="mt-3 text-sm">
+                        <Link
+                            to={landingPath}
+                            className="underline underline-offset-4 hover:opacity-80"
+                            style={{ ...BODY_STYLE, textDecorationColor: "rgba(26,30,58,0.3)" }}
+                        >
+                            {COURSE_LANDING_COPY.about}
+                        </Link>
                     </p>
                 )}
             </header>
