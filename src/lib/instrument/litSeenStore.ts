@@ -19,9 +19,14 @@ import {
 
 // `game_profiles.id` is a random uuid; the player's id is `user_id`. Looking up `id = <user id>` found nothing,
 // so the save was never read and never written.
+/**
+ * `null` when the player has no save yet. A failed read THROWS: the hook then takes the localStorage record for
+ * this session only (nothing is written back as if the save had said "not seen"), and asks the save again next time.
+ */
 export const readRemote = async (userId: string): Promise<LitSeen | null> => {
   const { data, error } = await supabase.from("game_profiles").select("first_time_actions").eq("user_id", userId).maybeSingle();
-  if (error || !data) return null;
+  if (error) throw error;
+  if (!data) return null;
   return litSeenFromActions(data.first_time_actions);
 };
 
@@ -65,6 +70,8 @@ export const useLitSeen = (ownerId: string | null): readonly [LitSeen, (element:
         seenRef.current = merged;
         setSeen(merged);
       })
+      // A failed read: this session goes by the localStorage record alone (already in `seen` above), and the
+      // save is read again the next time. Nothing is written to either side because of the failure.
       .catch(() => {})
       .finally(() => {
         if (!cancelled) setLoaded(true);

@@ -7,6 +7,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 type Call = { table: string; op: string; filters: Array<[string, unknown]>; payload?: unknown };
 const calls: Call[] = [];
 let row: { first_time_actions: Record<string, boolean> | null } | null = null;
+let failure: Error | null = null;
 
 vi.mock("@/integrations/supabase/client", () => {
   const builder = (table: string) => {
@@ -25,7 +26,7 @@ vi.mock("@/integrations/supabase/client", () => {
       },
       maybeSingle: () => {
         calls.push(call);
-        return Promise.resolve({ data: row, error: null });
+        return Promise.resolve(failure ? { data: null, error: failure } : { data: row, error: null });
       },
       then: (resolve: (v: unknown) => unknown) => resolve({ data: null, error: null }),
     };
@@ -38,6 +39,7 @@ import { readRemote, writeRemote } from "@/lib/instrument/litSeenStore";
 
 beforeEach(() => {
   calls.length = 0;
+  failure = null;
   row = { first_time_actions: { some_other_action: true } };
 });
 
@@ -59,5 +61,23 @@ describe("litSeenStore: the save lookup", () => {
     const update = calls.find((c) => c.op === "update");
     expect(update?.filters).toEqual([["user_id", "user-1"]]);
     expect(update?.payload).toEqual({ first_time_actions: { some_other_action: true, instrument_lit_air: true } });
+  });
+});
+
+describe("litSeenStore: a failed save read", () => {
+  it("throws, so the hook can go by this browser's record for the session and ask again next time", async () => {
+    failure = new Error("network");
+    await expect(readRemote("user-1")).rejects.toThrow("network");
+  });
+
+  it("a player with no save yet is not a failure: null", async () => {
+    row = null;
+    await expect(readRemote("user-1")).resolves.toBeNull();
+  });
+
+  it("a failed read writes nothing", async () => {
+    failure = new Error("network");
+    await writeRemote("user-1", { air: true } as never);
+    expect(calls.some((c) => c.op === "update")).toBe(false);
   });
 });
