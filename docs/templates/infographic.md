@@ -8,7 +8,7 @@ A card gets its place in BOOK.md first, then it is drawn. One card = one entry. 
 ### Title = the shift (first principle, Sasha, 2026-11-27 16:25 MST)
 > «мне кажется лучше название, собственно весь инсайт в одной мысли, это же лучший исход от инфографики. Результат сдвига назван самыми крупными буквами!!!»
 
-The best outcome of an infographic is the whole insight in one thought, and the result of the shift named in the biggest letters. This is the one source; the kit README, BOOK.md and course-update link here and do not restate it.
+The best outcome of an infographic is the whole insight in one thought, and the result of the shift named in the biggest letters. This is the one source (points 1–9, including format and figure below); the kit README, BOOK.md and course-update link here and do not restate it.
 
 1. **The title is the whole insight as one complete thought** (a claim with a verb), the state AFTER the shift. "Life energy is received, not only generated", "You are a river, not a battery", "Excitement is your body's compass". Not a topic or a name ("The Bashar Formula", "Energy").
 2. **The title is the largest type on the card.** Nothing else competes with it.
@@ -17,10 +17,12 @@ The best outcome of an infographic is the whole insight in one thought, and the 
 5. **Caption = how / why in one or two lines;** it never repeats the title.
 6. **Self-check before render:** someone who reads only the title gets the shift. If not, rewrite the title.
 7. **Icons (iconography): the same rule in picture form.** The "after" side is the shift; the icon's spec names that shift in one phrase (`shift:` field, [kit README → App icons](../assets/infographics/kit/README.md#app-icons)).
+8. **Format is fixed** (Sasha, 2026-11-27 16:37 MST: «не отходим от него НИ В ЧЕМ»). Every card uses the kit's standard format: the engine-v4 skin, `K.card(spec)`, with its eyebrow, neon title, caption, footer, fonts, sizes and margins. No deviation in anything. A card that seems to need another format is not drawn that way; the format is changed for all cards first, on Sasha's yes.
+9. **Figures are full-colour images** (Sasha, 2026-11-27 16:37 MST: «используем теперь внутри цветное изображение впредь»), not plain geometric shapes. Photoreal nature forms; the structure of the idea maps onto the form: five steps at the five rays of a five-ribbed flower, a cycle as a circle, "You" at the centre. Lighting may carry mood (moonlight on ADP Body). The photo is not recoloured or tinted; a soft fade of its edges into the card background is fine. Photos live next to the cards in a `photos/` folder (ADP: `docs/assets/infographics/book/adp/photos/`). Rule 8 still holds: the photo fills the figure area of the standard card and nothing else on the card changes.
 
-Worked example, ADP Body (2026-11-27): B01 "Excitement is your body's compass"; B02 "Life energy is received, not only generated"; B03 "You are a river, not a battery" (split out of B02 on Sasha's word).
+Worked example, ADP Body (2026-11-27): B01 "Excitement is your body's compass" (moonlit five-ribbed flower, the five steps at the five ribs, "You" at the centre); B02 "Life energy is received, not only generated"; B03 "You are a river, not a battery" (split out of B02 on Sasha's word). Re-rendered with photo figures in #569.
 
-Existing cards keep their titles until they are edited; a card that is edited, or newly made, follows the rule (as in the kit's "Migrating a card").
+Existing cards keep their titles and drawn figures until they are edited; a card that is edited, or newly made, follows the rule (as in the kit's "Migrating a card").
 
 ## Taxonomy (nested, in reading order)
 1. **Fund** (архивный фонд): a part of the book, along the path a reader lives through. Roman numeral.
@@ -52,9 +54,9 @@ Client books (e.g. a client's own crossing) never enter the public BOOK.md; they
 Holonic: BOOK.md has its own version; a card's version lives in its Status line; this template has its own version. Change log at the end of each file.
 
 ## Changelog
-- v1.1 (2026-11-27): first principle added under Rule, "Title = the shift" (title is the whole insight as a claim with a verb, largest type; topic to the eyebrow; one insight per card; caption never repeats the title; self-check; icons carry a `shift:` phrase). Source: Sasha, 2026-11-27 16:25 MST; issue #568; worked example ADP Body B01–B03.
+- v1.1 (2026-11-27): first principle added under Rule, "Title = the shift" (title is the whole insight as a claim with a verb, largest type; topic to the eyebrow; one insight per card; caption never repeats the title; self-check; icons carry a `shift:` phrase), plus rule 8 (format is fixed: the kit's standard card, no deviation) and rule 9 (figures are full-colour photoreal images kept in `photos/`, not geometric shapes). Source: Sasha, 2026-11-27 16:25 and 16:37 MST; issues #568, #569; worked example ADP Body B01–B03.
 - v1.0 (2026-11-17): first version, from Sasha's request (fund → scheme → subscheme; contents → content: title, subtitle, numeric prism, scheme with keys, notes).
 
 ---
 Template: infographic v1.1 · Version: docs patch · Shift check: the title names the shift
-Template change: infographic v1.0 → v1.1: rule "Title = the shift" added under Rule (issue #568)
+Template change: infographic v1.0 → v1.1: rule "Title = the shift" added under Rule, with rule 8 (format is fixed) and rule 9 (figures are full-colour images) (issues #568, #569)

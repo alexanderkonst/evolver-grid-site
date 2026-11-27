@@ -41,7 +41,7 @@ One file per card, beside its script and PNG: `<card>.card.yaml`, `<card>.py`, `
 |---|---|---|
 | `id` | yes | Book id: `ideal-client-02`, `primitives-07`, `III.01` |
 | `chapter` | yes | Book chapter number as a string, `"3.2"` |
-| `title` | yes | the shift, one complete thought, largest type (rule: [Title = the shift](../../../templates/infographic.md#title--the-shift-first-principle-sasha-2026-11-27-1625-mst)); the neon title on the card; equals the Book title. Topic or series name goes to `text.eyebrow` |
+| `title` | yes | the shift, one complete thought, largest type (rule: [Title = the shift](../../../templates/infographic.md#title--the-shift-first-principle-sasha-2026-11-27-1625-mst)); the neon title on the card; equals the Book title. Topic or series name goes to `text.eyebrow`. Format is the standard card, no deviation (rules 8–9 in the same page) |
 | `caption` | yes | the one line under the title; equals the Book caption (`""` only if the Book has none, then the script draws its own line from `text`) |
 | `skin` | yes | `v4` \| `grayscale` \| `moonworld` |
 | `text` | yes | every other on-card string, any shape your script wants. `eyebrow` is read by `vocab.card()` |
@@ -222,6 +222,12 @@ For the removed v2 / v3 icons, `icon_version: 2` and `3` shared one rule set (`I
 
 The 32 px test: `card.silhouette(32)` redraws the sign as a filled black shape. `apps/sheet-v3.png` (per app: 256, 64, 32 px and the tile mock, a shelf at 32 px) stays as history with `sheet.png` (v1) and `sheet-v2.png`; `make_sheet_v3.py` went with the v3 files.
 
+## Figures: full-colour photos (from 2026-11-27)
+
+Rules 8 and 9 of [Title = the shift](../../../templates/infographic.md#title--the-shift-first-principle-sasha-2026-11-27-1625-mst) (Sasha, 16:37 MST). The card stays the standard `K.card(spec)` in the v4 skin: eyebrow, neon title, caption, footer, fonts, sizes and margins do not change. Only the figure area changes: a full-colour photoreal image of a natural form replaces plain geometric shapes, and the idea's structure is placed on the form (five steps at the five ribs of a five-ribbed flower, a cycle as a circle, "You" at the centre). Lighting may carry mood. The photo is not recoloured or tinted; a soft fade of its edges into the card background is fine. Photos sit next to the cards in `photos/` (ADP: `book/adp/photos/`, e.g. `B01-flower-moon.jpg`). Labels still use `K.tag` / `K.name` / `K.note` and the 3-word label limit. Worked example: ADP Body B01–B03 (#569).
+
+TODO (not implemented): the vocabulary has no photo call yet, so a photo is pasted with raw PIL in the card script and lint does not see it (see "What lint sees"). A `K.photo(path, fade=...)` call that logs the image is the proposed fix; until then, a card that is edited keeps the standard format and uses the photo as its figure. Cards drawn with geometric figures stay as they are until edited.
+
 ## Old scripts
 
 `fyt_style.py` stays at its path and API (`import fyt_style`, `fyt_style.footer(a)`); it forwards to `kit/mpl.py`. `speedrun-matching/make.py` renders byte-identical PNGs.
@@ -236,4 +242,4 @@ Only when it is edited. Copy the engine-v4 function into `<card>.py`, swap `V4(.
 
 ---
 Template: infographic v1.1 · Version: docs patch · Shift check: the title names the shift
-Template change: infographic v1.0 → v1.1: Card spec `title` row, Lint TODO `title-claim`, App icons `shift:` line added (issue #568)
+Template change: infographic v1.0 → v1.1: Card spec `title` row, Lint TODO `title-claim`, App icons `shift:` line, Figures section (rules 8–9: fixed format, full-colour photo figures) added (issues #568, #569)
