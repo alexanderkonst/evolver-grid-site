@@ -15,7 +15,7 @@ Batch production of educational videos from micro-learning modules using Noteboo
 
 ## Runbook: 8 actions per module
 
-**Runbook v1.1.1 · last changed: 2026-11-26 · last verified: 2026-11-26** (Sasha's live run, 13:10 MST, ADP Body, 2 modules) · change log: [Runbook changelog](#runbook-changelog)
+**Runbook v1.1.2 · last changed: 2026-11-27 · last verified: 2026-11-27** (Hark browser run, Nature v1.0, 12 modules) · change log: [Runbook changelog](#runbook-changelog)
 
 *Sasha's own workflow, added 2026-11-26 (chat, 11:55 MST; issue #525). It is the click level under [course-update.md](../templates/course-update.md) step 5 and [course-from-source.md](../templates/course-from-source.md) → Production line, step 2. Those files say what and why. This section says which button.*
 
@@ -46,12 +46,12 @@ Key: don't wait between steps, no snapshot after each click.
 | 4 | save the source | click **"Insert"** | 2026-11-26 |
 | 5 | name the notebook | in the **notebook title field**, type `<episode code> <Title> v<course version>` | 2026-11-26 |
 | 6 | open the video settings | in Studio, click **"Video Overview"**: it opens **"Customize Video Overview"** directly (no pencil / edit-icon step) | 2026-11-26 |
-| 7 | set format and prompts | Format **"Explainer"** → **"Choose visual style"** → **"Custom"** → type the style line in the **"Describe a custom visual style"** box → type the focus line in the **"What should the video focus on?"** box | 2026-11-26 |
+| 7 | set format and prompts | Format: the default is now **"Short (New!)"**, so click **"Explainer"** explicitly → **"Choose visual style"** → **"Custom"** → type the style line in the **"Describe a custom visual style"** box → type the focus line in the **"What should the video focus on?"** box | 2026-11-26 |
 | 8 | start generation | click **"Generate now"** → start the next module at once | 2026-11-26 |
 
 **Harvest (not one of the 8 actions; Phase 2 below).** Open the notebook, on the video card click **"More"** → **"Download"**. Last verified 2026-11-26.
 
-**Known quirk.** The generation status card can freeze at "Wrapping things up...". One page reload shows the finished video. Reload once before treating the generation as stuck.
+**Known quirks.** (1) The status card can freeze at "Wrapping things up...": one reload shows the finished video. (2) "Video Overview generation failed. Try a new one.": retry at most twice, then leave it for a later run (Nature v1.0: 4 of 11 failed twice in a row). (3) Daily quota: the card turns disabled with "Scheduled for after 6pm" / "This content will generate in a few hours. Or, Generate later"; nothing to do, harvest later. (4) Account cap: "You have reached the maximum number of notebooks." Deleting old notebooks needs Sasha's yes. (5) Length: the focus box does not cap length; "under 90 seconds" gave 1:35–2:11. (6) YouTube title field turns typed "—" and "·" into "-": paste the title. Last verified 2026-11-27.
 
 ### Relevance sort (our synthesis, 2026-11-26)
 - **Take as is.**
@@ -90,6 +90,7 @@ Sasha's hypothesis (2026-11-26, [meta-template.md](../templates/meta-template.md
 | 2026-02-05 | v1.0 | the February 8-step batch (Phase 1 below) | February production runs (§Optimization history) |
 | 2026-11-26 | v1.1 | Sasha's 8 actions verbatim, relevance sort, versioned notebook name, measurement; YouTube unlisted by default with no approval; current-labels table and the UI drift loop | Sasha, issue #525 (11:55 and 12:02 MST) |
 | 2026-11-26 | v1.1.1 | **patch**, first live run of the UI drift loop (13:10 MST, ADP Body, 2 modules). Labels: action 1 "Create new" → "New notebook"; action 2 adds "Add source" before "Copied text"; action 5 renames in the notebook title field; action 6 "Video Overview" in Studio opens "Customize Video Overview" directly (no pencil step); action 7 Format "Explainer" → "Choose visual style" → "Custom" → "Describe a custom visual style" box → "What should the video focus on?" box; action 8 "Generate" → "Generate now"; harvest: video card → "More" → "Download". Quirk: status card can freeze at "Wrapping things up..." (reload once). Open: video length not controlled by the focus box (2:59 and 3:11 for a "90 s" prompt). `last verified` → 2026-11-26 | Sasha's live run, issue #525 / PR #538 (13:10 MST) |
+| 2026-11-27 | v1.1.2 | **patch**, UI drift loop (Nature v1.0, 12 modules). Action 7: Format default "Short (New!)" → click "Explainer"; visual styles now Auto-select / Custom / Classic / Whiteboard / Kawaii / Anime / Watercolor / Retro print / Heritage / Paper-craft. New states: generation failed, scheduled after 6pm (quota), notebook cap. YouTube: "Publish" → "Save" once Unlisted is chosen; title field rewrites em-dash. `last verified` → 2026-11-27 | Hark browser run, Nature v1.0 |
 
 ---
 
