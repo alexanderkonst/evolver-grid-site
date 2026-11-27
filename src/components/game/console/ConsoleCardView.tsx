@@ -12,11 +12,19 @@ import {
   type SurvivorCard,
   type WeakCard,
 } from "@/lib/console/phoenixChain";
-import { ACCENT, INK, MUTED } from "./consoleTheme";
+import ConsoleMarkdown from "./ConsoleMarkdown";
+import { ACCENT, INK, MUTED, SUBHEAD } from "./consoleTheme";
+
+const Md = ({ children, inline = false }: { children: string; inline?: boolean }) => (
+  <ConsoleMarkdown inline={inline}>{children}</ConsoleMarkdown>
+);
+const Para = ({ children }: { children: string }) => (
+  <div className="text-[14px] leading-relaxed"><Md>{children}</Md></div>
+);
 
 const Field = ({ label, children }: { label: string; children: React.ReactNode }) => (
   <div className="space-y-1">
-    <h5 className="text-[11px] uppercase tracking-[0.14em]" style={{ color: MUTED }}>{label}</h5>
+    <h5 className="text-[12px] font-semibold uppercase tracking-[0.14em]" style={{ color: SUBHEAD }}>{label}</h5>
     {children}
   </div>
 );
@@ -24,14 +32,14 @@ const Field = ({ label, children }: { label: string; children: React.ReactNode }
 const List = ({ items, ordered = true }: { items: React.ReactNode[]; ordered?: boolean }) => {
   const Tag = ordered ? "ol" : "ul";
   return (
-    <Tag className={`space-y-1 pl-5 text-[14px] leading-relaxed ${ordered ? "list-decimal" : "list-disc"}`}>
-      {items.map((x, i) => <li key={i}>{x}</li>)}
+    <Tag className={`space-y-2 pl-5 text-[14px] leading-relaxed ${ordered ? "list-decimal" : "list-disc"}`}>
+      {items.map((x, i) => <li key={i} className="pl-1">{typeof x === "string" ? <Md inline>{x}</Md> : x}</li>)}
     </Tag>
   );
 };
 
 const Lead = ({ children }: { children: React.ReactNode }) => (
-  <p className="text-[16px] leading-snug" style={{ color: ACCENT, fontWeight: 600 }}>{children}</p>
+  <p className="text-[16px] leading-snug" style={{ color: ACCENT, fontWeight: 600 }}>{typeof children === "string" ? <Md inline>{children}</Md> : children}</p>
 );
 
 const ConsoleCardView = ({ id, record }: { id: ButtonId; record: CardRecord }) => {
@@ -46,7 +54,7 @@ const ConsoleCardView = ({ id, record }: { id: ButtonId; record: CardRecord }) =
         <>
           <Lead>{c.goal}</Lead>
           <Field label={f("why")}><List items={c.why} /></Field>
-          <Field label={f("notThis")}><p className="text-[14px] leading-relaxed">{c.notThis}</p></Field>
+          <Field label={f("notThis")}><Para>{c.notThis}</Para></Field>
         </>
       );
       break;
@@ -55,14 +63,14 @@ const ConsoleCardView = ({ id, record }: { id: ButtonId; record: CardRecord }) =
       const c = d as CaseCard;
       body = (
         <>
-          <Field label={f("case")}><p className="text-[14px] leading-relaxed whitespace-pre-wrap">{c.case}</p></Field>
+          <Field label={f("case")}><Para>{c.case}</Para></Field>
           <Field label={f("risks")}><List items={c.risks} /></Field>
           <Field label={f("mistakes")}>
             <List
               items={c.mistakes.map((m) => (
                 <>
-                  {m.mistake}
-                  <span className="block text-[13px]" style={{ color: MUTED }}>{f("sign")}: {m.sign}</span>
+                  <Md inline>{m.mistake}</Md>
+                  <span className="block text-[13px]" style={{ color: MUTED }}>{f("sign")}: <Md inline>{m.sign}</Md></span>
                 </>
               ))}
             />
@@ -77,7 +85,7 @@ const ConsoleCardView = ({ id, record }: { id: ButtonId; record: CardRecord }) =
         <>
           <Lead>{c.goalV2}</Lead>
           <Field label={f("moves")}><List items={c.moves} /></Field>
-          <Field label={f("whatChanged")}><p className="text-[14px] leading-relaxed">{c.whatChanged}</p></Field>
+          <Field label={f("whatChanged")}><Para>{c.whatChanged}</Para></Field>
         </>
       );
       break;
@@ -97,8 +105,8 @@ const ConsoleCardView = ({ id, record }: { id: ButtonId; record: CardRecord }) =
       const c = d as SurvivorCard;
       body = (
         <>
-          <Field label={f("survived")}><p className="text-[14px] leading-relaxed whitespace-pre-wrap">{c.survived}</p></Field>
-          <Field label={f("burned")}><p className="text-[14px] leading-relaxed whitespace-pre-wrap">{c.burned}</p></Field>
+          <Field label={f("survived")}><Para>{c.survived}</Para></Field>
+          <Field label={f("burned")}><Para>{c.burned}</Para></Field>
           <Field label={f("nextMove")}><Lead>{c.nextMove}</Lead></Field>
         </>
       );
@@ -110,10 +118,13 @@ const ConsoleCardView = ({ id, record }: { id: ButtonId; record: CardRecord }) =
       {body}
       {record.full.trim() && (
         <details className="text-[13px]">
-          <summary className="min-h-11 cursor-pointer py-3 underline underline-offset-4" style={{ color: ACCENT }}>
+          <summary
+            className="flex min-h-11 w-fit cursor-pointer list-none items-center rounded-md underline underline-offset-4 outline-none focus-visible:ring-2 focus-visible:ring-[#bcd7e6] [&::-webkit-details-marker]:hidden"
+            style={{ color: ACCENT, WebkitTapHighlightColor: "transparent" }}
+          >
             {t("yourAiConsole.readAll")}
           </summary>
-          <p className="whitespace-pre-wrap break-words text-[13px] leading-relaxed" style={{ color: MUTED }}>{record.full}</p>
+          <div className="break-words text-[13px] leading-relaxed" style={{ color: MUTED }}><Md>{record.full}</Md></div>
         </details>
       )}
     </div>

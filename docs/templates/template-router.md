@@ -37,6 +37,7 @@
 | Direction call / $555 session / recognition ritual | [session-script.md](./session-script.md) | A session that ends in clear direction | 125 The Social Physics of the Mirror |
 | @claude issue, agent spec, bug-fix PR or PR comment | [spec-handoff.md](./spec-handoff.md) | A spec any agent builds right the first time | Craft (nearest 115) |
 | Rename, move or add a village place, a room or a site route (Workshop → Collective, new building, moved page) | [site-routing-change.md](./site-routing-change.md) | A place renamed or moved in one pass, nothing left pointing at the old one | Craft (nearest 115) |
+| QA of a feature or release end to end: pre-mortem, adversary pass, roast walk, first-timer test, staged release, debrief, closing every finding into a test or checklist line | [qa-testing.md](./qa-testing.md) (children: qa-pass, roasting) | Find it cheap, find it once | Craft (nearest 115) |
 | QA of a screen or module against its spec / DoD: viewports, a11y, reduced motion, overlaps, regressions; what code asserts vs what an agent judges | [qa-pass.md](./qa-pass.md) (code in `e2e/`) | A screen checked at three widths, row by row | Craft (nearest 115) |
 | Building a whole product from a proven session (product → architecture → UI → code) | `docs/03-playbooks/integrated_product_building_workflow.md` (IPB) | A proven session turned into a product | 83 The Integrated Founder Stack (candidate) |
 | Audit of modules against the form | [module-form.md](./module-form.md) §9 + §12.6 | Every module checked against the form | 81 The Specificity Loop |

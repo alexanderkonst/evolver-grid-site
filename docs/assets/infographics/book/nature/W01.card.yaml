@@ -1,0 +1,28 @@
+# Nature mini-training, episode card W01 (kit v4, 2026-11-27). Not in book/book.yaml (like the ADP series). Issue #550.
+id: W01
+chapter: "1"
+number: 8
+of: 12
+title: "Seven Lights Named Your Week"
+caption: "Your weekdays are named after the sky."
+skin: v4
+caption_size: 30
+text:
+  eyebrow: "Nature · Week"
+  label: "established · tradition"
+  planets:
+    - {name: Saturn, day: Saturday}
+    - {name: Jupiter, day: Thursday}
+    - {name: Mars, day: Tuesday}
+    - {name: Sun, day: Sunday}
+    - {name: Venus, day: Friday}
+    - {name: Mercury, day: Wednesday}
+    - {name: Moon, day: Monday}
+  center: "+3"
+  notes:
+    - seven classical planets
+    - 24 hours ÷ 7
+sources:
+  - docs/08-content/nature_mini_training.md (section 6, W01; section 4 table)
+  - docs/01-vision/holonic_cycles.md (Weekly, Chaldean order, 24 mod 7)
+  - issue #550 (title and Promise line verbatim; terms of changelog 0.4: Moon, seven classical planets, out-of-sync → in-sync)
