@@ -35,7 +35,7 @@ A test is a comparison with an etalon; a bug is a deviation from one. «Find it 
 ## 2. The etalon chain (our nested etalons)
 | Level | Etalon | Who measures | Instrument |
 |---|---|---|---|
-| **E0** | the person's own etalon: did the player come closer to themselves? | first-timers, Sasha | two layers (Sasha 2026-11-27): **felt** = the subtle feeling at the moment of reading the phrase and the shadow, «very close to his essence», a before/after line (capture it, do not only rate it); **evolutionary, lagging** = movement on the uniqueness scale ([uniqueness holomap](../holomaps/uniqueness_holomap.md) 7 stages; /quiz Q2 categories), read from behaviour over weeks. One phrase = recognition, never progress |
+| **E0** | the person's own etalon: did the player come closer to themselves? | first-timers, Sasha | two layers (Sasha 2026-11-27): **felt** = the subtle feeling at the moment of reading the phrase and the shadow, «very close to his essence», a before/after line (capture it, do not only rate it); **evolutionary, lagging** = movement on the uniqueness scale ([uniqueness holomap](../holomaps/uniqueness_holomap.md) 7 stages; /quiz Q2 categories), read from behaviour over weeks. One phrase = recognition, never progress. How to catch the felt layer: [felt recognition synthesis](../02-strategy/research/felt-recognition/synthesis.md) |
 | **E1** | Sasha's transmission and the canon: GoBY (§14 principles, §25 navigation), core-flow rules, approvals | Sasha decides; Evolver checks against it | canon lines, the core-flow gate |
 | **E2** | the spec and its DoD; templates (etalons of work) | Evolver | spec-handoff DoD, review of the diff |
 | **E3** | working standards: Playwright specs, axe, overlap checks | CI | qa-pass |
