@@ -47,6 +47,9 @@ The Training Center splits into the **Academy of Human Development** and the **M
 8. **Price.** The first course is free; every course after it is paid (amounts: Sasha).
 9. **Update this template** after each app.
 
+## Where the store lives
+*(2026-11-26, issue #524.)* The app store is the **third panel** of the Learn space: `/game/learn/courses` (`src/components/game/CourseStore.tsx`). The **second panel** lists the same courses under a "Courses" row (`SectionsPanel`, `buildLearnSections`). Tiles carry icon, bold short name, tagline, level + category chips, version, with level/category filters (client-side). Tile → `/academy/<slug>`; "Start" → the course page. **A new course appears there by adding data, nothing else:** its entry in `src/data/courseSales.ts` (list, name, promise, Start door, and `versioning`, which carries level, category and version from the course's own `CourseConfig`, #535). Level, category and version are not restated anywhere in the store. Icon: the course's app in `src/lib/appIcons.ts` (`APP_BY_COURSE_SLUG`); without one the tile shows a neutral placeholder.
+
 ## Run it with AI: one button
 *(Sasha, 2026-11-25: «обогати конкретикой того как его применить с помощью ИИ, облегчив человеку задачу вплоть до исчезновения всего кроме одной кнопки».)*
 

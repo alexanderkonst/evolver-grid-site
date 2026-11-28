@@ -17,6 +17,7 @@ import { resolveFounderTools } from "@/lib/founderTools";
 import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
 import { NATURE_COURSE_PATH } from "@/data/courses/nature";
+import { COURSE_SALES, courseSalesPath } from "@/data/courseSales";
 import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
 import { useCharacterSheet } from "@/hooks/useCharacterSheet";
@@ -628,6 +629,17 @@ const buildLearnSections = (): Section[] => {
     // The overview and the six Library rooms stay built and routed, just not listed here.
     return [
         { id: "academy", label: "Academy", path: "/game/learn" },
+        // Issue #524: every course, listed here; panel 3 (/game/learn/courses) shows them as the store.
+        {
+            id: "courses",
+            label: "Courses",
+            path: "/game/learn/courses",
+            // A row with sub-rows only expands on click, so the store (panel 3) is its first sub-row.
+            subSections: [
+                { id: "courses-store", label: "All courses", path: "/game/learn/courses" },
+                ...COURSE_SALES.map((c) => ({ id: `course-${c.slug}`, label: c.title, path: courseSalesPath(c.slug) })),
+            ],
+        },
         dormantPotentialRow,
         consciousnessMeetsScienceRow,
         natureRow,
@@ -1405,7 +1417,9 @@ const SectionsPanel = ({
                     const defaultExpanded =
                         section.id === "top-talent" || activeSpaceId === "build"
                             ? false
-                            : hasActiveChild;
+                            : section.id === "courses"
+                                ? true // #524: the course list is the point of this row
+                                : hasActiveChild;
                     const isExpanded = expandedSections[section.id] ?? defaultExpanded;
                     // Day 52 (Sasha 2026-04-26): when sibling sections share a
                     // common path prefix (e.g. UBB pane 2: /ubb, /ubb/session,
