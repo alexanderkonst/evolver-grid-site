@@ -1,6 +1,7 @@
 import type { LegacyModuleCategory, Module, ModuleSource } from "@/types/module";
 import { CMS_COURSE_PATH, CONSCIOUSNESS_MEETS_SCIENCE } from "@/data/courses/consciousnessMeetsScience";
 import { ACTIVATE_YOUR_DORMANT_POTENTIAL, COURSE_PATH as ADP_COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
+import { NATURE, NATURE_COURSE_PATH } from "@/data/courses/nature";
 import { AIV_COURSE_SLUG } from "@/data/courses/activationOfInnerVision";
 
 /**
@@ -379,8 +380,6 @@ export const modules: Module[] = [
     owner: "evolver",
     source: "internal",
     place: "academy",
-    courseLevel: "Advanced", // Academy store chips (additive; the landing tile is unchanged)
-    courseCategory: "General",
     category: "Growth",
     tagline: "A 5-module program on leadership and evolutionary development",
     status: "Coming Soon",
@@ -423,11 +422,8 @@ export const modules: Module[] = [
     status: "Live",
     price: "Free",
     space: "LEARN",
-    courseLevel: "Fundamental",
-    courseCategory: "General",
-    versionNumber: "1.0",
     startRoute: ADP_COURSE_PATH,
-    description: "<p>A free mini-course by Aleksandr Konstantinov: how to master your spirit, mind, emotions, body and unique genius.</p>",
+    description: "<p>A free mini-training by Aleksandr Konstantinov: how to master your spirit, mind, emotions, body and unique genius.</p>",
     owner: "evolver",
     source: "internal",
     place: "academy",
@@ -441,11 +437,23 @@ export const modules: Module[] = [
     status: "Live",
     price: "Free",
     space: "LEARN",
-    courseLevel: "Fundamental",
-    courseCategory: "General",
-    versionNumber: "1.0",
     startRoute: CMS_COURSE_PATH,
     description: "<p>A free mini-course by Aleksandr Konstantinov: how inner experience and modern science co-reveal the nature of reality.</p>",
+    owner: "evolver",
+    source: "internal",
+    place: "academy",
+  },
+  {
+    id: "course-nature",
+    title: NATURE.title,
+    slug: NATURE.slug,
+    category: "LEARN",
+    tagline: "Aligns You With Natural Rhythms",
+    status: "Live",
+    price: "Free",
+    space: "LEARN",
+    startRoute: NATURE_COURSE_PATH,
+    description: "<p>A free mini-training by Aleksandr Konstantinov: read where you stand in four rhythms (your year, the moon, the week, the day) in under a minute, and choose one action that goes with them.</p>",
     owner: "evolver",
     source: "internal",
     place: "academy",
@@ -459,8 +467,6 @@ export const modules: Module[] = [
     status: "Live",
     price: "$111",
     space: "LEARN",
-    courseLevel: "Intermediate",
-    courseCategory: "General",
     description: "<p>Founder Academy by Aleksandr Konstantinov: five recorded sessions on human development, your Zone of Genius, conscious entrepreneurship and AI.</p>",
     owner: "evolver",
     source: "internal",
@@ -475,9 +481,6 @@ export const modules: Module[] = [
     status: "Coming Soon", // videos in production (courseSales.ts shows the same line)
     price: "$27",
     space: "LEARN",
-    courseLevel: "Advanced",
-    courseCategory: "General",
-    versionNumber: "1.0",
     description: "<p>An advanced micro-course on 27-perspective seeing, by Aleksandr Konstantinov. After Integral Mystery School.</p>",
     owner: "evolver",
     source: "internal",
@@ -492,8 +495,6 @@ export const modules: Module[] = [
     status: "Coming Soon", // waitlist
     price: "$333",
     space: "LEARN",
-    courseLevel: "Intermediate",
-    courseCategory: "General",
     description: "<p>A one-month live group with Aleksandr Konstantinov: the live version of Founder Academy and Integral Mystery School.</p>",
     owner: "evolver",
     source: "internal",

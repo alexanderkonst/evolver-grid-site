@@ -75,7 +75,7 @@ describe("DoD 2 · glint only on the changed body", () => {
     expect(glintsFromChanges([])).toEqual({});
   });
 
-  it("DoD 2 · air never glints: its face is Your AI, which a place opening does not change", () => {
+  it("DoD 2 · air never glints: its face is My AI, which a place opening does not change", () => {
     const oracle = places.find((p) => p.element === "air")!;
     const seen = new Set<string>(places.filter((p) => p !== oracle).map((p) => p.key));
     const changes = sinceYouWereHere(places, seen, saveWith(["find-top-talent", "take-playbook", "discover-mission", "map-assets", "assess-qol", "build-business"]));

@@ -275,7 +275,7 @@ const Training = ({ userId, profile }: { userId: string; profile: MirrorProfile 
         ) : null}
         <div className="mt-6 flex flex-wrap items-center gap-4">
           <Button asChild data-testid="mirror-next">
-            <Link to={YOUR_AI_PATH}>Keep talking in Your AI</Link>
+            <Link to={YOUR_AI_PATH}>Keep talking in My AI</Link>
           </Button>
           {/* Spec #8: once rung 2 exists, one more line. */}
           <Link to={NEXT_TRAINING_PATH} className="text-sm font-medium underline underline-offset-2" data-testid="mirror-next-training">

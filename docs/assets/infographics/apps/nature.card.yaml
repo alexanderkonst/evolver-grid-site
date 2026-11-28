@@ -1,14 +1,32 @@
 id: nature
 kind: icon
+icon_version: 6
 chapter: apps
-number: 4
-of: 5
+number: 7
+of: 10
 title: Nature
 caption: Aligns You With Natural Rhythms
 skin: v4
+# v6: one raster icon per theme (1024 + @128), paths relative to this file. The site picks by the active skin,
+# fallback lunar (src/components/AppIcon.tsx; copies in public/apps/icons/).
+themes:
+  lunar:
+    png: v6/nature-lunar.png
+    png128: v6/nature-lunar@128.png
+  lapis:
+    png: v6/nature-lapis.png
+    png128: v6/nature-lapis@128.png
+  aurum:
+    png: v6/nature-aurum.png
+    png128: v6/nature-aurum@128.png
+  grayscale:
+    png: v6/nature-grayscale.png
+    png128: v6/nature-grayscale@128.png
 text:
-  before: a jagged line out of phase with a dim moon
-  after: a smooth wave in phase with a lit moon-phase arc
+  shape: "two phase-shifted waves crossing a shared axis (code-drawn, v6/render6.py)"
+  three_words: "two waves, one axis"
 sources:
-  - issue #506 (app icons v1), row 4
+  - issue #559 (app icons v6 on the site), from Sasha's approval of 2026-11-27; replaces v3 (#533), v2 (#528) and v1 (#506)
   - docs/templates/spec-handoff.md
+  - docs/assets/infographics/kit/README.md (App icons)
+  - docs/assets/infographics/apps/v6/sheet-v6.png

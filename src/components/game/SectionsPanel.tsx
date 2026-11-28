@@ -16,6 +16,7 @@ import { FOUNDER_TOOL_OPENS_WHEN } from "@/data/founderTools";
 import { resolveFounderTools } from "@/lib/founderTools";
 import { COURSE_PATH } from "@/data/courses/activateYourDormantPotential";
 import { CMS_COURSE_PATH } from "@/data/courses/consciousnessMeetsScience";
+import { NATURE_COURSE_PATH } from "@/data/courses/nature";
 import { COURSE_SALES, courseSalesPath } from "@/data/courseSales";
 import { useDeeperAccess } from "@/hooks/useDeeperAccess";
 import { useEntitlement } from "@/hooks/useEntitlement";
@@ -135,7 +136,7 @@ const SPACE_SECTIONS: SpaceSections = {
     // (Benchmark) from the upgrade path (Pricing). The Suites parent
     // mirrors the ME `top-talent` parent-with-children pattern.
     "ai-os": {
-        title: "Your AI",
+        title: "My AI",
         sections: [
             {
                 id: "ai-os-install",
@@ -615,6 +616,13 @@ const buildLearnSections = (): Section[] => {
         path: CMS_COURSE_PATH,
     };
 
+    // Third free mini-training (public), same player: Nature (issue #551), listed after Consciousness Meets Science.
+    const natureRow: Section = {
+        id: "nature",
+        label: "Nature",
+        path: NATURE_COURSE_PATH,
+    };
+
     // Sasha, 2026-10-30: the Academy lists only the two courses we have, as one path
     // (Activate Your Dormant Potential, then Consciousness Meets Science, order swapped by
     // Sasha 2026-11-02; start with either).
@@ -626,10 +634,15 @@ const buildLearnSections = (): Section[] => {
             id: "courses",
             label: "Courses",
             path: "/game/learn/courses",
-            subSections: COURSE_SALES.map((c) => ({ id: `course-${c.slug}`, label: c.title, path: courseSalesPath(c.slug) })),
+            // A row with sub-rows only expands on click, so the store (panel 3) is its first sub-row.
+            subSections: [
+                { id: "courses-store", label: "All courses", path: "/game/learn/courses" },
+                ...COURSE_SALES.map((c) => ({ id: `course-${c.slug}`, label: c.title, path: courseSalesPath(c.slug) })),
+            ],
         },
         dormantPotentialRow,
         consciousnessMeetsScienceRow,
+        natureRow,
     ];
 };
 

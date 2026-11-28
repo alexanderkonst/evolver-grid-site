@@ -10,7 +10,7 @@
 - What emerges: a shelf of result-apps, each one a door into the game
 - As a part of the whole: the Meta-Template sees a transmission that keeps moving: what was received is condensed, and the condensed form becomes the next person's door
 - Siblings / repeats: [infographic.md](./infographic.md) (the cards), [course-from-source.md](./course-from-source.md) (building the course), PST 8 One Acorn, Every Magnification
-- Status · applied in · last reviewed: v0.1 (one button) · Potential, Crossing, Vision (courses exist), Nature, Your AI (to create) · 2026-11-25
+- Status · applied in · last reviewed: v0.1 (one button) · Potential, Crossing, Vision (courses exist), Nature, My AI (to create) · 2026-11-25
 
 ## Invariant (PST 187)
 **One unit: a packaged shift, before → after.** It can be shown (an icon, a teaser, a closing card), walked (a course) or pressed (a button). The end of one person's shift, condensed into one image, is the door for the next person.
@@ -20,6 +20,18 @@
 - **Apps** in this store are result-apps as above: one icon before → after, one name, one tagline.
 - **Quality:** every app is signed by a curator before it ships. Now: Sasha. Later: other people.
 - **Console:** the AI interface has two kinds of input only: a question (a human signal) or a button (a whole layer of work). Over time buttons take on bigger and bigger layers.
+
+## The stores
+*(Sasha's corrections, 2026-11-26, PST 188 Holonic App Store of the Golden Age. They replace any older list of stores. One store with levels: a Power sits inside a training, a training inside an app, an app inside the game; not six separate stores.)*
+1. **Training Center / Library** of mini-trainings: Potential, Crossing, Vision, Nature. Name open: «Библиотека» or «Тренинговый Центр».
+2. **PST Library**: a different thing from 1 («это две совсем разные вещи»). Source: `docs/01-vision/phase_shift_technology_library.md`.
+3. **Templates = console Powers** (`docs/templates/`; button grammar in [meta-template.md](./meta-template.md) §Console buttons).
+4. **Infographic Book** (card corpus): each card is a teaser and an entry into a training.
+5. **Founders Collective** (`/collective`): people's unique offers as apps for each other.
+6. **Combo store**: combinations of Powers that worked.
+7. **AI apps**: My AI.
+
+Potential, Crossing, Vision and Nature are **mini-trainings** (store 1), not AI apps. The only AI app so far is My AI (store 7).
 
 ## Two spaces
 The Training Center splits into the **Academy of Human Development** and the **Mystery School**. Which app lives where: open.
@@ -36,7 +48,7 @@ The Training Center splits into the **Academy of Human Development** and the **M
 9. **Update this template** after each app.
 
 ## Where the store lives
-*(2026-11-26, issue #524.)* The app store is the **third panel** of the Learn space: `/game/learn/courses` (`src/components/game/CourseStore.tsx`). The **second panel** lists the same courses under a "Courses" row (`SectionsPanel`, `buildLearnSections`). Tiles carry icon, bold short name, tagline, level + category chips, version, with level/category filters (client-side). Tile → `/academy/<slug>`; "Start" → the course page. **A new course appears there by adding data, nothing else:** its entry in `src/data/courseSales.ts` (list, name, promise) and in the module registry `src/data/modules.ts` (`courseLevel`, `courseCategory`, `versionNumber`, `startRoute`). Icon: add `docs/assets/infographics/apps/<id>@128.png` and one line in `COURSE_ICONS` (`src/data/courseStore.ts`); without it the tile shows a neutral placeholder.
+*(2026-11-26, issue #524.)* The app store is the **third panel** of the Learn space: `/game/learn/courses` (`src/components/game/CourseStore.tsx`). The **second panel** lists the same courses under a "Courses" row (`SectionsPanel`, `buildLearnSections`). Tiles carry icon, bold short name, tagline, level + category chips, version, with level/category filters (client-side). Tile → `/academy/<slug>`; "Start" → the course page. **A new course appears there by adding data, nothing else:** its entry in `src/data/courseSales.ts` (list, name, promise, Start door, and `versioning`, which carries level, category and version from the course's own `CourseConfig`, #535). Level, category and version are not restated anywhere in the store. Icon: the course's app in `src/lib/appIcons.ts` (`APP_BY_COURSE_SLUG`); without one the tile shows a neutral placeholder.
 
 ## Run it with AI: one button
 *(Sasha, 2026-11-25: «обогати конкретикой того как его применить с помощью ИИ, облегчив человеку задачу вплоть до исчезновения всего кроме одной кнопки».)*
@@ -66,8 +78,8 @@ Spec only. Building the button is a separate @claude issue; the learner's **Ente
 | Potential | Accelerates The Unfolding of Your Potential | Activate Your Dormant Potential | series on kit; icon #506 |
 | Crossing | Reconciles Consciousness with Science | Consciousness Meets Science | icon #506 |
 | Vision | Activates Your Inner Vision | Activation of Inner Vision | icon #506 |
-| Nature | Aligns You With Natural Rhythms | to create from the Equilibrium manual | icon #506 |
-| Your AI | Sets up Your AI | to create | icon #506 |
+| Nature | Aligns You With Natural Rhythms | draft v0.2 (texts, awaiting signature): [nature_mini_training.md](../08-content/nature_mini_training.md) | icon #533 |
+| My AI | Sets Up My AI | to create | icon #506 |
 
 ## Open
 - How the invitation into the game works.

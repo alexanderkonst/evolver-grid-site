@@ -34,7 +34,7 @@ describe("CourseStore (panel 3, #524)", () => {
   it("offers level and category filters, none pressed but All", () => {
     expect(html).toContain('aria-label="Level"');
     expect(html).toContain('aria-label="Category"');
-    expect(html).not.toMatch(/aria-pressed="true"[^>]*>(Fundamental|Advanced|General)/);
+    expect(html).not.toMatch(/aria-pressed="true"[^>]*>(Fundamental|Advanced|General|Mind)/);
   });
 
   it("has no looping animation classes", () => {

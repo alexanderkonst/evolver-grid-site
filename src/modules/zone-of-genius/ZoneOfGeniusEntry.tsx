@@ -120,7 +120,9 @@ type Step =
     | "excalibur-result";
 
 // A real answer to the prompt is far longer; below this we nudge, never block.
+/** The one check the paste screen uses twice: the warning shows below it, and the reveal button waits for it (roast 2026-11-27, #562 item 3). */
 const SHORT_PASTE_CHARS = 200;
+const isShortAnswer = (text: string) => text.trim().length < SHORT_PASTE_CHARS;
 
 const ZoneOfGeniusEntry = () => {
     const { t } = useTranslation();
@@ -168,6 +170,12 @@ const ZoneOfGeniusEntry = () => {
     const pasteRef = useRef<PasteTextareaHandle>(null);
     const [hasPasteText, setHasPasteText] = useState(false);
     const [isShortPaste, setIsShortPaste] = useState(false);
+    // The button and the warning read one answer: when text appears or goes (mount with a kept answer, clear),
+    // read the box so the short check is never a keystroke behind.
+    useEffect(() => {
+        setIsShortPaste(isShortAnswer(pasteRef.current?.getValue() ?? ""));
+    }, [hasPasteText]);
+
     const [copied, setCopied] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -690,9 +698,9 @@ const ZoneOfGeniusEntry = () => {
     const handleGenerateAppleseed = async () => {
         // Read the textarea's real value at submit time.
         const pastedResponse = pasteRef.current?.getValue() ?? "";
-        if (!pastedResponse.trim()) return;
+        if (!pastedResponse.trim() || isShortAnswer(pastedResponse)) return;
         setAiResponse(pastedResponse);
-        setIsShortPaste(pastedResponse.trim().length < SHORT_PASTE_CHARS);
+        setIsShortPaste(false);
 
         setIsProcessing(true);
         setError(null);
@@ -1483,7 +1491,7 @@ const ZoneOfGeniusEntry = () => {
                             initialValue={aiResponse}
                             onHasTextChange={setHasPasteText}
                             onInput={(event) =>
-                                setIsShortPaste(event.currentTarget.value.trim().length < SHORT_PASTE_CHARS)
+                                setIsShortPaste(isShortAnswer(event.currentTarget.value))
                             }
                             placeholder={t('zogEntry.pastePlaceholder')}
                             className="min-h-[200px] font-mono text-sm rounded-2xl focus:ring-1 transition-all duration-300"
@@ -1498,10 +1506,12 @@ const ZoneOfGeniusEntry = () => {
 
                         {hasPasteText && isShortPaste && !revealError && (
                             <p
+                                role="status"
+                                data-testid="paste-short-hint"
                                 className="text-xs text-center"
                                 style={{ color: "var(--skin-text-muted, rgba(26,30,58,0.75))" }}
                             >
-                                {t('zogEntry.pasteShortHint')}
+                                {t('zogEntry.pasteShortHint', { min: SHORT_PASTE_CHARS })}
                             </p>
                         )}
 
@@ -1556,7 +1566,7 @@ const ZoneOfGeniusEntry = () => {
                                         "var(--skin-cta-text-shadow, 0 0 16px rgba(240,194,127,0.25), 0 1px 2px rgba(0,0,0,0.35))",
                                 }}
                                 onClick={handleGenerateAppleseed}
-                                disabled={isProcessing || !hasPasteText}
+                                disabled={isProcessing || !hasPasteText || isShortPaste}
                             >
                                 <img
                                     src={igniteLogo}

@@ -15,11 +15,11 @@
 
 ## The line between rungs (fixes the overlap found in rung 1 v0.4)
 
-Rung 1 uses what **the game** knows about the person. Rung 2 has the person **build and carry their own** context, so any AI knows them, not only Your AI. So the ladder goes: AI knows you through the game (1) → you make AI know you anywhere (2) → AI knows your business (3) → your own way of working with AI becomes a system (4) → many agents work as a company (5).
+Rung 1 uses what **the game** knows about the person. Rung 2 has the person **build and carry their own** context, so any AI knows them, not only My AI. So the ladder goes: AI knows you through the game (1) → you make AI know you anywhere (2) → AI knows your business (3) → your own way of working with AI becomes a system (4) → many agents work as a company (5).
 
 | Rung | Who it is for | They leave with | Setup piece handed over |
 |---|---|---|---|
-| 1 AI as a Mirror | after Top Talent | a 3-step plan made with AI + one flattery caught | Your AI chat with their profile |
+| 1 AI as a Mirror | after Top Talent | a 3-step plan made with AI + one flattery caught | My AI chat with their profile |
 | 2 AI That Knows You | after rung 1 | their **one-page AI profile** + the habit «goal · context · cycles» | the profile, pasted into any AI |
 | 3 AI in Your Business | founders (has a business or idea) | one **living project document** v1.0 for their business, made with AI | project document template + 3 business lenses |
 | 4 Your Harness | founders in the collective (proposed) | their own **AI OS Lite + rules of what AI may do without asking + 3 buttons** | AI OS Lite · approval rules · template router buttons |
@@ -31,7 +31,7 @@ Rung 1 uses what **the game** knows about the person. Rung 2 has the person **bu
 
 **Result.** In about 35 minutes you have a one-page profile that makes any AI know you, and you know the three moves that make every answer better: goal, context, cycles.
 
-**Done when:** the person pasted their profile into a second AI (not Your AI) and got an answer that sounds like it knows them.
+**Done when:** the person pasted their profile into a second AI (not My AI) and got an answer that sounds like it knows them.
 
 | # | Micro-module | One idea | Promise line | Button (one tap, editable) | What they feel | Source |
 |---|---|---|---|---|---|---|
@@ -78,7 +78,7 @@ Timing ≈ 30 min. Hands over: project document template + the 3 lenses as butto
 | # | Micro-module | One idea | Promise line | Button (one tap, editable) | What they feel | Source |
 |---|---|---|---|---|---|---|
 | 1 | The model is not the point | Answer quality comes from you, an operating layer and your documents, not from picking a model. | You stop chasing the newest model. | «Same question twice: what should I do this week for: {mission}? First as a plain chat would, then using my profile and v1.0. Up to 5 lines each.» | The layer makes the difference. | docs/ai thesis §0; essay on scaffolds |
-| 2 | The operating layer | A few paste-in rules change how AI thinks with you: bold, dense, decided. | Your AI stops hedging. | **Copy** AI OS Lite → paste, then: «Same question as before: what should I do this week?» | Decided, not vague. | AI OS v6.0 Lite |
+| 2 | The operating layer | A few paste-in rules change how AI thinks with you: bold, dense, decided. | My AI stops hedging. | **Copy** AI OS Lite → paste, then: «Same question as before: what should I do this week?» | Decided, not vague. | AI OS v6.0 Lite |
 | 3 | What AI may do without asking | Write down what needs your yes: money, messages to people, anything public. | You hand over work without fear. | «Ask me 4 questions, one at a time, and write my rules: what you may do alone, what you must ask first.» | Trust with a fence. | PISP (approval rules) |
 | 4 | Templates know how | A recurring task becomes a template that already knows how. | You stop rewriting the same prompt. | «Which task do I repeat every week? Ask me, then write a template for it: input, steps, output.» | One less chore forever. | template router; meta-template |
 | 5 | The console of buttons | Each button looks at your situation through one lens. | You press instead of writing. | «The whole thing in one sentence: my business: {uniqueness}.» (holonic prism, first button) | One tap, a clear view. | holonic prism; notebook («кнопки на пульте») |

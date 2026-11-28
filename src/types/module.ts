@@ -34,10 +34,6 @@ export type VersionStage =
   | "MVP"
   | "Commercial";
 
-/** Course level and category, shown as chips on the educational app store (panel 3 of the Learn space). */
-export type CourseLevel = "Fundamental" | "Intermediate" | "Advanced";
-export type CourseCategory = "General";
-
 export interface ModuleLink {
   label: string;
   url: string;
@@ -67,10 +63,6 @@ export interface Module {
   space?: SpaceCategory;
   versionNumber?: string; // e.g. "0.9", "1.0"
   versionStage?: VersionStage;
-  /** Academy courses only: the level chip on the store tile. */
-  courseLevel?: CourseLevel;
-  /** Academy courses only: the category chip on the store tile. */
-  courseCategory?: CourseCategory;
   startRoute?: string; // entry route for the module
   dependencies?: string[]; // module slugs this depends on
 

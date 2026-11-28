@@ -98,6 +98,16 @@ Everything is a holon. This is its deepest nature.
 
 ---
 
+## 18. THE NOVEMBER 27 RECOGNITION: The Invariant Is Return to the Etalon
+
+> *November 27, 2026, 13:18 MST. Sasha's own words, recorded verbatim. Recorded as a dated addendum; existing sections stand untouched. The working document for this idea is [docs/core/etalon.md](../core/etalon.md); formal readings live in the formalization record, not here.*
+
+> «Инвариант всей системы - возвращение к эталону самости чего бы то ни было. Самоотношение - это то, как человек (как частный случай систем) двигается к эталону. Своему эталону, который, well, по образу и подобию всеобщего эталона Вселенной.»
+
+Plain English: the invariant of the whole system is the return to the etalon of selfhood of anything at all. Self-relation is how a person (as one case of systems) moves toward the etalon: their own etalon, made in the image and likeness of the universal etalon of the Universe.
+
+---
+
 ## 17. THE NOVEMBER 24 RECOGNITION, LATE: Simultaneous Ends, the Act Inside the Point, the Si–Do Transition
 
 > *November 24, 2026, 23:47–23:58 MST. Sasha's own words, recorded verbatim in dialogue during the formalization (after Step 122). Recorded as a dated addendum; existing sections stand untouched. Formal readings live in the formalization record, not here.*
@@ -1447,6 +1457,7 @@ Asking "which came first, creation or evolution?" is like asking "which came fir
 ---
 
 *Universal Ontology v3.0*
+*Updated: November 27, 2026, 14:35 MST (§18 The November 27 Recognition: the invariant of the whole system is return to the etalon of selfhood; self-relation is the movement toward one's own etalon, in the image of the universal etalon; recorded verbatim, linked to docs/core/etalon.md)*
 *Updated: November 25, 2026, 00:52 MST (§17.5 The Instant Cut, the Uneven Winding, the First Events: the cut is instantaneous, no time yet; the first action almost fully discrete, creating the first space and dimension; the pulse goes out and comes back in one instant; winding uneven, with a proto-gradient along the ray; yin-yang as its settled trace, hence the torus; the path is laid in the very first events; recorded verbatim with dates)*
 *Updated: November 25, 2026 (§17.4 The Limit Point Is a Ball: outgoing and incoming simultaneous in the limit; the ray goes around the ball and cuts it in half; ray = vector = radius = axis = dimension = proto-distance; proto-difference of potential, the system winds; yin-yang as dual division and first proto-winding; recorded verbatim with dates)*
 *Updated: November 24, 2026, late (§17 The November 24 Recognition, Late: the two ends of the diameter are simultaneous; the act of self-relation and pulse happens inside the limit point; ray, light, vector, impulse, pulse as one invariant; not settled by words; the Si–Do phase transition; recorded verbatim with dates)*

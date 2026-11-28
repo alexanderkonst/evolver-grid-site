@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { GraduationCap } from "lucide-react";
+import AppIcon from "@/components/AppIcon";
 import { GOLD_TEXT_STYLE } from "@/lib/landingDesign";
 import { BODY_STYLE, EYEBROW_STYLE, TITLE_STYLE } from "@/pages/Library";
 import { PLACE_BACK_LINK_CLASS } from "@/components/game/VillagePlaceHeader";
@@ -11,7 +12,7 @@ import {
   tileLevels,
   type CourseTile,
 } from "@/data/courseStore";
-import type { CourseCategory, CourseLevel } from "@/types/module";
+import type { CourseCategory, CourseLevel } from "@/data/courses/types";
 
 /**
  * CourseStore — panel 3 of the Learn space (/game/learn/courses): the educational app store.
@@ -66,8 +67,8 @@ function Tile({ tile }: { tile: CourseTile }) {
         data-testid="store-tile-link"
         className="flex items-start gap-3 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(212,175,55,0.7)]"
       >
-        {tile.icon ? (
-          <img src={tile.icon} alt="" width={64} height={64} className="flex-shrink-0 w-16 h-16 rounded-xl object-cover" />
+        {tile.app ? (
+          <AppIcon app={tile.app} size={64} />
         ) : (
           <span aria-hidden="true" className="flex-shrink-0 w-16 h-16 rounded-xl inline-flex items-center justify-center border border-[rgba(212,175,55,0.35)] bg-[rgba(212,175,55,0.08)]" style={BODY_STYLE}>
             <GraduationCap className="w-7 h-7" />

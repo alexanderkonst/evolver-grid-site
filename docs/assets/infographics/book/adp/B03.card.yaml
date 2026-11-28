@@ -1,0 +1,22 @@
+# ADP series card, Body module (not published: not in book/book.yaml). Spec: issue #569, v1 (Sasha 2026-11-27 16:37 and 16:39 MST).
+# Template: infographic v1.1 (#568). Standard kit card; the figure is a full-colour photo (photos/B03-river.jpg).
+id: B03
+chapter: "1"
+number: 3
+of: 3
+title: "You are a river, not a battery"
+caption: "A battery runs out. A river stays full while it flows. Tired means blocked: remove before you add."
+skin: v4
+caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
+waive:
+  words: "Sasha's title and caption are this long on purpose (title 7, caption 18, eyebrow 4 words), so prose is 29 words, over the skin's 25. The four figure tags are two to three words each."
+text:
+  eyebrow: "Body · Michio Kushi Formula"
+  photo: B03-river.jpg
+  rocks: [Heavy food, Busy mind, Held emotion]
+  battery: not a battery
+  attribution: "After Michio Kushi"
+sources:
+  - "knowledgegraph: 10 Sources/youtube/michio-kushi/undated-why-most-people-never-access-full-energy.md (verbatim transcript; integration: knowledgegraph#320)"
+  - "issue #569: title, caption, eyebrow (comment 2026-11-27 16:39 MST: Michio Kushi Formula), tags on the three rocks, small tag 'not a battery'"
+  - "photos/B03-river.jpg (three rocks in the stream, a battery on the bank at lower left)"

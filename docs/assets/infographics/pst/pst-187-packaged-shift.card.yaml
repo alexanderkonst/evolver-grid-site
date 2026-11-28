@@ -1,26 +1,22 @@
-# PST card (not published: not in book/book.yaml, waits for Sasha's yes). Spec: issue #510. Template: infographic + spec-handoff.
+# PST card v2 (not published: not in book/book.yaml, waits for Sasha's yes). Spec: issue #527 (replaces v1 from #510). Template: infographic + spec-handoff.
 id: pst-187-packaged-shift
 chapter: "187"
 number: 1
 of: 1
-title: "The Packaged Shift"
-caption: "One unit of value: a shift, before → after. Show it, walk it, or press it. Every end opens the next door."
+title: "The End Is the Door"
+caption: "The course ends with an infographic, and this becomes a powerful accelerator of integration. And any course is an entry into the game."
 skin: v4
 caption_size: 30   # body size of the Book ideal-client cards (the engine default is 26)
-max_words: 28      # waiver: the issue fixes a 22-word body, a 3-word title and a 3-word kicker (lint counts all three, 28)
+max_words: 32      # waiver: the body is Sasha's own words, translated verbatim, no paraphrase (23) + title (5) + kicker (4)
 text:
   eyebrow: Phase Shift Technology 187
-  capsule: {before: Before, after: After}
-  seal: Signed
-  rays:
-    - {title: Shown, sub: icon · teaser}
-    - {title: Walked, sub: course}
-    - {title: Pressed, sub: one button}
-  loop: End = next door
-  console:
-    - {title: Ask, sub: human signal}
-    - {title: Press, sub: layer of work}
+  attribution: "— Sasha (translated)"
+  stations:
+    - {title: Teaser}
+    - {title: Course}
+    - {title: Closing infographic, sub: integration}
+    - {title: The game}
+  invite: Invite the next
 sources:
-  - docs/01-vision/phase_shift_technology_library.md (Technology 187: The Packaged Shift)
-  - docs/templates/course-as-app.md (Invariant, PST 187; App store for AI and the button console)
-  - issue #510 (title, kicker, body and every label verbatim)
+  - docs/01-vision/phase_shift_technology_library.md (Technology 187, Essence: Sasha's chat of 2026-11-25 17:49 MST, translated)
+  - issue #527 (title, kicker, body, figure and every label verbatim)

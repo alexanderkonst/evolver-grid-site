@@ -19,7 +19,7 @@ import {
  */
 
 // Rooms every place must list (qa-pass §3). Update with the blueprint when a room is added or removed.
-const ROOMS: Record<string, number> = { reception: 1, academy: 3, "quest-board": 10, house: 7 };
+const ROOMS: Record<string, number> = { reception: 1, academy: 4, "quest-board": 10, house: 7 };
 
 const closedLine = /^Opens when .+Inside: .+/;
 

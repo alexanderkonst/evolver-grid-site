@@ -1,0 +1,16 @@
+id: fmf-06
+chapter: '3.4'
+number: 6
+of: 19
+title: The Mirror Principle
+caption: Income grows exactly as much as you grow.
+skin: v4
+text:
+  eyebrow: Founder-market fit
+  left: Inner
+  right: Outer
+  left_note: I grow
+  right_note: My business grows
+sources:
+- 'Sasha''s masterclass «Founder Market Fit Discovery» (2026-10-24): slides and handwritten notes (p8–9)'
+- 'GitHub issue #529 (card definition and order, Sasha 2026-11-26)'

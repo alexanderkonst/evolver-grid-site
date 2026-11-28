@@ -1990,7 +1990,7 @@ The decisions live in one place: [game spec §25 Navigation](../02-strategy/game
 - Every screen answers where am I (place + path step), where next (one glowing move), how home (Your House, one tap).
 - The second pane and the place scene work together; the pane shows all rooms and the quest order at once.
 - Closed things use the one line «Opens when … Inside: …» and stay readable (≥4.5:1 for words).
-- Your AI opens as a carried instrument (Pip-Boy pattern), smoothly, from anywhere.
+- My AI opens as a carried instrument (Pip-Boy pattern), smoothly, from anywhere.
 - Motion is smooth everywhere (an ancient mystical instrument) and respects `prefers-reduced-motion`.
 - Acceptance: the 3-second test (§25.12) is in the Definition of Done of every screen.
 

@@ -1,0 +1,22 @@
+# Nature mini-training, overview card (draft v2, 2026-11-26). Not in book/book.yaml.
+id: N00
+chapter: "1"
+number: 1
+of: 1
+title: "Nature"
+caption: "Four rhythms already move you. Move with them: work that lands, a steady mind, more energy."
+skin: v4
+caption_size: 30
+text:
+  eyebrow: "Mini-training · Align with natural rhythms"
+  center: You
+  rings:
+    - {name: Day, sub: one Earth turn}
+    - {name: Week, sub: seven classical planets}
+    - {name: Moon, sub: eight moon phases}
+    - {name: Year, sub: birthday to birthday}
+  arc: "out-of-sync → in-sync"
+sources:
+  - docs/04-products/equilibrium_user_manual.md (ATTUNE; eight phases; Three Degrees)
+  - docs/01-vision/holonic_cycles.md (Naming; Circadian; Weekly; Lunar; Seasonal)
+  - docs/assets/infographics/apps/nature.card.yaml (app name and caption)

@@ -11,6 +11,7 @@ Needs `pip install pillow numpy pyyaml` (matplotlib + scipy only for the old `fy
 | `spec.py`, `render.py` | load `<card>.card.yaml`; import `<card>.py`, call `build(spec)`, save `<card>.png` |
 | `lint.py` | 8 rules on a rendered card, read from `card.log` (not image recognition) |
 | `book_build.py` | the Book from one manifest: `book/book.yaml` → render, lint, PNGs, reader data, BOOK.md blocks, `book/sheet.png`; `--check` for CI (see Book below) |
+| `asis.py` | as-is cards (`kind: as_is`): the author's picture converted to PNG, never drawn or restyled; its two lint rules (see Recipe: add a card the author drew) |
 | `book_sync.py` | `--check`: spec title/caption equal `BOOK.md` and `src/data/infographicBook.ts` |
 | `sheet.py` | one contact sheet PNG per batch: grid, each card with id + title |
 | `compare.py` | mean abs pixel diff of a ported card against the engine-v4 render it came from |
@@ -147,9 +148,18 @@ Generated: `infographicBook.ts`, the `<!-- book:begin … -->` blocks of `BOOK.m
 2. `python3 kit/book_build.py`: only that card re-renders; it prints the mean pixel diff against the previous PNG. A title or caption change also moves the reader data and the `BOOK.md` list.
 3. If the card is a law (`III.01` ...), also edit its hand-written `### III.01` section in `BOOK.md` (title, Subtitle); `--check` fails until they agree.
 
+### Recipe: add a card the author drew (as is)
+A hand drawing, a photo or any finished picture goes into the Book untouched. It is never rendered, restyled, resized, cropped or given a footer; the build only converts it to PNG (`kit/asis.py`).
+1. Put the picture beside the spec: `book/<folder>/<id>.source.<ext>` (jpeg, png ...).
+2. Write `book/<folder>/<id>.card.yaml` with `kind: as_is`, `source: <that file name>`, `id`, `chapter`, `title`, `caption` (`text`, `author`, `sources` are for the record). No `skin`, no `<id>.py`.
+3. List it in `book/book.yaml` like any card, then `python3 kit/book_build.py`: it converts the source to `book/<folder>/<id>.png` and `public/infographics/book/<folder>/<id>.png`, records spec + source in `book.lock.json` and regenerates the rest. Changing the source file marks the card stale (`--check` fails until you rebuild).
+Lint checks two things only: `spec-fields` (id, chapter, title, caption, source present) and `source-file` (the file exists). No footer, margin, palette or word rules apply. Example: `book/integrated-marketing/`.
+
 ## App icons
 
-Square icons for the course-apps (Potential, Crossing, Vision, Nature, Your AI) live in [`apps/`](../apps/): `<id>.card.yaml` (`kind: icon`), `<id>.py`, `<id>.png` (1024), `<id>@128.png`, plus `sheet.png` (five mock tiles, Name bold and tagline at one size, and the five icons at 64 px; `python3 apps/make_sheet.py`).
+> Current icons are v6, see "Icons v6" below. The v1 → v3 paragraphs that follow describe the drawn formats and their rules (`ICON_RULES`, `ICON_V2_RULES`), kept for the rules tables; their `<id>.py` scripts, PNGs and `icon_shapes.py` were removed with #559.
+
+Square icons for the course-apps (Potential, Crossing, Vision, Nature, My AI) live in [`apps/`](../apps/): `<id>.card.yaml` (`kind: icon`) and `apps/v6/` (see below). v1 drew each as before → after with a script per icon; `sheet.png` (v1), `sheet-v2.png` and `sheet-v3.png` stay as history.
 
 Each icon is one idea as before → after: before on the left in QUIET / silver, after on the right with the one NEON accent, a bold chevron and a dawn bloom between. No text. A script builds `K`-style: `c = icon.card(spec)`, then `with c.side("before"): ...` / `with c.side("after"): ...` using `orb`, `dot`, `ring`, `path`, `fill`, `iri_fill`, `chevron` (call list in `icon.py`). The spec's `title` is the tile's **Name**, `caption` its tagline, `text.before` / `text.after` say the idea in words.
 
@@ -166,6 +176,47 @@ Each icon is one idea as before → after: before on the left in QUIET / silver,
 | `spec-fields` | as for cards |
 
 `kit/ci.py` and `book_sync` pick the icon specs up like any other (`book_sync` SKIPs them: not Book ids).
+
+### Icons v6 (issue #559, approved by Sasha 2026-11-27; the current icons)
+
+Five apps (`potential`, `crossing`, `vision`, `nature`, `my-ai`; the id `your-ai` became `my-ai`) x four themes (`lunar`, `lapis`, `aurum`, `grayscale`). The files are finished rasters in `apps/v6/`: `<app>-<theme>.png` (1024) and `<app>-<theme>@128.png`, plus `sheet-v6.png`. Vision and Nature are code-drawn by `apps/v6/render6.py`; the other three are art. The kit does not draw v6.
+
+The spec carries `icon_version: 6` and a `themes:` map, `<theme>: {png: v6/<app>-<theme>.png, png128: v6/<app>-<theme>@128.png}`, paths relative to the spec; `caption` is the tagline, `text.shape` says the sign in words. `python3 kit/lint.py apps/<id>.card.yaml` runs `ICON_V6_RULES`:
+
+| Rule | Fails when |
+|---|---|
+| `themes` | one of the four themes is missing, or a file it names does not exist |
+| `size` | a `png` is not 1024 x 1024, or a `png128` is not 128 x 128 |
+| `no-text` | title, caption or `text.shape` is missing (the icons carry no words) |
+| `spec-fields` | as for cards |
+
+`kit/ci.py` skips the render step for v6 and counts a change to any of the named PNGs as touching the spec; `spec.png` is the lunar PNG (the contact sheet uses it).
+
+On the site the same 128 and 1024 PNGs are copied to `public/apps/icons/` and shown by `src/components/AppIcon.tsx`, which picks the file by the active skin (`SkinContext`; lunar, lapis, aurum, grayscale; any other skin falls back to lunar) and masks it to a rounded square in CSS, no frame, no dial.
+
+### Icons v3 (issue #533; replaced v1 #506 and v2 #528, itself replaced by v6)
+
+One icon per app, files `apps/<id>.card.yaml`, `<id>.py`, `<id>.png` (1024), `<id>@128.png` (removed with #559). One simple silhouette of the result ("after" only): no arrow, no before / after, no text. A v3 spec carries `icon_version: 3` and `halo: LAV|AQUA|BLUSH|CHAMP|PEARL` (the app's own pastel). The tile is lunar ink with that pastel rising as a gradient from the bottom edge (visible at 64 px). Scripts draw everything inside `with c.side("after")`, with shapes from `apps/icon_shapes.py`.
+
+Family rules: every line and ring is `I.WEIGHT` wide (48 px at 1024 = 6 px at 128, the lint floor, 1.5 px at 32; v2 was 64); one NEON per icon, a smaller area than the white; the iridescent sphere (`orb`, "you / the seed": Book `ideal-client-01`, `-04`, ADP `A01`, `A02`) only in Potential and My AI; the sign's longest side ~70% of the tile; `group="name"` makes repeated identical parts (ticks) count as one shape. `ring(..., soft=alpha)` adds a glow round a line.
+
+| App | Sign |
+|---|---|
+| Potential | open bud: two white petals, a neon middle petal, the sphere |
+| Crossing | two overlapping circles, the lens open: left a precise line with tick marks (science), right a soft glowing line (consciousness), one neon dot at the centre of the crossing |
+| Vision | an eye, a neon four-point star as the pupil |
+| Nature | one continuous line: a wave curling up into a crescent, the tip lit |
+| My AI | the sphere, a thin tilted orbit (far half behind the sphere, near half in front), one neon satellite |
+
+For the removed v2 / v3 icons, `icon_version: 2` and `3` shared one rule set (`ICON_V2_RULES`):
+
+| Rule | Fails when |
+|---|---|
+| `elements` | more than 4 shapes (same-`group` parts count once), or anything on the `before` / `mid` side |
+| `fill` | the sign's longest side is outside 62-78% of the tile (~70%) |
+| `weight` | a line or ring is not exactly `I.WEIGHT` wide |
+
+The 32 px test: `card.silhouette(32)` redraws the sign as a filled black shape. `apps/sheet-v3.png` (per app: 256, 64, 32 px and the tile mock, a shelf at 32 px) stays as history with `sheet.png` (v1) and `sheet-v2.png`; `make_sheet_v3.py` went with the v3 files.
 
 ## Old scripts
 

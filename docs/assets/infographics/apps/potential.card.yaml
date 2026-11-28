@@ -1,14 +1,32 @@
 id: potential
 kind: icon
+icon_version: 6
 chapter: apps
 number: 1
-of: 5
+of: 10
 title: Potential
 caption: Accelerates The Unfolding of Your Potential
 skin: v4
+# v6: one raster icon per theme (1024 + @128), paths relative to this file. The site picks by the active skin,
+# fallback lunar (src/components/AppIcon.tsx; copies in public/apps/icons/).
+themes:
+  lunar:
+    png: v6/potential-lunar.png
+    png128: v6/potential-lunar@128.png
+  lapis:
+    png: v6/potential-lapis.png
+    png128: v6/potential-lapis@128.png
+  aurum:
+    png: v6/potential-aurum.png
+    png128: v6/potential-aurum@128.png
+  grayscale:
+    png: v6/potential-grayscale.png
+    png128: v6/potential-grayscale@128.png
 text:
-  before: dim closed seed sphere inside a tight ring
-  after: the same sphere lit, five orbit nodes unfolding around it
+  shape: "a climbing vine with heart-shaped leaves, wrapped in an iridescent spiral ribbon"
+  three_words: "vine, spiral ribbon"
 sources:
-  - issue #506 (app icons v1), row 1
+  - issue #559 (app icons v6 on the site), from Sasha's approval of 2026-11-27; replaces v3 (#533), v2 (#528) and v1 (#506)
   - docs/templates/spec-handoff.md
+  - docs/assets/infographics/kit/README.md (App icons)
+  - docs/assets/infographics/apps/v6/sheet-v6.png

@@ -23,6 +23,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowRight, ChevronLeft, RotateCcw, Send, X } from "lucide-react";
 import AirOctahedron from "@/components/game/AirOctahedron";
 import InstrumentGlyph from "@/components/game/InstrumentGlyph";
+import InkGuide, { nextInkNonce, type InkRequest } from "@/components/game/InkLine";
 import InstrumentRitual from "@/components/game/InstrumentRitual";
 import { QuarterSign } from "@/components/game/QuarterSign";
 import { type YourAiButton } from "@/data/yourAiCatalog";
@@ -47,13 +48,12 @@ import {
 import { readConversation, writeConversation } from "@/lib/instrument/conversation";
 import { ConversationSuggestion } from "@/components/game/console/ConversationSuggestion";
 import ConsolePanel from "@/components/game/console/ConsolePanel";
+import { crystalPx } from "@/lib/airOctahedron";
 import { getFace, hasFace, registerFace, type FaceProps } from "@/lib/instrument/faces";
 import { hasGlint, parseGlints, type Glints } from "@/lib/instrument/glint";
 import { instrumentModel, instrumentReduce, isRaised } from "@/lib/instrument/state";
 import { useGlints } from "@/hooks/useGlints";
 
-/** The crystal raised in the middle of the screen, CSS px. */
-const AIR_PX = 128;
 /** Where the raised crystal sits, as a share of the viewport height. */
 const STAGE_Y = 0.46;
 /** The bodies' arc, degrees from the +x axis (canvas y points down, so negative is up), one per body that is not air. */
@@ -77,6 +77,23 @@ const EASE = "cubic-bezier(0.22, 0.8, 0.24, 1)";
  *  panel width, so growing one past ~1.06 would clip it; the contrast between the two does the zooming. */
 const TOUR_SCALE_IN = 1.06;
 const TOUR_SCALE_OUT = 0.92;
+
+/** The raised crystal's size, CSS px: from the shorter viewport side, clamped (`crystalPx`), live on resize and rotation. */
+const useCrystalPx = (): number => {
+  const read = () => (typeof window === "undefined" ? crystalPx(0, 0) : crystalPx(window.innerWidth, window.innerHeight));
+  const [px, setPx] = useState(read);
+  useEffect(() => {
+    const onResize = () => setPx(read());
+    onResize();
+    window.addEventListener("resize", onResize);
+    window.addEventListener("orientationchange", onResize);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("orientationchange", onResize);
+    };
+  }, []);
+  return px;
+};
 
 const useReducedMotion = (): boolean => {
   const [reduced, setReduced] = useState<boolean>(
@@ -188,13 +205,6 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
     !thinking && lastMessage?.role === "ai" ? (lastMessage.buttons ?? []).filter((b) => b.kind !== "action") : [];
 
   const playerCard = () => (ownerId ? buildPlayerCard(getCachedZogSnapshot(ownerId), readTraces(ownerId)) : null);
-  // Console button 1 with no goal to ground in: the one question lands in the conversation.
-  const askInConversation = (question: string) => {
-    if (lastMessage?.role !== "ai" || lastMessage.text !== question) {
-      setMessages([...messages, { role: "ai", text: question }]);
-    }
-    setTab("conversation");
-  };
   const onTabKeyDown = (e: React.KeyboardEvent) => {
     if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
     e.preventDefault();
@@ -310,8 +320,6 @@ const AirFace = ({ ownerId, reduced, closeMs, active, onBack, onClose, onNavigat
                     language={i18n.resolvedLanguage}
                     messages={messages}
                     getPlayerCard={playerCard}
-                    onAskGoal={askInConversation}
-                    onOpenConversation={() => setTab("conversation")}
                   />
                 </div>
 
@@ -485,6 +493,7 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const reduced = useReducedMotion();
+  const airPx = useCrystalPx();
 
   const [model, dispatch] = useReducer(instrumentReduce, enabled, instrumentModel);
   const raised = isRaised(model);
@@ -493,6 +502,7 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
   const [rise, setRise] = useState({ dx: 0, dy: 0, panelDy: 0 });
   const [announce, setAnnounce] = useState("");
   const [arcRadius, setArcRadius] = useState(ARC_RADIUS_MAX);
+  const [inkRequest, setInkRequest] = useState<InkRequest | null>(null);
 
   const glyphRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -520,7 +530,9 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
     dispatch({ type: "gate", enabled });
   }, [enabled]);
 
-  const openInstrument = useCallback(() => {
+  // Opening always lands on the five bodies; a face opens only by tapping its body (WP8 polish). The one
+  // exception is a direct visit to Your AI (`openAt`), which is asking for that face by name.
+  const openInstrument = useCallback((face?: ElementKey) => {
     returnFocusRef.current = document.activeElement instanceof HTMLElement && document.activeElement !== document.body
       ? document.activeElement : null;
     // The crystal rises from where the glyph is to the middle of the screen.
@@ -534,11 +546,13 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
       });
     }
     setArcRadius(Math.max(96, Math.min(ARC_RADIUS_MAX, (window.innerWidth - 84) / 2)));
+    // Whatever face was used last is forgotten: the next open starts from air's mounted conversation, never a stale face.
+    lastFaceRef.current = face ?? "air";
     dispatch({ type: "open" });
-    dispatch({ type: "face", element: "air" });
+    if (face) dispatch({ type: "face", element: face });
   }, []);
   useEffect(() => {
-    if (openAt !== undefined) openInstrument();
+    if (openAt !== undefined) openInstrument("air");
   }, [openAt, openInstrument]);
 
   const closeInstrument = useCallback(() => dispatch({ type: "close" }), []);
@@ -630,6 +644,12 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
     [closeInstrument, navigate],
   );
 
+  // The ether face: close the instrument, then one ink line to the glowing place (`InkLine.tsx`).
+  const showWay = useCallback(() => {
+    closeInstrument();
+    setInkRequest({ nonce: nextInkNonce() });
+  }, [closeInstrument]);
+
   if (!enabled || model.state === "hidden" || typeof document === "undefined") return null;
 
   const bodies = VILLAGE_ELEMENTS.filter((e) => e.key !== "air");
@@ -668,6 +688,8 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
           if (!raised) openInstrument();
         }}
       />
+      {/* The ink line (WP5): never shown by default; drawn on the ether face's choice, offered when the player seems lost. */}
+      <InkGuide raised={raised} reduced={reduced} request={inkRequest} />
       {/* The body-lit ritual (WP2) and the breath on open and close: queued, plays at a calm moment, never over a module form. */}
       <InstrumentRitual enabled={enabled} ownerId={ownerId} lit={lit} raised={raised} />
       {/* One short line on open and on close, for screen readers. */}
@@ -687,18 +709,18 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
           className="fixed inset-0 z-[82] outline-none"
           {...inertProps(!raised)}
         >
-          {/* The live world stays visible through the scrim. */}
+          {/* The live world stays visible through the scrim. Layers are explicit: scrim 0 (haze on the world only), stage 10, face panel 20 (full brightness). */}
           <div
             aria-hidden="true"
             data-testid="instrument-scrim"
             onClick={closeInstrument}
-            className="absolute inset-0"
+            className="absolute inset-0 z-0"
             style={{ backgroundColor: DIM, backdropFilter: "blur(6px)", opacity: shown ? 1 : 0, transition: `opacity ${moveMs}ms ${EASE}` }}
           />
 
           {/* The stage: the crystal at the middle of the screen, the bodies in an arc above it. */}
           <div
-            className="pointer-events-none absolute left-1/2"
+            className="pointer-events-none absolute left-1/2 z-10"
             style={{ top: `${STAGE_Y * 100}%`, width: 0, height: 0 }}
             {...inertProps(inFace)}
           >
@@ -710,9 +732,9 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
               data-testid="instrument-body-air"
               className="pointer-events-auto absolute flex flex-col items-center gap-1.5 rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-[#bcd7e6]"
               style={{
-                left: -AIR_PX / 2,
-                top: -AIR_PX / 2,
-                width: AIR_PX,
+                left: -airPx / 2,
+                top: -airPx / 2,
+                width: airPx,
                 opacity: inFace ? 0 : 1,
                 transformOrigin: "center",
                 // The crystal rises from the glyph and turns one face to the player.
@@ -720,7 +742,7 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
                 transition: `transform ${reduced ? 0 : moveMs}ms ${EASE}, opacity ${reduced ? OPEN_REDUCED_MS : 300}ms ${EASE}`,
               }}
             >
-              <AirOctahedron size={AIR_PX} still reduced={reduced} />
+              <AirOctahedron size={airPx} still reduced={reduced} />
               <span className={label} style={{ ...labelStyle, marginTop: -6 }}>
                 {t("instrument.body.air")} · {t("instrument.face.air")}
               </span>
@@ -778,8 +800,8 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
           {FaceComponent && (
             <div
               className={airFace
-                ? "pointer-events-none absolute inset-0 grid place-items-center"
-                : "pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+10.25rem)] top-3 flex items-end justify-end sm:inset-x-6 sm:bottom-[12.25rem]"}
+                ? "pointer-events-none absolute inset-0 z-20 grid place-items-center"
+                : "pointer-events-none absolute inset-x-3 bottom-[calc(max(1rem,env(safe-area-inset-bottom))+10.25rem)] top-3 z-20 flex items-end justify-end sm:inset-x-6 sm:bottom-[12.25rem]"}
               style={airFace ? {
                 "--your-ai-rise-x": `${rise.dx}px`,
                 "--your-ai-rise-y": `${rise.panelDy}px`,
@@ -795,6 +817,7 @@ const YourAiInstrument = ({ enabled, openAt, ownerId, lit, avoid }: Props) => {
                 active={shown && inFace}
                 onBack={() => dispatch({ type: "back" })}
                 onClose={closeInstrument}
+                onShowWay={showWay}
                 onNavigate={goTo}
               />
             </div>

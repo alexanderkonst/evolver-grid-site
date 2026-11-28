@@ -1,4 +1,4 @@
-# Cult companion interfaces for Your AI: integral holonic synthesis (v0)
+# Cult companion interfaces for My AI: integral holonic synthesis (v0)
 
 2026-11-25 · Status: draft for Sasha (Aleksandr Konstantinov) · Template: [integral-synthesis](../../../templates/integral-synthesis.md) · Evidence grades A/B/C as in [Mechanic Transplant, rule 1](../iconic-mechanics/template.md)
 Corpus: 18 exemplars in 4 clusters (§A) · Invariants: 7 core (§B) · Keeper: Evolver (Hark)
@@ -10,13 +10,13 @@ Deviation from the template, stated once: this is a v0 run by one keeper in one 
 ---
 
 ## The whole in one sentence
-**Your AI is a living crystal you consult: every state it has shows in the crystal itself, and its words surface from inside the crystal, so the object, not a chat window, is the interface.**
+**My AI is a living crystal you consult: every state it has shows in the crystal itself, and its words surface from inside the crystal, so the object, not a chat window, is the interface.**
 
 ---
 
 ## 0. Frame: the target and why it reads as SaaS today
 
-**Target whole.** Your AI, the air face of the carried navigation instrument (GoBY §25.10, §25.14: air, octahedron, mind). Closed: a glass octahedron glyph bottom right, with lit quarters inside and a water ring with today's moon (`InstrumentGlyph.tsx`). Open: the crystal rises, the world dims and stays live, the air face opens a panel being enlarged to about 92% of the screen (full screen on mobile) with two tabs, Conversation and Console (the five-step Phoenix chain). Canon law: near-black, one ice-blue accent, physical materials, no glow rings (GoBY §5, quoted in `YourAiInstrument.tsx` header); smooth everywhere, an ancient mystical instrument (§25.11); the 3-second test (§25.12). Protected and out of scope: reveal, intro, themes, title, entry. Your AI never sends a player to an outside AI (§25.10).
+**Target whole.** My AI, the air face of the carried navigation instrument (GoBY §25.10, §25.14: air, octahedron, mind). Closed: a glass octahedron glyph bottom right, with lit quarters inside and a water ring with today's moon (`InstrumentGlyph.tsx`). Open: the crystal rises, the world dims and stays live, the air face opens a panel being enlarged to about 92% of the screen (full screen on mobile) with two tabs, Conversation and Console (the five-step Phoenix chain). Canon law: near-black, one ice-blue accent, physical materials, no glow rings (GoBY §5, quoted in `YourAiInstrument.tsx` header); smooth everywhere, an ancient mystical instrument (§25.11); the 3-second test (§25.12). Protected and out of scope: reveal, intro, themes, title, entry. My AI never sends a player to an outside AI (§25.10).
 
 **What reads as SaaS in today's code** (facts from `YourAiInstrument.tsx`, `AirOctahedron.tsx`, main branch 2026-11-25):
 1. The moment the panel opens, the crystal disappears into a header and stops: `AirOctahedron` stops its loop "when the panel is open". The living object hands over to a generic card.
@@ -120,7 +120,7 @@ Gaps: no core invariant rests on C alone. I1's "breathing" element is C, but I1 
 
 ## 1. Organizing principle
 
-**Your AI is a living crystal you consult: every state shows in the crystal itself, and its words surface from inside it, so the object, not a chat window, is the interface.**
+**My AI is a living crystal you consult: every state shows in the crystal itself, and its words surface from inside it, so the object, not a chat window, is the interface.**
 
 Rules out: chat bubbles, spinners or italic status words separate from the crystal, avatars and faces, app chrome around the object, holographic data walls, and any path that sends the player to another AI.
 
@@ -198,7 +198,7 @@ All deltas are CSS and SVG, plus the existing 2D canvas. No WebGL: the 2D canvas
 | Δ8 | Glass-over-dark surface | L2 | `#0b0e13` card, shadow | Panel at rgba(11,14,19,0.86) over the already blurred world, 1px hairline, one engraved arc at the top echoing the water ring; no shadow, no glow | §5 | no |
 | Δ9 | Close folds into the crystal | L5 | reverse of open | Same iris reversed into the crystal's position, then the crystal flies home (already). Deferred: a one-frame glint in the glyph when it lands | §25.10 | no (deferred) |
 
-Packages: **P1 Living crystal** (Δ1, Δ3, Δ4), **P2 Oracle surface** (Δ2, Δ7, Δ8), **P3 Rite** (Δ6, Δ9), **P4 Dial** (Δ5). Each lands as one @claude issue in `evolver-grid-site` under the Your AI SoW (`docs/specs/your-ai-instrument/sow.md`); P1 and P2 first, they carry most of the shift.
+Packages: **P1 Living crystal** (Δ1, Δ3, Δ4), **P2 Oracle surface** (Δ2, Δ7, Δ8), **P3 Rite** (Δ6, Δ9), **P4 Dial** (Δ5). Each lands as one @claude issue in `evolver-grid-site` under the My AI SoW (`docs/specs/your-ai-instrument/sow.md`); P1 and P2 first, they carry most of the shift.
 
 Risk at 92%: a large panel invites more chrome and turns into a full-screen chat app. The crystal-on-top rule (Δ1) and the detail budget (§3) are what keep the large size an instrument.
 
@@ -244,7 +244,7 @@ Sources used beyond the table: Vohs et al. 2013 https://pubmed.ncbi.nlm.nih.gov/
 - **Returning after two weeks:** sees the same crystal with a name and lit quarters: continuity (I5) is the hook.
 - **Phone:** full screen means the crystal must stay small (≤ 72 px) so the answer has room; input fixed to the bottom with safe-area padding.
 - **Power user:** wants history. Older exchanges stay scrollable, just lower contrast.
-- **Arriving from a shared link mid-world:** the glyph is the only Your AI element visible; nothing else to learn.
+- **Arriving from a shared link mid-world:** the glyph is the only My AI element visible; nothing else to learn.
 - **Meta-roast:** the biggest risk is building P3 and P4 (pretty) before P1 and P2 (the actual shift). Order is P1, P2, then P3, P4.
 
 ## Genealogy

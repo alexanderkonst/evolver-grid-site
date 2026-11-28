@@ -38,6 +38,31 @@ export const TILT_BEAT_RAD_PER_SEC = (Math.PI * 2) / 61;
 /** The roll drifts on a third beat. */
 export const ROLL_BEAT_RAD_PER_SEC = (Math.PI * 2) / 83;
 
+/**
+ * How visible the solid is. Sasha, 2026-11-27: the facets should read as clear air, almost unnoticeable.
+ * Face fills and edge strokes are about a third of what #458 drew; the refraction gradient stays (it is the
+ * object's own light), and nothing glows.
+ */
+export const FACE_ALPHA_SCALE = 0.33;
+export const EDGE_ALPHA_FRONT = 0.3;
+export const EDGE_ALPHA_BACK = 0.11;
+export const EDGE_WIDTH_FRONT = 1.1;
+export const EDGE_WIDTH_BACK = 0.8;
+
+/**
+ * The raised crystal's size on the stage (CSS px): a share of the shorter viewport side, clamped, so it
+ * holds its place from a small phone to a large desktop. Edge widths are fixed px, so it never goes
+ * below `CRYSTAL_MIN_PX`; the bodies' arc (radius 96 to 140) stays clear of it at `CRYSTAL_MAX_PX`.
+ */
+export const CRYSTAL_SHARE = 0.21;
+export const CRYSTAL_MIN_PX = 120;
+export const CRYSTAL_MAX_PX = 168;
+export const crystalPx = (vw: number, vh: number): number => {
+  const short = Math.min(vw, vh);
+  if (!Number.isFinite(short) || short <= 0) return CRYSTAL_MIN_PX;
+  return Math.round(Math.min(CRYSTAL_MAX_PX, Math.max(CRYSTAL_MIN_PX, short * CRYSTAL_SHARE)));
+};
+
 /** Performance budget: the loop draws at most this many frames per second. */
 export const MAX_FPS = 30;
 export const FRAME_MS = 1000 / MAX_FPS;

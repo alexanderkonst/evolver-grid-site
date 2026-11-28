@@ -28,6 +28,8 @@ async function openConsole(page: Page) {
   await glyph.click();
   await expect(page.getByRole("dialog", { name: "Your instrument" })).toBeVisible();
   await page.waitForTimeout(800);
+  // The instrument opens on the five bodies; Your AI is the air body.
+  await page.getByTestId("instrument-body-air").click();
   await page.getByRole("tab", { name: "Console" }).click();
   await expect(page.getByTestId("console-panel")).toBeVisible();
 }
@@ -105,7 +107,7 @@ test("a suggestion replies in place and the conversation survives reload", async
   await openConsole(page);
   await page.getByRole("tab", { name: "Conversation" }).click();
   const originalUrl = page.url();
-  const input = page.getByRole("textbox", { name: "Write to Your AI…" });
+  const input = page.getByRole("textbox", { name: "Write to My AI…" });
   await expect(page.getByText("20 turns left today")).toBeVisible();
   await input.fill("I could use a way to settle.");
   await input.press("Enter");
@@ -118,7 +120,9 @@ test("a suggestion replies in place and the conversation survives reload", async
 
   await page.reload();
   await page.getByTestId("instrument-glyph").click();
+  await expect(page.getByRole("dialog", { name: "Your instrument" })).toBeVisible();
   await page.getByTestId("instrument-body-air").click();
+  await page.getByRole("tab", { name: "Conversation" }).click();
   await expect(page.getByRole("log")).toContainText("Breathwork and activations");
   await expect(page.getByRole("log")).toContainText("Let's start with one breath.");
   await expect(page.getByText("18 turns left today")).toBeVisible();

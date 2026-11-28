@@ -8,7 +8,7 @@ import unittest
 HERE = os.path.dirname(os.path.abspath(__file__))
 INF = os.path.dirname(HERE)
 sys.path.insert(0, INF)
-from kit import book_build, book_sync, compare, lint, skins, spec as specmod  # noqa: E402
+from kit import asis, book_build, book_sync, compare, lint, render, skins, spec as specmod  # noqa: E402
 
 
 class Fake:
@@ -161,30 +161,119 @@ class RenderedCards(unittest.TestCase):
             self.assertLess(mean, 0.5, cid)
 
 
-class AppIcons(unittest.TestCase):
-    ids = ("potential", "crossing", "vision", "nature", "your-ai")
+V2_APPS = ("potential", "crossing", "vision", "nature", "my-ai")
 
-    def test_every_icon_passes_lint_and_ships_1024_and_128(self):
+
+class IconLintV2(unittest.TestCase):
+    """Icons v2 (issue #528): one silhouette, <= 4 shapes, all on 'after', ~70% of the tile, one stroke weight."""
+    def v2(self, log):
+        spec = specmod.Spec(ICON_SPEC, icon_version=2)
+        return {r: (ok, d) for r, ok, d in lint.check_icon(IconFake(log), spec)}
+
+    def part(self, **kw):
+        base = dict(kind="dot", role="body", bbox=(160, 160, 880, 880), color=(200, 210, 222), container=None, side="after",
+                    stroke=100, geom=("disc", 512, 512, 360), group=None)
+        return {**base, **kw}
+
+    def good(self):
+        return [self.part(), self.part(color=NEON, bbox=(450, 450, 550, 550))]
+
+    def test_clean_v2_icon_passes_every_v2_rule(self):
+        r = self.v2(self.good())
+        self.assertEqual([k for k, (ok, _) in r.items() if not ok], [])
+        self.assertEqual(set(r), set(lint.ICON_V2_RULES))
+
+    def test_five_shapes_fail_but_a_group_counts_once(self):
+        five = self.good() + [self.part() for _ in range(3)]
+        ok, detail = self.v2(five)["elements"]
+        self.assertFalse(ok); self.assertIn("5 shapes", detail)
+        grouped = self.good() + [self.part(group="nodes") for _ in range(4)]
+        self.assertTrue(self.v2(grouped)["elements"][0])
+
+    def test_a_before_side_or_a_chevron_fails(self):
+        self.assertFalse(self.v2(self.good() + [self.part(side="before")])["elements"][0])
+        self.assertFalse(self.v2(self.good() + [self.part(side="mid")])["elements"][0])
+
+    def test_the_sign_must_fill_about_70_percent(self):
+        small = [self.part(bbox=(400, 400, 600, 600)), self.part(color=NEON, bbox=(450, 450, 550, 550))]
+        ok, detail = self.v2(small)["fill"]
+        self.assertFalse(ok); self.assertIn("20%", detail)
+        big = [self.part(bbox=(80, 80, 944, 944)), self.part(color=NEON, bbox=(450, 450, 550, 550))]
+        self.assertFalse(self.v2(big)["fill"][0])
+
+    def test_every_line_and_ring_has_the_one_weight(self):
+        from kit import icon
+        ln = self.part(kind="ln", stroke=icon.WEIGHT)
+        self.assertTrue(self.v2(self.good() + [ln])["weight"][0])
+        ok, detail = self.v2(self.good() + [dict(ln, stroke=icon.WEIGHT - 8)])["weight"]
+        self.assertFalse(ok); self.assertIn(f"{icon.WEIGHT - 8}px", detail)
+
+
+class AppIconsV6(unittest.TestCase):
+    """Icons v6 (issue #559): five apps x four themes as finished PNGs in `apps/v6/`; the v1-v3 files are gone."""
+    ids = V2_APPS
+    themes = ("lunar", "lapis", "aurum", "grayscale")
+
+    def spec(self, i):
+        return specmod.load(os.path.join(INF, "apps", f"{i}.card.yaml"))
+
+    def test_five_specs_pass_the_v6_lint_and_ship_1024_and_128_for_every_theme(self):
         from PIL import Image
         for i in self.ids:
-            path = os.path.join(INF, "apps", f"{i}.card.yaml")
-            cid, rows = lint.lint_spec(path)
+            cid, rows = lint.lint_spec(os.path.join(INF, "apps", f"{i}.card.yaml"))
             self.assertEqual([r for r in rows if r[1] != "PASS"], [], cid)
-            self.assertEqual([r[0] for r in rows], list(lint.ICON_RULES), cid)
-            self.assertEqual(Image.open(os.path.join(INF, "apps", f"{i}.png")).size, (1024, 1024), i)
-            self.assertEqual(Image.open(os.path.join(INF, "apps", f"{i}@128.png")).size, (128, 128), i)
+            self.assertEqual([r[0] for r in rows], list(lint.ICON_V6_RULES), cid)
+            for t in self.themes:
+                entry = self.spec(i)["themes"][t]
+                self.assertEqual(Image.open(os.path.join(INF, "apps", entry["png"])).size, (1024, 1024), (i, t))
+                self.assertEqual(Image.open(os.path.join(INF, "apps", entry["png128"])).size, (128, 128), (i, t))
 
-    def test_a_thin_icon_fails_through_the_real_renderer(self):
+    def test_the_taglines_are_kept_your_ai_is_my_ai_and_no_v3_files_remain(self):
+        import glob
+        specs = {i: self.spec(i) for i in self.ids}
+        self.assertEqual({s["icon_version"] for s in specs.values()}, {6})
+        self.assertEqual({i: s["caption"] for i, s in specs.items()}, {
+            "potential": "Accelerates The Unfolding of Your Potential", "crossing": "Reconciles Consciousness with Science",
+            "vision": "Activates Your Inner Vision", "nature": "Aligns You With Natural Rhythms", "my-ai": "Sets Up My AI"})
+        self.assertEqual(specs["my-ai"]["title"], "My AI")
+        self.assertFalse(os.path.exists(os.path.join(INF, "apps", "your-ai.card.yaml")))
+        left = [os.path.basename(p) for p in glob.glob(os.path.join(INF, "apps", "*")) if os.path.isfile(p)
+                and os.path.basename(p).endswith((".py", ".png")) and not os.path.basename(p).startswith("sheet")]
+        self.assertEqual(left, [])
+
+    def test_the_site_copies_in_public_match_the_kit_files_byte_for_byte(self):
+        pub = os.path.join(INF, "..", "..", "..", "public", "apps", "icons")
+        for i in self.ids:
+            for t in self.themes:
+                entry = self.spec(i)["themes"][t]
+                for key, name in (("png", f"{i}-{t}.png"), ("png128", f"{i}-{t}@128.png")):
+                    with open(os.path.join(INF, "apps", entry[key]), "rb") as a, open(os.path.join(pub, name), "rb") as b:
+                        self.assertEqual(a.read(), b.read(), name)
+
+    def test_ci_skips_the_render_and_the_sheet_shows_the_lunar_png(self):
+        from kit import ci
+        s = ci._sheet_spec(self.spec("potential"))
+        self.assertTrue(s.png.endswith(os.path.join("v6", "potential-lunar.png")))
+        self.assertTrue(os.path.exists(s.png))
+        self.assertEqual(s["id"], "potential")
+
+    def test_a_missing_theme_or_a_wrong_size_fails(self):
         with tempfile.TemporaryDirectory() as tmp:
-            for ext in (".card.yaml", ".py"):
-                with open(os.path.join(INF, "apps", "potential" + ext), encoding="utf-8") as f:
-                    body = f.read()
-                if ext == ".py":
-                    body = body.replace("c.ring(I.BEFORE_X, 512, 160, 48,", "c.ring(I.BEFORE_X, 512, 160, 30,")
-                with open(os.path.join(tmp, "thin" + ext), "w", encoding="utf-8") as f:
-                    f.write(body.replace("id: potential", "id: thin"))
-            _, rows = lint.lint_spec(os.path.join(tmp, "thin.card.yaml"))
-            self.assertEqual([r[0] for r in rows if r[1] == "FAIL"], ["stroke"])
+            os.makedirs(os.path.join(tmp, "v6"))
+            from PIL import Image
+            for t in self.themes[:3]:
+                Image.new("RGB", (1024, 1024)).save(os.path.join(tmp, "v6", f"x-{t}.png"))
+                Image.new("RGB", (64, 64)).save(os.path.join(tmp, "v6", f"x-{t}@128.png"))
+            body = {"id": "x", "kind": "icon", "icon_version": 6, "chapter": "apps", "title": "X", "caption": "C", "skin": "v4",
+                    "text": {"shape": "s"}, "sources": ["s"],
+                    "themes": {t: {"png": f"v6/x-{t}.png", "png128": f"v6/x-{t}@128.png"} for t in self.themes}}
+            import yaml
+            with open(os.path.join(tmp, "x.card.yaml"), "w", encoding="utf-8") as f:
+                yaml.safe_dump(body, f)
+            _, rows = lint.lint_spec(os.path.join(tmp, "x.card.yaml"))
+            failed = {r[0]: r[2] for r in rows if r[1] == "FAIL"}
+            self.assertIn("grayscale", failed["themes"])
+            self.assertIn("64x64", failed["size"])
 
 
 class BookSync(unittest.TestCase):
@@ -343,6 +432,99 @@ class BookBuild(unittest.TestCase):
         book_build.build(self.paths, say=out.append)
         self.assertIn("rendered 1 of 2 card(s)", "\n".join(out))
         self.assertEqual(book_build.check(self.paths, say=lambda *_: None), 0)
+
+
+AS_IS_SPEC = """id: asis-01
+chapter: "2.1"
+kind: as_is
+source: asis-01.source.jpeg
+title: "Drawn By Hand"
+caption: "Shown exactly as drawn."
+text:
+  words: ["Myth", "Threshold"]
+sources:
+  - issue #563
+"""
+
+
+class AsIs(unittest.TestCase):
+    """`kind: as_is`: the card is the author's picture; the build converts it to PNG and never restyles it."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        r = self.tmp.name
+        os.makedirs(os.path.join(r, "book", "hand")); os.makedirs(os.path.join(r, "public"))
+        from PIL import Image
+        import numpy as np
+        rng = np.random.default_rng(7)
+        self.src = os.path.join(r, "book", "hand", "asis-01.source.jpeg")
+        Image.fromarray(rng.integers(0, 256, (90, 120, 3), dtype=np.uint8)).save(self.src, quality=90)  # 120x90, not a kit size
+        self.spec_path = os.path.join(r, "book", "hand", "asis-01.card.yaml")
+        self.write_spec(AS_IS_SPEC)
+        self.paths = book_build.Paths(book=os.path.join(r, "book"), public=os.path.join(r, "public"),
+                                      ts=os.path.join(r, "infographicBook.ts"), md=os.path.join(r, "BOOK.md"))
+        with open(os.path.join(self.paths.book, "book.yaml"), "w", encoding="utf-8") as f:
+            f.write('title: T\nchapters:\n  - number: "2"\n    title: Part\n    sections:\n      - number: "2.1"\n'
+                    '        title: First\n        cards:\n          - {id: asis-01, spec: hand/asis-01.card.yaml, status: approved v1}\n')
+        with open(self.paths.md, "w", encoding="utf-8") as f:  # BOOK.md lists the card, as the real one does
+            f.write(BOOKMD + "<!-- book:begin cards-hand -->\nold\n<!-- book:end cards-hand -->\n")
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def write_spec(self, text):
+        with open(self.spec_path, "w", encoding="utf-8") as f:
+            f.write(text)
+
+    def test_the_png_has_the_source_pixels_and_nothing_else(self):
+        import numpy as np
+        from PIL import Image
+        out = os.path.join(self.tmp.name, "out.png")
+        asis.build_png(specmod.load(self.spec_path), out)
+        a, b = Image.open(self.src), Image.open(out)
+        self.assertEqual((b.format, b.size, b.mode), ("PNG", a.size, a.mode))  # no resize, no crop, no footer band
+        self.assertTrue((np.asarray(a) == np.asarray(b)).all())
+
+    def test_lint_checks_the_file_and_the_words_only(self):
+        spec = specmod.load(self.spec_path)
+        self.assertTrue(asis.is_as_is(spec))
+        self.assertEqual([r for r in asis.check(spec) if not r[1]], [])  # no skin, no footer, no word limit
+        self.assertEqual(asis.missing(spec), [])
+        os.remove(self.src)
+        self.assertIn("source-file", [r for r, ok, _ in asis.check(spec) if not ok])
+        self.write_spec(AS_IS_SPEC.replace('title: "Drawn By Hand"\n', "").replace('caption: "Shown exactly as drawn."\n', ""))
+        self.assertEqual(sorted(asis.missing(specmod.load(self.spec_path))), ["caption", "title"])
+        self.write_spec(AS_IS_SPEC.replace("source: asis-01.source.jpeg", "source: ../elsewhere.jpeg"))
+        self.assertTrue(any(m.startswith("source") for m in asis.missing(specmod.load(self.spec_path))))
+        self.assertEqual(lint.lint_spec(self.spec_path)[1][0][1], "FAIL")  # same spec, bad source: lint fails, does not crash
+
+    def test_lint_spec_passes_a_good_as_is_card(self):
+        cid, rows = lint.lint_spec(self.spec_path)
+        self.assertEqual(cid, "asis-01")
+        self.assertEqual({s for _, s, _ in rows}, {"PASS"}, rows)
+
+    def test_book_build_copies_checks_and_notices_a_changed_source(self):
+        out = []
+        self.assertEqual(book_build.build(self.paths, say=out.append), 0, out)
+        png = os.path.join(self.paths.book, "hand", "asis-01.png")
+        pub = os.path.join(self.paths.public, "hand", "asis-01.png")
+        self.assertTrue(os.path.exists(png) and os.path.exists(pub))
+        self.assertEqual(book_build._sha(png), book_build._sha(pub))
+        self.assertIn("asis-01", book_build.read_lock(self.paths)["cards"])
+        self.assertEqual(book_build.check(self.paths, say=out.append), 0, out)
+        from PIL import Image
+        Image.new("RGB", (120, 90), (1, 2, 3)).save(self.src, quality=90)  # the author redraws it
+        self.assertNotEqual(book_build.check(self.paths, skip_lint=True, say=lambda *_: None), 0)
+        out = []
+        self.assertEqual(book_build.build(self.paths, say=out.append), 0, out)
+        self.assertIn("rendered 1 of 1 card(s)", "\n".join(out))
+        self.assertEqual(book_build.check(self.paths, say=lambda *_: None), 0)
+
+    def test_a_missing_source_stops_the_build(self):
+        os.remove(self.src)
+        out = []
+        self.assertNotEqual(book_build.build(self.paths, say=out.append), 0)
+        self.assertTrue(any("source-file" in l for l in out), out)
 
 
 class CaptionSize(unittest.TestCase):

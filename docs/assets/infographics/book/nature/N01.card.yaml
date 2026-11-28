@@ -1,0 +1,27 @@
+# Nature mini-training, episode card N01 (kit v4, 2026-11-27). Not in book/book.yaml (like the ADP series). Issue #550.
+id: N01
+chapter: "1"
+number: 1
+of: 12
+title: "Nothing Is Wrong With You"
+caption: "Some days you can't push, and it isn't a flaw."
+skin: v4
+caption_size: 30
+text:
+  eyebrow: "Nature · Intro"
+  label: "practice"
+  degrees:
+    - {n: first, name: unconscious}
+    - {n: second, name: conscious}
+    - {n: third, name: collaboration}
+  rhythms:
+    - {name: year}
+    - {name: moon}
+    - {name: week}
+    - {name: day}
+  from: slowest
+  to: closest
+sources:
+  - docs/08-content/nature_mini_training.md (section 6, N01; section 4 table)
+  - docs/04-products/equilibrium_user_manual.md (Three Degrees)
+  - issue #550 (title and Promise line verbatim; terms of changelog 0.4: Moon, seven classical planets, out-of-sync → in-sync)

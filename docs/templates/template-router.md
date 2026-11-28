@@ -9,7 +9,7 @@
 - **What emerges:** artifacts of one shape across all agents; every lesson lands in one template and reaches every future use
 - **As a part of the whole:** the load-bearing joint of the architecture. Templates are the MODULE layer (methodology); the router is the `//` that connects any task to its module, so the methodology reaches the PROMPT layer (agents) without Sasha in the loop
 - **Siblings:** [README.md](./README.md) (full inventory, source of truth for what exists), [holonic-prism.md](./holonic-prism.md) (the prism every template stands on), `CLAUDE.md` §Templates first, Hark specialty `templates-first` (points to this file)
-- **Status · last reviewed:** v1.4 · 2026-11-25 (site-routing-change row; qa-pass row; Result + Phase Shift Technology columns since v1.2, 2026-11-19)
+- **Status · last reviewed:** v1.5 · 2026-11-26 (course-landing and course-update rows; site-routing-change and qa-pass rows 2026-11-25; Result + Phase Shift Technology columns since v1.2, 2026-11-19)
 
 ## Through the prism
 - **Essence:** a switch between "what is asked" and "the form that already knows how to do it".
@@ -37,22 +37,27 @@
 | Direction call / $555 session / recognition ritual | [session-script.md](./session-script.md) | A session that ends in clear direction | 125 The Social Physics of the Mirror |
 | @claude issue, agent spec, bug-fix PR or PR comment | [spec-handoff.md](./spec-handoff.md) | A spec any agent builds right the first time | Craft (nearest 115) |
 | Rename, move or add a village place, a room or a site route (Workshop → Collective, new building, moved page) | [site-routing-change.md](./site-routing-change.md) | A place renamed or moved in one pass, nothing left pointing at the old one | Craft (nearest 115) |
+| Testing and QA of anything (a PR, a feature, a release, a template): check it against its etalon chain, measure with machines, outsiders and people, close every deviation into a correction | [calibration.md](./calibration.md) (children: qa-pass, roasting) | «Сверить с эталоном» | Craft (nearest 115) |
 | QA of a screen or module against its spec / DoD: viewports, a11y, reduced motion, overlaps, regressions; what code asserts vs what an agent judges | [qa-pass.md](./qa-pass.md) (code in `e2e/`) | A screen checked at three widths, row by row | Craft (nearest 115) |
 | Building a whole product from a proven session (product → architecture → UI → code) | `docs/03-playbooks/integrated_product_building_workflow.md` (IPB) | A proven session turned into a product | 83 The Integrated Founder Stack (candidate) |
 | Audit of modules against the form | [module-form.md](./module-form.md) §9 + §12.6 | Every module checked against the form | 81 The Specificity Loop |
 | Reflection after a client session | [session-reflection.md](./session-reflection.md) | What the session really showed | Craft (candidate shift in template) |
 | Measuring a client's transformation | [transformation-results.md](./transformation-results.md) | Your change, measured in your own words | 185 The Visible Shift |
-| Critique / next version of anything | [roasting.md](./roasting.md) | The next, stronger version | 93 Vision ↔ Viability Balancing |
+| Critique / next version of anything | [roasting.md](./roasting.md) | «увидеть потенциал для роста!» (see the potential for growth) | 93 Vision ↔ Viability Balancing |
 | Long build: plan → ship → report → retro | [improvement-loop.md](./improvement-loop.md) | Shipped, reported, learned from | 161 The Hexagon Cycle |
 | Mini-course from a body of work | [course-from-source.md](./course-from-source.md) | A mini-course from your body of work | 57 Campfire Networking |
+| Landing page of a course / mini-training (`/academy/<slug>`): its sections, voice, links to and from it | [course-landing.md](./course-landing.md) | A course page that names the promise and opens the course in one click | 173 Sell the Shift, Not the Content (candidate) |
+| Update a living mini-training with a new source: insights signed by Sasha → infographic → micro-module → code → version bump | [course-update.md](./course-update.md) | A mini-training that grows with every source, nothing unsigned | 40 The Recursive Proof (proposed) · also 117, 187, 154 |
 | Integrate a source on the stream (link, essay, paper, book, course, conversation): graph with authorship, use decided | [source-integration.md](./source-integration.md) | Any source woven into what you know | 117 The Learning Ledger and the Meta-Game (candidate) |
 | Testimonial clips from calls | [testimonial-clips.md](./testimonial-clips.md) | Clients saying it in their own words | 155 Testimony Frequency |
 | Meaning of a name or surname | [name-vibration.md](./name-vibration.md) | The original energy of your name | New, not yet in the library (candidate) |
 | Grant / fellowship / accelerator application | [application-loop.md](./application-loop.md) | An application in your true voice | 93 Vision ↔ Viability Balancing |
 | One unified reading from all positions | [holonic-seeing.md](./holonic-seeing.md) | One reading from every position | 15 Complete Seeing Guaranteed · 66 The 27th Perspective |
 | Any change of a client's amount (offered / agreed / superseded / received / rolled back): every place it lives, in order, then one grep | private ledger: `docs/templates/money-change-checklist.md` (evolver-private-ledger; client names and money stay private) | One amount, the same everywhere | Craft (nearest 115) |
-| Synthesize one domain across many exemplars (navigation, onboarding, progression…): take it apart, find the task invariants by common denominator, keep the proven solutions, reassemble one whole without overload | [integral-synthesis.md](./integral-synthesis.md) | One whole, built from what works everywhere | 98 Prime Invariant Branding · 82 Linguistic Synthesis (candidate) |
+| Synthesize one domain across many exemplars (navigation, onboarding, progression…): take it apart, find the task invariants by common denominator, keep the proven solutions, reassemble one whole without overload | [integral-synthesis.md](./integral-synthesis.md) | Wholeness («Цельность») | 98 Prime Invariant Branding · 82 Linguistic Synthesis (candidate) |
 | Simplify a screen or interface by testing and cutting until it gets out of the way | [subtraction-loop.md](./subtraction-loop.md) | An interface a first-timer gets in seconds | 115 Articulation Is the Mechanism of Growth (candidate) |
 | Anything else / a new template | [meta-template.md](./meta-template.md), then [README.md](./README.md) | A new form for a new kind of work | Craft (nearest 115) |
+
+**Trace line (Meta-Template v3, 2026-11-26):** every artifact made by a template carries `Template: <name> vN · Version: vX.Y · Shift check: yes / no / unknown`, and every finished work ends with «Template change: …» or «none» ([meta-template.md](./meta-template.md) Core v3).
 
 Every report to Sasha shows the result with one clickable link, never only "done" ([improvement-loop.md](./improvement-loop.md) §3).

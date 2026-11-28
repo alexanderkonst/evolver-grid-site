@@ -21,12 +21,16 @@ test.describe("#524 · courses in panel 2, store in panel 3", () => {
     await shot(page, info, "course-store");
   });
 
-  test("panel 2 lists the courses (where the sections panel is on screen)", async ({ page }) => {
-    await openGuest(page, store);
-    const panel = page.locator('nav[aria-label$=" path"]');
-    test.skip(!(await panel.isVisible()), "the sections panel is closed on this viewport");
-    await expect(panel.getByRole("link", { name: "Courses" })).toBeVisible();
-    await expect(panel.locator('a[href="/academy/activate-your-dormant-potential"]').first()).toBeVisible();
+  test("panel 2 lists the courses and its first sub-row opens the store (where the sections panel is on screen)", async ({ page }) => {
+    await openGuest(page, "/game/learn");
+    // Two copies exist (the desktop panel and the mobile drawer); only the one on screen counts.
+    const panel = page.locator('nav[aria-label$=" path"]:visible').first();
+    test.skip((await page.locator('nav[aria-label$=" path"]:visible').count()) === 0, "the sections panel is closed on this viewport");
+    // «Courses» is a row with sub-rows: its first sub-row opens the store, the rest are the courses.
+    await panel.getByText("Courses", { exact: true }).click(); // expands the row
+    await expect(panel.getByRole("link", { name: /Your Unfolding Potential/ })).toBeVisible();
+    await panel.getByRole("link", { name: /All courses/ }).click();
+    await expect(page).toHaveURL(/\/game\/learn\/courses$/);
   });
 
   test("level and category chips filter the tiles client-side", async ({ page }) => {
@@ -41,7 +45,10 @@ test.describe("#524 · courses in panel 2, store in panel 3", () => {
     await page.getByTestId("store-filter-level").getByRole("button", { name: "All" }).click();
     expect(await tiles.count()).toBe(all);
     await page.getByTestId("store-filter-category").getByRole("button", { name: "General" }).click();
-    expect(await tiles.count()).toBe(all); // every course is «General» today
+    const general = await tiles.count();
+    expect(general).toBeGreaterThan(0);
+    expect(general).toBeLessThan(all);
+    for (const chip of await page.getByTestId("chip-category").allTextContents()) expect(chip).toBe("General");
   });
 
   test("tile tap opens the landing; Start opens the course page", async ({ page }) => {
