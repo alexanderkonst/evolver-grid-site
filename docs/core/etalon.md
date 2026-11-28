@@ -42,7 +42,7 @@ Found in practice, not designed: Sasha's client programs already measure return 
 
 **The scale is asymptotic (Sasha, 2026-11-27 17:59).** The etalon is approached, never reached. At 9 the scale opens: 9 of 10 becomes 90 of 100, then 990 of 1000, then 9990 of 10000. Each opening zooms into the remaining gap, so the last point is again a whole road. Reading: above 9 the honest number is how many "nines" are held (like 90%, 99%, 99.9% reliability), i.e. the distance to the etalon on a log scale. Consequences: (a) % change is fair inside one decade (0-9); across an opening, compare the gap left, not the score; (b) "10" never appears, so no one is ever done, only more precise; (c) growth near the top looks small in points and is huge in precision.
 
-**Two sequential metrology products (Sasha's programs).** Program 1 ("Transition"): first measured cycle, baseline in hindsight. Program 2 ("Vector", 15 × 90 min): measurement built in at start, middle, end. Each next program starts from the previous end point and from the next request the person names.
+**Two metrology technologies (Sasha, 2026-11-27 18:12).** (1) *Shift measurement*: every shift product (a program, a course, a session) is measured before, middle and after on the person's own goals and scale. (2) *The unfolding asymptotic scale*: an analog approach to the etalon that unfolds digitally, decade by decade (9 → 90/100 → 990/1000 → ...). The first says how far a person moved; the second keeps the ruler honest however close they get. Sasha's programs ("Transition", then "Vector") are where (1) is applied.
 
 ## Open
 - E0 for the game (no coach present): the program method above is the reference; the game version (felt now + choices within 30 days) is still a draft. One phrase cannot prove progress (Sasha).
@@ -52,5 +52,6 @@ Found in practice, not designed: Sasha's client programs already measure return 
 
 ## Changelog
 - v0.1 (2026-11-27): first core, on Sasha's «делай!».
+- v0.2.1 (2026-11-27): two metrology technologies (Sasha 18:12), not two programs.
 - v0.2 (2026-11-27): E0 measure from practice; asymptotic scale; two metrology products.
 - v0.1.1 (2026-11-27): self-relation is Def 71 (Def 73 = order); ToE Step 153 link.
