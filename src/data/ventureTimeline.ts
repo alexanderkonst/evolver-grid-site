@@ -8,8 +8,6 @@
  * is ignored by /dashboard.
  */
 
-// Manual count of founders in the collective; update by hand when a founder joins.
-export const COLLECTIVE_FOUNDERS = 1;
 
 // ─── Revenue Timeline Data ──────────────────────────────────────────────────
 

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import SEO from "@/components/SEO";
 import { formatCurrency } from "@/i18n/format";
-import { COLLECTIVE_FOUNDERS, REVENUE_TIMELINE } from "@/data/ventureTimeline";
+import { REVENUE_TIMELINE } from "@/data/ventureTimeline";
 import "./CollectiveLanding.css";
 
 /**
@@ -149,9 +149,6 @@ export default function CollectiveLanding() {
       <section className="cl-sec" aria-labelledby="cl-public">
         <div className="cl-wrap cl-narrow">
           <h2 id="cl-public" data-reveal>{t("collective.public.title")}</h2>
-          <p className="cl-founders" data-reveal data-testid="cl-founders-count">
-            {t("collective.public.founders", { count: COLLECTIVE_FOUNDERS })}
-          </p>
           <p className="cl-lede cl-sub" data-reveal>{t("collective.public.sub")}</p>
 
           <div
