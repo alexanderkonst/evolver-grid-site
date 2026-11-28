@@ -1,43 +1,51 @@
-"""B01 · The Bashar Formula. All text comes from B01.card.yaml (labels are in spec.text; lint counts them apart)."""
-from kit import vocab as K
+"""B01 · Excitement is your body's compass. All text comes from B01.card.yaml (labels are in spec.text; lint counts them apart)."""
+import math
+import os
+import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from kit import vocab as K  # noqa: E402
+import photo_figure as P  # noqa: E402
 
-def attribution(c, s):
-    """The 'After ...' line in the footer row (footer text is outside the prose word count)."""
-    draw_footer = c.footer
-
-    def footer():
-        draw_footer()
-        c._role = "footer"
-        c.rtext(920, 1258 + 13, s, "sans", 20, K.MOON, 200, maxw=520)
-        c._role = "body"
-    c.footer = footer
+RIBS = (270, 342, 54, 126, 198)          # degrees, 0 = right, clockwise; the top rib points straight up
+FLOWER_C, FLOWER_R = (512, 530), 432     # flower centre and rim radius in the 1024 px photo
 
 
 def build(spec):
     t = spec.text
     c = K.card(spec)
-    attribution(c, t["attribution"])
-    # five steps rise along one path toward "You"; step 1 (excitement, the body's signal) glows brightest.
-    # Each step is a full action (main line) plus one small reason (sub-line), so the labels read alone.
-    n = len(t["steps"])
-    x0, y0, dx, dy = 130, c.body_top + 730, 62, 122
-    pts = [(x0 + k * dx, y0 - k * dy) for k in range(n)]
-    you = (x0 + n * dx + 20, y0 - n * dy - 40)
-    path = pts + [you]
-    for (ax, ay), (bx, by) in zip(path, path[1:]):
-        c.ln([(ax, ay), (bx, by)], K.SILVER, 150, 2.4)
-    c.iri_path(path, 4, 150)
-    for k, ((x, y), (label, sub)) in enumerate(zip(pts, t["steps"])):
-        r = 34 if k == 0 else 26
-        c.orb(x, y, r, glow=120 if k == 0 else 40, seed=k + 1)
+    P.attribution(c, t["attribution"])
+    cx, cy = 540, 812
+    width = 635
+    sc = width / 1024
+    # the photo, placed so the flower centre sits at (cx, cy)
+    P.place(c, spec, t["photo"], cx + (512 - FLOWER_C[0]) * sc, cy + (512 - FLOWER_C[1]) * sc, width)
+    rim = FLOWER_R * sc
+    R = rim + 32                           # the steps sit just outside the rim, at the rib tips
+    ang = [math.radians(a) for a in RIBS]
+    pts = [(cx + R * math.cos(a), cy + R * math.sin(a)) for a in ang]
+    # a thin circle with an arrowhead between each pair of nodes, clockwise: 1 > 2 > 3 > 4 > 5 > 1
+    for k in range(5):
+        a0 = RIBS[k] + 10
+        a1 = RIBS[(k + 1) % 5] + (360 if RIBS[(k + 1) % 5] < RIBS[k] else 0) - 10
+        c.arc_arrow(cx, cy, R, a0, a1, K.SILVER, 210, 2.4)
+    c.iri_ring(cx, cy, R, 1.5, 70)
+    for k, (x, y) in enumerate(pts):
+        c.orb(x, y, 25, glow=60 if k == 0 else 30, seed=k + 1)
         if k == 0:
-            c.iri_ring(x, y, r + 14, 3, 230)
+            c.iri_ring(x, y, 38, 3, 230)
         with c.labels():
-            c.ctext(x, y - (18 if k == 0 else 15), str(k + 1), "sansm", 30 if k == 0 else 26, K.DARK, 255, maxw=60, lh=1.05)
-        ny = K.name(c, x + r + 24, y - 38, label, "left", size=40 if k == 0 else 38, maxw=560)
-        K.note(c, x + r + 24, y - 38 + (46 if k == 0 else 44), sub, "left", size=26, color=K.QUIET, a=235, maxw=560)
-    c.orb(you[0], you[1], 52, glow=90)
+            c.ctext(x, y - 15, str(k + 1), "sansm", 26, K.DARK, 255, maxw=60, lh=1.05)
+    # the labels, kit K.tag style, outside the rim: top above, upper sides above and outward, lower ones below
+    lab = t["steps"]
     with c.labels():
-        c.ctext(you[0], you[1] - 22, t["center"], "serif", 44, K.DARK, 255, maxw=100, lh=1.05)
+        K.tag(c, pts[0][0], pts[0][1] - 76, lab[0], align="center", tsize=32, maxw=420)
+        K.tag(c, pts[1][0] + 10, pts[1][1] - 102, lab[1], align="left", tsize=30, maxw=165)
+        K.tag(c, pts[2][0], pts[2][1] + 38, lab[2], align="center", tsize=30, maxw=240)
+        K.tag(c, pts[3][0], pts[3][1] + 38, lab[3], align="center", tsize=30, maxw=240)
+        K.tag(c, pts[4][0] - 10, pts[4][1] - 136, lab[4], align="right", tsize=30, maxw=167)
+    # You, on the throat of the flower
+    c.orb(cx, cy, 42, glow=70)
+    with c.labels():
+        c.ctext(cx, cy - 22, t["center"], "serif", 44, K.DARK, 255, maxw=100, lh=1.05)
     return c
