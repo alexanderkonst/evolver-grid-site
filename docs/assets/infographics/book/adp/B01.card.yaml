@@ -1,4 +1,5 @@
 # ADP series card, Body module (not published: not in book/book.yaml). Spec: issue #569, v3 (Sasha 2026-11-27 16:37 and 16:39 MST).
+# v3.1: no centre "You" orb, the flower centre is the photo only (issue #569, Sasha 2026-11-28 09:40 CST).
 # Template: infographic v1.1 (#568). Standard kit card; the figure is a full-colour photo (photos/B01-flower-moon.jpg).
 id: B01
 chapter: "1"
@@ -19,7 +20,6 @@ text:
     - Let go of the outcome
     - Stay positive, whatever comes
     - Drop beliefs that aren't yours
-  center: You
   attribution: "After Bashar (channeled by Darryl Anka)"
 sources:
   - "knowledgegraph: 10 Sources/youtube/bashar/undated-five-step-formula.md (verbatim transcript; integration: knowledgegraph#320)"
