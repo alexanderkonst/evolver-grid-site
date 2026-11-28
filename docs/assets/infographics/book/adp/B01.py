@@ -44,8 +44,4 @@ def build(spec):
         K.tag(c, pts[2][0], pts[2][1] + 38, lab[2], align="center", tsize=30, maxw=240)
         K.tag(c, pts[3][0], pts[3][1] + 38, lab[3], align="center", tsize=30, maxw=240)
         K.tag(c, pts[4][0] - 10, pts[4][1] - 136, lab[4], align="right", tsize=30, maxw=167)
-    # You, on the throat of the flower
-    c.orb(cx, cy, 42, glow=70)
-    with c.labels():
-        c.ctext(cx, cy - 22, t["center"], "serif", 44, K.DARK, 255, maxw=100, lh=1.05)
     return c
